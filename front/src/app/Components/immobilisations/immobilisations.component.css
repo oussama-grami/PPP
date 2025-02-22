@@ -1,0 +1,23 @@
+.content-left-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.img-title {
+  margin-bottom: 10px;
+}
+
+.backward{
+  float: left;
+}
+.forward{
+  float: right;
+
+}
+
+
+
+

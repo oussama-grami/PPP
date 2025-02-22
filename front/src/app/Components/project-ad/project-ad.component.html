@@ -1,0 +1,15 @@
+<div class="projectContainer">
+    <img [src]="url" alt="project">
+    <div class="projectTitle">
+        <span id="flag"><img [src]="flag" alt=""></span>
+            <span ><img class="separator" src="/assets/img/lineSeparator.png" alt="" height="14px"></span>
+            <span id="category">{{category}}</span>
+            <span id="price" style="float: right;">{{cost}}$/tCo2e</span>
+    </div>
+    <div class="projectDescription">
+        {{name}}
+    </div>
+    <button [routerLink]="routing" class="projectButton">
+        <span class="projectButtonText">See more</span>
+    </button>
+</div>

@@ -1,0 +1,177 @@
+<app-nav-acceuil [selected]="5"></app-nav-acceuil>
+<div class="container">
+    <div class="retour"> <button [routerLink]="'/marketplace'"> <span><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                    height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M19.5 12H4.5M4.5 12L10.125 6M4.5 12L10.125 18" stroke="black" stroke-width="1.5"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                </svg></span>
+            <span class="retour-text">
+                Back
+            </span></button>
+    </div>
+    <div class="title-font">
+        You would like to submit your sustainable project in order to sell your carbon credits on our marketplace – you
+        are in the right place
+    </div>
+    <div class="header-font">
+        Please enter the following information:
+    </div>
+    <div class="row">
+        <div class="col-7">
+            <div class="input-format">
+                <div class="row">
+                    <div class="col-6">
+                        <input type="text" class="form-control form-format" id="exampleFormControlInput1"
+                            placeholder="First name *">
+                    </div>
+                    <div class="col-6">
+                        <input type="text" class="form-control form-format" id="exampleFormControlInput1"
+                            placeholder="Name *">
+                    </div>
+                    <div>
+                        <input type="text" class="form-control form-format" id="exampleFormControlInput1"
+                            placeholder="Company you represent *">
+                    </div>
+                    <div>
+                        <input type="text" class="form-control form-format" id="exampleFormControlInput1"
+                            placeholder="Function within the company">
+                    </div>
+                    <div>
+                        <input type="text" class="form-control form-format" id="exampleFormControlInput1"
+                            placeholder="Company website url">
+                    </div>
+                    <div style="display: grid;">
+                        
+                            
+                    <div>
+                        
+                        
+                    </div>
+                    <div class="row">
+                        <div class="col-2 form-control-edit" style="padding-right: 0px; padding-top: 5px;height: 48.6px; margin-left: 12px;"
+                    >
+                            <span data-bs-toggle="dropdown" class="flag-icon" [ngClass]="selectedCountry.iconClass" style="width:26; height:17;"></span>
+              
+                            <span id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <svg style="margin-top: 2px;" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24" fill="none">
+                                    <path d="M6 9L12 15L18 9" stroke="#98999D" stroke-width="1.5" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg>
+                            </span>
+                            <ul class="dropdown-menu scrollable-container" aria-labelledby="navbarDropdownMenuLink">
+                                <li *ngFor="let country of countries"><a class="fff dropdown-item" style="margin-left: 0px; " (click)="selectCountry(country)"><span class="flag-icon" [ngClass]="country.iconClass" style="width:26; height:17; margin-left: 16px; margin-right: 5px;"> </span> {{country.code}}  {{country.name}} </a></li>
+    
+    
+                              </ul>
+                            <span class="country-text" style="cursor: default;">
+                                {{selectedCountry.code}}
+                            </span>                        
+                        </div>
+                        <div class="col-10" style="padding-left: 5px; width: 495px;">
+                            <input class="form-control form-format " placeholder="Phone number">                    
+                        </div>
+                    </div>
+                        
+                        
+                    </div>
+                    <div>
+                        <input type="email" class="form-control form-format" id="exampleFormControlInput1"
+                            placeholder="E-mail *">
+                    </div>
+                    <div>
+                        <select class="form-select form-format" aria-label="Country where the project is located *">
+                            <option disabled selected>Country where the project is located *</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                    <div>
+                        <input type="text" class="form-control form-format" id="exampleFormControlInput1"
+                            placeholder="Region where the project is located">
+                    </div>
+                    <div>
+                        <select class="form-select form-format" aria-label="Nature of the project">
+                            <option disabled selected>Nature of the project</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                    <div>
+                        <input type="text" class="form-control form-format" id="exampleFormControlInput1"
+                            placeholder="Description of the project in a few sentences *">
+                    </div>
+                    <div class="header-font big-weight">
+                        Do you have an estimate of the project's annual potential in terms of reducing/ avoiding carbon
+                        emissions?
+                    </div>
+                    <div style="display: inline;">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
+                                value="Yes" [(ngModel)]="estimation">
+                            <label class="form-check-label" for="inlineRadio1">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
+                                value="No" [(ngModel)]="estimation">
+                            <label class="form-check-label" for="inlineRadio2">No</label>
+                        </div>
+                    </div>
+                    <div *ngIf="estimation=='Yes'" style="margin-top: 16px;">
+                        <input type="text" class="form-control form-format" id="exampleFormControlInput1"
+                            placeholder="How much in tCO2e?">
+                    </div>
+
+
+
+
+
+                    <div class="header-font big-weight" style="margin-top: 16px;">
+                        Is the project certified by an organization?
+                    </div>
+                    <div style="display: inline;">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="inlineRadio3"
+                            value="Yes" [(ngModel)]="cerified">
+                            <label class="form-check-label" for="inlineRadio3">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="inlineRadio4"
+                            value="No" [(ngModel)]="cerified">
+                            <label class="form-check-label" for="inlineRadio4">No</label>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="submit-button">
+                            <span class="submit-button-text">
+                                Submit your files
+                                
+                            </span>
+                        </div>
+                        <div>
+                            <div style="display: inline-flex;" class="checkoutButtons">
+                                
+                                <button class="checkoutButton1" [routerLink]="'/marketplace'"><span
+                                        class="checkoutButton1Text">Back</span></button>
+                                <button class="checkoutButton2" style="margin-left: 16px;"><span
+                                        class="checkoutButton2Text">Checkout</span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-5" style="margin-bottom: 300px ;">
+            <div class="porteur-img">
+                <img src="/assets/img/proteur.svg" alt="">
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<app-footer-market-place></app-footer-market-place>
+

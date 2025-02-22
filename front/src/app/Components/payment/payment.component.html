@@ -1,0 +1,231 @@
+<app-nav-acceuil [selected]="5"></app-nav-acceuil>
+<div class="container" style="margin-bottom: 200px;">
+    <div class="row">
+        <div class="col-7">
+            <div class="retour"> <button [routerLink]="'/checkout'"> <span><svg xmlns="http://www.w3.org/2000/svg"
+                            width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M19.5 12H4.5M4.5 12L10.125 6M4.5 12L10.125 18" stroke="black" stroke-width="1.5"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg></span>
+                    <span class="retour-text">
+                        Back
+                    </span></button>
+            </div>
+            <div class="nav default-font">
+                <span class="cursor" [routerLink]="'/checkout'">
+                    Cart
+                </span>
+                <span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M9 18L15 12L9 6" stroke="black" stroke-width="1.5" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </span>
+                <span>
+                    General informations
+                </span>
+                <span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M9 18L15 12L9 6" stroke="black" stroke-width="1.5" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </span>
+                <span class="grey-color">
+                    Payment
+                </span>
+            </div>
+        </div>
+        <div class="input-format">
+            <div class="row">
+                <div >   
+                    <input type="text" class="form-control form-format" id="exampleFormControlInput1" placeholder="Company Name *">
+                </div>
+                <div class="col-6">
+                    <input type="text" class="form-control form-format" id="exampleFormControlInput1" placeholder="First name *">
+                </div>
+                <div class="col-6">
+                    <input type="text" class="form-control form-format" id="exampleFormControlInput1" placeholder="Name *">
+                </div>
+                <div>   
+                    <input type="text" class="form-control form-format" id="exampleFormControlInput1" placeholder="E-mail *">
+                </div>
+                <div >   
+                    <input type="text" class="form-control form-format" id="exampleFormControlInput1" placeholder="Phone">
+                </div>
+                <div >   
+                    <input type="text" class="form-control form-format" id="exampleFormControlInput1" placeholder="Address">
+                </div>
+                <div class="col-6">
+                    <input type="text" class="form-control form-format" id="exampleFormControlInput1" placeholder="Postal code *">
+                </div>
+                <div class="col-6">
+                    <input type="text" class="form-control form-format" id="exampleFormControlInput1" placeholder="City *">
+                </div>
+                <div class="col-6">
+                    <input type="text" class="form-control form-format" id="exampleFormControlInput1" placeholder="Province *">
+                </div>
+                <div class="col-6">
+                    <input type="text" class="form-control form-format" id="exampleFormControlInput1" placeholder="Country *">
+                </div>
+                <div  style="display: inline;">
+                <div class="checkoutButtons">
+                    <button  class="checkoutButton1" [routerLink]="'/checkout'"><span
+                            class="checkoutButton1Text">Back</span></button>
+                    <button  class="checkoutButton2" style="margin-left: 16px;"><span
+                            class="checkoutButton2Text">Checkout</span></button>
+                </div>
+            </div>
+        
+            </div>
+            
+        </div>
+        <div class="col-5" style="margin-left: 50px;">
+            <div class="row">
+                <div class="col-2">
+                    <div class="modal-photo"><img src="/assets/img/modalPhoto1.svg" alt=""></div>
+                </div>
+                <div class="col-7 mt-3">
+                    <div class="project-name"> Tree planting in Testour <span style="float: right; "></span>
+                    </div>
+                    <div class="quantity">2.48$ x 200 tCO2e</div>
+
+                </div>
+                <div class="col-3 mt-4 price" style="display: inline;">
+                    <div class="priceAndTrash">
+                    <span style="margin-right: 8px;"><span class="price-text">$496</span><span class="unity-text">/tCO2e</span></span>
+                    <svg 
+                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none">
+                                <path
+                                    d="M6.28577 8.57153L7.24852 18.1991C7.35076 19.2215 8.2111 20.0001 9.2386 20.0001H14.7615C15.789 20.0001 16.6493 19.2215 16.7516 18.1991L17.7143 8.57153"
+                                    stroke="black" stroke-width="1.5" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path d="M13.5 15.5V10.5" stroke="black" stroke-width="1.5"
+                                    stroke-linecap="round" />
+                                <path d="M10.5 15.5V10.5" stroke="black" stroke-width="1.5"
+                                    stroke-linecap="round" />
+                                <path
+                                    d="M4.57141 6.28571H9.14284M9.14284 6.28571L9.5249 4.75746C9.63619 4.3123 10.0362 4 10.495 4H13.5049C13.9638 4 14.3638 4.3123 14.4751 4.75746L14.8571 6.28571M9.14284 6.28571H14.8571M14.8571 6.28571H19.4286"
+                                    stroke="black" stroke-width="1.5" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                </div>
+            </div>
+            <div class="separator-modal"></div> 
+            <div class="row">
+                <div class="col-2">
+                    <div class="modal-photo"><img src="/assets/img/modalPhoto2.svg" alt=""></div>
+                </div>
+                <div class="col-7 mt-3">
+                    <div class="project-name"> Wind farm in Tunisia <span style="float: right; "></span>
+                    </div>
+                    <div class="quantity">2.25$ x 500 tCO2e</div>
+
+                </div>
+                <div class="col-3 mt-4 price" style="display: inline;">
+                    <div class="priceAndTrash">
+                    <span style="margin-right: 8px;"><span class="price-text">$112</span><span class="unity-text">/tCO2e</span></span>
+                    <svg 
+                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none">
+                                <path
+                                    d="M6.28577 8.57153L7.24852 18.1991C7.35076 19.2215 8.2111 20.0001 9.2386 20.0001H14.7615C15.789 20.0001 16.6493 19.2215 16.7516 18.1991L17.7143 8.57153"
+                                    stroke="black" stroke-width="1.5" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path d="M13.5 15.5V10.5" stroke="black" stroke-width="1.5"
+                                    stroke-linecap="round" />
+                                <path d="M10.5 15.5V10.5" stroke="black" stroke-width="1.5"
+                                    stroke-linecap="round" />
+                                <path
+                                    d="M4.57141 6.28571H9.14284M9.14284 6.28571L9.5249 4.75746C9.63619 4.3123 10.0362 4 10.495 4H13.5049C13.9638 4 14.3638 4.3123 14.4751 4.75746L14.8571 6.28571M9.14284 6.28571H14.8571M14.8571 6.28571H19.4286"
+                                    stroke="black" stroke-width="1.5" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                </div>
+            </div>
+            <div class="separator-modal"></div> 
+            <div class="row">
+                <div class="col-2">
+                    <div class="modal-photo"><img src="/assets/img/modalPhoto3.svg" alt=""></div>
+                </div>
+                <div class="col-7 mt-3">
+                    <div class="project-name"> Forestry Project in Madagascar <span style="float: right; "></span>
+                    </div>
+                    <div class="quantity">7.5$ x 500 tCO2e</div>
+
+                </div>
+                <div class="col-3 mt-4 price" style="display: inline;">
+                    <div class="priceAndTrash">
+                    <span style="margin-right: 8px;"><span class="price-text">750$</span><span class="unity-text">/tCO2e</span></span>
+                    <svg 
+                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none">
+                                <path
+                                    d="M6.28577 8.57153L7.24852 18.1991C7.35076 19.2215 8.2111 20.0001 9.2386 20.0001H14.7615C15.789 20.0001 16.6493 19.2215 16.7516 18.1991L17.7143 8.57153"
+                                    stroke="black" stroke-width="1.5" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path d="M13.5 15.5V10.5" stroke="black" stroke-width="1.5"
+                                    stroke-linecap="round" />
+                                <path d="M10.5 15.5V10.5" stroke="black" stroke-width="1.5"
+                                    stroke-linecap="round" />
+                                <path
+                                    d="M4.57141 6.28571H9.14284M9.14284 6.28571L9.5249 4.75746C9.63619 4.3123 10.0362 4 10.495 4H13.5049C13.9638 4 14.3638 4.3123 14.4751 4.75746L14.8571 6.28571M9.14284 6.28571H14.8571M14.8571 6.28571H19.4286"
+                                    stroke="black" stroke-width="1.5" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                </div>
+            </div>
+            <div class="separator-modal"></div>
+            <div class="total">
+                <span>Total</span>
+                <span style="float: right;margin-right:29px ;">1.358$</span>
+            </div>
+            <div class="separator-modal"></div>
+            <div class="payment">
+                <span class="paymentText">Payment methods accepted</span>
+                <div style="float: right;">
+                    <span>
+                        <svg style="margin-right: 10px;" xmlns="http://www.w3.org/2000/svg" width="44" height="28"
+                            viewBox="0 0 44 28" fill="none">
+                            <path
+                                d="M0 2.56489C0 1.14834 1.16764 0 2.60799 0H41.392C42.8324 0 44 1.14834 44 2.56489V25.4351C44 26.8517 42.8324 28 41.392 28H2.60799C1.16764 28 0 26.8517 0 25.4351V2.56489Z"
+                                fill="#575759" />
+                            <path
+                                d="M24.7283 5.38279L17.7703 6.14312L14.6778 16.0274L18.9299 22.8704L24.7283 22.4902L30.14 17.9282L24.7283 5.38279Z"
+                                fill="#98999D" />
+                            <path
+                                d="M22.4089 5.56475C19.4048 7.27379 17.3837 10.4681 17.3837 14.1267C17.3837 17.7853 19.4048 20.9796 22.4089 22.6887C20.9306 23.5297 19.2143 24.011 17.3837 24.011C11.8331 24.011 7.33333 19.5856 7.33333 14.1267C7.33333 8.66777 11.8331 4.24242 17.3837 4.24242C19.2143 4.24242 20.9306 4.72376 22.4089 5.56475Z"
+                                fill="#BDBEC2" />
+                            <path
+                                d="M22.0224 5.56477C25.0265 7.2738 27.0476 10.4681 27.0476 14.1267C27.0476 17.7853 25.0265 20.9796 22.0224 22.6887C23.5007 23.5297 25.217 24.011 27.0476 24.011C32.5983 24.011 37.098 19.5856 37.098 14.1267C37.098 8.66777 32.5983 4.24242 27.0476 4.24242C25.217 4.24242 23.5007 4.72376 22.0224 5.56477Z"
+                                fill="#BDBEC2" />
+                        </svg>
+                    </span>
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="44" height="28" viewBox="0 0 44 28"
+                            fill="none">
+                            <path
+                                d="M0 2.56489C0 1.14834 1.16764 0 2.60799 0H41.392C42.8324 0 44 1.14834 44 2.56489V25.4351C44 26.8517 42.8324 28 41.392 28H2.60799C1.16764 28 0 26.8517 0 25.4351V2.56489Z"
+                                fill="#575759" />
+                            <path
+                                d="M7.34198 8.52067H9.17572L10.9619 15.6142L14.8264 8.52067H16.8435L11.4985 18.3461H9.82093L7.34198 8.52067Z"
+                                fill="white" />
+                            <path d="M18.1067 8.52067H19.9405L18.5618 18.3461H16.762L18.1067 8.52067Z"
+                                fill="white" />
+                            <path
+                                d="M27.1736 9.88995L25.8085 11.0789C25.247 10.3664 24.7241 10.0102 24.2396 10.0102C23.9996 10.0102 23.8004 10.0814 23.6419 10.2239C23.4835 10.362 23.4042 10.5289 23.4042 10.7249C23.4042 10.9074 23.4767 11.1101 23.6216 11.3327C23.7664 11.5553 24.2056 12.0474 24.9391 12.8088C25.3285 13.2141 25.5843 13.5013 25.7066 13.6705C26.0009 14.0623 26.2114 14.4297 26.3382 14.7726C26.4695 15.111 26.5352 15.4561 26.5352 15.8079C26.5352 16.5961 26.2499 17.2573 25.6794 17.7917C25.1089 18.326 24.3777 18.5932 23.4857 18.5932C22.1274 18.5932 21.0204 17.9587 20.1646 16.6896L21.6044 15.5474C22.184 16.4157 22.8111 16.8499 23.4857 16.8499C23.8072 16.8499 24.0766 16.7475 24.2939 16.5426C24.5158 16.3378 24.6267 16.0906 24.6267 15.8012C24.6267 15.5741 24.5588 15.3426 24.423 15.1066C24.2917 14.8705 23.9113 14.4253 23.282 13.7707C22.6164 13.0805 22.1795 12.5595 21.9712 12.2077C21.6905 11.7312 21.5501 11.2637 21.5501 10.805C21.5501 10.1994 21.7516 9.65617 22.1546 9.17525C22.6617 8.57411 23.3454 8.27354 24.2056 8.27354C25.3874 8.27354 26.3767 8.81234 27.1736 9.88995Z"
+                                fill="white" />
+                            <path
+                                d="M32.736 8.52067H34.3184L36.8041 18.3461H34.984L34.4542 16.2554H30.5083L29.3605 18.3461H27.3434L32.736 8.52067ZM33.9992 14.5188L33.1978 11.2926L31.4387 14.5188H33.9992Z"
+                                fill="white" />
+                            <path d="M4.15896 8.33588H9.11974L9.7668 10.8813L4.15896 8.33588Z" fill="#B5B6BA" />
+                        </svg> </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer-market-place ></app-footer-market-place>

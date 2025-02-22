@@ -1,0 +1,202 @@
+<link rel="shortcut icon" href="/assets/value_green/icon.png" type="image/x-icon">
+<link rel="apple-touch-icon" type="image/x-icon" href="/assets/img/apple-touch-icon-57x57-precomposed.png">
+<link rel="apple-touch-icon" type="image/x-icon" sizes="72x72"
+  href="/assets/img/apple-touch-icon-72x72-precomposed.png">
+<link rel="apple-touch-icon" type="image/x-icon" sizes="114x114"
+  href="/assets/img/apple-touch-icon-114x114-precomposed.png">
+<link rel="apple-touch-icon" type="image/x-icon" sizes="144x144"
+  href="/assets/img/apple-touch-icon-144x144-precomposed.png">
+
+<!-- GOOGLE WEB FONT -->
+<link href="https://fonts.googleapis.com/css?family=Work+Sans:400,500,600" rel="stylesheet">
+
+<!-- BASE CSS -->
+<link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+<link href="/assets/css/menu.css" rel="stylesheet">
+<link href="/assets/css/style.css" rel="stylesheet">
+<link href="/assets/css/vendors.css" rel="stylesheet">
+
+<!-- YOUR CUSTOM CSS -->
+<link href="/assets/css/custom.css" rel="stylesheet">
+<script src="/assets/js/modernizr.js"></script>
+<div style="height: 100vh; overflow: auto;">
+  <app-nav-acceuil [selected]="1"></app-nav-acceuil>
+  <!-- <div style="position: relative; " [ngStyle]="{'background-image': 'url(/assets/img/pan2.jpg)', 'background-size': 'cover', 'background-repeat': 'no-repeat', 'background-position': 'top center', 'width': '100%', 'height': '50%'}">
+    <div [ngStyle]="{'background-image': 'url(/assets/img/pan1.png)', 'background-size': 'cover', 'background-repeat': 'no-repeat', 'background-position': 'top center', 'width': '100%', 'height': '50vh'}">
+      <p class="p1">Evaluate the emissions reduction potential of your project</p>
+      <p class="p2">The purpose of this simulation is to evaluate the reduction potential of an arboriculture, afforestation or reforestation project on your greenhouse gas emissions.</p>
+    </div>
+  </div>
+  <div style="margin-top: 40px;">
+    <p class="p3">We offer you a simple way to assess your contribution to reducing CO2 emissions.</p>
+    <p class="p4">To assess the CO2 reduction potential of your project, please provide the following information:</p>
+  </div>
+  <div style="margin-top: 20px; display: flex; justify-content: center;">
+    <form ngForm id="wrapped" (ngSubmit)="submitData()">
+      <div class="mb-3">
+        <label  class="form-labell">What is the nature of the trees affected by the project?</label>
+      </div>
+      <div class="mb-3">
+        <select [(ngModel)]="arbData.typeArbre" name="typeArbre" id="typeArbre" onChange="handleChange()" style="width: 650px; height: 54px; border-radius: 5px; border: 1px solid;">
+          <option class="option" [value]="TypeArbre.Olivier">Olivier</option>
+          <option class="option" [value]="TypeArbre.Eucalyptus">Eucalyptus</option>
+          <option class="option" [value]="TypeArbre.Caroubier">Carob tree</option>
+          <option class="option" [value]="TypeArbre.Cypres">Cypress</option>
+          <option class="option" [value]="TypeArbre.Alep">Aleppo Pine</option>
+          <option class="option" [value]="TypeArbre.Thurifere">Thurifer Juniper</option>
+          <option class="option" [value]="TypeArbre.Cedre">Atlas Cedar</option>
+          <option class="option" [value]="TypeArbre.Rose">Pink Laurel</option>
+          <option class="option" [value]="TypeArbre.Acacia">Acacia</option>
+          <option class="option" [value]="TypeArbre.Figuier">Fig tree</option>
+          <option class="option" [value]="TypeArbre.Almondier">Almondier</option>
+          <option class="option" [value]="TypeArbre.Grenadier">Pomegranate</option>
+          <option class="option" [value]="TypeArbre.Chene_liege">Cork Oak</option>
+          <option class="option" [value]="TypeArbre.Chene_vert">Holm oak</option>
+          <option class="option" [value]="TypeArbre.Micocoulier">Hackberry </option>
+          <option class="option" [value]="TypeArbre.Peuplier">Poplar</option>
+          <option class="option" [value]="TypeArbre.Tamaris">Tamarisk</option>
+          <option class="option" [value]="TypeArbre.Dattier">Date Palm</option>
+          <option class="option" [value]="TypeArbre.Marronnier">Horse chestnut</option>
+          <option class="option" [value]="TypeArbre.Chene_kermes">Kermes oak</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label  class="form-labell">Enter the number of trees</label>
+      </div>
+
+      <div class="mb-3">
+        <input type="number" name="nbArbre" [(ngModel)]="arbData.nbArbre" id="nbArbre" style="width: 650px; height: 54px; top: 742px; left: 469px; border-radius: 5px; border: 1px solid;">
+      </div>
+      <div class="mb-3">
+        <label  class="form-labell">At what stage of development are the trees? </label>
+      </div>
+      <div class="mb-3">
+        <select [(ngModel)]="arbData.stade" name="stade" id="stade" onChange="handleChange()" style="width: 650px; height: 54px; border-radius: 5px; border: 1px solid;">
+          <option class="option" [value]="Stade.Jeune"> Young</option>
+          <option class="option" [value]="Stade.Adulte">Adult</option>
+          <option class="option" [value]="Stade.Mature">Mature</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label  class="form-labell">How tall are your trees? </label>
+      </div>
+
+      <div class="mb-3">
+        <select [(ngModel)]="arbData.hauteur" id="hauteur" name="hauteur" onChange="handleChange()" style="width: 650px; height: 54px; border-radius: 5px; border: 1px solid;">
+          <option class="option" [value]="Hauteur.Plus20"> > 20m </option>
+          <option class="option" [value]="Hauteur.Entre15et20">15-20 m</option>
+          <option class="option" [value]="Hauteur.Entre11et15">11-15 m</option>
+          <option class="option" [value]="Hauteur.Moin10">< 10 m</option>
+        </select>
+      </div>
+      <div style="justify-content: right;display: flex">
+        <button type="submit" style="margin-top: 20px; margin-bottom: 50px" class="calculate-button">Calculate</button>
+      </div>
+    </form>
+  </div>
+</div> -->
+
+
+  <div class="container" style=" margin-left: 0;">
+    <div class="row row-height">
+      <div class="col-6" style="padding: 0;">
+        <div [ngStyle]="{'background-image': 'url(/assets/img/arb.png)', 'background-repeat': 'no-repeat',  'width': '720px', 'height': '100%', 'background-size':'cover', 'background-position':'center 20%'}">
+          <div class="backgroundText">
+            <p>title</p>
+            <p class="title">Trees Plantation</p>
+            <p class="description">We offer you a simple way to assess your contribution to reducing CO2 emissions.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 ">
+        <div>
+   
+          <form>
+            <div class="questions-box">
+              <div class="retour"> <button [routerLink]="'/porteur'">
+                <div><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                      height="24" viewBox="0 0 24 24" fill="none">
+                      <path d="M19.5 12H4.5M4.5 12L10.125 6M4.5 12L10.125 18" stroke="black" stroke-width="1.5"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                    </svg></div>
+                  <div class="retour-text">
+                    Back
+                  </div></button>
+              </div>
+              <div class="form-title">
+                To evaluate the CO2 absorption potential of your project, please provide the following information:
+              </div>
+              <div class="form-title" style="margin-top: 16px; font-weight: 500;">
+                What is the nature of the trees affected by the project?
+              </div>
+              <div>
+                <select [(ngModel)]="arbData.typeArbre" name="typeArbre" id="typeArbre" onChange="handleChange()"
+                  style="width: 523px; height: 40px; border-radius: 3px; border: 1px solid #D2D8DD; padding: 5px;">
+                  <option class="option" [value]="TypeArbre.Olivier">Olivier</option>
+                  <option class="option" [value]="TypeArbre.Eucalyptus">Eucalyptus</option>
+                  <option class="option" [value]="TypeArbre.Caroubier">Carob tree</option>
+                  <option class="option" [value]="TypeArbre.Cypres">Cypress</option>
+                  <option class="option" [value]="TypeArbre.Alep">Aleppo Pine</option>
+                  <option class="option" [value]="TypeArbre.Thurifere">Thurifer Juniper</option>
+                  <option class="option" [value]="TypeArbre.Cedre">Atlas Cedar</option>
+                  <option class="option" [value]="TypeArbre.Rose">Pink Laurel</option>
+                  <option class="option" [value]="TypeArbre.Acacia">Acacia</option>
+                  <option class="option" [value]="TypeArbre.Figuier">Fig tree</option>
+                  <option class="option" [value]="TypeArbre.Almondier">Almondier</option>
+                  <option class="option" [value]="TypeArbre.Grenadier">Pomegranate</option>
+                  <option class="option" [value]="TypeArbre.Chene_liege">Cork Oak</option>
+                  <option class="option" [value]="TypeArbre.Chene_vert">Holm oak</option>
+                  <option class="option" [value]="TypeArbre.Micocoulier">Hackberry </option>
+                  <option class="option" [value]="TypeArbre.Peuplier">Poplar</option>
+                  <option class="option" [value]="TypeArbre.Tamaris">Tamarisk</option>
+                  <option class="option" [value]="TypeArbre.Dattier">Date Palm</option>
+                  <option class="option" [value]="TypeArbre.Marronnier">Horse chestnut</option>
+                  <option class="option" [value]="TypeArbre.Chene_kermes">Kermes oak</option>
+                </select>
+              </div>
+              <div>
+                <label class="form-title" style="font-weight: 500;">How many trees are included in your project?​</label>
+              </div>
+
+              <div>
+                <input type="number" name="nbArbre" [(ngModel)]="arbData.nbArbre" id="nbArbre"
+                  style="width: 523px; height: 40px; border-radius: 3px; border: 1px solid #D2D8DD; padding: 15px;">
+              </div>
+              <div>
+                <label class="form-title" style="font-weight: 500;">At what stage of development are the trees? </label>
+              </div>
+              <div>
+                <select [(ngModel)]="arbData.stade" name="stade" id="stade" onChange="handleChange()"
+                  style="width: 523px; height: 40px; border-radius: 3px; border: 1px solid #D2D8DD; padding: 5px;">
+                  <option class="option" [value]="Stade.Jeune"> Young</option>
+                  <option class="option" [value]="Stade.Adulte">Adult</option>
+                  <option class="option" [value]="Stade.Mature">Mature</option>
+                </select>
+              </div>
+              <div>
+                <label class="form-title" style="font-weight: 500;">How tall are your trees? </label>
+              </div>
+
+              <div>
+                <select [(ngModel)]="arbData.hauteur" id="hauteur" name="hauteur" onChange="handleChange()"
+                  style="width: 523px; height: 40px; border-radius: 3px; border: 1px solid #D2D8DD; padding: 5px;">
+                  <option class="option" [value]="Hauteur.Plus20"> > 20m </option>
+                  <option class="option" [value]="Hauteur.Entre15et20">15-20 m</option>
+                  <option class="option" [value]="Hauteur.Entre11et15">11-15 m</option>
+                  <option class="option" [value]="Hauteur.Moin10">
+                    < 10 m</option>
+                </select>
+              </div>
+            </div>
+            <div style="justify-content: right; display: flex">
+              <button type="submit" style="margin-top: 20px; margin-right: 0;" class="calculate-button"
+                (click)="submitData()">Calculate</button>
+            </div>
+          </form>
+          <br>
+<!-- 
+          <div class="footer">The average annual sequestration potential of the project in tonnes of CO2 equivalent:
+          </div> -->
+        </div>
+      </div>
+    </div>

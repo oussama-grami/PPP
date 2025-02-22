@@ -1,0 +1,77 @@
+<!-- Favicons-->
+<link rel="shortcut icon" href="/assets/value_green/icon.png" type="image/x-icon">
+<link rel="apple-touch-icon" type="image/x-icon" href="/assets/img/apple-touch-icon-57x57-precomposed.png">
+<link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="/assets/img/apple-touch-icon-72x72-precomposed.png">
+<link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="/assets/img/apple-touch-icon-114x114-precomposed.png">
+<link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="/assets/img/apple-touch-icon-144x144-precomposed.png">
+
+<!-- GOOGLE WEB FONT -->
+<link href="https://fonts.googleapis.com/css?family=Work+Sans:400,500,600" rel="stylesheet">
+
+<!-- BASE CSS -->
+<link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+<link href="/assets/css/menu.css" rel="stylesheet">
+<link href="/assets/css/style.css" rel="stylesheet">
+<link href="/assets/css/vendors.css" rel="stylesheet">
+
+<!-- YOUR CUSTOM CSS -->
+<link href="/assets/css/custom.css" rel="stylesheet">
+<!-- MODERNIZR MENU -->
+<script src="/assets/js/modernizr.js"></script>
+<app-nav-acceuil [selected]="1"></app-nav-acceuil>
+<div class="container-fluid full-height" style="margin-top: 50px;">
+  <a routerLink="/nav" class="cd-nav-trigger">Menu<span class="cd-icon"></span></a>
+  <div class="row row-height">
+    <div class="col-lg-6 content-left1">
+      <div class="content-left-wrapper">
+        <img src="assets/img/FRET.png" class="img-title" id="descriptionImage"/>
+        <h2 id="descriptionTitle">Freight</h2>
+        <p id="descriptionText">Evaluate your air and sea freight emissions in just a few clicks!        </p>
+      </div>
+    </div>
+    <div class="col-lg-6 content-right" id="start"style="overflow-y: hidden;">
+      <div id="wizard_container">
+        <form ngForm id="wrapped" (ngSubmit)="submitData()">
+          <div class="step">
+            <h3 class="main_question"><strong>5/7</strong> Fill in the data related to the transport of goods of your company</h3>
+            <h5> Air freight :</h5>
+            <div class="form-group">
+              <input type="number" name="distancemoins" class="form-control" [(ngModel)]="fData.fretAerien" placeholder="Distance < 3000Km (Tons)" id="dma" onChange="handleChange()">
+            </div>
+            <div class="form-group">
+              <input type="number" name="distanceplus" class="form-control" [(ngModel)]="fData.fretAerien1" placeholder="Distance > 3000Km (Tons)" id="dpa" onChange="handleChange()">
+            </div>
+            <h5>Sea freight:</h5>
+            <div class="form-group">
+              <input type="number" name="distancemoins" class="form-control" [(ngModel)]="fData.fretMaritme" placeholder="Distance < 3000Km (Tons)" id="dmm" onChange="handleChange()">
+            </div>
+            <div class="form-group">
+              <input type="number" name="distanceplus" class="form-control" [(ngModel)]="fData.fretMaritme1" placeholder="Distance > 3000Km (Tons)" id="dpm" onChange="handleChange()">
+            </div>
+          </div>
+
+          <div id="bottom-wizard">
+            <button id="calculateButton" type="submit" name="calcul" class="calcul">Calculate</button>
+            <p id='calcResult' class="mt-3"></p>
+          </div>
+          <div id="bottom-wizard2">
+            <div class="button-container">
+              <button type="button" name="backward" class="backward" routerLink="/aer">Back</button>
+              <button type="button" name="forward" class="forward" routerLink="/cons">Continue</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="assets/js/jquery-3.6.3.min.js"></script>
+<script src="assets/js/common_scripts.min.js"></script>
+<script src="assets/js/velocity.min.js"></script>
+<script src="assets/js/functions.js"></script>
+
+<!-- Wizard script -->
+<script src="assets/js/survey_func.js"></script>
+
+

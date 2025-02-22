@@ -1,0 +1,32 @@
+.content-left-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.img-title {
+    margin-bottom: 10px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.button-container button {
+    margin-right: 300px;
+    
+}
+
+#footer-info{
+    width: 400px;
+    color: #000;
+font-family: Fira Sans;
+font-size: 14px;
+font-style: italic;
+font-weight: 300;
+line-height: 20px; /* 142.857% */
+text-align: left;
+}

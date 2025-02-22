@@ -1,0 +1,51 @@
+#navbar {
+  transition: background-color 0.5s ease-in-out;
+  background-color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+}
+
+.transparent-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  backdrop-filter: blur(100px);
+  -webkit-backdrop-filter: blur(100px);
+  background-color: rgba(220, 220, 220, 0.9);
+}
+
+.content-wrapper {
+  position: relative;
+  z-index: 1;
+  height: calc(10vh - 56px); /* Adjust the value according to the navbar height */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+.abonnez-button {
+  width: 130px;
+  height: 40px;
+  border-radius: 5px;
+  background-color: #014131;
+  top : 10px;
+  color: white;
+  float: right;
+  border: 1px solid #014131;
+  margin-right: 20px;
+}
+.fff {
+  font-family: Roboto;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 44px;
+  letter-spacing: 0em;
+  color: #343434;
+}
+.fff:hover{
+  color: #014131;
+  transform: scale(1.05);
+}

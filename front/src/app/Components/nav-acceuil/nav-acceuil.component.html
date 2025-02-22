@@ -1,0 +1,36 @@
+<link rel="shortcut icon" href="/assets/value_green/icon.png" type="image/x-icon">
+<link rel="apple-touch-icon" type="image/x-icon" href="/assets/img/apple-touch-icon-57x57-precomposed.png">
+<link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="/assets/img/apple-touch-icon-72x72-precomposed.png">
+<link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="/assets/img/apple-touch-icon-114x114-precomposed.png">
+<link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="/assets/img/apple-touch-icon-144x144-precomposed.png">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<!-- GOOGLE WEB FONT -->
+<link href="https://fonts.googleapis.com/css?family=Work+Sans:400,500,600" rel="stylesheet">
+<script src="https://kit.fontawesome.com/28bdde147c.js" crossorigin="anonymous"></script>
+
+<link href="/assets/css/custom.css" rel="stylesheet">
+<script src="/assets/js/modernizr.js"></script>
+<div>
+  <div id="navbar" style="background-color: white; backdrop-filter: blur(0);">
+    <br>
+    <a routerLink=""><img src="assets/value_green/logo_green.png" class="" alt="" style=" width: 150px; height: 35x; margin-left: 20px;"></a>
+    <a  [ngClass]="{ 'selected': selected===0}" class="fff nav-item dropdown"  routerLink="" >Home</a>
+    <a  [ngClass]="{ 'selected': selected===1}" class="fff nav-item dropdown dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Assessment tools</a>
+    <!-- <a  [ngClass]="{ 'selected': selected===2}" class="fff nav-item dropdown" routerLink="/carbone">Carbon Footprint</a>
+    <a  [ngClass]="{ 'selected': selected===3}" class="fff nav-item dropdown" routerLink="/porteur">Green Projects</a> -->
+    <a  [ngClass]="{ 'selected': selected===5}" class="fff nav-item dropdown" routerLink="/marketplace">Marketplace</a>
+    <a  [ngClass]="{ 'selected': selected===4}" class="fff nav-item dropdown" routerLink="/resources">VGreen Knowledge</a>
+
+    <ul class="dropdown-menu" style="width: 280px; height: 180px;" aria-labelledby="navbarDropdownMenuLink">
+      <li><a class="fff dropdown-item" routerLink="/carbone" style="margin-left: 0px;">Carbon Footprint Calculator</a></li>
+      <li><a class="fff dropdown-item" routerLink="/porteur" style="margin-left: 0px;">Carbon Offset Projects</a></li>
+      <li><a class="fff dropdown-item" routerLink="/esg1" style="margin-left: 0px;">ESG Assessment</a></li>
+
+    </ul>
+
+
+
+    <!-- <button  routerLink="/marketplace" class="abonnez-button">Marketplace</button> -->
+    <div style="height: 10px"></div>
+  </div>
+</div>

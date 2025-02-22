@@ -1,0 +1,175 @@
+<link rel="shortcut icon" href="/assets/value_green/icon.png" type="image/x-icon">
+<link rel="apple-touch-icon" type="image/x-icon" href="/assets/img/apple-touch-icon-57x57-precomposed.png">
+<link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="/assets/img/apple-touch-icon-72x72-precomposed.png">
+<link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="/assets/img/apple-touch-icon-114x114-precomposed.png">
+<link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="/assets/img/apple-touch-icon-144x144-precomposed.png">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<!-- GOOGLE WEB FONT -->
+<link href="https://fonts.googleapis.com/css?family=Work+Sans:400,500,600" rel="stylesheet">
+<!-- BASE CSS -->
+<link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+<link href="/assets/css/menu.css" rel="stylesheet">
+<link href="/assets/css/style.css" rel="stylesheet">
+<link href="/assets/css/vendors.css" rel="stylesheet">
+<!-- YOUR CUSTOM CSS -->
+<link href="/assets/css/custom.css" rel="stylesheet">
+<script src="/assets/js/modernizr.js"></script>
+<div>
+  <app-nav-acceuil [selected]="1"></app-nav-acceuil>
+  <div class="container">
+    <div class="row">
+      <div class="col-8">
+        <div class="retour"> <button [routerLink]="'/resultat'"> <span><svg xmlns="http://www.w3.org/2000/svg" width="24"
+          height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M19.5 12H4.5M4.5 12L10.125 6M4.5 12L10.125 18" stroke="black" stroke-width="1.5"
+              stroke-linecap="round" stroke-linejoin="round" />
+      </svg></span>
+    <span class="retour-text">
+      Back
+    </span></button>
+    </div>
+        <p class="pf">Build your action plan to reduce your emissions.    </p>
+        <p class="pf1">We suggest that you simulate the impact on the environment of certain measures that may be considered.    </p>
+        <div class="actions-field-text">
+          Actions
+        </div>
+        <div style="margin-top: 16px;">
+          <div class="action-box" [ngStyle]="clicked1 ? {'border': '2px solid #000'} : {'border': '1px solid #D3D3D3'}">
+            <span>
+              <img style="margin-left: 21px;" src="/assets/img/action1.svg" alt="">
+            </span>
+            <span class="action-text" style="vertical-align: middle;">
+              Purchase renewable energy
+            </span>
+            <span class="action-click" style="float: right;">
+              <svg class="click" (click)="selected1()" *ngIf="!clicked1" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
+                <circle cx="12.5" cy="12.5" r="12" stroke="#D3D3D3"/>
+              </svg>
+              <svg class="click" (click)="selected1()" *ngIf="clicked1" xmlns="http://www.w3.org/2000/svg" width="26" height="25" viewBox="0 0 26 25" fill="none">
+                <ellipse cx="12.8728" cy="12.5" rx="12.8728" ry="12.5" fill="black"/>
+                <path d="M10.3958 17.784L5.37538 12.9899C5.07377 12.7019 5.07377 12.2349 5.37538 11.9468L6.46765 10.9038C6.76927 10.6157 7.25833 10.6157 7.55995 10.9038L10.9419 14.1333L18.1858 7.21601C18.4874 6.928 18.9764 6.928 19.2781 7.21601L20.3703 8.25907C20.6719 8.54709 20.6719 9.01408 20.3703 9.30213L11.4881 17.784C11.1864 18.072 10.6974 18.072 10.3958 17.784Z" fill="white"/>
+              </svg>
+            </span>
+          
+          </div>
+
+        </div>
+        <div style="margin-top: 16px;">
+          <div class="action-box" [ngStyle]="clicked2 ? {'border': '2px solid #000'} : {'border': '1px solid #D3D3D3'}">
+            <span>
+              <img style="margin-left: 21px;" src="/assets/img/action2.svg" alt="">
+            </span>
+            <span class="action-text" style="vertical-align: middle;">
+              Install PV panels
+            </span>
+            <span class="action-click" style="float: right;">
+              <svg class="click" (click)="selected2()" *ngIf="!clicked2" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
+                <circle cx="12.5" cy="12.5" r="12" stroke="#D3D3D3"/>
+              </svg>
+              <svg class="click" (click)="selected2()" *ngIf="clicked2" xmlns="http://www.w3.org/2000/svg" width="26" height="25" viewBox="0 0 26 25" fill="none">
+                <ellipse cx="12.8728" cy="12.5" rx="12.8728" ry="12.5" fill="black"/>
+                <path d="M10.3958 17.784L5.37538 12.9899C5.07377 12.7019 5.07377 12.2349 5.37538 11.9468L6.46765 10.9038C6.76927 10.6157 7.25833 10.6157 7.55995 10.9038L10.9419 14.1333L18.1858 7.21601C18.4874 6.928 18.9764 6.928 19.2781 7.21601L20.3703 8.25907C20.6719 8.54709 20.6719 9.01408 20.3703 9.30213L11.4881 17.784C11.1864 18.072 10.6974 18.072 10.3958 17.784Z" fill="white"/>
+              </svg>
+            </span>
+            <div *ngIf="clicked2" style="margin-top: 20px; margin-left: 21px; margin-bottom: 7px;">
+              <div class="selected-text">
+                My company uses  <input class="input-field" type="text" name="" id="" > Kilowatt hours of electricity per year, which produces <input class="input-field" type="text" name="" id=""> tonnes of CO2 per year. We will buy <input class="input-field" type="text" name="" id=""> of our electricity from a clean energy supplier.
+              </div>
+              <div  style="margin-top: 10px;">
+                <button class="calculate-button">Calculate</button>
+                <div class="calculation-result">12 tCO2</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div style="margin-top: 16px;">
+          <div class="action-box" [ngStyle]="clicked3 ? {'border': '2px solid #000'} : {'border': '1px solid #D3D3D3'}">
+            <span>
+              <img style="margin-left: 21px;" src="/assets/img/action3.svg" alt="">
+            </span>
+            <span class="action-text" style="vertical-align: middle;">
+              Telecommute to work
+            </span>
+            <span class="action-click" style="float: right;">
+              <svg class="click" (click)="selected3()" *ngIf="!clicked3" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
+                <circle cx="12.5" cy="12.5" r="12" stroke="#D3D3D3"/>
+              </svg>
+              <svg class="click" (click)="selected3()" *ngIf="clicked3" xmlns="http://www.w3.org/2000/svg" width="26" height="25" viewBox="0 0 26 25" fill="none">
+                <ellipse cx="12.8728" cy="12.5" rx="12.8728" ry="12.5" fill="black"/>
+                <path d="M10.3958 17.784L5.37538 12.9899C5.07377 12.7019 5.07377 12.2349 5.37538 11.9468L6.46765 10.9038C6.76927 10.6157 7.25833 10.6157 7.55995 10.9038L10.9419 14.1333L18.1858 7.21601C18.4874 6.928 18.9764 6.928 19.2781 7.21601L20.3703 8.25907C20.6719 8.54709 20.6719 9.01408 20.3703 9.30213L11.4881 17.784C11.1864 18.072 10.6974 18.072 10.3958 17.784Z" fill="white"/>
+              </svg>
+            </span>
+          </div>
+
+        </div>
+        <div style="margin-top: 16px;">
+          <div class="action-box" [ngStyle]="clicked4 ? {'border': '2px solid #000'} : {'border': '1px solid #D3D3D3'}">
+            <span>
+              <img style="margin-left: 21px;" src="/assets/img/action4.svg" alt="">
+            </span>
+            <span class="action-text" style="vertical-align: middle;">
+              Purchase electric vehicles
+            </span>
+            <span class="action-click" style="float: right;">
+              <svg class="click" (click)="selected4()" *ngIf="!clicked4" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
+                <circle cx="12.5" cy="12.5" r="12" stroke="#D3D3D3"/>
+              </svg>
+              <svg class="click" (click)="selected4()" *ngIf="clicked4" xmlns="http://www.w3.org/2000/svg" width="26" height="25" viewBox="0 0 26 25" fill="none">
+                <ellipse cx="12.8728" cy="12.5" rx="12.8728" ry="12.5" fill="black"/>
+                <path d="M10.3958 17.784L5.37538 12.9899C5.07377 12.7019 5.07377 12.2349 5.37538 11.9468L6.46765 10.9038C6.76927 10.6157 7.25833 10.6157 7.55995 10.9038L10.9419 14.1333L18.1858 7.21601C18.4874 6.928 18.9764 6.928 19.2781 7.21601L20.3703 8.25907C20.6719 8.54709 20.6719 9.01408 20.3703 9.30213L11.4881 17.784C11.1864 18.072 10.6974 18.072 10.3958 17.784Z" fill="white"/>
+              </svg>
+            </span>
+          </div>
+
+        </div>
+        <div style="margin-top: 16px;">
+          <div class="action-box" [ngStyle]="clicked5 ? {'border': '2px solid #000'} : {'border': '1px solid #D3D3D3'}">
+            <span>
+              <img style="margin-left: 21px;" src="/assets/img/action5.svg" alt="">
+            </span>
+            <span class="action-text" style="vertical-align: middle;">
+              Purchase hybrid vehicles
+            </span>
+            <span class="action-click" style="float: right;">
+              <svg class="click" (click)="selected5()" *ngIf="!clicked5" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
+                <circle cx="12.5" cy="12.5" r="12" stroke="#D3D3D3"/>
+              </svg>
+              <svg class="click" (click)="selected5()" *ngIf="clicked5" xmlns="http://www.w3.org/2000/svg" width="26" height="25" viewBox="0 0 26 25" fill="none">
+                <ellipse cx="12.8728" cy="12.5" rx="12.8728" ry="12.5" fill="black"/>
+                <path d="M10.3958 17.784L5.37538 12.9899C5.07377 12.7019 5.07377 12.2349 5.37538 11.9468L6.46765 10.9038C6.76927 10.6157 7.25833 10.6157 7.55995 10.9038L10.9419 14.1333L18.1858 7.21601C18.4874 6.928 18.9764 6.928 19.2781 7.21601L20.3703 8.25907C20.6719 8.54709 20.6719 9.01408 20.3703 9.30213L11.4881 17.784C11.1864 18.072 10.6974 18.072 10.3958 17.784Z" fill="white"/>
+              </svg>
+            </span>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="col-4" style="flex: 1; margin-top: 49vh; display: flex; flex-direction: column;">
+        <div class="estimation-box">
+          <div class="estimation-text">
+            Your estimated footprint:
+          </div>
+          <div class="estimation-number">
+            200 tCO2
+          </div>
+        </div>
+        <div class="estimation-box" style="margin-top: 21px;">
+          <div class="estimation-text">
+            Your estimated reduction:
+          </div>
+          <div class="estimation-number">
+            0 tCO2
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  
+  </div>
+  
+  <app-footer-market-place></app-footer-market-place>

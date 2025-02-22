@@ -1,0 +1,277 @@
+<link rel="shortcut icon" href="/assets/value_green/icon.png" type="image/x-icon">
+<link rel="apple-touch-icon" type="image/x-icon" href="/assets/img/apple-touch-icon-57x57-precomposed.png">
+<link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="/assets/img/apple-touch-icon-72x72-precomposed.png">
+<link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="/assets/img/apple-touch-icon-114x114-precomposed.png">
+<link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="/assets/img/apple-touch-icon-144x144-precomposed.png">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<!-- GOOGLE WEB FONT -->
+<link href="https://fonts.googleapis.com/css?family=Work+Sans:400,500,600" rel="stylesheet">
+<script src="https://kit.fontawesome.com/28bdde147c.js" crossorigin="anonymous"></script>
+<!-- BASE CSS -->
+<link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+<link href="/assets/css/menu.css" rel="stylesheet">
+<link href="/assets/css/style.css" rel="stylesheet">
+<link href="/assets/css/vendors.css" rel="stylesheet">
+<!-- YOUR CUSTOM CSS -->
+<link href="/assets/css/custom.css" rel="stylesheet">
+<script src="/assets/js/modernizr.js"></script>
+<div style="height: 100vh; overflow: auto;">
+  <app-nav-acceuil [selected]="1"></app-nav-acceuil>
+    <h2 class="prop">According to your answers to the questionnaire, the following actions should be taken:    </h2>
+    <div style="margin-top: 80px; margin-left: 40px; display: inline-flex; align-items: center;">
+      <a class="a" routerLink="/propEnv"><p class="en" style="width: 120px;height: 20px;font-weight: 600;color: #C2C2C2">Environment</p></a>
+      <span style=" margin-left: 5px;margin-right: 5px;"><img src="assets/value_green/next.png" class="" alt="" style="width: 8px; height: 15px;"></span>
+      <a routerLink="/propSoc"> <p class="en" style="width: 50px;height: 20px;font-weight: 600;color: #C2C2C2">Social</p></a>
+      <span style=" margin-left: 5px;margin-right: 5px;"><img src="assets/value_green/next.png" class="" alt="" style="width: 8px; height: 15px;"></span>
+      <a routerLink="/propGouv"> <p class="en" style="width: 120px;height: 20px;font-weight: 600;color: #F79302">Governance</p></a>
+      <button (click)="PrintGouv()" class="btnn"><span class="pri">Print</span></button>
+    </div>
+    <div class="row mx-4">
+      <div style="width: 100%;height: 62px;top: 20px;background-color: #F79302; margin-top: 24px;">
+        <p class="headline">Governance</p>
+      </div>
+      <div *ngIf="GOUV1<3" class="row">
+      <div class="col-3 inline">
+        <div class="category-img">
+          <img src="assets/value_green/31.png" class="" alt="" style="width: 65px;height: 65px;">
+        </div>
+        <div class="category-text">
+          Corporate Governance Policies and Practices
+        </div>
+      </div>
+      <div class="col-9">
+        <ul style="margin-top: 18px;list-style-type:disc;">
+          <li class="category-text normal-weight">    Establish a robust governance structure that includes a competent and independent board of directors, with qualified and diverse members.          </li>
+          <div class="seperator"></div>
+          <li class="category-text normal-weight">Set up an independent audit committee within the board to oversee financial matters, internal controls, and regulatory compliance.         </li>
+          <div class="seperator"></div>
+          <li class="category-text normal-weight">Implement a conflict of interest disclosure policy for board members, executives, and key employees.          </li>
+          <div class="seperator"></div>
+          <li class="category-text normal-weight">Develop data protection and privacy policies that comply with current laws and regulations.​          </li> 
+          <div class="seperator"></div>
+          <li class="category-text normal-weight">Formulate crisis management plans to address emergencies, natural disasters, or other unforeseen events.         </li>  
+        </ul>
+      </div>
+    </div>
+    </div>
+    <div *ngIf="GOUV2<3" class="row mx-4">
+      <div class="seperator-category"></div>
+      <div class="col-3 inline">
+        <div class="category-img">
+          <img src="assets/value_green/32.png" class="" alt="" style="width: 65px;height: 65px;">
+        </div>
+        <div class="category-text">
+          Transparency and Integrity of the Company
+        </div>
+      </div>
+      <div class="col-9">
+        <ul style="margin-top: 18px;list-style-type:disc;">
+          <li class="category-text normal-weight">
+            Develop and communicate a policy of transparency that encourages openness and the disclosure of relevant information to stakeholders.
+          </li>
+          <div class="seperator"></div>
+          <li class="category-text normal-weight">
+            Set up confidential reporting mechanisms to enable employees to report illegal practices, wrongful acts, or ethical violations without fear of retaliation.
+          </li>
+          <div class=
+          "seperator"></div>
+        <li class="category-text normal-weight">
+          Establish robust internal controls to prevent fraudulent or dishonest practices.
+        </li>
+          <div class="seperator"></div>
+          <li class="category-text normal-weight">
+            Respect the confidentiality and protection of personal data of clients, employees, and other stakeholders.
+          </li>
+          <div class="seperator"></div>
+          <li class="category-text normal-weight">
+            Formulate a clear and strong anti-corruption policy that prohibits all forms of corruption, including bribes, kickbacks, and unfair business practices.
+          </li>
+        </ul>
+      </div>
+    </div>
+
+
+
+
+    <div *ngIf="GOUV3<3" class="row mx-4">
+      <div class="seperator-category"></div>
+      <div class="col-3 inline">
+        <div class="category-img">
+          <img src="assets/value_green/33.png" class="" alt="" style="width: 65px;height: 65px;">
+        </div>
+        <div class="category-text">
+          Conflict of Interest Prevention and Responsible Management
+        </div>
+      </div>
+      <div class="col-9">
+        <ul style="margin-top: 18px;list-style-type:disc;">
+          <li class="category-text normal-weight">
+            Implement a clear separation of roles to avoid potential conflicts of interest.
+          </li>
+          <div class="seperator"></div>
+          <li class="category-text normal-weight">
+            Ensure that all company contracts and transactions are transparent and fair.
+          </li>
+          <div class="seperator"></div>
+          <li class="category-text normal-weight">
+            Establish a clear policy regarding gifts, invitations, and hospitality offered to or received by company employees (Set reasonable limits and define rules to prevent conflict of interest situations or favoritism).          </li>
+          <div class="seperator"></div>
+          <li class="category-text normal-weight">
+            Strengthen internal controls to detect and prevent fraudulent behavior, embezzlement, and abuse.          </li>
+          <div class="seperator"></div>
+          <li class="category-text normal-weight">
+            Establish transparent and honest relationships with all stakeholders, including customers, suppliers, investors, and civil society.          
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div *ngIf="GOUV4<3" class="row mx-4">
+      <div class="seperator-category"></div>
+      <div class="col-3 inline">
+        <div class="category-img">
+          <img src="assets/value_green/34.png" class="" alt="" style="width: 65px;height: 65px;">
+        </div>
+        <div class="category-text">
+          Encouragement of Business Ethics and Responsibility
+        </div>
+      </div>
+      <div class="col-9">
+        <ul style="margin-top: 18px;list-style-type:disc;">
+          <li class="category-text normal-weight">
+            Create an environment where employees feel comfortable reporting ethical issues or asking questions without fear of retaliation.          </li>
+          <div class="seperator"></div>
+          <li class="category-text normal-weight">
+            Implement reward and recognition mechanisms for employees who demonstrate exemplary ethical behavior and business responsibility.          </li>
+          <div class="seperator"></div>
+          <li class="category-text normal-weight">
+            Integrate social and environmental responsibility into the company's strategy and operations.          </li>
+          <div class="seperator"></div>
+          <li class="category-text normal-weight">
+            Ensure company leaders serve as models of ethics and responsibility, as their behavior can profoundly influence the company's culture.          </li>
+          <div class="seperator"></div>
+          <li class="category-text normal-weight">
+            Encourage employees to share their ideas and concerns, which can help identify potential ethical issues before they escalate into serious problems.          </li>
+        </ul>
+      </div>
+    </div>
+    <div *ngIf="GOUV5<3" class="row mx-4">
+      <div class="seperator-category"></div>
+      <div class="col-3 inline">
+        <div class="category-img">
+          <img src="assets/value_green/35.png" class="" alt="" style="width: 65px;height: 65px;">
+        </div>
+        <div class="category-text">
+          Stakeholder Involvement in Decision-Making Processes
+        </div>
+      </div>
+      <div class="col-9">
+        <ul style="margin-top: 18px;list-style-type:disc;">
+          <li class="category-text normal-weight">
+            Ensure the inclusion of stakeholder representatives in meetings when making important decisions.          </li>
+          <div class="seperator"></div>
+          <li class="category-text normal-weight">
+            Establish a formal policy defining how stakeholders are involved in the company's decision-making processes.          </li>
+          <div class="seperator"></div>
+          <li class="category-text normal-weight">
+            Understand and respect cultural differences if your stakeholders are diverse.​          </li>
+          <div class="seperator"></div>
+          <li class="category-text normal-weight">
+            Encourage stakeholders to express their viewpoints and collaborate to find solutions in case of disagreements.          </li>
+          <div class="seperator"></div>
+          <li class="category-text normal-weight">
+            Recognize and value stakeholder contributions to encourage their further involvement.          </li>
+        </ul>
+      </div>
+    </div>
+    
+  
+  
+  
+        <div style="margin-top: 40px;margin-bottom: 30px; justify-content: center;text-align: center;float: left">
+          <p class="numm button-nav" [routerLink]="'/propEnv'"style="width: 11px;color: #C2C2C2;">1</p>
+          <p class="numm button-nav" [routerLink]="'/propSoc'" style="width: 11px;color: #C2C2C2;">2</p>
+          <p class="numm button-nav" [routerLink]="'/propGouv'" >3</p>
+        </div>
+      </div>
+      
+
+
+
+
+<!-- <div style="margin-top: 80px; margin-left: 40px; display: flex; align-items: center;">
+  <a class="a" routerLink="/propEnv"><p class="en" style="color: #C2C2C2;">Environnement</p></a>
+  <span style=" margin-left: 5px;margin-right: 5px;"><img src="assets/value_green/next.png" class="" alt="" style="width: 8px; height: 15px;"></span>
+  <a class="a" routerLink="/propSoc"><p class="en" style="color: #C2C2C2;width: 50px;height: 20px;font-weight: 600;">Social</p></a>
+  <span style=" margin-left: 5px;margin-right: 5px;"><img src="assets/value_green/next.png" class="" alt="" style="width: 8px; height: 15px;"></span>
+  <a class="a" routerLink="/propGouv"><p class="en" style="width: 120px;height: 20px;font-weight: 600;color: #F79302">Gouvernance</p></a>
+  <button (click)="PrintGouv()" class="btnn"><span class="pri">Print</span></button>
+</div>
+<div style=" margin-left: 250px;" *ngIf="GOUV4<=2&&GOUV5<=2&&GOUV1<=2&&GOUV2<=2&&GOUV3<=2">
+  <div style="width: 1430px;height: 62px;top: 20px;background-color: #F79302;position: relative;justify-content: left;text-align: center;display: flex">
+    <p style="  font-family: 'Roboto', sans-serif;font-size: 24px;font-weight: 600;line-height: 20px;letter-spacing: 0em;color: white;margin-top: 20px;margin-left: 20px">Gouvernance</p>
+  </div>
+  <div style="float: left;margin-top: 20px">
+    <div style="width: 407px; height: 261px; background-color: #FCF1E0; float: left; position: relative;display: flex;justify-content: center;text-align: center">
+      <img src="assets/value_green/31.png" class="" alt="" style="width: 65px;height: 65px;float: left;margin-top: 25%">
+      <p class="prr"> Politiques et pratiques de gouvernance de l'entreprise</p>
+    </div>
+    X
+    <hr class="hr1"style="  border: 1px solid rgba(0, 0, 0, 1);">
+  </div>
+  <div style="float: left;position: relative">
+    <div style="width: 407px; height: 351px; background-color: #FCF1E0; float: left; position: relative;display: flex;justify-content: center;text-align: center">
+      <img src="assets/value_green/32.png" class="" alt="" style="width: 65px;height: 65px;float: left;margin-top: 35%">
+      <p class="prr" style="margin-top: 38%;"> Transparence et intégrité de l'entreprise</p>
+    </div>
+    <div style="float: left; ">
+      
+    </div>
+    <hr class="hr1"style="  border: 1px solid rgba(0, 0, 0, 1);">
+  </div>
+  <div style="float: left;position: relative">
+    <div style="width: 407px; height: 331px; background-color: #FCF1E0; float: left; position: relative;display: flex;justify-content: center;text-align: center">
+      <img src="assets/value_green/33.png" class="" alt="" style="width: 65px;height: 65px;float: left;margin-top: 30%">
+      <p class="prr" style="margin-top: 30%;"> Prévention des conflits d'intérêts et gestion responsable</p>
+    </div>
+    <div style="float: left; ">
+      
+
+
+
+    </div>
+    <hr class="hr1"style="  border: 1px solid rgba(0, 0, 0, 1);">
+  </div>
+  <div style="float: left;position: relative">
+    <div style="width: 407px; height: 351px; background-color: #FCF1E0; float: left; position: relative;display: flex;justify-content: center;text-align: center">
+      <img src="assets/value_green/34.png" class="" alt="" style="width: 110px;height: 65px;float: left;margin-top: 30%">
+      <p class="prr" style="margin-top: 30%;">Encouragement de l'éthique et de la responsabilité des affaires</p>
+    </div>
+    <div style="float: left; ">
+      
+
+
+
+    </div>
+    <hr class="hr1"style="  border: 1px solid rgba(0, 0, 0, 1);">
+  </div>
+  <div style="float: left;position: relative">
+    <div style="width: 407px; height: 381px; background-color: #FCF1E0; float: left; position: relative;display: flex;justify-content: center;text-align: center">
+      <img src="assets/value_green/35.png" class="" alt="" style="width: 65px;height: 65px;float: left;margin-top: 35%">
+      <p class="prr" style="margin-top: 35%;">Implication des parties prenantes dans les processus décisionnels</p>
+    </div>
+    <div style="float: left; ">
+      
+
+
+      
+    </div>
+    <hr class="hr1"style="  border: 1px solid rgba(0, 0, 0, 1);">
+    <div style="margin-top: 40px;margin-bottom: 30px; justify-content: center;text-align: center;float: left">
+      <p class="numm" style="width: 11px;color: #C2C2C2;">1</p>
+      <p class="numm"style="width: 11px;color: #C2C2C2;">2</p>
+      <p class="numm">3</p>
+    </div>
+  </div>
+</div> -->
+

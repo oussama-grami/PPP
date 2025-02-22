@@ -1,0 +1,253 @@
+<link rel="shortcut icon" href="/assets/value_green/icon.png" type="image/x-icon">
+<link rel="apple-touch-icon" type="image/x-icon" href="/assets/img/apple-touch-icon-57x57-precomposed.png">
+<link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="/assets/img/apple-touch-icon-72x72-precomposed.png">
+<link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="/assets/img/apple-touch-icon-114x114-precomposed.png">
+<link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="/assets/img/apple-touch-icon-144x144-precomposed.png">
+
+<!-- GOOGLE WEB FONT -->
+<link href="https://fonts.googleapis.com/css?family=Work+Sans:400,500,600" rel="stylesheet">
+
+<!-- BASE CSS -->
+<link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+<link href="/assets/css/menu.css" rel="stylesheet">
+<link href="/assets/css/style.css" rel="stylesheet">
+<link href="/assets/css/vendors.css" rel="stylesheet">
+
+<!-- YOUR CUSTOM CSS -->
+<link href="/assets/css/custom.css" rel="stylesheet">
+<script src="/assets/js/modernizr.js"></script>
+ <div style="height: 100vh; overflow: auto;">
+
+
+
+
+
+<app-nav-acceuil [selected]="1"></app-nav-acceuil>
+
+<div class="container " style=" margin-left: 0;" >
+  <div class="row row-height">
+    <div class="col-6" style="padding: 0;">
+    <div class="background"   [ngStyle]="{'background-image': 'url(/assets/img/photovoltaique.jpg)', 'background-repeat': 'no-repeat',  'width': '100%', 'height': '100%', 'background-size':'cover', 'background-position':'center 90%'}">
+    <div class="backgroundText">
+      <p>title</p>
+        <p class="title" >Solar Photovoltaic Projects</p>
+        <p class="description">The purpose of this simulation is to assess the potential reduction of greenhouse gas emissions from a photovoltaic solar panel project.
+            <br><br>
+          <span style="font-weight: 700;">Solar energy</span> remains one of the cleanest and low-carbon energy sources, with emissions significantly lower than those of traditional fossil fuels.
+        </p>
+       
+    </div>
+
+</div>
+  
+    
+  </div>
+  <div class="col-6 " id="start">
+    <div >
+      <form>
+      <div class="questions-box">
+        <div class="retour">
+          <button style="display: flex;" [routerLink]="'/porteur'">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M19.5 12H4.5M4.5 12L10.125 6M4.5 12L10.125 18" stroke="black" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+            <div class="retour-text">
+              Back
+            </div>
+          </button>
+        </div>
+        <div class="form-title" >
+          To evaluate the CO2 footprint of your project, please provide the following information:
+         </div>
+         <div class="form-title" style="margin-top: 16px; font-weight: 500;">
+          In which country is your project located? 
+         </div>
+         <div class="mb-3" style="margin-top: 16px;">
+          <select aria-label="Default select example" [(ngModel)]="panData.pays" id="pays"name="pays"onChange="handleChange()" style="width: 523px; height: 40px; border-radius: 3px; border: 1px solid #D2D8DD; padding: 5px;">
+            <option value="Albania">Albania</option>
+            <option value="Algeria">Algeria</option>
+            <option value="Angola">Angola</option>
+            <option value="Argentina">Argentina</option>
+            <option value="Australia">Australia</option>
+            <option value="Austria">Austria</option>
+            <option value="Azerbaijan">Azerbaijan</option>
+            <option value="Bahrain">Bahrain</option>
+            <option value="Bangladesh">Bangladesh</option>
+            <option value="Belarus">Belarus</option>
+            <option value="Belgium">Belgium</option>
+            <option value="Benin">Benin</option>
+            <option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
+            <option value="Botswana">Botswana</option>
+            <option value="Brazil">Brazil</option>
+            <option value="Brunei Darussalam">Brunei Darussalam</option>
+            <option value="Bulgaria">Bulgaria</option>
+            <option value="Cambodia">Cambodia</option>
+            <option value="Cameroon">Cameroon</option>
+            <option value="Canada">Canada</option>
+            <option value="China">China</option>
+            <option value="Colombia">Colombia</option>
+            <option value="Costa rica">Costa rica</option>
+            <option value="Croatia">Croatia</option>
+            <option value="Cuba">Cuba</option>
+            <option value="Cyprus">Cyprus</option>
+            <option value="Czech Republic">Czech Republic</option>
+            <option value="Denmark">Denmark</option>
+            <option value="Dominican Republic">Dominican Republic</option>
+            <option value="Ecuador">Ecuador</option>
+            <option value="Egypt">Egypt</option>
+            <option value="El Salvador">El Salvador</option>
+            <option value="Estonia">Estonia</option>
+            <option value="Ethiopia">Ethiopia</option>
+            <option value="Finland">Finland</option>
+            <option value="France">France</option>
+            <option value="Gabon">Gabon</option>
+            <option value="Georgia">Georgia</option>
+            <option value="Germany">Germany</option>
+            <option value="Ghana">Ghana</option>
+            <option value="Gibraltar">Gibraltar</option>
+            <option value="Greece">Greece</option>
+            <option value="Guadeloupe">Guadeloupe</option>
+            <option value="Guadeloupe excluding COM">Guadeloupe excluding COM</option>
+            <option value="Guatemala">Guatemala</option>
+            <option value="Guyana">Guyana</option>
+            <option value="Haiti">Haiti</option>
+            <option value="Honduras">Honduras</option>
+            <option value="Hungary">Hungary</option>
+            <option value="Iceland">Iceland</option>
+            <option value="India">India</option>
+            <option value="Indonesia">Indonesia</option>
+            <option value="Ireland">Ireland</option>
+            <option value="Iraq">Iraq</option>
+            <option value="Italy">Italy</option>
+            <option value="Jamaica">Jamaica</option>
+            <option value="Japan">Japan</option>
+            <option value="Jordan">Jordan</option>
+            <option value="Kazakstan">Kazakstan</option>
+            <option value="Kenya">Kenya</option>
+            <option value="Kosovo">Kosovo</option>
+            <option value="Kuwait">Kuwait</option>
+            <option value="Kyrgyzstan">Kyrgyzstan</option>
+            <option value="Latvia">Latvia</option>
+            <option value="Lebanon">Lebanon</option>
+            <option value="Libya">Libya</option>
+            <option value="Lithuania">Lithuania</option>
+            <option value="Luxembourg">Luxembourg</option>
+            <option value="Macedonia">Macedonia</option>
+            <option value="Malaysia">Malaysia</option>
+            <option value="Malta">Malta</option>
+            <option value="Martinique">Martinique</option>
+            <option value="Moldova">Moldova</option>
+            <option value="Mongolia">Mongolia</option>
+            <option value="Morocco">Morocco</option>
+            <option value="Mayotte">Mayotte</option>
+            <option value="Mexico">Mexico</option>
+            <option value="Mozambique">Mozambique</option>
+            <option value="Namibia">Namibia</option>
+            <option value="Nepal">Nepal</option>
+            <option value="Netherlands">Netherlands</option>
+            <option value="Netherlands Antilles">Netherlands Antilles</option>
+            <option value="New Zealand">New Zealand</option>
+            <option value="Nicaragua">Nicaragua</option>
+            <option value="Nigeria">Nigeria</option>
+            <option value="North Korea">North Korea</option>
+            <option value="Norway">Norway</option>
+            <option value="Oman">Oman</option>
+            <option value="Pakistan">Pakistan</option>
+            <option value="Panama">Panama</option>
+            <option value="Peru">Peru</option>
+            <option value="Philippines">Philippines</option>
+            <option value="Poland">Poland</option>
+            <option value="Portugal">Portugal</option>
+            <option value="Qatar">Qatar</option>
+            <option value="Republic of the Congo">Republic of the Congo</option>
+            <option value="Romania">Romania</option>
+            <option value="Russia">Russia</option>
+            <option value="Saudi Arabia">Saudi Arabia</option>
+            <option value="Senegal">Senegal</option>
+            <option value="Serbia">Serbia</option>
+            <option value="Singapore">Singapore</option>
+            <option value="Slovakia">Slovakia</option>
+            <option value="Slovenia">Slovenia</option>
+            <option value="South Africa">South Africa</option>
+            <option value="South Korea">South Korea</option>
+            <option value="Spain">Spain</option>
+            <option value="Sri Lanka">Sri Lanka</option>
+            <option value="Sudan">Sudan</option>
+            <option value="Sweden">Sweden</option>
+            <option value="Switzerland">Switzerland</option>
+            <option value="Syria">Syria</option>
+            <option value="Taiwan">Taiwan</option>
+            <option value="Tajikistan">Tajikistan</option>
+            <option value="Tanzania">Tanzania</option>
+            <option value="Thailand">Thailand</option>
+            <option value="Trinidad and Tobago">Trinidad and Tobago</option>
+            <option value="Tunisia" selected>Tunisia</option>
+            <option value="Turkey">Turkey</option>
+            <option value="Turkmenistan">Turkmenistan</option>
+            <option value="Ukraine">Ukraine</option>
+            <option value="United Arab Emirates">United Arab Emirates</option>
+            <option value="United Kingdom">United Kingdom</option>
+            <option value="United States">United States</option>
+            <option value="Uruguay">Uruguay</option>
+            <option value="Uzbekistan">Uzbekistan</option>
+            <option value="Venezuela">Venezuela</option>
+            <option value="Vietnam">Vietnam</option>
+            <option value="Yemen">Yemen</option>
+            <option value="Zimbabwe">Zimbabwe</option>
+  
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="consommation" class="form-title" style="font-weight: 500;">What is your annual electricity consumption in KWH?</label>
+        </div>
+  
+        <div class="mb-3">
+          <input type="number" aria-label="Default select example" [(ngModel)]="panData.consommation" id="consommation"name="consommation" placeholder="Electricity" style="width: 523px; height: 40px; border-radius: 3px; border: 1px solid #D2D8DD; padding: 10px;">
+        </div>
+      </div>
+      <div style="justify-content: right; display: flex">
+        <button type="submit" style="margin-top: 20px; margin-right: 0;" class="calculate-button" (click)="onClick()">Calculate</button>
+      </div>
+      </form>
+      <br>
+      <div *ngIf="displayResult" class="seperator"></div>
+      <!-- <div class="footer">Le potentiel de séquestration annuel moyen du projet en tonnes equivalent de CO2:</div> -->
+      <div id="footer" style="margin-top: 20px;" *ngIf="displayResult">
+        <div class="footer-title">
+          {{annualConsumption | number: '1.2-2'}} <span style="color: #76B82A;">tCO2e </span>
+      </div>
+      <div class="footer-text">
+        Your actual annual energy consumption footprint 
+      </div>
+      <div class="footer-title" style="margin-top: 19px;">
+        {{minRangeConsumption| number: '1.2-2'}} - {{maxRangeConsumption| number: '1.2-2'}} <span style="color: #76B82A;">tCO2e </span>
+      </div>
+      <div class="footer-text" style="width: 611px;">
+        An estimate range of your annual energy consumption footprint if produced by photovoltaic solar panels
+      </div>
+
+      <div class="footer-informations" style="padding-bottom: 13px;">
+        <div>
+          The result will fall within this emission range based on various factors, including: 
+        </div>
+        <ul>
+          <li style="list-style-type:disc; margin-left: 20px;">
+           <span class="bold-text">Geographical location: </span> The energy mix used in the manufacture of solar panels can vary from region to region, influencing associated emissions. 
+          </li>
+          <li style="list-style-type:disc; margin-left: 20px;">
+            <span class="bold-text">Type of solar panel technology:</span>  Different types of solar panels (monocrystalline, polycrystalline, thin-film, etc.) have distinct manufacturing processes, impacting carbon emissions. 
+          </li>
+          <li style="list-style-type:disc; margin-left: 20px;">
+            <span class="bold-text">Specific solar industry practices:</span> Manufacturing practices and electricity sources used by manufacturers may differ, leading to variations in carbon emissions
+            <br>
+          </li>
+          
+        </ul>
+      </div>
+  
+  
+  </div>
+    </div>
+  </div>
+  </div>

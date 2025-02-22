@@ -1,0 +1,132 @@
+<link rel="shortcut icon" href="/assets/value_green/icon.png" type="image/x-icon">
+<link rel="apple-touch-icon" type="image/x-icon" href="/assets/img/apple-touch-icon-57x57-precomposed.png">
+<link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="/assets/img/apple-touch-icon-72x72-precomposed.png">
+<link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="/assets/img/apple-touch-icon-114x114-precomposed.png">
+<link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="/assets/img/apple-touch-icon-144x144-precomposed.png">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+<!-- GOOGLE WEB FONT -->
+<link href="https://fonts.googleapis.com/css?family=Work+Sans:400,500,600" rel="stylesheet">
+
+<!-- BASE CSS -->
+<link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+<link href="/assets/css/menu.css" rel="stylesheet">
+<link href="/assets/css/style.css" rel="stylesheet">
+<link href="/assets/css/vendors.css" rel="stylesheet">
+
+<!-- YOUR CUSTOM CSS -->
+<link href="/assets/css/custom.css" rel="stylesheet">
+<!-- MODERNIZR MENU -->
+<script src="/assets/js/modernizr.js"></script>
+<app-nav-acceuil [selected]="1"></app-nav-acceuil>
+<div class="container"style="  margin-top: 100px;" >
+  <div class="box green">
+    <img src="assets/img/leaf1.png" alt="img">
+    <h2 class="env">Environment</h2>
+  </div>
+  <div class="box" >
+    <p class="number">1</p>
+    <div class="bar" ></div>
+  </div>
+  <div class="box" >
+    <p class="number">2</p>
+    <div class="bar"></div>
+  </div>
+  <div class="box">
+    <p class="number">3</p>
+    <div class="bar"></div>
+  </div>
+  <div class="box">
+    <p class="number">4</p>
+    <div class="bar"></div>
+  </div>
+  <div class="box" >
+    <p class="number">5</p>
+    <div class="bar" style="background-color: #014131;"></div>
+  </div>
+  <div class="box grey">
+    <img src="assets/img/leaf2.png" alt="img">
+    <h2 class="env">Social</h2>
+  </div>
+  <div class="box" >
+    <p class="number">6</p>
+    <div class="bar" style="background-color: #F2F2F2;"></div>
+  </div>
+  <div class="box" >
+    <p class="number">7</p>
+    <div class="bar"style="background-color: #F2F2F2;" ></div>
+  </div>
+  <div class="box">
+    <p class="number">8</p>
+    <div class="bar"style="background-color: #F2F2F2;"></div>
+  </div>
+  <div class="box">
+    <p class="number">9</p>
+    <div class="bar" style="background-color: #F2F2F2;" ></div>
+  </div>
+  <div class="box" >
+    <p class="number">10</p>
+    <div class="bar"style="background-color: #F2F2F2;"></div>
+  </div>
+  <div class="box grey">
+    <img src="assets/img/leaf3.png" alt="img">
+    <h2 class="env">Governance</h2>
+  </div>
+  <div class="box" >
+    <p class="number">11</p>
+    <div class="bar"style="background-color: #F2F2F2;"></div>
+  </div>
+  <div class="box" >
+    <p class="number">12</p>
+    <div class="bar"style="background-color: #F2F2F2;" ></div>
+  </div>
+  <div class="box">
+    <p class="number">13</p>
+    <div class="bar"style="background-color: #F2F2F2;"></div>
+  </div>
+  <div class="box">
+    <p class="number">14</p>
+    <div class="bar"style="background-color: #F2F2F2;" ></div>
+  </div>
+  <div class="box" >
+    <p class="number">15</p>
+    <div class="bar"style="background-color: #F2F2F2;"></div>
+  </div>
+  <div class="box grey">
+    <img src="assets/img/leaf4.png" alt="img">
+    <h1 class="env">Results</h1>
+  </div>
+</div>
+
+<div class="container" style="display: flex; flex-direction: column; justify-content: space-between;margin-top: 50px;">
+  <div *ngIf="warnUser" class="alert alert-warning alert-dismissible fade show" role="alert">
+    You should select an answer!
+    <button type="button" class="btn-close" data-bs-dismiss="alert" (click)="warnUser=false" aria-label="Close"></button>
+  </div>
+  <h2 class="hh">Actions to preserve biodiversity and the environment<span style="font-weight: 300;letter-spacing: 0em;font-style: normal; justify-content: left; font-size: 14px; line-height: 20px;color: #6D6D6D;"> (Select the answer that best fits your business)</span></h2>
+  <div *ngFor="let option of options; let i = index"
+       [ngClass]="{ 'custom-div-clicked': option.isSelected }"
+       class="custom-div"
+       style="box-sizing: border-box; border: 1px solid #939393; border-radius: 10px; align-items: center; margin-bottom: 30px; padding: 10px;"
+       (click)="onDivClick(option)">
+    <h6 style="font-family: 'Roboto', sans-serif; font-style: normal; font-weight: 300; font-size: 18px; line-height: 21px; margin: 0;">
+      {{ option.text }}
+    </h6>
+  </div>
+  <div style="display: flex; justify-content: right;" class="mb-3">
+    <button class="b2"  routerLink="/env2">Back</button>
+    <button *ngIf="choiceSelected" (click)="addScore()" class="b1" routerLink="/social">Continue</button>
+    <button *ngIf="!choiceSelected" class="b1" (click)="warning()">Continue</button>  </div>
+</div>
+
+
+
+<script src="assets/js/jquery-3.6.3.min.js"></script>
+<script src="assets/js/common_scripts.min.js"></script>
+<script src="assets/js/velocity.min.js"></script>
+<script src="assets/js/functions.js"></script>
+<!-- Wizard script -->
+<script src="assets/js/survey_func.js"></script>
+
+
+

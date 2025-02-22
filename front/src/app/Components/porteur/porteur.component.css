@@ -1,0 +1,97 @@
+.header{
+  color: #014131;
+  font-family: Roboto;
+  font-size: 45px;
+  font-style: normal;
+  font-weight: 501;
+  line-height: 50px; /* 111.111% */
+  width: 588px;
+}
+.description{
+  color: #000;
+font-family: Roboto;
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: 24px; /* 150% */
+width: 588px;
+}
+.title{
+  text-align: center;
+  color: #76B82A;
+text-align: center;
+font-family: Roboto;
+font-size: 14px;
+font-style: normal;
+font-weight: 700;
+line-height: 35px; /* 250% */
+letter-spacing: 3.5px;
+margin-top: 32px;
+}
+.section-title{
+  text-align: center;
+  color: #101828;
+text-align: center;
+font-family: Roboto;
+font-size: 35px;
+font-style: normal;
+font-weight: 700;
+line-height: 60px; /* 171.429% */
+
+}
+.project-border{
+  cursor: pointer;
+  margin-top: 24px;
+  width: 588px;
+height: 207px;
+flex-shrink: 0;
+border-radius: 8px;
+background: #F8F8F8;
+padding: 30px 35px;
+}
+.project-title{
+  display: inline-block;
+  padding-top: 15px;
+  color: #000;
+font-family: Roboto;
+font-size: 30px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+
+}
+.project-description{
+  color: #000;
+margin-top: 35px;
+font-family: Roboto;
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: 20px; /* 125% */
+width: 443px;
+}
+.project-border:hover{
+  transform: scale(1.02);
+}
+.image{
+  padding-left: 50px;
+}
+.pagginationButton{
+  margin-top: 32px;
+  display:inline-flex;
+padding: 8px 14px;
+justify-content: center;
+align-items: center;
+gap: 8px;
+border-radius: 8px;
+border: 1px solid #014131;
+background: #FFF;
+}
+.pagginationButtonText{
+color: #014131;
+font-family: Roboto;
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: 24px;
+}

@@ -1,0 +1,95 @@
+<!-- Favicons-->
+<link rel="shortcut icon" href="/assets/value_green/icon.png" type="image/x-icon">
+<link rel="apple-touch-icon" type="image/x-icon" href="/assets/img/apple-touch-icon-57x57-precomposed.png">
+<link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="/assets/img/apple-touch-icon-72x72-precomposed.png">
+<link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="/assets/img/apple-touch-icon-114x114-precomposed.png">
+<link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="/assets/img/apple-touch-icon-144x144-precomposed.png">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+<!-- GOOGLE WEB FONT -->
+<link href="https://fonts.googleapis.com/css?family=Work+Sans:400,500,600" rel="stylesheet">
+
+<!-- BASE CSS -->
+<link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+<link href="/assets/css/menu.css" rel="stylesheet">
+<link href="/assets/css/style.css" rel="stylesheet">
+<link href="/assets/css/vendors.css" rel="stylesheet">
+
+<!-- YOUR CUSTOM CSS -->
+<link href="/assets/css/custom.css" rel="stylesheet">
+<!-- MODERNIZR MENU -->
+<script src="/assets/js/modernizr.js"></script>
+<app-nav-acceuil [selected]="1"></app-nav-acceuil>
+<div class="container-fluid full-height"style="margin-top: 50px;">
+  <div class="row row-height">
+    <div class="col-lg-6 content-left1">
+      <div class="content-left-wrapper">
+        <img src="assets/img/Carburant.png" class="img-title" id="descriptionImage"/>
+        <h2 id="descriptionTitle">Fuel consumption</h2>
+        <p id="descriptionText">Complete the fields to evaluate your company's fuel footprint.</p>
+      </div>
+    </div>
+    <div class="col-lg-6 content-right" id="start"style="overflow-y: hidden;">
+      <div id="wizard_container">
+        <form ngForm id="wrapped" (ngSubmit)="submitData()">
+          <div class="step">
+            <h3 class="main_question"><strong>3/7</strong>Enter the company's annual fuel consumption
+            </h3>
+            <div class="form-group">
+              <input type="number" name="essence" class="form-control" [(ngModel)]="carData.essence" placeholder="Gasoline (Liters)" id="essence" onChange="handleChange()">
+            </div>
+            <div class="form-group ">
+              <input type="number" name="diesel" class="form-control" [(ngModel)]="carData.diesel" placeholder="Diesel (Liters)" id="diesel" onChange="handleChange()">
+            </div>
+            <div class="form-group">
+              <input type="number" name="GPL" class="form-control"  [(ngModel)]="carData.gpl" placeholder="LPG (Liters)" id="GPL" onChange="handleChange()">
+            </div>
+            <h3 class="main_question"> Or fill in the following information</h3>
+            <div class="form-group ">
+              <input type="number" name="km" class="form-control"  [(ngModel)]="carData.kilometrage" placeholder="Driven distance (Km) " id="km" onChange="handleChange()">
+            </div>
+            <div class="form-group ">
+              <input type="number" name="efficacite" class="form-control"  [(ngModel)]="carData.efficacite" placeholder="Vehicle fuel efficiency (L/100Km)" id="efficacite" onChange="handleChange()">
+            </div>
+            <div class="form-group">
+                <select class="nice-select wide"  [(ngModel)]="carData.typeCarburant" name="Type de carburant" id="typeCarburant">
+                  <option class="option" [value]="TypeCarburant.Diesel">Diesel</option>
+                  <option class="option" [value]="TypeCarburant.Essence">Gasoline</option>
+                  <option class="option" [value]="TypeCarburant.Gpl">LPG</option>
+                </select>
+              </div>
+            </div>
+          <br>
+          <br>
+          <div id="bottom-wizard">
+            <button id="calculateButton" type="submit" name="calcul" class="calcul" onclick="calculer()">Calculate</button>
+            <p id='calcResult' class="mt-3"></p>
+          </div>
+          <div id="bottom-wizard2">
+            <div class="button-container">
+              <button type="button" name="backward" class="backward" routerLink="/energie">Back</button>
+              <button type="button" name="forward" class="forward" routerLink="/aer">Continue</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!--    <div class="col-lg-6 content-right" id="start">-->
+<!--      <div id="wizard_container">-->
+<!--        <div id="top-wizard">-->
+<!--          <div id="progressbar"></div>-->
+<!--        </div>-->
+<!--        &lt;!&ndash; /top-wizard &ndash;&gt;-->
+<!--       -->
+<!--      </div>-->
+<script src="assets/js/jquery-3.6.3.min.js"></script>
+<script src="assets/js/common_scripts.min.js"></script>
+<script src="assets/js/velocity.min.js"></script>
+<script src="assets/js/functions.js"></script>
+
+<!-- Wizard script -->
+<script src="assets/js/survey_func.js"></script>
+
+

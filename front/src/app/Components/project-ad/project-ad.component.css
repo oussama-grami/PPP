@@ -1,0 +1,90 @@
+.projectContainer {
+    width: 282px;
+    height: 326px;
+    flex-shrink: 0;
+    border-radius: 20px;
+    background: #FFF;
+    box-shadow: 0px 0px 20px 2px rgba(197, 197, 197, 0.25);
+    display: flex;
+    flex-direction: column;
+    
+    position: relative;
+}
+
+.projectTitle {
+    margin-top: 9px;
+    margin-left: 16px;
+    margin-right: 16px;
+    margin-bottom: 16px;
+}
+
+.separator {
+    margin-left: 5px;
+    margin-right: 5px;
+    width: 1px;
+    height: 14px;
+    background: #D3D3D3;
+}
+
+.projectDescription {
+    margin-left: 16px;
+    color: #000;
+    font-family: Roboto;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    width: 250px;
+}
+
+#category {
+    color: #000;
+    font-family: Roboto;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px;
+    /* 200% */
+}
+
+#price {
+    margin-top: 4px;
+
+    color: #000;
+
+    text-align: right;
+    font-family: Roboto;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+
+}
+
+.projectButton {
+
+    margin-left: 15px;
+    display: flex;
+    width: 252px;
+    padding: 5px 20px;
+    justify-content: center;
+    align-items: center;
+    gap: 2px;
+    border-radius: 5px;
+    background: #014131;
+    margin-top: auto;
+    margin-bottom:14px ;
+    border: transparent;
+    
+    
+}
+
+.projectButtonText {
+
+    color: #FFF;
+    font-family: Roboto;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+}

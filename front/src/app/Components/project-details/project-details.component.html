@@ -1,0 +1,540 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+
+
+
+<app-nav-acceuil [selected]="5"></app-nav-acceuil>
+<div class="retour"> <button [routerLink]="'/marketplace'"> <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+    <path d="M19.5 12H4.5M4.5 12L10.125 6M4.5 12L10.125 18" stroke="black" stroke-width="1.5"
+        stroke-linecap="round" stroke-linejoin="round" />
+</svg></span>
+<span class="retour-text">
+Retour aux projets
+</span></button>
+</div>
+<div style="display: flex; justify-content: center;">
+    <div class="container-img" style="position: relative;"
+    [ngStyle]="{'background-image': 'url(' + selectedImage +' )', 'background-repeat': 'no-repeat',  'width': '1200px', 'height': '530px'}">
+    <div class="backgroundText">
+        <div class="countryDetails"><span class="flag"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="18"
+                    viewBox="0 0 26 18" fill="none">
+                    <g clip-path="url(#clip0_206_5230)">
+                        <path d="M0 0.5H26V17.5002H0V0.5Z" fill="#D80027" />
+                        <path
+                            d="M13 13.781C15.6924 13.781 17.875 11.6404 17.875 8.99976C17.875 6.35915 15.6924 4.21851 13 4.21851C10.3076 4.21851 8.125 6.35915 8.125 8.99976C8.125 11.6404 10.3076 13.781 13 13.781Z"
+                            fill="white" />
+                        <path
+                            d="M13.6005 7.17188L14.4369 8.30219L15.7914 7.87143L14.9537 9.0008L15.79 10.1311L14.4359 9.69877L13.5983 10.8281L13.5991 9.43162L12.2451 8.99921L13.5997 8.5685L13.6005 7.17188Z"
+                            fill="#D80027" />
+                        <path
+                            d="M14.1079 11.8252C12.5169 11.8252 11.2273 10.5603 11.2273 8.99992C11.2273 7.43954 12.5169 6.17465 14.1079 6.17465C14.604 6.17465 15.0707 6.29767 15.4783 6.51427C14.839 5.90117 13.9648 5.52271 13 5.52271C11.042 5.52271 9.45453 7.07955 9.45453 8.99997C9.45453 10.9204 11.042 12.4772 13 12.4772C13.9648 12.4772 14.839 12.0988 15.4783 11.4857C15.0707 11.7022 14.604 11.8252 14.1079 11.8252Z"
+                            fill="#D80027" />
+                    </g>
+                    <defs>
+                        <clipPath id="clip0_206_5230">
+                            <rect width="26" height="17" fill="white" transform="translate(0 0.5)" />
+                        </clipPath>
+                    </defs>
+                </svg></span><span class="countryName">Tunisia</span></div>
+
+        <div class="projectName">
+            Tree planting in Testour
+        </div>
+        <div class="projectCategory">
+            Arboriculture
+        </div>
+    </div>
+</div>
+</div>
+
+<div class="container" style="margin-top: 13px;">
+    <div class="row justify-content-center">
+       
+        <div class="col-1 carouselMainElement" [ngStyle]="{ 'background-image': 'url(' + carouselMainElement + ')'}" (click)="selectImage('/assets/img/details4.png')"  style="cursor: pointer;"></div>
+        <div class="col-1 carouselOtherElements" [ngStyle]="{ 'background-image': 'url(' + carouselOtherElements + ')'}"></div>
+        <div class="col-1 carouselOtherElements" [ngStyle]="{ 'background-image': 'url(' + carouselOtherElements + ')'}"></div>
+        <div class="col-1 carouselOtherElements" [ngStyle]="{ 'background-image': 'url(' + carouselOtherElements + ')'}"></div>
+        <div class="col-1 carouselOtherElements" [ngStyle]="{ 'background-image': 'url(' + carouselOtherElements + ')'}"></div>
+        <div class="col-1 carouselOtherElements" [ngStyle]="{ 'background-image': 'url(' + carouselOtherElements + ')'}"></div>
+     
+
+    </div>
+
+
+</div>
+
+<div class="container content">
+    <div class="row">
+        <div class="col-8">
+            <div class="description-content">
+                <div class="description">Description</div>
+
+                <div class="category">
+                    <span><svg xmlns="http://www.w3.org/2000/svg" width="27" height="18" viewBox="0 0 27 18"
+                            fill="none">
+                            <g clip-path="url(#clip0_206_5244)">
+                                <path d="M0 0H27V18.0002H0V0Z" fill="#D80027" />
+                                <path
+                                    d="M13.5 14.0623C16.2959 14.0623 18.5625 11.7957 18.5625 8.99976C18.5625 6.20382 16.2959 3.93726 13.5 3.93726C10.7041 3.93726 8.4375 6.20382 8.4375 8.99976C8.4375 11.7957 10.7041 14.0623 13.5 14.0623Z"
+                                    fill="white" />
+                                <path
+                                    d="M14.1237 7.06421L14.9923 8.26102L16.3988 7.80492L15.5289 9.00072L16.3974 10.1975L14.9913 9.73974L14.1214 10.9355L14.1223 9.45688L12.7162 8.99904L14.1228 8.54299L14.1237 7.06421Z"
+                                    fill="#D80027" />
+                                <path
+                                    d="M14.6506 11.9913C12.9984 11.9913 11.6591 10.652 11.6591 8.99987C11.6591 7.34771 12.9984 6.00841 14.6506 6.00841C15.1658 6.00841 15.6504 6.13866 16.0736 6.36801C15.4098 5.71884 14.5019 5.31812 13.5 5.31812C11.4667 5.31812 9.81824 6.96654 9.81824 8.99993C9.81824 11.0333 11.4667 12.6817 13.5 12.6817C14.5019 12.6817 15.4098 12.281 16.0736 11.6319C15.6504 11.8611 15.1658 11.9913 14.6506 11.9913Z"
+                                    fill="#D80027" />
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_206_5244">
+                                    <rect width="27" height="18" fill="white" />
+                                </clipPath>
+                            </defs>
+                        </svg><span><img class="vertical-separator" src="/assets/img/lineSeparator.png" alt=""
+                                height="14px"></span><span id="categoryText"
+                            style="font-family: Roboto; margin-top: 1vh;">Trees & Forests</span></span>
+                </div>
+                <div class="project-title">
+                    Tree planting in Testour
+                </div>
+                <div class="description">
+                    <div class="description-paragraph">
+                        In Testour, the tree planting project focuses on the olive tree, an evergreen plant known for its active role in carbon dioxide sequestration. The olive tree's deep roots help stabilize the soil, reducing erosion risk and enhancing the health of local ecosystems. Well-managed olive groves can also act as carbon sinks, storing carbon in the soil. Therefore, incorporating olive trees into climate change strategies presents a comprehensive approach that merges environmental preservation with agricultural production and carbon sequestration, paving the way for a more sustainable future. Additionally, the almond tree, while its roots are not as deep as those of the olive tree, offers similar environmental benefits.​
+                        <br>Trees are distributed as follows:
+                    </div>
+                    <div class="treeTypes" style="margin-top: 16px;">
+                        <div class="bold-description">Nature of the project:</div>
+                        <div class="bold-description high-font" style="margin-top: 16px;">10,430 trees:</div>
+                        <div style="display: flex; align-items:center; margin-top: 16px;"><span
+                                style="margin-right: 10px; padding-bottom: 2px;"><svg xmlns="http://www.w3.org/2000/svg"
+                                    width="8" height="8" viewBox="0 0 8 8" fill="none">
+                                    <circle cx="4" cy="4" r="4" fill="black" />
+                                </svg></span>3500 Olive trees <span class="bold-description">&nbsp;Koroneiki 4 years</span>
+                        </div>
+                        <div style="display: flex; align-items:center; margin-top: 16px;"><span
+                                style="margin-right: 10px; padding-bottom: 2px;"><svg xmlns="http://www.w3.org/2000/svg"
+                                    width="8" height="8" viewBox="0 0 8 8" fill="none">
+                                    <circle cx="4" cy="4" r="4" fill="black" />
+                                </svg></span>500 Olive trees <span class="bold-description">&nbsp;Picholine 4 years</span>
+                        </div>
+                        <div style="display: flex; align-items:center; margin-top: 16px;"><span
+                                style="margin-right: 10px; padding-bottom: 2px;"><svg xmlns="http://www.w3.org/2000/svg"
+                                    width="8" height="8" viewBox="0 0 8 8" fill="none">
+                                    <circle cx="4" cy="4" r="4" fill="black" />
+                                </svg></span>4440 Olive trees <span class="bold-description">&nbsp;Koroneiki 3 years</span>
+                        </div>
+                        <div style="display: flex; align-items:center; margin-top: 16px;"><span
+                                style="margin-right: 10px; padding-bottom: 2px;"><svg xmlns="http://www.w3.org/2000/svg"
+                                    width="8" height="8" viewBox="0 0 8 8" fill="none">
+                                    <circle cx="4" cy="4" r="4" fill="black" />
+                                </svg></span>1000 Olive trees <span class="bold-description">&nbsp;Frenjivento 3 years old</span>
+                        </div>
+                        <div style="display: flex; align-items:center; margin-top: 16px;"><span
+                                style="margin-right: 10px; padding-bottom: 2px;"><svg xmlns="http://www.w3.org/2000/svg"
+                                    width="8" height="8" viewBox="0 0 8 8" fill="none">
+                                    <circle cx="4" cy="4" r="4" fill="black" />
+                                </svg></span>560 Olive trees<span class="bold-description">&nbsp;Arbaquina 3 years</span>
+                        </div>
+                        <div style="display: flex; align-items:center; margin-top: 16px;"><span
+                                style="margin-right: 10px; padding-bottom: 2px;"><svg xmlns="http://www.w3.org/2000/svg"
+                                    width="8" height="8" viewBox="0 0 8 8" fill="none">
+                                    <circle cx="4" cy="4" r="4" fill="black" />
+                                </svg></span>110 Old olive trees variety <span class="bold-description">&nbsp;Oueslati 55 years</span></div>
+                        <div style="display: flex; align-items:center; margin-top: 16px;"><span
+                                style="margin-right: 10px; padding-bottom: 2px;"><svg xmlns="http://www.w3.org/2000/svg"
+                                    width="8" height="8" viewBox="0 0 8 8" fill="none">
+                                    <circle cx="4" cy="4" r="4" fill="black" />
+                                </svg></span>320 Almond trees <span class="bold-description">&nbsp;Lauranne 4 years</span>
+                        </div>
+                    </div>
+                    <div class="bold-description" style="margin-top: 16px;">The Testour region:</div>
+                    <div class="description-paragraph">The tree planting project is situated in the Testour region of Tunisia, an area distinguished by its diverse and functional natural landscape. Dominated by expansive olive groves, the region forms a robust agricultural base. The gently rolling hills provide panoramic views of these plantations, and the rivers weaving through the area support the irrigation essential for local agriculture. The inhabitants of Testour benefit from this agricultural richness, with the surrounding mountains offering a picturesque natural backdrop. Thus, the Testour region represents a harmonious blend of agricultural functionality and natural beauty, striking a balance between the practical needs of the local community and the innate allure of the environment.​</div>
+
+                </div>
+                <div class="details" style="margin-top: 56px;">Details</div>
+                <div class="row" style="margin-top: 39px;">
+                    <div class="col-7">
+                        <div>
+                            <div><span class="detail-title">Country</span><span style="float: right;"
+                                    class="detail-value">Tunisia</span></div>
+                            <div style="width: 489px; height: 1px;background: #D3D3D3;margin: 16px 0px;"></div>
+                            <div><span class="detail-title">Company</span><span style="float: right;"
+                                    class="detail-value">1976 International</span></div>
+                            <div style="width: 489px; height: 1px;background: #D3D3D3;margin: 16px 0px;"></div>
+                            <div style="margin-bottom: 32px;"><span class="detail-title">Company identifier</span><span style="float: right; width: 279px; text-align: right;"
+                                    class="detail-value">1696707C (to the Tunisan National companies register)</span>
+                            </div>
+                            <div style="width: 489px; height: 1px;background: #D3D3D3;margin-bottom: 16px;"></div>
+                            <div><span class="detail-title">Blockchain address</span><a
+                                    style="float: right; cursor: pointer; color: black;"
+                                    href="'https://polygon.technology/'"
+                                    class="detail-value">https://polygon.technology/</a></div>
+                            <div style="width: 489px; height: 1px;background: #D3D3D3;margin: 16px 0px;"></div>
+                            <div><span class="detail-title">Type of project</span><span style="float: right;"
+                                    class="detail-value">Arboriculture</span></div>
+                            <div style="width: 489px; height: 1px;background: #D3D3D3;margin: 16px 0px;"></div>
+                            <div><span class="detail-title">Mechanism</span><span style="float: right;"
+                                    class="detail-value">Elimination</span></div>
+                            <div style="width: 489px; height: 1px;background: #D3D3D3;margin: 16px 0px;"></div>
+                        </div>
+
+
+                    </div>
+                    <div class="col-5"><img src="/assets/img/map.svg" alt="map" style="width: 282px;
+                        height: 335px;
+                        flex-shrink: 0;border-radius: 5px;"></div>
+                </div>
+                <div class="details" style="margin-top: 56px; margin-bottom: 37px;  ">Latest transactions</div>
+                <div style="margin-right: 50px;">
+                    <div class="row">
+                        <div class="col-4 detail-value"><svg style="margin-right: 7px;width: 34px;
+                            height: 23px;
+                            flex-shrink: 0; " xmlns="http://www.w3.org/2000/svg" width="34" height="24"
+                                viewBox="0 0 34 24" fill="none">
+                                <g clip-path="url(#clip0_206_5697)">
+                                    <path d="M0 0.5H34V23.5003H0V0.5Z" fill="#D80027" />
+                                    <path
+                                        d="M17 18.4684C20.5208 18.4684 23.375 15.5722 23.375 11.9996C23.375 8.42704 20.5208 5.53088 17 5.53088C13.4792 5.53088 10.625 8.42704 10.625 11.9996C10.625 15.5722 13.4792 18.4684 17 18.4684Z"
+                                        fill="white" />
+                                    <path
+                                        d="M17.7853 9.52649L18.879 11.0557L20.6503 10.4729L19.5548 12.0009L20.6484 13.5302L18.8778 12.9452L17.7824 14.4732L17.7835 12.5838L16.0129 11.9988L17.7842 11.416L17.7853 9.52649Z"
+                                        fill="#D80027" />
+                                    <path
+                                        d="M18.4489 15.8223C16.3683 15.8223 14.6818 14.111 14.6818 11.9999C14.6818 9.88878 16.3683 8.17745 18.4489 8.17745C19.0976 8.17745 19.7079 8.34389 20.2408 8.63694C19.4048 7.80745 18.2617 7.29541 17 7.29541C14.4395 7.29541 12.3636 9.40173 12.3636 11.9999C12.3636 14.5982 14.4395 16.7045 17 16.7045C18.2617 16.7045 19.4049 16.1924 20.2408 15.363C19.7078 15.6559 19.0976 15.8223 18.4489 15.8223Z"
+                                        fill="#D80027" />
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_206_5697">
+                                        <rect width="34" height="23" fill="white" transform="translate(0 0.5)" />
+                                    </clipPath>
+                                </defs>
+                            </svg><span>Tunisia</span></div>
+                        <div class="col-4" style="text-align: center;"><span class="transaction-price">124$</span> <br
+                                style="margin: 0px;"> <span class="transaction-unity">50 tCO2e</span></div>
+                        <div class="col-4 detail-value" style="text-align: right;">27/10/2023</div>
+                    </div>
+                    <div style="width: 100%; height: 1px;background: #D3D3D3;margin-top: 14px; margin-bottom: 26px;">
+                    </div>
+                    <div class="row">
+                        <div class="col-4 detail-value"><img style="margin-right: 7px;width: 34px;
+                            height: 23px;
+                            flex-shrink: 0; " src="/assets/img/marrocoFlag.svg" alt=""><span>Maroc</span></div>
+                        <div class="col-4" style="text-align: center;"><span class="transaction-price">297.6$</span> <br
+                                style="margin: 0;"> <span class="transaction-unity">120 tCO2e</span></div>
+                        <div class="col-4 detail-value" style="text-align: right;">10/10/2023</div>
+                    </div>
+                    <div style="width: 100%; height: 1px;background: #D3D3D3;margin-top: 14px; margin-bottom: 26px;">
+                    </div>
+                    <div class="row">
+                        <div class="col-4 detail-value"><img style="margin-right: 7px; width: 34px;
+                            height: 25px;
+                            flex-shrink: 0;" src="/assets/img/saudiFlag.svg" alt=""><span>Saudi Arabia</span></div>
+                        <div class="col-4" style="text-align: center;"><span class="transaction-price">198.4$</span> <br
+                                style="margin: 0;"> <span class="transaction-unity">80 tCO2e</span></div>
+                        <div class="col-4 detail-value" style="text-align: right;">27/10/2023</div>
+                    </div>
+                    <div style="width: 100%; height: 1px;background: #D3D3D3;margin-top: 14px; margin-bottom: 26px;">
+                    </div>
+                    <div class="row">
+                        <div class="col-4 detail-value"><img style="margin-right: 7px;width: 34px;
+                            height: 25px;
+                            flex-shrink: 0;" src="/assets/img/egyptFlag.svg" alt=""><span>Egypt</span></div>
+                        <div class="col-4" style="text-align: center;"><span class="transaction-price">248$</span> <br
+                                style="margin: 0;"> <span class="transaction-unity">100 tCO2e</span></div>
+                        <div class="col-4 detail-value" style="text-align: right;">27/10/2023</div>
+                    </div>
+                    <div style="width: 100%; height: 1px;background: #D3D3D3;margin-top: 14px; margin-bottom: 26px;">
+                    </div>
+                    <div class="button-transaction" style="margin-left: 44%;">
+                        <button class="button-transaction-text" style="align-items: center; ">See more</button>
+                    </div>
+                </div>
+                <div class="details" style="margin-top: 54px; margin-bottom: 32px;">Sustainable development objectives
+                </div>
+                <div style="display: inline-flex; gap: 24px;">
+                    <div><img src="/assets/img/objectif1.png" alt="objectif1"></div>
+                    <div><img src="/assets/img/objectif2.png" alt="objectif2"></div>
+                    <div><img src="/assets/img/objectif3.png" alt="objectif3"></div>
+                    <div><img src="/assets/img/objectif4.png" alt="objectif4"></div>
+                </div>
+                <div class="details" style="margin-top: 54px; margin-bottom: 32px;">Explore other projects</div>
+
+
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="cart-details fixed-on-right">
+                <span id="priceText">Price</span><span class="pricePerCo">2.48$<span id="cart-text">/tCO2e</span></span>
+                <div class="separator"></div>
+                <div class="montant">
+                    <span class="montant-text">Amount</span>
+                    <span class="montant-input mt-2"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="2"
+                            viewBox="0 0 14 2" fill="none">
+                            <path d="M14 2H0V0H14V2Z" fill="#014131" />
+                        </svg><span class="montant-input-text">200 tCO2e</span><svg xmlns="http://www.w3.org/2000/svg"
+                            width="14" height="14" viewBox="0 0 14 14" fill="none">
+                            <path d="M14 8H8V14H6V8H0V6H6V0H8V6H14V8Z" fill="#014131" />
+                        </svg></span>
+                </div>
+                <div class="separator"></div>
+                <div class="stock">
+                    <span class="stock-text">Available stock</span>
+                    <span class="stock-number">585</span>
+                </div>
+                <div class="separator"></div>
+                <div class="achat">
+                    <span class="achat-text">Minimum purchase</span>
+                    <span class="achat-quantity">30 tons</span>
+                </div>
+                <div class="separator"></div>
+                <button class="button-achat mt-3" [routerLink]="'/checkout'"><span class="button-achat-text">Buy now</span><span
+                        class="button-achat-amount">496$</span></button>
+                <div class="mt-3">
+                    <button class="button-panier"><span class="button-panier-text" data-bs-toggle="modal"
+                            data-bs-target="#staticBackdrop">Add to cart</span><svg
+                            xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                            <path d="M14 8H8V14H6V8H0V6H6V0H8V6H14V8Z" fill="#014131" />
+                        </svg></button>
+                </div>
+                <div class="mt-3">
+                    <button class="button-panier"><span class="button-panier-text">Make an offer</span><svg
+                            xmlns="http://www.w3.org/2000/svg" width="18" height="16" viewBox="0 0 18 16" fill="none">
+                            <path
+                                d="M18 8L10.5 0.5L9.4425 1.5575L15.1275 7.25L-2.95052e-07 7.25L-3.60619e-07 8.75L15.1275 8.75L9.4425 14.4425L10.5 15.5L18 8Z"
+                                fill="#014131" />
+                        </svg></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-3"><app-project-ad [url]="'/assets/img/projet7.png'" [cost]="'2.48'"
+                    [category]="'Tree planting'" [name]="'Tree planting in Testour'"
+                    [flag]="'/assets/img/tunisiaFlag.svg'"></app-project-ad></div>
+            <div class="col-3"><app-project-ad [url]="'/assets/img/projet8.png'" [cost]="'5.52'"
+                    [category]="'Renewable energies'" [name]="'Solar panels in Casablanca'"
+                    [flag]="'/assets/img/marrocoFlag.svg'"></app-project-ad></div>
+            <div class="col-3"><app-project-ad [url]="'/assets/img/projet9.png'" [cost]="'2.24'"
+                    [category]="'Biodiversity'" [name]="'Mangrove protection in Senegal'"
+                    [flag]="'/assets/img/senegalFlag.svg'"></app-project-ad></div>
+            <div class="col-3"><app-project-ad [url]="'/assets/img/projet5.png'" [cost]="'7.5'"
+                    [category]="'Arbres & Forêts'" [name]="'Forestry project in Madagascar'"
+                    [flag]="'/assets/img/southAfricaFlag.svg'"></app-project-ad></div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade zindex" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-body" style="padding: 29px;">
+                <div class="modal-title">Cart <span style="margin-left: 14px;" class="modal-project-number">3
+                        Projects</span><span><button style="float: right;" type="button" class="btn-close"
+                            data-bs-dismiss="modal" aria-label="Close"></button></span></div>
+                <div class="separator-modal"></div>
+                <div class="row">
+                    <div class="col-3">
+                        <div class="modal-photo"><img src="/assets/img/modalPhoto1.svg" alt=""></div>
+                    </div>
+                    <div class="col-9">
+
+                        <div class="project-text"> Tree planting in Testour <span style="float: right; "><svg
+                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none">
+                                    <path
+                                        d="M6.28577 8.57153L7.24852 18.1991C7.35076 19.2215 8.2111 20.0001 9.2386 20.0001H14.7615C15.789 20.0001 16.6493 19.2215 16.7516 18.1991L17.7143 8.57153"
+                                        stroke="black" stroke-width="1.5" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                    <path d="M13.5 15.5V10.5" stroke="black" stroke-width="1.5"
+                                        stroke-linecap="round" />
+                                    <path d="M10.5 15.5V10.5" stroke="black" stroke-width="1.5"
+                                        stroke-linecap="round" />
+                                    <path
+                                        d="M4.57141 6.28571H9.14284M9.14284 6.28571L9.5249 4.75746C9.63619 4.3123 10.0362 4 10.495 4H13.5049C13.9638 4 14.3638 4.3123 14.4751 4.75746L14.8571 6.28571M9.14284 6.28571H14.8571M14.8571 6.28571H19.4286"
+                                        stroke="black" stroke-width="1.5" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg></span>
+                        </div>
+
+
+                        <div class="project-cost">
+                            <div>
+                                <span class="project-price"><span><svg xmlns="http://www.w3.org/2000/svg" width="12"
+                                            height="2" viewBox="0 0 12 2" fill="none">
+                                            <path d="M11.5 2H0.5V0H11.5V2Z" fill="#014131" />
+                                        </svg><span class="project-price-text">200 tCO2e</span><svg
+                                            xmlns="http://www.w3.org/2000/svg" width="13" height="12"
+                                            viewBox="0 0 13 12" fill="none">
+                                            <path
+                                                d="M12.5 6.85714H7.35714V12H5.64286V6.85714H0.5V5.14286H5.64286V0H7.35714V5.14286H12.5V6.85714Z"
+                                                fill="#014131" />
+                                        </svg> </span> </span>
+                            </div>
+                            <div class="project-final-price">
+                                <span class="project-final-price-text1">496$</span> <span
+                                    class="project-final-price-text2">/tCO2e</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="separator-modal"></div>
+                <div class="row">
+                    <div class="col-3">
+                        <div class="modal-photo"><img src="/assets/img/modalPhoto2.svg" alt=""></div>
+                    </div>
+                    <div class="col-9">
+
+                        <div class="project-text"> Wind farm in Tunisia <span style="float: right; "><svg
+                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none">
+                                    <path
+                                        d="M6.28577 8.57153L7.24852 18.1991C7.35076 19.2215 8.2111 20.0001 9.2386 20.0001H14.7615C15.789 20.0001 16.6493 19.2215 16.7516 18.1991L17.7143 8.57153"
+                                        stroke="black" stroke-width="1.5" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                    <path d="M13.5 15.5V10.5" stroke="black" stroke-width="1.5"
+                                        stroke-linecap="round" />
+                                    <path d="M10.5 15.5V10.5" stroke="black" stroke-width="1.5"
+                                        stroke-linecap="round" />
+                                    <path
+                                        d="M4.57141 6.28571H9.14284M9.14284 6.28571L9.5249 4.75746C9.63619 4.3123 10.0362 4 10.495 4H13.5049C13.9638 4 14.3638 4.3123 14.4751 4.75746L14.8571 6.28571M9.14284 6.28571H14.8571M14.8571 6.28571H19.4286"
+                                        stroke="black" stroke-width="1.5" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg></span>
+                        </div>
+
+
+                        <div class="project-cost">
+                            <div>
+                                <span class="project-price"><span><svg xmlns="http://www.w3.org/2000/svg" width="12"
+                                            height="2" viewBox="0 0 12 2" fill="none">
+                                            <path d="M11.5 2H0.5V0H11.5V2Z" fill="#014131" />
+                                        </svg><span class="project-price-text">50 tCO2e</span><svg
+                                            xmlns="http://www.w3.org/2000/svg" width="13" height="12"
+                                            viewBox="0 0 13 12" fill="none">
+                                            <path
+                                                d="M12.5 6.85714H7.35714V12H5.64286V6.85714H0.5V5.14286H5.64286V0H7.35714V5.14286H12.5V6.85714Z"
+                                                fill="#014131" />
+                                        </svg> </span> </span>
+                            </div>
+                            <div class="project-final-price">
+                                <span class="project-final-price-text1">112$</span> <span
+                                    class="project-final-price-text2">/tCO2e</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="separator-modal"></div>
+                <div class="row">
+                    <div class="col-3">
+                        <div class="modal-photo"><img src="/assets/img/modalPhoto3.svg" alt=""></div>
+                    </div>
+                    <div class="col-9">
+
+                        <div class="project-text">Forestry project in Madagascar <span style="float: right; "><svg
+                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none">
+                                    <path
+                                        d="M6.28577 8.57153L7.24852 18.1991C7.35076 19.2215 8.2111 20.0001 9.2386 20.0001H14.7615C15.789 20.0001 16.6493 19.2215 16.7516 18.1991L17.7143 8.57153"
+                                        stroke="black" stroke-width="1.5" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                    <path d="M13.5 15.5V10.5" stroke="black" stroke-width="1.5"
+                                        stroke-linecap="round" />
+                                    <path d="M10.5 15.5V10.5" stroke="black" stroke-width="1.5"
+                                        stroke-linecap="round" />
+                                    <path
+                                        d="M4.57141 6.28571H9.14284M9.14284 6.28571L9.5249 4.75746C9.63619 4.3123 10.0362 4 10.495 4H13.5049C13.9638 4 14.3638 4.3123 14.4751 4.75746L14.8571 6.28571M9.14284 6.28571H14.8571M14.8571 6.28571H19.4286"
+                                        stroke="black" stroke-width="1.5" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg></span>
+                        </div>
+
+
+                        <div class="project-cost">
+                            <div>
+                                <span class="project-price"><span><svg xmlns="http://www.w3.org/2000/svg" width="12"
+                                            height="2" viewBox="0 0 12 2" fill="none">
+                                            <path d="M11.5 2H0.5V0H11.5V2Z" fill="#014131" />
+                                        </svg><span class="project-price-text">100 tCO2e</span><svg
+                                            xmlns="http://www.w3.org/2000/svg" width="13" height="12"
+                                            viewBox="0 0 13 12" fill="none">
+                                            <path
+                                                d="M12.5 6.85714H7.35714V12H5.64286V6.85714H0.5V5.14286H5.64286V0H7.35714V5.14286H12.5V6.85714Z"
+                                                fill="#014131" />
+                                        </svg> </span> </span>
+                            </div>
+                            <div class="project-final-price">
+                                <span class="project-final-price-text1">750$</span> <span
+                                    class="project-final-price-text2">/tCO2e</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="separator-modal"></div>
+                <div class="total">
+                    <span>Total</span>
+                    <span style="float: right;">1.358$</span>
+                </div>
+                <div class="separator-modal"></div>
+                <div class="payment">
+                    <span class="paymentText">Payment methods accepted</span>
+                    <div style="float: right;">
+                        <span>
+                            <svg style="margin-right: 10px;" xmlns="http://www.w3.org/2000/svg" width="44" height="28"
+                                viewBox="0 0 44 28" fill="none">
+                                <path
+                                    d="M0 2.56489C0 1.14834 1.16764 0 2.60799 0H41.392C42.8324 0 44 1.14834 44 2.56489V25.4351C44 26.8517 42.8324 28 41.392 28H2.60799C1.16764 28 0 26.8517 0 25.4351V2.56489Z"
+                                    fill="#575759" />
+                                <path
+                                    d="M24.7283 5.38279L17.7703 6.14312L14.6778 16.0274L18.9299 22.8704L24.7283 22.4902L30.14 17.9282L24.7283 5.38279Z"
+                                    fill="#98999D" />
+                                <path
+                                    d="M22.4089 5.56475C19.4048 7.27379 17.3837 10.4681 17.3837 14.1267C17.3837 17.7853 19.4048 20.9796 22.4089 22.6887C20.9306 23.5297 19.2143 24.011 17.3837 24.011C11.8331 24.011 7.33333 19.5856 7.33333 14.1267C7.33333 8.66777 11.8331 4.24242 17.3837 4.24242C19.2143 4.24242 20.9306 4.72376 22.4089 5.56475Z"
+                                    fill="#BDBEC2" />
+                                <path
+                                    d="M22.0224 5.56477C25.0265 7.2738 27.0476 10.4681 27.0476 14.1267C27.0476 17.7853 25.0265 20.9796 22.0224 22.6887C23.5007 23.5297 25.217 24.011 27.0476 24.011C32.5983 24.011 37.098 19.5856 37.098 14.1267C37.098 8.66777 32.5983 4.24242 27.0476 4.24242C25.217 4.24242 23.5007 4.72376 22.0224 5.56477Z"
+                                    fill="#BDBEC2" />
+                            </svg>
+                        </span>
+                        <span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="44" height="28" viewBox="0 0 44 28"
+                                fill="none">
+                                <path
+                                    d="M0 2.56489C0 1.14834 1.16764 0 2.60799 0H41.392C42.8324 0 44 1.14834 44 2.56489V25.4351C44 26.8517 42.8324 28 41.392 28H2.60799C1.16764 28 0 26.8517 0 25.4351V2.56489Z"
+                                    fill="#575759" />
+                                <path
+                                    d="M7.34198 8.52067H9.17572L10.9619 15.6142L14.8264 8.52067H16.8435L11.4985 18.3461H9.82093L7.34198 8.52067Z"
+                                    fill="white" />
+                                <path d="M18.1067 8.52067H19.9405L18.5618 18.3461H16.762L18.1067 8.52067Z"
+                                    fill="white" />
+                                <path
+                                    d="M27.1736 9.88995L25.8085 11.0789C25.247 10.3664 24.7241 10.0102 24.2396 10.0102C23.9996 10.0102 23.8004 10.0814 23.6419 10.2239C23.4835 10.362 23.4042 10.5289 23.4042 10.7249C23.4042 10.9074 23.4767 11.1101 23.6216 11.3327C23.7664 11.5553 24.2056 12.0474 24.9391 12.8088C25.3285 13.2141 25.5843 13.5013 25.7066 13.6705C26.0009 14.0623 26.2114 14.4297 26.3382 14.7726C26.4695 15.111 26.5352 15.4561 26.5352 15.8079C26.5352 16.5961 26.2499 17.2573 25.6794 17.7917C25.1089 18.326 24.3777 18.5932 23.4857 18.5932C22.1274 18.5932 21.0204 17.9587 20.1646 16.6896L21.6044 15.5474C22.184 16.4157 22.8111 16.8499 23.4857 16.8499C23.8072 16.8499 24.0766 16.7475 24.2939 16.5426C24.5158 16.3378 24.6267 16.0906 24.6267 15.8012C24.6267 15.5741 24.5588 15.3426 24.423 15.1066C24.2917 14.8705 23.9113 14.4253 23.282 13.7707C22.6164 13.0805 22.1795 12.5595 21.9712 12.2077C21.6905 11.7312 21.5501 11.2637 21.5501 10.805C21.5501 10.1994 21.7516 9.65617 22.1546 9.17525C22.6617 8.57411 23.3454 8.27354 24.2056 8.27354C25.3874 8.27354 26.3767 8.81234 27.1736 9.88995Z"
+                                    fill="white" />
+                                <path
+                                    d="M32.736 8.52067H34.3184L36.8041 18.3461H34.984L34.4542 16.2554H30.5083L29.3605 18.3461H27.3434L32.736 8.52067ZM33.9992 14.5188L33.1978 11.2926L31.4387 14.5188H33.9992Z"
+                                    fill="white" />
+                                <path d="M4.15896 8.33588H9.11974L9.7668 10.8813L4.15896 8.33588Z" fill="#B5B6BA" />
+                            </svg> </span>
+                    </div>
+                </div>
+                <div class="separator-modal"></div>
+                <div class="checkoutButtons">
+                    <button class="checkoutButton1" data-bs-dismiss="modal"><span
+                            class="checkoutButton1Text">Continue</span></button>
+                    <button data-bs-dismiss="modal" [routerLink]="'/checkout'" class="checkoutButton2" style="margin-left: 16px;"><span
+                            class="checkoutButton2Text">Checkout</span></button>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<app-footer-market-place></app-footer-market-place>

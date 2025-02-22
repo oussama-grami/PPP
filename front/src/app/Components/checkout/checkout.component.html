@@ -1,0 +1,174 @@
+<app-nav-acceuil [selected]="5"></app-nav-acceuil>
+<div class="container">
+    <div class="retour">
+         <button style="display: flex; align-items: center;" [routerLink]="'/details'">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                    height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M19.5 12H4.5M4.5 12L10.125 6M4.5 12L10.125 18" stroke="black" stroke-width="1.5"
+                        stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <div class="retour-text">
+                Back
+            </div>
+        </button>
+    </div>
+    <div class="nav default-font">
+        <span>
+            Cart
+        </span>
+        <span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M9 18L15 12L9 6" stroke="black" stroke-width="1.5" stroke-linecap="round"
+                    stroke-linejoin="round" />
+            </svg>
+        </span>
+        <span class="grey-color">
+            General informations
+        </span>
+        <span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M9 18L15 12L9 6" stroke="#999999" stroke-width="1.5" stroke-linecap="round"
+                    stroke-linejoin="round" />
+            </svg>
+        </span>
+        <span class="grey-color">
+            Payment
+        </span>
+    </div>
+
+    <div class="row checkout-table">
+        <div class="col-5 header-text">Project name</div>
+        <div class="col-4 header-text">Tons/CO2</div>
+        <div class="col-3 header-text">Price</div>
+    </div>
+    <div class="separator" style="margin-top: 14px;"></div>
+    <div class="row">
+        <div class="col-5">
+            <div class="row">
+                <div class="col-2"><div class="modal-photo"><img src="/assets/img/modalPhoto1.svg" alt=""></div></div>
+                <div class="col-10 mt-3">
+                    <div class="project-name">Tree planting in Testour</div>
+                    <div class="project-name-details">2.48$ x 200 tCO2e</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-4 mt-3">
+            <div>
+                <span class="project-price"><span><svg xmlns="http://www.w3.org/2000/svg" width="12"
+                            height="2" viewBox="0 0 12 2" fill="none">
+                            <path d="M11.5 2H0.5V0H11.5V2Z" fill="#014131" />
+                        </svg><span class="project-price-text">200 tCO2e</span><svg
+                            xmlns="http://www.w3.org/2000/svg" width="13" height="12"
+                            viewBox="0 0 13 12" fill="none">
+                            <path
+                                d="M12.5 6.85714H7.35714V12H5.64286V6.85714H0.5V5.14286H5.64286V0H7.35714V5.14286H12.5V6.85714Z"
+                                fill="#014131" />
+                        </svg> </span> </span>
+            </div>
+        </div>
+        <div class="col-3 mt-3">
+           <span class="header-text"> $496</span>
+            <span style="float: right;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M6.28564 8.57141L7.2484 18.199C7.35064 19.2214 8.21097 20 9.23848 20H14.7614C15.7889 20 16.6492 19.2214 16.7515 18.199L17.7142 8.57141" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M13.5 15.5V10.5" stroke="black" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M10.5 15.5V10.5" stroke="black" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M4.57129 6.28571H9.14272M9.14272 6.28571L9.52478 4.75746C9.63607 4.3123 10.0361 4 10.4949 4H13.5048C13.9637 4 14.3636 4.3123 14.4749 4.75746L14.857 6.28571M9.14272 6.28571H14.857M14.857 6.28571H19.4284" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+            </span>
+        </div>
+    </div>
+    <div class="separator"></div>
+    <div class="row">
+        <div class="col-5">
+            <div class="row">
+                <div class="col-2"><div class="modal-photo"><img src="/assets/img/modalPhoto2.svg" alt=""></div></div>
+                <div class="col-10 mt-3">
+                    <div class="project-name">Wind farm in Tunisia</div>
+                    <div class="project-name-details">2.25$ x 500 tCO2e</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-4 mt-3">
+            <div>
+                <span class="project-price"><span><svg xmlns="http://www.w3.org/2000/svg" width="11"
+                            height="2" viewBox="0 0 12 2" fill="none">
+                            <path d="M11.5 2H0.5V0H11.5V2Z" fill="#014131" />
+                        </svg><span class="project-price-text">50 tCO2e</span><svg
+                            xmlns="http://www.w3.org/2000/svg" width="12" height="12"
+                            viewBox="0 0 13 12" fill="none">
+                            <path
+                                d="M12.5 6.85714H7.35714V12H5.64286V6.85714H0.5V5.14286H5.64286V0H7.35714V5.14286H12.5V6.85714Z"
+                                fill="#014131" />
+                        </svg> </span> </span>
+            </div>
+        </div>
+        <div class="col-3 mt-3">
+            <span class="header-text"> $112</span>
+            <span style="float: right;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M6.28564 8.57141L7.2484 18.199C7.35064 19.2214 8.21097 20 9.23848 20H14.7614C15.7889 20 16.6492 19.2214 16.7515 18.199L17.7142 8.57141" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M13.5 15.5V10.5" stroke="black" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M10.5 15.5V10.5" stroke="black" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M4.57129 6.28571H9.14272M9.14272 6.28571L9.52478 4.75746C9.63607 4.3123 10.0361 4 10.4949 4H13.5048C13.9637 4 14.3636 4.3123 14.4749 4.75746L14.857 6.28571M9.14272 6.28571H14.857M14.857 6.28571H19.4284" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+            </span>
+        </div>
+    </div>
+    <div class="separator"></div>
+    <div class="row">
+        <div class="col-5">
+            <div class="row">
+                <div class="col-2"><div class="modal-photo"><img src="/assets/img/modalPhoto3.svg" alt=""></div></div>
+                <div class="col-10 mt-3">
+                    <div class="project-name">Forestry project in Madagascar</div>
+                    <div class="project-name-details">7.5$ x 500 tCO2e</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-4 mt-3">
+            <div>
+                <span class="project-price"><span><svg xmlns="http://www.w3.org/2000/svg" width="12"
+                            height="2" viewBox="0 0 12 2" fill="none">
+                            <path d="M11.5 2H0.5V0H11.5V2Z" fill="#014131" />
+                        </svg><span class="project-price-text">100 tCO2e</span><svg
+                            xmlns="http://www.w3.org/2000/svg" width="13" height="12"
+                            viewBox="0 0 13 12" fill="none">
+                            <path
+                                d="M12.5 6.85714H7.35714V12H5.64286V6.85714H0.5V5.14286H5.64286V0H7.35714V5.14286H12.5V6.85714Z"
+                                fill="#014131" />
+                        </svg> </span> </span>
+            </div>
+        </div>
+        <div class="col-3 mt-3">
+            <span class="header-text"> $750</span>
+            <span style="float: right;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M6.28564 8.57141L7.2484 18.199C7.35064 19.2214 8.21097 20 9.23848 20H14.7614C15.7889 20 16.6492 19.2214 16.7515 18.199L17.7142 8.57141" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M13.5 15.5V10.5" stroke="black" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M10.5 15.5V10.5" stroke="black" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M4.57129 6.28571H9.14272M9.14272 6.28571L9.52478 4.75746C9.63607 4.3123 10.0361 4 10.4949 4H13.5048C13.9637 4 14.3636 4.3123 14.4749 4.75746L14.857 6.28571M9.14272 6.28571H14.857M14.857 6.28571H19.4284" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+            </span>
+        </div>
+    </div>
+    <div class="separator" style="margin-top: 14px;"></div>
+    <div class="total">
+        <span class="project-name bigger-font">
+            Total
+        </span>
+        <span class="header-text bigger-font" style="float: right;">
+            1.358$
+        </span>
+    </div>
+    <div class="separator"></div>
+    <div class="checkoutButtons">
+        <button [routerLink]="'/details'" class="checkoutButton1"><span
+                class="checkoutButton1Text">Back</span></button>
+        <button [routerLink]="'/payment'" class="checkoutButton2" style="margin-left: 16px;"><span
+                class="checkoutButton2Text">Checkout</span></button>
+    </div>
+
+</div>
+<app-footer-market-place></app-footer-market-place>
+

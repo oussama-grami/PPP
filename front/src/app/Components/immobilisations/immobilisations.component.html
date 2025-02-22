@@ -1,0 +1,107 @@
+<!-- Favicons-->
+<link rel="shortcut icon" href="/assets/value_green/icon.png" type="image/x-icon">
+<link rel="apple-touch-icon" type="image/x-icon" href="/assets/img/apple-touch-icon-57x57-precomposed.png">
+<link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="/assets/img/apple-touch-icon-72x72-precomposed.png">
+<link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="/assets/img/apple-touch-icon-114x114-precomposed.png">
+<link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="/assets/img/apple-touch-icon-144x144-precomposed.png">
+
+<!-- GOOGLE WEB FONT -->
+<link href="https://fonts.googleapis.com/css?family=Work+Sans:400,500,600" rel="stylesheet">
+
+<!-- BASE CSS -->
+<link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+<link href="/assets/css/menu.css" rel="stylesheet">
+<link href="/assets/css/style.css" rel="stylesheet">
+<link href="/assets/css/vendors.css" rel="stylesheet">
+
+<!-- YOUR CUSTOM CSS -->
+<link href="/assets/css/custom.css" rel="stylesheet">
+<!-- MODERNIZR MENU -->
+<script src="/assets/js/modernizr.js"></script>
+<app-nav-acceuil [selected]="1"></app-nav-acceuil>
+<div class="container-fluid full-height">
+  <div class="row">
+    <div class="col-lg-6 content-left1">
+      <div class="content-left-wrapper">
+        <img src="assets/img/Consommable.png" class="img-title" id="descriptionImage"/>
+        <h2 id="descriptionTitle">Fixed Assets</h2>
+        <p id="descriptionText">Evaluate the emissions from the production of capital goods purchased or acquired by your company.</p>
+      </div>
+    </div>
+    <div class="col-lg-6 content-right" id="start"style="overflow-y: hidden;">
+      <div id="wizard_container">
+        <form ngForm id="wrapped" (ngSubmit)="submitData()">
+          <br>
+          <br>
+          <div class="step">
+            <h3 class="main_question"><strong>7/7</strong> </h3> <h5 style="color: #014131; "> Buildings:</h5>
+              <h6>Indicate the data related to your acquired or purchased buildings that are less than 20 years old:</h6>
+              <div class="form-group">
+                <input type="number" name="surfaceConstruite" class="form-control" [(ngModel)]="immeData.surface"  placeholder="Built area (m²)" id="surfaceConstruite" onChange="handleChange()">
+              </div>
+              <h5 style="color: #014131; "> Vehicle Fleet:</h5>
+              <h6>Enter the number of vehicles (less than 10 years old) in your vehicle fleet by type:</h6>
+              <div class="flex-container">
+                <div class="form-group">
+                  <input type="number" name="VehiculeLeg" class="form-control" [(ngModel)]="immeData.nbVoituresLegers"  placeholder="Light Duty Vehicles (Vehicle)" id="VehiculeLeg" onChange="handleChange()">
+                </div>
+                <div class="form-group">
+                  <input type="number" name="VehiculeUti" class="form-control" [(ngModel)]="immeData.nbVoituresUtilitaires"  placeholder="Commercial Vehicles (Vehicle)" id="VehiculeUti" onChange="handleChange()">
+                </div>
+              </div>
+              <div class="form-group">
+                <input type="number" name="VehiculeLourds" class="form-control" [(ngModel)]="immeData.nbVoituresLourds"  placeholder="Heavy Vehicles (Vehicle)" id="VehiculeLourds" onChange="handleChange()">
+              </div>
+              <h5 style="color: #014131; "> Computer equipment:</h5>
+              <h6>Enter the number of your IT equipment (less than 3 years old), by type:</h6>
+              <div class="flex-container">
+                <div class="form-group">
+                  <input type="number" name="PostesFixes" class="form-control"[(ngModel)]="immeData.nbPostes"  placeholder="Desktop computers (Unit)" id="PostesFixes" onChange="handleChange()">
+                </div>
+                <div class="form-group">
+                  <input type="number" name="OrdiPortable" class="form-control" [(ngModel)]="immeData.nbPc"  placeholder="Laptops (Unit)" id="OrdiPortable" onChange="handleChange()">
+                </div>
+              </div>
+              <div class="flex-container">
+                <div class="form-group">
+                  <input type="number" name="ImpInd" class="form-control" [(ngModel)]="immeData.nbImprimantesIndiv"  placeholder="Individual Printers (Unit)" id="ImpInd" onChange="handleChange()">
+                </div>
+                <div class="form-group">
+                  <input type="number" name="ImpMult" class="form-control" [(ngModel)]="immeData.nbImprimantesMilti"  placeholder="Multifunction Printers (Unit)" id="ImpMult" onChange="handleChange()">
+                </div>
+              </div>
+              <div class="flex-container">
+                <div class="form-group">
+                  <input type="number" name="serveurs" class="form-control" [(ngModel)]="immeData.nbServeurs"  placeholder="Servers (Unit)" id="serveurs" onChange="handleChange()">
+                </div>
+                <div class="form-group">
+                  <input type="number" name="EcranPlat" class="form-control" [(ngModel)]="immeData.nbEcran"  placeholder="Flat Panel Screens (Unit)" id="EcranPlat" onChange="handleChange()">
+                </div>
+              </div>
+          </div>
+
+          <div id="bottom-wizard">
+            <button id="calculateButton" type="submit" name="calcul" class="calcul" onclick="calculer()">Calculate</button>
+          </div>
+          <div id="bottom-wizard2">
+            <div class="button-container">
+              <button type="button" name="backward" class="backward" routerLink="/cons">Back</button>
+              <button type="button" name="forward" class="forward" routerLink="/resultat">Continue</button>
+            </div>
+           <br>
+            <br>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="assets/js/jquery-3.6.3.min.js"></script>
+<script src="assets/js/common_scripts.min.js"></script>
+<script src="assets/js/velocity.min.js"></script>
+<script src="assets/js/functions.js"></script>
+
+<!-- Wizard script -->
+<script src="assets/js/survey_func.js"></script>
+
+

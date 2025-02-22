@@ -1,0 +1,151 @@
+<app-nav-acceuil [selected]="1"></app-nav-acceuil>
+<div class="container" style="margin-top: 100px;">
+  <div class="row">
+    <div class="retour"> <button [routerLink]="'/gouv4'">
+        <div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M19.5 12H4.5M4.5 12L10.125 6M4.5 12L10.125 18" stroke="black" stroke-width="1.5"
+              stroke-linecap="round" stroke-linejoin="round" />
+          </svg></div>
+        <div class="retour-text">
+          Back
+        </div>
+      </button>
+    </div>
+  </div>
+  <div class="row title ">
+    Your company’s ESG Performance is
+  </div>
+  <div class="row">
+    <div class="box-border " style="margin-right: 20px; width: 777px; padding-left: 0px;">
+         <div class="result-header" style="margin-bottom: 0px; margin-left: 24px;">Position Map
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M8.99988 16.5C13.142 16.5 16.4999 13.1421 16.4999 9C16.4999 4.85786 13.142 1.5 8.99988 1.5C4.85774 1.5 1.49988 4.85786 1.49988 9C1.49988 13.1421 4.85774 16.5 8.99988 16.5Z"
+            stroke="#D0D1D2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="M9 6V9" stroke="#D0D1D2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+          <circle cx="8.99988" cy="12" r="0.75" fill="#D0D1D2" />
+        </svg>
+      </div>
+      <div style="display: flex; ">
+        <app-esgdiagram style="width: 772px; height: 772px;"></app-esgdiagram>
+        <div class="diagram-legend-1">Environnement</div>
+        <div class="diagram-legend-2">Gouvernance</div>
+        <div class="diagram-legend-3">Social</div>
+      </div>
+      
+    </div>
+    <div class="box-border " style="width: 523px;">
+      <div class="result-header">ESG Overview
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M8.99988 16.5C13.142 16.5 16.4999 13.1421 16.4999 9C16.4999 4.85786 13.142 1.5 8.99988 1.5C4.85774 1.5 1.49988 4.85786 1.49988 9C1.49988 13.1421 4.85774 16.5 8.99988 16.5Z"
+            stroke="#D0D1D2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="M9 6V9" stroke="#D0D1D2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+          <circle cx="8.99988" cy="12" r="0.75" fill="#D0D1D2" />
+        </svg>
+      </div>
+      <div class="category-color-1 category-title">
+        Environment
+      </div>
+      <div>
+        <h1 class="result-comment-1"[ngClass]="{ 'custom-styles1': isEnviGreaterOrLessThanFive() }">Regulatory compliance</h1>
+        <h1 class="result-comment-2"[ngClass]="{ 'custom-styles2': isEnviGreaterOrLessThanff() }">Risk management</h1>
+        <h1 class="result-comment-3"[ngClass]="{ 'custom-styles3': isEnviGreaterThanqq() }">Environmental performance</h1>
+        <h1 class="result-comment-4"[ngClass]="{ 'custom-styles4': isEnviGreaterThanzz() }">Environmental leadership</h1>
+        </div>
+        <div class="container slider">
+          <div class="box" style="background-color: #7AB68F;">
+            <div  class="circlee" *ngIf="Envi <= 5 &&Envi>=0" style="  border: 4px solid #7AB68F;"><div class="circle"></div></div>
+          </div>
+          <div class="box" style="background-color: #00E096;">
+            <div  class="circlee" *ngIf="Envi <= 10&&Envi>=6" style="  border: 4px solid #00E096"><div class="circle"></div></div>
+          </div>
+          <div class="box" style="background-color: #0BB783;">
+            <div class="circlee"*ngIf="Envi <=15&&Envi>=11" style="  border: 4px solid #0BB783;"><div class="circle"></div></div>
+          </div>
+          <div class="box" style="background-color: #014131;">
+            <div  class="circlee" *ngIf="Envi <= 20&&Envi>=16"style=" ;border: 4px solid #014131"><div class="circle"></div></div>
+          </div>
+        </div>
+        <div class="result-description-box">
+          <p class="result-description" *ngIf="Envi <= 5 &&Envi>=0">Regulatory Compliance: You adhere to applicable environmental regulations, ensuring compliance with standards and laws set by the relevant authorities, without exceeding the minimum requirements.</p>
+          <p class="result-description" *ngIf="Envi <= 10&&Envi>=6">Risk Management: Your company takes a proactive stance in managing environmental risks, going beyond mere regulatory compliance. Recognizing the potential impacts of your operations on the environment, you implement measures for mitigation, incident prevention, and responsible natural resource management.</p>
+          <p class="result-description" *ngIf="Envi <=15&&Envi>=11">Environmental Performance: In this category, you demonstrate commitment by initiating actions to enhance your environmental performance. Efforts include reducing your ecological footprint, optimizing resource utilization, minimizing waste and emissions, and embracing sustainable practices. You actively monitor and mitigate your impact on the environment.</p>
+          <p class="result-description" *ngIf="Envi <= 20&&Envi>=16">Environmental Leadership: As an environmental leader, your company integrates sustainability and environmental responsibility into your overarching strategy and business objectives. You champion environmental innovation, invest in clean technologies, engage in sectoral initiatives, and forge partnerships to drive the transition towards a greener economy. Your proactive stance encompasses resource conservation, biodiversity protection, and raising environmental awareness.</p>
+          
+        </div>
+        <h1 class="category-color-2 category-title">Social</h1>
+      <div>
+        <h1 class="result-comment-1"[ngClass]="{ 'custom-styles1': isSociGreaterOrLessThanFive() }"style="top: -15px;">Social Regulatory Compliance</h1>
+        <h1 class="result-comment-2"[ngClass]="{ 'custom-styles2': isSociGreaterOrLessThanff() }">Social Risk Management</h1>
+        <h1 class="result-comment-3"[ngClass]="{ 'custom-styles3': isSociGreaterThanqq() }">Responsible social practices</h1>
+        <h1 class="result-comment-4"[ngClass]="{ 'custom-styles4': isSociGreaterThanzz() } "style="top: 16px;" >Social leadership</h1>
+      </div>
+      <div class="container slider">
+        <div class="box" style="background-color: #7AB68F;">
+          <div class="circlee" *ngIf="soc <= 5 &&soc>=0" style="  border: 4px solid #7AB68F;"><div class="circle"></div></div>
+
+        </div>
+        <div class="box" style="background-color: #00E096;">
+          <div class="circlee" *ngIf="soc <= 10&&soc>=6" style="  border: 4px solid #00E096"><div class="circle"></div></div>
+        </div>
+        <div class="box" style="background-color: #0BB783;">
+          <div class="circlee" *ngIf="soc <=15&&soc>=11" style="  border: 4px solid #0BB783;"><div class="circle"></div></div>
+
+        </div>
+        <div class="box" style="background-color: #014131;">
+          <div class="circlee" *ngIf="soc <= 20&&soc>=16" style="  border: 4px solid #014131"><div class="circle"></div></div>
+        </div>
+      </div>
+      <div class="result-description-box">
+        <p class="result-description" *ngIf="soc <= 5 &&soc>=0">Social Regulatory Compliance: Your focus is on adhering to applicable social regulations. You ensure compliance with labor laws, safety and health standards, and worker rights, meeting but not exceeding the minimum requirements.</p>
+        <p class="result-description" *ngIf="soc <= 10&&soc>=6">Social Risk Management: Beyond basic social regulatory compliance, your company actively manages social risks. You assess the potential impacts of your activities on employees, local communities, and stakeholders, and deploy measures to mitigate these risks.</p>
+        <p class="result-description" *ngIf="soc <=15&&soc>=11">Responsible Social Practices: In this category, your engagement is marked by the implementation of responsible social practices within your company, ensuring a positive impact on employees and communities. </p>
+        <p class="result-description" *ngIf="soc <= 20&&soc>=16">Social Leadership: As a social leader, you incorporate the social dimension into your overall strategy and business goals. You proactively work to generate a positive impact on the society in which you operate, focusing on sustainable community development and social well-being. </p>
+      </div>
+      <h1 class="category-color-2 category-title" style="color: #7AB68F">Governance</h1>
+      <div >
+        <h1 class="result-comment-1"[ngClass]="{ 'custom-styles1': isGouvGreaterOrLessThanFive() }">Core governance        </h1>
+        <h1 class="result-comment-2"[ngClass]="{ 'custom-styles2': isGouvGreaterOrLessThanff() }" style="top: -16px;">Good governance practices</h1>
+        <h1 class="result-comment-3"[ngClass]="{ 'custom-styles3': isGouvGreaterThanqq() }" style="top: 5px;">Proactive governance</h1>
+        <h1 class="result-comment-4"[ngClass]="{ 'custom-styles4': isGouvGreaterThanzz() }">Governance Leadership</h1>
+      </div>
+      <div class="container slider">
+        <div class="box" style="background-color: #7AB68F;">
+          <div class="circlee" *ngIf="gouv <= 5 &&gouv>=0" style="  border: 4px solid #7AB68F;"><div class="circle"></div></div>
+        </div>
+        <div class="box" style="background-color: #00E096;">
+          <div class="circlee" *ngIf="gouv <= 10 &&gouv>=6" style="  border: 4px solid #00E096"><div class="circle"></div></div>
+
+        </div>
+        <div class="box" style="background-color: #0BB783;">
+          <div class="circlee" *ngIf="gouv <= 15 &&gouv>=11" style="  border: 4px solid #0BB783;"><div class="circle"></div></div>
+        </div>
+        <div class="box" style="background-color: #014131;">
+          <div class="circlee" *ngIf="gouv <= 20 &&gouv>=16" style="  border: 4px solid #014131"><div class="circle"></div></div>
+        </div>
+      </div>
+      <div class="result-description-box">
+        <p class="result-description" *ngIf="gouv <= 5 &&gouv>=0">Basic Governance: At this level, the company establishes fundamental governance structures in line with legal and regulatory requirements. This includes setting up a robust governance system with a clear management structure, effective decision-making and control mechanisms, and processes for financial disclosure.</p>
+        <p class="result-description" *ngIf="gouv <= 10 &&gouv>=6">Advanced Governance Practices: Your company adopts governance practices that exceed minimum requirements. This includes establishing oversight and accountability mechanisms, such as independent committees, ethics policies, and codes of conduct. You are also committed to promoting transparency and ensuring disclosure of pertinent information to stakeholders.</p>
+        <p class="result-description" *ngIf="gouv <= 15 &&gouv>=11">Proactive Governance: At this level, you adopt a forward-thinking approach to governance, anticipating challenges and promoting long-term sustainability. This involves integrating ESG considerations into your governance strategy, with potential ESG risk management policies, sustainability objectives, and a culture emphasizing integrity and accountability.</p>
+        <p class="result-description" *ngIf="gouv <= 20 &&gouv>=16">Leadership in Governance: Your company distinguishes itself through leadership in governance. Demonstrating strategic vision and effective ESG risk management, you engage in innovative governance practices. These include fostering stakeholder engagement, ensuring diversity on the Board of Directors, maintaining pay transparency, and integrating sustainability into all strategic decisions.</p>
+      </div>
+    </div>
+    <div *ngIf="disableTakeActionButton()" class="action-box" style=" display: grid; place-items: center;">
+      <div class="action-box-header">
+        Take actions to improve your ESG performance
+      </div>
+      <button class="pagginationButton" style="background-color: #014131; margin-top: 0px;" routerLink="/roadmap"> <span
+          style="margin-right: 8px; color:#FFF;" class="pagginationButtonText">Take actions</span><svg
+          xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M4.5 12H19.5M19.5 12L13.875 6M19.5 12L13.875 18" stroke="white" stroke-width="1.5"
+            stroke-linecap="round" stroke-linejoin="round" />
+        </svg></button>
+    </div>
+  </div>
+</div>
+
+
+<app-footer-market-place></app-footer-market-place> 
+

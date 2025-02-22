@@ -1,0 +1,543 @@
+<app-nav-acceuil [selected]="1"></app-nav-acceuil>
+<div class="container" style="margin-top: 100px;">
+    <div class="row">
+        <div class="retour"> 
+            <button [routerLink]="'/ress'">
+                <div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M19.5 12H4.5M4.5 12L10.125 6M4.5 12L10.125 18" stroke="black" stroke-width="1.5"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg></div>
+                <div class="retour-text">
+                    Back
+                </div>
+            </button>
+        </div>
+    </div>
+    <div class="row header mt-5">
+        Proposed roadmap
+    </div>
+    <div *ngIf="Envi1<3 || Envi2<3 || Envi3<3 || Envi4<3 || Envi5<3 " style="margin-top: 42px;">
+        <div class="row">
+            <div class="backgroud-color-1 category-box">
+                <div class="category-box-text">
+                    Environment
+                </div>
+            </div>
+        </div>
+        <div  *ngIf="Envi1<3" class="row">
+            <div class="col-4 inline">
+                <div class="row justify-content-baseline align-items-baseline">
+                    <div class="col-3 category-img">
+                        <img src="/assets/img/roadmap/icon1.svg" class="" alt="" style="width: 65px;height: 65px;">
+                    </div>
+                    <div class="col-9 category-text">
+                        Strategies for Reducing Greenhouse Gas Emissions:​
+                    </div>
+                </div>
+            </div>
+            <div class="col-8" style="padding-left: 0px;">
+                <ul style="margin-top: 18px;list-style-type:disc;">
+                    <li class="category-text normal-weight">Conduct a comprehensive and accurate assessment of the
+                        company's GHG emissions to identify primary sources and opportunities for reduction.​ </li>
+                    <div class="seperator"></div>
+                    <li class="category-text normal-weight">Implement energy-saving technologies, adopt energy
+                        management practices, and renovate buildings for increased energy efficiency.​</li>
+                    <div class="seperator"></div>
+                    <li class="category-text normal-weight">Recycle electronic equipment responsibly through certified
+                        recycling programs, recovering valuable materials and minimizing environmental impacts.​</li>
+                    <div class="seperator"></div>
+                    <li class="category-text normal-weight">Invest in carbon sequestration or carbon offset projects to
+                        compensate for emissions that cannot be directly reduced.</li>
+                    <div class="seperator"></div>
+                    <li class="category-text normal-weight">Foster employee involvement in the emissions reduction
+                        strategy by increasing their awareness of climate issues and encouraging active participation.
+                    </li>
+                </ul>
+
+            </div>
+            <div class="seperator-category"></div>
+        </div>
+        <div *ngIf="Envi2<3" class="row">
+            <div class="col-4 inline">
+                <div class="row justify-content-baseline align-items-baseline">
+                    <div class="col-3 category-img">
+                        <img src="/assets/img/roadmap/icon2.svg" class="" alt="" style="width: 65px;height: 65px;">
+                    </div>
+                    <div class="col-9 category-text">
+                        Waste Management and Recycling Practices:​ </div>
+                </div>
+            </div>
+            <div class="col-8" style="padding-left: 0px;">
+                <ul style="margin-top: 18px;list-style-type:disc;">
+                    <li class="category-text normal-weight">Establish a waste sorting system within your company.​ </li>
+                    <div class="seperator"></div>
+                    <li class="category-text normal-weight">If your business generates organic waste (e.g., food scraps
+                        or garden waste), consider implementing a composting system.​​</li>
+                    <div class="seperator"></div>
+                    <li class="category-text normal-weight">Invest in renewable energy sources, such as solar, wind, and
+                        hydroelectric, to reduce reliance on fossil fuels.​​</li>
+                    <div class="seperator"></div>
+                    <li class="category-text normal-weight">Identify and reduce the use of single-use items in daily
+                        operations.​</li>
+                    <div class="seperator"></div>
+                    <li class="category-text normal-weight">Opt for biodegradable and compostable packaging materials
+                        for shipping products or packing goods.​</li>
+                </ul>
+
+            </div>
+            <div class="seperator-category"></div>
+        </div>
+        <div *ngIf="Envi3<3" class="row">
+            <div class="col-4 inline">
+                <div class="row justify-content-baseline align-items-center">
+                    <div class="col-3 category-img">
+                        <img src="/assets/img/roadmap/icon3.svg" class="" alt="" style="width: 65px;height: 65px;">
+                    </div>
+                    <div class="col-9 category-text">
+                        Valorization of Renewable Energy:​
+                    </div>
+                </div>
+            </div>
+            <div class="col-8" style="padding-left: 0px;">
+                <ul style="margin-top: 18px;list-style-type:disc;">
+                    <li class="category-text normal-weight">Assess the feasibility of installing solar panels on
+                        rooftops or company grounds.​ </li>
+                    <div class="seperator"></div>
+                    <li class="category-text normal-weight">Consider cogeneration systems for simultaneous production of
+                        heat and electricity from renewable sources.​</li>
+                    <div class="seperator"></div>
+                    <li class="category-text normal-weight">Replace traditional light bulbs with energy-efficient LED
+                        bulbs.</li>
+                    <div class="seperator"></div>
+                    <li class="category-text normal-weight">Aim to acquire recognized environmental certifications, like
+                        ISO 14001.​</li>
+                    <div class="seperator"></div>
+                    <li class="category-text normal-weight">Investigate investment opportunities in external renewable
+                        energy projects.​</li>
+                </ul>
+
+            </div>
+            <div class="seperator-category"></div>
+        </div>
+        <div *ngIf="Envi4<3" class="row">
+            <div class="col-4 inline">
+                <div class="row justify-content-baseline align-items-center">
+                    <div class="col-3 category-img">
+                        <img src="/assets/img/roadmap/icon4.svg" class="" alt="" style="width: 65px;height: 65px;">
+                    </div>
+                    <div class="col-9 category-text">
+                        Water management strategies:
+                    </div>
+                </div>
+            </div>
+            <div class="col-8" style="padding-left: 0px;">
+                <ul style="margin-top: 18px;list-style-type:disc;">
+                    <li class="category-text normal-weight">Regularly monitor and inspect installations and swiftly
+                        repair any detected leaks.​ </li>
+                    <div class="seperator"></div>
+                    <li class="category-text normal-weight">Select water-efficient sanitary equipment and appliances.​​
+                    </li>
+                    <div class="seperator"></div>
+                    <li class="category-text normal-weight">Educate and raise awareness among employees about water
+                        conservation.​</li>
+                    <div class="seperator"></div>
+                    <li class="category-text normal-weight">Conduct a comprehensive water footprint assessment to
+                        understand the impact of your operations on water resources.​</li>
+                    <div class="seperator"></div>
+                    <li class="category-text normal-weight">Implement a rainwater harvesting system for non-potable uses
+                        like irrigation or washing exterior surfaces.​</li>
+                </ul>
+
+            </div>
+            <div class="seperator-category"></div>
+        </div>
+        <div *ngIf="Envi5<3" class="row">
+            <div class="col-4 inline">
+                <div class="row justify-content-baseline align-items-center">
+                    <div class="col-3 category-img">
+                        <img src="/assets/img/roadmap/icon5.svg" class="" alt="" style="width: 65px;height: 65px;">
+                    </div>
+                    <div class="col-9 category-text">
+                        Actions for the Preservation of Biodiversity and the Environment:​
+                                        </div>
+                </div>
+            </div>
+            <div class="col-8" style="padding-left: 0px;">
+                <ul style="margin-top: 18px;list-style-type:disc;">
+                    <li class="category-text normal-weight">Develop green spaces on your business site, preserving
+                        existing vegetation and promoting native species planting.​ </li>
+                    <div class="seperator"></div>
+                    <li class="category-text normal-weight">Promote sustainable transportation options among employees,
+                        such as carpooling, cycling, public transport, or teleworking.​​</li>
+                    <div class="seperator"></div>
+                    <li class="category-text normal-weight">Recycle electronic equipment responsibly through certified
+                        recycling programs, recovering valuable materials and minimizing environmental impacts.​</li>
+                    <div class="seperator"></div>
+                    <li class="category-text normal-weight">Participate in carbon offset programs to neutralize your
+                        company's GHG emissions.​​</li>
+                    <div class="seperator"></div>
+                    <li class="category-text normal-weight">Conduct life cycle analyses of products to assess
+                        environmental impacts throughout their lifespan.​</li>
+                </ul>
+
+            </div>
+            <div class="seperator-category"></div>
+        </div>
+
+    </div>
+    <div *ngIf="Soc1<3 || Soc2<3 || Soc3<3 || Soc4<3 || Soc5<3 " style="margin-top: 24px;">
+        <div class="row">
+            <div class="backgroud-color-2 category-box">
+                <div class="category-box-text">
+                    Social
+                </div>
+            </div>
+        </div>
+        <div *ngIf="Soc1<3" class="row">
+            <div class="col-4 inline">
+                <div class="row justify-content-baseline align-items-center">
+                    <div class="col-3 category-img">
+                        <img src="/assets/img/roadmap/icon6.svg" class="" alt="" style="width: 65px;height: 65px;">
+                    </div>
+                    <div class="col-9 category-text">
+                        Initiatives for Diversity and Inclusion:
+                    </div>
+                </div>
+            </div>
+            <div class="col-8" style="padding-left: 0px;">
+                <ul style="margin-top: 18px;list-style-type:disc;">
+                    <li class="category-text normal-weight">Organize diversity and inclusion training for the company's
+                        employees.​​ </li>
+                    <div class="seperator"></div>
+                    <li class="category-text normal-weight">Establish fair promotion policies to ensure that
+                        professional advancement opportunities are available to all employees. ​</li>
+                    <div class="seperator"></div>
+                    <li class="category-text normal-weight">Implement clear non-discriminatory policies that protect
+                        employees against all forms of discrimination or harassment. ​</li>
+                    <div class="seperator"></div>
+                    <li class="category-text normal-weight">Promote a culture of flexibility to enable employees to
+                        balance their professional and personal responsibilities. </li>
+                    <div class="seperator"></div>
+                    <li class="category-text normal-weight">Encourage employees to share their ideas, perspectives, and
+                        concerns, ensuring that no one is marginalized or overlooked in discussions and decision-making.
+                    </li>
+                </ul>
+
+            </div>
+            <div class="seperator-category"></div>
+        </div>
+        <div *ngIf="Soc2<3" class="row">
+            <div class="col-4 inline">
+                <div class="row justify-content-baseline align-items-center">
+                    <div class="col-3 category-img">
+                        <img src="/assets/img/roadmap/icon7.svg" class="" alt="" style="width: 65px;height: 65px;">
+                    </div>
+                    <div class="col-9 category-text">
+                        Occupational Health and Safety Policies:
+                    </div>
+                </div>
+            </div>
+            <div class="col-8" style="padding-left: 0px;">
+                <ul style="margin-top: 18px;list-style-type:disc;">
+                    <li class="category-text normal-weight">Conduct regular workplace risk assessments to identify
+                        potential hazards hazards. ​ </li>
+                    <div class="seperator"></div>
+                    <li class="category-text normal-weight">Develop and communicate clear emergency plans for situations
+                        such as fires, evacuations, and first aid.​​</li>
+                    <div class="seperator"></div>
+                    <li class="category-text normal-weight">Review work schedules to minimize risks associated with
+                        fatigue and overwork.​ ​​</li>
+                    <div class="seperator"></div>
+                    <li class="category-text normal-weight">If your business involves road travel, promote safe driving
+                        practices and provide road safety training. ​</li>
+                    <div class="seperator"></div>
+                    <li class="category-text normal-weight">Raise awareness among employees about mental health issues
+                        and provide resources for prevention, early identification, and management of these problems.​ ​
+                    </li>
+                </ul>
+
+            </div>
+            <div class="seperator-category"></div>
+        </div>
+        <div *ngIf="Soc3<3" class="row">
+            <div class="col-4 inline">
+                <div class="row justify-content-baseline align-items-center">
+                    <div class="col-3 category-img">
+                        <img src="/assets/img/roadmap/icon8.svg" class="" alt="" style="width: 65px;height: 65px;">
+                    </div>
+                    <div class="col-9 category-text">
+                        Policies for employee well-being and work-life balance:
+                    </div>
+                </div>
+            </div>
+            <div class="col-8" style="padding-left: 0px;">
+                <ul style="margin-top: 18px;list-style-type:disc;">
+                    <li class="category-text normal-weight">Offer flexible scheduling options, such as flexible work
+                        hours, compressed workweeks, or telecommuting, where possible. ​ </li>
+                    <div class="seperator"></div>
+                    <li class="category-text normal-weight">Implement a policy for leave and days off that encourages
+                        employees to regularly take breaks and vacations to rejuvenate. ​</li>
+                    <div class="seperator"></div>
+                    <li class="category-text normal-weight">Assess and distribute the workload among employees
+                        equitably.​ </li>
+                    <div class="seperator"></div>
+                    <li class="category-text normal-weight">Encourage employees to take regular breaks throughout their
+                        workday.​ ​</li>
+                    <div class="seperator"></div>
+                    <li class="category-text normal-weight">Provide dedicated spaces for relaxation and rejuvenation,
+                        such as comfortable break areas or outdoor gardens. ​</li>
+                </ul>
+
+            </div>
+            <div class="seperator-category"></div>
+        </div>
+        <div *ngIf="Soc4<3" class="row">
+            <div class="col-4 inline">
+                <div class="row justify-content-baseline align-items-center">
+                    <div class="col-3 category-img">
+                        <img src="/assets/img/roadmap/icon9.svg" class="" alt="" style="width: 65px;height: 65px;">
+                    </div>
+                    <div class="col-9 category-text">
+                        Policies to Ensure Fair Working Conditions in the Supply Chain:
+                    </div>
+                </div>
+            </div>
+            <div class="col-8" style="padding-left: 0px;">
+                <ul style="margin-top: 18px;list-style-type:disc;">
+                    <li class="category-text normal-weight">Implement a CSR policy that specifically focuses on fairness
+                        in working conditions within your supply chain. </li>
+                    <div class="seperator"></div>
+                    <li class="category-text normal-weight">Provide training to company employees on fair working
+                        conditions to enable them to identify and report potential issues. ​​</li>
+                    <div class="seperator"></div>
+                    <li class="category-text normal-weight">Fully understand your supply chain, including
+                        subcontractors, to identify potential risks.​ ​</li>
+                    <div class="seperator"></div>
+                    <li class="category-text normal-weight">Combat child labor and forced labor: Ensure that these
+                        practices do not occur within your supply chain.​</li>
+                    <div class="seperator"></div>
+                    <li class="category-text normal-weight">Raise consumer awareness about fair working conditions in
+                        your supply chain to promote demand for fairly manufactured products.​ ​</li>
+                </ul>
+
+            </div>
+            <div class="seperator-category"></div>
+        </div>
+        <div *ngIf="Soc5<3" class="row">
+            <div class="col-4 inline">
+                <div class="row justify-content-baseline align-items-center">
+                    <div class="col-3 category-img">
+                        <img src="/assets/img/roadmap/icon10.svg" class="" alt="" style="width: 65px;height: 65px;">
+                    </div>
+                    <div class="col-9 category-text">
+                        Company Engagement with Local Communities:
+                    </div>
+                </div>
+            </div>
+            <div class="col-8" style="padding-left: 0px;">
+                <ul style="margin-top: 18px;list-style-type:disc;">
+                    <li class="category-text normal-weight">Develop a local social responsibility policy aimed at
+                        contributing to the sustainable development and well-being of local communities. ​ </li>
+                    <div class="seperator"></div>
+                    <li class="category-text normal-weight">Encourage employees to get involved in volunteer work and
+                        community service activities.​ ​​</li>
+                    <div class="seperator"></div>
+                    <li class="category-text normal-weight">Identify positive local initiatives and support them
+                        financially or in kind. ​</li>
+                    <div class="seperator"></div>
+                    <li class="category-text normal-weight">Adopt environmentally friendly practices in all company
+                        operations. ​​</li>
+                    <div class="seperator"></div>
+                    <li class="category-text normal-weight">Implement programs or initiatives to improve access to
+                        education in the local community. ​</li>
+                </ul>
+
+            </div>
+            <div class="seperator-category"></div>
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+
+    <div *ngIf="GOUV1<3 || GOUV2<3 || GOUV3<3 || GOUV4<3 || GOUV5<3" style="margin-top: 24px;">
+        <div class="row">
+            <div class="backgroud-color-3 category-box">
+                <div class="category-box-text">
+                    Gouvernance
+                </div>
+            </div>
+        </div>
+        <div *ngIf="GOUV1<3" class="row">
+            <div class="col-4 inline">
+                <div class="row justify-content-baseline align-items-center">
+                    <div class="col-3 category-img">
+                        <img src="/assets/img/roadmap/icon11.svg" class="" alt="" style="width: 65px;height: 65px;">
+                    </div>
+                    <div class="col-9 category-text">
+                        Corporate Governance Policies and Practices:
+                    </div>
+                </div>
+            </div>
+            <div class="col-8" style="padding-left: 0px;">
+                <ul style="margin-top: 18px;list-style-type:disc;">
+                    <li class="category-text normal-weight">Establish a robust governance structure that includes a
+                        competent and independent board of directors, with qualified and diverse members.​ </li>
+                    <div class="seperator"></div>
+                    <li class="category-text normal-weight">Set up an independent audit committee within the board to
+                        oversee financial matters, internal controls, and regulatory compliance.​​</li>
+                    <div class="seperator"></div>
+                    <li class="category-text normal-weight">Implement a conflict of interest disclosure policy for board
+                        members, executives, and key employees.​​</li>
+                    <div class="seperator"></div>
+                    <li class="category-text normal-weight">Develop data protection and privacy policies that comply
+                        with current laws and regulations.​</li>
+                    <div class="seperator"></div>
+                    <li class="category-text normal-weight">Formulate crisis management plans to address emergencies,
+                        natural disasters, or other unforeseen events.​</li>
+                </ul>
+
+            </div>
+            <div class="seperator-category"></div>
+        </div>
+        <div *ngIf="GOUV2<3" class="row">
+            <div class="col-4 inline">
+                <div class="row justify-content-baseline align-items-center">
+                    <div class="col-3 category-img">
+                        <img src="/assets/img/roadmap/icon12.svg" class="" alt="" style="width: 65px;height: 65px;">
+                    </div>
+                    <div class="col-9 category-text">
+                        Transparency and Integrity of the Company:
+                    </div>
+                </div>
+            </div>
+            <div class="col-8" style="padding-left: 0px;">
+                <ul style="margin-top: 18px;list-style-type:disc;">
+                    <li class="category-text normal-weight">Develop and communicate a policy of transparency that
+                        encourages openness and the disclosure of relevant information to stakeholders.​ </li>
+                    <div class="seperator"></div>
+                    <li class="category-text normal-weight">Set up confidential reporting mechanisms to enable employees
+                        to report illegal practices, wrongful acts, or ethical violations without fear of retaliation.​​
+                    </li>
+                    <div class="seperator"></div>
+                    <li class="category-text normal-weight">Establish robust internal controls to prevent fraudulent or
+                        dishonest practices.​​​</li>
+                    <div class="seperator"></div>
+                    <li class="category-text normal-weight">Respect the confidentiality and protection of personal data
+                        of clients, employees, and other stakeholders.​</li>
+                    <div class="seperator"></div>
+                    <li class="category-text normal-weight">Formulate a clear and strong anti-corruption policy that
+                        prohibits all forms of corruption, including bribes, kickbacks, and unfair business practices.​​
+                    </li>
+                </ul>
+
+            </div>
+            <div class="seperator-category"></div>
+        </div>
+        <div *ngIf="GOUV3<3" class="row">
+            <div class="col-4 inline">
+                <div class="row justify-content-baseline align-items-center">
+                    <div class="col-3 category-img">
+                        <img src="/assets/img/roadmap/icon13.svg" class="" alt="" style="width: 65px;height: 65px;">
+                    </div>
+                    <div class="col-9 category-text">
+                        Conflict of Interest Prevention and Responsible Management:
+                    </div>
+                </div>
+            </div>
+            <div class="col-8" style="padding-left: 0px;">
+                <ul style="margin-top: 18px;list-style-type:disc;">
+                    <li class="category-text normal-weight">Implement a clear separation of roles to avoid potential
+                        conflicts of interest.​ </li>
+                    <div class="seperator"></div>
+                    <li class="category-text normal-weight">Ensure that all company contracts and transactions are
+                        transparent and fair.​​</li>
+                    <div class="seperator"></div>
+                    <li class="category-text normal-weight">Establish a clear policy regarding gifts, invitations, and
+                        hospitality offered to or received by company employees (Set reasonable limits and define rules
+                        to prevent conflict of interest situations or favoritism).​</li>
+                    <div class="seperator"></div>
+                    <li class="category-text normal-weight">Strengthen internal controls to detect and prevent
+                        fraudulent behavior, embezzlement, and abuse.​​</li>
+                    <div class="seperator"></div>
+                    <li class="category-text normal-weight">Establish transparent and honest relationships with all
+                        stakeholders, including customers, suppliers, investors, and civil society.​​</li>
+                </ul>
+
+            </div>
+            <div class="seperator-category"></div>
+        </div>
+        <div *ngIf="GOUV4<3" class="row">
+            <div class="col-4 inline">
+                <div class="row justify-content-baseline align-items-center">
+                    <div class="col-3 category-img">
+                        <img src="/assets/img/roadmap/icon14.svg" class="" alt="" style="width: 65px;height: 65px;">
+                    </div>
+                    <div class="col-9 category-text">
+                        Encouragement of Business Ethics and Responsibility:
+                    </div>
+                </div>
+            </div>
+            <div class="col-8" style="padding-left: 0px;">
+                <ul style="margin-top: 18px;list-style-type:disc;">
+                    <li class="category-text normal-weight">Create an environment where employees feel comfortable
+                        reporting ethical issues or asking questions without fear of retaliation.​ </li>
+                    <div class="seperator"></div>
+                    <li class="category-text normal-weight">Implement reward and recognition mechanisms for employees
+                        who demonstrate exemplary ethical behavior and business responsibility.​​​</li>
+                    <div class="seperator"></div>
+                    <li class="category-text normal-weight">Integrate social and environmental responsibility into the
+                        company's strategy and operations.​​</li>
+                    <div class="seperator"></div>
+                    <li class="category-text normal-weight">Ensure company leaders serve as models of ethics and
+                        responsibility, as their behavior can profoundly influence the company's culture.​​</li>
+                    <div class="seperator"></div>
+                    <li class="category-text normal-weight">Encourage employees to share their ideas and concerns, which
+                        can help identify potential ethical issues before they escalate into serious problems.​​</li>
+                </ul>
+
+            </div>
+            <div class="seperator-category"></div>
+        </div>
+        <div *ngIf="GOUV5<3" class="row">
+            <div class="col-4 inline">
+                <div class="row justify-content-baseline align-items-center">
+                    <div class="col-3 category-img">
+                        <img src="/assets/img/roadmap/icon15.svg" class="" alt="" style="width: 65px;height: 65px;">
+                    </div>
+                    <div class="col-9 category-text">
+                        Stakeholder Involvement in Decision-Making Processes:
+                    </div>
+                </div>
+            </div>
+            <div class="col-8" style="padding-left: 0px;">
+                <ul style="margin-top: 18px;list-style-type:disc;">
+                    <li class="category-text normal-weight">Ensure the inclusion of stakeholder representatives in
+                        meetings when making important decisions.​ </li>
+                    <div class="seperator"></div>
+                    <li class="category-text normal-weight">Establish a formal policy defining how stakeholders are
+                        involved in the company's decision-making processes.​​​</li>
+                    <div class="seperator"></div>
+                    <li class="category-text normal-weight">Understand and respect cultural differences if your
+                        stakeholders are diverse.​​</li>
+                    <div class="seperator"></div>
+                    <li class="category-text normal-weight">Encourage stakeholders to express their viewpoints and
+                        collaborate to find solutions in case of disagreements.​​​</li>
+                    <div class="seperator"></div>
+                    <li class="category-text normal-weight">Recognize and value stakeholder contributions to encourage
+                        their further involvement.​​</li>
+                </ul>
+
+            </div>
+            <div class="seperator-category"></div>
+        </div>
+
+    </div>
+</div>
+
+<app-footer-market-place></app-footer-market-place>

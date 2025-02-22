@@ -1,0 +1,179 @@
+<link rel="shortcut icon" href="/assets/value_green/icon.png" type="image/x-icon">
+<link rel="apple-touch-icon" type="image/x-icon" href="/assets/img/apple-touch-icon-57x57-precomposed.png">
+<link rel="apple-touch-icon" type="image/x-icon" sizes="72x72"
+  href="/assets/img/apple-touch-icon-72x72-precomposed.png">
+<link rel="apple-touch-icon" type="image/x-icon" sizes="114x114"
+  href="/assets/img/apple-touch-icon-114x114-precomposed.png">
+<link rel="apple-touch-icon" type="image/x-icon" sizes="144x144"
+  href="/assets/img/apple-touch-icon-144x144-precomposed.png">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<!-- GOOGLE WEB FONT -->
+<link href="https://fonts.googleapis.com/css?family=Work+Sans:400,500,600" rel="stylesheet">
+<script src="https://kit.fontawesome.com/28bdde147c.js" crossorigin="anonymous"></script>
+<!-- BASE CSS -->
+<link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+<link href="/assets/css/menu.css" rel="stylesheet">
+<link href="/assets/css/style.css" rel="stylesheet">
+<link href="/assets/css/vendors.css" rel="stylesheet">
+<!-- YOUR CUSTOM CSS -->
+<link href="/assets/css/custom.css" rel="stylesheet">
+<script src="/assets/js/modernizr.js"></script>
+<div style="height: 100vh; overflow: auto;">
+  <app-nav-acceuil [selected]="1"></app-nav-acceuil>
+  <h2 class="prop">According to your answers to the questionnaire, the following actions should be taken: </h2>
+  <div style="margin-top: 80px; margin-left: 40px; display: inline-flex; align-items: center;">
+    <a class="a" routerLink="/propEnv">
+      <p class="en" style="width: 120px;height: 20px;font-weight: 600;color: #C2C2C2">Environment</p>
+    </a>
+    <span style=" margin-left: 5px;margin-right: 5px;"><img src="assets/value_green/next.png" class="" alt=""
+        style="width: 8px; height: 15px;"></span>
+    <a routerLink="/propSoc">
+      <p class="en" style="width: 50px;height: 20px;font-weight: 600;">Social</p>
+    </a>
+    <span style=" margin-left: 5px;margin-right: 5px;"><img src="assets/value_green/next.png" class="" alt=""
+        style="width: 8px; height: 15px;"></span>
+    <a routerLink="/propGouv">
+      <p class="en" style="width: 120px;height: 20px;font-weight: 600;color: #C2C2C2">Governance</p>
+    </a>
+    <button (click)="PrintSoc()" class="btnn"><span class="pri">Print</span></button>
+  </div>
+
+  <div class="row mx-4">
+    <div style="width: 100%;height: 62px;top: 20px;background-color: #A9DDF8; margin-top: 24px;">
+      <p class="headline">Social</p>
+    </div>
+    <div *ngIf="Soc1<3" class="row">
+    <div class="col-3 inline">
+      <div class="category-img">
+        <img src="assets/value_green/inti.png" class="" alt="" style="width: 65px;height: 65px;">
+      </div>
+      <div class="category-text">
+        Initiatives for Diversity and Inclusion
+      </div>
+    </div>
+    <div class="col-9">
+      <ul style="margin-top: 18px;list-style-type:disc;">
+        <li class="category-text normal-weight">Organize diversity and inclusion training for the company's employees.​ </li>
+        <div class="seperator"></div>
+        <li class="category-text normal-weight">Establish fair promotion policies to ensure that professional advancement opportunities are available to all employees.</li>
+        <div class="seperator"></div>
+        <li class="category-text normal-weight">Implement clear non-discriminatory policies that protect employees against all forms of discrimination or harassment.</li>
+        <div class="seperator"></div>
+        <li class="category-text normal-weight">Promote a culture of flexibility to enable employees to balance their professional and personal responsibilities.</li>
+        <div class="seperator"></div>
+        <li class="category-text normal-weight">Encourage employees to share their ideas, perspectives, and concerns, ensuring that no one is marginalized or overlooked in discussions and decision-making.</li>
+      </ul>
+    </div>
+  </div>
+  </div>
+
+  <div *ngIf="Soc2<3" class="row mx-4">
+    <div class="seperator-category"></div>
+    <div class="col-3 inline">
+      <div class="category-img">
+        <img src="assets/value_green/secu.png" class="" alt="" style="width: 65px;height: 65px;">
+      </div>
+      <div class="category-text">
+        Occupational Health and Safety Policies
+      </div>
+    </div>
+    <div class="col-9">
+      <ul style="margin-top: 18px;list-style-type:disc;">
+        <li class="category-text normal-weight">Conduct regular workplace risk assessments to identify potential hazards
+          hazards. </li>
+        <div class="seperator"></div>
+        <li class="category-text normal-weight">Develop and communicate clear emergency plans for situations such as fires, evacuations, and first aid.</li>
+        <div class="seperator"></div>
+        <li class="category-text normal-weight">Review work schedules to minimize risks associated with fatigue and overwork.​
+        </li>
+        <div class="seperator"></div>
+        <li class="category-text normal-weight">If your business involves road travel, promote safe driving practices and provide road safety training.</li>
+        <div class="seperator"></div>
+        <li class="category-text normal-weight">Raise awareness among employees about mental health issues and provide resources for prevention, early identification, and management of these problems.​</li>
+      </ul>
+    </div>
+  </div>
+  <div *ngIf="Soc3<3" class="row mx-4">
+    <div class="seperator-category"></div>
+    <div class="col-3 inline">
+      <div class="category-img">
+        <img src="assets/value_green/poli.png" class="" alt="" style="width: 65px;height: 65px;">
+      </div>
+      <div class="category-text">
+        Policies for employee well-being and work-life balance
+      </div>
+    </div>
+    <div class="col-9">
+      <ul style="margin-top: 18px;list-style-type:disc;">
+        <li class="category-text normal-weight">Offer flexible scheduling options, such as flexible work hours, compressed workweeks, or telecommuting, where possible.</li>
+        <div class="seperator"></div>
+        <li class="category-text normal-weight">Implement a policy for leave and days off that encourages employees to regularly take breaks and vacations to rejuvenate. </li>
+        <div class="seperator"></div>
+        <li class="category-text normal-weight">Assess and distribute the workload among employees equitably.​ </li>
+        <div class="seperator"></div>
+        <li class="category-text normal-weight">Encourage employees to take regular breaks throughout their workday.​ </li>
+        <div class="seperator"></div>
+        <li class="category-text normal-weight">Provide dedicated spaces for relaxation and rejuvenation, such as comfortable break areas or outdoor gardens.
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div *ngIf="Soc4<3" class="row mx-4">
+    <div class="seperator-category"></div>
+    <div class="col-3 inline">
+      <div class="category-img">
+        <img src="assets/value_green/tra.png" class="" alt="" style="width: 110px;height: 65px;">
+      </div>
+      <div class="category-text">
+        Policies to Ensure Fair Working Conditions in the Supply Chain
+      </div>
+    </div>
+    <div class="col-9">
+      <ul style="margin-top: 18px;list-style-type:disc;">
+        <li class="category-text normal-weight">Implement a CSR policy that specifically focuses on fairness in working conditions within your supply chain. </li>
+        <div class="seperator"></div>
+        <li class="category-text normal-weight">Provide training to company employees on fair working conditions to enable them to identify and report potential issues. </li>
+        <div class="seperator"></div>
+        <li class="category-text normal-weight">Fully understand your supply chain, including subcontractors, to identify potential risks.​ </li>
+        <div class="seperator"></div>
+        <li class="category-text normal-weight">Combat child labor and forced labor: Ensure that these practices do not occur within your supply chain./li>
+        <div class="seperator"></div>
+        <li class="category-text normal-weight">Raise consumer awareness about fair working conditions in your supply chain to promote demand for fairly manufactured products.​ </li>
+      </ul>
+    </div>
+  </div>
+  <div *ngIf="Soc5<3" class="row mx-4">
+    <div class="seperator-category"></div>
+    <div class="col-3 inline">
+      <div class="category-img">
+        <img src="assets/value_green/local.png" class="" alt="" style="width: 65px;height: 65px;">
+      </div>
+      <div class="category-text">
+        Company Engagement with Local Communities
+      </div>
+    </div>
+    <div class="col-9">
+      <ul style="margin-top: 18px;list-style-type:disc;">
+        <li class="category-text normal-weight">Develop a local social responsibility policy aimed at contributing to the sustainable development and well-being of local communities. </li>
+        <div class="seperator"></div>
+        <li class="category-text normal-weight">Encourage employees to get involved in volunteer work and community service activities.​ </li>
+        <div class="seperator"></div>
+        <li class="category-text normal-weight">Identify positive local initiatives and support them financially or in kind. </li>
+        <div class="seperator"></div>
+        <li class="category-text normal-weight">Adopt environmentally friendly practices in all company operations. </li>
+        <div class="seperator"></div>
+        <li class="category-text normal-weight">Implement programs or initiatives to improve access to education in the local community. </li>
+      </ul>
+    </div>
+  </div>
+
+
+
+
+
+  <div style="margin-top: 40px;margin-bottom: 30px; justify-content: center;text-align: center;float: left">
+    <p class="numm button-nav" [routerLink]="'/propEnv'" style="width: 11px;color: #C2C2C2;">1</p>
+    <p class="numm button-nav" [routerLink]="'/propSoc'">2</p>
+    <p class="numm button-nav" [routerLink]="'/propGouv'" style="width: 11px;color: #C2C2C2;">3</p>
+  </div>
+</div>

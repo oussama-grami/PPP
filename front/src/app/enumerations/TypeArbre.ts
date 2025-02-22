@@ -1,0 +1,22 @@
+export enum TypeArbre{
+  Olivier='Olivier',
+  Eucalyptus='Eucalyptus',
+  Caroubier='Caroubier',
+  Cypres='Cypres',
+  Alep='Alep',
+  Thurifere='Thurifere',
+  Cedre='Cedre',
+  Rose='Rose',
+  Acacia='Acacia',
+  Figuier='Figuier',
+  Almondier='Almondier',
+  Grenadier='Grenadier',
+  Chene_liege='Chene_liege',
+  Chene_vert='Chene_vert',
+  Micocoulier='Micocoulier',
+  Peuplier='Peuplier',
+  Tamaris='Tamaris',
+  Dattier='Dattier',
+  Marronnier='Marronnier',
+  Chene_kermes='Chene_kermes'
+}

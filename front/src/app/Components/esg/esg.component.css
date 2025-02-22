@@ -1,0 +1,154 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+  margin-top: 100px;
+  width: 100%;
+  flex-direction: row;
+}
+
+.box {
+  width: 35px;
+  height: 40px;
+  border-radius: 5px;
+  position: relative;
+}
+
+.hh {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  line-height: 27px;
+  letter-spacing: 0em;
+  font-style: normal;
+  justify-content: left;
+  font-size: 24px;
+  color: #000000;
+  margin-bottom: 30px;
+}
+
+.box img {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.env {
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0em;
+  text-align: center;
+  font-style: normal;
+  line-height: 21px;
+  width: 107px;
+  height: 21px;
+  position: absolute;
+  bottom: -40px;
+  /* Adjust the value based on your needs */
+  left: 50%;
+  transform: translateX(-50%);
+  color: #6D6D6D;
+}
+
+.green {
+  background-color: #014131;
+}
+
+.grey {
+  background-color: #F2F2F2;
+}
+
+.box {
+  width: 45%;
+  margin: 10px;
+}
+
+.number {
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 35px;
+  letter-spacing: 0em;
+  text-align: center;
+  margin: auto;
+}
+
+.bar {
+  width: 7px;
+  height: 39px;
+  border-radius: 5px;
+  position: absolute;
+  left: 50%;
+  top: 87%;
+  transform: translate(-50%, -50%) rotate(-90deg);
+  background-color: #01413133;
+}
+
+.custom-div {
+  box-sizing: border-box;
+  border: 1px solid #939393;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.custom-div:hover h6 {
+  cursor: pointer;
+  background-color: #014131;
+  color: white;
+}
+
+.custom-div:hover {
+  cursor: pointer;
+  background-color: #014131;
+}
+
+.custom-div-clicked {
+  background-color: #014131;
+}
+
+.custom-div-clicked h6 {
+  background-color: #014131;
+  color: white;
+}
+
+.b1 {
+  color: white;
+  width: 146px;
+  height: 51px;
+  border: none;
+  background-color: #014131;
+  border-radius: 10px;
+}
+
+.b1:hover {
+  background-color: #014131;
+  color: grey;
+
+}
+.b2{
+ width: 146px;
+  height: 51px;
+  border: none; 
+ border-radius: 10px;
+ margin-right: 20px;
+}
+
+.b2:hover {
+  background-color: #014131;
+  color: white;
+
+}
+
+.num {
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 35px;
+  letter-spacing: 0em;
+  text-align: left;
+
+}

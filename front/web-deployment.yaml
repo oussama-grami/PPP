@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: greentech-web
+  namespace: green-tech
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: greentech-web
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 5
+  template:
+    metadata:
+      labels:
+        app: greentech-web
+    spec:
+      imagePullSecrets:
+        - name: regcred
+      nodeSelector:
+        "beta.kubernetes.io/os": linux
+      containers:
+        - name: frontend
+          image: 10.3.0.4:5000/value/greentech:web
+          imagePullPolicy: Always
+          #env:
+            #- name: {{env_name}}
+              #value: {{env_variable}}
+          ports:
+            - containerPort: 4200
+          resources:
+            requests:
+              cpu: 200m
+              memory: 200Mi
+            limits:
+              cpu: 500m
+              memory: 500Mi
+---
+#apiVersion: v1
+#kind: Service
+#metadata:
+#  name: greentech-web-loadbalancer
+#  namespace: green-tech
+#  annotations:
+#    service.beta.kubernetes.io/azure-load-balancer-internal: 'true' # LoadBalancer avec une adresse IP interne 
+#spec:
+#  type: LoadBalancer
+#  ports:
+#    - port: 4200
+#      targetPort: 80
+#  selector:
+#    app: greentech-web
+#---
+apiVersion: v1
+kind: Service
+metadata:
+  name: web
+  namespace: green-tech
+spec:
+  selector:
+    app: greentech-web
+  ports:
+    - protocol: TCP
+      port: 4200
+      targetPort: 80

@@ -1,0 +1,168 @@
+<link rel="shortcut icon" href="/assets/value_green/icon.png" type="image/x-icon">
+<link rel="apple-touch-icon" type="image/x-icon" href="/assets/img/apple-touch-icon-57x57-precomposed.png">
+<link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="/assets/img/apple-touch-icon-72x72-precomposed.png">
+<link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="/assets/img/apple-touch-icon-114x114-precomposed.png">
+<link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="/assets/img/apple-touch-icon-144x144-precomposed.png">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<!-- GOOGLE WEB FONT -->
+<link href="https://fonts.googleapis.com/css?family=Work+Sans:400,500,600" rel="stylesheet">
+<script src="https://kit.fontawesome.com/28bdde147c.js" crossorigin="anonymous"></script>
+<!-- BASE CSS -->
+<link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+<link href="/assets/css/menu.css" rel="stylesheet">
+<link href="/assets/css/style.css" rel="stylesheet">
+<link href="/assets/css/vendors.css" rel="stylesheet">
+<!-- YOUR CUSTOM CSS -->
+<link href="/assets/css/custom.css" rel="stylesheet">
+<script src="/assets/js/modernizr.js"></script>
+<div style="height: 100vh; overflow: auto;">
+  <app-nav-acceuil [selected]="1"></app-nav-acceuil>
+    <h2 class="prop">According to your answers to the questionnaire, the following actions should be taken:    </h2>
+  <div style="margin-top: 80px; margin-left: 40px; display: inline-flex; align-items: center;">
+    <a class="a" routerLink="/propEnv"><p class="en">Environment</p></a>
+    <span style=" margin-left: 5px;margin-right: 5px;"><img src="assets/value_green/next.png" class="" alt="" style="width: 8px; height: 15px;"></span>
+    <a routerLink="/propSoc"> <p class="en" style="width: 50px;height: 20px;font-weight: 600;color: #C2C2C2">Social</p></a>
+    <span style=" margin-left: 5px;margin-right: 5px;"><img src="assets/value_green/next.png" class="" alt="" style="width: 8px; height: 15px;"></span>
+    <a routerLink="/propGouv"> <p class="en" style="width: 120px;height: 20px;font-weight: 600;color: #C2C2C2">Governance</p></a>
+    <button (click)="PrintEnv()" class="btnn"><span class="pri">Print</span></button>
+  </div>
+
+  <div class="row mx-4">
+    <div style="width: 100%;height: 62px;top: 20px;background-color: #014131; margin-top: 24px;">
+      <p class="headline">Environment</p>
+    </div>
+    <div *ngIf="Envi1<3" class="row">
+    <div class="col-3 inline">
+      <div class="category-img">
+        <img src="assets/value_green/co2.png" class="" alt="" style="width: 65px;height: 65px;">
+      </div>
+      <div class="category-text">
+        Strategies for reducing greenhouse gas emissions  
+      </div>
+    </div>
+    <div class="col-9">
+      <ul style="margin-top: 18px;list-style-type:disc;">
+        <li class="category-text normal-weight">Conduct a comprehensive and accurate assessment of the company's GHG emissions to identify primary sources and opportunities for reduction.        </li>
+        <div class="seperator"></div>
+        <li class="category-text normal-weight">Implement energy-saving technologies, adopt energy management practices, and renovate buildings for increased energy efficiency.</li>
+        <div class="seperator"></div>
+        <li class="category-text normal-weight">Recycle electronic equipment responsibly through certified recycling programs, recovering valuable materials and minimizing environmental impacts.</li>
+        <div class="seperator"></div>
+        <li class="category-text normal-weight">Invest in carbon sequestration or carbon offset projects to compensate for emissions that cannot be directly reduced.</li>
+        <div class="seperator"></div>
+        <li class="category-text normal-weight">Foster employee involvement in the emissions reduction strategy by increasing their awareness of climate issues and encouraging active participation.</li>
+      </ul>
+    </div>
+  </div>
+  </div>
+  
+  <div *ngIf="Envi2<3" class="row mx-4">
+    <div class="seperator-category"></div>
+    <div class="col-3 inline">
+      <div class="category-img">
+        <img src="assets/value_green/prati.png" class="" alt="" style="width: 65px;height: 65px;">
+      </div>
+      <div class="category-text">
+        Waste management and recycling practices
+      </div>
+    </div>
+    <div class="col-9">
+      <ul style="margin-top: 18px;list-style-type:disc;">
+        <li class="category-text normal-weight">Establish a waste sorting system within your company.​</li>
+        <div class="seperator"></div>
+        <li class="category-text normal-weight">If your business generates organic waste (e.g., food scraps or garden waste), consider implementing a composting system.</li>
+        <div class="seperator"></div>
+        <li class="category-text normal-weight">Invest in renewable energy sources, such as solar, wind, and hydroelectric, to reduce reliance on fossil fuels.</li>
+        <div class="seperator"></div>
+        <li class="category-text normal-weight">Identify and reduce the use of single-use items in daily operations.​</li>
+        <div class="seperator"></div>
+        <li class="category-text normal-weight">Opt for biodegradable and compostable packaging materials for shipping products or packing goods.</li>
+      </ul>
+    </div>
+  </div>
+  <div *ngIf="Envi3<3" class="row mx-4">
+    <div class="seperator-category"></div>
+    <div class="col-3 inline">
+      <div class="category-img">
+        <img src="assets/value_green/valori.png" class="" alt="" style="width: 65px;height: 65px;">
+      </div>
+      <div class="category-text">
+        Valorization of renewable energy
+      </div>
+    </div>
+    <div class="col-9">
+      <ul style="margin-top: 18px;list-style-type:disc;">
+        <li class="category-text normal-weight">Assess the feasibility of installing solar panels on rooftops or company grounds.​</li>
+        <div class="seperator"></div>
+        <li class="category-text normal-weight">Consider cogeneration systems for simultaneous production of heat and electricity from renewable sources.​        </li>
+        <div class="seperator"></div>
+        <li class="category-text normal-weight">Replace traditional light bulbs with energy-efficient LED bulbs.​       </li>
+        <div class="seperator"></div>
+        <li class="category-text normal-weight">Aim to acquire recognized environmental certifications, like ISO 14001.​        </li>
+        <div class="seperator"></div>
+        <li class="category-text normal-weight">Investigate investment opportunities in external renewable energy projects.​
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div *ngIf="Envi4<3" class="row mx-4">
+    <div class="seperator-category"></div>
+    <div class="col-3 inline">
+      <div class="category-img">
+        <img src="assets/value_green/eau.png" class="" alt="" style="width: 65px;height: 65px;">
+      </div>
+      <div class="category-text">
+        Water management strategies
+      </div>
+    </div>
+    <div class="col-9">
+      <ul style="margin-top: 18px;list-style-type:disc;">
+        <li class="category-text normal-weight">Regularly monitor and inspect installations and swiftly repair any detected leaks.​        </li>
+        <div class="seperator"></div>
+        <li class="category-text normal-weight">Select water-efficient sanitary equipment and appliances.​        </li>
+        <div class="seperator"></div>
+        <li class="category-text normal-weight">Educate and raise awareness among employees about water conservation.​        </li>
+        <div class="seperator"></div>
+        <li class="category-text normal-weight">Conduct a comprehensive water footprint assessment to understand the impact of your operations on water resources.        </li>
+        <div class="seperator"></div>
+        <li class="category-text normal-weight">Implement a rainwater harvesting system for non-potable uses like irrigation or washing exterior surfaces.        </li>
+      </ul>
+    </div>
+  </div>
+  <div *ngIf="Envi5<3" class="row mx-4">
+    <div class="seperator-category"></div>
+    <div class="col-3 inline">
+      <div class="category-img">
+        <img src="assets/value_green/action.png" class="" alt="" style="width: 65px;height: 65px;">
+      </div>
+      <div class="category-text">
+        Actions for the preservation of biodiversity and the environment
+      </div>
+    </div>
+    <div class="col-9">
+      <ul style="margin-top: 18px;list-style-type:disc;">
+        <li class="category-text normal-weight">Develop green spaces on your business site, preserving existing vegetation and promoting native species planting.        </li>
+        <div class="seperator"></div>
+        <li class="category-text normal-weight">Promote sustainable transportation options among employees, such as carpooling, cycling, public transport, or teleworking.        </li>
+        <div class="seperator"></div>
+        <li class="category-text normal-weight">Evaluate and minimize the use of potentially harmful chemicals in your operations.​       </li>
+        <div class="seperator"></div>
+        <li class="category-text normal-weight">Participate in carbon offset programs to neutralize your company's GHG emissions.​        </li>
+        <div class="seperator"></div>
+        <li class="category-text normal-weight">Conduct life cycle analyses of products to assess environmental impacts throughout their lifespan.        </li>
+      </ul>
+    </div>
+  </div>
+  
+
+
+
+
+      <div style="margin-top: 40px;margin-bottom: 30px; justify-content: center;text-align: center;float: left">
+        <p class="numm button-nav" [routerLink]="'/propEnv'">1</p>
+        <p class="numm button-nav" [routerLink]="'/propSoc'" style="width: 11px;color: #C2C2C2;">2</p>
+        <p class="numm button-nav" [routerLink]="'/propGouv'" style="width: 11px;color: #C2C2C2;">3</p>
+      </div>
+    </div>
+
+

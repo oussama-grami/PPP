@@ -1,0 +1,99 @@
+<!-- Favicons-->
+  <link rel="shortcut icon" href="/assets/value_green/icon.png" type="image/x-icon">
+  <link rel="apple-touch-icon" type="image/x-icon" href="/assets/img/apple-touch-icon-57x57-precomposed.png">
+  <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="/assets/img/apple-touch-icon-72x72-precomposed.png">
+  <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="/assets/img/apple-touch-icon-114x114-precomposed.png">
+  <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="/assets/img/apple-touch-icon-144x144-precomposed.png">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- GOOGLE WEB FONT -->
+  <link href="https://fonts.googleapis.com/css?family=Work+Sans:400,500,600" rel="stylesheet">
+
+  <!-- BASE CSS -->
+  <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/assets/css/menu.css" rel="stylesheet">
+  <link href="/assets/css/style.css" rel="stylesheet">
+  <link href="/assets/css/vendors.css" rel="stylesheet">
+
+  <!-- YOUR CUSTOM CSS -->
+  <link href="/assets/css/custom.css" rel="stylesheet">
+  <!-- MODERNIZR MENU -->
+  <script src="/assets/js/modernizr.js"></script>
+  <app-nav-acceuil [selected]="1"></app-nav-acceuil>
+  <div class="container-fluid full-height" style="margin-top: 50px;">
+  <div class="row ">
+    <div class="col-lg-6 content-left1">
+      <div class="content-left-wrapper">
+
+        <img src="assets/img/energy.png" class="img-title" id="descriptionImage"/>
+          <h2 id="descriptionTitle">Energy</h2>
+          <p id="descriptionText">Energy consumption is key information in your carbon footprint. Take the questionnaire to find out more!</p>
+      </div>
+    </div>
+      <div class="col-lg-6 content-right" id="start" style="overflow-y: hidden;">
+      <div id="wizard_container" >
+        <form ngForm id="wrapped" (ngSubmit)="submitData()">
+          <!-- Leave for security protection, read docs for details -->
+          <!-- /step-->
+          <div class="step">
+            <h3 class="main_question mt-2"><strong>2/7</strong>Enter the number of full-time employees in the company: </h3>
+            <div class="form-group">
+              <input type="number" name="nbremploye" class="form-control" [(ngModel)]="energieData.nbEmployee" placeholder="Number of employees" id="nbremploye" onChange="handleChange()">
+            </div>
+            <h3 class="main_question">What percentage of overall working time is done teleworking (average estimate):            </h3>
+            <div class="form-group">
+              <input type="number" name="nbhTravail" class="form-control" [(ngModel)]="energieData.pourcentageTeleTravail" placeholder="% Telework" id="nbhTravail" onChange="handleChange()">
+            </div>
+            <h3 class="main_question">Enter your annual consumption of each type of energy:
+            </h3>
+            <div class="flex-container">
+              <div class="form-group ">
+                <input type="number" name="electricite" class="form-control" [(ngModel)]="energieData.electricite" placeholder="Electricity (KWh)" id="electricite" onChange="handleChange()">
+              </div>
+              <div class="form-group ">
+                <input type="number" name="gazNaturel" class="form-control" [(ngModel)]="energieData.gaz" placeholder="Natural gas (KWh)" id="gazNaturel" onChange="handleChange()">
+              </div>
+            </div>
+            <div class="flex-container">
+              <div class="form-group">
+                <input type="number" name="propane" class="form-control" [(ngModel)]="energieData.propane" placeholder="Propane (Liters)" id="propane" onChange="handleChange()">
+              </div>
+              <div class="form-group ">
+                <input type="number" name="fioul" class="form-control"[(ngModel)]="energieData.fioul" placeholder="Fuel (Liters)" id="fioul" onChange="handleChange()">
+              </div>
+            </div>
+            <div class="flex-container">
+              <div class="form-group">
+                <input type="number" name="charbon" class="form-control" [(ngModel)]="energieData.charbon" placeholder="Coal (Tons)" id="charbon" onChange="handleChange()">
+              </div>
+              <div class="form-group ">
+                <input type="number" name="ff" class="form-control" [(ngModel)]="energieData.fluideFrig" placeholder="Refrigerant (Kg)" id="ff" onChange="handleChange()">
+              </div>
+            </div>
+            <div class="form-group ">
+              <input type="number" name="GPL" class="form-control" [(ngModel)]="energieData.gpl" placeholder="GPL (Liters)" id="LPG" onChange="handleChange()">
+            </div>
+          </div>
+          <div id="bottom-wizard">
+            <button id="calculateButton" type="submit" name="calcul" class="calcul">Calculate</button>
+          </div>
+          <div id="bottom-wizard2">
+            <div class="button-container">
+              <button type="button" name="backward" class="backward"  routerLink="/info" >Back</button>
+              <button type="button" name="forward" class="forward" routerLink="/car">Continue</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="assets/js/jquery-3.6.3.min.js"></script>
+<script src="assets/js/common_scripts.min.js"></script>
+<script src="assets/js/velocity.min.js"></script>
+<script src="assets/js/functions.js"></script>
+
+<!-- Wizard script -->
+<script src="assets/js/survey_func.js"></script>
+
+
