@@ -50,7 +50,7 @@ import { CarbonCoBenifitsBlogComponent } from './Components/carbon-co-benifits-b
 import { RoadmapComponent } from './Components/roadmap/roadmap.component';
 
 const routes: Routes = [
-  { path:'', component: HomeComponent },
+  { path:'', component: HomeComponent },//EYA
   {path : 'porteur',component : PorteurComponent},
   {path : 'energie',component : EnergieComponent},
   {path : 'car',component : CarburantComponent},
@@ -60,8 +60,8 @@ const routes: Routes = [
   {path : 'imob',component : ImmobilisationsComponent},
   {path : 'esg',component : ESGComponent},
   {path : 'env',component : Environnement1Component},
-  {path : 'env1',component : Environnement2Component},
-  {path : 'env2',component : Environnement3Component},
+  {path : 'env1',component : Environnement2Component},//**
+  {path : 'env2',component : Environnement3Component},//Samar
   {path : 'env3',component : Environnement4Component},
   {path: 'social',component : SocialComponent},
   {path : 'social1',component :Social1Component},
@@ -72,8 +72,8 @@ const routes: Routes = [
   {path:'gouv1',component : Gouvernance1Component},
   {path:'gouv2',component : Gouvernance2Component},
   {path:'gouv3',component : Gouvernance3Component},
-  {path:'gouv4',component : Gouvernance4Component},
-  {path:'pan',component : PanneauxComponent},
+  {path:'gouv4',component : Gouvernance4Component},//**
+  {path:'pan',component : PanneauxComponent},//Aziz
   {path : 'resultat',component : ResultatCarboneComponent},
   {path : 'esg1',component : Esg1Component},
   {path : 'carbone',component : CarboneComponent},
@@ -83,8 +83,8 @@ const routes: Routes = [
   {path:'propSoc',component : PropositionSocialComponent},
   {path:'propGouv',component : PropositionGouvernanceComponent},
   {path:'arb',component : ArboricultureComponent},
-  {path:'piste',component : PisteComponent},
-  {path:'marketplace',component : MarketplaceComponent},
+  {path:'piste',component : PisteComponent},//***
+  {path:'marketplace',component : MarketplaceComponent},//Oussema
   {path: 'details', component: ProjectDetailsComponent},
   {path: 'checkout', component: CheckoutComponent},
   {path: 'payment', component: PaymentComponent},
