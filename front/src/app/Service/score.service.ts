@@ -11,8 +11,6 @@ import { environment } from 'src/environments/environment';
 })
 export class ScoreService {
   private apiUrl = environment.apiUrl;
-
-
   constructor(private http : HttpClient) { }
 
 

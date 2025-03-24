@@ -1,10 +1,5 @@
-import { Component } from '@angular/core';
-import {Hauteur} from "../../enumerations/Hauteur";
-import {Stade} from "../../enumerations/Stade";
-import {TypeArbre} from "../../enumerations/TypeArbre";
-import Swal from "sweetalert2";
-import {Arboriculture} from "../../Models/arboriculture";
-import {ArboricultureService} from "../../Service/arboriculture.service";
+import {Component} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-arboriculture',
@@ -12,24 +7,33 @@ import {ArboricultureService} from "../../Service/arboriculture.service";
   styleUrls: ['./arboriculture.component.css']
 })
 export class ArboricultureComponent {
-  protected readonly TypeArbre = TypeArbre;
-  protected readonly Stade = Stade;
-  protected readonly Hauteur = Hauteur;
-  arbData: Arboriculture = new Arboriculture();
-  constructor(private arbService: ArboricultureService) { }
-  submitData() {
+  arboricultureForm: FormGroup = this.fb.group({
+    typeArbre: ['', Validators.required],
+    nbArbre: ['', [Validators.required, Validators.min(1)]],
+    stade: ['', Validators.required],
+    hauteur: ['', Validators.required]
+  });
 
-    if(this.arbData.hauteur && this.arbData.stade && this.arbData.nbArbre && this.arbData.typeArbre){
-      this.arbService.addInformation(this.arbData, 1, 2023).subscribe(
-        response => {
-          
-          Swal.fire(response.toFixed(2).toString(),'Tonnes' , 'success')
-        },
-        error => {
-          console.error('Error:', error);
-          
-        }
-      );
+  constructor(private fb: FormBuilder) {
+  }
+
+  submitData() {
+    if (this.arboricultureForm?.valid) {
+      console.log(this.arboricultureForm?.value);
+      // Handle form submission
+      /*if(this.arbData.hauteur && this.arbData.stade && this.arbData.nbArbre && this.arbData.typeArbre){
+        this.arbService.addInformation(this.arbData, 1, 2023).subscribe(
+          response => {
+
+            Swal.fire(response.toFixed(2).toString(),'Tonnes' , 'success')
+          },
+          error => {
+            console.error('Error:', error);
+
+          }
+        );
+      }*/
     }
+
   }
 }

@@ -39,7 +39,6 @@ margin-right: 20px;
 }
 .fff {
   font-family: Roboto;
-  font-size: 20px;
   font-weight: 400;
   line-height: 44px;
   letter-spacing: 0em;
@@ -49,14 +48,29 @@ margin-right: 20px;
 }
 .fff:hover{
   color: #014131;
-  
 }
 .selected{
   color: #014131;
   font-weight: 600;
 }
 .dropdown-item.active, .dropdown-item:active {
-  
   background-color: white;
 }
+/* Default font size */
+nav {
+  font-size: 16px;
+}
 
+/* Font size for large screens (lg) */
+@media (min-width: 992px) {
+  nav {
+    font-size: 18px;
+  }
+}
+
+/* Font size for extra-large screens (xl) */
+@media (min-width: 1200px) {
+  nav {
+    font-size: 20px;
+  }
+}

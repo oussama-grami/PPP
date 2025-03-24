@@ -85,51 +85,89 @@ color: #014131;
   0px 10px 15px -3px rgba(0,0,0,0.1);
   text-align: center;
   padding: 20px;
-  margin: 0 100px; 
-  transition: transform 0.3s ease; 
+  margin: 0 100px;
+  transition: transform 0.3s ease;
 }
 .box:hover {
-  transform: scale(1.05); 
+  transform: scale(1.05);
 } */
 
-.image{
+.image {
   padding-left: 50px;
 }
-.title{
+
+.title {
   margin-top: 78px;
   color: #014131;
-font-family: Roboto;
-font-size: 45px;
-font-style: normal;
-font-weight: 501;
-line-height: 50px; 
-width: 588px;
+  font-family: Roboto;
+  font-size: 45px;
+  font-style: normal;
+  font-weight: 501;
+  line-height: 50px;
+  width: 588px;
 }
-.description{
+
+.description {
   color: #000;
-font-family: Roboto;
-font-size: 16px;
-font-style: normal;
-font-weight: 400;
-line-height: 24px;
-width: 588px;
+  font-family: Roboto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  width: 588px;
 }
-.pagginationButton{
+
+.pagginationButton {
   margin-top: 32px;
-  display:inline-flex;
-padding: 8px 14px;
-justify-content: center;
-align-items: center;
-gap: 8px;
-border-radius: 8px;
-border: 1px solid #014131;
-background: #FFF;
+  display: inline-flex;
+  padding: 8px 14px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 8px;
+  border: 1px solid #014131;
+  background: #FFF;
 }
-.pagginationButtonText{
-color: #014131;
-font-family: Roboto;
-font-size: 16px;
-font-style: normal;
-font-weight: 400;
-line-height: 24px;
+
+.pagginationButtonText {
+  color: #014131;
+  font-family: Roboto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+/* Default layout: side by side */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* Stack the columns on top of each other on small screens */
+/* Media queries for small screens */
+@media (max-width: 768px) {
+  .title {
+    font-size: 24px;
+    line-height: 28px;
+    width: 100%;
+  }
+
+  .description {
+    font-size: 14px;
+    line-height: 20px;
+    width: 100%;
+  }
+
+  .pagginationButtonText {
+    font-size: 14px;
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+  .row {
+    flex-direction: column;
+  }
 }

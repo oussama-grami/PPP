@@ -63,7 +63,9 @@ import { MarketplaceBlogComponent } from './Components/marketplace-blog/marketpl
 import { CarbonOffsetBlogComponent } from './Components/carbon-offset-blog/carbon-offset-blog.component';
 import { CarbonCoBenifitsBlogComponent } from './Components/carbon-co-benifits-blog/carbon-co-benifits-blog.component';
 import { RoadmapComponent } from './Components/roadmap/roadmap.component';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatSelectCountryModule} from "@angular-material-extensions/select-country";
+import { CountryPickerModule } from 'ngx-country-picker';
 @NgModule({
   declarations: [
     AppComponent,
@@ -130,7 +132,8 @@ import { RoadmapComponent } from './Components/roadmap/roadmap.component';
     HttpClientModule,
     FontAwesomeModule,
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

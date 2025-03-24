@@ -48,7 +48,7 @@
   padding-right: 20%;
 }
 .highlight-text {
-  color: #014131; 
+  color: #014131;
   font-family: Roboto;
   font-size: 18px;
   font-weight: 700;
@@ -94,74 +94,75 @@ button.calculate-button {
 
 
  */
- .title{
-  margin-top: 35%;
+.title {
+  margin-top: min(35%, 50px);
   color: #FFF;
-text-align: center;
-font-family: Roboto;
-font-size: 35px;
-font-style: normal;
-font-weight: 700;
-line-height: 60px; /* 171.429% */
+  text-align: center;
+  font-family: Roboto;
+  font-size: 35px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 60px; /* 171.429% */
 }
-.description{
+
+.description {
   margin-left: 100px;
-  width: 501px;
+  margin-inline: auto;
   color: #FFF;
-text-align: center;
-font-family: Roboto;
-font-size: 18px;
-font-style: normal;
-font-weight: 400;
-line-height: 25px; /* 138.889% */
+  text-align: center;
+  font-family: Roboto;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 25px; /* 138.889% */
 }
-.form-title{
-  width: 523px; 
+
+.form-title {
   color: #000;
-font-family: Roboto;
-font-size: 16px;
-font-style: normal;
-font-weight: 501;
-line-height: 20px; /* 125% */
-margin-bottom: 10px;
-margin-top: 24px;
+  font-family: Roboto;
+  font-size: min(3vw, 14px);
+  font-style: normal;
+  font-weight: 501;
+  line-height: 20px; /* 125% */
+  margin-bottom: 10px;
+  margin-top: 24px;
 }
+
 button.calculate-button {
   display: inline-flex;
   padding: 5px 20px;
   align-items: flex-start;
   gap: 2px;
   border-radius: 5px;
-background: #014131;
-color: #FFF;
+  background: #014131;
+  color: #FFF;
 
-font-family: Roboto;
-font-size: 16px;
-font-style: normal;
-font-weight: 400;
-line-height: 24px; /* 150% */
+  font-family: Roboto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px; /* 150% */
 
 
 }
-.questions-box{
-  padding-top: 100px;
-  padding-left: 112px
-}
-.seperator{
+
+.seperator {
   width: 522px;
-height: 1px;
-background: #D2D8DD;
-margin-left: 112px;
+  height: 1px;
+  background: #D2D8DD;
+  margin-left: 112px;
 }
-.footer{
+
+.footer {
   color: #000;
-font-family: Roboto;
-font-size: 14px;
-font-style: italic;
-font-weight: 300;
-line-height: 20px; /* 142.857% */
-margin: 24px 0 0 112px;
+  font-family: Roboto;
+  font-size: 14px;
+  font-style: italic;
+  font-weight: 300;
+  line-height: 20px; /* 142.857% */
+  margin: 24px 0 0 112px;
 }
+
 .retour {
   /* margin-top: 8rem; */
   position: relative;
@@ -180,11 +181,11 @@ margin: 24px 0 0 112px;
 .retour-text {
   margin-left: 2px;
   color: #000;
-  font-family: Roboto;
+  font-family: Roboto, serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
   line-height: 24px;
-
+  text-decoration: none;
 }
 

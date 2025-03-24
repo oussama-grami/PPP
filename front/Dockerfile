@@ -1,44 +1,32 @@
-# STAGE 1 - build the react app 
+# Stage 1: Build the Angular application
+FROM node:20 as build
 
-# set the base image to build from 
-# This is the application image from which all other subsequent 
-# applications run. Alpine Linux is a security-oriented, lightweight 
-#(~5Mb) Linux distribution.
-FROM  node:18 as build
-
-# set working directory
-# this is the working folder in the container from which the app
-# will be running from
+# Set the working directory
 WORKDIR /usr/src/app
 
-# add the node_modules folder to $PATH
-ENV PATH /app/node_modules/.bin:$PATH
+# Copy package.json and package-lock.json
+COPY package.json package-lock.json ./
 
-# copy package.json file to /app directory for installation prep
-COPY ./package.json /usr/src/app
-COPY ./package-lock.json /usr/src/app
-
-# install dependencies
+# Install dependencies
 RUN npm install
 
-# copy everything to /app directory
-COPY . /usr/src/app
+# Copy the rest of the application code
+COPY . .
 
-# build the app 
- 
-RUN npm run build
-# STAGE 2 - build the final image using a nginx web server 
-# distribution and copy the react build files
+# Build the Angular application
+RUN npm run build --prod
+
+# Stage 2: Serve the application with Nginx
 FROM nginx:alpine
+
+# Copy the built application from the previous stage
 COPY --from=build /usr/src/app/dist/green_tech /usr/share/nginx/html
 
-# needed this to make React Router work properly 
-RUN rm /etc/nginx/conf.d/default.conf
-COPY nginx/nginx.conf /etc/nginx/conf.d
+# Copy the custom Nginx configuration file
+COPY nginx/nginx.conf /etc/nginx/conf.d/default.conf
 
-# Expose port 80 for HTTP Traffic 
+# Expose port 80
 EXPOSE 80
 
-# start the nginx web server
-
+# Start Nginx
 CMD ["nginx", "-g", "daemon off;"]

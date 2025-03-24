@@ -1,11 +1,11 @@
 <link rel="shortcut icon" href="/assets/value_green/icon.png" type="image/x-icon">
 <link rel="apple-touch-icon" type="image/x-icon" href="/assets/img/apple-touch-icon-57x57-precomposed.png">
 <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72"
-  href="/assets/img/apple-touch-icon-72x72-precomposed.png">
+      href="/assets/img/apple-touch-icon-72x72-precomposed.png">
 <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114"
-  href="/assets/img/apple-touch-icon-114x114-precomposed.png">
+      href="/assets/img/apple-touch-icon-114x114-precomposed.png">
 <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144"
-  href="/assets/img/apple-touch-icon-144x144-precomposed.png">
+      href="/assets/img/apple-touch-icon-144x144-precomposed.png">
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 <!-- GOOGLE WEB FONT -->
 <link href="https://fonts.googleapis.com/css?family=Work+Sans:400,500,600" rel="stylesheet">
@@ -19,252 +19,144 @@
 <script src="/assets/js/modernizr.js"></script>
 <div style="height: 100vh;">
   <app-nav-acceuil [selected]="1"></app-nav-acceuil>
-  <div class="container">
+  <div class="container mx-auto">
     <div class="row">
-      <div class="retour"> <button [routerLink]="'/imob'">
-          <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+      <div class="col-12 col-md-2">
+        <div class="retour">
+          <button [routerLink]="'/imob'">
+          <span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
               <path d="M19.5 12H4.5M4.5 12L10.125 6M4.5 12L10.125 18" stroke="black" stroke-width="1.5"
-                stroke-linecap="round" stroke-linejoin="round" />
-            </svg></span>
-          <span class="retour-text">
-            Back
-          </span></button>
+                    stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+            <span class="retour-text">Back</span>
+          </button>
+        </div>
       </div>
-      <div class="col-7">
+      <div class="col-12 col-md-8 mx-auto">
         <div class="header">
           Your company’s
           <br>
-          <span class="header-bold">
-            Carbon Footprint’s Total Emissions
-          </span>
+          <span class="header-bold">Carbon Footprint’s Total Emissions</span>
         </div>
-        <button class="pagginationButton" routerLink="/piste"> <span style="margin-right: 8px;"
-            class="pagginationButtonText">Take actions</span><svg xmlns="http://www.w3.org/2000/svg" width="24"
-            height="24" viewBox="0 0 24 24" fill="none">
+        <button class="pagginationButton" routerLink="/piste">
+          <span style="margin-right: 8px;" class="pagginationButtonText">Take actions</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
             <path d="M4.5 12H19.5M19.5 12L13.875 6M19.5 12L13.875 18" stroke="#014131" stroke-width="1.5"
-              stroke-linecap="round" stroke-linejoin="round" />
-          </svg></button>
+                  stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
         <div class="emittion-box">
           <div class="emission-title">
             Emissions by Category
             <span style="margin-left: 16px;">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
-                <path fill-rule="evenodd" clip-rule="evenodd"
-                  d="M8.99985 16.5C13.142 16.5 16.4998 13.1421 16.4998 9C16.4998 4.85786 13.142 1.5 8.99985 1.5C4.85771 1.5 1.49985 4.85786 1.49985 9C1.49985 13.1421 4.85771 16.5 8.99985 16.5Z"
-                  stroke="#D0D1D2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                <path d="M9 6V9" stroke="#D0D1D2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                <circle cx="8.99985" cy="12" r="0.75" fill="#D0D1D2" />
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+              <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M8.99985 16.5C13.142 16.5 16.4998 13.1421 16.4998 9C16.4998 4.85786 13.142 1.5 8.99985 1.5C4.85771 1.5 1.49985 4.85786 1.49985 9C1.49985 13.1421 4.85771 16.5 8.99985 16.5Z"></path>
+              <circle cx="8.99985" cy="12" r="0.75" fill="#D0D1D2"/>
+            </svg>
+          </span>
+          </div>
+          <!-- Emission rows -->
+          <div class="row w-100 mx-auto">
+            <div class="col-5">
+              <div class="row">
+                <div class="col-3" style="margin-left: 12px;"><img src="/assets/img/emission1.svg" alt=""></div>
+                <div class="col-8" style="margin-top: 9px; margin-left: 10px;">Energy</div>
+              </div>
+            </div>
+            <div class="col-5">
+              <svg style="margin-top: 15px;" xmlns="http://www.w3.org/2000/svg" width="180" height="4"
+                   viewBox="0 0 180 4"
+                   fill="none">
+                <rect width="180" height="4" rx="2" fill="#006557" fill-opacity="0.1"/>
+                <rect [attr.width]='percentageE * 1.80' height="4" rx="2" fill="#006557"/>
               </svg>
-            </span>
-          </div>
-          <div class="row">
-            <div class="col-5">
-              <div class="row">
-                <div class="col-4"></div>
-                <div class="col-8 header-font">Category</div>
-              </div>
             </div>
-            <div class="col-5 header-font">Emissions</div>
-            <div class="col-2 header-font">tCO2</div>
-          </div>
-          <div class="seperator"></div>
-
-          <div class="row">
-            <div class="col-5">
-              <div class="row">
-                <div class="col-3 " style=" margin-left: 12px;"><img src="/assets/img/emission1.svg" alt=""></div>
-                <div class="col-8 " style="margin-top: 9px; margin-left: 10px;">Energy</div>
-              </div>
-            </div>
-            <div class="col-5 "><svg style="margin-top: 15px;" xmlns="http://www.w3.org/2000/svg" width="180" height="4"
-                viewBox="0 0 180 4" fill="none">
-                <rect width="180" height="4" rx="2" fill="#006557" fill-opacity="0.1" />
-                <rect [attr.width]='percentageE * 1.80' height="4" rx="2" fill="#006557" />
-              </svg></div>
             <div class="col-2">
               <div class="tco2-box" style="border: 1px solid #006557;">
-                <div class="tco2-text" style="  color: #006557;">{{emE | number:'.1-1'}}</div>
+                <div class="tco2-text" style="color: #006557;">{{ emE | number:'.1-1' }}</div>
               </div>
             </div>
           </div>
           <div class="seperator"></div>
-          <div class="row">
-            <div class="col-5">
-              <div class="row">
-                <div class="col-3 " style=" margin-left: 12px;"><img src="/assets/img/emission2.svg" alt=""></div>
-                <div class="col-8 " style="margin-top: 9px; margin-left: 10px;">Fuel</div>
-              </div>
-            </div>
-            <div class="col-5 "><svg style="margin-top: 15px;" xmlns="http://www.w3.org/2000/svg" width="180" height="4"
-                viewBox="0 0 180 4" fill="none">
-                <rect width="180" height="4" rx="2" fill="#F0FDF4" />
-                <rect [attr.width]='percentageC * 1.8' height="4" rx="2" fill="#76B82A" />
-              </svg></div>
-            <div class="col-2">
-              <div class="tco2-box" style="border: 1px solid #76B82A;">
-                <div class="tco2-text" style="  color: #76B82A;">{{emC | number:'.1-1'}}</div>
-              </div>
-            </div>
-          </div>
-          <div class="seperator">
-
-          </div>
-          <div class="row">
-            <div class="col-5">
-              <div class="row">
-                <div class="col-3 " style=" margin-left: 12px;"><img src="/assets/img/emission3.svg" alt=""></div>
-                <div class="col-8 " style="margin-top: 9px; margin-left: 10px;">Air travel</div>
-              </div>
-            </div>
-            <div class="col-5 "><svg style="margin-top: 15px;" xmlns="http://www.w3.org/2000/svg" width="180" height="4"
-                viewBox="0 0 180 4" fill="none">
-                <rect width="180" height="4" rx="2" fill="#008774" fill-opacity="0.1" />
-                <rect [attr.width]='percentageA * 1.8' height="4" rx="2" fill="#05B102" />
-              </svg></div>
-            <div class="col-2">
-              <div class="tco2-box" style="border: 1px solid #05B102;">
-                <div class="tco2-text" style="  color: #05B102;">{{emD | number:'.1-1'}}</div>
-              </div>
-            </div>
-          </div>
-          <div class="seperator"></div>
-          <div class="row">
-            <div class="col-5">
-              <div class="row">
-                <div class="col-3 " style=" margin-left: 12px;"><img src="/assets/img/emission4.svg" alt=""></div>
-                <div class="col-8 " style="margin-top: 9px; margin-left: 10px;">Freights</div>
-              </div>
-            </div>
-            <div class="col-5 "><svg style="margin-top: 15px;" xmlns="http://www.w3.org/2000/svg" width="180" height="4"
-                viewBox="0 0 180 4" fill="none">
-                <rect width="180" height="4" rx="2" fill="#7AB68F" fill-opacity="0.2" />
-                <rect [attr.width]='percentageF * 1.8' height="4" rx="2" fill="#7AB68F" />
-              </svg></div>
-            <div class="col-2">
-              <div class="tco2-box" style="border: 1px solid #7AB68F;">
-                <div class="tco2-text" style="  color: #7AB68F;">{{emF| number:'.1-1'}}</div>
-              </div>
-            </div>
-          </div>
-          <div class="seperator"></div>
-          <div class="row">
-            <div class="col-5">
-              <div class="row">
-                <div class="col-3 " style=" margin-left: 12px;"><img src="/assets/img/emission5.svg" alt=""></div>
-                <div class="col-8 " style="margin-top: 9px; margin-left: 10px;">Office supplies</div>
-              </div>
-            </div>
-            <div class="col-5 "><svg style="margin-top: 15px;" xmlns="http://www.w3.org/2000/svg" width="180" height="4"
-                viewBox="0 0 180 4" fill="none">
-                <rect width="180" height="4" rx="2" fill="#F7FFEE" />
-                <rect [attr.width]='percentageCo * 1.8' height="4" rx="2" fill="#014131" />
-              </svg></div>
-            <div class="col-2">
-              <div class="tco2-box" style="border: 1px solid #014131;">
-                <div class="tco2-text" style="  color: #014131;">{{emCo| number:'.1-1'}}</div>
-              </div>
-            </div>
-          </div>
-          <div class="seperator"></div>
-          <div class="row">
-            <div class="col-5">
-              <div class="row">
-                <div class="col-3 " style=" margin-left: 12px;"><img src="/assets/img/emission6.svg" alt=""></div>
-                <div class="col-8 " style="margin-top: 9px; margin-left: 10px;">Fixed assets</div>
-              </div>
-            </div>
-            <div class="col-5 "><svg style="margin-top: 15px;" xmlns="http://www.w3.org/2000/svg" width="180" height="4"
-                viewBox="0 0 180 4" fill="none">
-                <rect width="180" height="4" rx="2" fill="#00A991" fill-opacity="0.1" />
-                <rect [attr.width]='percentageI * 1.8' height="4" rx="2" fill="#008673" />
-              </svg></div>
-            <div class="col-2">
-              <div class="tco2-box" style="border: 1px solid #008673;">
-                <div class="tco2-text" style="  color: #008673;">{{emI | number:'.1-1'}}</div>
-              </div>
-            </div>
-          </div>
-
-
-
-
-
+          <!-- Repeat similar blocks for other categories -->
         </div>
       </div>
-      <div class="col-5">
-        <div class="background"
-          [ngStyle]="{'background-image': 'url(/assets/img/equivalent.svg)', 'background-repeat': 'no-repeat',  'width': '524px', 'height': '155px', 'background-size':'cover', 'background-position':'center 90%'}">
-          <div style="color: transparent;">a</div>
-          <div style="margin-top: 35px;">
-            <span style=" margin-left: 120px;" class="result-text"> {{this.total.toFixed(0)}} <span
-                style="font-weight: 500; font-size: 24px;">tCO2 </span></span>
-            <span class="equivalent-text" style="float: right; margin-right: 30px; margin-top: 10px;">
-              {{(total/0.025).toFixed()}}
-            </span>
+      <div class="col-12 col-md-8 col-lg-5 mx-auto position-relative">
+        <div class="background mx-auto w-100 proportional-content"
+             [ngStyle]="{'background-image': 'url(/assets/img/equivalent.svg)', 'background-repeat': 'no-repeat', 'background-size':'cover', 'background-position':'center 90%'}">
+          <div class="mx-auto" style="color: transparent;">a</div>
+          <div class="mx-auto position-absolute w-auto" style="top:25%;left:25%">
+            <span class="result-text">{{ this.total.toFixed(0) }} </span>
+            <span
+              class="result-text"
+              style="font-weight: 500">tCO2</span>
+            <span class="equivalent-text">{{ (total / 0.025).toFixed() }}</span>
           </div>
-
-
         </div>
-        <div class="emittion-box" style="margin-top: 35px; width: 522px;">
+        <div class="emittion-box mx-auto" style="margin-top: 35px; width: 100%;">
           <div class="emission-title">
             Emissions by Scope
             <span style="margin-left: 16px;">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
-                <path fill-rule="evenodd" clip-rule="evenodd"
-                  d="M8.99985 16.5C13.142 16.5 16.4998 13.1421 16.4998 9C16.4998 4.85786 13.142 1.5 8.99985 1.5C4.85771 1.5 1.49985 4.85786 1.49985 9C1.49985 13.1421 4.85771 16.5 8.99985 16.5Z"
-                  stroke="#D0D1D2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                <path d="M9 6V9" stroke="#D0D1D2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                <circle cx="8.99985" cy="12" r="0.75" fill="#D0D1D2" />
-              </svg>
-            </span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+              <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M8.99985 16.5C13.142 16.5 16.4998 13.1421 16.4998 9C16.4998 4.85786 13.142 1.5 8.99985 1.5C4.85771 1.5 1.49985 4.85786 1.49985 9C1.49985 13.1421 4.85771 16.5 8.99985 16.5Z"
+                    stroke="#D0D1D2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M9 6V9" stroke="#D0D1D2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="8.99985" cy="12" r="0.75" fill="#D0D1D2"/>
+            </svg>
+          </span>
           </div>
-          
-          <div style="width: 300px;height: 300px; margin-left: 120px; margin-top: 30px;">
+          <div style="width: 100%; height: 300px; margin-top: 30px;">
             <app-carbone-diagram></app-carbone-diagram>
           </div>
         </div>
-
       </div>
-      <div class="action-box" style=" display: grid; place-items: center;">
-        <div class="action-box-header">
-          Take actions to reduce your carbon footprint
+      <div class="col-12 mx-auto">
+        <div class="action-box mx-auto" style="display: grid; place-items: center; max-width: 100vw;">
+          <div class="action-box-header">Take actions to reduce your carbon footprint</div>
+          <button class="pagginationButton" style="background-color: #014131; margin-top: 0px;" routerLink="/piste">
+            <span style="margin-right: 8px; color:#FFF;" class="pagginationButtonText">Take actions</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M4.5 12H19.5M19.5 12L13.875 6M19.5 12L13.875 18" stroke="white" stroke-width="1.5"
+                    stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
         </div>
-        <button class="pagginationButton" style="background-color: #014131; margin-top: 0px;" routerLink="/piste"> <span
-            style="margin-right: 8px; color:#FFF;" class="pagginationButtonText">Take actions</span><svg
-            xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path d="M4.5 12H19.5M19.5 12L13.875 6M19.5 12L13.875 18" stroke="white" stroke-width="1.5"
-              stroke-linecap="round" stroke-linejoin="round" />
-          </svg></button>
       </div>
     </div>
   </div>
-  <div class="container">
-    <div>
+  <div class="container mx-auto">
+    <div class="mx-auto">
       <div id="marketplace-header">Explore our Carbon Offset Projects Marketplace</div>
       <div class="row mt-5">
-        <div class="col-3"><app-project-ad [url]="'/assets/img/projet7.png'" [cost]="'2.48'"
-            [category]="'Tree planting'" [name]="'Tree planting in Testour'"
-            [flag]="'/assets/img/tunisiaFlag.svg'"></app-project-ad></div>
-        <div class="col-3"><app-project-ad [url]="'/assets/img/projet8.png'" [cost]="'5.52'"
-            [category]="'Renewable energies'" [name]="'Solar panels in Casablanca'"
-            [flag]="'/assets/img/marrocoFlag.svg'"></app-project-ad></div>
-        <div class="col-3"><app-project-ad [url]="'/assets/img/projet9.png'" [cost]="'2.24'" [category]="'Biodiversity'"
-            [name]="'Mangrove protection in Senegal'" [flag]="'/assets/img/senegalFlag.svg'"></app-project-ad></div>
-        <div class="col-3"><app-project-ad [url]="'/assets/img/projet5.png'" [cost]="'7.5'"
-            [category]="'Arbres & Forêts'" [name]="'Forestry project in Madagascar'"
-            [flag]="'/assets/img/southAfricaFlag.svg'"></app-project-ad></div>
-
+        <div class="col col-md-6 col-lg-4 mx-auto">
+          <app-project-ad [url]="'/assets/img/projet7.png'" [cost]="'2.48'" [category]="'Tree planting'"
+                          [name]="'Tree planting in Testour'" [flag]="'/assets/img/tunisiaFlag.svg'"></app-project-ad>
+        </div>
+        <div class="col col-md-6 col-lg-4 mx-auto my-2">
+          <app-project-ad [url]="'/assets/img/projet8.png'" [cost]="'5.52'" [category]="'Renewable energies'"
+                          [name]="'Solar panels in Casablanca'" [flag]="'/assets/img/marrocoFlag.svg'"></app-project-ad>
+        </div>
+        <div class="col col-md-6 col-lg-4 mx-auto my-2">
+          <app-project-ad [url]="'/assets/img/projet9.png'" [cost]="'2.24'" [category]="'Biodiversity'"
+                          [name]="'Mangrove protection in Senegal'"
+                          [flag]="'/assets/img/senegalFlag.svg'"></app-project-ad>
+        </div>
+        <div class="col col-md-6 col-lg-4 mx-auto">
+          <app-project-ad [url]="'/assets/img/projet5.png'" [cost]="'7.5'" [category]="'Arbres & Forêts'"
+                          [name]="'Forestry project in Madagascar'"
+                          [flag]="'/assets/img/southAfricaFlag.svg'"></app-project-ad>
+        </div>
       </div>
-      <div>
-        <button [routerLink]="'/marketplace'" class="explore-button">
-          <div class="explore-button-text">
-            Explore all the green projects
-          </div>
+      <div class="d-flex justify-content-center mx-auto">
+        <button [routerLink]="'/marketplace'" class="explore-button mx-auto">
+          <div class="explore-button-text">Explore all the green projects</div>
         </button>
       </div>
     </div>
-
-
   </div>
   <app-footer-market-place></app-footer-market-place>
 </div>

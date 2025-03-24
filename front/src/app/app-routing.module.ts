@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {HomeComponent} from "./Components/home/home.component";
 import {CommonModule} from "@angular/common";
-import {NavBarComponent} from "./Components/nav-bar/nav-bar.component";
 import {EnergieComponent} from "./Components/energie/energie.component";
 import {CarburantComponent} from "./Components/carburant/carburant.component";
 import {AeriensComponent} from "./Components/aeriens/aeriens.component";
@@ -83,7 +82,7 @@ const routes: Routes = [
   {path:'propSoc',component : PropositionSocialComponent},
   {path:'propGouv',component : PropositionGouvernanceComponent},
   {path:'arb',component : ArboricultureComponent},
-  {path:'piste',component : PisteComponent},
+  {path:'piste',component : PisteComponent},//
   {path:'marketplace',component : MarketplaceComponent},
   {path: 'details', component: ProjectDetailsComponent},
   {path: 'checkout', component: CheckoutComponent},
@@ -95,13 +94,6 @@ const routes: Routes = [
   {path: 'carbon-offset-blog', component: CarbonOffsetBlogComponent},
   {path: 'carbon-co-benefits-blog', component: CarbonCoBenifitsBlogComponent},
   {path: 'roadmap', component: RoadmapComponent},
-
-
-
-
-
-
-
 ];
 
 @NgModule({

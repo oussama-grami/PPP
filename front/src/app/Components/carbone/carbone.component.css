@@ -23,7 +23,7 @@
 
 
 .p2 {
- 
+
   font-family: Roboto;
   font-size: 15px;
   font-weight: 500;
@@ -84,11 +84,11 @@
   0px 10px 15px -3px rgba(0,0,0,0.1);
   text-align: center;
   padding: 20px;
-  margin: 0 100px; 
+  margin: 0 100px;
   transition: transform 0.3s ease;
 }
 .box:hover {
-  transform: scale(1.02); 
+  transform: scale(1.02);
 }
 .bbc{
   font-size: 36px;
@@ -109,7 +109,7 @@ font-family: Roboto;
 font-size: 45px;
 font-style: normal;
 font-weight: 501;
-line-height: 50px; 
+line-height: 50px;
 width: 588px;
 }
 .description{
@@ -139,4 +139,38 @@ font-size: 16px;
 font-style: normal;
 font-weight: 400;
 line-height: 24px;
+}
+
+/* Default layout: side by side */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* Stack the columns on top of each other on small screens */
+/* Media queries for small screens */
+@media (max-width: 768px) {
+  .title {
+    font-size: 24px;
+    line-height: 28px;
+    width: 100%;
+  }
+
+  .description {
+    font-size: 14px;
+    line-height: 20px;
+    width: 100%;
+  }
+
+  .pagginationButtonText {
+    font-size: 14px;
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+  .row {
+    flex-direction: column;
+  }
 }
