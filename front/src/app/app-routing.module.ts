@@ -84,15 +84,15 @@ const routes: Routes = [
   {path:'propGouv',component : PropositionGouvernanceComponent},//Samar
   {path:'arb',component : ArboricultureComponent},//Aziz
   {path:'piste',component : PisteComponent},//untouched
-  {path:'marketplace',component : MarketplaceComponent},//Oussema
+  {path:'marketplace',component : MarketplaceComponent},//completed --Oussema
   {path: 'details', component: ProjectDetailsComponent},//Oussama
   {path: 'checkout', component: CheckoutComponent},//Aziz
   {path: 'payment', component: PaymentComponent},//Oussama
   {path: 'new-project', component: ProjectOwnerComponent},//Aziz
   {path: 'resources', component: ResourcesComponent},//completed --Oussama
   {path: 'info', component: InfoComponent},//eya
-  {path: 'marketplace-blog', component: MarketplaceBlogComponent},//Oussama
-  {path: 'carbon-offset-blog', component: CarbonOffsetBlogComponent},//Oussama
+  {path: 'marketplace-blog', component: MarketplaceBlogComponent},// completed --Oussama
+  {path: 'carbon-offset-blog', component: CarbonOffsetBlogComponent},//completed --Oussama
   {path: 'carbon-co-benefits-blog', component: CarbonCoBenifitsBlogComponent},//completed --Oussama
   {path: 'roadmap', component: RoadmapComponent},// Samar
 

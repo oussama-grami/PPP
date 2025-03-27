@@ -46,9 +46,9 @@ export class CarbonCoBenifitsBlogComponent {
   }
 
   downloadDocument() {
-    const url = 'blogs/Co.pdf';  // Remplacez par votre URL de fichier
-    const filename = 'file.pdf';  // Nom du fichier à télécharger
-    this.fileDownloadService.downloadFile(url, filename);  // Appel du service de téléchargement
+    const url = 'blogs/Co.pdf';
+    const filename = 'Co-benifits.pdf';
+    this.fileDownloadService.downloadFile(url, filename);
   }
 
 }

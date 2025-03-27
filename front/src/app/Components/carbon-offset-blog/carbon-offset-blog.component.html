@@ -27,7 +27,7 @@
     </div>
     <div class="row justify-content-between">
         <div class="col-9">
-       
+
             <div id="paragraph1" class="blog-header" style="margin-top: 3comm2px;">
                 What are carbon offset projects?
             </div>
@@ -56,7 +56,7 @@
             </div>
             <div class="d-flex align-items-baseline">
                 <div class="section-title">
-                    Overview of nature-based solutions                   
+                    Overview of nature-based solutions   
                 </div>
                 <div class="section-source">
                     Source: Climate Focus - 01/2024
@@ -107,11 +107,11 @@
                 <br>
                 Post-approval, the process advances to third-party project validation, where an independent assessment is conducted by the carbon credit certification company, such as Verra or GS. This comprehensive evaluation may include a site visit to validate compliance with certification standards. Upon successful validation, the project moves to the final review and approval stage, obtaining certification and being issued certified carbon credits. These credits can be sold through a carbon registry or used for offsetting emissions. 
                 <br>
-                <br>    
+                <br>
                 In continuation, the certified project requires project monitoring, involving the implementation of the monitoring plan developed during initial project planning. Regular monitoring project reports must be submitted to the carbon credit certification body, ensuring that the sold credits have effectively contributed to the reduction or removal of emissions. This meticulous process guarantees the integrity and ongoing impact of certified carbon offset projects.  
 
             </div>
-            
+
         </div>
         <div class="col-3">
             <div class="box-border">
@@ -129,10 +129,10 @@
             <div class="box-border margin-top-16 padding-y-24">
                 <div class="box-header margin-top-24">Share</div>
                 <div class="icons margin-top-16">
-                    <img class="cursor-pointer" src="/assets/img/blogs/Linkedin.svg" alt="linkedin">
-                    <img class="cursor-pointer" src="/assets/img/blogs/Instagram.svg" alt="instragram">
+                    <img class="cursor-pointer" src="/assets/img/blogs/Linkedin.svg" alt="linkedin" (click)="share('linkedin')">
+                    <img class="cursor-pointer" src="/assets/img/blogs/Instagram.svg" alt="instragram" (click)="share('instagram')">
                     <svg class="cursor-pointer" xmlns="http://www.w3.org/2000/svg" width="24" height="23"
-                        viewBox="0 0 24 23" fill="none">
+                        viewBox="0 0 24 23" fill="none" (click)="share('x')">
                         <rect x="0.412109" width="22.9412" height="22.9412" rx="11.4706" fill="#2D2D2D" />
                         <path
                             d="M5.88425 5L10.9039 11.6195L5.85254 17H6.99004L11.4112 12.2879L14.9842 17H18.8525L13.5515 10.0091L18.2521 5H17.1166L13.0442 9.33876L9.75452 5H5.88425ZM7.55681 5.82476H9.3344L17.182 16.1733H15.4044L7.55681 5.82476Z"
@@ -143,7 +143,7 @@
                 <div style="display: flex; justify-content: center; ">
                     <div class="copy-url-box margin-top-16">
                         <div id="copyText" class="copy-url-text">
-                            https://value.green/tn-fr/blog/compenser_empriente_carbone
+                          {{ copyUrl }}
                         </div>
                         <svg class="cursor-pointer" xmlns="http://www.w3.org/2000/svg" width="11" height="14"
                             viewBox="0 0 11 14" fill="none" (click)="copyText()">
@@ -162,7 +162,7 @@
                         <tr>
                             <td style="width: 50px;">
                                 <svg class="cursor-pointer" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25"
-                                    fill="none">
+                                    fill="none" (click)="saveDocument()">
                                     <g clip-path="url(#clip0_1557_15199)">
                                         <path
                                             d="M21.1914 11.0137V15.4466C21.1914 17.208 21.1907 18.4798 21.1108 19.4141C21.0286 20.375 20.8713 20.8032 20.6975 21.0126C20.2877 21.5067 19.6911 21.7598 19.0899 21.7158C18.8496 21.6982 18.4649 21.5267 17.7584 20.9081C17.0739 20.3087 16.2174 19.4121 15.0282 18.1657L15.0081 18.1446C14.7529 17.8771 14.5303 17.6438 14.3313 17.4671C14.1211 17.2805 13.8858 17.1088 13.591 17.0105C13.1688 16.8695 12.7141 16.8695 12.2918 17.0105C11.9971 17.1088 11.7617 17.2805 11.5515 17.4671C11.3525 17.6439 11.1299 17.8772 10.8746 18.1447L10.8546 18.1657C9.66545 19.4121 8.80894 20.3087 8.12442 20.9081C7.41789 21.5267 7.03317 21.6982 6.7929 21.7158C6.19168 21.7598 5.5951 21.5067 5.18527 21.0126C5.01155 20.8032 4.85422 20.375 4.77201 19.4141C4.69207 18.4798 4.69141 17.208 4.69141 15.4466V11.0137C4.69141 8.97985 4.69286 7.52648 4.83452 6.42213C4.97386 5.33589 5.23707 4.70137 5.67772 4.23953C6.11364 3.78264 6.70508 3.51349 7.7251 3.36975C8.77045 3.22245 10.149 3.2207 12.0924 3.2207H13.7905C15.7339 3.2207 17.1124 3.22245 18.1577 3.36975C19.1777 3.51349 19.7692 3.78264 20.2051 4.23953C20.6457 4.70137 20.909 5.33589 21.0483 6.42213C21.19 7.52648 21.1914 8.97985 21.1914 11.0137Z"
@@ -187,7 +187,7 @@
                             </td>
                             <td style="width: 50px;">
                                 <svg class="cursor-pointer" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25"
-                                    fill="none">
+                                    fill="none" (click)="downloadDocument()">
                                     <path
                                         d="M4.94141 16.4707V17.4707C4.94141 18.2664 5.25748 19.0294 5.82009 19.592C6.3827 20.1546 7.14576 20.4707 7.94141 20.4707H17.9414C18.7371 20.4707 19.5001 20.1546 20.0627 19.592C20.6253 19.0294 20.9414 18.2664 20.9414 17.4707V16.4707M16.9414 12.4707L12.9414 16.4707M12.9414 16.4707L8.94141 12.4707M12.9414 16.4707V4.4707"
                                         stroke="black" stroke-width="1.5" stroke-linecap="round"

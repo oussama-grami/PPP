@@ -1,4 +1,4 @@
-<link rel="shortcut icon" href="/assets/value_green/icon.png" type="image/x-icon">
+<link rel="shortcut icon" href="/src/assets/Ecopilot/icon.png" type="image/x-icon">
 <link rel="apple-touch-icon" type="image/x-icon" href="/assets/img/apple-touch-icon-57x57-precomposed.png">
 <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="/assets/img/apple-touch-icon-72x72-precomposed.png">
 <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="/assets/img/apple-touch-icon-114x114-precomposed.png">
@@ -113,7 +113,7 @@
       {{ option.text }}
     </h6>
   </div>
-  <div style="display: flex; justify-content: right;" class="mb-3"> 
+  <div style="display: flex; justify-content: right;" class="mb-3">
     <button class="b2"  routerLink="/gouv3">Back</button>
     <button *ngIf="choiceSelected" (click)="addScore()" class="b1" routerLink="/ress">Continue</button>
     <button *ngIf="!choiceSelected" class="b1" (click)="warning()">Continue</button>

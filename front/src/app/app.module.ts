@@ -63,6 +63,7 @@ import { MarketplaceBlogComponent } from './Components/marketplace-blog/marketpl
 import { CarbonOffsetBlogComponent } from './Components/carbon-offset-blog/carbon-offset-blog.component';
 import { CarbonCoBenifitsBlogComponent } from './Components/carbon-co-benifits-blog/carbon-co-benifits-blog.component';
 import { RoadmapComponent } from './Components/roadmap/roadmap.component';
+import { PaginationComponent } from './Components/pagination/pagination.component';
 
 @NgModule({
   declarations: [
@@ -121,7 +122,8 @@ import { RoadmapComponent } from './Components/roadmap/roadmap.component';
     MarketplaceBlogComponent,
     CarbonOffsetBlogComponent,
     CarbonCoBenifitsBlogComponent,
-    RoadmapComponent
+    RoadmapComponent,
+    PaginationComponent
   ],
   imports: [
     BrowserModule,
