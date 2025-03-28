@@ -1,165 +1,196 @@
+/* src/app/Components/checkout/checkout.component.css */
+
 * {
-    font-family: Roboto;
+  font-family: Roboto;
 }
 
 .retour {
-    margin-top: 8rem;
-    margin-bottom: 10px;
-    border-radius: 20px;
+  margin-top: 8rem;
+  margin-bottom: 10px;
+  border-radius: 20px;
 }
 
 .retour button {
-    padding-left: 0px;
-    border: none;
-    background: transparent;
+  padding-left: 0px;
+  border: none;
+  background: transparent;
 }
 
 .retour-text {
-    margin-left: 2px;
-    color: #000;
-    font-family: Roboto;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 24px;
-
+  margin-left: 2px;
+  color: #000;
+  font-family: Roboto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
 }
 
 .nav {
-    margin-top: 16px;
+  margin-top: 16px;
 }
 
 .default-font {
-    color: #000;
-    font-family: Roboto;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 24px;
-    /* 150% */
+  color: #000;
+  font-family: Roboto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
 }
 
 .grey-color {
-    color: #999;
+  color: #999;
 }
 
 .checkout-table {
-    margin-top: 32px;
+  margin-top: 32px;
 }
 
 .separator {
-    width: 1300px;
-    height: 1px;
-    background: #D3D3D3;
-    margin: 24px 0px;
+  width: 100%;
+  height: 1px;
+  background: #D3D3D3;
+  margin: 24px 0px;
 }
 
 .project-price {
-    display: flex;
-    width: 150px;
-    padding: 10px 16px;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-    border-radius: 5px;
-    border: 1px solid #D3D3D3;
+  display: flex;
+  width: 100%;
+  padding: 10px 16px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 5px;
+  border: 1px solid #D3D3D3;
 }
 
 .project-price-text {
-    width: 80px;
-    flex-shrink: 0;
-    padding: 8px;
-
-    color: #707070;
-    text-align: center;
-    font-family: Roboto;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 20px;
-
+  width: 80px;
+  flex-shrink: 0;
+  padding: 8px;
+  color: #707070;
+  text-align: center;
+  font-family: Roboto;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
 }
 
-
-
 .total {
-    margin-left: 90px;
-    margin-right: 260px;
-    
+  margin-left: 0;
+  margin-right: 0;
+  text-align: center;
 }
 
 .checkoutButtons {
-    float: right;
-
+  float: right;
 }
 
 .checkoutButton1 {
-    padding: 5px 20px;
-    align-items: flex-start;
-    gap: 2px;
-    border-radius: 5px;
-    border: 1px solid #014131;
-    background: transparent;
+  padding: 5px 20px;
+  align-items: flex-start;
+  gap: 2px;
+  border-radius: 5px;
+  border: 1px solid #014131;
+  background: transparent;
 }
 
 .checkoutButton2 {
-    padding: 5px 20px;
-    align-items: flex-start;
-    gap: 2px;
-    border-radius: 5px;
-    background: #014131;
-    border: transparent;
+  padding: 5px 20px;
+  align-items: flex-start;
+  gap: 2px;
+  border-radius: 5px;
+  background: #014131;
+  border: transparent;
 }
 
 .checkoutButton1Text {
-    color: #014131;
-
-    font-family: Roboto;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 24px;
-
+  color: #014131;
+  font-family: Roboto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
 }
 
 .checkoutButton2Text {
-    color: #FFF;
-
-    font-family: Roboto;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 24px;
-
+  color: #FFF;
+  font-family: Roboto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
 }
 
 .header-text {
-    color: #000;
-
-    font-family: Roboto;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
+  color: #000;
+  font-family: Roboto;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
 }
 
 .project-name {
-    color: #014131;
-    font-family: Roboto;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
+  color: #014131;
+  font-family: Roboto;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
 }
 
 .project-name-details {
-    color: #6D6E6F;
-    font-family: Roboto;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
+  color: #6D6E6F;
+  font-family: Roboto;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
-.bigger-font{
-    font-size: 24px;
+
+.bigger-font {
+  font-size: 24px;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .checkout-table .header-text {
+    font-size: 14px;
+  }
+
+  .project-price-text {
+    font-size: 12px;
+  }
+
+  .header-text {
+    font-size: 16px;
+  }
+
+  .project-name {
+    font-size: 16px;
+  }
+
+  .project-name-details {
+    font-size: 12px;
+  }
+
+  .bigger-font {
+    font-size: 20px;
+  }
+
+  .checkoutButtons {
+    float: none;
+    text-align: center;
+  }
+
+  .checkoutButton1, .checkoutButton2 {
+    width: 100%;
+    margin-bottom: 10px;
+  }
 }
