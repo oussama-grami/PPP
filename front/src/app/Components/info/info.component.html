@@ -30,68 +30,90 @@
         <p id="descriptionText">Please tell us about your business.</p>
     </div>
   </div>
+
+
     <div class="col-lg-6 content-right" id="start" style="overflow-y: hidden;">
     <div id="wizard_container" >
-      <form [formGroup]="infoFormGroup" (ngSubmit)="onSubmit()" id="wrapped">
-        <!-- Leave for security protection, read docs for details -->
-        <!-- /step-->
+      <form [formGroup]="infoFormGroup" (ngSubmit)="onNext()" id="wrapped">
         <div class="step">
-            <h3 class="main_question mt-2"><strong>1/7</strong>Your company name</h3>
-          <div class="form-group">
-            <input type="text" formControlName="companyName" class="form-control"  placeholder="Company name" id="nbremploye" onChange="handleChange()">
+          <h3 class="main_question mt-2"><strong>1/7</strong> Your company name</h3>
+          <!-- Error Message Display -->
+          <div *ngIf="errorMessage" class="alert alert-danger">
+            {{ errorMessage }}
           </div>
-          <h3 class="main_question mt-2" style="margin-bottom: 8px;">Carbon footprint calculation period</h3>
-          <h6 style="font-size: small;" >From <span style="margin-left: 165px;">To</span>
-        </h6>
+          <!-- Company Name -->
+          <div class="form-group">
+            <input type="text" formControlName="companyName" class="form-control" placeholder="Company name" id="companyName">
+            <small class="text-danger" *ngIf="companyName?.touched && companyName?.invalid">
+              Company name is required (min length: 2).
+            </small>
+          </div>
+
+          <!-- Date Fields -->
+          <h6 style="font-size: small;">From <span style="margin-left: 165px;">To</span></h6>
           <div class="flex-container" style="justify-content: normal;">
             <div class="form-group mb-3" style="width: 200px;">
-              <input type="date" class="form-control"  placeholder="From" formControlName="beginDate">
+              <input type="date" class="form-control" placeholder="From" formControlName="beginDate">
+              <small class="text-danger" *ngIf="beginDate?.touched && beginDate?.invalid">
+                Begin date is required.
+              </small>
             </div>
             <div class="form-group mb-3" style="width: 200px;">
               <input type="date" class="form-control" placeholder="To" formControlName="endDate">
+              <small class="text-danger" *ngIf="endDate?.touched && endDate?.invalid">
+                End date is required.
+              </small>
             </div>
           </div>
-          <h6 >Your country
-          </h6>
+
+          <!-- Country -->
+          <h6>Your country</h6>
           <div class="form-group">
-            <select class="nice-select wide mb-3" formControlName="country" id="pays">
-              <option class="option" >Algeria</option>
-              <option class="option" >Canada</option>
-              <option class="option" >France</option>
-              <option class="option" >Marroco</option>
-              <option class="option" >Saudi Arabia</option>
+            <select class="nice-select wide mb-3" formControlName="country" id="country">
+              <option class="option">Algeria</option>
+              <option class="option">Canada</option>
+              <option class="option">France</option>
+              <option class="option">Morocco</option>
+              <option class="option">Saudi Arabia</option>
               <option class="option" selected>Tunisia</option>
-              <option class="option" >UAE</option>
-              <option class="option" >UK</option>
-              <option class="option" >USA</option>
-
-
+              <option class="option">UAE</option>
+              <option class="option">UK</option>
+              <option class="option">USA</option>
             </select>
+            <small class="text-danger" *ngIf="country?.touched && country?.invalid">
+              Country selection is required.
+            </small>
           </div>
-          <h6 >Your activity sector
-        </h6>
-          <div class="form-group">
-            <select class="nice-select wide  mb-3"  formControlName="sector" id="activity">
-              <option class="option">Bank / Insurance</option>
-              <option class="option" >Trade / Trading / Distribution</option>
-              <option class="option" >Electronics / Electrical</option>
-              <option class="option" >Publishing/ Communication/ Multimedia</option>
 
+          <!-- Sector -->
+          <h6>Your activity sector</h6>
+          <div class="form-group">
+            <select class="nice-select wide mb-3" formControlName="sector" id="sector">
+              <option class="option">Bank / Insurance</option>
+              <option class="option">Trade / Trading / Distribution</option>
+              <option class="option">Electronics / Electrical</option>
+              <option class="option">Publishing / Communication / Multimedia</option>
             </select>
+            <small class="text-danger" *ngIf="sector?.touched && sector?.invalid">
+              Sector selection is required.
+            </small>
           </div>
         </div>
-        <br>
 
+        <br/>
         <div id="bottom-wizard2">
           <div class="button-container">
-            <button type="button" name="backward" class="backward" style="margin-right: 200px;" routerLink="/carbone" >Back</button>
-            <button type="submit" name="forward" class="forward"  >Continue</button>
+            <button type="button" name="backward" class="backward" style="margin-right: 200px;" routerLink="/carbone">Back</button>
+            <button type="submit" name="forward" class="forward">Continue</button>
           </div>
+
           <div id="bottom-wizard">
             <p id="footer-info">A tool based on ADEME Carbon Base ® version 22.0. This calculation makes it possible to establish a carbon footprint but does not serve as a Bilan Carbone ®.</p>
           </div>
         </div>
       </form>
+
+
     </div>
   </div>
 </div>

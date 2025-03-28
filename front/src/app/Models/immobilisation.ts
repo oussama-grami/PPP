@@ -1,6 +1,6 @@
-import {Bilan_Carbone} from "./bilan";
 
-export class Immobilisation extends Bilan_Carbone{
+
+export class Immobilisation {
   surface!:number;
   nbVoituresLegers!:number;
   nbVoituresLourds!:number;

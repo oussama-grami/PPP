@@ -1,6 +1,5 @@
-import {Bilan_Carbone} from "./bilan";
 
-export class Energie extends Bilan_Carbone{
+export class Energie {
   nbEmployee !: number;
   pourcentageTeleTravail!:number;
   electricite!:number;
@@ -11,3 +10,4 @@ export class Energie extends Bilan_Carbone{
   fluideFrig!:number;
   gpl!:number;
 }
+

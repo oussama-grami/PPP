@@ -1,7 +1,8 @@
 import {Bilan_Carbone} from "./bilan";
 import {TypeCarburant} from "../enumerations/typeCarburant";
+import {Validators} from "@angular/forms";
 
-export class Carburant extends Bilan_Carbone{
+export class Carburant {
   essence!:number;
   diesel!:number;
   gpl!:number;
@@ -9,3 +10,4 @@ export class Carburant extends Bilan_Carbone{
   efficacite!:number;
   typeCarburant:TypeCarburant = TypeCarburant.Diesel;
 }
+

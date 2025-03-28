@@ -31,50 +31,78 @@
     </div>
     <div class="col-lg-6 content-right" id="start"style="overflow-y: hidden;">
       <div id="wizard_container">
-        <form ngForm id="wrapped" (ngSubmit)="submitData()">
+        <form [formGroup]="consForm" (ngSubmit)="onNext()" id="wrapped">
           <div class="step">
-            <h3 class="main_question"><strong>6/7</strong>Enter the annual amount of your expenses for</h3>
-            <div class="flex-container">
-              <div class="form-group">
-                <input type="number" name="papier" class="form-control" [(ngModel)]="consData.montantPapier" placeholder="Paper" id="papier" onChange="handleChange()">
+            <h3 class="main_question mt-2"><strong>5/7</strong> Enter the data related to your company's consumables</h3>
+
+            <!-- Error Message Display -->
+            <div *ngIf="errorMessage" class="alert alert-danger">
+              {{ errorMessage }}
+            </div>
+
+            <!-- Montant Papier with Unit -->
+            <div class="form-group row">
+              <div class="col-9">
+                <label for="montantPapier">Montant Papier</label>
+                <input type="number" class="form-control" id="montantPapier" formControlName="montantPapier" placeholder="Montant Papier">
+                <small class="text-danger" *ngIf="consForm.controls['montantPapier'].touched && consForm.controls['montantPapier'].invalid">
+                  Montant Papier is required.
+                </small>
               </div>
-              <div class="form-group">
-                <div class="styled-select clearfix">
-                  <select class="nice-select wide" name="Dinar Tunisien" id="DT" [(ngModel)]="consData.unite1" onChange="handleChange()">
-                  <option class="option" [value]="Unite.DT">Tunisian Dinar</option>
-                  <option class="option" [value]="Unite.Euro">Euro</option>
-                  <option class="option" [value]="Unite.Dolar">Dollar</option>
-                  </select>
-                </div>
+              <div class="col-3">
+                <label for="unitePapier">Unite</label>
+                <select class="form-control" id="unitePapier" formControlName="unitePapier">
+                  <option [value]="Unite.Dolar">Dollar</option>
+                  <option [value]="Unite.Euro">Euro</option>
+                  <option [value]="Unite.DT">DT</option>
+                </select>
+                <small class="text-danger" *ngIf="consForm.controls['unitePapier'].touched && consForm.controls['unitePapier'].invalid">
+                  Unite Papier is required.
+                </small>
               </div>
             </div>
-            <div class="flex-container">
-              <div class="form-group">
-                <input type="number" name="fournitures" class="form-control" placeholder="Small office supplies" [(ngModel)]="consData.montantFournitures" id="fourniture" onChange="handleChange()">
+
+            <!-- Montant Fournitures with Unit -->
+            <div class="form-group row">
+              <div class="col-9">
+                <label for="montantFournitures">Montant Fournitures</label>
+                <input type="number" class="form-control" id="montantFournitures" formControlName="montantFournitures" placeholder="Montant Fournitures">
+                <small class="text-danger" *ngIf="consForm.controls['montantFournitures'].touched && consForm.controls['montantFournitures'].invalid">
+                  Montant Fournitures is required.
+                </small>
               </div>
-              <div class="form-group">
-                <div class="styled-select clearfix">
-                  <select class="nice-select wide" name="Dinar Tunisien" id="DTT" [(ngModel)]="consData.unite2" onChange="handleChange()">
-                    <option class="option" [value]="Unite.DT">Tunisian Dinar</option>
-                    <option class="option" [value]="Unite.Euro">Euro</option>
-                    <option class="option" [value]="Unite.Dolar">Dollar</option>
-                  </select>
-                </div>
+              <div class="col-3">
+                <label for="uniteFourniture">Unite</label>
+                <select class="form-control" id="uniteFourniture" formControlName="uniteFourniture">
+                  <option [value]="Unite.Dolar">Dollar</option>
+                  <option [value]="Unite.Euro">Euro</option>
+                  <option [value]="Unite.DT">DT</option>
+                </select>
+                <small class="text-danger" *ngIf="consForm.controls['uniteFourniture'].touched && consForm.controls['uniteFourniture'].invalid">
+                  Unite Fourniture is required.
+                </small>
               </div>
             </div>
           </div>
 
-          <div id="bottom-wizard">
-            <button id="calculateButton" type="submit" name="calcul" class="calcul" onclick="calculer()">Calculate</button>
-            <p id='calcResult' class="mt-3"></p>
-          </div>
+          <!-- Buttons Section -->
           <div id="bottom-wizard2">
             <div class="button-container">
               <button type="button" name="backward" class="backward" routerLink="/fret">Back</button>
-              <button type="button" name="forward" class="forward" routerLink="/imob">Continue</button>
+              <button type="submit" name="forward" class="forward">Continue</button>
             </div>
           </div>
+
+          <div id="bottom-wizard">
+            <p id="footer-info">A tool based on ADEME Carbon Base ® version 22.0. This calculation makes it possible to establish a carbon footprint but does not serve as a Bilan Carbone ®.</p>
+          </div>
         </form>
+
+
+
+
+
+
       </div>
     </div>
   </div>

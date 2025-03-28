@@ -31,31 +31,56 @@
     </div>
     <div class="col-lg-6 content-right" id="start"style="overflow-y: hidden;">
       <div id="wizard_container">
-        <form ngForm id="wrapped" (ngSubmit)="submitData()">
+        <form [formGroup]="depForm" (ngSubmit)="onNext()" id="wrapped">
           <div class="step">
-            <h3 class="main_question"><strong>4/7</strong>Enter the data related to your company's business air travel</h3>
-            <div class="form-group">
-              <input type="number" name="ARcourt" class="form-control" [(ngModel)]="depData.nbrArretRetourC" placeholder="Number of short-haul round trips (- 3000 Km)" id="ARcourt" onChange="handleChange()">
+            <h3 class="main_question mt-2"><strong>4/7</strong> Enter the data related to your company's business air travel</h3>
+
+            <!-- Error Message Display -->
+            <div *ngIf="errorMessage" class="alert alert-danger">
+              {{ errorMessage }}
             </div>
+
+            <!-- Short-haul Trips -->
             <div class="form-group">
-              <input type="number" name="ARmoyen" class="form-control" [(ngModel)]="depData.nbrArretRetourM" placeholder="Number of medium-haul round trips (3,000 Km to 6,000 Km)" id="ARmoyen" onChange="handleChange()">
+              <input type="number" class="form-control" formControlName="nbrArretRetourC" placeholder="Number of short-haul round trips (- 3000 Km)">
+              <small class="text-danger" *ngIf="nbrArretRetourC?.touched && nbrArretRetourC?.invalid">
+                Short-haul trips are required.
+              </small>
             </div>
+
+            <!-- Medium-haul Trips -->
             <div class="form-group">
-              <input type="number" name="ARlong" class="form-control" [(ngModel)]="depData.nbrArretRetourL" placeholder="Number of long-haul round trips (+ 6000 Km)" id="ARlong" onChange="handleChange()">
+              <input type="number" class="form-control" formControlName="nbrArretRetourM" placeholder="Number of medium-haul round trips (3,000 Km to 6,000 Km)">
+              <small class="text-danger" *ngIf="nbrArretRetourM?.touched && nbrArretRetourM?.invalid">
+                Medium-haul trips are required.
+              </small>
+            </div>
+
+            <!-- Long-haul Trips -->
+            <div class="form-group">
+              <input type="number" class="form-control" formControlName="nbrArretRetourL" placeholder="Number of long-haul round trips (+ 6000 Km)">
+              <small class="text-danger" *ngIf="nbrArretRetourL?.touched && nbrArretRetourL?.invalid">
+                Long-haul trips are required.
+              </small>
+            </div>
+          </div>
+
+          <!-- Buttons Section -->
+          <div id="bottom-wizard2">
+            <div class="button-container">
+              <button type="button" name="backward" class="backward"  routerLink="/car">Back</button>
+              <button type="submit" name="forward" class="forward">Continue</button>
             </div>
           </div>
 
           <div id="bottom-wizard">
-            <button id="calculateButton" type="submit" name="calcul" class="calcul" onclick="calculer()">Calculate</button>
-            <p id='calcResult' class="mt-3"></p>
-          </div>
-          <div id="bottom-wizard2">
-            <div class="button-container">
-              <button type="button" name="backward" class="backward" routerLink="/car">Back</button>
-              <button type="button" name="forward" class="forward" routerLink="/fret">Continue</button>
-            </div>
+            <p id="footer-info">A tool based on ADEME Carbon Base ® version 22.0. This calculation makes it possible to establish a carbon footprint but does not serve as a Bilan Carbone ®.</p>
           </div>
         </form>
+
+
+
+
       </div>
     </div>
   </div>

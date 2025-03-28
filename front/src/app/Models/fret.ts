@@ -1,6 +1,6 @@
-import {Bilan_Carbone} from "./bilan";
 
-export class Fret extends Bilan_Carbone{
+
+export class Fret{
   fretAerien!:number;
   fretAerien1!:number;
   fretMaritme!:number;

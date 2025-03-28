@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {Company} from "../../Models/company";
-import {HttpClient} from "@angular/common/http";
-
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CarbonFootprintService } from '../../Service/carbon-footprint.service';
+import { Router } from '@angular/router';
+import { Company } from '../../Models/company';  // Import your Info model
 
 @Component({
   selector: 'app-info',
@@ -11,21 +11,23 @@ import {HttpClient} from "@angular/common/http";
 })
 export class InfoComponent {
   infoFormGroup!: FormGroup;
-  constructor(private formBuilder: FormBuilder,
-              private httpClient: HttpClient) {
+  errorMessage: string = '';
 
-  }
+  constructor(
+    private formBuilder: FormBuilder,
+    private carbonService: CarbonFootprintService,
+    private router: Router
+  ) {}
+
   ngOnInit() {
-    window.scrollTo(0, 0);
-
+    // Initialize the form group with the required form controls and validators
     this.infoFormGroup = this.formBuilder.group({
-      companyName: new FormControl('',[Validators.required,Validators.minLength(2)]),
-      beginDate: new FormControl('',[Validators.required]),
-      endDate: new FormControl('',[Validators.required]),
-      country: new FormControl('',[Validators.required]),
-      sector: new FormControl('',[Validators.required])
-
-    })
+      companyName: ['', [Validators.required, Validators.minLength(2)]],
+      beginDate: ['', [Validators.required]],
+      endDate: ['', [Validators.required]],
+      country: ['', [Validators.required]],
+      sector: ['', [Validators.required]]
+    });
   }
   get companyName(){
     return this.infoFormGroup.get('companyName');
@@ -44,24 +46,6 @@ export class InfoComponent {
     return this.infoFormGroup.get('sector');
   }
 
-  onSubmit() {
-    console.log("handling the submit button");
-    let companyName: string = this.infoFormGroup.controls['companyName'].value;
-    let beginDate : Date = this.convertDate(this.infoFormGroup.controls['beginDate'].value);
-    let endDate : Date = this.convertDate(this.infoFormGroup.controls['endDate'].value);
-    let sector : string = this.infoFormGroup.controls['sector'].value;
-    let country : string = this.infoFormGroup.controls['country'].value;
-    const company:Company = new Company(companyName,country,sector,beginDate,endDate)
-    this.persistCompany(company).subscribe(
-      data => {
-        console.log(data);
-      }
-    );
-  }
-  persistCompany(company :Company){
-    let url="http://localhost/8080/api/calculator/add/company";
-    return this.httpClient.post<string>(url,company);
-  }
   convertDate(date: string){
     const dateString = '20-04-2024';
     const dateParts = dateString.split('-');
@@ -72,4 +56,26 @@ export class InfoComponent {
     return dateObject;
 
   }
+  onNext() {
+    if (this.infoFormGroup.valid) {
+      // Create an instance of the Info model with the form values
+      const infoData = new Company(
+        this.infoFormGroup.value.companyName,
+        this.infoFormGroup.value.beginDate,
+        this.infoFormGroup.value.endDate,
+        this.infoFormGroup.value.country,
+        this.infoFormGroup.value.sector
+      );
+
+      // Update the CarbonFootprintService with the collected data
+      this.carbonService.updateInfo(infoData);
+
+      // Navigate to the next page (e.g., the 'Energie' form page)
+      this.router.navigate(['/energie']);
+    } else {
+      // If the form is invalid, set the error message
+      this.errorMessage = 'Please fill in all required fields';
+    }
+  }
+
 }
