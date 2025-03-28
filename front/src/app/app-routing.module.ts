@@ -95,13 +95,6 @@ const routes: Routes = [
   {path: 'carbon-offset-blog', component: CarbonOffsetBlogComponent},//completed --Oussama
   {path: 'carbon-co-benefits-blog', component: CarbonCoBenifitsBlogComponent},//completed --Oussama
   {path: 'roadmap', component: RoadmapComponent},// Samar
-
-
-
-
-
-
-
 ];
 
 @NgModule({
