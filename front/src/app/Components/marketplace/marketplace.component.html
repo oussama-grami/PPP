@@ -62,7 +62,7 @@
                         (click)="displayPriceFilter()"></app-filter-item>
                     <div class="paysFilter" *ngIf="priceDisplay" style="margin-top: 24px; margin-right: 2vh ;">
                         <span>Maximum price: <input  [(ngModel)]="priceFilter" style="width: 30px; padding: 5px;" for="customRange1" class="form-label input-range" value=" {{priceFilter}}"> $/tCo2e</span>
-                        
+
                         <input type="range" style="gap: 16px; margin-right: 2vh;" class="form-range" id="customRange1" max="99" min="1" [(ngModel)]="priceFilter">
                         <div style="width: 281px; height: 1px;background: #D3D3D3;"></div>
                     </div>

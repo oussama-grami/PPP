@@ -10,7 +10,7 @@ describe('CarboneDiagramComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ CarboneDiagramComponent ]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(CarboneDiagramComponent);
     component = fixture.componentInstance;

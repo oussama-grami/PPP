@@ -42,7 +42,7 @@ export class CarboneDiagramComponent implements OnInit {
 
       this.scope1et2 = this.emE + this.emC;
       this.scope3 = + this.emD + this.emCo + this.emF +this.emI;
-    this.createChart();
+      this.createChart();
     });
   }
   createChart(): void {

@@ -1,6 +1,6 @@
-import {Bilan_Carbone} from "./bilan";
 
-export class DeplacemetAerien extends Bilan_Carbone{
+
+export class DeplacemetAerien {
   nbrArretRetourC!:number;
   nbrArretRetourM!:number;
   nbrArretRetourL!:number;
