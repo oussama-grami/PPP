@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import {project} from "../../Models/project";
 
 @Component({
   selector: 'app-project-ad',
@@ -6,11 +7,5 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./project-ad.component.css']
 })
 export class ProjectAdComponent {
-  @Input() url:string="/assets/img/projet1.png"
-  @Input() flag: string="/assets/img/tunisiaFlag.svg";
-  @Input() category: string="Arbres & ForêtsXXXX";
-  @Input() cost: string="000";
-  @Input() name: string="Panneaux solaires à Casablanca";
-  @Input() routing: string ="s"
-
+  @Input() project:project |undefined;
 }

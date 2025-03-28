@@ -128,8 +128,7 @@
 
                 <div class="row" style="margin-top: 29px;">
                   <div *ngFor="let project of displayedProjects" class="col-4" style="margin-top: 5px;">
-                    <div class="col-4"><app-project-ad [url]=project.url [cost]=project.cost [routing]="project.routing"
-                            [category]=project.category [name]=project.name [flag]=project.flag></app-project-ad>
+                    <div class="col-4"><app-project-ad [project] ="project"></app-project-ad>
                     </div>
                 </div>
                   </div><app-pagination [totalPages]="totalPages" [currentPage]="1" (pageChanged)="onPageChange($event)"></app-pagination>

@@ -85,7 +85,7 @@ const routes: Routes = [
   {path:'arb',component : ArboricultureComponent},//Aziz
   {path:'piste',component : PisteComponent},//untouched
   {path:'marketplace',component : MarketplaceComponent},//completed --Oussema
-  {path: 'details', component: ProjectDetailsComponent},//Oussama
+  {path: 'details/:id', component: ProjectDetailsComponent},//completed --Oussama
   {path: 'checkout', component: CheckoutComponent},//Aziz
   {path: 'payment', component: PaymentComponent},//Oussama
   {path: 'new-project', component: ProjectOwnerComponent},//Aziz
