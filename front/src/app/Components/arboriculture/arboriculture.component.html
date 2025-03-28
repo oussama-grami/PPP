@@ -172,6 +172,9 @@
                 <option [value]="'Moin10'">< 10 m</option>
               </select>
             </div>
+            <div *ngIf="displayResult" class="alert alert-info">
+              {{ resultatMessage }}
+            </div>
             <div class="d-flex justify-content-end mb-4">
               <button type="submit" class="btn btn-dark calculate-button">Calculate</button>
             </div>
