@@ -9,28 +9,28 @@ import { Partie } from 'src/app/enumerations/Partie';
   styleUrls: ['./roadmap.component.css']
 })
 export class RoadmapComponent {
-  Envi1 !: number;
-  Envi2 !: number;
-  Envi3 !: number;
-  Envi4 !: number;
-  Envi5 !: number;
-  GOUV1 !: number;
-  GOUV2 !: number;
-  GOUV3 !: number;
-  GOUV4 !: number;
-  GOUV5 !: number;
-  Soc1 !: number;
-  Soc2 !: number;
-  Soc3 !: number;
-  Soc4 !: number;
-  Soc5 !: number;
+  Envi1 : number = 1;
+  Envi2 : number = 1;
+  Envi3 : number = 1;
+  Envi4 : number = 1;
+  Envi5 : number = 1;
+  GOUV1 : number = 1;
+  GOUV2 : number = 1;
+  GOUV3 : number = 1;
+  GOUV4 : number = 1;
+  GOUV5 : number = 1;
+  Soc1 : number = 1 ;
+  Soc2 : number = 1 ;
+  Soc3 : number = 1;
+  Soc4 : number = 1;
+  Soc5 : number = 1;
   constructor(private scService : ScoreService) { }
 
   ngOnInit() {
     this.scService.getval(2023, 1,Categorie.Environnement, Partie.One).subscribe((score: number) => {
       this.Envi1 = score;
       console.log(score);
-      
+
     });
     this.scService.getval(2023, 1,Categorie.Environnement, Partie.Two).subscribe((score: number) => {
       this.Envi2 = score;

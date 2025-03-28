@@ -62,7 +62,7 @@
                         (click)="displayPriceFilter()"></app-filter-item>
                     <div class="paysFilter" *ngIf="priceDisplay" style="margin-top: 24px; margin-right: 2vh ;">
                         <span>Maximum price: <input  [(ngModel)]="priceFilter" style="width: 30px; padding: 5px;" for="customRange1" class="form-label input-range" value=" {{priceFilter}}"> $/tCo2e</span>
-                        
+
                         <input type="range" style="gap: 16px; margin-right: 2vh;" class="form-range" id="customRange1" max="99" min="1" [(ngModel)]="priceFilter">
                         <div style="width: 281px; height: 1px;background: #D3D3D3;"></div>
                     </div>
@@ -105,11 +105,11 @@
             </div>
             <div class="col-9">
                 <div class="availableProjects">
-                    103 Climate projects available
+                  {{ numberOfProjects }} Climate projects available
                 </div>
                 <div style="margin-top: 29px;">
                     <span style="width: 80%;">
-                        <span *ngFor="let filter of selectedFilter" class="selectedFilter"><span
+                        <span *ngFor="let filter of selectedFilters" class="selectedFilter"><span
                                 class="selectedFilterText">{{filter}} <span style="margin-left: 10px; "><svg
                                         class="removeFilter" (click)="removeFilter(filter)"
                                         xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 8 8"
@@ -124,64 +124,15 @@
                                 style="color: #575757; font-family: Roboto; font-size: 16px; font-style: normal; font-weight: 400; line-height: 24px;">Filter by:</span> Most popular</span></span>
                 </div>
                 <br>
-                <div class="row" style="margin-top: 5px;">
-                    <div class="col-4"><app-project-ad [routing]="'/details'" [url]="'/assets/img/projet1.png'" [cost]="'2.48'"
-                            [category]="'Trees & Forests'" [name]="'Tree planting in Testour'" [flag]="'/assets/img/tunisiaFlag.svg'"></app-project-ad></div>
-                    <div class="col-4"><app-project-ad [url]="'/assets/img/projet2.png'" [cost]="'5.52'"
-                            [category]="'Renewable energies'"
-                            [name]="'Solar panels in Casablanca'" [flag]="'/assets/img/marrocoFlag.svg'"></app-project-ad></div>
-                    <div class="col-4"><app-project-ad [url]="'/assets/img/projet3.png'" [cost]="'2.24'"
-                            [category]="'Biodiversity'" [name]="'Mangrove protection in Senegal'" [flag]="'/assets/img/senegalFlag.svg'"></app-project-ad>
-                    </div>
-                </div>
+
+
                 <div class="row" style="margin-top: 29px;">
-                    <div class="col-4"><app-project-ad [url]="'/assets/img/projet4.png'" [cost]="'3.5'"
-                            [category]="'Biodiversity'"
-                            [name]="'Protection of Posidonia meadows in the Sahel'" [flag]="'/assets/img/tunisiaFlag.svg'"></app-project-ad></div>
-                    <div class="col-4"><app-project-ad [url]="'/assets/img/projet5.png'" [cost]="'7.5'"
-                            [category]="'Trees & Forests'" [name]="'Forestry project in Madagascar'" [flag]="'/assets/img/southAfricaFlag.svg'"></app-project-ad></div>
-                    <div class="col-4"><app-project-ad [url]="'/assets/img/projet6.png'" [cost]="'2.25'"
-                            [category]="'Renewable energies'" [name]="'Wind farm in Tunisia'" [flag]="'/assets/img/tunisiaFlag.svg'"></app-project-ad></div>
-                </div>
-                <div class="row" style="margin-top: 29px;">
-                    <div class="col-4"><app-project-ad [url]="'/assets/img/projet7.png'" [cost]="'2.48'"
-                            [category]="'Tree planting'" [name]="'Tree planting in Testour'" [flag]="'/assets/img/tunisiaFlag.svg'"></app-project-ad>
-                    </div>
-                    <div class="col-4"><app-project-ad [url]="'/assets/img/projet8.png'" [cost]="'5.52'"
-                            [category]="'Renewable energies'"
-                            [name]="'Solar panels in Casablanca'" [flag]="'/assets/img/marrocoFlag.svg'"></app-project-ad></div>
-                    <div class="col-4"><app-project-ad [url]="'/assets/img/projet9.png'" [cost]="'2.24'"
-                            [category]="'Biodiversity'" [name]="'Mangrove protection in Senegal'" [flag]="'/assets/img/senegalFlag.svg'"></app-project-ad>
+                  <div *ngFor="let project of displayedProjects" class="col-4" style="margin-top: 5px;">
+                    <div class="col-4"><app-project-ad [project] ="project"></app-project-ad>
                     </div>
                 </div>
-                <div id="paggination">
-                    <button class="pagginationButton" style="margin-right: 205px;"><svg xmlns="http://www.w3.org/2000/svg"
-                            width="20" height="20" viewBox="0 0 20 20" fill="none">
-                            <path
-                                d="M15.8334 9.99996H4.16675M4.16675 9.99996L10.0001 15.8333M4.16675 9.99996L10.0001 4.16663"
-                                stroke="black" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg> <span class="pagginationButtonText"
-                            style="margin-right: 8px; float: right;">Previous</span></button>
-                    <button class="pagginationNumber"><span class="pagginationNumberText">1</span></button>
-                    <button class="pagginationNumber2"><span class="pagginationNumberText2">2</span></button>
-                    <button class="pagginationNumber2"><span class="pagginationNumberText2">3</span></button>
-                    <button class="pagginationNumber2"><span class="pagginationNumberText2">...</span></button>
-                    <button class="pagginationNumber2"><span class="pagginationNumberText2">8</span></button>
-                    <button class="pagginationNumber2"><span class="pagginationNumberText2">9</span></button>
-                    <button class="pagginationNumber2" style="margin-right:205px ;"><span
-                            class="pagginationNumberText2">10</span></button>
-
-
-
-                    <button class="pagginationButton"> <span style="margin-right: 8px;"
-                            class="pagginationButtonText">Next</span><svg xmlns="http://www.w3.org/2000/svg" width="20"
-                            height="20" viewBox="0 0 20 20" fill="none">
-                            <path
-                                d="M4.16675 9.99996H15.8334M15.8334 9.99996L10.0001 4.16663M15.8334 9.99996L10.0001 15.8333"
-                                stroke="black" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg></button>
-                </div>
-
+                  </div>
+              <app-pagination [totalPages]="totalPages" [currentPage]="1" (pageChanged)="onPageChange($event)"></app-pagination>
             </div>
         </div>
 

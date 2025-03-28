@@ -49,7 +49,7 @@ import { CarbonCoBenifitsBlogComponent } from './Components/carbon-co-benifits-b
 import { RoadmapComponent } from './Components/roadmap/roadmap.component';
 
 const routes: Routes = [
-  { path:'', component: HomeComponent },
+  { path:'', component: HomeComponent },//EYA
   {path : 'porteur',component : PorteurComponent},
   {path : 'energie',component : EnergieComponent},
   {path : 'car',component : CarburantComponent},
@@ -57,10 +57,10 @@ const routes: Routes = [
   {path : 'fret',component : FretComponent},
   {path : 'cons',component : ConsommablesComponent},
   {path : 'imob',component : ImmobilisationsComponent},
-  {path : 'esg',component : ESGComponent},
-  {path : 'env',component : Environnement1Component},
-  {path : 'env1',component : Environnement2Component},
-  {path : 'env2',component : Environnement3Component},
+  {path : 'esg',component : ESGComponent},//replaced by esg assessement
+  {path : 'env',component : Environnement1Component},//deleted
+  {path : 'env1',component : Environnement2Component},//deleted
+  {path : 'env2',component : Environnement3Component},//deleted
   {path : 'env3',component : Environnement4Component},
   {path: 'social',component : SocialComponent},
   {path : 'social1',component :Social1Component},
@@ -71,29 +71,29 @@ const routes: Routes = [
   {path:'gouv1',component : Gouvernance1Component},
   {path:'gouv2',component : Gouvernance2Component},
   {path:'gouv3',component : Gouvernance3Component},
-  {path:'gouv4',component : Gouvernance4Component},
-  {path:'pan',component : PanneauxComponent},
-  {path : 'resultat',component : ResultatCarboneComponent},
-  {path : 'esg1',component : Esg1Component},
-  {path : 'carbone',component : CarboneComponent},
-  {path:'test',component: ESGdiagramComponent},
-  {path:'ress',component : ResultESGComponent},
-  {path:'propEnv',component : PropositionEnvironnementComponent},
-  {path:'propSoc',component : PropositionSocialComponent},
-  {path:'propGouv',component : PropositionGouvernanceComponent},
-  {path:'arb',component : ArboricultureComponent},
-  {path:'piste',component : PisteComponent},//
-  {path:'marketplace',component : MarketplaceComponent},
-  {path: 'details', component: ProjectDetailsComponent},
-  {path: 'checkout', component: CheckoutComponent},
-  {path: 'payment', component: PaymentComponent},
-  {path: 'new-project', component: ProjectOwnerComponent},
-  {path: 'resources', component: ResourcesComponent},
-  {path: 'info', component: InfoComponent},
-  {path: 'marketplace-blog', component: MarketplaceBlogComponent},
-  {path: 'carbon-offset-blog', component: CarbonOffsetBlogComponent},
-  {path: 'carbon-co-benefits-blog', component: CarbonCoBenifitsBlogComponent},
-  {path: 'roadmap', component: RoadmapComponent},
+  {path:'gouv4',component : Gouvernance4Component},//deleted
+  {path:'pan',component : PanneauxComponent},//Aziz
+  {path : 'resultat',component : ResultatCarboneComponent},//Eya
+  {path : 'esg1',component : Esg1Component},//completed
+  {path : 'carbone',component : CarboneComponent},//Completed
+  {path:'test',component: ESGdiagramComponent},//Samar
+  {path:'ress',component : ResultESGComponent},//Samar
+  {path:'propEnv',component : PropositionEnvironnementComponent},//Samar
+  {path:'propSoc',component : PropositionSocialComponent},//Samar
+  {path:'propGouv',component : PropositionGouvernanceComponent},//Samar
+  {path:'arb',component : ArboricultureComponent},//Aziz
+  {path:'piste',component : PisteComponent},//untouched
+  {path:'marketplace',component : MarketplaceComponent},//completed --Oussema
+  {path: 'details/:id', component: ProjectDetailsComponent},//completed --Oussama
+  {path: 'checkout', component: CheckoutComponent},//Aziz
+  {path: 'payment', component: PaymentComponent},//Oussama
+  {path: 'new-project', component: ProjectOwnerComponent},//Aziz
+  {path: 'resources', component: ResourcesComponent},//completed --Oussama
+  {path: 'info', component: InfoComponent},//eya
+  {path: 'marketplace-blog', component: MarketplaceBlogComponent},// completed --Oussama
+  {path: 'carbon-offset-blog', component: CarbonOffsetBlogComponent},//completed --Oussama
+  {path: 'carbon-co-benefits-blog', component: CarbonCoBenifitsBlogComponent},//completed --Oussama
+  {path: 'roadmap', component: RoadmapComponent},// Samar
 ];
 
 @NgModule({
