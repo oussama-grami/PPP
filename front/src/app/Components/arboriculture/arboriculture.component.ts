@@ -13,13 +13,17 @@ export class ArboricultureComponent {
     stade: ['', Validators.required],
     hauteur: ['', Validators.required]
   });
+  displayResult = false;
+  resultatMessage = '';
 
   constructor(private fb: FormBuilder) {
   }
 
   submitData() {
     if (this.arboricultureForm?.valid) {
-      console.log(this.arboricultureForm?.value);
+      const { typeArbre, nbArbre, stade, hauteur } = this.arboricultureForm.value;
+      this.resultatMessage = `Vous avez sélectionné ${nbArbre} arbres de type ${typeArbre}, au stade ${stade}, avec une hauteur de ${hauteur}.`;
+      this.displayResult = true;
       // Handle form submission
       /*if(this.arbData.hauteur && this.arbData.stade && this.arbData.nbArbre && this.arbData.typeArbre){
         this.arbService.addInformation(this.arbData, 1, 2023).subscribe(

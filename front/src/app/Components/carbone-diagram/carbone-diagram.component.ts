@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { ChartConfiguration, ChartOptions } from 'chart.js';
+import {Component, OnInit} from '@angular/core';
+import {ChartOptions} from 'chart.js';
 import 'chartjs-plugin-datalabels'; // Import the chartjs-plugin-datalabels
 import Chart from 'chart.js/auto'
 import {CarburantService} from "../../Service/carburant.service";
@@ -9,6 +9,7 @@ import {AerienService} from "../../Service/aerien.service";
 import {FretService} from "../../Service/fret.service";
 import {ImmobilisationService} from "../../Service/immobilisation.service";
 import {forkJoin} from "rxjs";
+
 @Component({
   selector: 'app-carbone-diagram',
   templateUrl: './carbone-diagram.component.html',

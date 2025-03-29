@@ -1,12 +1,12 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Company } from '../Models/company';
-import { Carburant } from '../Models/carburant';
-import { Energie } from '../Models/energie';
-import { DeplacemetAerien } from '../Models/deplacemetAerien';
-import { Fret } from '../Models/fret';
-import { Consommables } from '../Models/consommables';
-import { Immobilisation } from '../Models/immobilisation';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {Company} from '../Models/company';
+import {Carburant} from '../Models/carburant';
+import {Energie} from '../Models/energie';
+import {DeplacemetAerien} from '../Models/deplacemetAerien';
+import {Fret} from '../Models/fret';
+import {Consommables} from '../Models/consommables';
+import {Immobilisation} from '../Models/immobilisation';
 
 @Injectable({
   providedIn: 'root'

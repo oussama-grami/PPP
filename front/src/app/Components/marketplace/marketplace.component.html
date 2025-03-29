@@ -1,142 +1,140 @@
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
-
-
-    <app-nav-acceuil [selected]="5"></app-nav-acceuil>
+<app-nav-acceuil [selected]="5"></app-nav-acceuil>
 <div style="justify-content: center; display: flex; margin-right: 0px;">
-    <div style="position: relative; margin-top: 5rem;"
-    [ngStyle]="{'background-image': 'url(/assets/img/marketplaceBackground.png)', 'background-repeat': 'no-repeat',  'width': '1200px', 'height': '530px'}">
+  <div style="position: relative; margin-top: 5rem;"
+       [ngStyle]="{'background-image': 'url(/assets/img/marketplaceBackground.png)', 'background-repeat': 'no-repeat',  'width': '1200px', 'height': '530px'}">
     <div class="backgroundText">
-        <p class="p1">Your carbon compensation market</p>
-        <p class="p2">Understand the challenges of carbon offsetting and contribute to collective carbon neutrality
-        </p>
-        <button class="backgroundButton1" [routerLink]="'/carbone'">Calculate your carbon emissions</button>
-        <button class="backgroundButton2" [routerLink]="'/new-project'">Submit your project</button>
+      <p class="p1">Your carbon compensation market</p>
+      <p class="p2">Understand the challenges of carbon offsetting and contribute to collective carbon neutrality
+      </p>
+      <button class="backgroundButton1" [routerLink]="'/carbone'">Calculate your carbon emissions</button>
+      <button class="backgroundButton2" [routerLink]="'/new-project'">Submit your project</button>
     </div>
 
+  </div>
 </div>
-</div>
-    <div class="container mt-4">
-        <div class="row">
-            <div class="col-3">
-                <div class="filterTitle">
-                    Filtres
-                </div>
-                <div class="filterItems" style="margin-top: 29px;">
-                    <app-filter-item [filterName]="'Country'" [icon]="countryDisplay"
-                        (click)="displayCountryFilter()"></app-filter-item>
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-3">
+      <div class="filterTitle">
+        Filtres
+      </div>
+      <div class="filterItems" style="margin-top: 29px;">
+        <app-filter-item [filterName]="'Country'" [icon]="countryDisplay"
+                         (click)="displayCountryFilter()"></app-filter-item>
 
-                    <div class="paysFilter" *ngIf="countryDisplay" style="margin-top: 24px;">
-                        <form class="from-body form-container ">
-                            <input type="search" placeholder="Search" name="search" [(ngModel)]="searchTextForCountry"
-                                (ngModelChange)="filterPerCountry()" />
-                            <button type="submit">Search</button>
-                        </form>
+        <div class="paysFilter" *ngIf="countryDisplay" style="margin-top: 24px;">
+          <form class="from-body form-container ">
+            <input type="search" placeholder="Search" name="search" [(ngModel)]="searchTextForCountry"
+                   (ngModelChange)="filterPerCountry()"/>
+            <button type="submit">Search</button>
+          </form>
 
-                        <div *ngFor="let countryFilter of countryFiltersCopy"><span
-                                class="filter">{{countryFilter}}</span><span
-                                style="float: right; margin-left: auto; margin-right: 1vh;"><input class="form-check-input"
-                                    type="checkbox" value="" id="flexCheckDefault"
-                                    (change)="selectFilter(countryFilter)"></span></div>
-                        <div style="width: 281px; height: 1px;background: #D3D3D3;"></div>
+          <div *ngFor="let countryFilter of countryFiltersCopy"><span
+            class="filter">{{ countryFilter }}</span><span
+            style="float: right; margin-left: auto; margin-right: 1vh;"><input class="form-check-input"
+                                                                               type="checkbox" value=""
+                                                                               (change)="selectFilter(countryFilter)"></span>
+          </div>
+          <div style="width: 281px; height: 1px;background: #D3D3D3;"></div>
 
-                    </div>
-                    <app-filter-item [filterName]="'Nature of the project'" [icon]="typeDisplay"
-                        (click)="displayTypeFilter()"></app-filter-item>
-                    <div class="paysFilter" *ngIf="typeDisplay" style="margin-top: 24px;">
-                        <form class="from-body form-container ">
-                            <input type="search" placeholder="Search" name="search" [(ngModel)]="searchTextForType"
-                                (ngModelChange)="filterPerType()">
-                            <button type="submit">Search</button>
-                        </form>
-                        <div *ngFor="let typeFilter of typeFiltersCopy"><span class="filter">{{typeFilter}}</span><span
-                                style="float: right; margin-left: auto; margin-right: 1vh;"><input class="form-check-input"
-                                    type="checkbox" value="" id="flexCheckDefault"
-                                    (change)="selectFilter(typeFilter)"></span></div>
-                        <div style="width: 281px; height: 1px;background: #D3D3D3;"></div>
-
-
-                    </div>
-                    <app-filter-item [filterName]="'Prices'" [icon]="priceDisplay"
-                        (click)="displayPriceFilter()"></app-filter-item>
-                    <div class="paysFilter" *ngIf="priceDisplay" style="margin-top: 24px; margin-right: 2vh ;">
-                        <span>Maximum price: <input  [(ngModel)]="priceFilter" style="width: 30px; padding: 5px;" for="customRange1" class="form-label input-range" value=" {{priceFilter}}"> $/tCo2e</span>
-
-                        <input type="range" style="gap: 16px; margin-right: 2vh;" class="form-range" id="customRange1" max="99" min="1" [(ngModel)]="priceFilter">
-                        <div style="width: 281px; height: 1px;background: #D3D3D3;"></div>
-                    </div>
-                    <app-filter-item [filterName]="'Type of certification'" [icon]="certificationDisplay"
-                        (click)="displayCertificationFilter()"></app-filter-item>
-                    <div class="paysFilter" *ngIf="certificationDisplay" style="margin-top: 24px;">
-
-                        <div><span class="filter">Certified</span><span
-                                style="float: right; margin-left: auto; margin-right: 1vh;"><input class="form-check-input"
-                                    type="checkbox" value="" id="flexCheckDefault"
-                                    (change)="selectFilter('Certifié')"></span></div>
-                        <div><span class="filter">Uncertified</span><span><span
-                                    style="float: right; margin-left: auto; margin-right: 1vh;"><input
-                                        class="form-check-input" type="checkbox" value="" id="flexCheckDefault"
-                                        (change)="selectFilter('Non certifié')"></span></span></div>
-                        <div style="width: 281px; height: 1px;background: #D3D3D3;"></div>
-                    </div>
-                    <app-filter-item [filterName]="'Mechanism'" [icon]="mecanismDisplay"
-                        (click)="displayMecanismFilter()"></app-filter-item>
-                    <div class="paysFilter" *ngIf="mecanismDisplay" style="margin-top: 24px;">
-                        <div><span class="filter">Removal</span><span
-                                style="float: right; margin-left: auto; margin-right: 1vh;"><input class="form-check-input"
-                                    type="checkbox" value="" id="flexCheckDefault"
-                                    (change)="selectFilter('Suppression')"></span></div>
-                        <div><span class="filter">Avoidance</span><span><span
-                                    style="float: right; margin-left: auto; margin-right: 1vh;"><input
-                                        class="form-check-input" type="checkbox" value="" id="flexCheckDefault"
-                                        (change)="selectFilter('Evitement')"></span></span></div>
-                        <div style="width: 281px; height: 1px;background: #D3D3D3;"></div>
-
-                    </div>
+        </div>
+        <app-filter-item [filterName]="'Nature of the project'" [icon]="typeDisplay"
+                         (click)="displayTypeFilter()"></app-filter-item>
+        <div class="paysFilter" *ngIf="typeDisplay" style="margin-top: 24px;">
+          <form class="from-body form-container ">
+            <input type="search" placeholder="Search" name="search" [(ngModel)]="searchTextForType"
+                   (ngModelChange)="filterPerType()">
+            <button type="submit">Search</button>
+          </form>
+          <div *ngFor="let typeFilter of typeFiltersCopy"><span class="filter">{{ typeFilter }}</span><span
+            style="float: right; margin-left: auto; margin-right: 1vh;"><input class="form-check-input"
+                                                                               type="checkbox" value=""
+                                                                               (change)="selectFilter(typeFilter)"></span>
+          </div>
+          <div style="width: 281px; height: 1px;background: #D3D3D3;"></div>
 
 
+        </div>
+        <app-filter-item [filterName]="'Prices'" [icon]="priceDisplay"
+                         (click)="displayPriceFilter()"></app-filter-item>
+        <div class="paysFilter" *ngIf="priceDisplay" style="margin-top: 24px; margin-right: 2vh ;">
+          <span>Maximum price: <input [(ngModel)]="priceFilter" style="width: 30px; padding: 5px;" for="customRange1"
+                                      class="form-label input-range" value=" {{priceFilter}}"> $/tCo2e</span>
 
-                </div>
+          <input type="range" style="gap: 16px; margin-right: 2vh;" class="form-range" id="customRange1" max="99"
+                 min="1" [(ngModel)]="priceFilter">
+          <div style="width: 281px; height: 1px;background: #D3D3D3;"></div>
+        </div>
+        <app-filter-item [filterName]="'Type of certification'" [icon]="certificationDisplay"
+                         (click)="displayCertificationFilter()"></app-filter-item>
+        <div class="paysFilter" *ngIf="certificationDisplay" style="margin-top: 24px;">
 
-                <div id="deleteFilterButton">
-                    <span class="removeFilter" (click)="clearFilters()">Clear filters</span>
-                </div>
-            </div>
-            <div class="col-9">
-                <div class="availableProjects">
-                  {{ numberOfProjects }} Climate projects available
-                </div>
-                <div style="margin-top: 29px;">
-                    <span style="width: 80%;">
-                        <span *ngFor="let filter of selectedFilters" class="selectedFilter"><span
-                                class="selectedFilterText">{{filter}} <span style="margin-left: 10px; "><svg
-                                        class="removeFilter" (click)="removeFilter(filter)"
-                                        xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 8 8"
-                                        fill="none">
-                                        <path d="M6.99998 1.00002L1 7M0.999975 1L6.99995 6.99998" stroke="white"
-                                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                    </svg></span></span></span>
-                    </span>
-                    <span
-                        style="color: #101828; font-family: Roboto; font-size: 16px; font-style: normal; font-weight: 600; line-height: 24px; float: right; margin-right: 3vh;"><span>
-                            <span
-                                style="color: #575757; font-family: Roboto; font-size: 16px; font-style: normal; font-weight: 400; line-height: 24px;">Filter by:</span> Most popular</span></span>
-                </div>
-                <br>
+          <div><span class="filter">Certified</span><span
+            style="float: right; margin-left: auto; margin-right: 1vh;"><input class="form-check-input"
+                                                                               type="checkbox" value=""
+                                                                               (change)="selectFilter('Certifié')"></span>
+          </div>
+          <div><span class="filter">Uncertified</span><span><span
+            style="float: right; margin-left: auto; margin-right: 1vh;"><input
+            class="form-check-input" type="checkbox" value=""
+            (change)="selectFilter('Non certifié')"></span></span></div>
+          <div style="width: 281px; height: 1px;background: #D3D3D3;"></div>
+        </div>
+        <app-filter-item [filterName]="'Mechanism'" [icon]="mecanismDisplay"
+                         (click)="displayMecanismFilter()"></app-filter-item>
+        <div class="paysFilter" *ngIf="mecanismDisplay" style="margin-top: 24px;">
+          <div><span class="filter">Removal</span><span
+            style="float: right; margin-left: auto; margin-right: 1vh;"><input class="form-check-input"
+                                                                               type="checkbox" value=""
+                                                                               (change)="selectFilter('Suppression')"></span>
+          </div>
+          <div><span class="filter">Avoidance</span><span><span
+            style="float: right; margin-left: auto; margin-right: 1vh;"><input
+            class="form-check-input" type="checkbox" value="" id="flexCheckDefault"
+            (change)="selectFilter('Evitement')"></span></span></div>
+          <div style="width: 281px; height: 1px;background: #D3D3D3;"></div>
 
-
-                <div class="row" style="margin-top: 29px;">
-                  <div *ngFor="let project of displayedProjects" class="col-4" style="margin-top: 5px;">
-                    <div class="col-4"><app-project-ad [project] ="project"></app-project-ad>
-                    </div>
-                </div>
-                  </div>
-              <app-pagination [totalPages]="totalPages" [currentPage]="1" (pageChanged)="onPageChange($event)"></app-pagination>
-            </div>
         </div>
 
+
+      </div>
+
+      <div id="deleteFilterButton">
+        <span class="removeFilter" (click)="clearFilters()">Clear filters</span>
+      </div>
     </div>
+    <div class="col-9">
+      <div class="availableProjects">
+        {{ numberOfProjects }} Climate projects available
+      </div>
+      <div style="margin-top: 29px;">
+                    <span style="width: 80%;">
+                        <span *ngFor="let filter of selectedFilters" class="selectedFilter"><span
+                          class="selectedFilterText">{{ filter }} <span style="margin-left: 10px; "><svg
+                          class="removeFilter" (click)="removeFilter(filter)"
+                          xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 8 8"
+                          fill="none">
+                                        <path d="M6.99998 1.00002L1 7M0.999975 1L6.99995 6.99998" stroke="white"
+                                              stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg></span></span></span>
+                    </span>
+        <span
+          style="color: #101828; font-family: Roboto; font-size: 16px; font-style: normal; font-weight: 600; line-height: 24px; float: right; margin-right: 3vh;"><span>
+                            <span
+                              style="color: #575757; font-family: Roboto; font-size: 16px; font-style: normal; font-weight: 400; line-height: 24px;">Filter by:</span> Most popular</span></span>
+      </div>
+      <br>
 
 
-    <app-footer-market-place></app-footer-market-place>
+      <div class="row" style="margin-top: 29px;">
+        <div *ngFor="let project of displayedProjects" class="col-4" style="margin-top: 5px;">
+          <div class="col-4">
+            <app-project-ad [project]="project"></app-project-ad>
+          </div>
+        </div>
+      </div>
+      <app-pagination [totalPages]="totalPages" [currentPage]="1" (pageChanged)="onPageChange($event)"></app-pagination>
+    </div>
+  </div>
+</div>
+

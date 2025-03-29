@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-porteur',
@@ -6,8 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./porteur.component.css']
 })
 export class PorteurComponent implements OnInit {
-  ngOnInit() {  
-    
+  ngOnInit() {
+
     window.scrollTo(0, 0);
   }
 }
