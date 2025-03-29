@@ -25,7 +25,7 @@
     <span class="achat-quantity">{{ project?.minimumPurchase }} tons</span>
   </div>
   <div class="separator"></div>
-  <button class="button-achat mt-3" [routerLink]="'/checkout'"><span class="button-achat-text">Buy now</span><span
+  <button [disabled]="quantity==0" class="button-achat mt-3" [ngClass]="{ 'enabled-button-1': quantity > 0 }" [routerLink]="'/checkout'"><span class="button-achat-text">Buy now</span><span
     class="button-achat-amount">{{ Number(project?.cost) * quantity }}</span></button>
   <div class="mt-3">
     <button
