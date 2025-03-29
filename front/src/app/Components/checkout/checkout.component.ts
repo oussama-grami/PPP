@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {CartService} from "../../Service/cart-service.service";
+import { Component, OnInit } from '@angular/core';
+import { CartService } from "../../Service/cart-service.service";
 
 @Component({
   selector: 'app-checkout',
@@ -21,13 +21,16 @@ export class CheckoutComponent implements OnInit {
 
   removeItem(index: number) {
     this.cartService.removeItem(index);
+    this.cartItems = this.cartService.getItems(); // Mise à jour de l'état du panier
   }
 
   increaseQuantity(index: number) {
     this.cartService.increaseQuantity(index);
+    this.cartItems = this.cartService.getItems(); // Mise à jour de l'état du panier
   }
 
   decreaseQuantity(index: number) {
     this.cartService.decreaseQuantity(index);
+    this.cartItems = this.cartService.getItems(); // Mise à jour de l'état du panier
   }
 }
