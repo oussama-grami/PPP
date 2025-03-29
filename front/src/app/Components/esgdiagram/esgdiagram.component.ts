@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {Chart, registerables} from 'chart.js';
+import { Component, OnInit } from '@angular/core';
+import { Chart, registerables } from 'chart.js';
 import 'chartjs-plugin-datalabels';
-import {ScoreService} from "../../Service/score.service";
+import { EsgService } from 'src/app/Service/esg.service';
 
 @Component({
   selector: 'app-esgdiagram',
@@ -11,86 +11,97 @@ import {ScoreService} from "../../Service/score.service";
 export class ESGdiagramComponent implements OnInit {
   Scores: number[] = [];
 
-  constructor(private scService: ScoreService) {
-  }
-
+  constructor(private esgService: EsgService) { }
   chart!: Chart<'radar', number[], string>;
 
   ngOnInit(): void {
-    /*this.scService.getScore(1, 2023).subscribe((scores: number[]) => {
-      for (const [index, value] of scores.entries()) {
-        this.Scores[index] = scores[index] + 1;
+    // Get responses from the service
+    const responses = this.esgService.getResponses();
+    
+    // Calculate scores for each question
+    this.Scores = Array(15).fill(0); // Initialize array with 15 elements
+    for (let i = 1; i <= 15; i++) {
+      const question = this.esgService.getQuestionById(i);
+      const selectedOptionId = responses[i];
+      if (selectedOptionId !== undefined) {
+        // Normalize score to 1-5 range (since original scores are 0-8 in steps of 2)
+        this.Scores[i-1] = (question.options[selectedOptionId].score / 2) + 1;
       }
-      this.createChart();
-    });*/
-    this.Scores = [3, 4, 2, 5, 3, 4, 2, 5, 3, 4, 2, 5, 3, 4, 2];
+    }
+    
     this.createChart();
   }
 
   createChart(): void {
     const canvas = document.getElementById('myChart1') as HTMLCanvasElement;
+    canvas.width = 775;
+    canvas.height = 775;
     const ctx = canvas.getContext('2d');
     if (ctx) {
-      Chart.register(...registerables);
+      Chart.register(...registerables); // Register the chart types
 
+      // Create a custom plugin using the beforeDraw hook
       const customPlugin = {
         id: 'customBeforeDraw',
         beforeDraw: (chart: any, args: any, options: any) => {
           const ctx = chart.ctx;
           const { xCenter, yCenter, drawingArea: radius } = chart.scales.r;
           const labelsCoordonates = chart.scales.r._pointLabelItems;
-
-          // Environment section
-          let environment = new Path2D();
-          environment.moveTo(xCenter, yCenter);
-          environment.arc(xCenter, yCenter, radius, (4.375 * Math.PI / 3 - Math.PI / 30), (2.13 * Math.PI - Math.PI / 30), false);
+          
+          let envirement = new Path2D();
+          envirement.moveTo(xCenter, yCenter);
+          envirement.arc(xCenter, yCenter, radius, (4.375 * Math.PI / 3 - Math.PI / 30), (2.13 * Math.PI - Math.PI / 30), false)
           ctx.fillStyle = 'rgba(1,65,49,0.25)';
-          ctx.fill(environment);
+          ctx.fill(envirement);
 
-          ctx.beginPath();
+          // draw border
+          ctx.beginPath()
           ctx.moveTo(xCenter, yCenter);
-          ctx.lineTo(((labelsCoordonates[14].x + labelsCoordonates[0].x) / 2) - 8, (labelsCoordonates[14].y + labelsCoordonates[0].y) / 2);
-          ctx.strokeStyle = "white";
+          ctx.lineTo(((labelsCoordonates[14].x + labelsCoordonates[0].x) / 2) - 8, (labelsCoordonates[14].y + labelsCoordonates[0].y) / 2)
+          ctx.strokeStyle = "white"
           ctx.lineWidth = 1;
-          ctx.stroke();
-          ctx.closePath();
+          ctx.stroke()
+          ctx.closePath()
 
-          // Social section
+          // draw social
           let social = new Path2D();
           social.moveTo(xCenter, yCenter);
-          social.arc(xCenter, yCenter, radius, (2.13 * Math.PI - Math.PI / 30), (2.35 * Math.PI / 3 - Math.PI / 30), false);
+          social.arc(xCenter, yCenter, radius, (2.13 * Math.PI - Math.PI / 30), (2.35 * Math.PI / 3 - Math.PI / 30), false)
           ctx.fillStyle = 'rgba(118,184,42,0.25)';
           ctx.fill(social);
 
-          ctx.beginPath();
+          // draw border
+          ctx.beginPath()
           ctx.moveTo(xCenter, yCenter);
           ctx.lineTo((labelsCoordonates[4].x + labelsCoordonates[5].x) / 2 + 16, (labelsCoordonates[4].y + labelsCoordonates[5].y) / 2 + 4);
-          ctx.strokeStyle = "white";
+          ctx.strokeStyle = "white"
           ctx.lineWidth = 1;
-          ctx.stroke();
-          ctx.closePath();
+          ctx.stroke()
+          ctx.closePath()
 
-          // Governance section
+          // draw governance
           let governance = new Path2D();
           governance.moveTo(xCenter, yCenter);
-          governance.arc(xCenter, yCenter, radius, (2.35 * Math.PI / 3 - Math.PI / 30), (4.375 * Math.PI / 3 - Math.PI / 30), false);
+          governance.arc(xCenter, yCenter, radius, (2.35 * Math.PI / 3 - Math.PI / 30), (4.375 * Math.PI / 3 - Math.PI / 30), false)
           ctx.fillStyle = 'rgba(122,182,143,0.25)';
           ctx.fill(governance);
 
-          ctx.beginPath();
+          // draw border
+          ctx.beginPath()
           ctx.moveTo(xCenter, yCenter);
           ctx.lineTo((labelsCoordonates[11].x + labelsCoordonates[12].x) / 2 - 4, (labelsCoordonates[8].y + labelsCoordonates[9].y) / 2 + 14);
-          ctx.strokeStyle = "white";
+          ctx.strokeStyle = "white"
           ctx.lineWidth = 1;
-          ctx.stroke();
+          ctx.stroke()
           ctx.closePath();
         }
       };
 
+      // Register the custom plugin
       Chart.register(customPlugin);
 
       this.chart = new Chart(ctx, {
-        type: 'radar',
+        type: 'radar', // Change the chart type to 'radar'
         data: {
           labels: [
             "1.Reducing GHG emissions",
@@ -102,7 +113,7 @@ export class ESGdiagramComponent implements OnInit {
             '7.Health and safety at work',
             '8.Employee well-being',
             '9.Policies on working conditions',
-            '10.Engagement with local communities',
+            '10.Engagement with local communities', 
             '11.Governance policies',
             '12.Transparency and integrity of the company',
             '13.Conflicts of interest and responsible management',
@@ -114,16 +125,14 @@ export class ESGdiagramComponent implements OnInit {
               label: 'Entreprise',
               data: this.Scores,
               backgroundColor: '#7D7D7D57',
-              borderColor: 'rgba(109, 109, 109, 1)',
-              pointBackgroundColor: 'rgba(109, 109, 109, 1)',
-              pointBorderColor: 'rgba(109, 109, 109, 1)',
-              pointRadius: 0,
+              borderColor: 'rgba(109, 109, 109, 1)', // Border color for the radar line
+              pointBackgroundColor: 'rgba(109, 109, 109, 1)', // Background color for the data points
+              pointBorderColor: 'rgba(109, 109, 109, 1)', // Border color for the data points
+              pointRadius: 0, // Adjust the data points' radius
             },
           ],
         },
         options: {
-          responsive: true,
-          maintainAspectRatio: true,
           plugins: {
             legend: {
               display: false,
@@ -131,16 +140,6 @@ export class ESGdiagramComponent implements OnInit {
             datalabels: {
               display: true,
               align: 'center',
-              formatter: (value, context) => {
-                const index = context.dataIndex;
-                if (index < 5) {
-                  return 'Environment';
-                } else if (index < 10) {
-                  return 'Social';
-                } else {
-                  return 'Governance';
-                }
-              }
             },
           },
           scales: {
