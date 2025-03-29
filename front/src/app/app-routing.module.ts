@@ -13,7 +13,7 @@ import {PorteurComponent} from "./Components/porteur/porteur.component";
 import { NavAcceuilComponent } from './Components/nav-acceuil/nav-acceuil.component';
 import {PanneauxComponent} from "./Components/panneaux/panneaux.component";
 import {ResultatCarboneComponent} from "./Components/resultat-carbone/resultat-carbone.component";
-import { EsgComponent } from './Components/esg/esg.component';  
+import { EsgComponent } from './Components/esg/esg.component';
 import {CarboneComponent} from "./Components/carbone/carbone.component";
 import {CarboneDiagramComponent} from "./Components/carbone-diagram/carbone-diagram.component";
 import {ResultESGComponent} from "./Components/result-esg/result-esg.component";
@@ -42,17 +42,17 @@ const routes: Routes = [
   {path : 'fret',component : FretComponent},
   {path : 'cons',component : ConsommablesComponent},
   {path : 'imob',component : ImmobilisationsComponent},
- 
+
   {path:'pan',component : PanneauxComponent},
   {path : 'resultat',component : ResultatCarboneComponent},
   {path : 'esg',component : EsgComponent},
   {path : 'carbone',component : CarboneComponent},
   {path:'esg-result',component : ResultESGComponent},
- 
+
   {path:'arb',component : ArboricultureComponent},
   {path:'piste',component : PisteComponent},
   {path:'marketplace',component : MarketplaceComponent},
-  {path: 'details', component: ProjectDetailsComponent},
+  {path: 'details/:id', component: ProjectDetailsComponent},
   {path: 'checkout', component: CheckoutComponent},
   {path: 'payment', component: PaymentComponent},
   {path: 'new-project', component: ProjectOwnerComponent},
