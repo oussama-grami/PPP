@@ -1,0 +1,54 @@
+<link rel="shortcut icon" href="/src/assets/Ecopilot/icon.png" type="image/x-icon">
+<link rel="apple-touch-icon" type="image/x-icon" href="/assets/img/apple-touch-icon-57x57-precomposed.png">
+<link rel="apple-touch-icon" type="image/x-icon" sizes="72x72"
+  href="/assets/img/apple-touch-icon-72x72-precomposed.png">
+<link rel="apple-touch-icon" type="image/x-icon" sizes="114x114"
+  href="/assets/img/apple-touch-icon-114x114-precomposed.png">
+<link rel="apple-touch-icon" type="image/x-icon" sizes="144x144"
+  href="/assets/img/apple-touch-icon-144x144-precomposed.png">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+<!-- GOOGLE WEB FONT -->
+<link href="https://fonts.googleapis.com/css?family=Work+Sans:400,500,600" rel="stylesheet">
+
+<!-- BASE CSS -->
+<link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+<link href="/assets/css/menu.css" rel="stylesheet">
+<link href="/assets/css/style.css" rel="stylesheet">
+<link href="/assets/css/vendors.css" rel="stylesheet">
+
+<!-- YOUR CUSTOM CSS -->
+<link href="/assets/css/custom.css" rel="stylesheet">
+<script src="/assets/js/modernizr.js"></script>
+<app-nav-acceuil [selected]="1"></app-nav-acceuil>
+<div class="container">
+  <div class="row">
+    <div class="mx-auto text-center d-flex flex-column justify-content-center align-items-center col">
+      <div class="title">
+        Evaluate your ESG Performance
+      </div>
+      <div class="description" style="margin-bottom: 16px; margin-top: 32px;">
+        Evaluate your overall environmental, social, and governance performance. VGREEN is here to support you in
+        managing your ESG efforts. </div>
+      <div class="description" style="margin-bottom: 16px;">
+        We offer a comprehensive ESG positioning assessment tool that guides you in developing a strategic ESG roadmap.
+      </div>
+      <div class="description">
+        This tool enables you to identify your strengths and areas for improvement, facilitating the implementation of
+        effective strategies.​
+      </div>
+      <button class="pagginationButton" style="background-color: #014131;" routerLink="/esg"> <span
+          style="margin-right: 8px; color:#FFF;" class="pagginationButtonText">Calculate my ESG performance</span><svg
+          xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M4.5 12H19.5M19.5 12L13.875 6M19.5 12L13.875 18" stroke="white" stroke-width="1.5"
+            stroke-linecap="round" stroke-linejoin="round" />
+        </svg></button>
+    </div>
+    <div class="d-flex mt-3 justify-content-center align-items-center col">
+      <img
+        class="mx-auto"
+        src="/assets/img/esg.svg" alt="" height="541px" style="border-radius: 10px;">
+    </div>
+  </div>
+</div>
+<app-footer-market-place></app-footer-market-place>
