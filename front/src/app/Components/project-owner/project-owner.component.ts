@@ -245,9 +245,8 @@ export class ProjectOwnerComponent {
 
   onSubmit() {
     if (this.projectForm?.valid) {
-      console.log('Form Submitted', this.projectForm.value);
+      const input = {...this.projectForm.value, phone: this.selectedCountry.code + this.projectForm.value.phone};
     } else {
-      console.log('Form not valid');
       this.fileError = this.pdfFiles.length === 0 ? 'Please upload at least one PDF file.' : null;
     }
     this.isSubmitted = true;
