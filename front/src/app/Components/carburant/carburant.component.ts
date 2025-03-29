@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CarbonFootprintService } from "../../Service/carbon-footprint.service"; // Import the service
-import { Carburant } from "../../Models/carburant"; // Import the Carburant model
-import { Router } from "@angular/router";
-import { TypeCarburant } from "../../enumerations/typeCarburant";
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {CarbonFootprintService} from "../../Service/carbon-footprint.service"; // Import the service
+import {Carburant} from "../../Models/carburant"; // Import the Carburant model
+import {Router} from "@angular/router";
+import {TypeCarburant} from "../../enumerations/typeCarburant";
 
 @Component({
   selector: 'app-carburant',

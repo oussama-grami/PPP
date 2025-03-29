@@ -1,7 +1,7 @@
 <app-nav-acceuil [selected]="1"></app-nav-acceuil>
 <div class="container" style="margin-top: 100px;">
     <div class="row">
-        <div class="retour"> 
+        <div class="retour">
             <button [routerLink]="'/ress'">
                 <div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                         <path d="M19.5 12H4.5M4.5 12L10.125 6M4.5 12L10.125 18" stroke="black" stroke-width="1.5"
@@ -26,7 +26,7 @@
 <div class="row my-4">
     <div class="col-12">
         <h4 class="text-center mb-4 fw-semibold">
-            Print the list of actions that should be taken: <br> 
+            Print the list of actions that should be taken: <br>
             <small class="text-muted">(Select a category first)</small>
         </h4>
 
@@ -38,21 +38,21 @@
 
         <!-- Category Selection -->
         <div class="d-flex justify-content-center align-items-center gap-3 mt-4">
-            <a class="text-decoration-none px-3 py-2 border rounded shadow-sm" (click)="selectCategory('Environment')" 
+            <a class="text-decoration-none px-3 py-2 border rounded shadow-sm" (click)="selectCategory('Environment')"
                [ngClass]="{'selected-env': SelectedCategory === 'Environment'}">
                 <p class="mb-0 fw-semibold text-dark">Environment</p>
             </a>
 
             <img src="assets/value_green/next.png" alt="" style="width: 10px; height: 20px;">
-            
-            <a class="text-decoration-none px-3 py-2 border rounded shadow-sm" (click)="selectCategory('Social')" 
+
+            <a class="text-decoration-none px-3 py-2 border rounded shadow-sm" (click)="selectCategory('Social')"
                [ngClass]="{'selected-soc': SelectedCategory === 'Social'}">
                 <p class="mb-0 fw-semibold text-dark">Social</p>
             </a>
 
             <img src="assets/value_green/next.png" alt="" style="width: 10px; height: 20px;">
 
-            <a class="text-decoration-none px-3 py-2 border rounded shadow-sm" (click)="selectCategory('Governance')" 
+            <a class="text-decoration-none px-3 py-2 border rounded shadow-sm" (click)="selectCategory('Governance')"
                [ngClass]="{'selected-gov': SelectedCategory === 'Governance'}">
                 <p class="mb-0 fw-semibold text-dark">Governance</p>
             </a>
@@ -584,5 +584,4 @@
     </div>
 </div>
 
-  
-<app-footer-market-place></app-footer-market-place>
+

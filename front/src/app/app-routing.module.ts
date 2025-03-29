@@ -14,7 +14,6 @@ import {ResultatCarboneComponent} from "./Components/resultat-carbone/resultat-c
 import {EsgComponent} from './Components/esg/esg.component';
 import {CarboneComponent} from "./Components/carbone/carbone.component";
 import {ResultESGComponent} from "./Components/result-esg/result-esg.component";
-
 import {ArboricultureComponent} from "./Components/arboriculture/arboriculture.component";
 import {PisteComponent} from "./Components/piste/piste.component";
 import {MarketplaceComponent} from './Components/marketplace/marketplace.component';

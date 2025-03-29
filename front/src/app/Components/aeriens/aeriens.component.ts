@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CarbonFootprintService } from "../../Service/carbon-footprint.service";
-import { DeplacemetAerien } from "../../Models/deplacemetAerien";
-import { Router } from "@angular/router";
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {CarbonFootprintService} from "../../Service/carbon-footprint.service";
+import {DeplacemetAerien} from "../../Models/deplacemetAerien";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-aeriens',
