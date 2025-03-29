@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ScoreService} from "../../Service/score.service";
 import {Categorie} from "../../enumerations/Categorie";
-import { EsgService } from 'src/app/Service/esg.service';
 
 @Component({
   selector: 'app-result-esg',
@@ -12,17 +11,16 @@ export class ResultESGComponent implements OnInit{
   Envi : number=0;
   soc : number=0;
   gouv : number=0;
-  scores : any;
+  Scores: number[] = [];
   environmentAction = true;
   socialAction = true;
   gouvernanceAction = true;
-  constructor(private ScoreService:EsgService) {}
+  constructor(private ScService : ScoreService) {}
 
   ngOnInit() {
-    /*this.ScService.calculerScore(1, 2023,Categorie.Environnement).subscribe((score: number) => {
+    this.ScService.calculerScore(1, 2023,Categorie.Environnement).subscribe((score: number) => {
       this.Envi = score;
       console.log(this.Envi);
-      
     });
     this.ScService.calculerScore(1, 2023,Categorie.Social).subscribe((score: number) => {
       this.soc = score;
@@ -32,28 +30,14 @@ export class ResultESGComponent implements OnInit{
       this.gouv = score;
       console.log(this.gouv);
     });
-    this.ScService.getScore(1, 2023).subscribe((scores: number[]) => { 
+    this.ScService.getScore(1, 2023).subscribe((scores: number[]) => {
       this.environmentAction = this.proposeAction(scores.slice(0,5))
       this.socialAction = this.proposeAction(scores.slice(5,10))
       this.gouvernanceAction = this.proposeAction(scores.slice(10,15))
-      
-      
-      
-      
-    });*/
-    
-    this.scores=this.ScoreService.calculateEsg();
-    this.Envi=this.scores.Environment;
-    this.soc=this.scores.Social;
-    this.gouv=this.scores.Gouvernance;
-    
-    
+    });
   }
   disableTakeActionButton(){
-    if(this.soc == 20 && this.Envi == 20 && this.gouv == 20){
-      return false
-    }
-    else return true
+    return !(this.soc == 20 && this.Envi == 20 && this.gouv == 20);
   }
   proposeAction(scores:number[]):boolean{
     var result = false;

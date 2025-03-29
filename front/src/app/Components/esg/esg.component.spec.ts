@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EsgComponent } from './esg.component';
+import { ESGComponent } from './esg.component';
 
-describe('Esg1Component', () => {
-  let component: EsgComponent;
-  let fixture: ComponentFixture<EsgComponent>;
+describe('ESGComponent', () => {
+  let component: ESGComponent;
+  let fixture: ComponentFixture<ESGComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ EsgComponent ]
+      declarations: [ ESGComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(EsgComponent);
+    fixture = TestBed.createComponent(ESGComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
