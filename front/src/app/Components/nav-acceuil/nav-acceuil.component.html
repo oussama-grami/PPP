@@ -8,8 +8,8 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav d-flex flex-row align-items-center w-100">
-        <div class="d-md-flex me-md-auto">
+      <ul class="navbar-nav d-flex flex-lg-row flex-column align-items-lg-center w-100">
+        <div class="d-lg-flex me-lg-auto">
           <li class="nav-item">
             <a class="nav-link fff" [ngClass]="{ 'selected': selected===0}" routerLink="">Home</a>
           </li>
@@ -22,7 +22,7 @@
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" routerLink="/carbone">Carbon Footprint Calculator</a></li>
               <li><a class="dropdown-item" routerLink="/porteur">Carbon Offset Projects</a></li>
-              <li><a class="dropdown-item" routerLink="/esg1">ESG Assessment</a></li>
+              <li><a class="dropdown-item" routerLink="/esg">ESG Assessment</a></li>
             </ul>
           </li>
           <li class="nav-item">
@@ -32,7 +32,7 @@
             <a class="nav-link fff" [ngClass]="{ 'selected': selected===4}" routerLink="/resources">VGreen Knowledge</a>
           </li>
         </div>
-        <li class="nav-item ms-md-auto">
+        <li class="nav-item ms-lg-auto ms-0">
           <a class="nav-link fff" [ngClass]="{ 'selected': selected===6}" routerLink="/checkout">
             <i class="fas fa-shopping-cart text-black w-100"></i>
           </a>

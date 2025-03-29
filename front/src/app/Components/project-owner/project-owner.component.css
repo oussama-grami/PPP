@@ -260,3 +260,7 @@
     margin-bottom: 10px;
   }
 }
+.dropdown-menu-scrollable {
+  max-height: 200px;
+  overflow-y: auto;
+}

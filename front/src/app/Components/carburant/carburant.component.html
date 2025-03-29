@@ -1,26 +1,5 @@
-<!-- Favicons-->
-<link rel="shortcut icon" href="/src/assets/Ecopilot/icon.png" type="image/x-icon">
-<link rel="apple-touch-icon" type="image/x-icon" href="/assets/img/apple-touch-icon-57x57-precomposed.png">
-<link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="/assets/img/apple-touch-icon-72x72-precomposed.png">
-<link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="/assets/img/apple-touch-icon-114x114-precomposed.png">
-<link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="/assets/img/apple-touch-icon-144x144-precomposed.png">
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-
-<!-- GOOGLE WEB FONT -->
-<link href="https://fonts.googleapis.com/css?family=Work+Sans:400,500,600" rel="stylesheet">
-
-<!-- BASE CSS -->
-<link href="/assets/css/bootstrap.min.css" rel="stylesheet">
-<link href="/assets/css/menu.css" rel="stylesheet">
-<link href="/assets/css/style.css" rel="stylesheet">
-<link href="/assets/css/vendors.css" rel="stylesheet">
-
-<!-- YOUR CUSTOM CSS -->
-<link href="/assets/css/custom.css" rel="stylesheet">
-<!-- MODERNIZR MENU -->
-<script src="/assets/js/modernizr.js"></script>
 <app-nav-acceuil [selected]="1"></app-nav-acceuil>
-<div class="container-fluid full-height"style="margin-top: 50px;">
+<div class="container-fluid full-height" style="margin-top: 50px;">
   <div class="row row-height">
     <div class="col-lg-6 content-left1">
       <div class="content-left-wrapper">
@@ -29,7 +8,7 @@
         <p id="descriptionText">Complete the fields to evaluate your company's fuel footprint.</p>
       </div>
     </div>
-    <div class="col-lg-6 content-right" id="start"style="overflow-y: hidden;">
+    <div class="col-lg-6 content-right" id="start" style="overflow-y: hidden;">
       <div id="wizard_container">
         <form [formGroup]="carburantForm" (ngSubmit)="onNext()">
           <div class="step mb-3 pb-3">
@@ -38,17 +17,18 @@
             <div *ngIf="errorMessage" class="alert alert-danger">
               {{ errorMessage }}
             </div>
-
             <div class="form-group">
               <input type="number" class="form-control" formControlName="essence" placeholder="Gasoline (Liters)">
-              <div *ngIf="carburantForm.get('essence')?.invalid && carburantForm.get('essence')?.touched" class="error-message">
+              <div *ngIf="carburantForm.get('essence')?.invalid && carburantForm.get('essence')?.touched"
+                   class="error-message">
                 Gasoline is required.
               </div>
             </div>
 
             <div class="form-group">
               <input type="number" class="form-control" formControlName="diesel" placeholder="Diesel (Liters)">
-              <div *ngIf="carburantForm.get('diesel')?.invalid && carburantForm.get('diesel')?.touched" class="error-message">
+              <div *ngIf="carburantForm.get('diesel')?.invalid && carburantForm.get('diesel')?.touched"
+                   class="error-message">
                 Diesel is required.
               </div>
             </div>
@@ -62,15 +42,19 @@
 
 
             <div class="form-group">
-              <input type="number" class="form-control" formControlName="kilometrage" placeholder="Driven distance (Km)">
-              <div *ngIf="carburantForm.get('kilometrage')?.invalid && carburantForm.get('kilometrage')?.touched" class="error-message">
+              <input type="number" class="form-control" formControlName="kilometrage"
+                     placeholder="Driven distance (Km)">
+              <div *ngIf="carburantForm.get('kilometrage')?.invalid && carburantForm.get('kilometrage')?.touched"
+                   class="error-message">
                 Distance is required.
               </div>
             </div>
 
             <div class="form-group">
-              <input type="number" class="form-control" formControlName="efficacite" placeholder="Vehicle fuel efficiency (L/100Km)">
-              <div *ngIf="carburantForm.get('efficacite')?.invalid && carburantForm.get('efficacite')?.touched" class="error-message">
+              <input type="number" class="form-control" formControlName="efficacite"
+                     placeholder="Vehicle fuel efficiency (L/100Km)">
+              <div *ngIf="carburantForm.get('efficacite')?.invalid && carburantForm.get('efficacite')?.touched"
+                   class="error-message">
                 Efficiency is required.
               </div>
             </div>
@@ -81,7 +65,8 @@
                 <option class="option" [value]="TypeCarburant.Essence">Gasoline</option>
                 <option class="option" [value]="TypeCarburant.Gpl">LPG</option>
               </select>
-              <div *ngIf="carburantForm.get('typeCarburant')?.invalid && carburantForm.get('typeCarburant')?.touched" class="error-message">
+              <div *ngIf="carburantForm.get('typeCarburant')?.invalid && carburantForm.get('typeCarburant')?.touched"
+                   class="error-message">
                 Please select a fuel type.
               </div>
             </div>
@@ -92,34 +77,16 @@
               <button type="button" class="backward" routerLink="/energie">Back</button>
               <button type="submit" class="forward" (click)="onNext()">Continue</button>
             </div>
-
             <div id="bottom-wizard">
-              <p id="footer-info">A tool based on ADEME Carbon Base ® version 22.0. This calculation makes it possible to establish a carbon footprint but does not serve as a Bilan Carbone ®.</p>
+              <p id="footer-info">A tool based on ADEME Carbon Base ® version 22.0. This calculation makes it possible
+                to establish a carbon footprint but does not serve as a Bilan Carbone ®.</p>
             </div>
-
           </div>
         </form>
-
-
-
       </div>
     </div>
   </div>
 </div>
-<!--    <div class="col-lg-6 content-right" id="start">-->
-<!--      <div id="wizard_container">-->
-<!--        <div id="top-wizard">-->
-<!--          <div id="progressbar"></div>-->
-<!--        </div>-->
-<!--        &lt;!&ndash; /top-wizard &ndash;&gt;-->
-<!--       -->
-<!--      </div>-->
-<script src="assets/js/jquery-3.6.3.min.js"></script>
-<script src="assets/js/common_scripts.min.js"></script>
-<script src="assets/js/velocity.min.js"></script>
-<script src="assets/js/functions.js"></script>
 
-<!-- Wizard script -->
-<script src="assets/js/survey_func.js"></script>
 
 
