@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {project} from "../../Models/project";
 import {ProjectsService} from "../../Service/projects.service";
+import {transaction} from "../../Models/transaction";
+import {TransactionService} from "../../Service/transaction.service";
 
 @Component({
   selector: 'app-project-details',
@@ -9,13 +11,16 @@ import {ProjectsService} from "../../Service/projects.service";
   styleUrls: ['./project-details.component.css']
 })
 export class ProjectDetailsComponent implements OnInit{
+  transactions:transaction[] = [];
   projectId: number | undefined;
   projects: project[] = [];
   selectedImage = '/assets/img/details.png'
   carouselMainElement = '/assets/img/details1.png'
   carouselOtherElements = '/assets/img/details2.png'
 
-  constructor(private route: ActivatedRoute, private projectsService: ProjectsService) {
+  constructor(private route: ActivatedRoute,
+              private projectsService: ProjectsService,
+              private transactionService:TransactionService) {
   }
 
   ngOnInit() {
@@ -26,6 +31,14 @@ export class ProjectDetailsComponent implements OnInit{
         this.projects = data;
       });
     });
+    this.transactionService.getTransactions().subscribe(
+      data => {
+        this.transactions = data;
+      })
+    if (this.transactions.length > 10) {
+      this.transactions = this.transactions.slice(-10);
+    }
+
   }
 
   selectImage(imageUrl: any) {

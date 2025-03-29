@@ -81,7 +81,7 @@ import {PriceDetailsComponent} from './Components/price-details/price-details.co
     CarbonCoBenifitsBlogComponent,
     RoadmapComponent,
     PaginationComponent,
-    PriceDetailsComponent
+    PriceDetailsComponent,
   ],
   imports: [
     BrowserModule,

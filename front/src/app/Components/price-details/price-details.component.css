@@ -699,4 +699,10 @@ body {
 .quantity-button:hover {
   background-color: #6a1a21;  /* Couleur verte plus foncée au survol */
 }
+.enabled-button {
+  background-color: #379137 !important;
+  color: white;
+  cursor: pointer;
+}
+
 
