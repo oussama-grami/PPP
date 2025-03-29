@@ -1,4 +1,5 @@
-import { Option } from "./esgOptions";
+import {Option} from "./esgOptions";
+
 export interface Question {
   id: number;
   category: 'Environment' | 'Social' | 'Governance';

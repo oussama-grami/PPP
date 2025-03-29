@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Chart, registerables } from 'chart.js';
+import {Component, OnInit} from '@angular/core';
+import {Chart, registerables} from 'chart.js';
 import 'chartjs-plugin-datalabels';
-import { EsgService } from 'src/app/Service/esg.service';
+import {EsgService} from 'src/app/Service/esg.service';
 
 @Component({
   selector: 'app-esgdiagram',
@@ -17,7 +17,7 @@ export class ESGdiagramComponent implements OnInit {
   ngOnInit(): void {
     // Get responses from the service
     const responses = this.esgService.getResponses();
-    
+
     // Calculate scores for each question
     this.Scores = Array(15).fill(0); // Initialize array with 15 elements
     for (let i = 1; i <= 15; i++) {
@@ -28,7 +28,7 @@ export class ESGdiagramComponent implements OnInit {
         this.Scores[i-1] = (question.options[selectedOptionId].score / 2) + 1;
       }
     }
-    
+
     this.createChart();
   }
 
@@ -47,7 +47,7 @@ export class ESGdiagramComponent implements OnInit {
           const ctx = chart.ctx;
           const { xCenter, yCenter, drawingArea: radius } = chart.scales.r;
           const labelsCoordonates = chart.scales.r._pointLabelItems;
-          
+
           let envirement = new Path2D();
           envirement.moveTo(xCenter, yCenter);
           envirement.arc(xCenter, yCenter, radius, (4.375 * Math.PI / 3 - Math.PI / 30), (2.13 * Math.PI - Math.PI / 30), false)
@@ -113,7 +113,7 @@ export class ESGdiagramComponent implements OnInit {
             '7.Health and safety at work',
             '8.Employee well-being',
             '9.Policies on working conditions',
-            '10.Engagement with local communities', 
+            '10.Engagement with local communities',
             '11.Governance policies',
             '12.Transparency and integrity of the company',
             '13.Conflicts of interest and responsible management',

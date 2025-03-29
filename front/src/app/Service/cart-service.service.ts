@@ -1,17 +1,14 @@
 import {Injectable} from '@angular/core';
+import {project} from "../Models/project";
 
-interface CartItem {
-  name: string;
-  quantity: number;
-  price: number;
-  imageUrl: string;
-}
+type PartialProject = Partial<project> & Pick<project, 'name' | 'availableStock' | 'cost' | 'url'>;
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
-  private cartItems: CartItem[] = [];
+  private cartItems: PartialProject[] = [];
 
   constructor() {
     this.loadCart();
@@ -22,26 +19,22 @@ export class CartService {
   }
 
   private loadCart() {
-    /*const savedCart = localStorage.getItem('cart');
-    if (savedCart) {
-      this.cartItems = JSON.parse(savedCart);
-    }*/
     this.cartItems = [
-      {name: 'Tree planting in Testour', quantity: 200, price: 2.48, imageUrl: '/assets/img/modalPhoto1.svg'},
-      {name: 'Wind farm in Tunisia', quantity: 500, price: 2.25, imageUrl: '/assets/img/modalPhoto2.svg'},
-      {name: 'Forestry project in Madagascar', quantity: 500, price: 7.5, imageUrl: '/assets/img/modalPhoto3.svg'}
+      {name: 'Tree planting in Testour', availableStock: 200, cost: '2.48', url: '/assets/img/modalPhoto1.svg'},
+      {name: 'Wind farm in Tunisia', availableStock: 500, cost: '2.25', url: '/assets/img/modalPhoto2.svg'},
+      {name: 'Forestry project in Madagascar', availableStock: 500, cost: '7.5', url: '/assets/img/modalPhoto3.svg'}
     ];
   }
 
-  getItems(): CartItem[] {
+  getItems(): PartialProject[] {
     return this.cartItems;
   }
 
   getTotalPrice(): number {
-    return this.cartItems.reduce((total, item) => total + item.quantity * item.price, 0);
+    return this.cartItems.reduce((total, item) => total + (item.availableStock || 0) * (+item.cost || 0), 0);
   }
 
-  addItem(item: CartItem) {
+  addItem(item: PartialProject) {
     this.cartItems.push(item);
     this.saveCart();
   }
@@ -52,13 +45,13 @@ export class CartService {
   }
 
   increaseQuantity(index: number) {
-    this.cartItems[index].quantity++;
+    this.cartItems[index].cost = ((+this.cartItems[index].cost || 0) + 1).toString();
     this.saveCart();
   }
 
   decreaseQuantity(index: number) {
-    if (this.cartItems[index].quantity > 1) {
-      this.cartItems[index].quantity--;
+    if (+this.cartItems[index].cost > 1) {
+      this.cartItems[index].cost = ((+this.cartItems[index].cost || 0) - 1).toString();
       this.saveCart();
     }
   }

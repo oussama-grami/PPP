@@ -43,6 +43,7 @@ export class PanneauxComponent implements OnInit {
 
   submitData() {
     if (this.panneauxForm.valid) {
+      this.calculateCarbonFootprint();
       this.displayResult = true;
       this.annualConsumption = this.panneauxForm.get('consommation')?.value;
       this.minRangeConsumption = this.annualConsumption * 0.4;

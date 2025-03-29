@@ -1,0 +1,170 @@
+.contactUs {
+    margin-top: 75px;
+    height: 300px;
+}
+#contactUsText {
+    margin-top: 27px;
+    width: 281px;
+    height: 115px;
+    flex-shrink: 0;
+    color: #575757;
+    font-family: Roboto;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    /* 142.857% */
+}
+
+.contactUs {
+   
+}
+.contactUsButton {
+    border-radius: 5px;
+    background: #014131;
+    padding: 5px 20px 5px 20px;
+    border: none;
+
+}
+#contactUsButtonText {
+    color: #FFF;
+    font-family: Roboto;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    /* 171.429% */
+    margin-right: 2px;
+
+}
+.headerContactUs {
+    color: #000;
+
+    font-family: Roboto;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 20px;
+    /* 111.111% */
+    margin-top: 25px;
+}
+#serviceText {
+    margin-top: 38px;
+    width: 281px;
+}
+.service {
+    color: #575757;
+
+    font-family: Roboto;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    /* 142.857% */
+}
+.quote {
+    margin-top: 57px;
+    width: 282px;
+    height: 80px;
+    flex-shrink: 0;
+    border-radius: 5px;
+    background: #014131;
+    padding: 18px 24px 19px 26px;
+
+}
+
+#quoteText1 {
+    color: #FFF;
+    font-family: Roboto;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+}
+
+#quoteText2 {
+    color: #FFF;
+    text-align: justify;
+    font-family: Roboto;
+    font-size: 14px;
+    font-style: italic;
+    font-weight: 600;
+    line-height: 20px;
+    /* 142.857% */
+}
+
+#quoteText3 {
+    color: #FFF;
+    font-family: Roboto;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 20px;
+}
+.footer {
+    background-color: #014131;
+    width: 100%;
+    height: 50px;
+    overflow: hidden;
+}
+
+.footerParagraph1 {
+    margin-top: 14px;
+    margin-left: 119px;
+    color: #FFF;
+    font-family: Roboto;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px;
+
+    float: left;
+}
+
+.footerParagraph2 {
+    margin-top: 14px;
+    margin-right: 119px;
+    color: #FFF;
+    font-family: Roboto;
+    font-size: 12px;
+    font-style: italic;
+    font-weight: 300;
+    line-height: normal;
+    float: right;
+    display: flex;
+    gap: 8px;
+    
+}
+.link{
+    cursor: pointer;
+}
+.logo-footer{
+    width: 107px;
+    height: 30.411px;
+}
+.seperator{
+    margin-top: 26px;
+    margin-bottom: 28px;
+    height: 1px;
+    background: #E1E1E1;
+    width: 674px;
+}
+
+.contact-text{
+color: #676767;
+font-family: Roboto;
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: 150%; /* 21px */
+}
+.footer-font{
+    text-decoration: none;
+    color: #000;
+font-family: Roboto;
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+letter-spacing: -0.205px;
+}

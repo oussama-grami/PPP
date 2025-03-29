@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 // @ts-ignore
-import { saveAs } from 'file-saver';
+import {saveAs} from 'file-saver';
 
 @Injectable({
   providedIn: 'root'

@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import { Option } from '../Models/esgOptions';
-import { Question } from '../Models/esgQuestion';
+import {Injectable} from '@angular/core';
+import {Option} from '../Models/esgOptions';
+import {Question} from '../Models/esgQuestion';
 
 @Injectable({
   providedIn: 'root'
@@ -222,13 +222,13 @@ export class EsgService {
   calculateEsg(): any {
     const categories = ['Environment', 'Social', 'Governance'] as const;
     const results: any = {};
-    
+
     categories.forEach(category => {
       const questions = this.getQuestionsByCategory(category);
       results[category] = questions.reduce((sum, q) => {
         const selectedOptionId = this.responses[q.id];
         if (selectedOptionId !== undefined) {
-          sum += q.options[selectedOptionId].score;  // Add the score based on the 
+          sum += q.options[selectedOptionId].score;  // Add the score based on the
         }
         return sum;
       }, 0);
