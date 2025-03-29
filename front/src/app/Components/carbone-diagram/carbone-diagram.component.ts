@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ChartOptions} from 'chart.js';
-import 'chartjs-plugin-datalabels'; // Import the chartjs-plugin-datalabels
+import 'chartjs-plugin-datalabels';
 import Chart from 'chart.js/auto'
 import {CarburantService} from "../../Service/carburant.service";
 import {EnergieService} from "../../Service/energie.service";

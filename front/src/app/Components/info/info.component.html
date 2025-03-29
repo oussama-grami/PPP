@@ -1,129 +1,105 @@
-<!-- Favicons-->
-<link rel="shortcut icon" href="/src/assets/Ecopilot/icon.png" type="image/x-icon">
-<link rel="apple-touch-icon" type="image/x-icon" href="/assets/img/apple-touch-icon-57x57-precomposed.png">
-<link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="/assets/img/apple-touch-icon-72x72-precomposed.png">
-<link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="/assets/img/apple-touch-icon-114x114-precomposed.png">
-<link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="/assets/img/apple-touch-icon-144x144-precomposed.png">
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-
-<!-- GOOGLE WEB FONT -->
-<link href="https://fonts.googleapis.com/css?family=Work+Sans:400,500,600" rel="stylesheet">
-
-<!-- BASE CSS -->
-<link href="/assets/css/bootstrap.min.css" rel="stylesheet">
-<link href="/assets/css/menu.css" rel="stylesheet">
-<link href="/assets/css/style.css" rel="stylesheet">
-<link href="/assets/css/vendors.css" rel="stylesheet">
-
-<!-- YOUR CUSTOM CSS -->
-<link href="/assets/css/custom.css" rel="stylesheet">
-<!-- MODERNIZR MENU -->
-<script src="/assets/js/modernizr.js"></script>
 <app-nav-acceuil [selected]="1"></app-nav-acceuil>
 <div class="container-fluid full-height" style="margin-top: 50px;">
-<div class="row row-height">
-  <div class="col-lg-6 content-left1">
-    <div class="content-left-wrapper">
+  <div class="row row-height">
+    <div class="col-lg-6 content-left1">
+      <div class="content-left-wrapper">
 
-      <img src="assets/img/info.svg" class="img-title" id="descriptionImage"/>
+        <img src="assets/img/info.svg" class="img-title" id="descriptionImage"/>
         <h2 id="descriptionTitle">General Information</h2>
         <p id="descriptionText">Please tell us about your business.</p>
+      </div>
     </div>
-  </div>
 
 
     <div class="col-lg-6 content-right" id="start" style="overflow-y: hidden;">
-    <div id="wizard_container" >
-      <form [formGroup]="infoFormGroup" (ngSubmit)="onNext()" id="wrapped">
-        <div class="step">
-          <h3 class="main_question mt-2"><strong>1/7</strong> Your company name</h3>
-          <!-- Error Message Display -->
-          <div *ngIf="errorMessage" class="alert alert-danger">
-            {{ errorMessage }}
-          </div>
-          <!-- Company Name -->
-          <div class="form-group">
-            <input type="text" formControlName="companyName" class="form-control" placeholder="Company name" id="companyName">
-            <small class="text-danger" *ngIf="companyName?.touched && companyName?.invalid">
-              Company name is required (min length: 2).
-            </small>
-          </div>
-
-          <!-- Date Fields -->
-          <h6 style="font-size: small;">From <span style="margin-left: 165px;">To</span></h6>
-          <div class="flex-container" style="justify-content: normal;">
-            <div class="form-group mb-3" style="width: 200px;">
-              <input type="date" class="form-control" placeholder="From" formControlName="beginDate">
-              <small class="text-danger" *ngIf="beginDate?.touched && beginDate?.invalid">
-                Begin date is required.
+      <div id="wizard_container">
+        <form [formGroup]="infoFormGroup" (ngSubmit)="onNext()" id="wrapped">
+          <div class="step">
+            <h3 class="main_question mt-2"><strong>1/7</strong> Your company name</h3>
+            <!-- Error Message Display -->
+            <div *ngIf="errorMessage" class="alert alert-danger">
+              {{ errorMessage }}
+            </div>
+            <!-- Company Name -->
+            <div class="form-group">
+              <input type="text" formControlName="companyName" class="form-control" placeholder="Company name"
+                     id="companyName">
+              <small class="text-danger" *ngIf="companyName?.touched && companyName?.invalid">
+                Company name is required (min length: 2).
               </small>
             </div>
-            <div class="form-group mb-3" style="width: 200px;">
-              <input type="date" class="form-control" placeholder="To" formControlName="endDate">
-              <small class="text-danger" *ngIf="endDate?.touched && endDate?.invalid">
-                End date is required.
+
+            <!-- Date Fields -->
+            <h6 style="font-size: small;">From <span style="margin-left: 165px;">To</span></h6>
+            <div class="flex-container" style="justify-content: normal;">
+              <div class="form-group mb-3" style="width: 200px;">
+                <input type="date" class="form-control" placeholder="From" formControlName="beginDate">
+                <small class="text-danger" *ngIf="beginDate?.touched && beginDate?.invalid">
+                  Begin date is required.
+                </small>
+              </div>
+              <div class="form-group mb-3" style="width: 200px;">
+                <input type="date" class="form-control" placeholder="To" formControlName="endDate">
+                <small class="text-danger" *ngIf="endDate?.touched && endDate?.invalid">
+                  End date is required.
+                </small>
+              </div>
+            </div>
+
+            <!-- Country -->
+            <h6>Your country</h6>
+            <div class="form-group">
+              <select class="nice-select wide mb-3" formControlName="country" id="country">
+                <option class="option">Algeria</option>
+                <option class="option">Canada</option>
+                <option class="option">France</option>
+                <option class="option">Morocco</option>
+                <option class="option">Saudi Arabia</option>
+                <option class="option" selected>Tunisia</option>
+                <option class="option">UAE</option>
+                <option class="option">UK</option>
+                <option class="option">USA</option>
+              </select>
+              <small class="text-danger" *ngIf="country?.touched && country?.invalid">
+                Country selection is required.
+              </small>
+            </div>
+
+            <!-- Sector -->
+            <h6>Your activity sector</h6>
+            <div class="form-group">
+              <select class="nice-select wide mb-3" formControlName="sector" id="sector">
+                <option class="option">Bank / Insurance</option>
+                <option class="option">Trade / Trading / Distribution</option>
+                <option class="option">Electronics / Electrical</option>
+                <option class="option">Publishing / Communication / Multimedia</option>
+              </select>
+              <small class="text-danger" *ngIf="sector?.touched && sector?.invalid">
+                Sector selection is required.
               </small>
             </div>
           </div>
 
-          <!-- Country -->
-          <h6>Your country</h6>
-          <div class="form-group">
-            <select class="nice-select wide mb-3" formControlName="country" id="country">
-              <option class="option">Algeria</option>
-              <option class="option">Canada</option>
-              <option class="option">France</option>
-              <option class="option">Morocco</option>
-              <option class="option">Saudi Arabia</option>
-              <option class="option" selected>Tunisia</option>
-              <option class="option">UAE</option>
-              <option class="option">UK</option>
-              <option class="option">USA</option>
-            </select>
-            <small class="text-danger" *ngIf="country?.touched && country?.invalid">
-              Country selection is required.
-            </small>
+          <br/>
+          <div id="bottom-wizard2">
+            <div class="button-container">
+              <button type="button" name="backward" class="backward" style="margin-right: 200px;" routerLink="/carbone">
+                Back
+              </button>
+              <button type="submit" name="forward" class="forward">Continue</button>
+            </div>
+
+            <div id="bottom-wizard">
+              <p id="footer-info">A tool based on ADEME Carbon Base ® version 22.0. This calculation makes it possible
+                to establish a carbon footprint but does not serve as a Bilan Carbone ®.</p>
+            </div>
           </div>
-
-          <!-- Sector -->
-          <h6>Your activity sector</h6>
-          <div class="form-group">
-            <select class="nice-select wide mb-3" formControlName="sector" id="sector">
-              <option class="option">Bank / Insurance</option>
-              <option class="option">Trade / Trading / Distribution</option>
-              <option class="option">Electronics / Electrical</option>
-              <option class="option">Publishing / Communication / Multimedia</option>
-            </select>
-            <small class="text-danger" *ngIf="sector?.touched && sector?.invalid">
-              Sector selection is required.
-            </small>
-          </div>
-        </div>
-
-        <br/>
-        <div id="bottom-wizard2">
-          <div class="button-container">
-            <button type="button" name="backward" class="backward" style="margin-right: 200px;" routerLink="/carbone">Back</button>
-            <button type="submit" name="forward" class="forward">Continue</button>
-          </div>
-
-          <div id="bottom-wizard">
-            <p id="footer-info">A tool based on ADEME Carbon Base ® version 22.0. This calculation makes it possible to establish a carbon footprint but does not serve as a Bilan Carbone ®.</p>
-          </div>
-        </div>
-      </form>
+        </form>
 
 
+      </div>
     </div>
   </div>
 </div>
-</div>
-<script src="assets/js/jquery-3.6.3.min.js"></script>
-<script src="assets/js/common_scripts.min.js"></script>
-<script src="assets/js/velocity.min.js"></script>
-<script src="assets/js/functions.js"></script>
-
-<!-- Wizard script -->
-<script src="assets/js/survey_func.js"></script>
 
 

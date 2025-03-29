@@ -60,7 +60,7 @@
                             data-bs-toggle="dropdown" aria-expanded="false">
                       <span class="flag-icon" [ngClass]="selectedCountry.iconClass"></span> {{ selectedCountry.code }}
                     </button>
-                    <ul class="dropdown-menu" aria-labelledby="countryDropdown">
+                    <ul class="dropdown-menu dropdown-menu-scrollable" aria-labelledby="countryDropdown">
                       <li *ngFor="let country of countries">
                         <a class="dropdown-item" (click)="selectCountry(country)">
                           <span class="flag-icon"
