@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CarbonFootprintService } from '../../Service/carbon-footprint.service';  // Use CarbonFootprintService
-import { Router } from '@angular/router';
-import Swal from 'sweetalert2';
-import { Energie } from '../../Models/energie';  // Assuming Energie model is defined
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {CarbonFootprintService} from '../../Service/carbon-footprint.service'; // Use CarbonFootprintService
+import {Router} from '@angular/router';
+import {Energie} from '../../Models/energie'; // Assuming Energie model is defined
 
 @Component({
   selector: 'app-energie',

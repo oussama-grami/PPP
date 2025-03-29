@@ -1,8 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Option } from 'src/app/Models/esgOptions';
-import { Question } from 'src/app/Models/esgQuestion';
-import { EsgService } from 'src/app/Service/esg.service';
+import {Component, Input, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Option} from 'src/app/Models/esgOptions';
+import {Question} from 'src/app/Models/esgQuestion';
+import {EsgService} from 'src/app/Service/esg.service';
 
 @Component({
   selector: 'app-esg-assessment',
@@ -47,7 +47,7 @@ export class EsgAssessmentComponent implements OnInit {
   }
 
   addScoreAndNavigate() {
-    
+
     if (!this.choiceSelected) {
       this.warning();
       return;

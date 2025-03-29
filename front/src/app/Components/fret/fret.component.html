@@ -1,23 +1,3 @@
-<!-- Favicons-->
-<link rel="shortcut icon" href="/src/assets/Ecopilot/icon.png" type="image/x-icon">
-<link rel="apple-touch-icon" type="image/x-icon" href="/assets/img/apple-touch-icon-57x57-precomposed.png">
-<link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="/assets/img/apple-touch-icon-72x72-precomposed.png">
-<link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="/assets/img/apple-touch-icon-114x114-precomposed.png">
-<link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="/assets/img/apple-touch-icon-144x144-precomposed.png">
-
-<!-- GOOGLE WEB FONT -->
-<link href="https://fonts.googleapis.com/css?family=Work+Sans:400,500,600" rel="stylesheet">
-
-<!-- BASE CSS -->
-<link href="/assets/css/bootstrap.min.css" rel="stylesheet">
-<link href="/assets/css/menu.css" rel="stylesheet">
-<link href="/assets/css/style.css" rel="stylesheet">
-<link href="/assets/css/vendors.css" rel="stylesheet">
-
-<!-- YOUR CUSTOM CSS -->
-<link href="/assets/css/custom.css" rel="stylesheet">
-<!-- MODERNIZR MENU -->
-<script src="/assets/js/modernizr.js"></script>
 <app-nav-acceuil [selected]="1"></app-nav-acceuil>
 <div class="container-fluid full-height" style="margin-top: 50px;">
   <a routerLink="/nav" class="cd-nav-trigger">Menu<span class="cd-icon"></span></a>
@@ -26,14 +6,15 @@
       <div class="content-left-wrapper">
         <img src="assets/img/FRET.png" class="img-title" id="descriptionImage"/>
         <h2 id="descriptionTitle">Freight</h2>
-        <p id="descriptionText">Evaluate your air and sea freight emissions in just a few clicks!        </p>
+        <p id="descriptionText">Evaluate your air and sea freight emissions in just a few clicks! </p>
       </div>
     </div>
-    <div class="col-lg-6 content-right" id="start"style="overflow-y: hidden;">
+    <div class="col-lg-6 content-right" id="start" style="overflow-y: hidden;">
       <div id="wizard_container">
         <form [formGroup]="fForm" (ngSubmit)="onNext()" id="wrapped">
           <div class="step">
-            <h3 class="main_question mt-2"><strong>5/7</strong> Enter the data related to your company's freight transportation</h3>
+            <h3 class="main_question mt-2"><strong>5/7</strong> Enter the data related to your company's freight
+              transportation</h3>
 
             <!-- Error Message Display -->
             <div *ngIf="errorMessage" class="alert alert-danger">
@@ -58,7 +39,8 @@
 
             <!-- Maritime Freight -->
             <div class="form-group">
-              <input type="number" class="form-control" formControlName="fretMaritme" placeholder="Maritime freight (kg)">
+              <input type="number" class="form-control" formControlName="fretMaritme"
+                     placeholder="Maritime freight (kg)">
               <small class="text-danger" *ngIf="fForm.get('fretMaritme')?.touched && fForm.get('fretMaritme')?.invalid">
                 Maritime freight is required.
               </small>
@@ -66,8 +48,10 @@
 
             <!-- Maritime Freight 1 -->
             <div class="form-group">
-              <input type="number" class="form-control" formControlName="fretMaritme1" placeholder="Maritime freight (kg)">
-              <small class="text-danger" *ngIf="fForm.get('fretMaritme1')?.touched && fForm.get('fretMaritme1')?.invalid">
+              <input type="number" class="form-control" formControlName="fretMaritme1"
+                     placeholder="Maritime freight (kg)">
+              <small class="text-danger"
+                     *ngIf="fForm.get('fretMaritme1')?.touched && fForm.get('fretMaritme1')?.invalid">
                 Maritime freight is required.
               </small>
             </div>
@@ -76,31 +60,22 @@
           <!-- Buttons Section -->
           <div id="bottom-wizard2">
             <div class="button-container">
-              <button type="button" name="backward" class="backward"  routerLink="/aer">Back</button>
-              <button type="submit" name="forward" class="forward" >Continue</button>
+              <button type="button" name="backward" class="backward" routerLink="/aer">Back</button>
+              <button type="submit" name="forward" class="forward">Continue</button>
             </div>
 
 
-          <div id="bottom-wizard">
-            <p id="footer-info">A tool based on ADEME Carbon Base ® version 22.0. This calculation makes it possible to establish a carbon footprint but does not serve as a Bilan Carbone ®.</p>
-          </div>
+            <div id="bottom-wizard">
+              <p id="footer-info">A tool based on ADEME Carbon Base ® version 22.0. This calculation makes it possible
+                to establish a carbon footprint but does not serve as a Bilan Carbone ®.</p>
+            </div>
           </div>
         </form>
-
-
 
 
       </div>
     </div>
   </div>
 </div>
-
-<script src="assets/js/jquery-3.6.3.min.js"></script>
-<script src="assets/js/common_scripts.min.js"></script>
-<script src="assets/js/velocity.min.js"></script>
-<script src="assets/js/functions.js"></script>
-
-<!-- Wizard script -->
-<script src="assets/js/survey_func.js"></script>
 
 

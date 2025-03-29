@@ -1,79 +1,45 @@
-
-<link rel="shortcut icon" href="/assets/value_green/icon.png" type="image/x-icon">
-<link rel="apple-touch-icon" type="image/x-icon" href="/assets/img/apple-touch-icon-57x57-precomposed.png">
-<link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="/assets/img/apple-touch-icon-72x72-precomposed.png">
-<link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="/assets/img/apple-touch-icon-114x114-precomposed.png">
-<link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="/assets/img/apple-touch-icon-144x144-precomposed.png">
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-
-<!-- GOOGLE WEB FONT -->
-<link href="https://fonts.googleapis.com/css?family=Work+Sans:400,500,600" rel="stylesheet">
-
-<!-- BASE CSS -->
-<link href="/assets/css/bootstrap.min.css" rel="stylesheet">
-<link href="/assets/css/menu.css" rel="stylesheet">
-<link href="/assets/css/style.css" rel="stylesheet">
-<link href="/assets/css/vendors.css" rel="stylesheet">
-
-<!-- YOUR CUSTOM CSS -->
-<link href="/assets/css/custom.css" rel="stylesheet">
-<script src="/assets/js/modernizr.js"></script>
-
 <div class="container">
   <!-- Environment Section -->
   <div class="box green">
     <img src="assets/img/leaf1.png" alt="Environment icon">
     <h2 class="env">Environment</h2>
   </div>
-  
   <!-- Environment Questions (1-5) -->
   <div *ngFor="let num of getRange(1, 5)" class="box">
     <p class="number">{{ num }}</p>
-    <div class="bar" 
-    [class.active]="num === currentQuestion">
+    <div class="bar"
+         [class.active]="num === currentQuestion">
     </div>
   </div>
-  
-
-
-
   <!-- Social Section -->
-  <div class="box grey"  [class.social]="currentQuestion > 5">
+  <div class="box grey" [class.social]="currentQuestion > 5">
     <img src="assets/img/leaf2.png" alt="Social icon">
     <h2 class="env">Social</h2>
   </div>
-  
+
   <!-- Social Questions (6-10) -->
   <div *ngFor="let num of getRange(6, 10)" class="box">
-    <p class="number">{{num}}</p>
-    <div class="bar social" 
+    <p class="number">{{ num }}</p>
+    <div class="bar social"
          [class.active]="num === currentQuestion"></div>
   </div>
-  
+
   <!-- Governance Section -->
   <div class="box grey" [class.governance]="currentQuestion > 10">
     <img src="assets/img/leaf3.png" alt="Governance icon">
     <h2 class="env">Governance</h2>
   </div>
-  
+
   <!-- Governance Questions (11-15) -->
   <div *ngFor="let num of getRange(11, 15)" class="box">
-    <p class="number">{{num}}</p>
-    <div class="bar social" 
+    <p class="number">{{ num }}</p>
+    <div class="bar social"
          [class.active]="num === currentQuestion"></div>
   </div>
-  
+
   <!-- Results Section -->
   <div class="box grey">
     <img src="assets/img/leaf4.png" alt="Results icon">
     <h1 class="env">Results</h1>
   </div>
 </div>
-
-
-<script src="assets/js/jquery-3.6.3.min.js"></script>
-<script src="assets/js/common_scripts.min.js"></script>
-<script src="assets/js/velocity.min.js"></script>
-<script src="assets/js/functions.js"></script>
-<!-- Wizard script -->
-<script src="assets/js/survey_func.js"></script>

@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CarbonFootprintService } from '../../Service/carbon-footprint.service';
-import { Router } from '@angular/router';
-import { Company } from '../../Models/company';  // Import your Info model
+import {Component} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {CarbonFootprintService} from '../../Service/carbon-footprint.service';
+import {Router} from '@angular/router';
+import {Company} from '../../Models/company'; // Import your Info model
 
 @Component({
   selector: 'app-info',

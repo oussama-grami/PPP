@@ -1,4 +1,3 @@
-
 import {Unite} from "../enumerations/unite";
 
 export class Consommables {

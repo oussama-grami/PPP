@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {ProjectsService} from "../../Service/projects.service";
 import {project} from "../../Models/project";
 
@@ -7,30 +7,40 @@ import {project} from "../../Models/project";
   templateUrl: './price-details.component.html',
   styleUrls: ['./price-details.component.css']
 })
-export class PriceDetailsComponent  implements OnInit {
-@Input() projectId : number =0;
-project: project | undefined ;
-quantity:number = 0;
-constructor(private projectsService:ProjectsService) {
-}
-ngOnInit() {
-  this.getProject();
-}
+export class PriceDetailsComponent implements OnInit, OnChanges {
+  @Input() projectId: number = 0;
+  project: project | undefined;
+  quantity: number = 0;
 
-  getProject(){
-  this.project = this.projectsService.getProjectById(this.projectId);
-  console.log(this.project);
-}
+  constructor(private projectsService: ProjectsService) {
+  }
+
+  ngOnInit() {
+    this.getProject();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['projectId']) {
+      this.getProject();
+      this.quantity = 0;
+    }
+  }
+
+  getProject() {
+    this.projectsService.getProjectById(this.projectId).subscribe((data) => {
+      this.project = data;
+    });
+  }
 
   onDecreaseQuantity() {
-    if(this.quantity > 0){
+    if (this.quantity > 0) {
       this.quantity -= 10;
     }
   }
 
   onIncreaseQuantity() {
-    if(this.quantity < this.project!.availableStock){
-        this.quantity += 10;
+    if (this.quantity < this.project!.availableStock) {
+      this.quantity += 10;
     }
   }
 

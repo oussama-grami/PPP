@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-esg',
@@ -6,8 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./esg.component.css']
 })
 export class EsgComponent implements OnInit{
-  ngOnInit() {  
-    
+  ngOnInit() {
+
     window.scrollTo(0, 0);
   }
 }

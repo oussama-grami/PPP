@@ -1,101 +1,5 @@
-<link rel="shortcut icon" href="/src/assets/Ecopilot/icon.png" type="image/x-icon">
-<link rel="apple-touch-icon" type="image/x-icon" href="/assets/img/apple-touch-icon-57x57-precomposed.png">
-<link rel="apple-touch-icon" type="image/x-icon" sizes="72x72"
-      href="/assets/img/apple-touch-icon-72x72-precomposed.png">
-<link rel="apple-touch-icon" type="image/x-icon" sizes="114x114"
-      href="/assets/img/apple-touch-icon-114x114-precomposed.png">
-<link rel="apple-touch-icon" type="image/x-icon" sizes="144x144"
-      href="/assets/img/apple-touch-icon-144x144-precomposed.png">
-
-<!-- GOOGLE WEB FONT -->
-<link href="https://fonts.googleapis.com/css?family=Work+Sans:400,500,600" rel="stylesheet">
-
-<!-- BASE CSS -->
-<link href="/assets/css/bootstrap.min.css" rel="stylesheet">
-<link href="/assets/css/menu.css" rel="stylesheet">
-<link href="/assets/css/style.css" rel="stylesheet">
-<link href="/assets/css/vendors.css" rel="stylesheet">
-
-<!-- YOUR CUSTOM CSS -->
-<link href="/assets/css/custom.css" rel="stylesheet">
-<script src="/assets/js/modernizr.js"></script>
 <div class="h-100">
   <app-nav-acceuil [selected]="1"></app-nav-acceuil>
-  <!-- <div style="position: relative; " [ngStyle]="{'background-image': 'url(/assets/img/pan2.jpg)', 'background-size': 'cover', 'background-repeat': 'no-repeat', 'background-position': 'top center', 'width': '100%', 'height': '50%'}">
-    <div [ngStyle]="{'background-image': 'url(/assets/img/pan1.png)', 'background-size': 'cover', 'background-repeat': 'no-repeat', 'background-position': 'top center', 'width': '100%', 'height': '50vh'}">
-      <p class="p1">Evaluate the emissions reduction potential of your project</p>
-      <p class="p2">The purpose of this simulation is to evaluate the reduction potential of an arboriculture, afforestation or reforestation project on your greenhouse gas emissions.</p>
-    </div>
-  </div>
-  <div style="margin-top: 40px;">
-    <p class="p3">We offer you a simple way to assess your contribution to reducing CO2 emissions.</p>
-    <p class="p4">To assess the CO2 reduction potential of your project, please provide the following information:</p>
-  </div>
-  <div style="margin-top: 20px; display: flex; justify-content: center;">
-    <form ngForm id="wrapped" (ngSubmit)="submitData()">
-      <div class="mb-3">
-        <label  class="form-labell">What is the nature of the trees affected by the project?</label>
-      </div>
-      <div class="mb-3">
-        <select [(ngModel)]="arbData.typeArbre" name="typeArbre" id="typeArbre" onChange="handleChange()" style="width: 650px; height: 54px; border-radius: 5px; border: 1px solid;">
-          <option class="option" [value]="TypeArbre.Olivier">Olivier</option>
-          <option class="option" [value]="TypeArbre.Eucalyptus">Eucalyptus</option>
-          <option class="option" [value]="TypeArbre.Caroubier">Carob tree</option>
-          <option class="option" [value]="TypeArbre.Cypres">Cypress</option>
-          <option class="option" [value]="TypeArbre.Alep">Aleppo Pine</option>
-          <option class="option" [value]="TypeArbre.Thurifere">Thurifer Juniper</option>
-          <option class="option" [value]="TypeArbre.Cedre">Atlas Cedar</option>
-          <option class="option" [value]="TypeArbre.Rose">Pink Laurel</option>
-          <option class="option" [value]="TypeArbre.Acacia">Acacia</option>
-          <option class="option" [value]="TypeArbre.Figuier">Fig tree</option>
-          <option class="option" [value]="TypeArbre.Almondier">Almondier</option>
-          <option class="option" [value]="TypeArbre.Grenadier">Pomegranate</option>
-          <option class="option" [value]="TypeArbre.Chene_liege">Cork Oak</option>
-          <option class="option" [value]="TypeArbre.Chene_vert">Holm oak</option>
-          <option class="option" [value]="TypeArbre.Micocoulier">Hackberry </option>
-          <option class="option" [value]="TypeArbre.Peuplier">Poplar</option>
-          <option class="option" [value]="TypeArbre.Tamaris">Tamarisk</option>
-          <option class="option" [value]="TypeArbre.Dattier">Date Palm</option>
-          <option class="option" [value]="TypeArbre.Marronnier">Horse chestnut</option>
-          <option class="option" [value]="TypeArbre.Chene_kermes">Kermes oak</option>
-        </select>
-      </div>
-      <div class="mb-3">
-        <label  class="form-labell">Enter the number of trees</label>
-      </div>
-
-      <div class="mb-3">
-        <input type="number" name="nbArbre" [(ngModel)]="arbData.nbArbre" id="nbArbre" style="width: 650px; height: 54px; top: 742px; left: 469px; border-radius: 5px; border: 1px solid;">
-      </div>
-      <div class="mb-3">
-        <label  class="form-labell">At what stage of development are the trees? </label>
-      </div>
-      <div class="mb-3">
-        <select [(ngModel)]="arbData.stade" name="stade" id="stade" onChange="handleChange()" style="width: 650px; height: 54px; border-radius: 5px; border: 1px solid;">
-          <option class="option" [value]="Stade.Jeune"> Young</option>
-          <option class="option" [value]="Stade.Adulte">Adult</option>
-          <option class="option" [value]="Stade.Mature">Mature</option>
-        </select>
-      </div>
-      <div class="mb-3">
-        <label  class="form-labell">How tall are your trees? </label>
-      </div>
-
-      <div class="mb-3">
-        <select [(ngModel)]="arbData.hauteur" id="hauteur" name="hauteur" onChange="handleChange()" style="width: 650px; height: 54px; border-radius: 5px; border: 1px solid;">
-          <option class="option" [value]="Hauteur.Plus20"> > 20m </option>
-          <option class="option" [value]="Hauteur.Entre15et20">15-20 m</option>
-          <option class="option" [value]="Hauteur.Entre11et15">11-15 m</option>
-          <option class="option" [value]="Hauteur.Moin10">< 10 m</option>
-        </select>
-      </div>
-      <div style="justify-content: right;display: flex">
-        <button type="submit" style="margin-top: 20px; margin-bottom: 50px" class="calculate-button">Calculate</button>
-      </div>
-    </form>
-  </div>
-</div> -->
-  <!-- src/app/Components/arboriculture/arboriculture.component.html -->
   <div class="container-fluid" style="margin-left: 0;">
     <div class="row row-height flex-column flex-lg-row">
       <div class="col-12 col-lg-6 h-100" style="padding: 0;">
@@ -171,6 +75,9 @@
                 <option [value]="'Entre11et15'">11-15 m</option>
                 <option [value]="'Moin10'">< 10 m</option>
               </select>
+            </div>
+            <div *ngIf="displayResult" class="alert alert-info">
+              {{ resultatMessage }}
             </div>
             <div class="d-flex justify-content-end mb-4">
               <button type="submit" class="btn btn-dark calculate-button">Calculate</button>

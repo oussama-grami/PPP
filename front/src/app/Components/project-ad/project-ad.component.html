@@ -1,15 +1,15 @@
 <div class="projectContainer">
-    <img [src]="project?.url" alt="project">
-    <div class="projectTitle">
-        <span id="flag"><img [src]="project?.flag" alt=""></span>
-            <span ><img class="separator" src="/assets/img/lineSeparator.png" alt="" height="14px"></span>
-            <span id="category">{{project?.category}}</span>
-            <span id="price" style="float: right;">{{project?.cost}}$/tCo2e</span>
-    </div>
-    <div class="projectDescription">
-        {{project?.name}}
-    </div>
-    <button [routerLink]="[project?.routing,project?.id]"  class="projectButton">
-        <span class="projectButtonText">See more</span>
-    </button>
+  <img [src]="project?.url" alt="project">
+  <div class="projectTitle">
+    <span id="flag"><img [src]="project?.flag" alt=""></span>
+    <span><img class="separator" src="/assets/img/lineSeparator.png" alt="" height="14px"></span>
+    <span id="category">{{ project?.category }}</span>
+    <span id="price" style="float: right;">{{ project?.cost }}$/tCo2e</span>
+  </div>
+  <div class="projectDescription">
+    {{ project?.name }}
+  </div>
+  <button [routerLink]="project?.routing + '/'+project?.id" class="projectButton">
+    <span class="projectButtonText">See more</span>
+  </button>
 </div>

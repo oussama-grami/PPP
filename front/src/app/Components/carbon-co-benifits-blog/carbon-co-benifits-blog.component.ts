@@ -1,7 +1,6 @@
-import { Component } from '@angular/core';
-import jsPDF from 'jspdf';
+import {Component} from '@angular/core';
 import {FileDownloadService} from "../../Service/file-download-service.service";
-import { environment } from 'src/environments/environment'
+import {environment} from 'src/environments/environment'
 
 
 @Component({
