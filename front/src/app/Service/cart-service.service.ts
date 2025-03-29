@@ -32,10 +32,15 @@ export class CartService {
   }
 
   addItem(item: PartialProject) {
-    //item.quantity = 1;
-    this.cartItems.push(item);
+    const existingItem = this.cartItems.find(cartItem => cartItem.name === item.name);
+    if (existingItem) {
+      existingItem.quantity = (existingItem.quantity || 0) + (item.quantity || 1);
+    } else {
+      this.cartItems.push({ ...item, quantity: item.quantity || 1 });
+    }
     this.saveCart();
   }
+
 
   removeItem(index: number) {
     this.cartItems.splice(index, 1);

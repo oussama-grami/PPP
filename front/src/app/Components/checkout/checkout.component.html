@@ -40,7 +40,10 @@
         </div>
         <div class="col-7 col-md-9 mt-3 mt-md-0">
           <div class="project-name">{{ item.name }}</div>
-          <div class="project-name-details">{{ item.cost }}$ x {{ item.quantity }}</div>
+          <div class="project-name-details">
+            {{ (+item.cost * +item.quantity) | number:'1.2-2' }}$
+          </div>
+
         </div>
       </div>
     </div>
@@ -78,7 +81,7 @@
   <div class="separator" style="margin-top: 14px;"></div>
   <div class="total d-flex justify-content-between align-items-center">
     <span class="project-name bigger-font">Total</span>
-    <span class="header-text bigger-font" style="float: right;">{{ getTotalPrice() }}$</span>
+    <span class="header-text bigger-font" style="float: right;">{{ getTotalPrice() | number:'1.2-2' }}$</span>
   </div>
   <div class="separator"></div>
   <div class="checkoutButtons d-flex justify-content-center align-items-center flex-column flex-md-row w-100 justify-content-md-between">
