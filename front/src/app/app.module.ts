@@ -42,8 +42,8 @@ import {EsgHeaderComponent} from './Components/esg-header/esg-header.component';
 import {EsgAssessmentComponent} from './Components/esg-assessment/esg-assessment.component';
 import {PaginationComponent} from './Components/pagination/pagination.component';
 import {PriceDetailsComponent} from './Components/price-details/price-details.component';
-import { EsgOverviewComponent } from './Components/esg-overview/esg-overview.component';
-import { ProjectsCarouselComponent } from './Components/projects-carousel/projects-carousel.component';
+import {EsgOverviewComponent} from './Components/esg-overview/esg-overview.component';
+import {ProjectsCarouselComponent} from "./Components/projects-carousel/projects-carousel.component";
 
 @NgModule({
   declarations: [
@@ -100,4 +100,5 @@ import { ProjectsCarouselComponent } from './Components/projects-carousel/projec
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

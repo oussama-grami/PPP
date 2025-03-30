@@ -1,228 +1,232 @@
 .container {
-    margin-top: 8rem;
-    position: relative;
-    margin-bottom:400px;
-    min-height: 80vh;
+  margin-top: 8rem;
+  position: relative;
+  margin-bottom: 400px !important;
 }
 
 
 .retour {
-    margin-bottom: 10px;
-    align-items: flex-start;
-    border-radius: 20px;
+  margin-bottom: 10px;
+  align-items: flex-start;
+  border-radius: 20px;
 }
 
 .retour button {
-    padding-left: 0px;
-    border: none;
-    background: transparent;
+  padding-left: 0px;
+  border: none;
+  background: transparent;
 }
 
 .retour-text {
-    color: #000;
-    font-family: "Roboto";
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 24px;
+  color: #000;
+  font-family: "Roboto";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
 
 }
 
 .nav {
-    margin-top: 16px;
+  margin-top: 16px;
 }
-.cursor{
-    cursor: pointer;
+
+.cursor {
+  cursor: pointer;
 }
 
 .default-font {
-    color: #000;
-    font-family: Roboto;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 24px;
-    /* 150% */
+  color: #000;
+  font-family: Roboto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  /* 150% */
 }
 
 .grey-color {
-    color: #999;
+  color: #999;
 }
 
 .modal-photo {
-    width: 78px;
-    height: 78px;
-    border-radius: 5px;
+  width: 78px;
+  height: 78px;
+  border-radius: 5px;
 }
 
 
-
 .project-final-price {
-    width: 91px;
-    margin-top: 12px;
-    margin-left: 12px;
+  width: 91px;
+  margin-top: 12px;
+  margin-left: 12px;
 
 }
 
 .project-final-price-text1 {
-    color: #000;
-    font-family: Roboto;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
+  color: #000;
+  font-family: Roboto;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
 }
 
 .project-final-price-text2 {
-    color: #C5C1C1;
-    font-family: Roboto;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
+  color: #C5C1C1;
+  font-family: Roboto;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 
 .separator-modal {
-    width: 98%;
-    height: 1px;
-    background: #D3D3D3;
-    margin: 15px 0px;
+  width: 98%;
+  height: 1px;
+  background: #D3D3D3;
+  margin: 15px 0px;
 }
 
 .total {
-    color: #000;
+  color: #000;
 
-    font-family: Roboto;
-    font-size: 24px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    /* 111.111% */
+  font-family: Roboto;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  /* 111.111% */
 }
 
 .paymentText {
-    color: #999;
+  color: #999;
 
-    font-family: Roboto;
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
+  font-family: Roboto;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 
 .input-format {
-    width: 586px;
-height: 46px;
-flex-shrink: 0;
-    margin-top: 32px;
-    /* 218.75% */
+  width: 586px;
+  height: 46px;
+  flex-shrink: 0;
+  margin-top: 32px;
+  /* 218.75% */
 }
-.form-format{
-    color: #98999D;
+
+.form-format {
+  color: #98999D;
   display: flex;
-font-family: Roboto;
-font-size: 16px;
-font-style: normal;
-font-weight: 400;
-line-height: 35px; /* 218.75% */
-margin-bottom: 16px;
+  font-family: Roboto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 35px; /* 218.75% */
+  margin-bottom: 16px;
 }
 
 .price {
-    display: inline-flex;
+  display: inline-flex;
 }
 
 .project-name {
-    color: #000;
+  color: #000;
 
-    font-family: Roboto;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
+  font-family: Roboto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
 }
 
 .quantity {
-    margin-top: 10px;
-    color: #6D6E6F;
-    font-family: Roboto;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
+  margin-top: 10px;
+  color: #6D6E6F;
+  font-family: Roboto;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
-.priceAndTrash{
-    float: right;
-    display: flex;
+
+.priceAndTrash {
+  float: right;
+  display: flex;
 }
 
 .price-text {
 
-    color: #000;
+  color: #000;
 
-    text-align: right;
-    font-family: Roboto;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
+  text-align: right;
+  font-family: Roboto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
 }
 
 .unity-text {
-    color: #C5C1C1;
-font-family: Roboto;
-font-size: 14px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
+  color: #C5C1C1;
+  font-family: Roboto;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
-.formGroup{
-    width: 700px;
+
+.formGroup {
+  width: 700px;
 }
+
 .checkoutButtons {
-    float: right;
+  float: right;
 
 }
 
 .checkoutButton1 {
-    padding: 5px 20px;
-    align-items: flex-start;
-    gap: 2px;
-    border-radius: 5px;
-    border: 1px solid #014131;
-    background: transparent;
+  padding: 5px 20px;
+  align-items: flex-start;
+  gap: 2px;
+  border-radius: 5px;
+  border: 1px solid #014131;
+  background: transparent;
 }
 
 .checkoutButton2 {
-    padding: 5px 20px;
-    align-items: flex-start;
-    gap: 2px;
-    border-radius: 5px;
-    background: #014131;
-    border: transparent;
+  padding: 5px 20px;
+  align-items: flex-start;
+  gap: 2px;
+  border-radius: 5px;
+  background: #014131;
+  border: transparent;
 }
 
 .checkoutButton1Text {
-    color: #014131;
+  color: #014131;
 
-    font-family: Roboto;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 24px;
+  font-family: Roboto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
 
 }
 
 .checkoutButton2Text {
-    color: #FFF;
+  color: #FFF;
 
-    font-family: Roboto;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 24px;
+  font-family: Roboto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
 
 }
+
 /* Améliorer les bordures et les ombres des champs */
 input.form-control {
   border-radius: 8px;
