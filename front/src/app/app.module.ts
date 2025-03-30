@@ -42,6 +42,7 @@ import {EsgHeaderComponent} from './Components/esg-header/esg-header.component';
 import {EsgAssessmentComponent} from './Components/esg-assessment/esg-assessment.component';
 import {PaginationComponent} from './Components/pagination/pagination.component';
 import {PriceDetailsComponent} from './Components/price-details/price-details.component';
+import { ProjectsCarouselComponent } from './Components/projects-carousel/projects-carousel.component';
 
 @NgModule({
   declarations: [
