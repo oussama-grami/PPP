@@ -12,7 +12,7 @@
     border-radius: 5px;
     position: relative;
   }
-  .hh{
+  .question-text{
     font-family: 'Roboto', sans-serif;
     font-weight: 700;
     line-height: 27px;
@@ -30,46 +30,21 @@
     left: 50%;
     transform: translate(-50%, -50%);
   }
-  
-  .env {
-    font-family: 'Roboto', sans-serif;
-    font-size: 14px;
-    font-weight: 500;
-    letter-spacing: 0em;
-    text-align: center;
-    font-style: normal;
-    line-height: 21px;
-    width: 107px;
-    height: 21px;
-    position: absolute;
-    bottom: -40px; /* Adjust the value based on your needs */
-    left: 50%;
-    transform: translateX(-50%);
+  .text-span{
+    font-weight: 300;
+    font-style: normal; 
+    justify-content: left; 
+    font-size: 16px; 
+    line-height: 20px;
     color: #6D6D6D;
-    margin-left: 5px;
   }
   
-  .green {
-    background-color: #014131;
-  }
-  
-  .grey {
-    background-color: #F2F2F2;
-  }
   
   .box {
     width: 45%;
     margin: 10px;
   }
-  .number {
-    font-family: 'Roboto', sans-serif;
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 35px;
-    letter-spacing: 0em;
-    text-align: center;
-    margin: auto;
-  }
+
   .bar {
     width: 7px;
     height: 39px;
@@ -103,7 +78,7 @@
     color: white;
   }
   
-  .b1 {
+  .continue-btn {
     color: white;
     width: 146px;
     height: 51px;
@@ -112,12 +87,12 @@
     border-radius: 10px;
   }
   
-  .b1:hover {
+  .continue-btn:hover {
     background-color: #014131;
     color: grey;
   
   }
-  .b2{
+  .go-back-btn{
    width: 146px;
     height: 51px;
     border: none; 
@@ -125,20 +100,13 @@
    margin-right: 20px;
   }
   
-  .b2:hover {
+  .go-back-btn:hover {
     background-color: #014131;
     color: white;
   
   }
-  .num{
-    font-family: 'Roboto', sans-serif;
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 35px;
-    letter-spacing: 0em;
-    text-align: left;
+ 
   
-  }
   
   
   

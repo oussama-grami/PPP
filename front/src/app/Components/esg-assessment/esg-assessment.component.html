@@ -6,8 +6,7 @@
     <button type="button" class="btn-close" data-bs-dismiss="alert" (click)="warnUser=false"
             aria-label="Close"></button>
   </div>
-  <h2 class="hh">{{ question?.text }}<span
-    style="font-weight: 300;letter-spacing: 0em;font-style: normal; justify-content: left; font-size: 14px; line-height: 20px;color: #6D6D6D;"> (Select the answer that best fits your business)</span>
+  <h2 class="question-text">{{ question?.text }}<span class="text-span"> (Select the answer that best fits your business)</span>
   </h2>
   <div *ngFor="let option of options; let i = index"
        [ngClass]="{ 'custom-div-clicked': option.isSelected }"
@@ -20,9 +19,9 @@
     </h6>
   </div>
   <div style="display: flex; justify-content: right;" class="mb-3">
-    <button class="b2" (click)="goBack()">Back</button>
-    <button *ngIf="choiceSelected" (click)="addScoreAndNavigate()" class="b1">Continue</button>
-    <button *ngIf="!choiceSelected" class="b1" (click)="warning()">Continue</button>
+    <button class="go-back-btn" (click)="goBack()">Back</button>
+    <button *ngIf="choiceSelected" (click)="addScoreAndNavigate()" class="continue-btn">Continue</button>
+    <button *ngIf="!choiceSelected" class="continue-btn" (click)="warning()">Continue</button>
   </div>
 </div>
 
