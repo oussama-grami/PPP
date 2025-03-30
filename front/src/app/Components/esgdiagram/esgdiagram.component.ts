@@ -16,20 +16,22 @@ export class ESGdiagramComponent implements OnInit {
 
   ngOnInit(): void {
     // Get responses from the service
-    const responses = this.esgService.getResponses();
-
-    // Calculate scores for each question
-    this.Scores = Array(15).fill(0); // Initialize array with 15 elements
-    for (let i = 1; i <= 15; i++) {
-      const question = this.esgService.getQuestionById(i);
-      const selectedOptionId = responses[i];
-      if (selectedOptionId !== undefined) {
-        // Normalize score to 1-5 range (since original scores are 0-8 in steps of 2)
-        this.Scores[i-1] = (question.options[selectedOptionId].score / 2) + 1;
+    this.esgService.getResponses().subscribe(responses => {
+      // Calculate scores for each question
+      this.Scores = Array(15).fill(0); // Initialize array with 15 elements
+      for (let i = 1; i <= 15; i++) {
+        this.esgService.getQuestionById(i).subscribe(question => {
+          const selectedOptionId = responses[i];
+          if (selectedOptionId !== undefined) {
+            // Normalize score to 1-5 range (since original scores are 0-8 in steps of 2)
+            this.Scores[i-1] = (question.options[selectedOptionId].score / 2) + 1;
+          }
+        });
       }
-    }
+      this.createChart();
+    });
 
-    this.createChart();
+   
   }
 
   createChart(): void {

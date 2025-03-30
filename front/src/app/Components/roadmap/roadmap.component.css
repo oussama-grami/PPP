@@ -69,13 +69,7 @@
     padding: 75px 34px;
     background: #F8F8F8;
   }
-  .category-text{
-    color: #000;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 501;
-    line-height: normal;
-  }
+
   .seperator{
     height: 1px;
     background: #DBDBDB;
@@ -93,28 +87,8 @@
         width: 100%;
       }
 
-
-
-
-
-
-
-
-
-      .en{
-        font-family: 'Roboto', sans-serif;
-        font-size: 16px;
-        font-weight: 700;
-        line-height: 20px;
-        letter-spacing: 0em;
-        text-align: center;
-        width: 127px;
-        height: 20px;
-        
-        top: 15px;
-        position: relative;
-      }
-      .btnn {
+  
+      .print-btn {
         width: 106px;
         height: 50px;
         padding: 14px 33px;
@@ -126,29 +100,10 @@
         text-align: center;
         border: 1px solid #014131;
       }
-      .pri{
-        font-size: 18px;
-        font-weight: 600;
-        line-height: 22px;
-        letter-spacing: 0em;
-        text-align: center;
-        color: white;
-      }
-      
-     
-      
-      
-     
-      
-     
- 
-
-      
       .category-text{
-        margin-left: 50px;
-        color: #000;
+        color:#014131;
       font-family: Roboto;
-      font-size: 16px;
+      font-size: 20px;
       font-style: normal;
       font-weight: 600;
       line-height: normal;
@@ -168,20 +123,24 @@
       }
 
       
-
 .selected-env p {
     color: #014131 !important; /* Dark Green for Environment */
-    font-size:18px;
+    font-size:20px;
+    font-weight: 500;
 }
 
 .selected-soc p {
     color: #A9DDF8 !important; /* Light Blue for Social */
-    font-size:18px;
+    font-size:20px;
+    font-weight: 500;
+
   }
 
 .selected-gov p {
     color: #F79302 !important; /* Orange for Governance */
-    font-size:18px;
+    font-size:20px;
+    font-weight: 500;
+
 }
 
 /* Remove underline and set cursor pointer */
@@ -189,6 +148,7 @@ a {
   text-decoration: none;
   cursor: pointer;
   color:#000;
+  font-size: 18px;
 }
 
 

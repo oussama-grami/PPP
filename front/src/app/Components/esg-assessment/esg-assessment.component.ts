@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {Option} from 'src/app/Models/esgOptions';
+import {Option} from 'src/app/Models/esgOption';
 import {Question} from 'src/app/Models/esgQuestion';
 import {EsgService} from 'src/app/Service/esg.service';
 
@@ -13,8 +13,8 @@ export class EsgAssessmentComponent implements OnInit {
   @Input() currentQuestion: number = 1;
   question?: Question;
   options?: Option[] = [];
-  choiceSelected = false;
-  warnUser = false;
+  choiceSelected :boolean= false;
+  warnUser :boolean = false;
   res=0;
 
   constructor(
@@ -28,11 +28,15 @@ export class EsgAssessmentComponent implements OnInit {
       this.currentQuestion = +params['questionId'] || 1; // Extract current question from route
       this.loadQuestion();
     });
-  }
 
+  }
   loadQuestion() {
-    this.question = this.esgService.getQuestionById(this.currentQuestion);
-    this.options = this.question?.options;
+    this.esgService.getQuestionById(this.currentQuestion).subscribe((question) => {
+      this.question = question;
+      this.options = this.question?.options || [];  // Ensure options is always an array
+      this.choiceSelected = false;  // Reset selection state
+      this.warnUser = false;  // Reset warning state
+    });
   }
 
   warning() {
@@ -47,18 +51,34 @@ export class EsgAssessmentComponent implements OnInit {
   }
 
   addScoreAndNavigate() {
-
     if (!this.choiceSelected) {
       this.warning();
       return;
     }
-    this.esgService.updateResponse(this.currentQuestion, this.options!.findIndex((option) => option.isSelected));
-    if (this.currentQuestion == 15) {
-      this.res= this.esgService.calculateEsg();
-      console.log(this.res);
-      this.router.navigate(['/esg-result']);
-      return;
-    }
-    this.router.navigate(['/esg-assessment', this.currentQuestion + 1]);
+  
+    // Update response and then proceed with navigation
+    this.esgService.updateResponse(this.currentQuestion, this.options!.findIndex((option) => option.isSelected))
+      .subscribe(() => {
+        if (this.currentQuestion === 15) {
+          // Calculate ESG after the last question
+          this.esgService.calculateEsg().subscribe((res) => {
+            this.res = res;
+            console.log(this.res);
+            this.router.navigate(['/esg-result']);
+          });
+        } else {
+          // Navigate to the next question
+          this.router.navigate(['/esg-assessment', this.currentQuestion + 1]);
+        }
+      });
   }
+  
+  goBack() {
+    if (this.currentQuestion > 1) {
+      this.router.navigate(['/esg-assessment', this.currentQuestion - 1]);
+    } else {
+      this.router.navigate(['/esg']); 
+    }
+  }
+  
 }
