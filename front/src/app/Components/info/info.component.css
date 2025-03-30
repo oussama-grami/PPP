@@ -10,15 +10,17 @@
     margin-bottom: 10px;
 }
 
-.button-container {
-    display: flex;
-    justify-content: space-between;
+
+
+.backward{
+  float: left;
+}
+.forward{
+  float: right;
+
 }
 
-.button-container button {
-    margin-right: 300px;
-    
-}
+
 
 #footer-info{
     width: 400px;

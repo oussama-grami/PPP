@@ -1,0 +1,26 @@
+<div id="projectCarousel" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div
+      *ngFor="let chunk of projectChunks; let i = index"
+      class="carousel-item"
+      [ngClass]="{'active': i === 0}"
+    >
+      <div class="row justify-content-center">
+        <div *ngFor="let project of chunk" class="col-md-3 d-flex justify-content-center">
+          <app-project-ad [project]="project"></app-project-ad>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Carousel Controls (Separated Arrows) -->
+  <div class="carousel-controls d-flex justify-content-between w-100">
+    <!-- Carousel Controls -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#projectCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#projectCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    </button>
+  </div>
+</div>

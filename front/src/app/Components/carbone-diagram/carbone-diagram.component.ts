@@ -1,14 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {ChartOptions} from 'chart.js';
+import { Component, OnInit } from '@angular/core';
+import { ChartOptions } from 'chart.js';
 import 'chartjs-plugin-datalabels';
-import Chart from 'chart.js/auto'
-import {CarburantService} from "../../Service/carburant.service";
-import {EnergieService} from "../../Service/energie.service";
-import {ConsommablesService} from "../../Service/consommables.service";
-import {AerienService} from "../../Service/aerien.service";
-import {FretService} from "../../Service/fret.service";
-import {ImmobilisationService} from "../../Service/immobilisation.service";
-import {forkJoin} from "rxjs";
+import Chart from 'chart.js/auto';
+import { CarbonFootprintService } from '../../Service/carbon-footprint.service';
 
 @Component({
   selector: 'app-carbone-diagram',
@@ -16,82 +10,92 @@ import {forkJoin} from "rxjs";
   styleUrls: ['./carbone-diagram.component.css']
 })
 export class CarboneDiagramComponent implements OnInit {
-  chart!: Chart<'doughnut', number[], string>;
-  emE : number=0;
-  emC : number=0;
-  emD : number=0;
-  emF : number=0;
-  emI : number=0;
-  emCo : number=0;
-  scope1et2 : number=0;
-  scope3 : number=0;
-  constructor(private carService : CarburantService,private eneService : EnergieService,private conService : ConsommablesService,private depService : AerienService,private fretService : FretService,private  immService : ImmobilisationService) {}
+  chartCategories!: Chart<'doughnut', number[], string>;
+  chartScopes!: Chart<'doughnut', number[], string>;
 
+  // Emissions Data
+  emE: number = 0;
+  emC: number = 0;
+  emD: number = 0;
+  emF: number = 0;
+  emI: number = 0;
+  emCo: number = 0;
+
+  // Scopes Data
+  scope1: number = 0;
+  scope2: number = 0;
+  scope3: number = 0;
+
+  constructor(private carbonService: CarbonFootprintService) {}
 
   ngOnInit(): void {
-    const observables = [
-      this.carService.calculer(2023, 1),
-      this.eneService.calculer(2023, 1),
-      this.conService.calculer(2023, 1),
-      this.depService.calculer(2023, 1),
-      this.fretService.calculer(2023, 1),
-      this.immService.calculer(2023, 1),
-    ];
+    this.carbonService.calculateEmissions(2023, 1).subscribe((results: number[]) => {
+      [this.emC, this.emE, this.emCo, this.emD, this.emF, this.emI] = results;
 
-    forkJoin(observables).subscribe((results: number[]) => {
-      [this.emC, this.emE,this.emCo,this.emD,this.emF,this.emI] = results;
+      // Assuming energy (emE) contains both Scope 1 and 2 emissions
+      this.scope1 = this.emC; // Fuel consumption (Scope 1)
+      this.scope2 = this.emE; // Purchased electricity (Scope 2)
+      this.scope3 = this.emD + this.emCo + this.emF + this.emI; // Other indirect emissions
 
-      this.scope1et2 = this.emE + this.emC;
-      this.scope3 = + this.emD + this.emCo + this.emF +this.emI;
-      this.createChart();
+      this.createCategoryChart();
+      this.createScopeChart();
     });
   }
-  createChart(): void {
-    const canvas = document.getElementById('myChart') as HTMLCanvasElement;
+
+  // 🔹 Chart for the Seven Emissions Categories
+  createCategoryChart(): void {
+    const canvas = document.getElementById('categoryChart') as HTMLCanvasElement;
     const ctx = canvas.getContext('2d');
     if (ctx) {
-      this.chart = new Chart(ctx, {
+      this.chartCategories = new Chart(ctx, {
         type: 'doughnut',
         data: {
-          labels: ['Scope 1+2', 'Scope 3'],
+          labels: ['Carburant', 'Énergie', 'Consommables', 'Déplacements Aériens', 'Fret', 'Immobilisation'],
           datasets: [
             {
-              label: 'Dataset 1',
-              data: [this.scope1et2, this.scope3],
-              backgroundColor: ['#014131', '#76B82A'],
+              label: 'Émissions par catégorie',
+              data: [this.emC, this.emE, this.emCo, this.emD, this.emF, this.emI],
+              backgroundColor: ['#4CAF50', '#1B5E20', '#FF9800', '#795548', '#76B82A', '#C0CA33']
             }
           ]
         },
         options: {
-          cutoutPercentage: 50,
           responsive: true,
-          elements: {
-            arc: {
-              weight : 20,
-              borderAlign: "inner",
-              borderWidth: 10, // Adjust the border width here (e.g., 1 or 2)
-              spacing: 0,
-              borderRadius: 15,
-            }
-          },
           plugins: {
-            legend: {
-              position: 'bottom',
-              maxWidth: 500,
-              padding: 20
-            },
-            datalabels: {
-              display: true,
-              anchor: 'start', // Position the labels under the chart
-              align: 'bottom', // Align the labels to the top of the data points
-            }
-          },
-          layout: {
-            padding: {
-              top: 20 // Add a margin of 20px to the top of the chart
-            }
+            legend: { position: 'bottom' },
+            datalabels: { display: true, anchor: 'start', align: 'bottom' }
           }
         } as ChartOptions<'doughnut'>
+      });
+    }
+  }
+
+  // 🔹 Chart for the Three Scopes with real names
+  createScopeChart(): void {
+    const canvas = document.getElementById('scopeChart') as HTMLCanvasElement;
+    const ctx = canvas.getContext('2d');
+    if (ctx) {
+      this.chartScopes = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+          labels: ['Direct emissions from owned or controlled sources',
+            'Indirect emissions from the generation of purchased electricity',
+            'Other indirect emissions'],
+          datasets: [
+            {
+              label: 'Émissions par scope',
+              data: [this.scope1, this.scope2, this.scope3],
+              backgroundColor: ["#4CAF50", "#1E5631", "#A7D397"]
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: { position: 'bottom' },
+            datalabels: { display: true, anchor: 'start', align: 'bottom' }
+          }
+        }
       });
     }
   }

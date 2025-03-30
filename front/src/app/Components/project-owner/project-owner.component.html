@@ -1,7 +1,6 @@
-<app-nav-acceuil [selected]="5"></app-nav-acceuil>
 <div class="container mt-5">
   <div class="mb-3">
-    <button class="btn btn-link" [routerLink]="'/marketplace'">
+    <button class="btn btn-link text-decoration-none text-black" [routerLink]="'/marketplace'">
       <span>
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
           <path d="M19.5 12H4.5M4.5 12L10.125 6M4.5 12L10.125 18" stroke="black" stroke-width="1.5"
@@ -145,13 +144,15 @@
             </div>
             <div class="col-12 mb-3">
               <label for="pdfFile" class="form-label">Submit PDF files *</label>
-              <input type="file" class="form-control" id="pdfFile" (change)="onFileChange($event)"
-                     accept="application/pdf" multiple>
+              <input
+                type="file"
+                class="form-control custom-file-input bg-white" id="pdfFile" (change)="onFileChange($event)"
+                accept="application/pdf" multiple>
               <div *ngIf="fileError" class="text-danger">
                 {{ fileError }}
               </div>
             </div>
-            <div class="col-12 d-flex justify-content-end">
+            <div class="col-12 d-flex justify-content-end text-black ">
               <button type="button" class="btn btn-outline-secondary me-2" [routerLink]="'/marketplace'">Back</button>
               <button type="submit" class="btn btn-secondary">Checkout</button>
             </div>

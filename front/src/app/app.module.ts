@@ -43,6 +43,7 @@ import {EsgAssessmentComponent} from './Components/esg-assessment/esg-assessment
 import {PaginationComponent} from './Components/pagination/pagination.component';
 import {PriceDetailsComponent} from './Components/price-details/price-details.component';
 import { EsgOverviewComponent } from './Components/esg-overview/esg-overview.component';
+import { ProjectsCarouselComponent } from './Components/projects-carousel/projects-carousel.component';
 
 @NgModule({
   declarations: [
@@ -84,6 +85,7 @@ import { EsgOverviewComponent } from './Components/esg-overview/esg-overview.com
     PaginationComponent,
     PriceDetailsComponent,
     EsgOverviewComponent,
+    ProjectsCarouselComponent
   ],
   imports: [
     BrowserModule,
@@ -92,7 +94,8 @@ import { EsgOverviewComponent } from './Components/esg-overview/esg-overview.com
     HttpClientModule,
     FontAwesomeModule,
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

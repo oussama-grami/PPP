@@ -1,6 +1,8 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {ProjectsService} from "../../Service/projects.service";
 import {project} from "../../Models/project";
+import {CartService} from "../../Service/cart-service.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-price-details',
@@ -11,8 +13,13 @@ export class PriceDetailsComponent implements OnInit, OnChanges {
   @Input() projectId: number = 0;
   project: project | undefined;
   quantity: number = 0;
+  successMessage: boolean = false;
+  protected readonly Number = Number;
 
-  constructor(private projectsService: ProjectsService) {
+  constructor(private projectsService: ProjectsService,
+              private cartService: CartService,
+              private routerService: Router
+  ) {
   }
 
   ngOnInit() {
@@ -44,5 +51,32 @@ export class PriceDetailsComponent implements OnInit, OnChanges {
     }
   }
 
-  protected readonly Number = Number;
+  showMessage() {
+    this.successMessage = true;
+    setTimeout(() => {
+      this.successMessage = false;
+    }, 3000);
+  }
+
+  //name' | 'availableStock' | 'cost' | 'url'> & { quantity: number
+  onAddToCart() {
+    this.cartService.addItem({
+      name: this.project!.name,
+      availableStock: this.project!.availableStock,
+      cost: this.project!.cost,
+      url: '/assets/img/modalPhoto1.svg',
+      quantity: this.quantity
+    })
+    this.quantity = 0;
+  }
+
+  onAddingToCart() {
+    this.onAddToCart();
+    this.showMessage();
+  }
+
+  async onBuyNow() {
+    this.onAddToCart();
+    await this.routerService.navigate(['/checkout']);
+  }
 }

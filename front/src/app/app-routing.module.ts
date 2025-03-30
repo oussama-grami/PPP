@@ -28,6 +28,7 @@ import {CarbonOffsetBlogComponent} from './Components/carbon-offset-blog/carbon-
 import {CarbonCoBenifitsBlogComponent} from './Components/carbon-co-benifits-blog/carbon-co-benifits-blog.component';
 import {RoadmapComponent} from './Components/roadmap/roadmap.component';
 import {EsgAssessmentComponent} from './Components/esg-assessment/esg-assessment.component';
+import {ProjectsCarouselComponent} from "./Components/projects-carousel/projects-carousel.component";
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -38,13 +39,11 @@ const routes: Routes = [
   {path: 'fret', component: FretComponent},
   {path: 'cons', component: ConsommablesComponent},
   {path: 'imob', component: ImmobilisationsComponent},
-
   {path: 'pan', component: PanneauxComponent},
   {path: 'resultat', component: ResultatCarboneComponent},
   {path: 'esg', component: EsgComponent},
   {path: 'carbone', component: CarboneComponent},
   {path: 'esg-result', component: ResultESGComponent},
-
   {path: 'arb', component: ArboricultureComponent},
   {path: 'piste', component: PisteComponent},
   {path: 'marketplace', component: MarketplaceComponent},
@@ -58,10 +57,7 @@ const routes: Routes = [
   {path: 'carbon-offset-blog', component: CarbonOffsetBlogComponent},
   {path: 'carbon-co-benefits-blog', component: CarbonCoBenifitsBlogComponent},
   {path: 'roadmap', component: RoadmapComponent},
-
   {path: 'esg-assessment/:questionId', component: EsgAssessmentComponent},
-
-
 ];
 
 @NgModule({
