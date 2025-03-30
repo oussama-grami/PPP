@@ -22,7 +22,6 @@ export class PanneauxComponent implements OnInit {
   constructor(
     private panService: PanneauxService,
     private el: ElementRef,
-    private renderer: Renderer2,
     private fb: FormBuilder,
     private http: HttpClient,
   ) {

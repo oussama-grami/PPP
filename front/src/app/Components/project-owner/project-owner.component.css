@@ -239,6 +239,7 @@
     width: 100%;
   }
 }
+
 .porteur-img img {
   width: 100%;
   height: auto;
@@ -260,7 +261,9 @@
     margin-bottom: 10px;
   }
 }
+
 .dropdown-menu-scrollable {
   max-height: 200px;
   overflow-y: auto;
 }
+

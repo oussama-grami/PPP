@@ -13,6 +13,7 @@ export class CheckoutComponent implements OnInit {
 
   ngOnInit() {
     window.scrollTo(0, 0);
+    console.log(this.cartItems)
   }
 
   getTotalPrice(): number {
