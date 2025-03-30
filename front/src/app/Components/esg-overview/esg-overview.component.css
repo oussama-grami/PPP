@@ -1,0 +1,93 @@
+.esg-container {
+  width: 523px;
+  font-family: 'Roboto', sans-serif;
+  color: #003B33;
+  padding: 16px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.header h2 {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 32px;
+  margin: 0;
+}
+
+.category-section {
+  margin-bottom: 32px;
+}
+
+.category-title {
+  font-size: 14.8px;
+  font-weight: 700;
+  margin: 0 0 16px 16px;
+}
+
+.level-titles {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 16px 16px;
+}
+
+.level-title {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  text-align: center;
+  width: 25%;
+  color: #777777;
+  transition: all 0.3s ease;
+}
+
+.level-title.active {
+  font-weight: 700;
+}
+
+.slider-container {
+  position: relative;
+  height: 10px;
+  margin: 40px 4px 20px;
+}
+
+.slider-track {
+  display: flex;
+  height: 100%;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.slider-segment {
+  height: 100%;
+}
+
+.slider-indicator {
+  position: absolute;
+  top: -4px;
+  width: 18px;
+  height: 18px;
+  background: white;
+  border-radius: 50%;
+  border: 3px solid;
+  transform: translateX(-50%);
+  transition: left 0.3s ease;
+}
+
+.description-box {
+  background: rgba(217, 217, 217, 0.29);
+  border-radius: 5px;
+  padding: 20px;
+  margin: 0 16px;
+}
+
+.description-box p {
+  font-size: 12px;
+  line-height: 18px;
+  color: #4E4E4E;
+  margin: 0;
+}

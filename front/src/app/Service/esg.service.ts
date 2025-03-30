@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Option} from '../Models/esgOptions';
+import {Option} from '../Models/esgOption';
 import {Question} from '../Models/esgQuestion';
 
 @Injectable({
@@ -199,7 +199,7 @@ export class EsgService {
 
   private generateOptions(texts: string[]): Option[] {
     return texts.map((text, index) => ({
-      text: `${text} (${index * 2} points)`,
+      text: text,
       isSelected: false,
       score: index * 2
     }));

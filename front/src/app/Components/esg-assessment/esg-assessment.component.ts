@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {Option} from 'src/app/Models/esgOptions';
+import {Option} from 'src/app/Models/esgOption';
 import {Question} from 'src/app/Models/esgQuestion';
 import {EsgService} from 'src/app/Service/esg.service';
 
@@ -13,8 +13,8 @@ export class EsgAssessmentComponent implements OnInit {
   @Input() currentQuestion: number = 1;
   question?: Question;
   options?: Option[] = [];
-  choiceSelected = false;
-  warnUser = false;
+  choiceSelected :boolean= false;
+  warnUser :boolean = false;
   res=0;
 
   constructor(
@@ -28,12 +28,15 @@ export class EsgAssessmentComponent implements OnInit {
       this.currentQuestion = +params['questionId'] || 1; // Extract current question from route
       this.loadQuestion();
     });
+
   }
 
   loadQuestion() {
-    this.question = this.esgService.getQuestionById(this.currentQuestion);
-    this.options = this.question?.options;
-  }
+  this.question = this.esgService.getQuestionById(this.currentQuestion);
+  this.options = this.question?.options;
+  this.choiceSelected = false;  // Reset selection state
+  this.warnUser = false;  // Reset warning state
+}
 
   warning() {
     this.warnUser = true;
@@ -61,4 +64,13 @@ export class EsgAssessmentComponent implements OnInit {
     }
     this.router.navigate(['/esg-assessment', this.currentQuestion + 1]);
   }
+
+  goBack() {
+    if (this.currentQuestion > 1) {
+      this.router.navigate(['/esg-assessment', this.currentQuestion - 1]);
+    } else {
+      this.router.navigate(['/esg']); 
+    }
+  }
+  
 }

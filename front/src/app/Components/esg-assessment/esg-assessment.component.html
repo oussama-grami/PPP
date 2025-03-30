@@ -20,7 +20,7 @@
     </h6>
   </div>
   <div style="display: flex; justify-content: right;" class="mb-3">
-    <button class="b2" routerLink="/env">Back</button>
+    <button class="b2" (click)="goBack()">Back</button>
     <button *ngIf="choiceSelected" (click)="addScoreAndNavigate()" class="b1">Continue</button>
     <button *ngIf="!choiceSelected" class="b1" (click)="warning()">Continue</button>
   </div>
