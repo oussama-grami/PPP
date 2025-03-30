@@ -18,11 +18,9 @@ export class CartService {
   }
 
   private loadCart() {
-    this.cartItems = [
-      { name: 'Tree planting in Testour', availableStock: 200, cost: '2.48', url: '/assets/img/modalPhoto1.svg', quantity: 1 },
+    this.cartItems.push({ name: 'Tree planting in Testour', availableStock: 200, cost: '2.48', url: '/assets/img/modalPhoto1.svg', quantity: 1 },
       { name: 'Wind farm in Tunisia', availableStock: 500, cost: '2.25', url: '/assets/img/modalPhoto2.svg', quantity: 1 },
-      { name: 'Forestry project in Madagascar', availableStock: 500, cost: '7.5', url: '/assets/img/modalPhoto3.svg', quantity: 1 }
-    ];
+      { name: 'Forestry project in Madagascar', availableStock: 500, cost: '7.5', url: '/assets/img/modalPhoto3.svg', quantity: 1 });
   }
 
   getItems(): PartialProject[] {
@@ -34,10 +32,15 @@ export class CartService {
   }
 
   addItem(item: PartialProject) {
-    item.quantity = 1;
-    this.cartItems.push(item);
+    const existingItem = this.cartItems.find(cartItem => cartItem.name === item.name);
+    if (existingItem) {
+      existingItem.quantity = (existingItem.quantity || 0) + (item.quantity || 1);
+    } else {
+      this.cartItems.push({ ...item, quantity: item.quantity || 1 });
+    }
     this.saveCart();
   }
+
 
   removeItem(index: number) {
     this.cartItems.splice(index, 1);
