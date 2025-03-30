@@ -111,6 +111,8 @@ export class RoadmapComponent implements OnInit {
 
     // If content is found, proceed with printing
     const printWindow = window.open('', '', 'width=800,height=600');
+    printWindow?.document.write('<html><head><title>Print</title></head><body>');
+    printWindow?.document.write(printContent.innerHTML); // Add the selected content
     printWindow?.document.close(); // Close the document to complete the writing
 
     printWindow?.print();
