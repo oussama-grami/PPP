@@ -1,3 +1,32 @@
 /* You can add global styles to this file, and also import other style files */
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+input[type=file]::-webkit-file-upload-button, input[type=file].invalid::-webkit-file-upload-button, input[type=file].valid::-webkit-file-upload-button {
+  background-color: #056f3e !important;
+}
+
+input:focus, textarea:focus, select:focus, button:focus {
+  outline: none !important;
+  box-shadow: 0 0 0 0.25rem rgba(0, 128, 0, 0.25) !important;
+  border-color: rgba(0, 128, 0, 0.75) !important;
+}
+
+button:hover,
+button:focus,
+input[type="radio"]:hover,
+.btn-outline-secondary:hover {
+  background-color: green !important;
+  color: white !important;
+}
+
+select option:hover, select option:focus, select option:active {
+  background-color: green !important;
+  color: white !important;
+}

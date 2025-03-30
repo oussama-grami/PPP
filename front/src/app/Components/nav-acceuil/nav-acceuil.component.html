@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-white mx-auto w-100 fs-6">
   <div class="container-fluid">
     <a class="navbar-brand" routerLink="">
-      <img src="assets/Ecopilot/ecopilot_logo.png" alt="Logo" style="width: 100px; height: 60px;border-radius: 4px">
+      <img src="assets/Ecopilot/ecopilot_logo.png" alt="Logo" style="width: 100px; height: 60px; border-radius: 4px">
     </a>
     <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -11,11 +11,11 @@
       <ul class="navbar-nav d-flex flex-lg-row flex-column align-items-lg-center w-100">
         <div class="d-lg-flex me-lg-auto">
           <li class="nav-item">
-            <a class="nav-link fff" [ngClass]="{ 'selected': selected===0}" routerLink="">Home</a>
+            <a class="nav-link fff" [ngClass]="{ 'selected': isRoute0Active()}" routerLink="">Home</a>
           </li>
           <li class="nav-item dropdown fff">
             <a class="nav-link dropdown-toggle"
-               [ngClass]="{ 'selected': selected===1}"
+               [ngClass]="{ 'selected': isRoute1Active()}"
                href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Assessment tools
             </a>
@@ -26,14 +26,16 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a class="nav-link fff" [ngClass]="{ 'selected': selected===5}" routerLink="/marketplace">Marketplace</a>
+            <a class="nav-link fff" [ngClass]="{ 'selected': isRoute5Active()}"
+               routerLink="/marketplace">Marketplace</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link fff" [ngClass]="{ 'selected': selected===4}" routerLink="/resources">VGreen Knowledge</a>
+            <a class="nav-link fff" [ngClass]="{ 'selected': isRoute4Active()}" routerLink="/resources">EcoPilot
+              Knowledge</a>
           </li>
         </div>
         <li class="nav-item ms-lg-auto ms-0">
-          <a class="nav-link fff" [ngClass]="{ 'selected': selected===6}" routerLink="/checkout">
+          <a class="nav-link fff" [ngClass]="{ 'selected': isRoute6Active()}" routerLink="/checkout">
             <i class="fas fa-shopping-cart text-black w-100"></i>
           </a>
         </li>

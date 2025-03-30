@@ -281,7 +281,7 @@ body {
   align-items: center;
   gap: 8px;
   border-radius: 5px;
-  background: #014131;
+  background: gray;
   border: none;
 }
 
@@ -699,4 +699,13 @@ body {
 .quantity-button:hover {
   background-color: #6a1a21;  /* Couleur verte plus foncée au survol */
 }
-
+.enabled-button {
+  background-color: #379137 !important;
+  color: white;
+  cursor: pointer;
+}
+.enabled-button-1 {
+  background-color: #014131 !important;
+  color: white;
+  cursor: pointer;
+}
