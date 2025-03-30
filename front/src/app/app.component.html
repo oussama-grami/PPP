@@ -1,3 +1,12 @@
 <app-nav-acceuil/>
+<app-instruction-list
+  [instructions]="[
+    'Connectez-vous à votre compte',
+    'Remplissez le formulaire de demande',
+    'Vérifiez les informations saisies',
+    'Soumettez votre demande avant la date limite'
+  ]"
+  title="Procédure de demande">
+</app-instruction-list>
 <router-outlet></router-outlet>
 <app-footer/>
