@@ -2,6 +2,8 @@ import {Component} from '@angular/core';
 import {Router} from "@angular/router";
 import {RoutesEnum} from "../../enumerations/Routes.enum";
 
+;
+
 @Component({
   selector: 'app-nav-acceuil',
   templateUrl: './nav-acceuil.component.html',
