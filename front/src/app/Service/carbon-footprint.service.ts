@@ -7,6 +7,7 @@ import {DeplacemetAerien} from '../Models/deplacemetAerien';
 import {Fret} from '../Models/fret';
 import {Consommables} from '../Models/consommables';
 import {Immobilisation} from '../Models/immobilisation';
+import {Observable, of} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -75,5 +76,11 @@ export class CarbonFootprintService {
   }*/
   submitAllData(){
    alert("done with success ");
+  }
+  // Simulated API call - Replace this with an actual backend call if needed
+  calculateEmissions(year: number, companyId: number): Observable<number[]> {
+    // Example values: Fetch this from an API if necessary
+    const emissions = [100, 150, 80, 50, 120, 90]; // Replace with actual API response
+    return of(emissions);
   }
 }

@@ -20,7 +20,7 @@
             <div class="form-group">
               <input type="number" class="form-control" formControlName="essence" placeholder="Gasoline (Liters)">
               <div *ngIf="carburantForm.get('essence')?.invalid && carburantForm.get('essence')?.touched"
-                   class="error-message">
+                   class="error-message  text-danger">
                 Gasoline is required.
               </div>
             </div>
@@ -28,14 +28,14 @@
             <div class="form-group">
               <input type="number" class="form-control" formControlName="diesel" placeholder="Diesel (Liters)">
               <div *ngIf="carburantForm.get('diesel')?.invalid && carburantForm.get('diesel')?.touched"
-                   class="error-message">
+                   class="error-message text-danger">
                 Diesel is required.
               </div>
             </div>
 
             <div class="form-group">
               <input type="number" class="form-control" formControlName="gpl" placeholder="LPG (Liters)">
-              <div *ngIf="carburantForm.get('gpl')?.invalid && carburantForm.get('gpl')?.touched" class="error-message">
+              <div *ngIf="carburantForm.get('gpl')?.invalid && carburantForm.get('gpl')?.touched" class="error-message text-danger">
                 LPG is required.
               </div>
             </div>
@@ -45,7 +45,7 @@
               <input type="number" class="form-control" formControlName="kilometrage"
                      placeholder="Driven distance (Km)">
               <div *ngIf="carburantForm.get('kilometrage')?.invalid && carburantForm.get('kilometrage')?.touched"
-                   class="error-message">
+                   class="error-message text-danger">
                 Distance is required.
               </div>
             </div>
@@ -54,34 +54,30 @@
               <input type="number" class="form-control" formControlName="efficacite"
                      placeholder="Vehicle fuel efficiency (L/100Km)">
               <div *ngIf="carburantForm.get('efficacite')?.invalid && carburantForm.get('efficacite')?.touched"
-                   class="error-message">
+                   class="error-message text-danger">
                 Efficiency is required.
               </div>
             </div>
 
             <div class="form-group ">
-              <select class="nice-select wide" formControlName="typeCarburant">
+              <select class="nice-select wide mb-3" formControlName="typeCarburant">
+                <option value="" disabled selected>Carburant Type</option>
                 <option class="option" [value]="TypeCarburant.Diesel">Diesel</option>
                 <option class="option" [value]="TypeCarburant.Essence">Gasoline</option>
                 <option class="option" [value]="TypeCarburant.Gpl">LPG</option>
               </select>
               <div *ngIf="carburantForm.get('typeCarburant')?.invalid && carburantForm.get('typeCarburant')?.touched"
-                   class="error-message">
+                   class="error-message text-danger">
                 Please select a fuel type.
               </div>
             </div>
           </div>
 
-          <div id="bottom-wizard2">
-            <div class="button-container">
+          <div id="bottom-wizard2 mb-2 pb-2">
               <button type="button" class="backward" routerLink="/energie">Back</button>
               <button type="submit" class="forward" (click)="onNext()">Continue</button>
-            </div>
-            <div id="bottom-wizard">
-              <p id="footer-info">A tool based on ADEME Carbon Base ® version 22.0. This calculation makes it possible
-                to establish a carbon footprint but does not serve as a Bilan Carbone ®.</p>
-            </div>
           </div>
+
         </form>
       </div>
     </div>

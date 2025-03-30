@@ -1,130 +1,86 @@
-<div style="height: 100vh;">
+<div style="display: flex; flex-direction: column;">
   <app-nav-acceuil [selected]="1"></app-nav-acceuil>
-  <div class="container mx-auto">
-    <div class="row">
-      <div class="col-12 col-md-2">
+
+  <div class="container mx-auto" style="flex-grow: 1; overflow-y: auto;">
+    <div class="row" >
+
+      <div class="col-12">
         <div class="retour">
           <button [routerLink]="'/imob'">
-          <span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path d="M19.5 12H4.5M4.5 12L10.125 6M4.5 12L10.125 18" stroke="black" stroke-width="1.5"
-                    stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </span>
+      <span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M19.5 12H4.5M4.5 12L10.125 6M4.5 12L10.125 18" stroke="black" stroke-width="1.5"
+                stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
             <span class="retour-text">Back</span>
           </button>
         </div>
       </div>
-      <div class="col-12 col-md-8 mx-auto">
-        <div class="header">
-          Your company’s
-          <br>
-          <span class="header-bold">Carbon Footprint’s Total Emissions</span>
-        </div>
-        <button class="pagginationButton" routerLink="/piste">
-          <span style="margin-right: 8px;" class="pagginationButtonText">Take actions</span>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path d="M4.5 12H19.5M19.5 12L13.875 6M19.5 12L13.875 18" stroke="#014131" stroke-width="1.5"
-                  stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
-        <div class="emittion-box">
-          <div class="emission-title">
-            Emissions by Category
-            <span style="margin-left: 16px;">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
-              <path fill-rule="evenodd" clip-rule="evenodd"
-                    d="M8.99985 16.5C13.142 16.5 16.4998 13.1421 16.4998 9C16.4998 4.85786 13.142 1.5 8.99985 1.5C4.85771 1.5 1.49985 4.85786 1.49985 9C1.49985 13.1421 4.85771 16.5 8.99985 16.5Z"></path>
-              <circle cx="8.99985" cy="12" r="0.75" fill="#D0D1D2"/>
-            </svg>
-          </span>
-          </div>
-          <!-- Emission rows -->
-          <div class="row w-100 mx-auto">
-            <div class="col-5">
-              <div class="row">
-                <div class="col-3" style="margin-left: 12px;"><img src="/assets/img/emission1.svg" alt=""></div>
-                <div class="col-8" style="margin-top: 9px; margin-left: 10px;">Energy</div>
+
+
+      <div class="container-fluid d-flex flex-column">
+        <!-- Main Section: Flex container with full viewport height -->
+        <div class="row flex-fill d-flex">
+          <!-- Left Section: Total Emissions and Action Button -->
+          <div class="col-5 col-md-5 d-flex flex-column justify-content-between">
+
+            <div class="header">
+              Your company’s
+              <br>
+              <span class="header-bold">Carbon Footprint’s Total Emissions</span>
+            </div>
+
+            <div class="position-relative mt-4">
+              <div class="background mx-auto w-100 proportional-content"
+                   [ngStyle]="{'background-image': 'url(/assets/img/equivalent.svg)', 'background-repeat': 'no-repeat', 'background-size':'cover', 'background-position':'center 90%'}">
+                <div class="mx-auto" style="color: transparent;">a</div>
+                <div class="mx-auto position-absolute w-auto" style="top:25%;left:25%">
+                  <span class="result-text">{{ this.total.toFixed(0) }} </span>
+                  <span class="result-text" style="font-weight: 500">tCO2</span>
+                  <span class="equivalent-text">{{ (total / 0.025).toFixed() }}</span>
+                </div>
               </div>
             </div>
-            <div class="col-5">
-              <svg style="margin-top: 15px;" xmlns="http://www.w3.org/2000/svg" width="180" height="4"
-                   viewBox="0 0 180 4"
-                   fill="none">
-                <rect width="180" height="4" rx="2" fill="#006557" fill-opacity="0.1"/>
-                <rect [attr.width]='percentageE * 1.80' height="4" rx="2" fill="#006557"/>
+            <button class="pagginationButton" routerLink="/piste">
+              <span style="margin-right: 8px;" class="pagginationButtonText">Take actions</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M4.5 12H19.5M19.5 12L13.875 6M19.5 12L13.875 18" stroke="#014131" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
-            </div>
-            <div class="col-2">
-              <div class="tco2-box" style="border: 1px solid #006557;">
-                <div class="tco2-text" style="color: #006557;">{{ emE | number:'.1-1' }}</div>
-              </div>
+            </button>
+          </div>
+
+          <!-- Right Section: Chart Component -->
+          <div class="col-7 col-md-7 d-flex justify-content-center align-items-center">
+            <div class="row w-100 mx-auto">
+              <app-carbone-diagram></app-carbone-diagram>
             </div>
           </div>
-          <div class="seperator"></div>
-          <!-- Repeat similar blocks for other categories -->
+
         </div>
       </div>
-      <div class="col-12 col-md-8 col-lg-5 mx-auto position-relative">
-        <div class="background mx-auto w-100 proportional-content"
-             [ngStyle]="{'background-image': 'url(/assets/img/equivalent.svg)', 'background-repeat': 'no-repeat', 'background-size':'cover', 'background-position':'center 90%'}">
-          <div class="mx-auto" style="color: transparent;">a</div>
-          <div class="mx-auto position-absolute w-auto" style="top:25%;left:25%">
-            <span class="result-text">{{ this.total.toFixed(0) }} </span>
-            <span
-              class="result-text"
-              style="font-weight: 500">tCO2</span>
-            <span class="equivalent-text">{{ (total / 0.025).toFixed() }}</span>
-          </div>
+
+    </div>
+
+
+
+
+    <!-- Actions Section -->
+    <div class="container mx-auto">
+      <div class="mx-auto">
+        <div id="marketplace-header">Explore our Carbon Offset Projects Marketplace</div>
+        <div class="row mt-5 ">
+           <app-projects-carousel></app-projects-carousel>
         </div>
-        <div class="emittion-box mx-auto" style="margin-top: 35px; width: 100%;">
-          <div class="emission-title">
-            Emissions by Scope
-            <span style="margin-left: 16px;">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
-              <path fill-rule="evenodd" clip-rule="evenodd"
-                    d="M8.99985 16.5C13.142 16.5 16.4998 13.1421 16.4998 9C16.4998 4.85786 13.142 1.5 8.99985 1.5C4.85771 1.5 1.49985 4.85786 1.49985 9C1.49985 13.1421 4.85771 16.5 8.99985 16.5Z"
-                    stroke="#D0D1D2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M9 6V9" stroke="#D0D1D2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              <circle cx="8.99985" cy="12" r="0.75" fill="#D0D1D2"/>
-            </svg>
-          </span>
-          </div>
-          <div style="width: 100%; height: 300px; margin-top: 30px;">
-            <app-carbone-diagram></app-carbone-diagram>
-          </div>
-        </div>
-      </div>
-      <div class="col-12 mx-auto">
-        <div class="action-box mx-auto" style="display: grid; place-items: center; max-width: 100vw;">
-          <div class="action-box-header">Take actions to reduce your carbon footprint</div>
-          <button class="pagginationButton" style="background-color: #014131; margin-top: 0px;" routerLink="/piste">
-            <span style="margin-right: 8px; color:#FFF;" class="pagginationButtonText">Take actions</span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path d="M4.5 12H19.5M19.5 12L13.875 6M19.5 12L13.875 18" stroke="white" stroke-width="1.5"
-                    stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
+
+        <div class="d-flex justify-content-center mx-auto">
+          <button [routerLink]="'/marketplace'" class="explore-button mx-auto">
+            <div class="explore-button-text">Explore all the green projects</div>
           </button>
         </div>
       </div>
     </div>
-  </div>
-  <div class="container mx-auto">
-    <div class="mx-auto">
-      <div id="marketplace-header">Explore our Carbon Offset Projects Marketplace</div>
-      <div class="row mt-5">
-        <!--  TO DO  insert the carousel component (to fix )-->
-       <!--
-        <div class="col-3"><app-project-ad [url]="'/assets/img/projet5.png'" [cost]="'7.5'"
-            [category]="'Arbres & Forêts'" [name]="'Forestry project in Madagascar'"
-            [flag]="'/assets/img/southAfricaFlag.svg'"></app-project-ad></div>
-        -->
-      </div>
-      <div class="d-flex justify-content-center mx-auto">
-        <button [routerLink]="'/marketplace'" class="explore-button mx-auto">
-          <div class="explore-button-text">Explore all the green projects</div>
-        </button>
-      </div>
-    </div>
+
+
   </div>
 </div>
