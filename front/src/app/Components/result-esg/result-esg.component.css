@@ -4,6 +4,7 @@
   background: #FFF;
   padding-bottom: 21px;
   padding-top:0px;
+  height:750px;
   /* height: 690px; */
 }
 
@@ -100,7 +101,7 @@ line-height: 24px;
 }
 .legend-1{
   color: #014131;
-  top: 150px;
+  top:80px;
   left: -165px;
 
 
@@ -108,14 +109,14 @@ line-height: 24px;
 }
 .legend-2{
   color: #7AB68F;
-  top: 150px;
+  top: 80px;
   left: -800px;
 
 
 }
 .legend-3{
   color: #76B82A;
-  top: 640px;
+  top: 600px;
   left: -550px;
 
 }

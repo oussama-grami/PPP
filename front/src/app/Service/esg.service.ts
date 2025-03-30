@@ -1,9 +1,10 @@
-import {Injectable} from '@angular/core';
-import {Option} from '../Models/esgOption';
-import {Question} from '../Models/esgQuestion';
+import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
+import { Option } from '../Models/esgOption';
+import { Question } from '../Models/esgQuestion';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class EsgService {
   private responses: { [id: number]: number } = {};
@@ -197,44 +198,50 @@ export class EsgService {
   ];
 
 
+
   private generateOptions(texts: string[]): Option[] {
     return texts.map((text, index) => ({
       text: text,
       isSelected: false,
-      score: index * 2
+      score: index * 2,
     }));
   }
 
- getQuestionById(id: number): Question {
-    return this.questions.find(q => q.id === id)!;
-  }
-  getQuestionsByCategory(category: string): Question[] {
-    return this.questions.filter(q => q.category === category);
+  getQuestionById(id: number): Observable<Question> {
+    const question = this.questions.find((q) => q.id === id)!;
+    return of(question);
   }
 
-  updateResponse(questionId: number, selectedOptionId: number): void {
-    this.responses[questionId] = selectedOptionId;  // Store the option ID
+  getQuestionsByCategory(category: string): Observable<Question[]> {
+    const filteredQuestions = this.questions.filter((q) => q.category === category);
+    return of(filteredQuestions);
   }
 
-  getResponses(): {[id: number]: number} {
-    return this.responses;
+  updateResponse(questionId: number, selectedOptionId: number): Observable<void> {
+    this.responses[questionId] = selectedOptionId; // Store the option ID
+    return of(undefined);
   }
-  calculateEsg(): any {
+
+  getResponses(): Observable<{ [id: number]: number }> {
+    return of(this.responses);
+  }
+
+  calculateEsg(): Observable<any> {
     const categories = ['Environment', 'Social', 'Governance'] as const;
     const results: any = {};
 
-    categories.forEach(category => {
-      const questions = this.getQuestionsByCategory(category);
+    categories.forEach((category) => {
+      const questions = this.questions.filter((q) => q.category === category);
       results[category] = questions.reduce((sum, q) => {
         const selectedOptionId = this.responses[q.id];
         if (selectedOptionId !== undefined) {
-          sum += q.options[selectedOptionId].score;  // Add the score based on the
+          sum += q.options[selectedOptionId].score; // Add the score based on the
         }
         return sum;
       }, 0);
     });
 
     results.total = Math.round((results.Environment + results.Social + results.Governance) / 3);
-    return results;
+    return of(results);
   }
 }

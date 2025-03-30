@@ -1,0 +1,20 @@
+/* In your esgdiagram.component.css */
+:host {
+  display: block;
+  padding: 0;
+  margin: 0;
+}
+
+.chart-container {
+  width: 100%;
+  height: 100%;
+  padding: 10;
+  margin: 0;
+ position:relative;
+ top:-50px;
+}
+
+#myChart1 {
+  display: block;
+  margin: 0;
+}
