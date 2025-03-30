@@ -1,4 +1,4 @@
-import {Option} from "./esgOptions";
+import {Option} from "./esgOption";
 
 export interface Question {
   id: number;
