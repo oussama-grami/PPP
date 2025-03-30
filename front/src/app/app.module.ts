@@ -82,7 +82,8 @@ import { ProjectsCarouselComponent } from './Components/projects-carousel/projec
     CarbonCoBenifitsBlogComponent,
     RoadmapComponent,
     PaginationComponent,
-    PriceDetailsComponent
+    PriceDetailsComponent,
+    ProjectsCarouselComponent
   ],
   imports: [
     BrowserModule,
@@ -91,7 +92,8 @@ import { ProjectsCarouselComponent } from './Components/projects-carousel/projec
     HttpClientModule,
     FontAwesomeModule,
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]
