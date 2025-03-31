@@ -5,7 +5,7 @@
   .card-header {
     border-radius: 15px 15px 0 0 !important;
     padding: 1.5rem;
-    background: linear-gradient(135deg, #4b6cb7 0%, #182848 100%) !important;
+    background: linear-gradient(135deg, #76b852 0%, #8DC26F 100%)!important;
   }
 
   .list-group-item {
@@ -14,7 +14,7 @@
 
     &:hover {
       transform: translateX(5px);
-      border-left-color: #4b6cb7;
+      border-left-color: #76b852;
       background-color: #f8f9fa;
     }
   }

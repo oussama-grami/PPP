@@ -45,6 +45,7 @@ import {PriceDetailsComponent} from './Components/price-details/price-details.co
 import {EsgOverviewComponent} from './Components/esg-overview/esg-overview.component';
 import {ProjectsCarouselComponent} from "./Components/projects-carousel/projects-carousel.component";
 import {InstructionsListComponent} from "./Components/instructions-list/instructions-list.component";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -97,6 +98,7 @@ import {InstructionsListComponent} from "./Components/instructions-list/instruct
     FontAwesomeModule,
     CommonModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule
 
   ],
   providers: [],
