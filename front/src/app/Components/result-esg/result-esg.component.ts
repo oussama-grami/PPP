@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {EsgService} from 'src/app/Service/esg.service';
-
+import { RoutesEnum } from 'src/app/enumerations/Routes.enum';
 @Component({
   selector: 'app-result-esg',
   templateUrl: './result-esg.component.html',
@@ -11,6 +11,7 @@ export class ResultESGComponent implements OnInit{
   soc : number=0;
   gouv : number=0;
   scores : any;
+  routesEnum = RoutesEnum;
   
   constructor(private ScoreService:EsgService) {}
 

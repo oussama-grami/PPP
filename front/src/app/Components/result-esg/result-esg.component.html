@@ -1,6 +1,6 @@
-<div class="container" style="margin-top: 100px;">
+<div class="container" >
   <div class="row">
-    <div class="retour"> <button [routerLink]="'/gouv4'">
+    <div class="retour"> <button [routerLink]="'/' + routesEnum.ESG + '/15'">
         <div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
             <path d="M19.5 12H4.5M4.5 12L10.125 6M4.5 12L10.125 18" stroke="black" stroke-width="1.5"
               stroke-linecap="round" stroke-linejoin="round" />
@@ -41,7 +41,7 @@
       <div class="action-box-header">
         Take actions to improve your ESG performance
       </div>
-      <button class="pagginationButton" style="background-color: #014131; margin-top: 0px;" routerLink="/roadmap"> <span
+      <button class="pagginationButton" style="background-color: #014131; margin-top: 0px;" [routerLink]="'/' + routesEnum.ROADMAP"> <span
           style="margin-right: 8px; color:#FFF;" class="pagginationButtonText">Take actions</span><svg
           xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
           <path d="M4.5 12H19.5M19.5 12L13.875 6M19.5 12L13.875 18" stroke="white" stroke-width="1.5"

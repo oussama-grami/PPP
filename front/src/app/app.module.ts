@@ -44,6 +44,7 @@ import {PaginationComponent} from './Components/pagination/pagination.component'
 import {PriceDetailsComponent} from './Components/price-details/price-details.component';
 import {EsgOverviewComponent} from './Components/esg-overview/esg-overview.component';
 import {ProjectsCarouselComponent} from "./Components/projects-carousel/projects-carousel.component";
+import { InfoSectionComponent } from './Components/InfoSection/InfoSection.component';
 
 @NgModule({
   declarations: [
@@ -85,7 +86,8 @@ import {ProjectsCarouselComponent} from "./Components/projects-carousel/projects
     PaginationComponent,
     PriceDetailsComponent,
     EsgOverviewComponent,
-    ProjectsCarouselComponent
+    ProjectsCarouselComponent,
+    InfoSectionComponent,
   ],
   imports: [
     BrowserModule,
