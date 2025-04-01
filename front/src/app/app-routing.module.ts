@@ -28,7 +28,8 @@ import {CarbonOffsetBlogComponent} from './Components/carbon-offset-blog/carbon-
 import {CarbonCoBenifitsBlogComponent} from './Components/carbon-co-benifits-blog/carbon-co-benifits-blog.component';
 import {RoadmapComponent} from './Components/roadmap/roadmap.component';
 import {EsgAssessmentComponent} from './Components/esg-assessment/esg-assessment.component';
-
+import {CarbonPredictionInfoComponent} from './Components/CarbonPredictionInfo/CarbonPredictionInfo.component';
+import { HistoricalCarbonForecastComponent } from './Components/HistoricalCarbonForecast/HistoricalCarbonForecast.component';
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'porteur', component: PorteurComponent},
@@ -57,6 +58,9 @@ const routes: Routes = [
   {path: 'carbon-co-benefits-blog', component: CarbonCoBenifitsBlogComponent},
   {path: 'roadmap', component: RoadmapComponent},
   {path: 'esg-assessment/:questionId', component: EsgAssessmentComponent},
+  {path:'prediction-info', component: CarbonPredictionInfoComponent},
+  {path:'historical-carbon-forecast', component: HistoricalCarbonForecastComponent},
+  
 ];
 
 @NgModule({

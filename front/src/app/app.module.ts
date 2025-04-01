@@ -45,7 +45,10 @@ import {PriceDetailsComponent} from './Components/price-details/price-details.co
 import {EsgOverviewComponent} from './Components/esg-overview/esg-overview.component';
 import {ProjectsCarouselComponent} from "./Components/projects-carousel/projects-carousel.component";
 import { InfoSectionComponent } from './Components/InfoSection/InfoSection.component';
-
+import { CarbonPredictionInfoComponent } from './Components/CarbonPredictionInfo/CarbonPredictionInfo.component';
+import{ HistoricalCarbonForecastComponent } from './Components/HistoricalCarbonForecast/HistoricalCarbonForecast.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatButtonModule } from '@angular/material/button';
 @NgModule({
   declarations: [
     AppComponent,
@@ -88,6 +91,8 @@ import { InfoSectionComponent } from './Components/InfoSection/InfoSection.compo
     EsgOverviewComponent,
     ProjectsCarouselComponent,
     InfoSectionComponent,
+    CarbonPredictionInfoComponent,
+    HistoricalCarbonForecastComponent,
   ],
   imports: [
     BrowserModule,
@@ -97,6 +102,8 @@ import { InfoSectionComponent } from './Components/InfoSection/InfoSection.compo
     FontAwesomeModule,
     CommonModule,
     ReactiveFormsModule,
+    MatTableModule,
+    MatButtonModule
 
   ],
   providers: [],
