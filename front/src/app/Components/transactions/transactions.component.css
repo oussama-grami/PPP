@@ -1,0 +1,48 @@
+.transactions-container {
+  width: 90%;
+  margin: auto;
+  background: #f0fff4;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.transactions-container h2 {
+  text-align: center;
+  color: #2e7d32;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+th {
+  background: #388e3c;
+  color: white;
+}
+tr:hover {
+  background: #c8e6c9;
+}
+.success {
+  color: #2e7d32;
+  font-weight: bold;
+}
+.pending {
+  color: #fbc02d;
+  font-weight: bold;
+}
+.print-btn {
+  background: #2e7d32;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.print-btn:hover {
+  background: #1b5e20;
+}
