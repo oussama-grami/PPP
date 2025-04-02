@@ -61,14 +61,7 @@ const routes: Routes = [
   {path: 'carbon-co-benefits-blog', component: CarbonCoBenifitsBlogComponent},
   {path: 'roadmap', component: RoadmapComponent},
   {path: 'esg-assessment/:questionId', component: EsgAssessmentComponent},
-<<<<<<< Updated upstream
   {path: 'transactions', component: TransactionsComponent}
-=======
-  {path:'prediction-info', component: CarbonPredictionInfoComponent},
-  {path:'historical-carbon-forecast', component: HistoricalCarbonForecastComponent},
-
-  {path: 'transactions', component: TransactionsComponent},
->>>>>>> Stashed changes
   {
     path: "test", component: InstructionsListComponent, data: {
       instructions: [
@@ -79,7 +72,7 @@ const routes: Routes = [
       ],
       title: 'Procédure de demande'
     }
-  },
+  }
   {path: 'event-footprint',component:EventFormComponent}
 ];
 

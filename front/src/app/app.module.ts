@@ -90,16 +90,8 @@ import { EventFormComponent } from './Components/event-form/event-form.component
     PriceDetailsComponent,
     EsgOverviewComponent,
     ProjectsCarouselComponent,
-<<<<<<< Updated upstream
     TransactionsComponent
     InstructionsListComponent
-=======
-    InfoSectionComponent,
-    CarbonPredictionInfoComponent,
-    HistoricalCarbonForecastComponent,
-    TransactionsComponent,
-    InstructionsListComponent,
->>>>>>> Stashed changes
     EventFormComponent
   ],
   imports: [
@@ -110,11 +102,6 @@ import { EventFormComponent } from './Components/event-form/event-form.component
     FontAwesomeModule,
     CommonModule,
     ReactiveFormsModule,
-<<<<<<< Updated upstream
-=======
-    MatTableModule,
-    MatButtonModule,
->>>>>>> Stashed changes
     BrowserAnimationsModule
 
   ],
