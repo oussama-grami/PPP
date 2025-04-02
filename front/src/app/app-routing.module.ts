@@ -28,6 +28,8 @@ import {CarbonOffsetBlogComponent} from './Components/carbon-offset-blog/carbon-
 import {CarbonCoBenifitsBlogComponent} from './Components/carbon-co-benifits-blog/carbon-co-benifits-blog.component';
 import {RoadmapComponent} from './Components/roadmap/roadmap.component';
 import {EsgAssessmentComponent} from './Components/esg-assessment/esg-assessment.component';
+import {CarbonPredictionInfoComponent} from './Components/CarbonPredictionInfo/CarbonPredictionInfo.component';
+import { HistoricalCarbonForecastComponent } from './Components/HistoricalCarbonForecast/HistoricalCarbonForecast.component';
 import {TransactionsComponent} from "./Components/transactions/transactions.component";
 import {InstructionsListComponent} from "./Components/instructions-list/instructions-list.component";
 import {RoutesEnum} from "./enumerations/Routes.enum";
@@ -61,6 +63,9 @@ const routes: Routes = [
   {path: 'carbon-co-benefits-blog', component: CarbonCoBenifitsBlogComponent},
   {path: 'roadmap', component: RoadmapComponent},
   {path: 'esg-assessment/:questionId', component: EsgAssessmentComponent},
+  {path:'prediction-info', component: CarbonPredictionInfoComponent},
+  {path:'historical-carbon-forecast', component: HistoricalCarbonForecastComponent},
+  
   {path: 'transactions', component: TransactionsComponent}
   {
     path: "test", component: InstructionsListComponent, data: {

@@ -1,3 +1,6 @@
+.container{
+  margin-top:40px;
+}
 .box-border{
   border-radius: 8px;
   border: 1px solid #EDF2F6;
