@@ -30,6 +30,11 @@ import {RoadmapComponent} from './Components/roadmap/roadmap.component';
 import {EsgAssessmentComponent} from './Components/esg-assessment/esg-assessment.component';
 import {CarbonPredictionInfoComponent} from './Components/CarbonPredictionInfo/CarbonPredictionInfo.component';
 import { HistoricalCarbonForecastComponent } from './Components/HistoricalCarbonForecast/HistoricalCarbonForecast.component';
+import {TransactionsComponent} from "./Components/transactions/transactions.component";
+import {InstructionsListComponent} from "./Components/instructions-list/instructions-list.component";
+import {RoutesEnum} from "./enumerations/Routes.enum";
+import {EventFormComponent} from "./Components/event-form/event-form.component";
+
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'porteur', component: PorteurComponent},
@@ -39,18 +44,18 @@ const routes: Routes = [
   {path: 'fret', component: FretComponent},
   {path: 'cons', component: ConsommablesComponent},
   {path: 'imob', component: ImmobilisationsComponent},
-  {path: 'pan', component: PanneauxComponent},
+  {path: RoutesEnum.PANNEAUX, component: PanneauxComponent},
   {path: 'resultat', component: ResultatCarboneComponent},
   {path: 'esg', component: EsgComponent},
   {path: 'carbone', component: CarboneComponent},
   {path: 'esg-result', component: ResultESGComponent},
-  {path: 'arb', component: ArboricultureComponent},
+  {path: RoutesEnum.ARBORICULTURE, component: ArboricultureComponent},
   {path: 'piste', component: PisteComponent},
   {path: 'marketplace', component: MarketplaceComponent},
   {path: 'details/:id', component: ProjectDetailsComponent},
-  {path: 'checkout', component: CheckoutComponent},
+  {path: RoutesEnum.CHECKOUT, component: CheckoutComponent},
   {path: 'payment', component: PaymentComponent},
-  {path: 'new-project', component: ProjectOwnerComponent},
+  {path: RoutesEnum.NEW_PROJECT, component: ProjectOwnerComponent},
   {path: 'resources', component: ResourcesComponent},
   {path: 'info', component: InfoComponent},
   {path: 'marketplace-blog', component: MarketplaceBlogComponent},
@@ -61,6 +66,19 @@ const routes: Routes = [
   {path:'prediction-info', component: CarbonPredictionInfoComponent},
   {path:'historical-carbon-forecast', component: HistoricalCarbonForecastComponent},
   
+  {path: 'transactions', component: TransactionsComponent}
+  {
+    path: "test", component: InstructionsListComponent, data: {
+      instructions: [
+        'Connectez-vous à votre compte',
+        'Remplissez le formulaire de demande',
+        'Vérifiez les informations saisies',
+        'Soumettez votre demande avant la date limite'
+      ],
+      title: 'Procédure de demande'
+    }
+  }
+  {path: 'event-footprint',component:EventFormComponent}
 ];
 
 @NgModule({

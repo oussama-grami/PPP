@@ -1,6 +1,6 @@
 <div class="container mt-5">
   <div class="mb-3">
-    <button class="btn btn-link text-decoration-none text-black" [routerLink]="'/marketplace'">
+    <button class="btn btn-link text-decoration-none text-black" [routerLink]="'/'+RoutesEnum.MARKETPLACE">
       <span>
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
           <path d="M19.5 12H4.5M4.5 12L10.125 6M4.5 12L10.125 18" stroke="black" stroke-width="1.5"
@@ -153,7 +153,9 @@
               </div>
             </div>
             <div class="col-12 d-flex justify-content-end text-black ">
-              <button type="button" class="btn btn-outline-secondary me-2" [routerLink]="'/marketplace'">Back</button>
+              <button type="button" class="btn btn-outline-secondary me-2" [routerLink]="'/'+RoutesEnum.MARKETPLACE">
+                Back
+              </button>
               <button type="submit" class="btn btn-secondary">Checkout</button>
             </div>
           </div>

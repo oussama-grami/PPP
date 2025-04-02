@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {PanneauxService} from '../../Service/panneaux.service';
 import {Panneaux} from '../../Models/panneaux';
 import {HttpClient} from "@angular/common/http";
+import {RoutesEnum} from "../../enumerations/Routes.enum";
 
 @Component({
   selector: 'app-panneaux',
@@ -80,4 +81,6 @@ export class PanneauxComponent implements OnInit {
       this.displayResult = false;
     }
   }
+
+  protected readonly RoutesEnum = RoutesEnum;
 }

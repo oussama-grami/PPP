@@ -49,6 +49,11 @@ import { CarbonPredictionInfoComponent } from './Components/CarbonPredictionInfo
 import{ HistoricalCarbonForecastComponent } from './Components/HistoricalCarbonForecast/HistoricalCarbonForecast.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
+import { TransactionsComponent } from './Components/transactions/transactions.component';
+import {InstructionsListComponent} from "./Components/instructions-list/instructions-list.component";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { EventFormComponent } from './Components/event-form/event-form.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -93,6 +98,9 @@ import { MatButtonModule } from '@angular/material/button';
     InfoSectionComponent,
     CarbonPredictionInfoComponent,
     HistoricalCarbonForecastComponent,
+    TransactionsComponent
+    InstructionsListComponent
+    EventFormComponent
   ],
   imports: [
     BrowserModule,
@@ -104,6 +112,7 @@ import { MatButtonModule } from '@angular/material/button';
     ReactiveFormsModule,
     MatTableModule,
     MatButtonModule
+    BrowserAnimationsModule
 
   ],
   providers: [],

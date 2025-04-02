@@ -1,0 +1,26 @@
+.instruction-container {
+  max-width: 800px;
+  margin: 2rem auto;
+
+  .card-header {
+    border-radius: 15px 15px 0 0 !important;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, #0c4128 0%, #2f7a07 100%)!important;
+  }
+
+  .list-group-item {
+    transition: all 0.2s ease;
+    border-left: 4px solid transparent;
+
+    &:hover {
+      transform: translateX(5px);
+      border-left-color: #2f7a07;
+      background-color: #f8f9fa;
+    }
+  }
+
+  .fa-chevron-right {
+    opacity: 0.5;
+    margin-top: 0.3rem;
+  }
+}

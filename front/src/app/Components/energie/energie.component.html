@@ -11,7 +11,7 @@
     </div>
     <div class="col-lg-6 content-right" id="start" style="overflow-y: hidden;">
       <div id="wizard_container">
-        <form [formGroup]="energieForm" (ngSubmit)="onNext()" id="wrapped">
+        <form [formGroup]="energieForm" (ngSubmit)="onNext()" >
           <!-- Step Indicator -->
           <div class="step">
             <h3 class="main_question mt-2"><strong>2/7</strong> Energy Consumption Form</h3>
@@ -123,8 +123,8 @@
           <br/>
           <div id="bottom-wizard2  mb-2 pb-2">
 
-              <button type="button" name="backward" class="backward"  routerLink="/info">Back</button>
-              <button type="submit" name="forward" class="forward">Continue</button>
+              <button type="button" name="backward" class="btnbackward" [disabled]="false" routerLink="/info">Back</button>
+              <button type="submit" name="forward" class="btnforward"  [disabled]="false" >Continue</button>
           </div>
 
         </form>

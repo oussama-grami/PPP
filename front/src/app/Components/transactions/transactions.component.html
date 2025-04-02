@@ -1,0 +1,28 @@
+<div class="transactions-container">
+  <h2>My Transactions</h2>
+  <table>
+    <thead>
+    <tr>
+      <th></th>
+      <th>Country</th>
+      <th>Cost</th>
+      <th>Quantity</th>
+      <th>Date</th>
+      <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let transaction of transactions">
+      <td><img [src]="transaction.flag"></td>
+      <td>{{ transaction.country  }}</td>
+      <td>{{ transaction.cost | currency:'USD'}}</td>
+      <td > {{ transaction.quantity }}</td>
+      <td>{{transaction.date.toLocaleString()}}</td>
+      <td>Nothing</td>
+      <td>
+        <button (click)="printInvoice(transaction)" class="print-btn">Print</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

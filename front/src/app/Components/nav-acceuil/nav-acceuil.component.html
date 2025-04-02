@@ -34,12 +34,32 @@
               Knowledge</a>
           </li>
         </div>
-        <li class="nav-item ms-lg-auto ms-0">
-          <a class="nav-link fff" [ngClass]="{ 'selected': isRoute6Active()}" routerLink="/checkout">
-            <i class="fas fa-shopping-cart text-black w-100"></i>
-          </a>
-        </li>
+        <div class="d-flex align-items-start align-items-lg-center w-auto justify-content-between">
+          <li class="nav-item ms-lg-auto ms-0">
+            <a class="nav-link fff mt-0" [ngClass]="{ 'selected': isRoute6Active()}" routerLink="/checkout">
+              <i class="fas fa-shopping-cart text-black w-100"></i>
+            </a>
+          </li>
+          <li class="nav-item dropdown ms-lg-3">
+            <a class="nav-link dropdown-toggle" href="#" id="userMenu" role="button" data-bs-toggle="dropdown"
+               aria-expanded="false">
+              <i class="fas fa-user-circle text-black w-100"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenu">
+              <li><a class="dropdown-item" routerLink="/account">Account Properties</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li>
+                <button class="dropdown-item" (click)="logout()">Logout</button>
+              </li>
+            </ul>
+          </li>
+        </div>
+
       </ul>
     </div>
   </div>
 </nav>
+
+<!-- TODO : famma lien mt3 ai 9al 3lih oussama lmarra lifetit -->
