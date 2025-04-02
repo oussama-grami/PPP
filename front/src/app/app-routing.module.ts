@@ -67,7 +67,6 @@ const routes: Routes = [
     {path: 'esg-assessment/:questionId', component: EsgAssessmentComponent},
     {path: 'prediction-info', component: CarbonPredictionInfoComponent},
     {path: 'historical-carbon-forecast', component: HistoricalCarbonForecastComponent},
-
     {path: 'transactions', component: TransactionsComponent},
     {
         path: "test", component: InstructionsListComponent, data: {

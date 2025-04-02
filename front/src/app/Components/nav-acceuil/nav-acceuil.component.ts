@@ -2,14 +2,15 @@ import {Component} from '@angular/core';
 import {Router} from "@angular/router";
 import {RoutesEnum} from "../../enumerations/Routes.enum";
 
-;
-
 @Component({
   selector: 'app-nav-acceuil',
   templateUrl: './nav-acceuil.component.html',
   styleUrls: ['./nav-acceuil.component.css']
 })
 export class NavAcceuilComponent {
+  showAiToolsMenu: boolean = false;
+  showAccountMenu: boolean = false;
+
   constructor(private router: Router) {
   }
 
@@ -78,4 +79,20 @@ export class NavAcceuilComponent {
   logout() {
 
   }
+
+  toggleAiToolsMenu() {
+    this.showAiToolsMenu = !this.showAiToolsMenu;
+    if (this.showAiToolsMenu) {
+      this.showAccountMenu = false;
+    }
+  }
+
+  closeNavbar() {
+    const navbarCollapse = document.querySelector('.navbar-collapse');
+    if (navbarCollapse) {
+      navbarCollapse.classList.remove('show');
+    }
+  }
+
+  protected readonly RoutesEnum = RoutesEnum;
 }
