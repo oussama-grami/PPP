@@ -28,6 +28,7 @@ import {CarbonOffsetBlogComponent} from './Components/carbon-offset-blog/carbon-
 import {CarbonCoBenifitsBlogComponent} from './Components/carbon-co-benifits-blog/carbon-co-benifits-blog.component';
 import {RoadmapComponent} from './Components/roadmap/roadmap.component';
 import {EsgAssessmentComponent} from './Components/esg-assessment/esg-assessment.component';
+import {EventFormComponent} from "./Components/event-form/event-form.component";
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -57,6 +58,7 @@ const routes: Routes = [
   {path: 'carbon-co-benefits-blog', component: CarbonCoBenifitsBlogComponent},
   {path: 'roadmap', component: RoadmapComponent},
   {path: 'esg-assessment/:questionId', component: EsgAssessmentComponent},
+  {path: 'event-footprint',component:EventFormComponent}
 ];
 
 @NgModule({
