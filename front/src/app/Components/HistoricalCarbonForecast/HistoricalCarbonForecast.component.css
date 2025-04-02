@@ -1,5 +1,4 @@
-/* CSS */
-@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css");
+
 
 *{
    font-family: Roboto;
@@ -71,7 +70,7 @@
 .card-header {
   padding: 1.25rem 1.5rem;
   border-bottom: none;
-    background-color:#87be47 !important;
+    background-color:#014131 !important;
   display: flex;
   align-items: center;
   justify-content: space-between;
