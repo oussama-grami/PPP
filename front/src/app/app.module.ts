@@ -46,6 +46,7 @@ import {EsgOverviewComponent} from './Components/esg-overview/esg-overview.compo
 import {ProjectsCarouselComponent} from "./Components/projects-carousel/projects-carousel.component";
 import {InstructionsListComponent} from "./Components/instructions-list/instructions-list.component";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { EventFormComponent } from './Components/event-form/event-form.component';
 
 @NgModule({
   declarations: [
@@ -89,6 +90,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     EsgOverviewComponent,
     ProjectsCarouselComponent,
     InstructionsListComponent
+    EventFormComponent
   ],
   imports: [
     BrowserModule,

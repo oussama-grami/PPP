@@ -30,6 +30,7 @@ import {RoadmapComponent} from './Components/roadmap/roadmap.component';
 import {EsgAssessmentComponent} from './Components/esg-assessment/esg-assessment.component';
 import {InstructionsListComponent} from "./Components/instructions-list/instructions-list.component";
 import {RoutesEnum} from "./enumerations/Routes.enum";
+import {EventFormComponent} from "./Components/event-form/event-form.component";
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -70,6 +71,7 @@ const routes: Routes = [
       title: 'Procédure de demande'
     }
   }
+  {path: 'event-footprint',component:EventFormComponent}
 ];
 
 @NgModule({

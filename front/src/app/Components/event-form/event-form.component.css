@@ -1,0 +1,26 @@
+html, body {
+  overflow: hidden;
+  height: 100%;
+}
+
+.container-fluid {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+.row-height {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.content-right {
+  overflow-y: auto;
+  max-height: 100vh;
+}
+.content-left-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
