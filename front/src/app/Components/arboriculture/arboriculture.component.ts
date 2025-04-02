@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {RoutesEnum} from "../../enumerations/Routes.enum";
 
 @Component({
   selector: 'app-arboriculture',
@@ -40,4 +41,6 @@ export class ArboricultureComponent {
     }
 
   }
+
+  protected readonly RoutesEnum = RoutesEnum;
 }

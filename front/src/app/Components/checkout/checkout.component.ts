@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from "../../Service/cart-service.service";
+import {RoutesEnum} from "../../enumerations/Routes.enum";
 
 @Component({
   selector: 'app-checkout',
@@ -22,16 +23,18 @@ export class CheckoutComponent implements OnInit {
 
   removeItem(index: number) {
     this.cartService.removeItem(index);
-    this.cartItems = this.cartService.getItems(); // Mise à jour de l'état du panier
+    this.cartItems = this.cartService.getItems();
   }
 
   increaseQuantity(index: number) {
     this.cartService.increaseQuantity(index);
-    this.cartItems = this.cartService.getItems(); // Mise à jour de l'état du panier
+    this.cartItems = this.cartService.getItems();
   }
 
   decreaseQuantity(index: number) {
     this.cartService.decreaseQuantity(index);
-    this.cartItems = this.cartService.getItems(); // Mise à jour de l'état du panier
+    this.cartItems = this.cartService.getItems();
   }
+
+  protected readonly RoutesEnum = RoutesEnum;
 }

@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {RoutesEnum} from "../../enumerations/Routes.enum";
 
 @Component({
   selector: 'app-project-owner',
@@ -251,4 +252,6 @@ export class ProjectOwnerComponent {
     }
     this.isSubmitted = true;
   }
+
+  protected readonly RoutesEnum = RoutesEnum;
 }
