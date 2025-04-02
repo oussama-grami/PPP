@@ -42,7 +42,7 @@
         <div class="col-7 col-md-9 mt-3 mt-md-0">
           <div class="project-name">{{ item.name }}</div>
           <div class="project-name-details">
-            {{ (+item.cost * +item.quantity) | number:'1.2-2' }}$
+            {{ +item.cost | number:'1.2-2' }}$
           </div>
 
         </div>
