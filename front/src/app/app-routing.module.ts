@@ -29,67 +29,69 @@ import {CarbonCoBenifitsBlogComponent} from './Components/carbon-co-benifits-blo
 import {RoadmapComponent} from './Components/roadmap/roadmap.component';
 import {EsgAssessmentComponent} from './Components/esg-assessment/esg-assessment.component';
 import {CarbonPredictionInfoComponent} from './Components/CarbonPredictionInfo/CarbonPredictionInfo.component';
-import { HistoricalCarbonForecastComponent } from './Components/HistoricalCarbonForecast/HistoricalCarbonForecast.component';
+import {
+    HistoricalCarbonForecastComponent
+} from './Components/HistoricalCarbonForecast/HistoricalCarbonForecast.component';
 import {TransactionsComponent} from "./Components/transactions/transactions.component";
 import {InstructionsListComponent} from "./Components/instructions-list/instructions-list.component";
 import {RoutesEnum} from "./enumerations/Routes.enum";
 import {EventFormComponent} from "./Components/event-form/event-form.component";
 
 const routes: Routes = [
-  {path: '', component: HomeComponent},
-  {path: 'porteur', component: PorteurComponent},
-  {path: 'energie', component: EnergieComponent},
-  {path: 'car', component: CarburantComponent},
-  {path: 'aer', component: AeriensComponent},
-  {path: 'fret', component: FretComponent},
-  {path: 'cons', component: ConsommablesComponent},
-  {path: 'imob', component: ImmobilisationsComponent},
-  {path: RoutesEnum.PANNEAUX, component: PanneauxComponent},
-  {path: 'resultat', component: ResultatCarboneComponent},
-  {path: 'esg', component: EsgComponent},
-  {path: 'carbone', component: CarboneComponent},
-  {path: 'esg-result', component: ResultESGComponent},
-  {path: RoutesEnum.ARBORICULTURE, component: ArboricultureComponent},
-  {path: 'piste', component: PisteComponent},
-  {path: 'marketplace', component: MarketplaceComponent},
-  {path: 'details/:id', component: ProjectDetailsComponent},
-  {path: RoutesEnum.CHECKOUT, component: CheckoutComponent},
-  {path: 'payment', component: PaymentComponent},
-  {path: RoutesEnum.NEW_PROJECT, component: ProjectOwnerComponent},
-  {path: 'resources', component: ResourcesComponent},
-  {path: 'info', component: InfoComponent},
-  {path: 'marketplace-blog', component: MarketplaceBlogComponent},
-  {path: 'carbon-offset-blog', component: CarbonOffsetBlogComponent},
-  {path: 'carbon-co-benefits-blog', component: CarbonCoBenifitsBlogComponent},
-  {path: 'roadmap', component: RoadmapComponent},
-  {path: 'esg-assessment/:questionId', component: EsgAssessmentComponent},
-  {path:'prediction-info', component: CarbonPredictionInfoComponent},
-  {path:'historical-carbon-forecast', component: HistoricalCarbonForecastComponent},
-  
-  {path: 'transactions', component: TransactionsComponent}
-  {
-    path: "test", component: InstructionsListComponent, data: {
-      instructions: [
-        'Connectez-vous à votre compte',
-        'Remplissez le formulaire de demande',
-        'Vérifiez les informations saisies',
-        'Soumettez votre demande avant la date limite'
-      ],
-      title: 'Procédure de demande'
-    }
-  }
-  {path: 'event-footprint',component:EventFormComponent}
+    {path: '', component: HomeComponent},
+    {path: 'porteur', component: PorteurComponent},
+    {path: 'energie', component: EnergieComponent},
+    {path: 'car', component: CarburantComponent},
+    {path: 'aer', component: AeriensComponent},
+    {path: 'fret', component: FretComponent},
+    {path: 'cons', component: ConsommablesComponent},
+    {path: 'imob', component: ImmobilisationsComponent},
+    {path: RoutesEnum.PANNEAUX, component: PanneauxComponent},
+    {path: 'resultat', component: ResultatCarboneComponent},
+    {path: 'esg', component: EsgComponent},
+    {path: 'carbone', component: CarboneComponent},
+    {path: 'esg-result', component: ResultESGComponent},
+    {path: RoutesEnum.ARBORICULTURE, component: ArboricultureComponent},
+    {path: 'piste', component: PisteComponent},
+    {path: 'marketplace', component: MarketplaceComponent},
+    {path: 'details/:id', component: ProjectDetailsComponent},
+    {path: RoutesEnum.CHECKOUT, component: CheckoutComponent},
+    {path: 'payment', component: PaymentComponent},
+    {path: RoutesEnum.NEW_PROJECT, component: ProjectOwnerComponent},
+    {path: 'resources', component: ResourcesComponent},
+    {path: 'info', component: InfoComponent},
+    {path: 'marketplace-blog', component: MarketplaceBlogComponent},
+    {path: 'carbon-offset-blog', component: CarbonOffsetBlogComponent},
+    {path: 'carbon-co-benefits-blog', component: CarbonCoBenifitsBlogComponent},
+    {path: 'roadmap', component: RoadmapComponent},
+    {path: 'esg-assessment/:questionId', component: EsgAssessmentComponent},
+    {path: 'prediction-info', component: CarbonPredictionInfoComponent},
+    {path: 'historical-carbon-forecast', component: HistoricalCarbonForecastComponent},
+
+    {path: 'transactions', component: TransactionsComponent},
+    {
+        path: "test", component: InstructionsListComponent, data: {
+            instructions: [
+                'Connectez-vous à votre compte',
+                'Remplissez le formulaire de demande',
+                'Vérifiez les informations saisies',
+                'Soumettez votre demande avant la date limite'
+            ],
+            title: 'Procédure de demande'
+        }
+    },
+    {path: 'event-footprint', component: EventFormComponent}
 ];
 
 @NgModule({
-  declarations: [],
-  imports: [
-    CommonModule,
-    RouterModule.forRoot(routes, {
-      onSameUrlNavigation: "reload"
-    })
-  ],
-  exports: [RouterModule]
+    declarations: [],
+    imports: [
+        CommonModule,
+        RouterModule.forRoot(routes, {
+            onSameUrlNavigation: "reload"
+        })
+    ],
+    exports: [RouterModule]
 })
 
 export class AppRoutingModule {

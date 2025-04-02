@@ -98,8 +98,8 @@ import { EventFormComponent } from './Components/event-form/event-form.component
     InfoSectionComponent,
     CarbonPredictionInfoComponent,
     HistoricalCarbonForecastComponent,
-    TransactionsComponent
-    InstructionsListComponent
+    TransactionsComponent,
+    InstructionsListComponent,
     EventFormComponent
   ],
   imports: [
@@ -111,7 +111,7 @@ import { EventFormComponent } from './Components/event-form/event-form.component
     CommonModule,
     ReactiveFormsModule,
     MatTableModule,
-    MatButtonModule
+    MatButtonModule,
     BrowserAnimationsModule
 
   ],
