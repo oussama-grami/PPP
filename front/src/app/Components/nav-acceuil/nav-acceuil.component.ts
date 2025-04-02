@@ -74,4 +74,8 @@ export class NavAcceuilComponent {
   isRoute6Active(): boolean {
     return this.list_6.some((route) => this.router.url === "/" + route);
   }
+
+  logout() {
+
+  }
 }

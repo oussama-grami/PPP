@@ -45,6 +45,9 @@ import {PriceDetailsComponent} from './Components/price-details/price-details.co
 import {EsgOverviewComponent} from './Components/esg-overview/esg-overview.component';
 import {ProjectsCarouselComponent} from "./Components/projects-carousel/projects-carousel.component";
 import { TransactionsComponent } from './Components/transactions/transactions.component';
+import {InstructionsListComponent} from "./Components/instructions-list/instructions-list.component";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { EventFormComponent } from './Components/event-form/event-form.component';
 
 @NgModule({
   declarations: [
@@ -88,6 +91,8 @@ import { TransactionsComponent } from './Components/transactions/transactions.co
     EsgOverviewComponent,
     ProjectsCarouselComponent,
     TransactionsComponent
+    InstructionsListComponent
+    EventFormComponent
   ],
   imports: [
     BrowserModule,
@@ -97,6 +102,7 @@ import { TransactionsComponent } from './Components/transactions/transactions.co
     FontAwesomeModule,
     CommonModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule
 
   ],
   providers: [],
