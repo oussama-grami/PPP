@@ -6,8 +6,10 @@ pip install azure-ai-inference
 context = """
 ### CONTEXTE ENTREPRISE ###
 Générez le maximum possible des recommandations techniques pertinentes
-reliée à la valeur de chaque paramètre ci-dessous.
+reliée à la valeur de chaque paramètre ci-dessous 
 non connues par l'entreprise ou l'utilisateur normal EN ANGLAIS
+et seulement pour les paramètres qui ont des valeurs
+un peu élevées ou très élevées par rapport aux normes
 Format EXIGÉ est spécifié par les deux exemples ci dessous
 ### RÈGLES ABSOLUES ###
 1. Uniquement des chaînes de caractères
@@ -55,12 +57,12 @@ Format EXIGÉ est spécifié par les deux exemples ci dessous
 [
     {
         'parameter': 'annualConsumptionOfElectricity',
-        'advice':'Optimisation climatisation',
-        'objective':'-12% via régulation intelligente'
+        'interpretation':'You have a high fuel consumption index  and it causes a 10% of your carbon footprint',
+        'objective':'Diminish your fuel consumption by 5%'
     },{
         'parameter': 'numberOfLightDutyVehicles',
-        'advice':'Réduction flotte véhicules',
-        'objective':'-15% en 18 mois'
+        'interpretation':'Réduction flotte véhicules',
+        'objective':'Reduce your vehicules to 150 vehicules in the incoming period'
     }
 ]
 
