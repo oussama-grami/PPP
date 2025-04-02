@@ -44,6 +44,7 @@ import {PaginationComponent} from './Components/pagination/pagination.component'
 import {PriceDetailsComponent} from './Components/price-details/price-details.component';
 import {EsgOverviewComponent} from './Components/esg-overview/esg-overview.component';
 import {ProjectsCarouselComponent} from "./Components/projects-carousel/projects-carousel.component";
+import { TransactionsComponent } from './Components/transactions/transactions.component';
 import {InstructionsListComponent} from "./Components/instructions-list/instructions-list.component";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { EventFormComponent } from './Components/event-form/event-form.component';
@@ -89,6 +90,7 @@ import { EventFormComponent } from './Components/event-form/event-form.component
     PriceDetailsComponent,
     EsgOverviewComponent,
     ProjectsCarouselComponent,
+    TransactionsComponent
     InstructionsListComponent
     EventFormComponent
   ],
