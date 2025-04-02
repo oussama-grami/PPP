@@ -48,8 +48,8 @@ export class HistoricalCarbonForecastComponent implements OnInit {
         datasets: [{
           label: 'Carbon Footprint',
           data: this.chartData,
-          borderColor: 'rgba(73, 73, 73, 0.43)',
-          backgroundColor: 'rgba(1, 65, 49, 0.2)',
+          borderColor: 'rgba(1 ,65, 49,0.5)',
+          backgroundColor: 'rgba(135 ,190,71, 0.2)',
           fill: true
         }]
       },

@@ -45,6 +45,7 @@
 .container-fluid {
   padding: 0 1.5rem;
   margin-top: 1rem;
+
  
  
 }
@@ -55,6 +56,9 @@
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.07);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   overflow: hidden;
+  min-height: 500px;
+  margin-left:40px;
+
  
 
 }
@@ -247,19 +251,19 @@ canvas#carbonChart {
 }
 
 
-.btn-refresh  {
+.btn-predict  {
     width: 156px;
     height: 40px;
     background-color:#014131;
     color:white;
     font-size: 16px;
 }
-.btn.btn-refresh:hover 
+.btn.btn-predict:hover 
 {    background-color: white !important;
     color:#014131 !important;
     border:#014131 1px solid !important;
 }
-.btn.btn-refresh:focus , .btn-add-data:focus
+.btn.btn-predict:focus , .btn-add-data:focus
 {    background-color: white !important;
     color:#014131 !important;
     border:#014131 1px solid !important;
