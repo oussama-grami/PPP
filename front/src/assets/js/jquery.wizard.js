@@ -465,21 +465,7 @@ $.widget( "kf." + wizard, {
 				// Fixes #3583 - http://bugs.jquery.com/ticket/3583
 				$.extend( {}, o.animations.show.options ) );
 
-		if ( state.isFirstStep || o.unidirectional ||
-			state.step.hasClass( o.stepClasses.unidirectional ) ) {
-			this.elements.backward.attr( disabled, true );
 
-		} else {
-			this.elements.backward.removeAttr( disabled );
-		}
-
-		if ( ( state.isLastStepInBranch && !state.step.attr( o.stateAttribute ) ) ||
-			state.step.hasClass( o.stepClasses.stop ) ) {
-			this.elements.forward.attr( disabled, true );
-
-		} else {
-			this.elements.forward.removeAttr( disabled );
-		}
 
 		if ( o.enableSubmit || state.step.hasClass( o.stepClasses.submit ) ) {
 			this.elements.submit.removeAttr( disabled );
