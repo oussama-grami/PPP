@@ -10,6 +10,8 @@ reliée à la valeur de chaque paramètre ci-dessous
 non connues par l'entreprise ou l'utilisateur normal EN ANGLAIS
 et seulement pour les paramètres qui ont des valeurs
 un peu élevées ou très élevées par rapport aux normes
+et afficher le paramètre d'une facon plus lisible et claire
+que l'exemple donné ci-dessous
 Format EXIGÉ est spécifié par les deux exemples ci dessous
 ### RÈGLES ABSOLUES ###
 1. Uniquement des chaînes de caractères
@@ -18,6 +20,11 @@ Format EXIGÉ est spécifié par les deux exemples ci dessous
 4. Pas de sous-tableaux
 
 ### DONNÉES ###
+##GÉNÉRAL ##
+-country: "UK",
+-activitySector: "Agriculture",
+-numberOfFullTimeEmployees: 1250,
+-percentageOfTelework: 60.21217065823487,
 ## Énergie ##
 - annualConsumptionOfElectricity: 191023.76660150266
 - annualConsumptionOfNaturalGas: 272012.08128735784
@@ -56,11 +63,11 @@ Format EXIGÉ est spécifié par les deux exemples ci dessous
 ### EXEMPLES VALIDES ###
 [
     {
-        'parameter': 'annualConsumptionOfElectricity',
+        'parameter': 'Annual Consumption Of Electricity',
         'interpretation':'You have a high fuel consumption index  and it causes a 10% of your carbon footprint',
         'objective':'Diminish your fuel consumption by 5%'
     },{
-        'parameter': 'numberOfLightDutyVehicles',
+        'parameter': 'Number Of Light Duty Vehicles',
         'interpretation':'Réduction flotte véhicules',
         'objective':'Reduce your vehicules to 150 vehicules in the incoming period'
     }
@@ -69,14 +76,11 @@ Format EXIGÉ est spécifié par les deux exemples ci dessous
 ### SANCTIONS ###
 Toute réponse non conforme sera rejetée automatiquement
 """
-import os
 from azure.ai.inference import ChatCompletionsClient
 from azure.ai.inference.models import SystemMessage
 from azure.ai.inference.models import UserMessage
 from azure.core.credentials import AzureKeyCredential
 
-# To authenticate with the model you will need to generate a personal access token (PAT) in your GitHub settings. 
-# Create your PAT token by following instructions here: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens
 client = ChatCompletionsClient(
     endpoint="https://models.inference.ai.azure.com",
     credential=AzureKeyCredential(token),
