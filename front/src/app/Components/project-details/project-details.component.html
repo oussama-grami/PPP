@@ -1,13 +1,14 @@
 <div class="retour">
-  <button [routerLink]="'/marketplace'"> <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                    viewBox="0 0 24 24" fill="none">
-    <path d="M19.5 12H4.5M4.5 12L10.125 6M4.5 12L10.125 18" stroke="black" stroke-width="1.5"
-          stroke-linecap="round" stroke-linejoin="round"/>
-</svg></span>
-    <span class="retour-text">
-Retour aux projets
-</span></button>
+  <button [routerLink]="'/marketplace'">
+    <span>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path d="M19.5 12H4.5M4.5 12L10.125 6M4.5 12L10.125 18" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </span>
+    <span class="retour-text">Retour aux projets</span>
+  </button>
 </div>
+
 <div style="display: flex; justify-content: center;">
   <div class="container-img" style="position: relative;"
        [ngStyle]="{'background-image': 'url(' + selectedImage +' )', 'background-repeat': 'no-repeat',  'width': '1200px', 'height': '530px'}">
@@ -42,32 +43,9 @@ Retour aux projets
     </div>
   </div>
 </div>
-
-<div class="container" style="margin-top: 13px;">
-  <div class="row justify-content-center">
-
-    <div class="col-1 carouselMainElement" [ngStyle]="{ 'background-image': 'url(' + carouselMainElement + ')'}"
-         (click)="selectImage('/assets/img/details4.png')" style="cursor: pointer;"></div>
-    <div class="col-1 carouselOtherElements"
-         [ngStyle]="{ 'background-image': 'url(' + carouselOtherElements + ')'}"></div>
-    <div class="col-1 carouselOtherElements"
-         [ngStyle]="{ 'background-image': 'url(' + carouselOtherElements + ')'}"></div>
-    <div class="col-1 carouselOtherElements"
-         [ngStyle]="{ 'background-image': 'url(' + carouselOtherElements + ')'}"></div>
-    <div class="col-1 carouselOtherElements"
-         [ngStyle]="{ 'background-image': 'url(' + carouselOtherElements + ')'}"></div>
-    <div class="col-1 carouselOtherElements"
-         [ngStyle]="{ 'background-image': 'url(' + carouselOtherElements + ')'}"></div>
-
-
-  </div>
-
-
-</div>
-
 <div class="container content">
   <div class="row">
-    <div class="col-8">
+    <div class="col-md-8 col-12">
       <div class="description-content">
         <div class="description">Description</div>
 
@@ -172,33 +150,33 @@ Retour aux projets
           </div>
 
         </div>
-        <div class="details" style="margin-top: 56px;">Details</div>
+        <div class="details" style="margin-top: 56px; display: flex">Details</div>
         <div class="row" style="margin-top: 39px;">
           <div class="col-7">
             <div>
               <div><span class="detail-title">Country</span><span style="float: right;"
                                                                   class="detail-value">Tunisia</span></div>
-              <div style="width: 489px; height: 1px;background: #D3D3D3;margin: 16px 0px;"></div>
+              <div style="width: 100%; height: 1px;background: #D3D3D3;margin: 16px 0px;"></div>
               <div><span class="detail-title">Company</span><span style="float: right;"
                                                                   class="detail-value">1976 International</span></div>
-              <div style="width: 489px; height: 1px;background: #D3D3D3;margin: 16px 0px;"></div>
+              <div style="width: 100%; height: 1px;background: #D3D3D3;margin: 16px 0px;"></div>
               <div style="margin-bottom: 32px;"><span class="detail-title">Company identifier</span><span
                 style="float: right; width: 279px; text-align: right;"
                 class="detail-value">1696707C (to the Tunisan National companies register)</span>
               </div>
-              <div style="width: 489px; height: 1px;background: #D3D3D3;margin-bottom: 16px;"></div>
+              <div style="width: 100%; height: 1px;background: #D3D3D3;margin-bottom: 16px;"></div>
               <div><span class="detail-title">Blockchain address</span><a
                 style="float: right; cursor: pointer; color: black;"
                 href="'https://polygon.technology/'"
                 class="detail-value">https://polygon.technology/</a></div>
-              <div style="width: 489px; height: 1px;background: #D3D3D3;margin: 16px 0px;"></div>
+              <div style="width: 100%; height: 1px;background: #D3D3D3;margin: 16px 0px;"></div>
               <div><span class="detail-title">Type of project</span><span style="float: right;"
                                                                           class="detail-value">Arboriculture</span>
               </div>
-              <div style="width: 489px; height: 1px;background: #D3D3D3;margin: 16px 0px;"></div>
+              <div style="width: 100%; height: 1px;background: #D3D3D3;margin: 16px 0px;"></div>
               <div><span class="detail-title">Mechanism</span><span style="float: right;"
                                                                     class="detail-value">Elimination</span></div>
-              <div style="width: 489px; height: 1px;background: #D3D3D3;margin: 16px 0px;"></div>
+              <div style="width: 100%; height: 1px;background: #D3D3D3;margin: 16px 0px;"></div>
             </div>
 
 
@@ -238,7 +216,7 @@ Retour aux projets
 
       </div>
     </div>
-    <div class="col-4" *ngIf="projectId!=undefined">
+    <div class="col-md-4 col-12" *ngIf="projectId!=undefined">
       <app-price-details [projectId]="projectId"></app-price-details>
     </div>
 

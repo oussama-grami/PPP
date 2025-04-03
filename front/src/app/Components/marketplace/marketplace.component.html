@@ -1,23 +1,20 @@
-<div style="justify-content: center; display: flex; margin-right: 0px;">
-  <div style="position: relative; margin-top: 5rem;"
-       [ngStyle]="{'background-image': 'url(/assets/img/marketplaceBackground.png)', 'background-repeat': 'no-repeat',  'width': '1200px', 'height': '530px'}">
+<div class="container-fluid">
+  <div class="position-relative" style="margin-top: 5rem; background-image: url(/assets/img/marketplaceBackground.png); background-repeat: no-repeat; background-size: cover; width: 100%; height: 530px;">
     <div class="backgroundText">
       <p class="p1">Your carbon compensation market</p>
-      <p class="p2">Understand the challenges of carbon offsetting and contribute to collective carbon neutrality
-      </p>
+      <p class="p2" >Understand the challenges of carbon offsetting and contribute to collective carbon neutrality</p>
       <button class="backgroundButton1" [routerLink]="'/carbone'">Calculate your carbon emissions</button>
       <button class="backgroundButton2" [routerLink]="'/new-project'">Submit your project</button>
     </div>
-
   </div>
 </div>
 <div class="container mt-4">
   <div class="row">
-    <div class="col-3">
+    <div class="col-md-4  col-12">
       <div class="filterTitle">
         Filtres
       </div>
-      <div class="filterItems" style="margin-top: 29px;">
+      <div class="filterItems mt-3 " style="margin-top: 29px;" >
         <app-filter-item [filterName]="'Country'" [icon]="countryDisplay"
                          (click)="displayCountryFilter()"></app-filter-item>
 
@@ -60,9 +57,9 @@
           <span>Maximum price: <input [(ngModel)]="priceFilter" style="width: 30px; padding: 5px;" for="customRange1"
                                       class="form-label input-range" value=" {{priceFilter}}"> $/tCo2e</span>
 
-          <input type="range" style="gap: 16px; margin-right: 2vh;" class="form-range" id="customRange1" max="99"
+          <input type="range" style="width:100% ;gap: 16px; margin-right: 2vh;" class="form-range" id="customRange1" max="99"
                  min="1" [(ngModel)]="priceFilter">
-          <div style="width: 281px; height: 1px;background: #D3D3D3;"></div>
+          <div style="width: 100%; height: 1px;background: #D3D3D3;"></div>
         </div>
         <app-filter-item [filterName]="'Type of certification'" [icon]="certificationDisplay"
                          (click)="displayCertificationFilter()"></app-filter-item>
@@ -100,7 +97,7 @@
         <span class="removeFilter" (click)="clearFilters()">Clear filters</span>
       </div>
     </div>
-    <div class="col-9">
+    <div class="col-md-8  col-12">
       <div class="availableProjects">
         {{ numberOfProjects }} Climate projects available
       </div>
@@ -121,13 +118,12 @@
                               style="color: #575757; font-family: Roboto; font-size: 16px; font-style: normal; font-weight: 400; line-height: 24px;">Filter by:</span> Most popular</span></span>
       </div>
       <br>
-      <div class="row" style="margin-top: 29px;">
-        <div *ngFor="let project of displayedProjects" class="col-4" style="margin-top: 5px;">
-          <div class="col-4">
-            <app-project-ad [project]="project"></app-project-ad>
-          </div>
+      <div class="row mt-5 " style="display: flex; flex-wrap: wrap;">
+        <div *ngFor="let project of displayedProjects" class="col-6 col-sm-4 col-md-4" style="margin-top: 5px;">
+          <app-project-ad [project]="project" class="products"></app-project-ad>
         </div>
       </div>
+
       <app-pagination [totalPages]="totalPages" [currentPage]="1" (pageChanged)="onPageChange($event)"></app-pagination>
     </div>
   </div>
