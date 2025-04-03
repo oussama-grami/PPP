@@ -88,9 +88,9 @@ export class NavAcceuilComponent {
   }
 
   closeNavbar() {
-    const navbarCollapse = document.querySelector('.navbar-collapse');
+    const navbarCollapse = document.querySelector('.navbar-toggler');
     if (navbarCollapse) {
-      navbarCollapse.classList.remove('show');
+      navbarCollapse.ariaExpanded = "false";
     }
   }
 
