@@ -28,4 +28,8 @@ export enum RoutesEnum {
   ESG_ASSESSMENT = 'esg-assessment/:questionId',
   PREDICTION_INFO = 'prediction-info',
   HISTORICAL_CARBON_FORECAST = 'historical-carbon-forecast',
+  EVENT_FOOTPRINT ='event-footprint',
+  EVENT_FORM = 'event-form',
+  EVENT_RESULT = 'event-result',
+
 }

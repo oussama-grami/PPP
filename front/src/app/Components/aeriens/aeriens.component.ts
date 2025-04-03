@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {CarbonFootprintService} from "../../Service/carbon-footprint.service";
 import {DeplacemetAerien} from "../../Models/deplacemetAerien";
 import {Router} from "@angular/router";
+import {RoutesEnum} from "../../enumerations/Routes.enum";
 
 @Component({
   selector: 'app-aeriens',
@@ -43,7 +44,7 @@ export class AeriensComponent implements OnInit {
     return this.depForm.get('nbrArretRetourL');
   }
 
-  // Submit form data to carbon-footprint.service
+
   onNext() {
     if (this.depForm.valid) {
       const depData: DeplacemetAerien = {
@@ -52,13 +53,13 @@ export class AeriensComponent implements OnInit {
         nbrArretRetourL: this.depForm.value.nbrArretRetourL
       };
 
-      // Update the carbon footprint service with the collected data
-      this.carbonService.updateDeplacementAerien(depData); // Use the updateDeplacementAerien method
 
-      // Navigate to the next page (e.g., the 'Next Page' form page)
-      this.router.navigate(['/fret']);  // Replace '/nextPage' with your actual next page route
+      this.carbonService.updateDeplacementAerien(depData);
+      this.router.navigate(['/'+RoutesEnum.CONSOMMABLES]);
     } else {
       this.errorMessage = 'Please fill in all required fields correctly.';
     }
   }
+
+  protected readonly RoutesEnum = RoutesEnum;
 }

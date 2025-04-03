@@ -2,7 +2,8 @@ import {Component} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {CarbonFootprintService} from '../../Service/carbon-footprint.service';
 import {Router} from '@angular/router';
-import {Company} from '../../Models/company'; // Import your Info model
+import {Company} from '../../Models/company';
+import {RoutesEnum} from "../../enumerations/Routes.enum"; // Import your Info model
 
 @Component({
   selector: 'app-info',
@@ -71,11 +72,12 @@ export class InfoComponent {
       this.carbonService.updateInfo(infoData);
 
       // Navigate to the next page (e.g., the 'Energie' form page)
-      this.router.navigate(['/energie']);
+      this.router.navigate(['/'+RoutesEnum.ENERGIE]);
     } else {
       // If the form is invalid, set the error message
       this.errorMessage = 'Please fill in all required fields';
     }
   }
 
+  protected readonly RoutesEnum = RoutesEnum;
 }

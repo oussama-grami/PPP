@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {RoutesEnum} from "../../enumerations/Routes.enum";
 
 @Component({
   selector: 'app-carbone',
@@ -11,4 +12,5 @@ export class CarboneComponent implements OnInit {
     window.scrollTo(0, 0);
   }
 
+  protected readonly RoutesEnum = RoutesEnum;
 }

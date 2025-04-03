@@ -73,8 +73,8 @@
           </div>
 
           <div id="bottom-wizard2 mb-2 pb-2">
-              <button type="button" class="backward" routerLink="/energie">Back</button>
-              <button type="submit" class="forward" (click)="onNext()">Continue</button>
+              <button type="button" class="btnbackward" [routerLink]="'/' + RoutesEnum.CARBURANT">Back</button>
+              <button type="submit" class="btnforward" (click)="onNext()">Continue</button>
           </div>
 
         </form>

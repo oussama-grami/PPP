@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Fret} from "../../Models/fret";
 import {Router} from "@angular/router";
 import {CarbonFootprintService} from "../../Service/carbon-footprint.service";
+import {RoutesEnum} from "../../enumerations/Routes.enum";
 
 @Component({
   selector: 'app-fret',
@@ -43,9 +44,11 @@ export class FretComponent implements OnInit {
       this.carbonService.updateFret(fData); // Use the updateFret method
 
       // Navigate to the next page (e.g., the 'Next Page' form page)
-      this.router.navigate(['/cons']);  // Replace '/nextPage' with your actual next page route
+      this.router.navigate(['/'+RoutesEnum.CONSOMMABLES]);  // Replace '/nextPage' with your actual next page route
     } else {
       this.errorMessage = 'Please fill in all required fields correctly.';
     }
   }
+
+  protected readonly RoutesEnum = RoutesEnum;
 }
