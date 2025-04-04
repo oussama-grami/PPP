@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { CartService } from "../../Service/cart-service.service";
 import {RoutesEnum} from "../../enumerations/Routes.enum";
 
@@ -37,4 +37,5 @@ export class CheckoutComponent implements OnInit {
   }
 
   protected readonly RoutesEnum = RoutesEnum;
+  protected readonly history = history;
 }
