@@ -1,13 +1,13 @@
 <div class="container-fluid">
   <div class="row mb-3" id="main-row">
     <div class="col-lg-6 p-0 d-flex align-items-center justify-content-center" id="block1">
-      <div class="d-flex align-items-center justify-content-center"
+      <div class="container d-flex align-items-center justify-content-center"
            [ngStyle]="{'background-image': 'url(/assets/img/photovoltaique.jpg)', 'background-repeat': 'no-repeat',  'width': '100%', 'height': '100%', 'background-size':'cover', 'background-position':'center 90%'}">
         <div class="container text-center h-100 d-flex flex-column justify-content-center align-items-center">
-          <p class="title">Solar Photovoltaic Projects</p>
-          <p class="description">The purpose of this simulation is to assess the potential reduction of greenhouse gas
+          <p class="text-white fs-3 fw-bold">Solar Photovoltaic Projects</p>
+          <p class="text-white fs-5" style="text-align: justify;">The purpose of this simulation is to assess the potential
+            reduction of greenhouse gas
             emissions from a photovoltaic solar panel project.
-            <br/>
             <span style="font-weight: 700;">Solar energy</span> remains one of the cleanest and low-carbon energy
             sources, with emissions significantly lower than those of traditional fossil fuels.
           </p>
@@ -19,7 +19,7 @@
         <form [formGroup]="panneauxForm" (ngSubmit)="submitData()">
           <div class="questions-box">
             <div class="retour">
-              <button style="display: flex;" class="btn btn-link text-black text-decoration-none"
+              <button style="display: flex;" class="btn btn-link text-black text-decoration-none rounded-2 p-2"
                       [routerLink]="'/'+RoutesEnum.PORTEUR">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                   <path d="M19.5 12H4.5M4.5 12L10.125 6M4.5 12L10.125 18" stroke="black" stroke-width="1.5"
@@ -35,7 +35,7 @@
               located?
             </div>
             <div class="mb-3" style="margin-top: 16px;">
-              <select formControlName="pays" class="form-control">
+              <select formControlName="pays" class="form-control p-0 px-2">
                 <option *ngFor="let country of countries" [value]="country.cca2">{{ country.name.common }}</option>
               </select>
             </div>

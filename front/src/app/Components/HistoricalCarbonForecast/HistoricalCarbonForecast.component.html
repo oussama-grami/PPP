@@ -1,4 +1,4 @@
-<div class="retour"> <button onclick="history.back()">
+<div class="retour"> <button [routerLink]="'/' + routesEnum.PREDICTION_INFO">
   <div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
       <path d="M19.5 12H4.5M4.5 12L10.125 6M4.5 12L10.125 18" stroke="black" stroke-width="1.5"
         stroke-linecap="round" stroke-linejoin="round" />
@@ -45,7 +45,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let element of carbonData">
+                <tr *ngFor="let element of carbonData" [ngClass]="{'predicted-row': element.predicted}" >
                   <td>{{element.date}}</td>
                   <td>
                     <span *ngIf="editingElementId !== element.id" class="fw-medium">{{ element.value }}</span>
@@ -73,8 +73,12 @@
                     <input type="number" [(ngModel)]="newEntry.value" class="form-control form-control-sm">
                   </td>
                   <td class="text-end">
-                    <button class="btn btn-success btn-sm" (click)="saveNewElement()">Save</button>
-                    <button class="btn btn-outline-danger btn-sm" (click)="newEntry = null">Cancel</button>
+                    <button class="action-btn btn-outline-success btn-sm me-1"  (click)="saveNewElement()">
+                      <i class="bi bi-check"></i>
+                    </button>
+                    <button class="action-btn  btn-outline-danger btn-sm me-1" (click)="newEntry = null">
+                      <i class="bi bi-x"></i>
+                    </button>
                   </td>
                 </tr>
               </tbody>
@@ -86,9 +90,11 @@
           <button class="btn custom-btn btn-dark btn-sm" (click)="addElement()" *ngIf="!newEntry">
             <i class="bi bi-plus-lg"></i> Add New Record
           </button>
-          <button class="btn custom-btn btn-dark btn-sm" (click)="savePrediction()">
+          <button class="btn custom-btn btn-dark btn-sm" *ngIf="!newEntry" (click)="savePredictions()">
             <i class="bi bi-save"></i> Save Prediction
           </button>
+
+          
         </div>
       </div>
     </div>

@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Immobilisation} from "../../Models/immobilisation";
 import {Router} from '@angular/router';
 import {CarbonFootprintService} from "../../Service/carbon-footprint.service";
+import {RoutesEnum} from "../../enumerations/Routes.enum";
 
 @Component({
   selector: 'app-immobilisations',
@@ -53,9 +54,11 @@ export class ImmobilisationsComponent implements OnInit {
       // Save the immobilisation data
       this.carboneService.updateImmobilisation(immeData);
       this.carboneService.submitAllData();
-      this.router.navigate(['/resultat']);
+      this.router.navigate(['/'+RoutesEnum.RESULTAT_CARBONE]);
     } else {
       this.errorMessage = 'Please fill in all required fields correctly.';
     }
   }
+
+  protected readonly RoutesEnum = RoutesEnum;
 }
