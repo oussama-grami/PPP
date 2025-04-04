@@ -1,0 +1,36 @@
+version: '3.8'
+services:
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ollama-deepseek
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    environment:
+      - OLLAMA_GPU=1
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [ gpu ]
+    shm_size: "2gb"
+    entrypoint: [ "/bin/sh", "-c" ]
+    command: >
+      "
+      echo 'Installing dependencies...';
+      apt-get update && apt-get install -y curl;
+      echo 'Installing CUDA dependencies...';
+      apt-get install -y cuda-toolkit-12-2 || apt-get install -y cuda-toolkit-12-1 || apt-get install -y cuda-toolkit-11-8;
+      echo 'Starting Ollama with GPU...';
+      ollama serve > /var/log/ollama.log 2>&1 &
+      echo 'Waiting for server initialization...';
+      until curl -s http://localhost:11434 > /dev/null; do sleep 1; done;
+      echo 'Loading model with GPU acceleration...';
+      ollama run deepseek-r1:1.5b --gpu;
+      tail -f /var/log/ollama.log
+      "
+volumes:
+  ollama_data:

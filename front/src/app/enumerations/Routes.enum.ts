@@ -31,5 +31,5 @@ export enum RoutesEnum {
   EVENT_FOOTPRINT ='event-footprint',
   EVENT_FORM = 'event-form',
   EVENT_RESULT = 'event-result',
-
+  TRANSACTIONS = 'transactions',
 }
