@@ -1,13 +1,22 @@
 import pandas as pd
 import numpy as np
+import statsmodels.api as sm
+import matplotlib.pyplot as plt
+from io import StringIO
+import io
 from flask import Flask, request, jsonify
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
+from statsmodels.tsa.statespace.sarimax import SARIMAX
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 from azure.ai.inference import ChatCompletionsClient
 from azure.ai.inference.models import SystemMessage, UserMessage
 from azure.core.credentials import AzureKeyCredential
 import xgboost as xgb
+import base64
+import os
+import joblib
 
 class EventData:
     def __init__(self,
@@ -49,6 +58,98 @@ class EventData:
 
 
 app = Flask(__name__)
+
+@app.route("/predict-samar/", methods=["POST"])
+def predictSamar():
+    try:
+        # Get the uploaded file from the request
+        file = request.files['file']
+
+        # Read the CSV file
+        content = file.stream.read().decode("utf-8")
+        df = pd.read_csv(StringIO(content))  # Use StringIO to read CSV content
+
+        # Ensure correct column names
+        if "date" not in df.columns or "carbon_footprint_kgCO2" not in df.columns:
+            return jsonify({"error": "CSV must contain 'date' and 'carbon_footprint_kgCO2' columns"}), 400
+
+        # Convert 'date' column to datetime
+        df["date"] = pd.to_datetime(df["date"])
+
+        # Train/Test Split (80% training data)
+        train_size = int(len(df) * 0.8)
+        train = df["carbon_footprint_kgCO2"][:train_size]
+
+        # Fit the Exponential Smoothing Model
+        model = sm.tsa.ExponentialSmoothing(train, trend='mul', seasonal='add', seasonal_periods=12)
+        fitted_model = model.fit()
+
+        # Predict the next 12 months
+        forecast = fitted_model.forecast(12).tolist()
+
+        # Return only the predicted values as response
+        return jsonify({"predicted_carbon_footprint_kgCO2": forecast})
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
+#partie eya
+# Define the custom_loss function (must match the one used during training)
+def custom_loss(y_true, y_pred):
+    gradient = np.where(y_pred < 0, -1, 2 * (y_pred - y_true))
+    hessian = np.where(y_pred < 0, 0, 2)
+    return gradient, hessian
+
+# Load the ensemble model
+ensemble_model = joblib.load('ensemble_event_emission_model.pkl')
+xgb_pipeline = ensemble_model['xgb_model']
+gamma_pipeline = ensemble_model['gamma_model']
+best_alpha = ensemble_model['alpha']
+
+@app.route('/eventPredict', methods=['POST'])
+def eventPredict():
+    try:
+        # Get the JSON data from the request
+        data = request.get_json(force=True)
+
+        # Ensure the input is a list of dictionaries
+        if not isinstance(data, list):
+            return jsonify({"error": "Input data must be a list of dictionaries"}), 400
+
+        # Convert input data to a DataFrame
+        input_data = pd.DataFrame(data)
+
+        # Define required columns
+        required_columns = [
+            "Duration (hours)", "Participants", "Number of Devices", "Avg Power per Device (kW)",
+            "Energy Usage Hours", "Transport Distance (km)", "Attendees Using Transport",
+            "Number of Meals", "Printed Material (kg)", "Decoration Material (kg)",
+            "Event Type", "Venue Type", "Location", "Transport Mode", "Meal Type"
+        ]
+        missing_columns = set(required_columns) - set(input_data.columns)
+        if missing_columns:
+            return jsonify({"error": f"Columns are missing: {missing_columns}"}), 400
+
+        # Make predictions using the XGBoost model
+        xgb_pred = xgb_pipeline.predict(input_data)
+
+        # Make predictions using the Gamma Regression model
+        gamma_pred = np.expm1(gamma_pipeline.predict(input_data))  # Reverse log-transform
+
+        # Combine predictions using the best alpha value
+        ensemble_pred = best_alpha * xgb_pred + (1 - best_alpha) * gamma_pred
+
+        # Replace negative ensemble predictions with Gamma Regression predictions
+        ensemble_pred = np.where(ensemble_pred < 0, gamma_pred, ensemble_pred)
+
+        # Return the predictions as a JSON response
+        return jsonify({"predictions": ensemble_pred.tolist()})
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
 @app.route('/predict', methods=['POST'])
 def predict():
     try:
