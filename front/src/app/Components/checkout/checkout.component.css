@@ -18,7 +18,7 @@
 
 .retour-text {
   margin-left: 2px;
-  color: #000;
+  color: inherit;
   font-family: Roboto;
   font-size: 16px;
   font-style: normal;
