@@ -1,7 +1,6 @@
 import {User} from "./user";
 
 export class Panneaux{
-
   id!:number;
   annee!:number;
   pays!:string;
