@@ -10,7 +10,6 @@ export class EsgService {
   private responses: { [id: number]: number } = {};
 
   private questions :Question[]= [
-    // Environment Questions (1-5)
     {
       id: 1,
       category: 'Environment',
