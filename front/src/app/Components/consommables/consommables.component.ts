@@ -4,6 +4,7 @@ import {CarbonFootprintService} from "../../Service/carbon-footprint.service";
 import {Consommables} from "../../Models/consommables";
 import {Unite} from "../../enumerations/unite";
 import {Router} from "@angular/router";
+import {RoutesEnum} from "../../enumerations/Routes.enum";
 
 @Component({
   selector: 'app-consommables',
@@ -49,7 +50,7 @@ export class ConsommablesComponent implements OnInit {
       this.carbonService.updateConsommable(consData);
 
       // Navigate to the next page (e.g., the 'Energie' form page)
-      this.router.navigate(['/imob']); // Replace '/energie' with your actual next page route
+      this.router.navigate(['/'+RoutesEnum.IMMOBILISATIONS]); // Replace '/energie' with your actual next page route
     } else {
       // If the form is invalid, set the error message
       this.errorMessage = 'Please fill in all required fields';
@@ -58,5 +59,7 @@ export class ConsommablesComponent implements OnInit {
     // Reset the submitting state
     this.isSubmitting = false;
   }
+
+  protected readonly RoutesEnum = RoutesEnum;
 }
 

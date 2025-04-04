@@ -53,6 +53,8 @@ import { TransactionsComponent } from './Components/transactions/transactions.co
 import {InstructionsListComponent} from "./Components/instructions-list/instructions-list.component";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { EventFormComponent } from './Components/event-form/event-form.component';
+import { EventFootprintComponent } from './Components/event-footprint/event-footprint.component';
+import { EventResultComponent } from './Components/event-result/event-result.component';
 
 @NgModule({
   declarations: [
@@ -100,7 +102,9 @@ import { EventFormComponent } from './Components/event-form/event-form.component
     HistoricalCarbonForecastComponent,
     TransactionsComponent,
     InstructionsListComponent,
-    EventFormComponent
+    EventFormComponent,
+    EventFootprintComponent,
+    EventResultComponent,
   ],
   imports: [
     BrowserModule,

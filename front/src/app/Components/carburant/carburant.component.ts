@@ -4,6 +4,7 @@ import {CarbonFootprintService} from "../../Service/carbon-footprint.service"; /
 import {Carburant} from "../../Models/carburant"; // Import the Carburant model
 import {Router} from "@angular/router";
 import {TypeCarburant} from "../../enumerations/typeCarburant";
+import {RoutesEnum} from "../../enumerations/Routes.enum";
 
 @Component({
   selector: 'app-carburant',
@@ -74,10 +75,12 @@ export class CarburantComponent implements OnInit {
       this.carbonFootprintService.updateCarburant(carburantData);
 
       // Navigate to the next page (e.g., the 'Aer' form page)
-      this.router.navigate(['/aer']);
+      this.router.navigate(['/'+RoutesEnum.AERIENS]);
     } else {
       // If the form is invalid, set the error message
       this.errorMessage = 'Please fill in all required fields';
     }
   }
+
+  protected readonly RoutesEnum = RoutesEnum;
 }

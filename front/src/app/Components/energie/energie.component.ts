@@ -2,7 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {CarbonFootprintService} from '../../Service/carbon-footprint.service'; // Use CarbonFootprintService
 import {Router} from '@angular/router';
-import {Energie} from '../../Models/energie'; // Assuming Energie model is defined
+import {Energie} from '../../Models/energie';
+import {RoutesEnum} from "../../enumerations/Routes.enum"; // Assuming Energie model is defined
 
 @Component({
   selector: 'app-energie',
@@ -94,11 +95,12 @@ export class EnergieComponent implements OnInit {
       this.carbonService.updateEnergie(energieData);
 
       // Navigate to the next page (e.g., the 'NextPage' form page)
-      this.router.navigate(['/car']);
+      this.router.navigate(['/'+RoutesEnum.CARBURANT]);
     } else {
       // If the form is invalid, set the error message
       this.errorMessage = 'Please fill out all required fields correctly.';
     }
   }
 
+  protected readonly RoutesEnum = RoutesEnum;
 }
