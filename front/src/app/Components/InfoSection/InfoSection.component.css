@@ -1,75 +1,89 @@
-.container{
-    margin-top:50px;
-    margin-right:70px;
-    
-}
-.image{
-    padding-left: 50px;
-    width:560px;
-    height:521px;
-    
-  }
-.img{
-  width: 540px;
-  height:560px;
+
+img{
+  width: 500px;
+  height:520px;
   border-radius: 10px;
   object-fit: cover;
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
   border: 1px solid #E0E0E0;
+  margin-top: 20px;
+ 
+}
 
  
-  
-  
+
+.title{
+  margin-top: 78px;
+  margin-bottom:30px;
+  color: #014131;
+font-family: Roboto;
+font-size: 45px;
+font-style: normal;
+font-weight: 501;
+line-height: 50px;
+width: 588px;
+}
+.description{
+  color: #000;
+font-family: Roboto;
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: 24px;
+width: 588px;
+}
+.paginationButton{
+  margin-top: 32px;
+  display:inline-flex;
+padding: 8px 14px;
+justify-content: center;
+align-items: center;
+gap: 8px;
+border-radius: 8px;
+border: 1px solid #014131;
+background: #FFF;
+background-color: #014131;
+}
+.paginationButtonText{
+color: #014131;
+font-family: Roboto;
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: 24px;
+margin-right: 8px;
+color:#FFF;
 }
 
-  .textContainer{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-left: 50px;
+.row {
+  display: flex;
+  flex-wrap: wrap;
 }
-  .title{
-    margin-top: 60px;
-    color: #014131;
-  font-family: Roboto;
-  font-size: 45px;
-  font-style: normal;
-  font-weight: 501;
-  line-height: 50px; 
-  width: 588px;
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 24px;
+    line-height: 28px;
+    width: 100%;
+    margin-bottom:10px;
   }
-  .description{
-    color: #000;
-  font-family: Roboto;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 24px;
-  width: 588px;
-  margin-bottom: 16px; 
-  margin-top: 32px
+
+  .description {
+    font-size: 16px;
+    line-height: 20px;
+    width: 100%;
+    margin-top:5px;
   }
-  .paginationButton{
-    margin-top: 32px;
-    display:inline-flex;
-  padding: 8px 14px;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  border-radius: 8px;
-  border: 1px solid #014131;
-  background: #FFF;
-  background-color: #014131;
+
+  .paginationButtonText {
+    font-size: 14px;
   }
-  .paginationButtonText{
-  color: #014131;
-  font-family: Roboto;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 24px;
-  margin-right: 8px;
-  color:#FFF;
+
+  img {
+    width: 100%;
+    height: auto;
   }
-  
+  .row {
+    flex-direction: column;
+  }
+}
