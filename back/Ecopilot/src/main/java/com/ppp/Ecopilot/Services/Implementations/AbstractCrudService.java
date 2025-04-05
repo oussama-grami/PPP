@@ -24,7 +24,7 @@ public abstract class AbstractCrudService<T, ID> implements CRUDService<T, ID> {
 
     @Override
     public T findById(ID id) {
-        return getRepository().findById(id).orElseThrow(() -> new EntityNotFoundException(getEntityClass().getSimpleName() + " with id " + id.toString() + " not found"));
+        return getRepository().findById(id).orElseThrow(() -> new EntityNotFoundException(getEntityClass().getSimpleName() + " with id " + id + " not found"));
     }
 
     @Override
