@@ -5,7 +5,7 @@ import com.ppp.Ecopilot.Entities.Project;
 import com.ppp.Ecopilot.Entities.ProjectOwner;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -24,9 +24,14 @@ public class ProjectOwnerMapper implements EntityMapper<ProjectOwner, ProjectOwn
                 .phone(dto.getPhone())
                 .region(dto.getRegion())
                 .website(dto.getWebsite())
-                .Projects(dto.getProjectIds().stream().map(id -> Project.builder()
-                        .id(id)
-                        .build()).collect(Collectors.toCollection(ArrayList::new)))
+                .email(dto.getEmail())
+                .nom(dto.getNom())
+                .firstname(dto.getFirstname())
+                .password(dto.getPassword())
+                .Projects(dto.getProjectIds() != null && dto.getProjectIds().isPresent() ?
+                        dto.getProjectIds().get().stream().map(id -> Project.builder()
+                                .id(id)
+                                .build()).collect(Collectors.toList()) : null)
                 .build();
     }
 
@@ -44,8 +49,12 @@ public class ProjectOwnerMapper implements EntityMapper<ProjectOwner, ProjectOwn
                 .phone(entity.getPhone())
                 .region(entity.getRegion())
                 .website(entity.getWebsite())
-                .ProjectIds(entity.getProjects().stream().map(Project::getId)
-                        .collect(Collectors.toCollection(ArrayList::new)))
+                .email(entity.getEmail())
+                .nom(entity.getNom())
+                .password(entity.getPassword())
+                .firstname(entity.getFirstname())
+                .ProjectIds(Optional.of(entity.getProjects().stream().map(Project::getId)
+                        .collect(Collectors.toList())))
                 .build();
     }
 }

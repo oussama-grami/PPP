@@ -7,7 +7,7 @@ import jakarta.persistence.OneToMany;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
-import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -20,5 +20,5 @@ import java.util.ArrayList;
         property = "id")
 public class Chart extends BaseEntity<Long> {
     @OneToMany(mappedBy = "chart")
-    public ArrayList<ChartLine> chartLines;
+    public List<ChartLine> chartLines;
 }

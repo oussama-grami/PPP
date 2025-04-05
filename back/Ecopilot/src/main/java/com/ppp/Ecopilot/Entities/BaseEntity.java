@@ -22,22 +22,22 @@ import java.time.LocalDateTime;
 public abstract class BaseEntity<ID> {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private ID id;
+    @GeneratedValue(strategy = GenerationType.TABLE)
+    protected ID id;
 
     @CreatedDate
     @Column(nullable = false, updatable = false)
-    private LocalDateTime createdDate;
+    protected LocalDateTime createdDate;
 
     @LastModifiedDate
     @Column(insertable = false)
-    private LocalDateTime lastModifiedDate;
+    protected LocalDateTime lastModifiedDate;
 
     @CreatedBy
     @Column(updatable = false, nullable = false)
-    private String createdBy;
+    protected String createdBy;
 
     @LastModifiedBy
     @Column(insertable = false)
-    private String lastModifiedBy;
+    protected String lastModifiedBy;
 }

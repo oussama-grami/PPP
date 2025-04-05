@@ -9,6 +9,7 @@ import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -24,8 +25,8 @@ public class EsgQuestion extends BaseEntity<Long> {
     @Column(nullable = false)
     private String text;
     @OneToMany(mappedBy = "esgQuestion")
-    private ArrayList<EsgOption> esgOptions;
+    private List<EsgOption> esgOptions;
 
     @OneToMany(mappedBy = "esgQuestion")
-    private ArrayList<EsgResponse> esgResponses;
+    private List<EsgResponse> esgResponses;
 }

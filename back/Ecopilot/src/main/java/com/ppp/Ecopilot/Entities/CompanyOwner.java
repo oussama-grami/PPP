@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
 @Data()
@@ -31,21 +32,21 @@ public class CompanyOwner extends User {
     private Roles role;
 
     @OneToMany(mappedBy = "companyOwner")
-    public ArrayList<CarboneFootprintHistory> carboneFootprintHistory;
+    public List<CarboneFootprintHistory> carboneFootprintHistory;
 
     @OneToMany(mappedBy = "companyOwner")
-    public ArrayList<Score> scores;
+    public List<Score> scores;
 
     @OneToMany(mappedBy = "companyOwner")
-    public ArrayList<EventFootprintData> eventFootprintData;
+    public List<EventFootprintData> eventFootprintData;
 
     @OneToMany(mappedBy = "companyOwner")
-    public ArrayList<CarbonFootprintData> carbonFootprintData;
+    public List<CarbonFootprintData> carbonFootprintData;
 
     @OneToMany(mappedBy = "companyOwner")
-    public ArrayList<EsgResponse> esgResponses;
+    public List<EsgResponse> esgResponses;
 
     @OneToMany(mappedBy = "companyOwner")
-    public ArrayList<Transaction> transactions;
+    public List<Transaction> transactions;
 
 }

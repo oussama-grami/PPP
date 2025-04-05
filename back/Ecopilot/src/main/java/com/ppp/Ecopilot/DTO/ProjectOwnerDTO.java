@@ -1,15 +1,21 @@
 package com.ppp.Ecopilot.DTO;
 
-import com.ppp.Ecopilot.Entities.Project;
-import jakarta.persistence.OneToMany;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
-@Builder
-public class ProjectOwnerDTO {
+@SuperBuilder
+@NoArgsConstructor
+
+public class ProjectOwnerDTO extends UserDTO {
     private boolean certified;
     private String company;
     private String companyIdentifier;
@@ -21,5 +27,5 @@ public class ProjectOwnerDTO {
     private String phone;
     private String region;
     private String website;
-    private ArrayList<Long> ProjectIds;
+    private Optional<List<Long>> ProjectIds;
 }

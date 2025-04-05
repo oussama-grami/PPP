@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,7 +12,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
-import java.util.ArrayList;
+import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
 @Data()
@@ -38,13 +39,13 @@ public class ProjectOwner extends User {
     private String firstname;
     @Column(nullable = false)
     private String job_function;
-    @Column(nullable = false)
+    @Column(nullable = false,unique = true)
     private String phone;
     @Column(nullable = false)
     private String region;
     @Column(nullable = false)
     private String website;
-    @OneToMany(mappedBy = "projectOwner")
-    private ArrayList<Project> Projects;
+    @OneToMany(mappedBy = "projectOwner", fetch = FetchType.LAZY)
+    private List<Project> Projects;
 
 }

@@ -7,6 +7,7 @@ import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -29,5 +30,5 @@ public class ChartLine extends BaseEntity<Long> {
     private Transaction transaction;
 
     @OneToMany(mappedBy = "chartLine")
-    private ArrayList<Project> projects;
+    private List<Project> projects;
 }

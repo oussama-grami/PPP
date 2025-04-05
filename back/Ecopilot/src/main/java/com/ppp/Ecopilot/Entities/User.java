@@ -17,8 +17,8 @@ import lombok.experimental.SuperBuilder;
 @Table(name = "_user")
 public abstract class User extends BaseEntity<Long> {
     @Column(nullable = false, unique = true)
-    private String email;
+    protected String email;
     @Column(nullable = false, unique = true)
-    private String nom;
-    private String password;
+    protected String nom;
+    protected String password;
 }

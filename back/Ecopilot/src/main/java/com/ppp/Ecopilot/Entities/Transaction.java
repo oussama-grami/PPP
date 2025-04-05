@@ -7,6 +7,7 @@ import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -22,7 +23,7 @@ public class Transaction extends BaseEntity<Long> {
     private String description;
 
     @OneToMany(mappedBy = "transaction")
-    private ArrayList<ChartLine> chartLines;
+    private List<ChartLine> chartLines;
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "companyOwner_id")
     private CompanyOwner companyOwner;
