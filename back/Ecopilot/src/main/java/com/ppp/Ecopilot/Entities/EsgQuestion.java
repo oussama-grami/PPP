@@ -1,6 +1,8 @@
 package com.ppp.Ecopilot.Entities;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import lombok.*;
@@ -16,13 +18,14 @@ import java.util.ArrayList;
 @ToString
 @SuperBuilder
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public class EsgQuestion extends BaseEntity<Long> {
+    @Column(nullable = false)
     private String text;
     @OneToMany(mappedBy = "esgQuestion")
-    @JsonManagedReference
     private ArrayList<EsgOption> esgOptions;
 
     @OneToMany(mappedBy = "esgQuestion")
-    @JsonManagedReference
     private ArrayList<EsgResponse> esgResponses;
 }

@@ -1,6 +1,7 @@
 package com.ppp.Ecopilot.Entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
@@ -16,18 +17,17 @@ import lombok.experimental.SuperBuilder;
 @ToString
 @SuperBuilder
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public class EsgResponse extends BaseEntity<Long> {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "company_owner_id")
-    @JsonBackReference
     private CompanyOwner companyOwner;
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "esg_question_id")
-    @JsonBackReference
     private EsgQuestion esgQuestion;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "esg_option_id")
-    @JsonBackReference
     private EsgOption esgOption;
 }

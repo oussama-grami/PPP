@@ -1,7 +1,7 @@
 package com.ppp.Ecopilot.Entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
@@ -16,14 +16,14 @@ import java.util.ArrayList;
 @ToString
 @SuperBuilder
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public class Transaction extends BaseEntity<Long> {
     private String description;
 
     @OneToMany(mappedBy = "transaction")
-    @JsonManagedReference
     private ArrayList<ChartLine> chartLines;
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "companyOwner_id")
-    @JsonBackReference
     private CompanyOwner companyOwner;
 }

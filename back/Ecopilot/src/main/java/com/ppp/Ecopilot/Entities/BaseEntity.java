@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
-public class BaseEntity<ID> {
+public abstract class BaseEntity<ID> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,6 +1,8 @@
 package com.ppp.Ecopilot.Entities;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
@@ -17,20 +19,32 @@ import java.util.ArrayList;
 @NoArgsConstructor
 @SuperBuilder
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public class ProjectOwner extends User {
+    @Column(nullable = false)
     private boolean certified;
+    @Column(nullable = false)
     private String company;
+    @Column(nullable = false)
     private String companyIdentifier;
+    @Column(nullable = false)
     private String description;
+    @Column(nullable = false)
     private String estimation;
+    @Column(nullable = false)
     private float estimationValue;
+    @Column(nullable = false)
     private String firstname;
+    @Column(nullable = false)
     private String job_function;
+    @Column(nullable = false)
     private String phone;
+    @Column(nullable = false)
     private String region;
+    @Column(nullable = false)
     private String website;
     @OneToMany(mappedBy = "projectOwner")
-    @JsonManagedReference
     private ArrayList<Project> Projects;
 
 }
