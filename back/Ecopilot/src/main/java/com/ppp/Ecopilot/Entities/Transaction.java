@@ -21,7 +21,6 @@ import java.util.List;
         property = "id")
 public class Transaction extends BaseEntity<Long> {
     private String description;
-
     @OneToMany(mappedBy = "transaction")
     private List<ChartLine> chartLines;
     @ManyToOne(cascade = CascadeType.ALL)
