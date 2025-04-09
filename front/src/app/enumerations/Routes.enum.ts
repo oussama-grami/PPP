@@ -15,7 +15,7 @@ export enum RoutesEnum {
   ARBORICULTURE = 'arb',
   PISTE = 'piste',
   MARKETPLACE = 'marketplace',
-  PROJECT_DETAILS = 'details/:id',
+  PROJECT_DETAILS = 'details',
   CHECKOUT = 'checkout',
   PAYMENT = 'payment',
   NEW_PROJECT = 'new-project',

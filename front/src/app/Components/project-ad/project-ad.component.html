@@ -9,7 +9,7 @@
   <div class="projectDescription">
     {{ project?.name }}
   </div>
-  <button [routerLink]="project?.routing + '/'+project?.id" class="projectButton">
+  <button [routerLink]="'/'+RoutesEnum.PROJECT_DETAILS + '/'+project?.id" class="projectButton">
     <span class="projectButtonText">See more</span>
   </button>
 </div>

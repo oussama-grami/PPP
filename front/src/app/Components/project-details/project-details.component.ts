@@ -4,6 +4,7 @@ import {project} from "../../Models/project";
 import {ProjectsService} from "../../Service/projects.service";
 import {transaction} from "../../Models/transaction";
 import {TransactionService} from "../../Service/transaction.service";
+import {RoutesEnum} from "../../enumerations/Routes.enum";
 
 @Component({
   selector: 'app-project-details',
@@ -45,4 +46,5 @@ export class ProjectDetailsComponent implements OnInit{
     this.selectedImage = imageUrl;
   }
 
+  protected readonly RoutesEnum = RoutesEnum;
 }

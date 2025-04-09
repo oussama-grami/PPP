@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {project} from "../../Models/project";
 import {ProjectsService} from "../../Service/projects.service";
+import {RoutesEnum} from "../../enumerations/Routes.enum";
 
 @Component({
   selector: 'app-marketplace',
@@ -124,4 +125,5 @@ export class MarketplaceComponent implements OnInit {
       this.typeFiltersCopy = this.typeFilters
   }
 
+  protected readonly RoutesEnum = RoutesEnum;
 }
