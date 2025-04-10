@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: Ecopilot
+  datasource:
+    url: jdbc:mysql://mysql-13412e03-oussamagrami03-7663.l.aivencloud.com:14638/defaultdb
+    username: avnadmin
+    password: AVNS_mfIu_ISiAwzEGvXx7nC
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
