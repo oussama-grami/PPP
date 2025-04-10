@@ -20,6 +20,7 @@ import java.time.LocalDateTime;
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
 public abstract class BaseEntity<ID> {
+
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
     protected ID id;
@@ -39,8 +40,4 @@ public abstract class BaseEntity<ID> {
     @LastModifiedBy
     @Column(insertable = false)
     protected String lastModifiedBy;
-    public ID getId() {
-        return id;
-    }
-
 }
