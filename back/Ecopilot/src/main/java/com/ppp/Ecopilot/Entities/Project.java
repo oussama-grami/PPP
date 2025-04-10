@@ -1,22 +1,24 @@
 package com.ppp.Ecopilot.Entities;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
+
+import java.util.List;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-
 @ToString
 @SuperBuilder
 @Entity
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,
         property = "id")
 public class Project extends BaseEntity<Long> {
+    @Column(nullable = false)
+    private boolean certified;
     @Column(nullable = false)
     private int availableStock;
     @Column(nullable = false)
@@ -28,7 +30,7 @@ public class Project extends BaseEntity<Long> {
     @Column(nullable = false)
     private String flag;
     @Column(nullable = false)
-    private String Mechanism;
+    private String mechanism;
     @Column(nullable = false)
     private int minimumPurchase;
     @Column(nullable = false)
@@ -41,9 +43,26 @@ public class Project extends BaseEntity<Long> {
     private String Url;
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "projectOwner_id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private ProjectOwner projectOwner;
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "chartLine_id")
-    private ChartLine chartLine;
+
+    @OneToMany(mappedBy = "project", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<ChartLine> chartLines;
+
+    @JsonProperty("projectOwnerId")
+    public Long getProjectOwnerId() {
+        return projectOwner != null ? projectOwner.getId() : null;
+    }
+
+    @JsonProperty("chartLineIds")
+    public List<Long> getChartLineIds() {
+        if (chartLines == null) {
+            return null;
+        }
+        return chartLines.stream()
+                .map(BaseEntity::getId)
+                .toList();
+    }
 
 }

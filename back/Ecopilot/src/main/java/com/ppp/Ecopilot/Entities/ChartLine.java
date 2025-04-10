@@ -24,11 +24,10 @@ public class ChartLine extends BaseEntity<Long> {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "chart_id")
     private Chart chart;
-
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "transaction_id")
     private Transaction transaction;
-
-    @OneToMany(mappedBy = "chartLine")
-    private List<Project> projects;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "project_id")
+    private Project project;
 }

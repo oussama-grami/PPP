@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 @RestController
 @RequestMapping("/project-owners")
@@ -42,10 +43,10 @@ public class ProjectOwnerController implements CrudController<ProjectOwner,
         var project = Project.builder()
                 .cost(5)
                 .name("Project 1")
-                .Mechanism("Mechanism 1")
+                .mechanism("Mechanism 1")
                 .availableStock(5)
                 .category("Category 1")
-                .chartLine(new ChartLine())
+                .chartLines(new ArrayList<>((Collection) new ChartLine()))
                 .flag("hello flag")
                 .name("Project 2")
                 .routing("routing")
