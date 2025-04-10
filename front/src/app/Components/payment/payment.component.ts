@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {CartService} from "../../Service/cart-service.service";
+import {RoutesEnum} from "../../enumerations/Routes.enum";
 
 @Component({
   selector: 'app-payment',
@@ -40,4 +41,6 @@ export class PaymentComponent {
   getTotalPrice() {
     return this.cartService.getTotalPrice();
   }
+
+  protected readonly RoutesEnum = RoutesEnum;
 }

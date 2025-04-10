@@ -1,13 +1,27 @@
 /* Global Styles */
 body {
-  font-family: Roboto;
+  font-family: Roboto, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* Mobile First Approach */
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+/* Container styles */
+.container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+/* Retour button */
 .retour {
-  margin-top: 5rem;
   position: relative;
-  margin-left: 100px;
+  margin-left: 5%;
   margin-bottom: 10px;
   padding: 5px 20px;
   align-items: flex-start;
@@ -18,27 +32,47 @@ body {
 .retour button {
   border: none;
   background: transparent;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 0;
 }
 
 .retour-text {
   color: #000;
-  font-family: Roboto;
+  font-family: Roboto, sans-serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
   line-height: 24px;
+  margin-left: 5px;
 }
 
-/* Mobile First */
-.container-img {
+/* Hero image container */
+.hero-container {
   display: flex;
   justify-content: center;
-  align-items: center;
+  width: 100%;
+}
+
+.container-img {
+  width: 100%;
+  max-width: 1500px;
+  height: 530px;
+  background-position: center;
+  background-size: cover;
+  position: relative;
   border-radius: 5px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
 }
 
 .backgroundText {
-  text-align: center;
+  position: absolute;
+  bottom: 30px;
+  left: 30px;
+  text-align: left;
 }
 
 .countryDetails {
@@ -56,7 +90,7 @@ body {
 
 .countryName {
   color: #FFF;
-  font-family: Roboto;
+  font-family: Roboto, sans-serif;
   font-size: 18px;
   font-style: normal;
   font-weight: 400;
@@ -65,23 +99,25 @@ body {
 
 .projectName {
   color: #FFF;
-  font-family: Roboto;
+  font-family: Roboto, sans-serif;
   font-size: 34px;
   font-style: normal;
   font-weight: 500;
-  line-height: 60px;
+  line-height: 1.2;
   margin-bottom: 24px;
+  max-width: 90%;
 }
 
 .projectCategory {
   color: #FFF;
-  font-family: Roboto;
+  font-family: Roboto, sans-serif;
   font-size: 24px;
   font-style: normal;
   font-weight: 500;
   line-height: 24px;
 }
 
+/* Image carousel */
 .carouselMainElement {
   width: 77px;
   height: 54px;
@@ -98,12 +134,70 @@ body {
   background: rgba(0, 0, 0, 0.50);
 }
 
+/* Content section */
 .content {
   margin-top: 56px;
 }
 
+.description-content {
+  width: 100%;
+}
+
+.section-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 25px;
+}
+
+.category {
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.project-title {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.description {
+  margin-bottom: 40px;
+}
+
+.description-paragraph {
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.treeTypes {
+  margin-top: 20px;
+}
+
+.bold-description {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.high-font {
+  font-size: 18px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.tree-item {
+  display: flex;
+  align-items: center;
+  margin-top: 16px;
+}
+
+.bullet-point {
+  margin-right: 10px;
+}
+
+/* Cart and price details */
 .cart-details {
-  display: inline-flexbox;
+  display: block;
   width: 100%;
   padding: 20px;
   align-items: flex-start;
@@ -115,7 +209,7 @@ body {
 
 #cart-text {
   color: #C5C1C1;
-  font-family: Roboto;
+  font-family: Roboto, sans-serif;
   font-size: 20px;
   font-style: normal;
   font-weight: 400;
@@ -124,7 +218,7 @@ body {
 
 #priceText {
   color: #014131;
-  font-family: Roboto;
+  font-family: Roboto, sans-serif;
   font-size: 20px;
   font-style: normal;
   font-weight: 600;
@@ -133,7 +227,7 @@ body {
 
 .dart-price {
   color: #000;
-  font-family: Roboto;
+  font-family: Roboto, sans-serif;
   font-size: 24px;
   font-style: normal;
   font-weight: 500;
@@ -141,9 +235,10 @@ body {
 }
 
 .separator {
-  width: 345px;
+  width: 100%;
   height: 1px;
   background: #D3D3D3;
+  margin: 15px 0;
 }
 
 /* Price per company style */
@@ -151,7 +246,7 @@ body {
   float: right;
   flex-shrink: 0;
   color: #000;
-  font-family: Roboto;
+  font-family: Roboto, sans-serif;
   font-size: 24px;
   font-style: normal;
   font-weight: 500;
@@ -160,49 +255,53 @@ body {
 
 .montant-text {
   color: #000;
-  font-family: Roboto;
+  font-family: Roboto, sans-serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
   line-height: 60px;
 }
 
+.montant {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0;
+  width: 100%;
+}
+
 .montant-input {
-  float: right;
   display: flex;
   padding: 10px 16px;
   justify-content: center;
   align-items: center;
   border-radius: 5px;
   border: 1px solid #D3D3D3;
-}
-
-.montant {
-  display: inline-box;
-  margin-top: 2vh;
-  margin-bottom: 2vh;
-  gap: 50px;
+  max-width: 250px;
 }
 
 .montant-input-text {
-  width: 176px;
-  flex-shrink: 0;
+  width: 100%;
   color: #707070;
   text-align: center;
-  font-family: Roboto;
+  font-family: Roboto, sans-serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
   line-height: 20px;
 }
 
+/* Stock info */
 .stock {
-  display: inline-flexbox;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 
 .stock-text {
   color: #014131;
-  font-family: Roboto;
+  font-family: Roboto, sans-serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
@@ -210,23 +309,26 @@ body {
 }
 
 .stock-number {
-  float: right;
   color: #014131;
   text-align: right;
-  font-family: Roboto;
+  font-family: Roboto, sans-serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
   line-height: 60px;
 }
 
+/* Purchase section */
 .achat {
-  display: inline-flexbox;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 
 .achat-text {
   color: #014131;
-  font-family: Roboto;
+  font-family: Roboto, sans-serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
@@ -234,48 +336,49 @@ body {
 }
 
 .achat-quantity {
-  float: right;
-  width: 81px;
-  flex-shrink: 0;
   color: #707070;
   text-align: center;
-  font-family: Roboto;
+  font-family: Roboto, sans-serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
   line-height: 60px;
 }
 
+/* Buttons */
+.button-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 15px;
+}
+
 .button-achat {
   display: flex;
-  width: 350px;
+  width: 100%;
   padding: 10px 16px;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  gap: 8px;
   border-radius: 5px;
   background: #014131;
   border: none;
+  cursor: pointer;
 }
 
 .button-achat-text {
-  text-align: left;
-  width: 208px;
-  flex-shrink: 0;
   color: #FFF;
-  font-family: Roboto;
+  font-family: Roboto, sans-serif;
   font-size: 14px;
   font-style: normal;
   font-weight: 600;
   line-height: 20px;
+  text-align: left;
 }
 
 .button-achat-amount {
-  width: 98px;
-  flex-shrink: 0;
   color: #FFF;
   text-align: right;
-  font-family: Roboto;
+  font-family: Roboto, sans-serif;
   font-size: 18px;
   font-style: normal;
   font-weight: 600;
@@ -284,24 +387,19 @@ body {
 
 .button-panier {
   display: flex;
-  width: 350px;
+  width: 100%;
   padding: 10px 16px;
   justify-content: center;
   align-items: center;
-  gap: 8px;
   border-radius: 5px;
-  border: none;
-  background-color: transparent;
   border: 1px solid #014131;
+  background-color: transparent;
+  cursor: pointer;
 }
 
 .button-panier-text {
-  float: left;
-  text-align: left;
-  width: 292px;
-  flex-shrink: 0;
   color: #014131;
-  font-family: Roboto;
+  font-family: Roboto, sans-serif;
   font-size: 14px;
   font-style: normal;
   font-weight: 600;
@@ -320,7 +418,8 @@ body {
 }
 
 .separator-modal {
-  width: 335px;
+  width: 100%;
+  max-width: 335px;
   height: 1px;
   background: #D3D3D3;
   margin: 15px 0px;
@@ -328,7 +427,7 @@ body {
 
 .modal-title {
   color: #000;
-  font-family: Roboto;
+  font-family: Roboto, sans-serif;
   font-size: 18px;
   font-style: normal;
   font-weight: 500;
@@ -344,66 +443,271 @@ body {
   width: 78px;
   height: 78px;
   border-radius: 5px;
+  object-fit: cover;
 }
 
-/* Make adjustments for responsive layout */
-@media (max-width: 768px) {
+/* Details section */
+.details-section {
+  margin-top: 30px;
+}
+
+.details-list {
+  width: 100%;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.detail-title {
+  font-weight: normal;
+}
+
+.detail-value {
+  font-weight: bold;
+  text-align: right;
+  max-width: 60%;
+}
+
+.map-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.map-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+/* Transactions section */
+.transactions-container {
+  margin-bottom: 40px;
+}
+
+.transaction-row {
+  margin-bottom: 15px;
+}
+
+.transaction-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.transaction-country {
+  display: flex;
+  align-items: center;
+}
+
+.flag-icon {
+  margin-right: 7px;
+}
+
+.objectives-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.objective-item img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Responsive breakpoints */
+@media (max-width: 1200px) {
   .container-img {
-    width: 100%;
+    height: 450px;
   }
 
-  .cart-details {
-    width: 100%;
-    padding: 10px;
+
+
+  .backgroundText {
+    bottom: 25px;
+    left: 25px;
+  }
+
+  .projectName {
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 992px) {
+  .retour {
+    margin-left: 2%;
+  }
+
+  .container-img {
+    height: 400px;
+  }
+
+  .projectName {
+    font-size: 28px;
+  }
+
+  .pricePerCo {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 768px) {
+  .retour {
+    margin-top: 2rem;
+    margin-left: 15px;
+  }
+
+  .container-img {
+    height: 350px;
+  }
+
+  .backgroundText {
+    bottom: 20px;
+    left: 20px;
   }
 
   .projectName {
     font-size: 24px;
+    margin-bottom: 15px;
   }
 
   .projectCategory {
-    font-size: 18px;
+    font-size: 20px;
   }
 
-  .carouselMainElement, .carouselOtherElements {
-    width: 60px;
-    height: 45px;
+  .content {
+    margin-top: 30px;
+  }
+
+  .section-title {
+    font-size: 22px;
+  }
+
+  .project-title {
+    font-size: 24px;
+  }
+
+  .dart-price, .pricePerCo {
+    font-size: 20px;
+    line-height: 40px;
+  }
+
+  .montant {
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   .montant-input {
-    width: 100%;
     margin-top: 10px;
-  }
-
-  .button-achat, .button-panier {
     width: 100%;
+    max-width: 100%;
   }
 
-  .modal-photo {
-    width: 64px;
-    height: 64px;
+  .transaction-details {
+    flex-direction: column;
+    align-items: flex-start;
   }
 
-  .modal-title {
+  .transaction-country,
+  .transaction-amount,
+  .transaction-date {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+
+  .objectives-container {
+    gap: 15px;
+  }
+
+  .objective-item {
+    width: calc(50% - 15px);
+  }
+}
+
+@media (max-width: 576px) {
+  .retour {
+    margin-left: 10px;
+  }
+
+  .container-img {
+    height: 300px;
+  }
+
+  .backgroundText {
+    bottom: 15px;
+    left: 15px;
+  }
+
+  .countryDetails {
+    margin-bottom: 10px;
+  }
+
+  .projectName {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  .projectCategory {
     font-size: 16px;
+  }
+
+  .content {
+    margin-top: 20px;
+  }
+
+  #cart-text, #priceText {
+    font-size: 18px;
+    line-height: 40px;
+  }
+
+  .dart-price, .pricePerCo {
+    font-size: 18px;
+    line-height: 30px;
+  }
+
+  .montant-text, .stock-text, .achat-text {
+    font-size: 14px;
+    line-height: 40px;
+  }
+
+  .stock-number, .achat-quantity {
+    font-size: 14px;
+    line-height: 40px;
+  }
+
+  .button-achat-text, .button-panier-text {
+    font-size: 12px;
+  }
+
+  .button-achat-amount {
+    font-size: 16px;
+  }
+
+  .detail-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .detail-value {
+    text-align: left;
+    margin-top: 5px;
+    max-width: 100%;
+  }
+
+  .objectives-container {
+    gap: 10px;
   }
 }
 
 @media (max-width: 480px) {
   .container-img {
-    width: 100%;
-  }
-
-  .cart-details {
-    padding: 8px;
-  }
-
-  .projectName {
-    font-size: 20px;
-  }
-
-  .projectCategory {
-    font-size: 16px;
+    height: 250px;
   }
 
   .flag {
@@ -411,11 +715,319 @@ body {
     height: 13px;
   }
 
-  .pricePerCo, .montant-input-text {
+  .countryName {
+    font-size: 16px;
+  }
+
+  .projectName {
+    font-size: 18px;
+  }
+
+  .projectCategory {
     font-size: 14px;
   }
 
-  .button-achat-text, .button-panier-text {
-    font-size: 12px;
+  .section-title {
+    font-size: 20px;
+  }
+
+  .project-title {
+    font-size: 20px;
+  }
+
+  .description-paragraph {
+    font-size: 14px;
+  }
+
+  .cart-details {
+    padding: 15px;
+  }
+
+  .button-achat, .button-panier {
+    padding: 8px 12px;
+  }
+}
+
+/* Enhanced Details Section */
+.details-title {
+  margin-top: 40px;
+}
+
+.details-section {
+  margin-top: 15px;
+  margin-bottom: 40px;
+}
+
+.details-list {
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+}
+
+.detail-title {
+  font-weight: 500;
+  color: #555;
+  font-size: 15px;
+}
+
+.detail-value {
+  font-weight: 600;
+  text-align: right;
+  max-width: 60%;
+  color: #014131;
+}
+
+.id-value {
+  font-size: 14px;
+}
+
+.divider {
+  height: 1px;
+  background-color: #e0e0e0;
+  width: 100%;
+  margin: 0;
+}
+
+.map-container {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+}
+
+.map-image {
+  width: 100%;
+  max-width: 350px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Enhanced Transactions Section */
+.transactions-container {
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 50px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.transaction-row {
+  margin-bottom: 0;
+}
+
+.transaction-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0;
+}
+
+.transaction-country {
+  display: flex;
+  align-items: center;
+  min-width: 120px;
+}
+
+.flag-icon {
+  margin-right: 10px;
+  width: 24px;
+  height: 16px;
+  border-radius: 2px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.transaction-amount {
+  text-align: center;
+  min-width: 100px;
+}
+
+.transaction-price {
+  font-weight: 600;
+  color: #014131;
+  font-size: 16px;
+}
+
+.transaction-unity {
+  color: #777;
+  font-size: 14px;
+}
+
+.transaction-date {
+  text-align: right;
+  color: #777;
+  font-size: 14px;
+  min-width: 140px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .details-list {
+    padding: 15px;
+  }
+
+  .transaction-details {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .transaction-country,
+  .transaction-amount,
+  .transaction-date {
+    padding: 5px 0;
+  }
+
+  .transaction-date {
+    width: 100%;
+    text-align: left;
+  }
+}
+
+@media (max-width: 576px) {
+  .detail-row {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px 0;
+  }
+
+  .detail-value {
+    text-align: left;
+    margin-top: 5px;
+    max-width: 100%;
+  }
+
+  .transaction-details {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px 0;
+  }
+
+  .transaction-country,
+  .transaction-amount,
+  .transaction-date {
+    width: 100%;
+    text-align: left;
+    margin-bottom: 5px;
+  }
+}
+/* Tree Inventory Section Styling */
+.tree-inventory {
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  padding: 25px;
+  margin: 30px 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.project-subtitle {
+  color: #014131;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.tree-count {
+  font-size: 22px;
+  font-weight: 700;
+  color: #333;
+}
+
+.tree-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.tree-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.tree-item:last-child {
+  border-bottom: none;
+}
+
+.tree-item::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background-color: #014131;
+  border-radius: 50%;
+  margin-right: 15px;
+  flex-shrink: 0;
+}
+
+.tree-item span {
+  margin-right: 5px;
+}
+
+.tree-count {
+  font-weight: 600;
+  color: #333;
+}
+
+.tree-type {
+  color: #444;
+}
+
+.tree-variety {
+  font-weight: 600;
+  color: #014131;
+  margin: 0 5px;
+}
+
+.tree-age {
+  color: #555;
+}
+
+.tree-description {
+  color: #666;
+  font-style: italic;
+  font-size: 14px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .tree-inventory {
+    padding: 20px;
+  }
+
+  .tree-item {
+    flex-wrap: wrap;
+    padding: 10px 0;
+  }
+
+  .tree-count {
+    min-width: 60px;
+  }
+}
+
+@media (max-width: 576px) {
+  .tree-inventory {
+    padding: 15px;
+  }
+
+  .project-subtitle {
+    font-size: 16px;
+  }
+
+  .tree-count {
+    font-size: 20px;
+  }
+
+  .tree-item {
+    font-size: 14px;
   }
 }

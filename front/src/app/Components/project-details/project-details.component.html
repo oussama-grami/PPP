@@ -1,6 +1,7 @@
+<!-- HTML -->
 <div class="retour">
-  <button [routerLink]="'/marketplace'">
-    <span>
+  <button [routerLink]=RoutesEnum.MARKETPLACE class="retour-btn">
+    <span class="back-icon">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
         <path d="M19.5 12H4.5M4.5 12L10.125 6M4.5 12L10.125 18" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
@@ -9,73 +10,64 @@
   </button>
 </div>
 
-<div style="display: flex; justify-content: center;">
-  <div class="container-img" style="position: relative;"
-       [ngStyle]="{'background-image': 'url(' + selectedImage +' )', 'background-repeat': 'no-repeat',  'width': '1200px', 'height': '530px'}">
+<div class="hero-container">
+  <div class="container-img"
+       [ngStyle]="{'background-image': 'url(' + selectedImage +' )'}">
     <div class="backgroundText">
-      <div class="countryDetails"><span class="flag"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="18"
-                                                          viewBox="0 0 26 18" fill="none">
-                    <g clip-path="url(#clip0_206_5230)">
-                        <path d="M0 0.5H26V17.5002H0V0.5Z" fill="#D80027"/>
-                        <path
-                          d="M13 13.781C15.6924 13.781 17.875 11.6404 17.875 8.99976C17.875 6.35915 15.6924 4.21851 13 4.21851C10.3076 4.21851 8.125 6.35915 8.125 8.99976C8.125 11.6404 10.3076 13.781 13 13.781Z"
-                          fill="white"/>
-                        <path
-                          d="M13.6005 7.17188L14.4369 8.30219L15.7914 7.87143L14.9537 9.0008L15.79 10.1311L14.4359 9.69877L13.5983 10.8281L13.5991 9.43162L12.2451 8.99921L13.5997 8.5685L13.6005 7.17188Z"
-                          fill="#D80027"/>
-                        <path
-                          d="M14.1079 11.8252C12.5169 11.8252 11.2273 10.5603 11.2273 8.99992C11.2273 7.43954 12.5169 6.17465 14.1079 6.17465C14.604 6.17465 15.0707 6.29767 15.4783 6.51427C14.839 5.90117 13.9648 5.52271 13 5.52271C11.042 5.52271 9.45453 7.07955 9.45453 8.99997C9.45453 10.9204 11.042 12.4772 13 12.4772C13.9648 12.4772 14.839 12.0988 15.4783 11.4857C15.0707 11.7022 14.604 11.8252 14.1079 11.8252Z"
-                          fill="#D80027"/>
-                    </g>
-                    <defs>
-                        <clipPath id="clip0_206_5230">
-                            <rect width="26" height="17" fill="white" transform="translate(0 0.5)"/>
-                        </clipPath>
-                    </defs>
-                </svg></span><span class="countryName">Tunisia</span></div>
-
-      <div class="projectName">
-        Tree planting in Testour
+      <div class="countryDetails">
+        <span class="flag">
+          <svg xmlns="http://www.w3.org/2000/svg" width="26" height="18" viewBox="0 0 26 18" fill="none">
+            <g clip-path="url(#clip0_206_5230)">
+              <path d="M0 0.5H26V17.5002H0V0.5Z" fill="#D80027"/>
+              <path d="M13 13.781C15.6924 13.781 17.875 11.6404 17.875 8.99976C17.875 6.35915 15.6924 4.21851 13 4.21851C10.3076 4.21851 8.125 6.35915 8.125 8.99976C8.125 11.6404 10.3076 13.781 13 13.781Z" fill="white"/>
+              <path d="M13.6005 7.17188L14.4369 8.30219L15.7914 7.87143L14.9537 9.0008L15.79 10.1311L14.4359 9.69877L13.5983 10.8281L13.5991 9.43162L12.2451 8.99921L13.5997 8.5685L13.6005 7.17188Z" fill="#D80027"/>
+              <path d="M14.1079 11.8252C12.5169 11.8252 11.2273 10.5603 11.2273 8.99992C11.2273 7.43954 12.5169 6.17465 14.1079 6.17465C14.604 6.17465 15.0707 6.29767 15.4783 6.51427C14.839 5.90117 13.9648 5.52271 13 5.52271C11.042 5.52271 9.45453 7.07955 9.45453 8.99997C9.45453 10.9204 11.042 12.4772 13 12.4772C13.9648 12.4772 14.839 12.0988 15.4783 11.4857C15.0707 11.7022 14.604 11.8252 14.1079 11.8252Z" fill="#D80027"/>
+            </g>
+            <defs>
+              <clipPath id="clip0_206_5230">
+                <rect width="26" height="17" fill="white" transform="translate(0 0.5)"/>
+              </clipPath>
+            </defs>
+          </svg>
+        </span>
+        <span class="countryName">Tunisia</span>
       </div>
-      <div class="projectCategory">
-        Arboriculture
-      </div>
+      <div class="projectName">Tree planting in Testour</div>
+      <div class="projectCategory">Arboriculture</div>
     </div>
   </div>
 </div>
+
 <div class="container content">
   <div class="row">
-    <div class="col-md-8 col-12">
+    <div class="col-lg-8 col-md-12">
       <div class="description-content">
-        <div class="description">Description</div>
+        <div class="section-title">Description</div>
 
         <div class="category">
-                    <span><svg xmlns="http://www.w3.org/2000/svg" width="27" height="18" viewBox="0 0 27 18"
-                               fill="none">
-                            <g clip-path="url(#clip0_206_5244)">
-                                <path d="M0 0H27V18.0002H0V0Z" fill="#D80027"/>
-                                <path
-                                  d="M13.5 14.0623C16.2959 14.0623 18.5625 11.7957 18.5625 8.99976C18.5625 6.20382 16.2959 3.93726 13.5 3.93726C10.7041 3.93726 8.4375 6.20382 8.4375 8.99976C8.4375 11.7957 10.7041 14.0623 13.5 14.0623Z"
-                                  fill="white"/>
-                                <path
-                                  d="M14.1237 7.06421L14.9923 8.26102L16.3988 7.80492L15.5289 9.00072L16.3974 10.1975L14.9913 9.73974L14.1214 10.9355L14.1223 9.45688L12.7162 8.99904L14.1228 8.54299L14.1237 7.06421Z"
-                                  fill="#D80027"/>
-                                <path
-                                  d="M14.6506 11.9913C12.9984 11.9913 11.6591 10.652 11.6591 8.99987C11.6591 7.34771 12.9984 6.00841 14.6506 6.00841C15.1658 6.00841 15.6504 6.13866 16.0736 6.36801C15.4098 5.71884 14.5019 5.31812 13.5 5.31812C11.4667 5.31812 9.81824 6.96654 9.81824 8.99993C9.81824 11.0333 11.4667 12.6817 13.5 12.6817C14.5019 12.6817 15.4098 12.281 16.0736 11.6319C15.6504 11.8611 15.1658 11.9913 14.6506 11.9913Z"
-                                  fill="#D80027"/>
-                            </g>
-                            <defs>
-                                <clipPath id="clip0_206_5244">
-                                    <rect width="27" height="18" fill="white"/>
-                                </clipPath>
-                            </defs>
-                        </svg><span><img class="vertical-separator" src="/assets/img/lineSeparator.png" alt=""
-                                         height="14px"></span><span id="categoryText"
-                                                                    style="font-family: Roboto; margin-top: 1vh;">Trees & Forests</span></span>
+          <span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="27" height="18" viewBox="0 0 27 18" fill="none">
+              <g clip-path="url(#clip0_206_5244)">
+                <path d="M0 0H27V18.0002H0V0Z" fill="#D80027"/>
+                <path d="M13.5 14.0623C16.2959 14.0623 18.5625 11.7957 18.5625 8.99976C18.5625 6.20382 16.2959 3.93726 13.5 3.93726C10.7041 3.93726 8.4375 6.20382 8.4375 8.99976C8.4375 11.7957 10.7041 14.0623 13.5 14.0623Z" fill="white"/>
+                <path d="M14.1237 7.06421L14.9923 8.26102L16.3988 7.80492L15.5289 9.00072L16.3974 10.1975L14.9913 9.73974L14.1214 10.9355L14.1223 9.45688L12.7162 8.99904L14.1228 8.54299L14.1237 7.06421Z" fill="#D80027"/>
+                <path d="M14.6506 11.9913C12.9984 11.9913 11.6591 10.652 11.6591 8.99987C11.6591 7.34771 12.9984 6.00841 14.6506 6.00841C15.1658 6.00841 15.6504 6.13866 16.0736 6.36801C15.4098 5.71884 14.5019 5.31812 13.5 5.31812C11.4667 5.31812 9.81824 6.96654 9.81824 8.99993C9.81824 11.0333 11.4667 12.6817 13.5 12.6817C14.5019 12.6817 15.4098 12.281 16.0736 11.6319C15.6504 11.8611 15.1658 11.9913 14.6506 11.9913Z" fill="#D80027"/>
+              </g>
+              <defs>
+                <clipPath id="clip0_206_5244">
+                  <rect width="27" height="18" fill="white"/>
+                </clipPath>
+              </defs>
+            </svg>
+            <span>
+              <img class="vertical-separator" src="/assets/img/lineSeparator.png" alt="" height="14px">
+            </span>
+            <span id="categoryText">Trees & Forests</span>
+          </span>
         </div>
-        <div class="project-title">
-          Tree planting in Testour
-        </div>
+
+        <div class="project-title">Tree planting in Testour</div>
+
         <div class="description">
           <div class="description-paragraph">
             In Testour, the tree planting project focuses on the olive tree, an evergreen plant known for its active
@@ -87,59 +79,68 @@
             are not as deep as those of the olive tree, offers similar environmental benefits.​
             <br>Trees are distributed as follows:
           </div>
-          <div class="treeTypes" style="margin-top: 16px;">
-            <div class="bold-description">Nature of the project:</div>
-            <div class="bold-description high-font" style="margin-top: 16px;">10,430 trees:</div>
-            <div style="display: flex; align-items:center; margin-top: 16px;"><span
-              style="margin-right: 10px; padding-bottom: 2px;"><svg xmlns="http://www.w3.org/2000/svg"
-                                                                    width="8" height="8" viewBox="0 0 8 8" fill="none">
-                                    <circle cx="4" cy="4" r="4" fill="black"/>
-                                </svg></span>3500 Olive trees <span
-              class="bold-description">&nbsp;Koroneiki 4 years</span>
-            </div>
-            <div style="display: flex; align-items:center; margin-top: 16px;"><span
-              style="margin-right: 10px; padding-bottom: 2px;"><svg xmlns="http://www.w3.org/2000/svg"
-                                                                    width="8" height="8" viewBox="0 0 8 8" fill="none">
-                                    <circle cx="4" cy="4" r="4" fill="black"/>
-                                </svg></span>500 Olive trees <span
-              class="bold-description">&nbsp;Picholine 4 years</span>
-            </div>
-            <div style="display: flex; align-items:center; margin-top: 16px;"><span
-              style="margin-right: 10px; padding-bottom: 2px;"><svg xmlns="http://www.w3.org/2000/svg"
-                                                                    width="8" height="8" viewBox="0 0 8 8" fill="none">
-                                    <circle cx="4" cy="4" r="4" fill="black"/>
-                                </svg></span>4440 Olive trees <span
-              class="bold-description">&nbsp;Koroneiki 3 years</span>
-            </div>
-            <div style="display: flex; align-items:center; margin-top: 16px;"><span
-              style="margin-right: 10px; padding-bottom: 2px;"><svg xmlns="http://www.w3.org/2000/svg"
-                                                                    width="8" height="8" viewBox="0 0 8 8" fill="none">
-                                    <circle cx="4" cy="4" r="4" fill="black"/>
-                                </svg></span>1000 Olive trees <span class="bold-description">&nbsp;Frenjivento 3 years old</span>
-            </div>
-            <div style="display: flex; align-items:center; margin-top: 16px;"><span
-              style="margin-right: 10px; padding-bottom: 2px;"><svg xmlns="http://www.w3.org/2000/svg"
-                                                                    width="8" height="8" viewBox="0 0 8 8" fill="none">
-                                    <circle cx="4" cy="4" r="4" fill="black"/>
-                                </svg></span>560 Olive trees<span
-              class="bold-description">&nbsp;Arbaquina 3 years</span>
-            </div>
-            <div style="display: flex; align-items:center; margin-top: 16px;"><span
-              style="margin-right: 10px; padding-bottom: 2px;"><svg xmlns="http://www.w3.org/2000/svg"
-                                                                    width="8" height="8" viewBox="0 0 8 8" fill="none">
-                                    <circle cx="4" cy="4" r="4" fill="black"/>
-                                </svg></span>110 Old olive trees variety <span class="bold-description">&nbsp;Oueslati 55 years</span>
-            </div>
-            <div style="display: flex; align-items:center; margin-top: 16px;"><span
-              style="margin-right: 10px; padding-bottom: 2px;"><svg xmlns="http://www.w3.org/2000/svg"
-                                                                    width="8" height="8" viewBox="0 0 8 8" fill="none">
-                                    <circle cx="4" cy="4" r="4" fill="black"/>
-                                </svg></span>320 Almond trees <span
-              class="bold-description">&nbsp;Lauranne 4 years</span>
-            </div>
+
+          <div class="tree-inventory">
+            <h3 class="project-subtitle">Nature of the project:</h3>
+
+            <h2 class="tree-count">10,430 trees:</h2>
+
+            <ul class="tree-list">
+              <li class="tree-item">
+                <span class="tree-count">3500</span>
+                <span class="tree-type">Olive trees</span>
+                <span class="tree-variety">Koroneiki</span>
+                <span class="tree-age">4 years</span>
+              </li>
+
+              <li class="tree-item">
+                <span class="tree-count">500</span>
+                <span class="tree-type">Olive trees</span>
+                <span class="tree-variety">Picholine</span>
+                <span class="tree-age">4 years</span>
+              </li>
+
+              <li class="tree-item">
+                <span class="tree-count">4440</span>
+                <span class="tree-type">Olive trees</span>
+                <span class="tree-variety">Koroneiki</span>
+                <span class="tree-age">3 years</span>
+              </li>
+
+              <li class="tree-item">
+                <span class="tree-count">1000</span>
+                <span class="tree-type">Olive trees</span>
+                <span class="tree-variety">Frenjivento</span>
+                <span class="tree-age">3 years</span>
+              </li>
+
+              <li class="tree-item">
+                <span class="tree-count">560</span>
+                <span class="tree-type">Olive trees</span>
+                <span class="tree-variety">Arbaquina</span>
+                <span class="tree-age">3 years</span>
+              </li>
+
+              <li class="tree-item">
+                <span class="tree-count">110</span>
+                <span class="tree-type">Old olive trees</span>
+                <span class="tree-description">variety</span>
+                <span class="tree-variety">Oueslati</span>
+                <span class="tree-age">55 years</span>
+              </li>
+
+              <li class="tree-item">
+                <span class="tree-count">320</span>
+                <span class="tree-type">Almond trees</span>
+                <span class="tree-variety">Lauranne</span>
+                <span class="tree-age">4 years</span>
+              </li>
+            </ul>
           </div>
-          <div class="bold-description" style="margin-top: 16px;">The Testour region:</div>
-          <div class="description-paragraph">The tree planting project is situated in the Testour region of Tunisia, an
+
+          <div class="bold-description region-title">The Testour region:</div>
+          <div class="description-paragraph">
+            The tree planting project is situated in the Testour region of Tunisia, an
             area distinguished by its diverse and functional natural landscape. Dominated by expansive olive groves, the
             region forms a robust agricultural base. The gently rolling hills provide panoramic views of these
             plantations, and the rivers weaving through the area support the irrigation essential for local agriculture.
@@ -148,101 +149,101 @@
             functionality and natural beauty, striking a balance between the practical needs of the local community and
             the innate allure of the environment.​
           </div>
-
         </div>
-        <div class="details" style="margin-top: 56px; display: flex">Details</div>
-        <div class="row" style="margin-top: 39px;">
-          <div class="col-7">
-            <div>
-              <div><span class="detail-title">Country</span><span style="float: right;"
-                                                                  class="detail-value">Tunisia</span></div>
-              <div style="width: 100%; height: 1px;background: #D3D3D3;margin: 16px 0px;"></div>
-              <div><span class="detail-title">Company</span><span style="float: right;"
-                                                                  class="detail-value">1976 International</span></div>
-              <div style="width: 100%; height: 1px;background: #D3D3D3;margin: 16px 0px;"></div>
-              <div style="margin-bottom: 32px;"><span class="detail-title">Company identifier</span><span
-                style="float: right; width: 279px; text-align: right;"
-                class="detail-value">1696707C (to the Tunisan National companies register)</span>
-              </div>
-              <div style="width: 100%; height: 1px;background: #D3D3D3;margin-bottom: 16px;"></div>
-              <div><span class="detail-title">Blockchain address</span><a
-                style="float: right; cursor: pointer; color: black;"
-                href="'https://polygon.technology/'"
-                class="detail-value">https://polygon.technology/</a></div>
-              <div style="width: 100%; height: 1px;background: #D3D3D3;margin: 16px 0px;"></div>
-              <div><span class="detail-title">Type of project</span><span style="float: right;"
-                                                                          class="detail-value">Arboriculture</span>
-              </div>
-              <div style="width: 100%; height: 1px;background: #D3D3D3;margin: 16px 0px;"></div>
-              <div><span class="detail-title">Mechanism</span><span style="float: right;"
-                                                                    class="detail-value">Elimination</span></div>
-              <div style="width: 100%; height: 1px;background: #D3D3D3;margin: 16px 0px;"></div>
-            </div>
 
+        <div class="section-title details-title">Details</div>
 
-          </div>
-          <div class="col-5"><img src="/assets/img/map.svg" alt="map" style="width: 282px;
-                        height: 335px;
-                        flex-shrink: 0;border-radius: 5px;"></div>
-        </div>
-        <div class="details" style="margin-top: 56px; margin-bottom: 37px;  ">Latest transactions</div>
-        <div style="margin-right: 50px;">
-          <div *ngFor="let transaction of transactions;let i=index" class="row">
-            <div class="col-4 detail-value"><img style="margin-right: 7px; width: 34px;
-                            height: 25px;
-                            flex-shrink: 0;" [src]="transaction.flag" alt=""><span>{{transaction.country}}</span></div>
-            <div class="col-4" style="text-align: center;"><span class="transaction-price">{{ transaction.cost }}$</span> <br
-              style="margin: 0;"> <span class="transaction-unity">{{ transaction.quantity }} tCO2e</span></div>
-            <div class="col-4 detail-value" style="text-align: right;">{{ transaction.date.toLocaleString() }}</div>
-            <div style="width: 100%; height: 1px;background: #D3D3D3;margin-top: 14px; margin-bottom: 26px;" *ngIf="transactions.length != i+1">
+        <div class="row details-section">
+          <div class="col-lg-7 col-md-12">
+            <div class="details-list">
+              <div class="detail-row">
+                <span class="detail-title">Country</span>
+                <span class="detail-value">Tunisia</span>
+              </div>
+              <div class="divider"></div>
+
+              <div class="detail-row">
+                <span class="detail-title">Company</span>
+                <span class="detail-value">1976 International</span>
+              </div>
+              <div class="divider"></div>
+
+              <div class="detail-row">
+                <span class="detail-title">Company identifier</span>
+                <span class="detail-value id-value">1696707C (to the Tunisan National companies register)</span>
+              </div>
+              <div class="divider"></div>
+
+              <div class="detail-row">
+                <span class="detail-title">Blockchain address</span>
+                <a href="'https://polygon.technology/'" class="detail-value">https://polygon.technology/</a>
+              </div>
+              <div class="divider"></div>
+
+              <div class="detail-row">
+                <span class="detail-title">Type of project</span>
+                <span class="detail-value">Arboriculture</span>
+              </div>
+              <div class="divider"></div>
+
+              <div class="detail-row">
+                <span class="detail-title">Mechanism</span>
+                <span class="detail-value">Elimination</span>
+              </div>
             </div>
           </div>
 
+          <div class="col-lg-5 col-md-12">
+            <div class="map-container">
+              <img src="/assets/img/map.svg" alt="map" class="map-image">
+            </div>
+          </div>
+        </div>
 
-          <!--<div class="button-transaction" style="margin-left: 44%;">
-            <button class="button-transaction-text" style="align-items: center; ">See more</button>
-          </div>-->
-        </div>
-        <div class="details" style="margin-top: 54px; margin-bottom: 32px;">Sustainable development objectives
-        </div>
-        <div style="display: inline-flex; gap: 24px;">
-          <div><img src="/assets/img/objectif1.png" alt="objectif1"></div>
-          <div><img src="/assets/img/objectif2.png" alt="objectif2"></div>
-          <div><img src="/assets/img/objectif3.png" alt="objectif3"></div>
-          <div><img src="/assets/img/objectif4.png" alt="objectif4"></div>
-        </div>
-        <div class="details" style="margin-top: 54px; margin-bottom: 32px;">Explore other projects</div>
+        <div class="section-title">Latest transactions</div>
 
+        <div class="transactions-container">
+          <div *ngFor="let transaction of transactions; let i=index" class="transaction-row">
+            <div class="transaction-details">
+              <div class="transaction-country">
+                <img class="flag-icon" [src]="transaction.flag" alt="">
+                <span>{{transaction.country}}</span>
+              </div>
+
+              <div class="transaction-amount">
+                <span class="transaction-price">{{ transaction.cost }}$</span>
+                <br>
+                <span class="transaction-unity">{{ transaction.quantity }} tCO2e</span>
+              </div>
+
+              <div class="transaction-date">
+                {{ transaction.date.toLocaleString() }}
+              </div>
+            </div>
+
+            <div class="divider" *ngIf="transactions.length != i+1"></div>
+          </div>
+        </div>
+
+        <div class="section-title">Sustainable development objectives</div>
+
+        <div class="objectives-container">
+          <div class="objective-item"><img src="/assets/img/objectif1.png" alt="objectif1"></div>
+          <div class="objective-item"><img src="/assets/img/objectif2.png" alt="objectif2"></div>
+          <div class="objective-item"><img src="/assets/img/objectif3.png" alt="objectif3"></div>
+          <div class="objective-item"><img src="/assets/img/objectif4.png" alt="objectif4"></div>
+        </div>
 
       </div>
     </div>
-    <div class="col-md-4 col-12" *ngIf="projectId!=undefined">
+
+    <div class="col-lg-4 col-md-12" *ngIf="projectId!=undefined">
+      <h1>Buy Now </h1>
       <app-price-details [projectId]="projectId"></app-price-details>
     </div>
-
+    <div class="section-title">Explore other projects</div>
     <div class="row mt-5">
       <app-projects-carousel></app-projects-carousel>
     </div>
-
-    <!-- <div class="row">
-       <ngb-carousel *ngIf="projects.length > 0">
-         <ng-template ngbSlide *ngFor="let project of projects">
-           <app-project-ad [project]="project"></app-project-ad>
-           <div>say hello</div>
-         </ng-template>
-       </ngb-carousel>
-     </div>
-     -->
-    <!--
-    <div class="row">
-      <div class="row" style="margin-top: 29px;">
-        <div *ngFor="let project of projects.slice(0, 4)" class="col-3" style="margin-top: 5px;">
-          <div class="col-4">
-            <app-project-ad [project]="project"></app-project-ad>
-          </div>
-        </div>
-      </div>
-    </div>
-    -->
   </div>
 </div>

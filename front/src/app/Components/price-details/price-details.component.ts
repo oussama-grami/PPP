@@ -3,6 +3,7 @@ import {ProjectsService} from "../../Service/projects.service";
 import {project} from "../../Models/project";
 import {CartService} from "../../Service/cart-service.service";
 import {Router} from "@angular/router";
+import {RoutesEnum} from "../../enumerations/Routes.enum";
 
 @Component({
   selector: 'app-price-details',
@@ -77,6 +78,6 @@ export class PriceDetailsComponent implements OnInit, OnChanges {
 
   async onBuyNow() {
     this.onAddToCart();
-    await this.routerService.navigate(['/checkout']);
+    await this.routerService.navigate([RoutesEnum.CHECKOUT]);
   }
 }
