@@ -14,8 +14,6 @@ import java.util.List;
 @ToString
 @SuperBuilder
 @Entity
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "id")
 public class Project extends BaseEntity<Long> {
     @Column(nullable = false)
     private boolean certified;
@@ -40,29 +38,13 @@ public class Project extends BaseEntity<Long> {
     @Column(nullable = false)
     private String typeOfProject;
     @Column(nullable = false)
-    private String Url;
-    @ManyToOne(cascade = CascadeType.ALL)
+    private String url;
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "projectOwner_id")
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @JsonIgnore
     private ProjectOwner projectOwner;
-
     @OneToMany(mappedBy = "project", fetch = FetchType.LAZY)
     @JsonIgnore
     private List<ChartLine> chartLines;
-
-    @JsonProperty("projectOwnerId")
-    public Long getProjectOwnerId() {
-        return projectOwner != null ? projectOwner.getId() : null;
-    }
-
-    @JsonProperty("chartLineIds")
-    public List<Long> getChartLineIds() {
-        if (chartLines == null) {
-            return null;
-        }
-        return chartLines.stream()
-                .map(BaseEntity::getId)
-                .toList();
-    }
 
 }

@@ -1,9 +1,7 @@
-package com.ppp.Ecopilot.DTO;
+package com.ppp.Ecopilot.DTO.Project;
 
-import com.ppp.Ecopilot.Entities.ChartLine;
-import com.ppp.Ecopilot.Entities.ProjectOwner;
+import com.ppp.Ecopilot.DTO.BaseDTO;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
@@ -12,7 +10,7 @@ import java.util.Optional;
 @Data
 @SuperBuilder
 @NoArgsConstructor
-public class ProjectDTO{
+public class ProjectDTO extends BaseDTO {
     private boolean certified;
     private int availableStock;
     private String category;
@@ -24,7 +22,7 @@ public class ProjectDTO{
     private String name;
     private String routing;
     private String typeOfProject;
-    private String Url;
-    private ProjectOwner projectOwner;
-    private Optional<List<ChartLine>> chartLines;
+    private String url;
+    private Long projectOwnerId;
+    private Optional<List<Long>> chartLinesIds;
 }

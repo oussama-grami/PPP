@@ -1,6 +1,7 @@
 package com.ppp.Ecopilot.Entities;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.*;
@@ -29,5 +30,6 @@ public class ChartLine extends BaseEntity<Long> {
     private Transaction transaction;
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "project_id")
+    @JsonManagedReference("project-chartlines")
     private Project project;
 }
