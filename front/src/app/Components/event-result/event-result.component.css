@@ -128,7 +128,7 @@ body {
 .see-recommendations-title {
   font-size: 24px;
   font-weight: bold;
-  color: #0c4128; /* Adjust the color as needed */
+  color: var(--primary-color); /* Adjust the color as needed */
   margin-bottom: 20px; /* Adjust spacing below the title */
 }
 #marketplace-header {

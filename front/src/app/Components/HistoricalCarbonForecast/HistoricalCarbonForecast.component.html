@@ -1,23 +1,38 @@
-<div class="retour"> <button [routerLink]="'/' + routesEnum.PREDICTION_INFO">
-  <div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-      <path d="M19.5 12H4.5M4.5 12L10.125 6M4.5 12L10.125 18" stroke="black" stroke-width="1.5"
-        stroke-linecap="round" stroke-linejoin="round" />
-    </svg></div>
-    <div class="retour-text" >
-      Back
-  </div>
-</button>
+<div class="retour">
+  <button [routerLink]="'/' + routesEnum.PREDICTION_INFO">
+    <div>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+      >
+        <path
+          d="M19.5 12H4.5M4.5 12L10.125 6M4.5 12L10.125 18"
+          stroke="black"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </div>
+    <div class="retour-text">Back</div>
+  </button>
 </div>
-<div class=" col-lg-12 text-left">
+<div class="col-lg-12 text-left">
   <h1 class="title">Carbon Footprint Forecast</h1>
 </div>
-<div class="container-fluid py-4 d-flex justify-content-center align-items-center">
+<div
+  class="container-fluid py-4 d-flex justify-content-center align-items-center"
+>
   <div class="row justify-content-center align-items-stretch w-100">
-    
     <!-- Left Column: Chart -->
-    <div class="col-lg-7 mb-4 d-flex h-100" >
-      <div class="card shadow-lg w-100 h-100 d-flex flex-column" >
-        <div class="card-body p-3 d-flex flex-column align-items-center flex-grow-1">
+    <div class="col-lg-7 mb-4 d-flex h-100">
+      <div class="card shadow-lg w-100 h-100 d-flex flex-column">
+        <div
+          class="card-body p-3 d-flex flex-column align-items-center flex-grow-1"
+        >
           <canvas id="carbonChart" width="500" height="400"></canvas>
         </div>
         <div class="d-flex justify-content-center mt-auto p-3">
@@ -31,12 +46,14 @@
     <!-- Right Column: Table -->
     <div class="col-lg-5 d-flex h-100">
       <div class="card shadow-lg w-100 h-100 d-flex flex-column">
-        <div class="card-header d-flex justify-content-between align-items-center bg-dark text-white">
+        <div
+          class="card-header d-flex justify-content-between align-items-center bg-dark text-white"
+        >
           <h5 class="card-title mb-0">Carbon Footprint History</h5>
         </div>
         <div class="card-body p-0 flex-grow-1">
           <div class="table-responsive">
-            <table class="table table-hover table-striped mb-0">
+            <table class="table table-hover table-striped mb-0 dark-mode-table">
               <thead class="table-light">
                 <tr>
                   <th>Date</th>
@@ -45,38 +62,75 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let element of carbonData" [ngClass]="{'predicted-row': element.predicted}" >
-                  <td>{{element.date}}</td>
+                <tr
+                  *ngFor="let element of carbonData"
+                  [ngClass]="{ 'predicted-row': element.predicted }"
+                >
+                  <td>{{ element.date }}</td>
                   <td>
-                    <span *ngIf="editingElementId !== element.id" class="fw-medium">{{ element.value }}</span>
-                    <input *ngIf="editingElementId === element.id" [(ngModel)]="element.value" type="number" />
-  
+                    <span
+                      *ngIf="editingElementId !== element.id"
+                      class="fw-medium"
+                      >{{ element.value }}</span
+                    >
+                    <input
+                      *ngIf="editingElementId === element.id"
+                      [(ngModel)]="element.value"
+                      type="number"
+                    />
                   </td>
                   <td class="text-end">
-                    <button *ngIf="editingElementId!==element.id" class="action-btn btn-outline-custom btn-sm me-1" title="Edit" (click)="startEdit(element.id)">
+                    <button
+                      *ngIf="editingElementId !== element.id"
+                      class="action-btn btn-outline-custom btn-sm me-1"
+                      title="Edit"
+                      (click)="startEdit(element.id)"
+                    >
                       <i class="bi bi-pencil"></i>
                     </button>
-                    <button *ngIf="editingElementId === element.id" class="action-btn btn-outline-success btn-sm me-1" title="Save" 
-                    (click)="saveEdit(element, element.value)">
+                    <button
+                      *ngIf="editingElementId === element.id"
+                      class="action-btn btn-outline-success btn-sm me-1"
+                      title="Save"
+                      (click)="saveEdit(element, element.value)"
+                    >
                       <i class="bi bi-check"></i>
                     </button>
-                    <button class="action-btn btn-outline-danger btn-sm" title="Delete"(click)="deleteElement(element.id)" >
-                      <i class="bi bi-trash" ></i>
+                    <button
+                      class="action-btn btn-outline-danger btn-sm"
+                      title="Delete"
+                      (click)="deleteElement(element.id)"
+                    >
+                      <i class="bi bi-trash"></i>
                     </button>
                   </td>
                 </tr>
                 <tr *ngIf="newEntry">
                   <td>
-                    <input type="date" [(ngModel)]="newEntry.date" class="form-control form-control-sm">
+                    <input
+                      type="date"
+                      [(ngModel)]="newEntry.date"
+                      class="form-control form-control-sm"
+                    />
                   </td>
                   <td>
-                    <input type="number" [(ngModel)]="newEntry.value" class="form-control form-control-sm">
+                    <input
+                      type="number"
+                      [(ngModel)]="newEntry.value"
+                      class="form-control form-control-sm"
+                    />
                   </td>
                   <td class="text-end">
-                    <button class="action-btn btn-outline-success btn-sm me-1"  (click)="saveNewElement()">
+                    <button
+                      class="action-btn btn-outline-success btn-sm me-1"
+                      (click)="saveNewElement()"
+                    >
                       <i class="bi bi-check"></i>
                     </button>
-                    <button class="action-btn  btn-outline-danger btn-sm me-1" (click)="newEntry = null">
+                    <button
+                      class="action-btn btn-outline-danger btn-sm me-1"
+                      (click)="newEntry = null"
+                    >
                       <i class="bi bi-x"></i>
                     </button>
                   </td>
@@ -85,19 +139,28 @@
             </table>
           </div>
         </div>
-        <div class="card-footer d-flex justify-content-between align-items-center">
-          <span class="text-muted small">Showing {{carbonData.length}} records</span>
-          <button class="btn custom-btn btn-dark btn-sm" (click)="addElement()" *ngIf="!newEntry">
+        <div
+          class="card-footer d-flex justify-content-between align-items-center"
+        >
+          <span class="text-muted small"
+            >Showing {{ carbonData.length }} records</span
+          >
+          <button
+            class="btn custom-btn btn-dark btn-sm"
+            (click)="addElement()"
+            *ngIf="!newEntry"
+          >
             <i class="bi bi-plus-lg"></i> Add New Record
           </button>
-          <button class="btn custom-btn btn-dark btn-sm" *ngIf="!newEntry" (click)="savePredictions()">
+          <button
+            class="btn custom-btn btn-dark btn-sm"
+            *ngIf="!newEntry"
+            (click)="savePredictions()"
+          >
             <i class="bi bi-save"></i> Save Prediction
           </button>
-
-          
         </div>
       </div>
     </div>
-
   </div>
 </div>

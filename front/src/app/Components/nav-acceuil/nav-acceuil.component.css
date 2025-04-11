@@ -313,28 +313,38 @@
   cursor: pointer;
   padding: 10px;
   z-index: 1050;
-  width: 42px;
-  height: 42px;
+  width: 44px;
+  height: 44px;
   border-radius: var(--border-radius);
   position: absolute;
   right: 0;
   top: 50%;
   transform: translateY(-50%);
+  transition: background-color var(--transition-speed);
+}
+
+/* Add a subtle background on hover for better visual feedback */
+.mobile-toggle:hover,.mobile-toggle:focus {
+  background-color: var(--primary-light)!important;
 }
 
 .mobile-toggle span {
   display: block;
-  width: 22px;
+  width: 24px;
   height: 2px;
-  margin: 4px 0;
+  margin: 5px 0;
   background-color: var(--text-secondary);
-  border-radius: 2px;
-  transition: all var(--transition-speed);
+  border-radius: 4px;
+  transition: all 0.3s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+  position: relative;
+  left: 0;
 }
 
+/* Improved X animation with better visibility */
 .mobile-toggle.active span:nth-child(1) {
-  transform: rotate(45deg) translate(5px, 5px);
+  transform: rotate(45deg) translate(5px, 6px);
   background-color: var(--primary-color);
+  width: 26px;
 }
 
 .mobile-toggle.active span:nth-child(2) {
@@ -343,7 +353,21 @@
 }
 
 .mobile-toggle.active span:nth-child(3) {
-  transform: rotate(-45deg) translate(5px, -5px);
+  transform: rotate(-45deg) translate(5px, -6px);
+  background-color: var(--primary-color);
+  width: 26px;
+}
+
+/* Dark mode specific improvements */
+:root.dark-mode .mobile-toggle span {
+  background-color: rgba(255, 255, 255, 0.85);
+}
+
+:root.dark-mode .mobile-toggle:hover span {
+  background-color: var(--primary-color);
+}
+
+:root.dark-mode .mobile-toggle.active span {
   background-color: var(--primary-color);
 }
 

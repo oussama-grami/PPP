@@ -1,22 +1,26 @@
-<div class="instruction-container">
-  <div class="card border-0 shadow-lg">
-    <div class="card-header bg-primary text-white d-flex align-items-center">
-      <i class="fas fa-list-alt fa-lg me-3"></i>
+<div class="instruction-container mt-4">
+  <div class="card border-0" [ngClass]="{'shadow-lg': true}">
+    <div class="card-header d-flex align-items-center">
+      <i class="fas fa-clipboard-list fa-lg me-3"></i>
       <h3 class="mb-0">{{ title }}</h3>
     </div>
     <div class="card-body">
-      <ol class="list-group list-group-numbered list-group-flush"
-          [@listAnimation]="instructions.length">
+      <ul class="list-group list-group-flush" [@listAnimation]="instructions.length">
         <li *ngFor="let instruction of instructions; let i = index"
             @listItemAnimation
-            class="list-group-item d-flex align-items-start">
-          <div class="ms-2 me-auto">
+            class="list-group-item">
+          <div class="list-icon">{{ i + 1 }}</div>
+          <div class="content-wrapper">
             <div class="fw-bold">Étape {{ i + 1 }}</div>
-            {{ instruction }}
+            <div class="step-content">{{ instruction }}</div>
           </div>
-          <i class="fas fa-chevron-right text-muted ms-3"></i>
+          <i class="fas fa-chevron-right"></i>
         </li>
-      </ol>
+      </ul>
+      <div *ngIf="instructions.length === 0" class="text-center py-4">
+        <i class="fas fa-info-circle text-muted mb-3" style="font-size: 2rem;"></i>
+        <p class="mb-0">Aucune instruction disponible.</p>
+      </div>
     </div>
   </div>
 </div>

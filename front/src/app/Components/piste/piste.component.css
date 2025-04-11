@@ -1,4 +1,20 @@
 /* Base CSS (desktop styles) */
+:root {
+  --light-text: #171817;
+  --dark-text: #f1f1f1;
+  --light-bg: #ffffff;
+  --dark-bg: #1e1e1e;
+  --light-border: #D3D3D3;
+  --dark-border: #444444;
+  --light-btn-bg: #014131;
+  --dark-btn-bg: #02664e;
+  --light-estimation-bg: #014131;
+  --dark-estimation-bg: #02664e;
+  --light-hover-bg: #f8f9fa;
+  --dark-hover-bg: #333333;
+}
+
+/* Common styles that adapt to dark mode */
 .pf {
   font-family: Roboto;
   font-size: 24px;
@@ -7,7 +23,7 @@
   text-align: left;
   width: 791px;
   height: auto;
-  color: #171817;
+  color: var(--light-text);
 }
 
 .pf1 {
@@ -19,7 +35,7 @@
   width: 790px;
   height: auto;
   margin-top: 16px;
-  color: #171817;
+  color: var(--light-text);
 }
 
 .pf2 {
@@ -164,7 +180,7 @@
 }
 
 .retour-text {
-  color: #000;
+  color: var(--light-text);
   font-family: Roboto;
   font-size: 16px;
   font-weight: 400;
@@ -172,7 +188,7 @@
 }
 
 .actions-field-text {
-  color: #101828;
+  color: var(--light-text);
   font-family: Roboto;
   font-size: 18px;
   font-weight: 600;
@@ -184,13 +200,13 @@
   height: 95px;
   flex-shrink: 0;
   border-radius: 8px;
-  background: #014131;
+  background: var(--light-estimation-bg);
   padding: 19px 45px;
   margin-bottom: 20px;
 }
 
 .estimation-text {
-  color: #FFF;
+  color: var(--light-text);
   font-family: Roboto;
   font-size: 16px;
   font-weight: 400;
@@ -199,7 +215,7 @@
 }
 
 .estimation-number {
-  color: #FFF;
+  color: var(--light-text);
   font-family: Roboto;
   font-size: 20px;
   font-weight: 700;
@@ -210,7 +226,7 @@
   width: 689px;
   flex-shrink: 0;
   border-radius: 8px;
-  border: 1px solid #D3D3D3;
+  border: 1px solid var(--light-border);
   padding: 6px 18px;
   margin-bottom: 16px;
   display: flex;
@@ -219,7 +235,7 @@
 }
 
 .action-text {
-  color: #000;
+  color: var(--light-text);
   font-family: Roboto;
   font-size: 20px;
   font-weight: 700;
@@ -233,7 +249,7 @@
   width: 25px;
   height: 25px;
   stroke-width: 1px;
-  stroke: #D3D3D3;
+  stroke: var(--light-border);
   margin-top: 24px;
 }
 
@@ -245,13 +261,15 @@
   width: 104px;
   height: 30px;
   border-radius: 8px;
-  border: 1px solid #D3D3D3;
+  border: 1px solid var(--light-border);
   padding: 0 8px;
+  background-color: var(--light-bg);
+  color: var(--light-text);
 }
 
 .selected-text {
   width: 607px;
-  color: #000;
+  color: var(--light-text);
   font-family: Roboto;
   font-size: 16px;
   font-weight: 400;
@@ -264,8 +282,8 @@
   padding: 5px 20px;
   gap: 2px;
   border-radius: 5px;
-  border: 1px solid #014131;
-  background: #014131;
+  border: 1px solid var(--light-btn-bg);
+  background: var(--light-btn-bg);
   color: #FFF;
   font-family: Roboto;
   font-size: 14px;
@@ -276,14 +294,14 @@
 .calculation-result {
   display: inline-grid;
   margin-left: 16px;
-  color: #000;
+  color: var(--light-text);
   font-family: Roboto;
   font-size: 20px;
   font-weight: 700;
   line-height: normal;
 }
 
-/* Mobile responsive styles */
+/* Mobile responsive styles - improved */
 @media (max-width: 1000px) {
   .pf, .pf1, .pf2, .pf2s, .pf3s, .impact, .moins {
     width: 90%;
@@ -337,6 +355,136 @@
   .selected-text {
     text-align: left;
     padding: 0 10px;
+  }
+
+  .pf, .pf1 {
+    width: 100%;
+    max-width: 100%;
+    padding: 0 15px;
+    margin: 10px 0;
+    text-align: left;
+  }
+
+  .action-box {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 15px;
+  }
+
+  .action-text {
+    font-size: 16px;
+    margin-left: 10px;
+  }
+
+  .estimation-box {
+    width: 100%;
+    padding: 15px;
+    margin: 15px 0;
+  }
+
+  .retour {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    padding-left: 15px;
+  }
+
+  .container {
+    padding: 0;
+  }
+
+  .row {
+    margin: 0;
+  }
+
+  .col-8, .col-4 {
+    width: 100%;
+    padding: 0 15px;
+  }
+
+  .selected-text {
+    width: 100%;
+    line-height: 30px;
+    padding: 0;
+  }
+
+  .input-field {
+    width: 80px;
+    margin: 2px;
+  }
+  
+  .action-click {
+    margin-top: 0;
+  }
+}
+
+/* Dark mode styles */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: var(--dark-bg);
+  }
+
+  .pf, .pf1, .retour-text, .actions-field-text, .action-text, 
+  .calculation-result, .selected-text {
+    color: var(--dark-text);
+  }
+
+  .action-box {
+    border-color: var(--dark-border);
+    background-color: var(--dark-bg);
+  }
+
+  .action-box[style*="border: 2px solid #000"] {
+    border: 2px solid #fff !important;
+  }
+
+  .action-click {
+    stroke: var(--dark-border);
+  }
+
+  .estimation-box {
+    background: var(--dark-estimation-bg);
+  }
+
+  .input-field {
+    background-color: var(--dark-bg);
+    color: var(--dark-text);
+    border-color: var(--dark-border);
+  }
+
+  .calculate-button {
+    background: var(--dark-btn-bg);
+    border-color: var(--dark-btn-bg);
+  }
+
+  path[stroke="black"] {
+    stroke: var(--dark-text);
+  }
+}
+
+/* Additional mobile responsive improvements */
+@media (max-width: 576px) {
+  .estimation-text, .estimation-number {
+    text-align: center;
+  }
+  
+  .action-box {
+    flex-wrap: wrap;
+  }
+  
+  .action-text {
+    order: 2;
+    width: 100%;
+    margin: 10px 0;
+    text-align: center;
+  }
+  
+  .action-click {
+    order: 3;
+    margin: 0 auto;
+  }
+  
+  .selected-text {
+    font-size: 14px;
   }
 }
 
