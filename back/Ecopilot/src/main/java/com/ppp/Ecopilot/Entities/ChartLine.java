@@ -22,13 +22,13 @@ import java.util.List;
 public class ChartLine extends BaseEntity<Long> {
     @Column(nullable = false)
     private int quantity;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
     @JoinColumn(name = "chart_id")
     private Chart chart;
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "transaction_id")
     private Transaction transaction;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
     @JoinColumn(name = "project_id")
     @JsonManagedReference("project-chartlines")
     private Project project;
