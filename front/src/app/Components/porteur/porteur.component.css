@@ -1,74 +1,82 @@
 .header{
-  color: #014131;
+  color: var(--primary-dark);
   font-family: Roboto;
   font-size: 45px;
   font-style: normal;
   font-weight: 501;
   line-height: 50px; /* 111.111% */
   width: 588px;
+  transition: color var(--transition-speed);
 }
 .description{
-  color: #000;
-font-family: Roboto;
-font-size: 16px;
-font-style: normal;
-font-weight: 400;
-line-height: 24px; /* 150% */
-width: 588px;
+  color: var(--text-primary);
+  font-family: Roboto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px; /* 150% */
+  width: 588px;
+  transition: color var(--transition-speed);
 }
 .title{
   text-align: center;
-  color: #76B82A;
-text-align: center;
-font-family: Roboto;
-font-size: 14px;
-font-style: normal;
-font-weight: 700;
-line-height: 35px; /* 250% */
-letter-spacing: 3.5px;
-margin-top: 32px;
+  color: var(--primary-color);
+  text-align: center;
+  font-family: Roboto;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 35px; /* 250% */
+  letter-spacing: 3.5px;
+  margin-top: 32px;
+  transition: color var(--transition-speed);
 }
 .section-title{
   text-align: center;
-  color: #101828;
-text-align: center;
-font-family: Roboto;
-font-size: 35px;
-font-style: normal;
-font-weight: 700;
-line-height: 60px; /* 171.429% */
-
+  color: var(--text-primary);
+  text-align: center;
+  font-family: Roboto;
+  font-size: 35px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 60px; /* 171.429% */
+  transition: color var(--transition-speed);
+  margin-bottom: 20px;
 }
 .project-border{
   cursor: pointer;
   margin-top: 24px;
-  width: 588px;
-height: 207px;
-flex-shrink: 0;
-border-radius: 8px;
-background: #F8F8F8;
-padding: 30px 35px;
+  width: 100%;
+  height: auto;
+  min-height: 207px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  background: var(--bg-subtle);
+  padding: 30px 35px;
+  transition: background-color var(--transition-speed), transform 0.3s ease;
 }
 .project-title{
   display: inline-block;
   padding-top: 15px;
-  color: #000;
-font-family: Roboto;
-font-size: 30px;
-font-style: normal;
-font-weight: 700;
-line-height: normal;
-
+  color: var(--text-primary);
+  font-family: Roboto;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  transition: color var(--transition-speed);
 }
 .project-description{
-  color: #000;
-margin-top: 35px;
-font-family: Roboto;
-font-size: 16px;
-font-style: normal;
-font-weight: 400;
-line-height: 20px; /* 125% */
-width: 443px;
+  color: var(--text-primary);
+  margin-top: 35px;
+  font-family: Roboto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px; /* 125% */
+  width: 100%;
+  max-width: 443px;
+  transition: color var(--transition-speed);
 }
 .project-border:hover{
   transform: scale(1.02);
@@ -79,19 +87,111 @@ width: 443px;
 .pagginationButton{
   margin-top: 32px;
   display:inline-flex;
-padding: 8px 14px;
-justify-content: center;
-align-items: center;
-gap: 8px;
-border-radius: 8px;
-border: 1px solid #014131;
-background: #FFF;
+  padding: 8px 14px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 8px;
+  border: 1px solid var(--primary-dark);
+  background: var(--bg-white);
+  transition: background-color var(--transition-speed), border-color var(--transition-speed);
 }
 .pagginationButtonText{
-color: #014131;
-font-family: Roboto;
-font-size: 16px;
-font-style: normal;
-font-weight: 400;
-line-height: 24px;
+  color: var(--primary-dark);
+  font-family: Roboto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  transition: color var(--transition-speed);
+}
+
+/* Make the layout more responsive */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+  justify-content: center;
+}
+
+.col-5, .col-6 {
+  position: relative;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+/* Default desktop layout */
+@media (min-width: 992px) {
+  .col-5 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+  
+  .col-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+  
+  .project-border {
+    margin-left: 0;
+  }
+}
+
+/* Medium devices layout */
+@media (max-width: 991px) {
+  .header, .description {
+    width: 100%;
+    max-width: 588px;
+  }
+  
+  .project-title {
+    font-size: 24px;
+  }
+  
+  .section-title {
+    font-size: 28px;
+    line-height: 40px;
+  }
+}
+
+/* Small devices */
+@media (max-width: 768px) {
+  .project-border {
+    padding: 20px;
+    margin-top: 15px;
+  }
+  
+  .project-description {
+    margin-top: 20px;
+  }
+  
+  .title {
+    font-size: 12px;
+  }
+  
+  .section-title {
+    font-size: 24px;
+    line-height: 32px;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 576px) {
+  .project-title {
+    font-size: 20px;
+  }
+  
+  .project-description {
+    font-size: 14px;
+  }
+  
+  .title {
+    margin-top: 24px;
+  }
+  
+  .project-border {
+    padding: 15px;
+  }
 }

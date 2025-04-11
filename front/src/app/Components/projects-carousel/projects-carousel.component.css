@@ -8,12 +8,13 @@
 }
 
 .carousel-item {
-  transition: transform 0.6s ease-in-out;
+  transition: transform var(--transition-speed) ease-in-out;
 }
 
 .row.justify-content-center {
   display: flex;
   justify-content: center; /* Center the items horizontally */
+  flex-wrap: wrap; /* Allow items to wrap on smaller screens */
 }
 
 .col-md-3 {
@@ -36,11 +37,24 @@
 
 .carousel-control-prev,
 .carousel-control-next {
-  background-color: rgba(0, 0, 0, 0.3); /* Light transparent background */
+  background-color: var(--primary-light); /* Use theme variable */
   border-radius: 50%;
   padding: 10px;
-  width: 30px; /* Smaller size for the controls */
-  height: 30px;
+  width: 40px; /* Slightly larger for better tap targets */
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all var(--transition-speed);
+  opacity: 0.7;
+}
+
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+  background-color: var(--primary-color);
+  opacity: 1;
+  transform: scale(1.1);
 }
 
 .carousel-control-prev {
@@ -49,6 +63,31 @@
 
 .carousel-control-next {
   right: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .carousel-controls {
+    padding: 0 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .carousel-control-prev,
+  .carousel-control-next {
+    width: 35px;
+    height: 35px;
+    padding: 8px;
+  }
+}
+
+@media (max-width: 576px) {
+  .carousel-control-prev,
+  .carousel-control-next {
+    width: 30px;
+    height: 30px;
+    padding: 6px;
+  }
 }
 
 

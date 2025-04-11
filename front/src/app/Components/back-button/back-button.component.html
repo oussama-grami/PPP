@@ -1,0 +1,12 @@
+<button
+  [ngClass]="['back-button', customClass]"
+  (click)="goBack()"
+  aria-label="Go back"
+>
+  <div class="button-content">
+    <div class="arrow-container">
+      <i class="bi bi-arrow-left"></i>
+    </div>
+    <span class="button-text">{{ buttonText }}</span>
+  </div>
+</button>

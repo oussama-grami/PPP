@@ -14,6 +14,8 @@
   padding-left: 0px;
   border: none;
   background: transparent;
+  color: var(--text-primary);
+  transition: color var(--transition-speed);
 }
 
 .retour-text {
@@ -31,16 +33,18 @@
 }
 
 .default-font {
-  color: #000;
+  color: var(--text-primary);
   font-family: Roboto;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
   line-height: 24px;
+  transition: color var(--transition-speed);
 }
 
 .grey-color {
-  color: #999;
+  color: var(--text-tertiary);
+  transition: color var(--transition-speed);
 }
 
 .checkout-table {
@@ -50,8 +54,9 @@
 .separator {
   width: 100%;
   height: 1px;
-  background: #D3D3D3;
+  background: var(--border-subtle);
   margin: 24px 0px;
+  transition: background-color var(--transition-speed);
 }
 
 .project-price {
@@ -62,20 +67,23 @@
   align-items: center;
   gap: 8px;
   border-radius: 5px;
-  border: 1px solid #D3D3D3;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-white);
+  transition: border-color var(--transition-speed), background-color var(--transition-speed);
 }
 
 .project-price-text {
   width: 80px;
   flex-shrink: 0;
   padding: 8px;
-  color: #707070;
+  color: var(--text-secondary);
   text-align: center;
   font-family: Roboto;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
   line-height: 20px;
+  transition: color var(--transition-speed);
 }
 
 .total {
@@ -93,8 +101,9 @@
   align-items: flex-start;
   gap: 2px;
   border-radius: 5px;
-  border: 1px solid #014131;
+  border: 1px solid var(--primary-dark);
   background: transparent;
+  transition: border-color var(--transition-speed);
 }
 
 .checkoutButton2 {
@@ -102,17 +111,19 @@
   align-items: flex-start;
   gap: 2px;
   border-radius: 5px;
-  background: #014131;
+  background: var(--primary-dark);
   border: transparent;
+  transition: background-color var(--transition-speed);
 }
 
 .checkoutButton1Text {
-  color: #014131;
+  color: var(--primary-dark);
   font-family: Roboto;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
   line-height: 24px;
+  transition: color var(--transition-speed);
 }
 
 .checkoutButton2Text {
@@ -125,30 +136,33 @@
 }
 
 .header-text {
-  color: #000;
+  color: var(--text-primary);
   font-family: Roboto;
   font-size: 18px;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
+  transition: color var(--transition-speed);
 }
 
 .project-name {
-  color: #014131;
+  color: var(--primary-dark);
   font-family: Roboto;
   font-size: 18px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+  transition: color var(--transition-speed);
 }
 
 .project-name-details {
-  color: #6D6E6F;
+  color: var(--text-secondary);
   font-family: Roboto;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  transition: color var(--transition-speed);
 }
 
 .bigger-font {

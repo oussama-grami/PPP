@@ -1,18 +1,10 @@
 <div class="container mt-5">
-  <div class="mb-3">
-    <button class="btn btn-link text-decoration-none text-black" [routerLink]="'/'+RoutesEnum.MARKETPLACE">
-      <span>
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-          <path d="M19.5 12H4.5M4.5 12L10.125 6M4.5 12L10.125 18" stroke="black" stroke-width="1.5"
-                stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </span>
-      <span>Back</span>
-    </button>
-  </div>
+  <app-back-button customClass="mt-4" />
   <div class="mb-4">
-    <h2 class="h4">You would like to submit your sustainable project in order to sell your carbon credits on our
-      marketplace – you are in the right place</h2>
+    <h2 class="h4">
+      You would like to submit your sustainable project in order to sell your
+      carbon credits on our marketplace – you are in the right place
+    </h2>
   </div>
   <div class="mb-3">
     <h3 class="h6">Please enter the following information:</h3>
@@ -23,80 +15,160 @@
         <div class="mb-3">
           <div class="row">
             <div class="col-6 mb-3">
-              <input type="text" class="form-control" placeholder="First name *" formControlName="firstName">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="First name *"
+                formControlName="firstName"
+              />
               <div
-                *ngIf="projectForm.get('firstName')?.invalid && (projectForm.get('firstName')?.touched || isSubmitted )"
-                class="text-danger">
+                *ngIf="
+                  projectForm.get('firstName')?.invalid &&
+                  (projectForm.get('firstName')?.touched || isSubmitted)
+                "
+                class="text-danger"
+              >
                 First name is required.
               </div>
             </div>
             <div class="col-6 mb-3">
-              <input type="text" class="form-control" placeholder="Name *" formControlName="name">
-              <div *ngIf="projectForm.get('name')?.invalid && (projectForm.get('name')?.touched || isSubmitted)"
-                   class="text-danger">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Name *"
+                formControlName="name"
+              />
+              <div
+                *ngIf="
+                  projectForm.get('name')?.invalid &&
+                  (projectForm.get('name')?.touched || isSubmitted)
+                "
+                class="text-danger"
+              >
                 Name is required.
               </div>
             </div>
             <div class="col-12 mb-3">
-              <input type="text" class="form-control" placeholder="Company you represent *" formControlName="company">
-              <div *ngIf="projectForm.get('company')?.invalid && (projectForm.get('company')?.touched || isSubmitted) "
-                   class="text-danger">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Company you represent *"
+                formControlName="company"
+              />
+              <div
+                *ngIf="
+                  projectForm.get('company')?.invalid &&
+                  (projectForm.get('company')?.touched || isSubmitted)
+                "
+                class="text-danger"
+              >
                 Company is required.
               </div>
             </div>
             <div class="col-12 mb-3">
-              <input type="text" class="form-control" placeholder="Function within the company"
-                     formControlName="function">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Function within the company"
+                formControlName="function"
+              />
             </div>
             <div class="col-12 mb-3">
-              <input type="text" class="form-control" placeholder="Company website url" formControlName="website">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Company website url"
+                formControlName="website"
+              />
             </div>
             <div class="col-12 mb-3">
               <div class="row">
                 <div class="col-3">
                   <div class="dropdown">
-                    <button class="btn btn-outline-secondary dropdown-toggle w-100" type="button" id="countryDropdown"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                      <span class="flag-icon" [ngClass]="selectedCountry.iconClass"></span> {{ selectedCountry.code }}
+                    <button
+                      class="btn btn-outline-secondary dropdown-toggle w-100"
+                      type="button"
+                      id="countryDropdown"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      <span
+                        class="flag-icon"
+                        [ngClass]="selectedCountry.iconClass"
+                      ></span>
+                      {{ selectedCountry.code }}
                     </button>
-                    <ul class="dropdown-menu dropdown-menu-scrollable" aria-labelledby="countryDropdown">
+                    <ul
+                      class="dropdown-menu dropdown-menu-scrollable"
+                      aria-labelledby="countryDropdown"
+                    >
                       <li *ngFor="let country of countries">
-                        <a class="dropdown-item" (click)="selectCountry(country)">
-                          <span class="flag-icon"
-                                [ngClass]="country.iconClass"></span> {{ country.code }} {{ country.name }}
+                        <a
+                          class="dropdown-item"
+                          (click)="selectCountry(country)"
+                        >
+                          <span
+                            class="flag-icon"
+                            [ngClass]="country.iconClass"
+                          ></span>
+                          {{ country.code }} {{ country.name }}
                         </a>
                       </li>
                     </ul>
                   </div>
                 </div>
                 <div class="col-9">
-                  <input class="form-control" placeholder="Phone number" formControlName="phone">
+                  <input
+                    class="form-control"
+                    placeholder="Phone number"
+                    formControlName="phone"
+                  />
                 </div>
               </div>
             </div>
             <div class="col-12 mb-3">
-              <input type="email" class="form-control" placeholder="E-mail *" formControlName="email">
-              <div *ngIf="projectForm.get('email')?.invalid && (projectForm.get('email')?.touched || isSubmitted)"
-                   class="text-danger">
+              <input
+                type="email"
+                class="form-control"
+                placeholder="E-mail *"
+                formControlName="email"
+              />
+              <div
+                *ngIf="
+                  projectForm.get('email')?.invalid &&
+                  (projectForm.get('email')?.touched || isSubmitted)
+                "
+                class="text-danger"
+              >
                 Valid email is required.
               </div>
             </div>
             <div class="col-12 mb-3">
               <select class="form-select" formControlName="projectCountry">
-                <option disabled selected>Country where the project is located *</option>
+                <option disabled selected>
+                  Country where the project is located *
+                </option>
                 <option value="1">One</option>
                 <option value="2">Two</option>
                 <option value="3">Three</option>
               </select>
               <div
-                *ngIf="projectForm.get('projectCountry')?.invalid && (projectForm.get('projectCountry')?.touched || isSubmitted)"
-                class="text-danger">
+                *ngIf="
+                  projectForm.get('projectCountry')?.invalid &&
+                  (projectForm.get('projectCountry')?.touched || isSubmitted)
+                "
+                class="text-danger"
+              >
                 Project country is required.
               </div>
             </div>
             <div class="col-12 mb-3">
-              <input type="text" class="form-control" placeholder="Region where the project is located"
-                     formControlName="region">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Region where the project is located"
+                formControlName="region"
+              />
             </div>
             <div class="col-12 mb-3">
               <select class="form-select" formControlName="projectNature">
@@ -107,64 +179,114 @@
               </select>
             </div>
             <div class="col-12 mb-3">
-              <input type="text" class="form-control" placeholder="Description of the project in a few sentences *"
-                     formControlName="description">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Description of the project in a few sentences *"
+                formControlName="description"
+              />
               <div
-                *ngIf="projectForm.get('description')?.invalid && (projectForm.get('description')?.touched && isSubmitted)"
-                class="text-danger">
+                *ngIf="
+                  projectForm.get('description')?.invalid &&
+                  projectForm.get('description')?.touched &&
+                  isSubmitted
+                "
+                class="text-danger"
+              >
                 Description is required.
               </div>
             </div>
             <div class="col-12 mb-3">
-              <h4 class="h6">Do you have an estimate of the project's annual potential in terms of reducing/avoiding
-                carbon emissions?</h4>
+              <h4 class="h6">
+                Do you have an estimate of the project's annual potential in
+                terms of reducing/avoiding carbon emissions?
+              </h4>
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" formControlName="estimation" value="Yes">
-                <label class="form-check-label">Yes</label>
+                <input
+                  class="form-check-input custom-checkbox"
+                  type="radio"
+                  formControlName="estimation"
+                  value="Yes"
+                />
+                <label class="form-check-label custom-label">Yes</label>
               </div>
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" formControlName="estimation" value="No">
-                <label class="form-check-label">No</label>
+                <input
+                  class="form-check-input custom-checkbox"
+                  type="radio"
+                  formControlName="estimation"
+                  value="No"
+                />
+                <label class="form-check-label custom-label">No</label>
               </div>
             </div>
-            <div class="col-12 mb-3" *ngIf="projectForm.get('estimation')?.value === 'Yes'">
-              <input type="text" class="form-control" placeholder="How much in tCO2e?"
-                     formControlName="estimationValue">
+            <div
+              class="col-12 mb-3"
+              *ngIf="projectForm.get('estimation')?.value === 'Yes'"
+            >
+              <input
+                type="text"
+                class="form-control"
+                placeholder="How much in tCO2e?"
+                formControlName="estimationValue"
+              />
             </div>
             <div class="col-12 mb-3">
               <h4 class="h6">Is the project certified by an organization?</h4>
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" formControlName="certified" value="Yes">
-                <label class="form-check-label">Yes</label>
+                <input
+                  class="form-check-input custom-checkbox"
+                  type="radio"
+                  formControlName="certified"
+                  value="Yes"
+                />
+                <label class="form-check-label custom-label">Yes</label>
               </div>
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" formControlName="certified" value="No">
-                <label class="form-check-label">No</label>
+                <input
+                  class="form-check-input custom-checkbox"
+                  type="radio"
+                  formControlName="certified"
+                  value="No"
+                />
+                <label class="form-check-label custom-label">No</label>
               </div>
             </div>
             <div class="col-12 mb-3">
               <label for="pdfFile" class="form-label">Submit PDF files *</label>
               <input
                 type="file"
-                class="form-control custom-file-input bg-white" id="pdfFile" (change)="onFileChange($event)"
-                accept="application/pdf" multiple>
+                class="form-control custom-file-input"
+                id="pdfFile"
+                (change)="onFileChange($event)"
+                accept="application/pdf"
+                multiple
+              />
               <div *ngIf="fileError" class="text-danger">
                 {{ fileError }}
               </div>
             </div>
-            <div class="col-12 d-flex justify-content-end text-black ">
-              <button type="button" class="btn btn-outline-secondary me-2" [routerLink]="'/'+RoutesEnum.MARKETPLACE">
-                Back
-              </button>
-              <button type="submit" class="btn btn-secondary">Checkout</button>
+            <!-- Button container with center alignment -->
+            <div class="col-12 mt-4 mb-5 text-center">
+              <div class="button-container">
+                <button
+                  type="button"
+                  class="btn back-btn me-3"
+                  [routerLink]="'/' + RoutesEnum.MARKETPLACE"
+                >
+                  <span class="btn-text">Back</span>
+                </button>
+                <button type="submit" class="btn submit-btn">
+                  <span class="btn-text">Checkout</span>
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </div>
       <div class="col-12 col-md-5 order-first order-md-last mb-5">
-        <img src="/assets/img/proteur.svg" alt="" class="img-fluid rounded">
+        <img src="/assets/img/proteur.svg" alt="" class="img-fluid rounded" />
       </div>
     </div>
   </form>
 </div>
-

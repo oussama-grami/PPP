@@ -2,13 +2,18 @@
   width: 100%;
   height: 326px;
   flex-shrink: 0;
-  border-radius: 20px;
-  background: #FFF;
-  box-shadow: 0px 0px 20px 2px rgba(197, 197, 197, 0.25);
+  border-radius: var(--border-radius);
+  background: var(--bg-white);
+  box-shadow: var(--shadow-sm);
   display: flex;
   flex-direction: column;
-
   position: relative;
+  transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.projectContainer:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
 }
 
 .projectTitle {
@@ -16,6 +21,7 @@
   margin-left: 16px;
   margin-right: 16px;
   margin-bottom: 16px;
+  color: var(--text-primary);
 }
 
 .separator {
@@ -23,12 +29,12 @@
   margin-right: 5px;
   width: 1px;
   height: 14px;
-  background: #D3D3D3;
+  background: rgba(0, 0, 0, 0.1);
 }
 
 .projectDescription {
   margin-left: 16px;
-  color: #000;
+  color: var(--text-primary);
   font-family: Roboto;
   font-size: 16px;
   font-style: normal;
@@ -38,7 +44,7 @@
 }
 
 #category {
-  color: #000;
+  color: var(--text-primary);
   font-family: Roboto;
   font-size: 12px;
   font-style: normal;
@@ -49,36 +55,36 @@
 
 #price {
   margin-top: 4px;
-
-  color: #000;
-
+  color: var(--text-primary);
   text-align: right;
   font-family: Roboto;
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
-
 }
 
 .projectButton {
   display: flex;
-  width: 100%;
-  padding: 5px 20px;
+  width: calc(100% - 28px);
+  padding: 8px 20px;
   justify-content: center;
   align-items: center;
   gap: 2px;
-  border-radius: 5px;
-  background: #014131;
-  margin-top: auto;
-  margin-bottom:14px ;
+  border-radius: var(--border-radius);
+  background: var(--primary-dark);
+  margin: auto auto 14px auto;
   border: transparent;
+  cursor: pointer;
+  transition: background-color var(--transition-speed), transform var(--transition-speed);
+}
 
-
+.projectButton:hover {
+  background: var(--primary-color);
+  transform: translateY(-2px);
 }
 
 .projectButtonText {
-
   color: #FFF;
   font-family: Roboto;
   font-size: 14px;
@@ -86,9 +92,57 @@
   font-weight: 400;
   line-height: 24px;
 }
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .projectContainer {
+    height: auto;
+    min-height: 300px;
+  }
+}
+
 @media (max-width: 768px) {
-  .projectContainer{
-    margin-left: 20px;
+  .projectContainer {
+    margin: 0 10px 20px 10px;
+    width: calc(100% - 20px);
+  }
+  
+  .projectDescription {
+    font-size: 14px;
+  }
+  
+  .projectButton {
+    padding: 6px 16px;
+  }
+  
+  .projectButtonText {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 576px) {
+  .projectContainer {
+    min-height: 280px;
+  }
+  
+  .projectTitle {
+    margin-top: 8px;
+    margin-left: 12px;
+    margin-right: 12px;
+    margin-bottom: 12px;
+  }
+  
+  .projectDescription {
+    margin-left: 12px;
+    font-size: 13px;
+  }
+  
+  #category {
+    font-size: 11px;
+  }
+  
+  #price {
+    font-size: 14px;
   }
 }
 

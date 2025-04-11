@@ -1,15 +1,20 @@
 .abonnez-button {
-
   padding: 15px 35px;
-  border-radius: 5px;
+  border-radius: var(--border-radius);
   background-color: transparent;
   color: white;
   text-align: center;
   border: 1px solid white;
-
+  transition: all var(--transition-speed);
+  cursor: pointer;
 }
-.p1 {
 
+.abonnez-button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.p1 {
   font-family: Roboto;
   font-size: 36px;
   font-weight: 500;
@@ -17,10 +22,9 @@
   letter-spacing: 0em;
   text-align: center;
   color: white;
-  height: 54px;
-
+  height: auto;
+  min-height: 54px;
 }
-
 
 .p2 {
   font-family: Roboto;
@@ -30,8 +34,8 @@
   letter-spacing: 0em;
   text-align: center;
   color: white;
-  height: 54px;
-
+  height: auto;
+  min-height: 54px;
 }
 
 .p3 {
@@ -42,16 +46,20 @@
   line-height: 27px;
   letter-spacing: 0em;
   text-align: center;
-  color: #343434;
+  color: var(--text-primary);
   padding-left: 20%;
   padding-right: 20%;
+  transition: color var(--transition-speed);
 }
+
 .boxes {
   display: flex;
   justify-content: space-between;
   margin: 40px -20px; /* Add margin here */
+  flex-wrap: wrap;
 }
-.pBox{
+
+.pBox {
   /* Styles for the third paragraph */
   font-family: Roboto;
   font-size: 15px;
@@ -59,28 +67,32 @@
   line-height: 20px;
   letter-spacing: 0;
   text-align: center;
-
+  color: var(--text-primary);
+  transition: color var(--transition-speed);
 }
-.bbc{
-  color: #101828;
 
+.bbc {
+  color: var(--text-primary);
   text-align: center;
   font-family: Roboto;
   font-size: 35px;
   font-style: normal;
   font-weight: 700;
   line-height: 60px; /* 171.429% */
+  transition: color var(--transition-speed);
 }
 
 .container {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .column {
   flex: 1;
-
+  min-width: 300px;
 }
-.pa1{
+
+.pa1 {
   font-family: Roboto;
   font-size: 30px;
   font-weight: 700;
@@ -89,10 +101,11 @@
   text-align: left;
   width: 551px;
   height: 140px;
-  color: black;
+  color: var(--text-primary);
 }
-.pa2{
-  background: linear-gradient(90deg, #76B82A -8.93%, #76B82A 41.05%, #014131 100%);
+
+.pa2 {
+  background: linear-gradient(90deg, #76B82A -8.93%, #76B82A 41.05%, var(--primary-dark) 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -102,7 +115,8 @@
   font-weight: 700;
   line-height: 35px;
 }
-.pa3{
+
+.pa3 {
   font-family: Roboto;
   font-size: 18px;
   font-weight: 400;
@@ -111,9 +125,10 @@
   text-align: left;
   width: 550px;
   height: 171px;
-  color: black;
+  color: var(--text-primary);
 }
-.pa4{
+
+.pa4 {
   margin-top: 5px;
   font-family: Roboto;
   font-size: 30px;
@@ -121,34 +136,39 @@
   line-height: 35px;
   letter-spacing: 0em;
   text-align: left;
-
   height: 35px;
-  color: #014131;
+  color: var(--primary-color);
 }
-.pa5{
-  color: #000;
 
+.pa5 {
+  color: var(--text-primary);
   font-family: Roboto;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-
-
   flex-shrink: 0;
   margin-bottom: 40px;
 }
-.bbtn{
+
+.bbtn {
   width: 250px;
   height: 46px;
   padding: 10px;
-  border-radius: 5px;
+  border-radius: var(--border-radius);
   gap: 10px;
-  background-color:#014131 ;
-  border: 1px solid #014131;
-
+  background-color: var(--primary-dark);
+  border: 1px solid var(--primary-dark);
+  cursor: pointer;
+  transition: all var(--transition-speed);
 }
-.ppa1{
+
+.bbtn:hover {
+  background-color: var(--primary-color);
+  transform: translateY(-2px);
+}
+
+.ppa1 {
   font-family: Roboto;
   font-size: 14px;
   font-weight: 500;
@@ -159,7 +179,8 @@
   height: 21px;
   color: white;
 }
-.ppre{
+
+.ppre {
   font-family: Roboto;
   font-size: 30px;
   font-weight: 600;
@@ -173,7 +194,8 @@
   margin: auto;
   margin-left: 30px;
 }
-.tpre{
+
+.tpre {
   font-family: Roboto;
   font-size: 20px;
   font-weight: 600;
@@ -182,23 +204,25 @@
   text-align: left;
   width: 741px;
   height: 61px;
-  color: black;
+  color: var(--text-primary);
   margin-left: 20px;
   margin-top: 0px;
 }
-.parapre{
+
+.parapre {
   font-family: Roboto;
   font-size: 18px;
   font-weight: 400;
   letter-spacing: 0em;
   text-align: left;
-  color: black;
+  color: var(--text-primary);
   width: 721px;
   height: 285px;
   margin-left: 20px;
   margin-top: 20px;
   line-height: 2.3;
 }
+
 .prixx {
   font-family: Roboto;
   font-size: 30px;
@@ -208,11 +232,12 @@
   text-align: center;
   width: 200px;
   height: 34px;
-  color: black;
+  color: var(--text-primary);
   position: relative;
   margin: auto;
 }
-.abb{
+
+.abb {
   font-family: Roboto;
   font-size: 18px;
   font-weight: 400;
@@ -221,22 +246,24 @@
   text-align: left;
   width: 187px;
   height: 34px;
-  color: black;
+  color: var(--text-primary);
   margin: auto;
   margin-top: 10px;
 }
-.btn-abn{
+
+.btn-abn {
   width: 127px;
   height: 46px;
   padding: 10px;
-  border-radius: 5px;
+  border-radius: var(--border-radius);
   gap: 10px;
-  border: 1px solid #014131;
-  background-color: #014131;
+  border: 1px solid var(--primary-dark);
+  background-color: var(--primary-dark);
   margin: auto;
   margin-top: 30px;
 }
-.dec{
+
+.dec {
   font-family: Roboto;
   font-size: 14px;
   font-weight: 600;
@@ -247,10 +274,11 @@
   height: 21px;
   margin: auto;
   margin-top: 20px;
-  color: #014131;
+  color: var(--primary-dark);
   text-decoration: underline;
 }
-.decc{
+
+.decc {
   font-family: Roboto;
   font-size: 30px;
   font-weight: 700;
@@ -261,8 +289,10 @@
   height: 35px;
   margin-top: 50px;
   margin-left: 130px;
+  color: var(--text-primary);
 }
-.abn{
+
+.abn {
   font-family: Roboto;
   font-size: 30px;
   font-weight: 600;
@@ -276,7 +306,8 @@
   margin-top: 100px;
   margin-bottom: 50px;
 }
-.lstbtn{
+
+.lstbtn {
   font-family: Roboto;
   font-size: 14px;
   font-weight: 500;
@@ -285,7 +316,8 @@
   text-align: left;
   color: white;
 }
-.aaa1{
+
+.aaa1 {
   font-family: Roboto;
   font-size: 20px;
   font-weight: 400;
@@ -297,11 +329,13 @@
   color: white;
   margin-bottom: 10px;
 }
-.aaa1:hover{
-  color: #014131;
+
+.aaa1:hover {
+  color: var(--primary-color);
   transform: scale(1.05);
 }
-.fft{
+
+.fft {
   font-family: Roboto;
   font-size: 16px;
   font-style: italic;
@@ -313,7 +347,8 @@
   height: 21.09174003838364px;
   color: #FFFFFF;
 }
-#marketplace-title{
+
+#marketplace-title {
   color: #76B82A;
   text-align: center;
   font-family: Roboto;
@@ -323,8 +358,9 @@
   line-height: 35px; /* 250% */
   letter-spacing: 3.5px;
 }
-#marketplace-header{
-  color: #101828;
+
+#marketplace-header {
+  color: var(--text-primary);
   text-align: center;
   font-family: Roboto;
   font-size: 35px;
@@ -332,8 +368,9 @@
   font-weight: 700;
   line-height: 60px; /* 171.429% */
 }
-#marketplace-text{
-  color: #000;
+
+#marketplace-text {
+  color: var(--text-primary);
   text-align: center;
   font-family: Roboto;
   font-size: 16px;
@@ -341,7 +378,8 @@
   font-weight: 400;
   line-height: normal;
 }
-.explore-button{
+
+.explore-button {
   margin-left: 40%;
   margin-top: 24px;
   display: inline-flex;
@@ -349,22 +387,30 @@
   justify-content: center;
   align-items: center;
   gap: 8px;
-  border-radius: 5px;
-  border: 2px solid #014131;
+  border-radius: var(--border-radius);
+  border: 2px solid var(--primary-dark);
   background-color: transparent;
+  cursor: pointer;
+  transition: all var(--transition-speed);
 }
-.explore-button-text{
-  color: #014131;
 
+.explore-button:hover {
+  background-color: var(--primary-light);
+  transform: translateY(-2px);
+}
+
+.explore-button-text {
+  color: var(--primary-dark);
   font-family: Roboto;
   font-size: 14px;
   font-style: normal;
   font-weight: 600;
   line-height: 20px; /* 142.857% */
+  transition: color var(--transition-speed);
 }
-.token-title{
-  color: #76B82A;
 
+.token-title {
+  color: #76B82A;
   font-family: Roboto;
   font-size: 14px;
   font-style: normal;
@@ -375,9 +421,9 @@
   padding-top: 114px;
   margin-bottom: 2px;
 }
-.token-header{
-  color: #FFF;
 
+.token-header {
+  color: #FFF;
   font-family: Roboto;
   font-size: 35px;
   font-style: normal;
@@ -386,7 +432,8 @@
   margin-left: 722.5px;
   margin-bottom: 17px;
 }
-.token-text{
+
+.token-text {
   color: #FFF;
   font-family: Roboto;
   font-size: 16px;
@@ -396,7 +443,8 @@
   width: 567px;
   margin-left: 722.5px;
 }
-.section-title{
+
+.section-title {
   margin-top: 25px;
   color: #76B82A;
   /* text-align: center; */
@@ -407,9 +455,9 @@
   line-height: 35px; /* 250% */
   letter-spacing: 3.5px;
   text-transform: uppercase;
-
 }
-.sections-title{
+
+.sections-title {
   color: #76B82A;
   text-align: center;
   font-family: Roboto;
@@ -418,4 +466,130 @@
   font-weight: 700;
   line-height: 35px; /* 250% */
   letter-spacing: 3.5px;
+}
+
+/* Responsive design */
+@media (max-width: 1040px) {
+  .pa1, .pa3 {
+    width: 100%;
+    max-width: 551px;
+    height: auto;
+  }
+
+  .token-title, .token-header, .token-text {
+    margin-left: 0;
+    padding-left: 20px;
+    width: 100%;
+  }
+  
+  .token-text {
+    max-width: 567px;
+  }
+  
+  .explore-button {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    width: fit-content;
+  }
+  
+  .decc {
+    margin-left: 20px;
+    width: auto;
+    max-width: 426px;
+  }
+}
+
+@media (max-width: 768px) {
+  .p1 {
+    font-size: 28px;
+    line-height: 38px;
+  }
+  
+  .p2 {
+    font-size: 16px;
+    line-height: 24px;
+  }
+  
+  .p3 {
+    font-size: 16px;
+    line-height: 24px;
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+  
+  .pa4, .pa2 {
+    font-size: 24px;
+    line-height: 32px;
+  }
+  
+  .pa5 {
+    font-size: 14px;
+    margin-bottom: 25px;
+  }
+  
+  .bbc, #marketplace-header {
+    font-size: 28px;
+    line-height: 40px;
+  }
+  
+  .token-header {
+    font-size: 28px;
+    line-height: 40px;
+  }
+  
+  .column {
+    flex: 100%;
+  }
+  
+  .bbtn {
+    width: 100%;
+    max-width: 250px;
+  }
+}
+
+@media (max-width: 576px) {
+  .p1 {
+    font-size: 24px;
+    line-height: 32px;
+  }
+  
+  .p2 {
+    font-size: 14px;
+    line-height: 21px;
+  }
+  
+  .p3 {
+    font-size: 14px;
+    line-height: 21px;
+    padding-left: 3%;
+    padding-right: 3%;
+  }
+  
+  .bbc, #marketplace-header {
+    font-size: 24px;
+    line-height: 36px;
+  }
+  
+  .boxes {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .pa4, .pa2 {
+    font-size: 22px;
+    line-height: 28px;
+  }
+  
+  .pa5 {
+    font-size: 13px;
+  }
+  
+  .abn {
+    font-size: 24px;
+    line-height: 36px;
+    width: 90%;
+    margin-left: 5%;
+    margin-top: 50px;
+  }
 }

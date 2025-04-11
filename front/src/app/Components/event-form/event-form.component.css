@@ -6,6 +6,9 @@ html, body {
 .container-fluid {
   max-width: 100vw;
   overflow-x: hidden;
+  background-color: var(--bg-white);
+  color: var(--text-primary);
+  transition: background-color var(--transition-speed), color: var(--transition-speed);
 }
 
 .row-height {
@@ -16,11 +19,16 @@ html, body {
 .content-right {
   overflow-y: auto;
   max-height: 100vh;
+  background-color: var(--bg-white);
+  transition: background-color var(--transition-speed);
 }
+
 .content-left-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
+  background-color: var(--bg-white);
+  transition: background-color var(--transition-speed);
 }

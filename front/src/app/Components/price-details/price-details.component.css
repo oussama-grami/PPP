@@ -1,7 +1,8 @@
 body {
   font-family: Roboto;
 }
-.retour{
+
+.retour {
   margin-top: 5rem;
   position: relative;
   margin-left: 100px;
@@ -9,42 +10,38 @@ body {
   padding: 5px 20px;
   align-items: flex-start;
   gap: 2px;
-  border-radius: 20px;
-
+  border-radius: var(--border-radius);
 }
-.retour button{
+
+.retour button {
   border: none;
   background: transparent;
+  cursor: pointer;
+  color: var(--text-primary);
 }
-.retour-text{
 
-  color: #000;
-
+.retour-text {
+  color: var(--text-primary);
   font-family: Roboto;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
   line-height: 24px;
-
 }
 
 .backgroundImage {
   margin-top: 102px;
-
 }
 
 .container-img {
   display: flex;
   justify-content: center;
-  /* Center horizontally */
   align-items: center;
-  border-radius: 5px;
-
+  border-radius: var(--border-radius);
 }
 
 .backgroundText {
   text-align: center;
-
 }
 
 .countryDetails {
@@ -67,7 +64,6 @@ body {
   font-style: normal;
   font-weight: 400;
   line-height: 24px;
-  /* 133.333% */
 }
 
 .projectName {
@@ -77,7 +73,6 @@ body {
   font-style: normal;
   font-weight: 500;
   line-height: 60px;
-  /* 176.471% */
   margin-bottom: 24px;
 }
 
@@ -88,14 +83,13 @@ body {
   font-style: normal;
   font-weight: 500;
   line-height: 24px;
-  /* 100% */
 }
 
 .carouselMainElement {
   width: 77px;
   height: 54px;
   flex-shrink: 0;
-  border-radius: 5px;
+  border-radius: var(--border-radius);
 }
 
 .carouselOtherElements {
@@ -103,7 +97,7 @@ body {
   width: 77px;
   height: 54px;
   flex-shrink: 0;
-  border-radius: 5px;
+  border-radius: var(--border-radius);
   background: rgba(0, 0, 0, 0.50);
 }
 
@@ -117,13 +111,13 @@ body {
   padding: 20px;
   align-items: flex-start;
   gap: 10px;
-  border-radius: 20px;
-  background: #FFF;
-  box-shadow: 0px 0px 20px 0px rgba(197, 197, 197, 0.25);
+  border-radius: var(--border-radius);
+  background: var(--bg-white);
+  box-shadow: var(--shadow-sm);
 }
 
 #cart-text {
-  color: #C5C1C1;
+  color: var(--text-secondary);
   font-family: Roboto;
   font-size: 20px;
   font-style: normal;
@@ -132,68 +126,58 @@ body {
 }
 
 #priceText {
-  color: #014131;
+  color: var(--primary-dark);
   font-family: Roboto;
   font-size: 20px;
   font-style: normal;
   font-weight: 600;
   line-height: 60px;
-  /* 300% */
 }
 
 .dart-price {
-  color: #000;
+  color: var(--text-primary);
   font-family: Roboto;
   font-size: 24px;
   font-style: normal;
   font-weight: 500;
   line-height: 60px;
-  /* 250% */
 }
 
 .separator {
   width: 345px;
   height: 1px;
-  background: #D3D3D3;
+  background: rgba(0, 0, 0, 0.1);
 }
-
-
 
 .pricePerCo {
   float: right;
   flex-shrink: 0;
-  color: #000;
-
+  color: var(--text-primary);
   font-family: Roboto;
   font-size: 24px;
   font-style: normal;
   font-weight: 500;
   line-height: 60px;
-  /* 250% */
 }
 
 .montant-text {
-  color: #000;
-
+  color: var(--text-primary);
   font-family: Roboto;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
   line-height: 60px;
-  /* 375% */
 }
 
 .montant-input {
-
   float: right;
   display: flex;
-
   padding: 10px 16px;
-
   justify-content: center;
   align-items: center;
-  border-radius: 5px;
-  border: 1px solid #D3D3D3;
+  border-radius: var(--border-radius);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: var(--bg-white);
 }
 
 .montant {
@@ -204,17 +188,15 @@ body {
 }
 
 .montant-input-text {
-
   width: 176px;
   flex-shrink: 0;
-  color: #707070;
+  color: var(--text-secondary);
   text-align: center;
   font-family: Roboto;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
   line-height: 20px;
-  /* 125% */
 }
 
 .stock {
@@ -222,27 +204,23 @@ body {
 }
 
 .stock-text {
-  color: #014131;
+  color: var(--primary-dark);
   font-family: Roboto;
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
   line-height: 60px;
-  /* 375% */
 }
 
 .stock-number {
   float: right;
-  color: #014131;
+  color: var(--primary-dark);
   text-align: right;
   font-family: Roboto;
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
   line-height: 60px;
-  /* 125% */
-
-
 }
 
 .achat {
@@ -250,27 +228,25 @@ body {
 }
 
 .achat-text {
-  color: #014131;
+  color: var(--primary-dark);
   font-family: Roboto;
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
   line-height: 60px;
-  /* 375% */
 }
 
 .achat-quantity {
   float: right;
   width: 81px;
   flex-shrink: 0;
-  color: #707070;
+  color: var(--text-secondary);
   text-align: center;
   font-family: Roboto;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
   line-height: 60px;
-  /* 125% */
 }
 
 .button-achat {
@@ -280,9 +256,14 @@ body {
   justify-content: center;
   align-items: center;
   gap: 8px;
-  border-radius: 5px;
+  border-radius: var(--border-radius);
   background: gray;
   border: none;
+  transition: background-color var(--transition-speed), transform var(--transition-speed);
+}
+
+.button-achat:hover {
+  transform: translateY(-2px);
 }
 
 .button-achat-text {
@@ -295,7 +276,6 @@ body {
   font-style: normal;
   font-weight: 600;
   line-height: 20px;
-  /* 142.857% */
 }
 
 .button-achat-amount {
@@ -308,7 +288,6 @@ body {
   font-style: normal;
   font-weight: 600;
   line-height: 20px;
-  /* 111.111% */
 }
 
 .button-panier {
@@ -318,11 +297,15 @@ body {
   justify-content: center;
   align-items: center;
   gap: 8px;
-  border-radius: 5px;
-
-  border: none;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--primary-dark);
   background-color: transparent;
-  border: 1px solid #014131;
+  transition: background-color var(--transition-speed), transform var(--transition-speed);
+}
+
+.button-panier:hover {
+  background-color: var(--primary-light);
+  transform: translateY(-2px);
 }
 
 .button-panier-text {
@@ -330,13 +313,12 @@ body {
   text-align: left;
   width: 292px;
   flex-shrink: 0;
-  color: #014131;
+  color: var(--primary-dark);
   font-family: Roboto;
   font-size: 14px;
   font-style: normal;
   font-weight: 600;
   line-height: 20px;
-  /* 142.857% */
 }
 
 .icon {
@@ -350,8 +332,7 @@ body {
 }
 
 .description {
-  color: #000;
-
+  color: var(--text-primary);
   font-family: Roboto;
   font-size: 24px;
   font-style: normal;
@@ -364,7 +345,7 @@ body {
   margin-right: 5px;
   width: 1px;
   height: 14px;
-  background: #D3D3D3;
+  background: rgba(0, 0, 0, 0.1);
 }
 
 .category {
@@ -372,17 +353,15 @@ body {
 }
 
 #category-text {
-  color: #000;
+  color: var(--text-primary);
   font-family: Roboto;
   font-size: 16px;
-
   font-weight: 500;
   line-height: 24px;
-  /* 150% */
 }
 
 .project-title {
-  color: #000;
+  color: var(--text-primary);
   font-family: Roboto;
   font-size: 24px;
   font-style: normal;
@@ -392,7 +371,7 @@ body {
 }
 
 .description {
-  color: #000;
+  color: var(--text-primary);
   font-family: Roboto;
   font-size: 16px;
   font-style: normal;
@@ -404,8 +383,8 @@ body {
   width: 790px;
   text-align: justify;
   line-height: 25px;
-  /* 156.25% */
   margin-top: 16px;
+  color: var(--text-primary);
 }
 
 .bold-description {
@@ -417,8 +396,7 @@ body {
 }
 
 .details {
-  color: #000;
-
+  color: var(--text-primary);
   font-family: Roboto;
   font-size: 24px;
   font-style: normal;
@@ -427,7 +405,7 @@ body {
 }
 
 .detail-title {
-  color: #014131;
+  color: var(--primary-dark);
   font-family: Roboto;
   font-size: 16px;
   font-style: normal;
@@ -436,7 +414,7 @@ body {
 }
 
 .detail-value {
-  color: #000;
+  color: var(--text-primary);
   font-family: Roboto;
   font-size: 16px;
   font-style: normal;
@@ -445,7 +423,7 @@ body {
 }
 
 .transaction-price {
-  color: #014131;
+  color: var(--primary-dark);
   font-family: Roboto;
   font-size: 20px;
   font-style: normal;
@@ -454,7 +432,7 @@ body {
 }
 
 .transaction-unity {
-  color: #6D6E6F;
+  color: var(--text-secondary);
   font-family: Roboto;
   font-size: 14px;
   font-style: normal;
@@ -467,48 +445,27 @@ body {
   padding: 5px 20px;
   align-items: flex-start;
   gap: 2px;
-  border-radius: 5px;
-  border: 1px solid #014131;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--primary-dark);
+  transition: background-color var(--transition-speed);
+}
 
-
+.button-transaction:hover {
+  background-color: var(--primary-light);
 }
 
 .button-transaction-text {
   background-color: transparent;
   border: none;
-  color: #014131;
+  color: var(--primary-dark);
   font-family: Roboto;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
   line-height: 24px;
-  /* 171.429% */
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-.fixed-on-right.switched {
-    position: fixed;
-    bottom: 0;
-    transition: bottom 0.3s ease-in-out;
-    margin-bottom: 10%;
-    margin-top: 30px;
-} */
-.fixed-on-right{
+.fixed-on-right {
   position: -webkit-sticky;
   position: -moz-sticky;
   position: -ms-sticky;
@@ -516,7 +473,6 @@ body {
   position: sticky;
   top: 85px;
   margin-bottom: 100px;
-
 }
 
 .zindex {
@@ -524,27 +480,27 @@ body {
   width: 396px;
   height: 700px;
   border-radius: 0;
-
 }
 
-.modal{
+.modal {
   position: absolute;
   right: 0;
   left: auto;
 }
-.modal-dialog{
+
+.modal-dialog {
   margin: 0;
 }
 
 .separator-modal {
   width: 335px;
   height: 1px;
-  background: #D3D3D3;
+  background: rgba(0, 0, 0, 0.1);
   margin: 15px 0px;
 }
 
 .modal-title {
-  color: #000;
+  color: var(--text-primary);
   font-family: Roboto;
   font-size: 18px;
   font-style: normal;
@@ -553,159 +509,331 @@ body {
 }
 
 .modal-project-number {
-  color: #98999D;
+  color: var(--text-secondary);
   font-size: 14px;
 }
 
 .modal-photo {
   width: 78px;
   height: 78px;
-  border-radius: 5px;
+  border-radius: var(--border-radius);
+  object-fit: cover;
 }
 
 .project-price {
   display: flex;
   width: 150px;
   padding: 10px 16px;
-
   align-items: center;
   gap: 8px;
-  border-radius: 5px;
-  border: 1px solid #D3D3D3;
+  border-radius: var(--border-radius);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: var(--bg-white);
 }
 
 .project-price-text {
   width: 58px;
   margin-left: 16px;
   margin-right: 16px;
-  color: #707070;
+  color: var(--text-secondary);
   text-align: center;
   font-family: Roboto;
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
   line-height: 20px;
-
 }
 
-.project-cost{
+.project-cost {
   display: flex;
   margin-top: 16px;
-
 }
-.project-text{
-  color: #000;
+
+.project-text {
+  color: var(--text-primary);
   font-family: Roboto;
   font-size: 14px;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
 }
-.project-final-price{
+
+.project-final-price {
   width: 91px;
   margin-top: 12px;
   margin-left: 12px;
-
 }
-.project-final-price-text1{
-  color: #000;
+
+.project-final-price-text1 {
+  color: var(--text-primary);
   font-family: Roboto;
   font-size: 18px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
 }
-.project-final-price-text2{
-  color: #C5C1C1;
+
+.project-final-price-text2 {
+  color: var(--text-secondary);
   font-family: Roboto;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
 }
-.total{
-  color: #000;
 
+.total {
+  color: var(--text-primary);
   font-family: Roboto;
   font-size: 18px;
   font-style: normal;
   font-weight: 700;
-  line-height: 20px; /* 111.111% */
+  line-height: 20px;
 }
 
-.paymentText{
-  color: #999;
-
+.paymentText {
+  color: var(--text-secondary);
   font-family: Roboto;
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
 }
-.checkoutButtons{
+
+.checkoutButtons {
   float: right;
-
 }
-.checkoutButton1{
+
+.checkoutButton1 {
   padding: 5px 20px;
   align-items: flex-start;
   gap: 2px;
-  border-radius: 5px;
-  border: 1px solid #014131;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--primary-dark);
   background: transparent;
+  cursor: pointer;
+  transition: background-color var(--transition-speed);
 }
-.checkoutButton2{
+
+.checkoutButton1:hover {
+  background-color: var(--primary-light);
+}
+
+.checkoutButton2 {
   padding: 5px 20px;
   align-items: flex-start;
   gap: 2px;
-  border-radius: 5px;
-  background: #014131;
+  border-radius: var(--border-radius);
+  background: var(--primary-dark);
   border: transparent;
+  cursor: pointer;
+  transition: background-color var(--transition-speed), transform var(--transition-speed);
 }
-.checkoutButton1Text{
-  color: #014131;
 
+.checkoutButton2:hover {
+  background-color: var(--primary-color);
+  transform: translateY(-2px);
+}
+
+.checkoutButton1Text {
+  color: var(--primary-dark);
   font-family: Roboto;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
   line-height: 24px;
-
 }
-.checkoutButton2Text{
+
+.checkoutButton2Text {
   color: #FFF;
-
   font-family: Roboto;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
   line-height: 24px;
-
 }
+
 .quantity-button {
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  width: 30px;    /* Largeur du carré */
-  height: 30px;   /* Hauteur du carré */
-  background-color: #0c4128;  /* Couleur verte */
-  color: white;   /* Couleur du texte */
-  font-size: 18px; /* Taille de police pour le + ou - */
-  cursor: pointer; /* Change le curseur pour indiquer qu'il est cliquable */
-  border-radius: 4px; /* Bords arrondis */
-  user-select: none; /* Empêche la sélection du texte */
+  width: 30px;
+  height: 30px;
+  background-color: var(--primary-dark);
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  border-radius: 4px;
+  user-select: none;
+  transition: background-color var(--transition-speed);
 }
 
 .quantity-button:hover {
-  background-color: #6a1a21;  /* Couleur verte plus foncée au survol */
+  background-color: var(--primary-color);
 }
+
 .enabled-button {
-  background-color: #379137 !important;
+  background-color: var(--success-color) !important;
   color: white;
   cursor: pointer;
 }
+
 .enabled-button-1 {
-  background-color: #014131 !important;
+  background-color: var(--primary-dark) !important;
   color: white;
   cursor: pointer;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .retour {
+    margin-left: 50px;
+  }
+
+  .cart-details {
+    width: 100%;
+    max-width: 384px;
+  }
+
+  .separator {
+    width: 100%;
+  }
+
+  .description-paragraph {
+    width: 100%;
+    max-width: 790px;
+  }
+
+  .button-achat,
+  .button-panier {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .retour {
+    margin-left: 20px;
+  }
+
+  .projectName {
+    font-size: 28px;
+    line-height: 40px;
+  }
+
+  .projectCategory {
+    font-size: 20px;
+  }
+
+  .montant-input {
+    width: 100%;
+    margin-top: 10px;
+    float: none;
+  }
+
+  .montant-input-text {
+    width: 100%;
+  }
+
+  .description-content {
+    margin-left: 1vh;
+  }
+
+  .project-title {
+    font-size: 22px;
+  }
+
+  .button-achat-text {
+    width: 60%;
+  }
+
+  .button-achat-amount {
+    width: 40%;
+  }
+
+  .button-panier-text {
+    width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  .retour {
+    margin-top: 3rem;
+    margin-left: 10px;
+  }
+
+  .countryName {
+    font-size: 16px;
+  }
+
+  .projectName {
+    font-size: 24px;
+    line-height: 32px;
+  }
+
+  .projectCategory {
+    font-size: 18px;
+  }
+
+  #cart-text,
+  #priceText {
+    font-size: 18px;
+    line-height: 40px;
+  }
+
+  .dart-price,
+  .pricePerCo {
+    font-size: 20px;
+    line-height: 40px;
+  }
+
+  .montant-text,
+  .stock-text,
+  .achat-text {
+    font-size: 14px;
+    line-height: 40px;
+  }
+
+  .stock-number,
+  .achat-quantity {
+    font-size: 14px;
+    line-height: 40px;
+  }
+
+  .project-title {
+    font-size: 20px;
+  }
+
+  .description-paragraph {
+    font-size: 14px;
+    line-height: 22px;
+  }
+
+  .button-transaction {
+    padding: 5px 15px;
+  }
+
+  .button-transaction-text {
+    font-size: 13px;
+  }
+
+  .fixed-on-right {
+    position: relative;
+    top: 0;
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+
+  .zindex {
+    width: 100%;
+    height: auto;
+  }
+
+  .separator-modal {
+    width: 100%;
+  }
+
+  .modal-photo {
+    width: 60px;
+    height: 60px;
+  }
 }

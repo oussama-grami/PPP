@@ -1,15 +1,16 @@
 .transactions-container {
   width: 90%;
   margin: auto;
-  background: white;
+  background: var(--bg-white);
   padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+  transition: background-color var(--transition-speed);
 }
 
 .transactions-container h2 {
   text-align: center;
-  color: #2e7d32;
+  color: var(--primary-color);
 }
 
 .table-responsive {
@@ -27,58 +28,87 @@ table {
 th, td {
   padding: 12px;
   text-align: left;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   white-space: nowrap; /* Empêche le texte de passer à la ligne */
+  color: var(--text-primary);
+  transition: background-color var(--transition-speed);
 }
 
 th {
-  background: #388e3c;
+  background: var(--primary-dark);
   color: white;
 }
 
 tr:hover {
-  background: #c8e6c9;
+  background: var(--primary-light);
 }
 
 .success {
-  color: #2e7d32;
+  color: var(--success-color);
   font-weight: bold;
 }
 
 .pending {
-  color: #fbc02d;
+  color: var(--warning-color);
   font-weight: bold;
 }
 
 .print-btn {
-  background: #2e7d32;
+  background: var(--primary-dark);
   color: white;
   border: none;
   padding: 8px 12px;
-  border-radius: 5px;
+  border-radius: var(--border-radius);
   cursor: pointer;
+  transition: all var(--transition-speed);
 }
 
 .print-btn:hover {
-  background: #1b5e20;
+  background: var(--primary-color);
+  transform: translateY(-2px);
 }
 
 /* Responsive Design */
+@media (max-width: 992px) {
+  .transactions-container {
+    width: 95%;
+  }
+}
+
 @media (max-width: 768px) {
   .transactions-container {
-    padding: 10px;
+    padding: 15px;
+    width: 98%;
   }
 
   th, td {
     padding: 10px;
     font-size: 14px;
   }
+  
+  table {
+    min-width: 500px;
+  }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 576px) {
+  .transactions-container {
+    padding: 10px;
+    width: 100%;
+    border-radius: 0;
+  }
+  
+  .transactions-container h2 {
+    font-size: 20px;
+  }
+
   th, td {
     padding: 8px;
     font-size: 12px;
+  }
+  
+  table {
+    min-width: 400px;
   }
 
   .print-btn {

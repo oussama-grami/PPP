@@ -3,11 +3,12 @@
 }
 
 #title {
-    color: #000;
+    color: var(--text-primary);
     font-size: 32px;
     font-style: normal;
     font-weight: 501;
     line-height: 42px;
+    transition: color var(--transition-speed);
 }
 
 .container {
@@ -16,18 +17,21 @@
 
 .column {
     flex: 1;
-
 }
 
 .read-more-button {
-
     display: inline-flex;
     padding: 5px 20px;
     align-items: flex-start;
     gap: 2px;
     border-radius: 8px;
-    background: #014131;
+    background: var(--primary-dark);
+    transition: background-color var(--transition-speed), transform var(--transition-speed);
+}
 
+.read-more-button:hover {
+    background: var(--primary-color);
+    transform: translateY(-2px);
 }
 
 .read-more-text {
@@ -39,29 +43,31 @@
 }
 
 .section-title {
-    color: #76B82A;
+    color: var(--primary-color);
     font-family: Roboto;
     font-size: 14px;
     font-style: normal;
     font-weight: 701;
     line-height: 35px;
-    /* 250% */
     letter-spacing: 3.5px;
     text-transform: uppercase;
     width: 213px;
+    transition: color var(--transition-speed);
 }
 
 .section-header {
-    color: #101828;
+    color: var(--text-primary);
     text-align: center;
     font-size: 30px;
     font-style: normal;
     font-weight: 700;
     line-height: 60px;
     text-transform: capitalize;
+    transition: color var(--transition-speed);
 }
+
 .section-description{
-    color: #575757;
+    color: var(--text-secondary);
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -69,18 +75,14 @@
     width: 525px;
     flex-shrink: 0;
     overflow-wrap: normal;
-
+    transition: color var(--transition-speed);
 }
+
 @media screen and (max-width: 900px) {
     .read-more-button {
-      background-color:#76B82A;
+      background-color: var(--primary-color);
     }
     .container {
         display: block;
-        
-    }
-    .column {
-       
-    
     }
 }

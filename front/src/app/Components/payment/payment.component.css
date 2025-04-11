@@ -14,17 +14,19 @@
 .retour {
   margin-bottom: 10px;
   align-items: flex-start;
-  border-radius: 20px;
+  border-radius: var(--border-radius);
 }
 
 .retour button {
   padding-left: 0px;
   border: none;
   background: transparent;
+  cursor: pointer;
+  color: var(--text-primary);
 }
 
 .retour-text {
-  color: #000;
+  color: var(--text-primary);
   font-family: "Roboto";
   font-size: 16px;
   font-style: normal;
@@ -37,6 +39,17 @@
   overflow-x: auto;
   white-space: nowrap;
   padding-bottom: 5px;
+  scrollbar-width: thin;
+  -ms-overflow-style: none; /* For Internet Explorer and Edge */
+}
+
+.nav::-webkit-scrollbar {
+  height: 4px; /* For Chrome, Safari, and Opera */
+}
+
+.nav::-webkit-scrollbar-thumb {
+  background-color: var(--primary-light);
+  border-radius: 4px;
 }
 
 .cursor {
@@ -44,7 +57,7 @@
 }
 
 .default-font {
-  color: #000;
+  color: var(--text-primary);
   font-family: Roboto;
   font-size: 16px;
   font-style: normal;
@@ -53,13 +66,13 @@
 }
 
 .grey-color {
-  color: #999;
+  color: var(--text-secondary);
 }
 
 .modal-photo {
   width: 78px;
   height: 78px;
-  border-radius: 5px;
+  border-radius: var(--border-radius);
   object-fit: cover;
 }
 
@@ -67,7 +80,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 5px;
+  border-radius: var(--border-radius);
 }
 
 .project-final-price {
@@ -77,7 +90,7 @@
 }
 
 .project-final-price-text1 {
-  color: #000;
+  color: var(--text-primary);
   font-family: Roboto;
   font-size: 18px;
   font-style: normal;
@@ -86,7 +99,7 @@
 }
 
 .project-final-price-text2 {
-  color: #C5C1C1;
+  color: var(--text-secondary);
   font-family: Roboto;
   font-size: 14px;
   font-style: normal;
@@ -97,12 +110,12 @@
 .separator-modal {
   width: 98%;
   height: 1px;
-  background: #D3D3D3;
+  background: rgba(0, 0, 0, 0.1);
   margin: 15px 0px;
 }
 
 .total {
-  color: #000;
+  color: var(--text-primary);
   font-family: Roboto;
   font-size: 24px;
   font-style: normal;
@@ -111,7 +124,7 @@
 }
 
 .paymentText {
-  color: #999;
+  color: var(--text-secondary);
   font-family: Roboto;
   font-size: 12px;
   font-style: normal;
@@ -131,7 +144,7 @@
 }
 
 .form-format {
-  color: #98999D;
+  color: var(--text-secondary);
   display: flex;
   font-family: Roboto;
   font-size: 16px;
@@ -146,7 +159,7 @@
 }
 
 .project-name {
-  color: #000;
+  color: var(--text-primary);
   font-family: Roboto;
   font-size: 16px;
   font-style: normal;
@@ -156,7 +169,7 @@
 
 .quantity {
   margin-top: 10px;
-  color: #6D6E6F;
+  color: var(--text-secondary);
   font-family: Roboto;
   font-size: 14px;
   font-style: normal;
@@ -170,7 +183,7 @@
 }
 
 .price-text {
-  color: #000;
+  color: var(--text-primary);
   text-align: right;
   font-family: Roboto;
   font-size: 16px;
@@ -180,7 +193,7 @@
 }
 
 .unity-text {
-  color: #C5C1C1;
+  color: var(--text-secondary);
   font-family: Roboto;
   font-size: 14px;
   font-style: normal;
@@ -201,41 +214,40 @@
   margin-bottom: 20px;
 }
 
-@media (max-width: 576px) {
-  .row{
-    margin-bottom: 20px;
-  }
-  .checkoutButtons {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .checkoutButton1, .checkoutButton2 {
-    width: 100%;
-    margin-bottom: 10px;
-  }
-}
-
 .checkoutButton1 {
   padding: 10px 20px;
   align-items: center;
   gap: 2px;
-  border-radius: 5px;
-  border: 1px solid #014131;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--primary-dark);
   background: transparent;
+  transition: all var(--transition-speed);
+  cursor: pointer;
+}
+
+.checkoutButton1:hover {
+  background-color: var(--primary-light);
+  transform: translateY(-2px);
 }
 
 .checkoutButton2 {
   padding: 10px 20px;
   align-items: center;
   gap: 2px;
-  border-radius: 5px;
-  background: #014131;
+  border-radius: var(--border-radius);
+  background: var(--primary-dark);
   border: transparent;
+  transition: background-color var(--transition-speed), transform var(--transition-speed);
+  cursor: pointer;
+}
+
+.checkoutButton2:hover {
+  background-color: var(--primary-color);
+  transform: translateY(-2px);
 }
 
 .checkoutButton1Text {
-  color: #014131;
+  color: var(--primary-dark);
   font-family: Roboto;
   font-size: 16px;
   font-style: normal;
@@ -249,4 +261,88 @@
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
+}
+
+/* Enhanced responsive design */
+@media (max-width: 992px) {
+  .modal-photo {
+    width: 70px;
+    height: 70px;
+  }
+  
+  .project-final-price-text1 {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .retour {
+    margin-top: 1rem;
+  }
+  
+  .modal-photo {
+    width: 65px;
+    height: 65px;
+  }
+}
+
+@media (max-width: 576px) {
+  .row {
+    margin-bottom: 20px;
+  }
+  
+  .checkoutButtons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .checkoutButton1, .checkoutButton2 {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  
+  .project-final-price {
+    margin-left: 8px;
+  }
+  
+  .total {
+    font-size: 22px;
+  }
+  
+  .separator-modal {
+    margin: 10px 0;
+  }
+  
+  .modal-photo {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+@media (max-width: 375px) {
+  .default-font {
+    font-size: 14px;
+  }
+  
+  .form-format {
+    font-size: 14px;
+  }
+  
+  .checkoutButton1Text,
+  .checkoutButton2Text {
+    font-size: 14px;
+  }
+  
+  .project-name {
+    font-size: 14px;
+  }
+  
+  .price-text {
+    font-size: 14px;
+  }
+  
+  .modal-photo {
+    width: 50px;
+    height: 50px;
+  }
 }

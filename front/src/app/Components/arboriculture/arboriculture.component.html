@@ -1,37 +1,53 @@
 <div class="h-100">
-  <div class="container-fluid" style="margin-left: 0;">
+  <div class="container-fluid" style="margin-left: 0">
     <div class="row row-height flex-column flex-lg-row">
-      <div class="col-12 col-lg-6 h-100" style="padding: 0;">
+      <div class="col-12 col-lg-6 h-100" style="padding: 0">
         <div
           class="d-flex justify-content-center align-items-center"
-          [ngStyle]="{'background-image': 'url(/assets/img/arb.png)', 'background-repeat': 'no-repeat',  'width': '100%', 'height': '100%', 'background-size':'cover', 'background-position':'center 20%'}"
+          [ngStyle]="{
+            'background-image': 'url(/assets/img/arb.png)',
+            'background-repeat': 'no-repeat',
+            width: '100%',
+            height: '100%',
+            'background-size': 'cover',
+            'background-position': 'center 20%'
+          }"
         >
-          <div class="h-100 d-flex flex-column justify-content-center align-items-center">
+          <div
+            class="h-100 d-flex flex-column justify-content-center align-items-center"
+          >
             <p class="title">Trees Plantation</p>
-            <p class="description">We offer you a simple way to assess your contribution to reducing CO2 emissions.</p>
+            <p class="description">
+              We offer you a simple way to assess your contribution to reducing
+              CO2 emissions.
+            </p>
           </div>
         </div>
       </div>
       <div
         class="col-12 col-lg-6 h-100 d-flex justify-content-center align-items-center"
-        style="overflow-x: hidden;">
+        style="overflow-x: hidden"
+      >
         <div class="d-flex justify-content-center align-items-center w-100">
-          <form [formGroup]="arboricultureForm" class="w-100 px-3 mt-5 mt-xxl-0" (ngSubmit)="submitData()">
-            <div class="retour mb-3">
-              <button [routerLink]="'/'+RoutesEnum.PORTEUR" class="btn btn-link text-decoration-none text-black">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                  <path d="M19.5 12H4.5M4.5 12L10.125 6M4.5 12L10.125 18" stroke="black" stroke-width="1.5"
-                        stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                <span class="retour-text">Back</span>
-              </button>
-            </div>
+          <form
+            [formGroup]="arboricultureForm"
+            class="w-100 px-3 mt-5 mt-xxl-0"
+            (ngSubmit)="submitData()"
+          >
+            <app-back-button [customRoute]="'/' + RoutesEnum.PORTEUR" />
             <div class="form-title mb-3">
-              To evaluate the CO2 absorption potential of your project, please provide the following information:
+              To evaluate the CO2 absorption potential of your project, please
+              provide the following information:
             </div>
             <div class="form-group mb-3">
-              <label for="typeArbre" class="form-title">What is the nature of the trees affected by the project?</label>
-              <select formControlName="typeArbre" id="typeArbre" class="form-control">
+              <label for="typeArbre" class="form-title"
+                >What is the nature of the trees affected by the project?</label
+              >
+              <select
+                formControlName="typeArbre"
+                id="typeArbre"
+                class="form-control"
+              >
                 <option [value]="'Olivier'">Olivier</option>
                 <option [value]="'Eucalyptus'">Eucalyptus</option>
                 <option [value]="'Caroubier'">Carob tree</option>
@@ -55,11 +71,20 @@
               </select>
             </div>
             <div class="form-group mb-3">
-              <label for="nbArbre" class="form-title">How many trees are included in your project?</label>
-              <input type="number" formControlName="nbArbre" id="nbArbre" class="form-control">
+              <label for="nbArbre" class="form-title"
+                >How many trees are included in your project?</label
+              >
+              <input
+                type="number"
+                formControlName="nbArbre"
+                id="nbArbre"
+                class="form-control"
+              />
             </div>
             <div class="form-group mb-3">
-              <label for="stade" class="form-title">At what stage of development are the trees?</label>
+              <label for="stade" class="form-title"
+                >At what stage of development are the trees?</label
+              >
               <select formControlName="stade" id="stade" class="form-control">
                 <option [value]="'Jeune'">Young</option>
                 <option [value]="'Adulte'">Adult</option>
@@ -67,8 +92,14 @@
               </select>
             </div>
             <div class="form-group mb-3">
-              <label for="hauteur" class="form-title">How tall are your trees?</label>
-              <select formControlName="hauteur" id="hauteur" class="form-control">
+              <label for="hauteur" class="form-title"
+                >How tall are your trees?</label
+              >
+              <select
+                formControlName="hauteur"
+                id="hauteur"
+                class="form-control"
+              >
                 <option [value]="'Plus20'">> 20m</option>
                 <option [value]="'Entre15et20'">15-20 m</option>
                 <option [value]="'Entre11et15'">11-15 m</option>
@@ -79,7 +110,9 @@
               {{ resultatMessage }}
             </div>
             <div class="d-flex justify-content-end mb-4">
-              <button type="submit" class="btn btn-dark calculate-button">Calculate</button>
+              <button type="submit" class="btn btn-dark calculate-button">
+                Calculate
+              </button>
             </div>
           </form>
         </div>

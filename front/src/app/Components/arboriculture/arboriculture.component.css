@@ -118,7 +118,7 @@ button.calculate-button {
 }
 
 .form-title {
-  color: #000;
+  color: var(--text-primary);
   font-family: Roboto;
   font-size: min(3vw, 14px);
   font-style: normal;
@@ -126,6 +126,7 @@ button.calculate-button {
   line-height: 20px; /* 125% */
   margin-bottom: 10px;
   margin-top: 24px;
+  transition: color var(--transition-speed);
 }
 
 button.calculate-button {
@@ -134,7 +135,7 @@ button.calculate-button {
   align-items: flex-start;
   gap: 2px;
   border-radius: 5px;
-  background: #014131;
+  background: var(--primary-dark);
   color: #FFF;
 
   font-family: Roboto;
@@ -142,25 +143,26 @@ button.calculate-button {
   font-style: normal;
   font-weight: 400;
   line-height: 24px; /* 150% */
-
-
+  transition: background-color var(--transition-speed);
 }
 
 .seperator {
   width: 522px;
   height: 1px;
-  background: #D2D8DD;
+  background: var(--border-color);
   margin-left: 112px;
+  transition: background-color var(--transition-speed);
 }
 
 .footer {
-  color: #000;
+  color: var(--text-secondary);
   font-family: Roboto;
   font-size: 14px;
   font-style: italic;
   font-weight: 300;
   line-height: 20px; /* 142.857% */
   margin: 24px 0 0 112px;
+  transition: color var(--transition-speed);
 }
 
 .retour {
@@ -180,12 +182,42 @@ button.calculate-button {
 
 .retour-text {
   margin-left: 2px;
-  color: inherit;
+  color: var(--text-primary);
   font-family: Roboto, serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
   line-height: 24px;
   text-decoration: none;
+  transition: color var(--transition-speed);
+}
+
+.form-control {
+  background-color: var(--bg-white);
+  color: var(--text-primary);
+  border: 1px solid var(--border-subtle);
+  transition: background-color var(--transition-speed), color var(--transition-speed), border-color var(--transition-speed);
+}
+
+select.form-control option {
+  background-color: var(--bg-white);
+  color: var(--text-primary);
+  transition: background-color var(--transition-speed), color var(--transition-speed);
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+  .seperator {
+    width: 90%;
+    margin-left: 5%;
+  }
+  
+  .footer {
+    margin: 24px 5% 0;
+  }
+  
+  .form-title {
+    font-size: 14px;
+  }
 }
 

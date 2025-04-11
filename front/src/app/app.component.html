@@ -1,3 +1,26 @@
-<app-nav-acceuil/>
-<router-outlet></router-outlet>
-<app-footer/>
+<div class="page-transition-wrapper">
+  <app-nav-acceuil></app-nav-acceuil>
+
+  <!-- Loading Spinner -->
+  <div class="loading-spinner" [class.show]="loading">
+    <div class="spinner"></div>
+  </div>
+
+  <!-- Main Content with Route Transitions -->
+  <div class="route-animation-container">
+    <div [@fadeAnimation]="prepareRoute(outlet)">
+      <router-outlet #outlet="outlet"></router-outlet>
+    </div>
+  </div>
+
+  <!-- Floating Action Button for Scroll to Top -->
+  <button
+    class="theme-toggle-btn"
+    (click)="scrollToTop()"
+    aria-label="Scroll to top"
+  >
+    <i class="bi bi-arrow-up"></i>
+  </button>
+
+  <app-footer></app-footer>
+</div>
