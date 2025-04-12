@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 public class ProjectOwnerMapper implements EntityMapper<ProjectOwner, ProjectOwnerDTO> {
     @Override
     public ProjectOwner toEntity(ProjectOwnerDTO dto) {
-        return ProjectOwner.builder()
+        /*return ProjectOwner.builder()
                 .certified(dto.isCertified())
                 .company(dto.getCompany())
                 .companyIdentifier(dto.getCompanyIdentifier())
@@ -32,12 +32,13 @@ public class ProjectOwnerMapper implements EntityMapper<ProjectOwner, ProjectOwn
                         dto.getProjectIds().get().stream().map(id -> Project.builder()
                                 .id(id)
                                 .build()).collect(Collectors.toList()) : null)
-                .build();
+                .build();*/
+        return null;
     }
 
     @Override
     public ProjectOwnerDTO toDto(ProjectOwner entity) {
-        return ProjectOwnerDTO.builder()
+       /* return ProjectOwnerDTO.builder()
                 .certified(entity.isCertified())
                 .company(entity.getCompany())
                 .companyIdentifier(entity.getCompanyIdentifier())
@@ -55,6 +56,7 @@ public class ProjectOwnerMapper implements EntityMapper<ProjectOwner, ProjectOwn
                 .firstname(entity.getFirstname())
                 .ProjectIds(Optional.of(entity.getProjects().stream().map(Project::getId)
                         .collect(Collectors.toList())))
-                .build();
+                .build();*/
+        return null;
     }
 }

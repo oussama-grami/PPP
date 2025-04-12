@@ -2,9 +2,8 @@ package com.ppp.Ecopilot.Entities;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
+import com.ppp.Ecopilot.Enums.EsgCategory;
+import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
@@ -24,9 +23,14 @@ import java.util.List;
 public class EsgQuestion extends BaseEntity<Long> {
     @Column(nullable = false)
     private String text;
-    @OneToMany(mappedBy = "esgQuestion")
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private EsgCategory category;
+    @OneToMany(mappedBy = "esgQuestion", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<EsgOption> esgOptions;
 
     @OneToMany(mappedBy = "esgQuestion")
     private List<EsgResponse> esgResponses;
+
+
 }

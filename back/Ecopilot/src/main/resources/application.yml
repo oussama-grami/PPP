@@ -10,3 +10,8 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+logging:
+  level:
+    root: WARN   # This will only log WARN and ERROR messages globally.
+    org.springframework.web: INFO   # Only INFO and higher for Spring Web
+    org.springframework.orm.hibernate5: ERROR  # Set Hibernate to log only errors

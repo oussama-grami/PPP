@@ -62,32 +62,24 @@ app = Flask(__name__)
 @app.route("/predict-samar/", methods=["POST"])
 def predictSamar():
     try:
-        # Get the uploaded file from the request
         file = request.files['file']
 
-        # Read the CSV file
         content = file.stream.read().decode("utf-8")
-        df = pd.read_csv(StringIO(content))  # Use StringIO to read CSV content
+        df = pd.read_csv(StringIO(content))  
 
-        # Ensure correct column names
         if "date" not in df.columns or "carbon_footprint_kgCO2" not in df.columns:
             return jsonify({"error": "CSV must contain 'date' and 'carbon_footprint_kgCO2' columns"}), 400
 
-        # Convert 'date' column to datetime
         df["date"] = pd.to_datetime(df["date"])
 
-        # Train/Test Split (80% training data)
         train_size = int(len(df) * 0.8)
         train = df["carbon_footprint_kgCO2"][:train_size]
 
-        # Fit the Exponential Smoothing Model
         model = sm.tsa.ExponentialSmoothing(train, trend='mul', seasonal='add', seasonal_periods=12)
         fitted_model = model.fit()
 
-        # Predict the next 12 months
-        forecast = fitted_model.forecast(12).tolist()
+        forecast = fitted_model.forecast(6).tolist()
 
-        # Return only the predicted values as response
         return jsonify({"predicted_carbon_footprint_kgCO2": forecast})
 
     except Exception as e:
@@ -100,7 +92,7 @@ def custom_loss(y_true, y_pred):
     gradient = np.where(y_pred < 0, -1, 2 * (y_pred - y_true))
     hessian = np.where(y_pred < 0, 0, 2)
     return gradient, hessian
-
+'''
 # Load the ensemble model
 ensemble_model = joblib.load('ensemble_event_emission_model.pkl')
 xgb_pipeline = ensemble_model['xgb_model']
@@ -149,7 +141,7 @@ def eventPredict():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-
+'''
 @app.route('/predict', methods=['POST'])
 def predict():
     try:

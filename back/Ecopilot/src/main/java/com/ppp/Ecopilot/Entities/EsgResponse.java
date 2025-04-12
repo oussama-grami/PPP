@@ -30,4 +30,6 @@ public class EsgResponse extends BaseEntity<Long> {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "esg_option_id")
     private EsgOption esgOption;
+
+
 }
