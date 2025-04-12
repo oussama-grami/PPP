@@ -1,10 +1,10 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {CarbonFootprintService} from "../../Service/carbon-footprint.service"; // Import the service
-import {Carburant} from "../../Models/carburant"; // Import the Carburant model
-import {Router} from "@angular/router";
-import {TypeCarburant} from "../../enumerations/typeCarburant";
-import {RoutesEnum} from "../../enumerations/Routes.enum";
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CarbonFootprintService } from "../../Service/carbon-footprint.service"; // Import the service
+import { Carburant } from "../../Models/carburant"; // Import the Carburant model
+import { Router } from "@angular/router";
+import { CarburantType } from "../../enumerations/carburantType";
+import { RoutesEnum } from "../../enumerations/Routes.enum";
 
 @Component({
   selector: 'app-carburant',
@@ -15,7 +15,7 @@ export class CarburantComponent implements OnInit {
   carburantForm!: FormGroup;
   errorMessage: string = '';
   isSubmitting = false; // Prevents multiple submissions
-  protected readonly TypeCarburant = TypeCarburant;
+  protected readonly TypeCarburant = CarburantType;
 
   constructor(
     private fb: FormBuilder,
@@ -28,33 +28,33 @@ export class CarburantComponent implements OnInit {
 
     // Initialize the form with validators
     this.carburantForm = this.fb.group({
-      essence: ['', [Validators.required, Validators.min(0)]],
-      diesel: ['', [Validators.required, Validators.min(0)]],
-      gpl: ['', [Validators.required, Validators.min(0)]],
-      kilometrage: ['', [Validators.required, Validators.min(0)]],
-      efficacite: ['', [Validators.required, Validators.min(0)]],
-      typeCarburant: ['', Validators.required]
+      dieselFuelConsumption: ['', [Validators.required, Validators.min(0)]],   // essence -> dieselFuelConsumption
+      gasolineFuelConsumption: ['', [Validators.required, Validators.min(0)]], // diesel -> gasolineFuelConsumption
+      lpgFuelConsumption: ['', [Validators.required, Validators.min(0)]],      // lpg -> lpgFuelConsumption
+      vehicleMileage: ['', [Validators.required, Validators.min(0)]],          // kilometrage -> vehicleMileage
+      fuelEfficiency: ['', [Validators.required, Validators.min(0)]],          // efficacite -> fuelEfficiency
+      carburantType: ['', Validators.required]                                       // typeCarburant -> fuelType
     });
   }
 
   // Getters for form controls to simplify the template
-  get essence() {
-    return this.carburantForm.get('essence');
+  get dieselFuelConsumption() {
+    return this.carburantForm.get('dieselFuelConsumption');
   }
-  get diesel() {
-    return this.carburantForm.get('diesel');
+  get gasolineFuelConsumption() {
+    return this.carburantForm.get('gasolineFuelConsumption');
   }
-  get gpl() {
-    return this.carburantForm.get('gpl');
+  get lpgFuelConsumption() {
+    return this.carburantForm.get('lpgFuelConsumption');
   }
-  get kilometrage() {
-    return this.carburantForm.get('kilometrage');
+  get vehicleMileage() {
+    return this.carburantForm.get('vehicleMileage');
   }
-  get efficacite() {
-    return this.carburantForm.get('efficacite');
+  get fuelEfficiency() {
+    return this.carburantForm.get('fuelEfficiency');
   }
-  get typeCarburant() {
-    return this.carburantForm.get('typeCarburant');
+  get fuelType() {
+    return this.carburantForm.get('fuelType');
   }
 
   // Function for handling the Next button (for form submission)
@@ -62,20 +62,19 @@ export class CarburantComponent implements OnInit {
     if (this.carburantForm.valid) {
       // Create an instance of the Carburant model with the form values
       const carburantData: Carburant = {
-        essence: this.carburantForm.value.essence,
-        diesel: this.carburantForm.value.diesel,
-        gpl: this.carburantForm.value.gpl,
-        kilometrage: this.carburantForm.value.kilometrage,
-        efficacite: this.carburantForm.value.efficacite,
-        typeCarburant: this.carburantForm.value.typeCarburant
+        dieselFuelConsumption: this.carburantForm.value.dieselFuelConsumption,
+        gasolineFuelConsumption: this.carburantForm.value.gasolineFuelConsumption,
+        lpgFuelConsumption: this.carburantForm.value.lpgFuelConsumption,
+        vehicleMileage: this.carburantForm.value.vehicleMileage,
+        fuelEfficiency: this.carburantForm.value.fuelEfficiency,
+        carburantType: this.carburantForm.value.fuelType
       };
-
 
       // Update the CarbonFootprintService with the collected data
       this.carbonFootprintService.updateCarburant(carburantData);
 
       // Navigate to the next page (e.g., the 'Aer' form page)
-      this.router.navigate(['/'+RoutesEnum.AERIENS]);
+      this.router.navigate(['/' + RoutesEnum.AERIENS]);
     } else {
       // If the form is invalid, set the error message
       this.errorMessage = 'Please fill in all required fields';
@@ -83,4 +82,5 @@ export class CarburantComponent implements OnInit {
   }
 
   protected readonly RoutesEnum = RoutesEnum;
+  protected readonly CarburantType = CarburantType;
 }

@@ -12,7 +12,6 @@ import {RoutesEnum} from "../../enumerations/Routes.enum";
 })
 export class ImmobilisationsComponent implements OnInit {
   immeForm!: FormGroup;
-
   errorMessage: string = '';
 
   constructor(private fb: FormBuilder, private carboneService: CarbonFootprintService, private router: Router) { }
@@ -20,41 +19,38 @@ export class ImmobilisationsComponent implements OnInit {
   ngOnInit() {
     window.scrollTo(0, 0);
 
-    // Initialize Reactive Form
     this.immeForm = this.fb.group({
-      surface: ['', [Validators.required, Validators.min(0)]],
-      nbVoituresLegers: ['', [Validators.required, Validators.min(0)]],
-      nbVoituresUtilitaires: ['', [Validators.required, Validators.min(0)]],
-      nbVoituresLourds: ['', [Validators.required, Validators.min(0)]],
-      nbPostes: ['', [Validators.required, Validators.min(0)]],
-      nbPc: ['', [Validators.required, Validators.min(0)]],
-      nbImprimantesIndiv: ['', [Validators.required, Validators.min(0)]],
-      nbImprimantesMilti: ['', [Validators.required, Validators.min(0)]],
-      nbServeurs: ['', [Validators.required, Validators.min(0)]],
-      nbEcran: ['', [Validators.required, Validators.min(0)]]
+      surfaceArea: ['', [Validators.required, Validators.min(0)]],
+      numberOfLightVehicles: ['', [Validators.required, Validators.min(0)]],
+      numberOfUtilityVehicles: ['', [Validators.required, Validators.min(0)]],
+      numberOfHeavyVehicles: ['', [Validators.required, Validators.min(0)]],
+      numberOfWorkstations: ['', [Validators.required, Validators.min(0)]],
+      numberOfPCs: ['', [Validators.required, Validators.min(0)]],
+      numberOfIndividualPrinters: ['', [Validators.required, Validators.min(0)]],
+      numberOfMultiPrinters: ['', [Validators.required, Validators.min(0)]],
+      numberOfServers: ['', [Validators.required, Validators.min(0)]],
+      numberOfMonitors: ['', [Validators.required, Validators.min(0)]]
     });
   }
 
-  // OnSubmit method for final submission
   onSubmit() {
     if (this.immeForm.valid) {
       const immeData: Immobilisation = {
-        surface: this.immeForm.value.surface,
-        nbVoituresLegers: this.immeForm.value.nbVoituresLegers,
-        nbVoituresUtilitaires: this.immeForm.value.nbVoituresUtilitaires,
-        nbVoituresLourds: this.immeForm.value.nbVoituresLourds,
-        nbPostes: this.immeForm.value.nbPostes,
-        nbPc: this.immeForm.value.nbPc,
-        nbImprimantesIndiv: this.immeForm.value.nbImprimantesIndiv,
-        nbImprimantesMilti: this.immeForm.value.nbImprimantesMilti,
-        nbServeurs: this.immeForm.value.nbServeurs,
-        nbEcran: this.immeForm.value.nbEcran
+        surfaceArea: this.immeForm.value.surfaceArea,
+        numberOfLightVehicles: this.immeForm.value.numberOfLightVehicles,
+        numberOfUtilityVehicles: this.immeForm.value.numberOfUtilityVehicles,
+        numberOfHeavyVehicles: this.immeForm.value.numberOfHeavyVehicles,
+        numberOfWorkstations: this.immeForm.value.numberOfWorkstations,
+        numberOfPCs: this.immeForm.value.numberOfPCs,
+        numberOfIndividualPrinters: this.immeForm.value.numberOfIndividualPrinters,
+        numberOfMultiPrinters: this.immeForm.value.numberOfMultiPrinters,
+        numberOfServers: this.immeForm.value.numberOfServers,
+        numberOfMonitors: this.immeForm.value.numberOfMonitors
       };
 
-      // Save the immobilisation data
       this.carboneService.updateImmobilisation(immeData);
       this.carboneService.submitAllData();
-      this.router.navigate(['/'+RoutesEnum.RESULTAT_CARBONE]);
+      this.router.navigate(['/' + RoutesEnum.RESULTAT_CARBONE]);
     } else {
       this.errorMessage = 'Please fill in all required fields correctly.';
     }

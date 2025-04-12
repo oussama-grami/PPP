@@ -16,56 +16,61 @@
             <div *ngIf="errorMessage" class="alert alert-danger">
               {{ errorMessage }}
             </div>
-            <div class="form-group">
-              <input type="number" class="form-control" formControlName="essence" placeholder="Gasoline (Liters)">
-              <div *ngIf="carburantForm.get('essence')?.invalid && carburantForm.get('essence')?.touched"
-                   class="error-message  text-danger">
-                Gasoline is required.
-              </div>
-            </div>
 
+            <!-- Diesel Fuel Consumption -->
             <div class="form-group">
-              <input type="number" class="form-control" formControlName="diesel" placeholder="Diesel (Liters)">
-              <div *ngIf="carburantForm.get('diesel')?.invalid && carburantForm.get('diesel')?.touched"
+              <input type="number" class="form-control" formControlName="dieselFuelConsumption" placeholder="Diesel (Liters)">
+              <div *ngIf="carburantForm.get('dieselFuelConsumption')?.invalid && carburantForm.get('dieselFuelConsumption')?.touched"
                    class="error-message text-danger">
                 Diesel is required.
               </div>
             </div>
 
+            <!-- Gasoline Fuel Consumption -->
             <div class="form-group">
-              <input type="number" class="form-control" formControlName="gpl" placeholder="LPG (Liters)">
-              <div *ngIf="carburantForm.get('gpl')?.invalid && carburantForm.get('gpl')?.touched" class="error-message text-danger">
+              <input type="number" class="form-control" formControlName="gasolineFuelConsumption" placeholder="Gasoline (Liters)">
+              <div *ngIf="carburantForm.get('gasolineFuelConsumption')?.invalid && carburantForm.get('gasolineFuelConsumption')?.touched"
+                   class="error-message text-danger">
+                Gasoline is required.
+              </div>
+            </div>
+
+            <!-- LPG Fuel Consumption -->
+            <div class="form-group">
+              <input type="number" class="form-control" formControlName="lpgFuelConsumption" placeholder="LPG (Liters)">
+              <div *ngIf="carburantForm.get('lpgFuelConsumption')?.invalid && carburantForm.get('lpgFuelConsumption')?.touched"
+                   class="error-message text-danger">
                 LPG is required.
               </div>
             </div>
 
-
+            <!-- Vehicle Mileage -->
             <div class="form-group">
-              <input type="number" class="form-control" formControlName="kilometrage"
-                     placeholder="Driven distance (Km)">
-              <div *ngIf="carburantForm.get('kilometrage')?.invalid && carburantForm.get('kilometrage')?.touched"
+              <input type="number" class="form-control" formControlName="vehicleMileage" placeholder="Driven distance (Km)">
+              <div *ngIf="carburantForm.get('vehicleMileage')?.invalid && carburantForm.get('vehicleMileage')?.touched"
                    class="error-message text-danger">
                 Distance is required.
               </div>
             </div>
 
+            <!-- Fuel Efficiency -->
             <div class="form-group">
-              <input type="number" class="form-control" formControlName="efficacite"
-                     placeholder="Vehicle fuel efficiency (L/100Km)">
-              <div *ngIf="carburantForm.get('efficacite')?.invalid && carburantForm.get('efficacite')?.touched"
+              <input type="number" class="form-control" formControlName="fuelEfficiency" placeholder="Vehicle fuel efficiency (L/100Km)">
+              <div *ngIf="carburantForm.get('fuelEfficiency')?.invalid && carburantForm.get('fuelEfficiency')?.touched"
                    class="error-message text-danger">
                 Efficiency is required.
               </div>
             </div>
 
-            <div class="form-group ">
-              <select class="nice-select wide mb-3" formControlName="typeCarburant">
-                <option value="" disabled selected>Carburant Type</option>
-                <option class="option" [value]="TypeCarburant.Diesel">Diesel</option>
-                <option class="option" [value]="TypeCarburant.Essence">Gasoline</option>
-                <option class="option" [value]="TypeCarburant.Gpl">LPG</option>
+            <!-- Fuel Type Selection -->
+            <div class="form-group">
+              <select class="nice-select wide mb-3" formControlName="carburantType">
+                <option value=""selected   disabled  >Carburant Type</option>
+                <option class="option" [value]="CarburantType.Diesel">Diesel</option>
+                <option class="option" [value]="CarburantType.Essence">Gasoline</option>
+                <option class="option" [value]="CarburantType.Gpl">LPG</option>
               </select>
-              <div *ngIf="carburantForm.get('typeCarburant')?.invalid && carburantForm.get('typeCarburant')?.touched"
+              <div *ngIf="carburantForm.get('fuelType')?.invalid && carburantForm.get('fuelType')?.touched"
                    class="error-message text-danger">
                 Please select a fuel type.
               </div>
@@ -73,8 +78,8 @@
           </div>
 
           <div id="bottom-wizard2 mb-2 pb-2">
-              <button type="button" class="btnbackward" [routerLink]="'/' + RoutesEnum.CARBURANT">Back</button>
-              <button type="submit" class="btnforward" (click)="onNext()">Continue</button>
+            <button type="button" class="btnbackward" [routerLink]="'/' + RoutesEnum.ENERGIE">Back</button>
+            <button type="submit" class="btnforward" (click)="onNext()">Continue</button>
           </div>
 
         </form>
@@ -82,6 +87,3 @@
     </div>
   </div>
 </div>
-
-
-
