@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {project} from "../../Models/project";
+import {Project} from "../../Models/project";
 import {RoutesEnum} from "../../enumerations/Routes.enum";
 
 @Component({
@@ -8,6 +8,6 @@ import {RoutesEnum} from "../../enumerations/Routes.enum";
   styleUrls: ['./project-ad.component.css']
 })
 export class ProjectAdComponent {
-  @Input() project:project |undefined;
+  @Input() project:Project |undefined;
   protected readonly RoutesEnum = RoutesEnum;
 }

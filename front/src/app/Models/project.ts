@@ -1,4 +1,4 @@
-export class project{
+export class Project {
   public id : number =0;
   public  url :string  = '';
   public cost : string   = '' ;

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { project } from "../Models/project";
+import { Project } from "../Models/project";
 
-type PartialProject = Partial<project> & Pick<project, 'name' | 'availableStock' | 'cost' | 'url'> & { quantity: number };
+type PartialProject = Partial<Project> & Pick<Project,'id'| 'name' | 'availableStock' | 'cost' | 'url'> & { quantity: number };
 
 @Injectable({
   providedIn: 'root'
@@ -18,9 +18,9 @@ export class CartService {
   }
 
   private loadCart() {
-    this.cartItems.push({ name: 'Tree planting in Testour', availableStock: 200, cost: '2.48', url: '/assets/img/modalPhoto1.svg', quantity: 1 },
-      { name: 'Wind farm in Tunisia', availableStock: 500, cost: '2.25', url: '/assets/img/modalPhoto2.svg', quantity: 1 },
-      { name: 'Forestry project in Madagascar', availableStock: 500, cost: '7.5', url: '/assets/img/modalPhoto3.svg', quantity: 1 });
+    this.cartItems.push({id:1, name: 'Tree planting in Testour', availableStock: 200, cost: '2.48', url: '/assets/img/modalPhoto1.svg', quantity: 1 },
+      {id:2, name: 'Wind farm in Tunisia', availableStock: 500, cost: '2.25', url: '/assets/img/modalPhoto2.svg', quantity: 1 },
+      {id:3, name: 'Forestry project in Madagascar', availableStock: 500, cost: '7.5', url: '/assets/img/modalPhoto3.svg', quantity: 1 });
   }
 
   getItems(): PartialProject[] {
@@ -61,5 +61,8 @@ export class CartService {
       this.removeItem(index);
     }
     this.saveCart();
+  }
+  clearCart(){
+    this.cartItems = [];
   }
 }

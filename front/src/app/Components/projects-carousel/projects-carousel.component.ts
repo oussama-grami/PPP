@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProjectsService } from '../../Service/projects.service';
-import { project } from '../../Models/project';
+import { Project } from '../../Models/project';
 
 @Component({
   selector: 'app-projects-carousel',
@@ -8,8 +8,8 @@ import { project } from '../../Models/project';
   styleUrls: ['./projects-carousel.component.css']
 })
 export class ProjectsCarouselComponent implements OnInit {
-  projects: project[] = [];
-  projectChunks: project[][] = [];
+  projects: Project[] = [];
+  projectChunks: Project[][] = [];
 
   constructor(private projectsService: ProjectsService) {}
 

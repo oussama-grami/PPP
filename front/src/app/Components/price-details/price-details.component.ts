@@ -1,6 +1,6 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {ProjectsService} from "../../Service/projects.service";
-import {project} from "../../Models/project";
+import {Project} from "../../Models/project";
 import {CartService} from "../../Service/cart-service.service";
 import {Router} from "@angular/router";
 import {RoutesEnum} from "../../enumerations/Routes.enum";
@@ -12,7 +12,7 @@ import {RoutesEnum} from "../../enumerations/Routes.enum";
 })
 export class PriceDetailsComponent implements OnInit, OnChanges {
   @Input() projectId: number = 0;
-  project: project | undefined;
+  project: Project | undefined;
   quantity: number = 0;
   successMessage: boolean = false;
   protected readonly Number = Number;
@@ -62,6 +62,7 @@ export class PriceDetailsComponent implements OnInit, OnChanges {
   //name' | 'availableStock' | 'cost' | 'url'> & { quantity: number
   onAddToCart() {
     this.cartService.addItem({
+      id:1,
       name: this.project!.name,
       availableStock: this.project!.availableStock,
       cost: this.project!.cost,

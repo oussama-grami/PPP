@@ -13,5 +13,5 @@ public class TransactionDTO extends BaseDTO {
     private String description;
     private List<Long> chartLineIds;
     private Long companyOwnerId;
-    private Long totalPrice;
+    private Float totalPrice;
 }

@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
-import {transaction} from "../Models/transaction";
+import {Transaction} from "../Models/transaction";
 import {Observable, of} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class TransactionService {
-transactions:transaction[] = [];
+transactions:Transaction[] = [];
   constructor() { }
-  getTransactions():Observable<transaction[]>{
+  getTransactions():Observable<Transaction[]>{
     this.transactions.push({
       country:'Saudi Arabia',
       flag:'/assets/img/saudiFlag.svg',

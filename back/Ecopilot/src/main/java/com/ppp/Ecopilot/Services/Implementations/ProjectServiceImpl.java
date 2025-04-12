@@ -78,6 +78,7 @@ public class ProjectServiceImpl extends AbstractCrudService<Project, Long> imple
     public Page<Project> getPaginatedProjects(int skip, int limit) {
         Pageable pageable = PageRequest.of(skip, limit);
         return projectRepo.findAll(pageable);
+
     }
 
 }

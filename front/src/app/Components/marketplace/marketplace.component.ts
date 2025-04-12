@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {project} from "../../Models/project";
+import {Project} from "../../Models/project";
 import {ProjectsService} from "../../Service/projects.service";
 import {RoutesEnum} from "../../enumerations/Routes.enum";
 
@@ -9,8 +9,8 @@ import {RoutesEnum} from "../../enumerations/Routes.enum";
   styleUrls: ['./marketplace.component.css']
 })
 export class MarketplaceComponent implements OnInit {
-  public projects :project[] = [];
-  public displayedProjects:project[] = [];
+  public projects :Project[] = [];
+  public displayedProjects:Project[] = [];
   public  numberOfProjects  = this.projects.length;
   public totalPages = Math.round(this.numberOfProjects/9);
   public currentPage:number  = 1;

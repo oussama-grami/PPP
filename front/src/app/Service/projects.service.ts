@@ -1,12 +1,12 @@
 import {Injectable} from '@angular/core';
-import {project} from "../Models/project";
+import {Project} from "../Models/project";
 import {map, Observable, of} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProjectsService {
-  projects: project[] = []
+  projects: Project[] = []
 
   constructor() {
     this.getProjects().subscribe(data => {
@@ -20,7 +20,7 @@ export class ProjectsService {
     );
   }
 
-  getProjects(): Observable<project[]> {
+  getProjects(): Observable<Project[]> {
     //simulation of database request
     this.projects.push({
         id: 1,

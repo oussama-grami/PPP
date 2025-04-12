@@ -84,45 +84,6 @@
           <div class="row">
             <div class="col-12">
               <input
-                type="text"
-                class="form-control form-format"
-                id="companyName"
-                formControlName="companyName"
-                placeholder="Company Name *"
-              />
-              <div *ngIf="submitted && checkoutForm.get('companyName')?.invalid" class="alert alert-danger">
-                <div *ngIf="checkoutForm.get('companyName')?.hasError('required')">Company Name is required</div>
-              </div>
-            </div>
-
-            <div class="col-sm-6 col-12">
-              <input
-                type="text"
-                class="form-control form-format"
-                id="firstName"
-                formControlName="firstName"
-                placeholder="First Name *"
-              />
-              <div *ngIf="submitted && checkoutForm.get('firstName')?.invalid" class="alert alert-danger">
-                <div *ngIf="checkoutForm.get('firstName')?.hasError('required')">First Name is required</div>
-              </div>
-            </div>
-
-            <div class="col-sm-6 col-12">
-              <input
-                type="text"
-                class="form-control form-format"
-                id="lastName"
-                formControlName="lastName"
-                placeholder="Last Name *"
-              />
-              <div *ngIf="submitted && checkoutForm.get('lastName')?.invalid" class="alert alert-danger">
-                <div *ngIf="checkoutForm.get('lastName')?.hasError('required')">Last Name is required</div>
-              </div>
-            </div>
-
-            <div class="col-12">
-              <input
                 type="email"
                 class="form-control form-format"
                 id="email"
@@ -141,7 +102,7 @@
                 class="form-control form-format"
                 id="phone"
                 formControlName="phone"
-                placeholder="Phone"
+                placeholder="Phone*"
               />
             </div>
 
@@ -151,7 +112,7 @@
                 class="form-control form-format"
                 id="address"
                 formControlName="address"
-                placeholder="Address"
+                placeholder="Address*"
               />
             </div>
 
@@ -212,7 +173,12 @@
             <div class="col-12">
               <div class="checkoutButtons">
                 <button class="checkoutButton1" [routerLink]="'/checkout'"><span class="checkoutButton1Text">Back</span></button>
-                <button class="checkoutButton2" type="submit"><span class="checkoutButton2Text">Checkout</span></button>
+                <button (click)="handlePayment()"
+                        [disabled]="paymentState === PaymentState.LOADING"
+                        class="checkoutButton2">
+                  <span *ngIf="paymentState !== PaymentState.LOADING" class="checkoutButton2Text">Payer {{ getTotalPrice() | currency:'EUR' }}</span>
+                  <span *ngIf="paymentState === PaymentState.LOADING">Traitement...</span>
+                </button>
               </div>
             </div>
           </div>
@@ -270,5 +236,39 @@
         </div>
       </div>
     </div>
+
+
+
+    <!-- Remplacer les messages d'erreur et de succès par ceci: -->
+    <div id="stripe-payment-overlay" style="display: none;">
+      <div id="stripe-payment-modal">
+        <div id="stripe-payment-form">
+          <h3>Paiement sécurisé</h3>
+
+          <!-- Élément Stripe -->
+          <div id="payment-element"></div>
+
+          <!-- Bouton de paiement avec état -->
+          <button (click)="handlePayment()"
+                  [disabled]="paymentState === PaymentState.LOADING"
+                  class="pay-button">
+            <span *ngIf="paymentState !== PaymentState.LOADING">Payer {{ getTotalPrice() | currency:'EUR' }}</span>
+            <span *ngIf="paymentState === PaymentState.LOADING">Traitement...</span>
+          </button>
+
+          <!-- Message d'erreur -->
+          <div *ngIf="paymentState === PaymentState.ERROR" class="payment-error">
+            {{ errorMessage }}
+          </div>
+
+          <!-- Message de succès -->
+          <div *ngIf="paymentState === PaymentState.SUCCESS" class="success-message">
+            Paiement réussi! Votre commande a été confirmée.
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+
+

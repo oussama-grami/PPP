@@ -38,6 +38,7 @@ import {RoutesEnum} from "./enumerations/Routes.enum";
 import {EventFormComponent} from "./Components/event-form/event-form.component";
 import {EventFootprintComponent} from "./Components/event-footprint/event-footprint.component";
 import {EventResultComponent} from "./Components/event-result/event-result.component";
+import {PaymentConfirmationComponent} from "./Components/payment-confirmation/payment-confirmation.component";
 
 const routes: Routes = [
     {path: '', component: HomeComponent},
@@ -70,6 +71,7 @@ const routes: Routes = [
     {path: 'prediction-info', component: CarbonPredictionInfoComponent},
     {path: 'historical-carbon-forecast', component: HistoricalCarbonForecastComponent},
     {path: RoutesEnum.TRANSACTIONS, component: TransactionsComponent},
+    { path: 'payment-confirmation', component: PaymentConfirmationComponent },
     {
         path: "test", component: InstructionsListComponent, data: {
             instructions: [

@@ -55,6 +55,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { EventFormComponent } from './Components/event-form/event-form.component';
 import { EventFootprintComponent } from './Components/event-footprint/event-footprint.component';
 import { EventResultComponent } from './Components/event-result/event-result.component';
+import { PaymentConfirmationComponent } from './Components/payment-confirmation/payment-confirmation.component';
 
 @NgModule({
   declarations: [
@@ -105,6 +106,7 @@ import { EventResultComponent } from './Components/event-result/event-result.com
     EventFormComponent,
     EventFootprintComponent,
     EventResultComponent,
+    PaymentConfirmationComponent,
   ],
   imports: [
     BrowserModule,
