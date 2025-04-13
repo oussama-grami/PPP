@@ -16,7 +16,4 @@ public interface EsgResponseRepo extends JpaRepository<EsgResponse, Long> {
     List<EsgResponse> findByEsgQuestionCategoryAndCompanyOwnerId(EsgCategory category, Long companyId);
 
 
-
-
-
 }

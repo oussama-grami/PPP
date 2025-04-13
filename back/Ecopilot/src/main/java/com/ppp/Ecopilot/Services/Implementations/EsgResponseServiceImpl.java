@@ -1,6 +1,7 @@
 package com.ppp.Ecopilot.Services.Implementations;
 
 import com.ppp.Ecopilot.DTO.EsgResponseDTO;
+import com.ppp.Ecopilot.DTO.EsgResponsesByCategoryDTO;
 import com.ppp.Ecopilot.Entities.CompanyOwner;
 import com.ppp.Ecopilot.Entities.EsgOption;
 import com.ppp.Ecopilot.Entities.EsgQuestion;
@@ -32,6 +33,20 @@ public class EsgResponseServiceImpl implements EsgResponseService {
     public List<EsgResponseDTO> getEsgResponsesByCategory(EsgCategory category, Long companyId) {
         List<EsgResponse> esgResponses = esgResponseRepo.findByEsgQuestionCategoryAndCompanyOwnerId(category, companyId);
         return esgResponseMapper.toDtoList(esgResponses);
+    }
+
+    public List<EsgResponsesByCategoryDTO> getAllEsgResponsesByCategory(Long companyId) {
+        // Fetch and group responses by category
+        List<EsgResponsesByCategoryDTO> responsesByCategory = List.of(EsgCategory.values()).stream()
+                .map(category -> new EsgResponsesByCategoryDTO(
+                        category, // Pass the EsgCategory directly
+                        esgResponseMapper.toDtoList(
+                                esgResponseRepo.findByEsgQuestionCategoryAndCompanyOwnerId(category, companyId)
+                        )
+                ))
+                .toList();
+
+        return responsesByCategory;
     }
 
     @Override

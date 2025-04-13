@@ -2,6 +2,8 @@ package com.ppp.Ecopilot.Services;
 
 
 
+import com.ppp.Ecopilot.DTO.EsgResponseDTO;
+import com.ppp.Ecopilot.DTO.EsgResponsesByCategoryDTO;
 import com.ppp.Ecopilot.DTO.EsgResultDTO;
 import com.ppp.Ecopilot.Entities.EsgQuestion;
 
@@ -17,4 +19,4 @@ public interface EsgService {
     EsgResultDTO calculateEsg(Long CompanyId);
 
 
-    }
+}

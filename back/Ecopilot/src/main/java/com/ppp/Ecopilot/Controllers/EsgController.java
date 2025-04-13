@@ -2,7 +2,7 @@ package com.ppp.Ecopilot.Controllers;
 
 
 import com.ppp.Ecopilot.DTO.EsgQuestionDTO;
-import com.ppp.Ecopilot.DTO.EsgResponseDTO;
+import com.ppp.Ecopilot.DTO.EsgResponsesByCategoryDTO;
 import com.ppp.Ecopilot.DTO.EsgResultDTO;
 import com.ppp.Ecopilot.Enums.EsgCategory;
 import com.ppp.Ecopilot.Services.EsgQuestionService;
@@ -39,10 +39,10 @@ public class EsgController  {
 
 
     @GetMapping("/responses")
-    public List<EsgResponseDTO> getEsgResponses(@RequestParam Long companyId) {
-
-        return esgResponseService.getEsgResponsesByCategory(EsgCategory.values()[0], companyId);
+    public List<EsgResponsesByCategoryDTO> getEsgResponses(@RequestParam Long companyId) {
+        return esgResponseService.getAllEsgResponsesByCategory(companyId);
     }
+
 
     @GetMapping("/calculate")
     public EsgResultDTO calculateEsg(@RequestParam Long companyId) {
