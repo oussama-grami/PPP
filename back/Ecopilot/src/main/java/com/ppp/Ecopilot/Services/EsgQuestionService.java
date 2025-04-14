@@ -8,9 +8,9 @@ import java.util.List;
 
 public interface EsgQuestionService  extends CRUDService<EsgQuestion, Long> {
 
-
+    EsgQuestionDTO getQuestioById (Long id);
     List<EsgQuestionDTO> loadQuestionByCategoryWithOption(EsgCategory category);
     List<EsgQuestion> findByCategory(String category);
     void saveAll(List<EsgQuestion> questions);
-
+    List<EsgQuestionDTO> getAll();
 }

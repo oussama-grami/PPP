@@ -14,6 +14,8 @@ import java.util.List;
 public interface EsgResponseRepo extends JpaRepository<EsgResponse, Long> {
     @EntityGraph(attributePaths = {"esgQuestion", "esgOption"})
     List<EsgResponse> findByEsgQuestionCategoryAndCompanyOwnerId(EsgCategory category, Long companyId);
+    @EntityGraph(attributePaths = {"esgQuestion", "esgOption"})
+    EsgResponse findByCompanyOwnerIdAndEsgQuestionId(long companyId , long questionId);
 
 
 }

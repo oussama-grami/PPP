@@ -26,7 +26,7 @@ public class CompanyOwnerServiceImpl extends AbstractCrudService<CompanyOwner, L
 
     @Override
     protected Class<CompanyOwner> getEntityClass() {
-        return null;
+        return CompanyOwner.class;
     }
 
 

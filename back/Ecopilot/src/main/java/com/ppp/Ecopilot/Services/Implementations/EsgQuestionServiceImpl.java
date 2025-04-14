@@ -3,6 +3,7 @@ package com.ppp.Ecopilot.Services.Implementations;
 import com.ppp.Ecopilot.DTO.EsgQuestionDTO;
 import com.ppp.Ecopilot.Entities.EsgOption;
 import com.ppp.Ecopilot.Enums.EsgCategory;
+import com.ppp.Ecopilot.Mappers.EsgOptionMapper;
 import com.ppp.Ecopilot.Mappers.EsgQuestionMapper;
 import com.ppp.Ecopilot.Repositories.EsgQuestionRepo;
 import com.ppp.Ecopilot.Entities.EsgQuestion;
@@ -19,10 +20,12 @@ public class EsgQuestionServiceImpl extends AbstractCrudService<EsgQuestion, Lon
     private final EsgQuestionRepo esgQuestionRepo;
     private final EsgQuestionMapper esgQuestionMapper;
     private final EsgOptionServiceImpl esgOptionService;
-    public EsgQuestionServiceImpl(EsgQuestionRepo esgQuestionRepo, EsgQuestionMapper esgQuestionMapper, EsgOptionServiceImpl esgOptionService) {
+    private final EsgOptionMapper esgOptionMapper;
+    public EsgQuestionServiceImpl(EsgQuestionRepo esgQuestionRepo, EsgQuestionMapper esgQuestionMapper, EsgOptionServiceImpl esgOptionService, EsgOptionMapper esgOptionMapper) {
         this.esgQuestionRepo = esgQuestionRepo;
         this.esgQuestionMapper = esgQuestionMapper;
         this.esgOptionService = esgOptionService;
+        this.esgOptionMapper = esgOptionMapper;
     }
 
     @Override
@@ -41,6 +44,18 @@ public class EsgQuestionServiceImpl extends AbstractCrudService<EsgQuestion, Lon
     }
 
     @Override
+    public EsgQuestionDTO getQuestioById(Long id) {
+        Optional<EsgQuestion> question = esgQuestionRepo.findById(id);
+        if (question.isPresent()) {
+            EsgQuestionDTO dto = esgQuestionMapper.toDto(question.get());
+            List<EsgOption> options = esgOptionService.findByEsgQuestionId(id);
+            dto.setOptions(options.stream().map(esgOptionMapper::toDto).collect(Collectors.toList()));
+            return dto;
+        }
+        return null;
+    }
+
+    @Override
     public List<EsgQuestionDTO> loadQuestionByCategoryWithOption(EsgCategory category) {
         return this.esgQuestionRepo.findByCategory(category).stream()
                 .map(esgQuestionMapper::toDto)
@@ -53,4 +68,17 @@ public class EsgQuestionServiceImpl extends AbstractCrudService<EsgQuestion, Lon
     public void saveAll(List<EsgQuestion> questions) {
         esgQuestionRepo.saveAll(questions);
     }
-}
+
+    @Override
+    public List<EsgQuestionDTO> getAll() {
+        List<EsgQuestion> questions = esgQuestionRepo.findAll();
+        return questions.stream()
+                .map(question -> {
+                    EsgQuestionDTO dto = esgQuestionMapper.toDto(question);
+                    List<EsgOption> options = esgOptionService.findByEsgQuestionId(question.getId());
+                    dto.setOptions(options.stream().map(esgOptionMapper::toDto).collect(Collectors.toList()));
+                    return dto;
+                })
+                .collect(Collectors.toList());
+    }
+    }

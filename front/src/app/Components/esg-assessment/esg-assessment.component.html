@@ -1,4 +1,4 @@
-<app-esg-header [currentQuestion]="currentQuestion"></app-esg-header>
+<app-esg-header [currentQuestion]="currentQuestionIndex+1"></app-esg-header>
 <div class="container" style="display: flex; flex-direction: column; justify-content: space-between;margin-top: 50px;">
   <div *ngIf="warnUser" class="alert alert-warning alert-dismissible fade show" role="alert">
     You should select an answer!

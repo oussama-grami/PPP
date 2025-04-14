@@ -1,9 +1,7 @@
 package com.ppp.Ecopilot.Controllers;
 
 
-import com.ppp.Ecopilot.DTO.EsgQuestionDTO;
-import com.ppp.Ecopilot.DTO.EsgResponsesByCategoryDTO;
-import com.ppp.Ecopilot.DTO.EsgResultDTO;
+import com.ppp.Ecopilot.DTO.*;
 import com.ppp.Ecopilot.Enums.EsgCategory;
 import com.ppp.Ecopilot.Services.EsgQuestionService;
 import com.ppp.Ecopilot.Services.EsgResponseService;
@@ -18,6 +16,9 @@ import java.util.List;
 @RequestMapping("/esg")
 @RequiredArgsConstructor
 
+
+@CrossOrigin(origins = "http://localhost:4200") // Port Angular
+
 public class EsgController  {
 
     private final EsgService esgService;
@@ -25,29 +26,42 @@ public class EsgController  {
     private final EsgResponseService esgResponseService;
 
 
-    @GetMapping("/questions")
-    public List<EsgQuestionDTO> getEsgQuestions(@RequestParam(required = false) EsgCategory category) {
+    /*@GetMapping("/questions")
+    public List<EsgQuestionDTO> getEsgQuestionsByCategory(@RequestParam(required = false) EsgCategory category) {
         // If category is not provided, handle accordingly
 
         return esgQuestionService.loadQuestionByCategoryWithOption(category);
+    }*/
+
+    @GetMapping("/questions")
+    public List<EsgQuestionDTO> getAllQuestions(){
+            return esgQuestionService.getAll();
     }
 
     @PostMapping("/responses")
-    public void saveEsgResponse(@RequestParam Long questionId, @RequestParam Long optionId, @RequestParam Long companyId) {
-        esgResponseService.saveEsgResponse(questionId, optionId, companyId);
+   public EsgResponseDTO saveEsgResponse(@RequestBody CreateResponseDTO dto) {
+        return esgResponseService.save(dto);
     }
 
 
     @GetMapping("/responses")
-    public List<EsgResponsesByCategoryDTO> getEsgResponses(@RequestParam Long companyId) {
+    public List<EsgResponsesByCategoryDTO> getEsgResponses() {
+        long companyId = 7; // Replace with actual company ID
         return esgResponseService.getAllEsgResponsesByCategory(companyId);
     }
 
 
     @GetMapping("/calculate")
-    public EsgResultDTO calculateEsg(@RequestParam Long companyId) {
+    public EsgResultDTO calculateEsg() {
+        long companyId = 7; // Replace with actual company ID
+        return esgService.calculateEsg();
+    }
 
-        return esgService.calculateEsg(companyId);
+
+
+    @GetMapping("/question/{questionId}")
+    public EsgQuestionDTO getEsgQuestionById(@PathVariable Long questionId) {
+        return esgQuestionService.getQuestioById(questionId);
     }
 
 

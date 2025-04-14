@@ -23,9 +23,11 @@ import java.util.List;
 public class EsgQuestion extends BaseEntity<Long> {
     @Column(nullable = false)
     private String text;
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private EsgCategory category;
+
     @OneToMany(mappedBy = "esgQuestion", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<EsgOption> esgOptions;
 

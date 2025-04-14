@@ -29,11 +29,11 @@ public class EsgServiceImpl  implements com.ppp.Ecopilot.Services.EsgService {
 
 
     @Override
-    public EsgResultDTO calculateEsg(Long CompanyId) {
-
-        List<EsgResponseDTO> EnvironmentResponses = esgResponseService.getEsgResponsesByCategory(EsgCategory.ENVIRONMENTAL, CompanyId);
-        List<EsgResponseDTO> SocialResponses = esgResponseService.getEsgResponsesByCategory(EsgCategory.SOCIAL, CompanyId);
-        List<EsgResponseDTO> GovernanceResponses = esgResponseService.getEsgResponsesByCategory(EsgCategory.GOVERNANCE, CompanyId);
+    public EsgResultDTO calculateEsg() {
+        Long CompanyId = 7L; // Replace with actual company ID
+        List<EsgResponseDTO> EnvironmentResponses = esgResponseService.getEsgResponsesByCategoryAndCompanyId(EsgCategory.ENVIRONMENTAL, CompanyId);
+        List<EsgResponseDTO> SocialResponses = esgResponseService.getEsgResponsesByCategoryAndCompanyId(EsgCategory.SOCIAL, CompanyId);
+        List<EsgResponseDTO> GovernanceResponses = esgResponseService.getEsgResponsesByCategoryAndCompanyId(EsgCategory.GOVERNANCE, CompanyId);
         EsgResultDTO results = new EsgResultDTO();
 
         results.setEnvironment(calculateCategoryScore(EnvironmentResponses));
@@ -52,7 +52,7 @@ public class EsgServiceImpl  implements com.ppp.Ecopilot.Services.EsgService {
 
             total+=response.getScore();
         }
-        return Math.round(total / (float) responses.size());
+        return total;
     }
 
 

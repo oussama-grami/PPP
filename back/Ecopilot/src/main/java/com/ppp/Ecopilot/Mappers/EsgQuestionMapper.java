@@ -12,13 +12,11 @@ import java.util.stream.Collectors;
 @Service
 public class EsgQuestionMapper implements EntityMapper<EsgQuestion, EsgQuestionDTO> {
 
-    public EsgOptionDTO MapOptionsToDto(EsgOption option) {
-        return new EsgOptionDTO(
-                option.getId(),
-                option.getText(),
-                option.getScore()
-        );
+    private final EsgOptionMapper esgOptionMapper;
+    public EsgQuestionMapper(EsgOptionMapper esgOptionMapper) {
+        this.esgOptionMapper = esgOptionMapper;
     }
+
 
     @Override
     public EsgQuestion toEntity(EsgQuestionDTO dto) {
@@ -29,6 +27,7 @@ public class EsgQuestionMapper implements EntityMapper<EsgQuestion, EsgQuestionD
         EsgQuestion question = new EsgQuestion();
         question.setId(dto.getId());
         question.setText(dto.getText());
+        question.setCategory(dto.getCategory());
         question.setEsgOptions(dto.getOptions().stream()
                 .map(optionDto -> {
                     EsgOption option = new EsgOption();
@@ -50,8 +49,9 @@ public class EsgQuestionMapper implements EntityMapper<EsgQuestion, EsgQuestionD
         EsgQuestionDTO dto = new EsgQuestionDTO();
         dto.setId(entity.getId());
         dto.setText(entity.getText());
+        dto.setCategory(entity.getCategory());
         dto.setOptions(entity.getEsgOptions().stream()
-                .map(this::MapOptionsToDto)
+                .map(esgOptionMapper::toDto)
                 .collect(Collectors.toList()));
         return dto;
     }

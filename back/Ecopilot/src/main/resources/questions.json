@@ -12,22 +12,22 @@
       {
         "id": 2,
         "text": "General objectives but no concrete actions",
-        "score": 1
+        "score": 2
       },
       {
         "id": 3,
         "text": "Partially implemented action plan",
-        "score": 2
+        "score": 6
       },
       {
         "id": 4,
         "text": "Structured action plan with regular monitoring",
-        "score": 3
+        "score": 6
       },
       {
         "id": 5,
         "text": "Certification or validated commitment",
-        "score": 4
+        "score": 8
       }
     ]
   },
@@ -44,22 +44,22 @@
       {
         "id": 2,
         "text": "Limited recycling program",
-        "score": 1
+        "score": 2
       },
       {
         "id": 3,
         "text": "Systematic recycling with reporting",
-        "score": 2
+        "score": 4
       },
       {
         "id": 4,
         "text": "Advanced circular approach",
-        "score": 3
+        "score": 6
       },
       {
         "id": 5,
         "text": "Waste management certification",
-        "score": 4
+        "score": 8
       }
     ]
   },
@@ -76,22 +76,22 @@
       {
         "id": 2,
         "text": "Less than 20% renewable energy",
-        "score": 1
+        "score": 2
       },
       {
         "id": 3,
         "text": "Between 20% and 50% renewable energy",
-        "score": 2
+        "score": 4
       },
       {
         "id": 4,
         "text": "More than 50% renewable energy",
-        "score": 3
+        "score": 6
       },
       {
         "id": 5,
         "text": "100% renewable and carbon neutral",
-        "score": 4
+        "score": 8
       }
     ]
   },
@@ -108,22 +108,22 @@
       {
         "id": 2,
         "text": "Tracking but no reduction measures",
-        "score": 1
+        "score": 2
       },
       {
         "id": 3,
         "text": "Water-saving measures in place",
-        "score": 2
+        "score": 4
       },
       {
         "id": 4,
         "text": "Water recycling and reuse",
-        "score": 3
+        "score": 6
       },
       {
         "id": 5,
         "text": "Water management certification",
-        "score": 4
+        "score": 8
       }
     ]
   },
@@ -140,22 +140,22 @@
       {
         "id": 2,
         "text": "Limited measures to protect biodiversity",
-        "score": 1
+        "score":2
       },
       {
         "id": 3,
         "text": "Active program with monitoring",
-        "score": 2
+        "score": 4
       },
       {
         "id": 4,
         "text": "Direct contribution to environmental preservation",
-        "score": 3
+        "score": 6
       },
       {
         "id": 5,
         "text": "Biodiversity certification",
-        "score": 4
+        "score": 8
       }
     ]
   },
@@ -172,22 +172,22 @@
       {
         "id": 2,
         "text": "Written policy but not applied",
-        "score": 1
+        "score": 2
       },
       {
         "id": 3,
         "text": "Active program with training",
-        "score": 2
+        "score": 4
       },
       {
         "id": 4,
         "text": "Concrete inclusion measures with monitoring",
-        "score": 3
+        "score": 6
       },
       {
         "id": 5,
         "text": "Certifications and official recognition",
-        "score": 4
+        "score": 8
       }
     ]
   },
@@ -204,22 +204,22 @@
       {
         "id": 2,
         "text": "Basic measures but not formalized",
-        "score": 1
+        "score": 2
       },
       {
         "id": 3,
         "text": "Structured program with regular audits",
-        "score": 2
+        "score": 4
       },
       {
         "id": 4,
         "text": "Advanced tracking and continuous improvement",
-        "score": 3
+        "score": 6
       },
       {
         "id": 5,
         "text": "Safety certification",
-        "score": 4
+        "score": 8
       }
     ]
   },
@@ -236,22 +236,22 @@
       {
         "id": 2,
         "text": "Some benefits but limited",
-        "score": 1
+        "score": 2
       },
       {
         "id": 3,
         "text": "Active well-being programs",
-        "score": 2
+        "score": 4
       },
       {
         "id": 4,
         "text": "Strong engagement with employee satisfaction",
-        "score": 3
+        "score": 6
       },
       {
         "id": 5,
         "text": "Certification or quality of work life label",
-        "score": 4
+        "score": 8
       }
     ]
   },
@@ -268,22 +268,22 @@
       {
         "id": 2,
         "text": "General policies without control",
-        "score": 1
+        "score": 2
       },
       {
         "id": 3,
         "text": "Strict regulation with monitoring",
-        "score": 2
+        "score": 4
       },
       {
         "id": 4,
         "text": "Regular audits and certifications",
-        "score": 3
+        "score": 6
       },
       {
         "id": 5,
         "text": "International standards followed",
-        "score": 4
+        "score": 8
       }
     ]
   },
@@ -300,22 +300,22 @@
       {
         "id": 2,
         "text": "Occasional support actions",
-        "score": 1
+        "score": 2
       },
       {
         "id": 3,
         "text": "Social investment program",
-        "score": 2
+        "score": 4
       },
       {
         "id": 4,
         "text": "Active partnerships with associations",
-        "score": 3
+        "score": 6
       },
       {
         "id": 5,
         "text": "Formalized engagement with monitoring",
-        "score": 4
+        "score": 8
       }
     ]
   },
@@ -332,22 +332,22 @@
       {
         "id": 2,
         "text": "Policy exists but not applied",
-        "score": 1
+        "score": 2
       },
       {
         "id": 3,
         "text": "Formalized and followed policy",
-        "score": 2
+        "score": 4
       },
       {
         "id": 4,
         "text": "Advanced best practices",
-        "score": 3
+        "score": 6
       },
       {
         "id": 5,
         "text": "Corporate governance certification",
-        "score": 4
+        "score": 8
       }
     ]
   },
@@ -364,22 +364,22 @@
       {
         "id": 2,
         "text": "Limited transparency",
-        "score": 1
+        "score": 2
       },
       {
         "id": 3,
         "text": "Regular communication and internal audits",
-        "score": 2
+        "score": 4
       },
       {
         "id": 4,
         "text": "Full transparency and external reporting",
-        "score": 3
+        "score": 6
       },
       {
         "id": 5,
         "text": "Ethics and transparency certification",
-        "score": 4
+        "score": 8
       }
     ]
   },
@@ -396,22 +396,22 @@
       {
         "id": 2,
         "text": "Management policy but not applied",
-        "score": 1
+        "score": 2
       },
       {
         "id": 3,
         "text": "Structured process with monitoring",
-        "score": 2
+        "score": 4
       },
       {
         "id": 4,
         "text": "Proactive management and strict controls",
-        "score": 3
+        "score": 6
       },
       {
         "id": 5,
         "text": "Certification and external audits",
-        "score": 4
+        "score": 8
       }
     ]
   },
@@ -428,22 +428,22 @@
       {
         "id": 2,
         "text": "Formal policy but no follow-up",
-        "score": 1
+        "score": 2
       },
       {
         "id": 3,
         "text": "Regular follow-up with employee training",
-        "score": 2
+        "score": 4
       },
       {
         "id": 4,
         "text": "Certification and ethical recognition",
-        "score": 3
+        "score": 6
       },
       {
         "id": 5,
         "text": "Strong CSR commitment",
-        "score": 4
+        "score": 8
       }
     ]
   },
@@ -460,22 +460,22 @@
       {
         "id": 2,
         "text": "Limited stakeholder consultation",
-        "score": 1
+        "score": 2
       },
       {
         "id": 3,
         "text": "Regular engagement and structured dialogue",
-        "score": 2
+        "score": 4
       },
       {
         "id": 4,
         "text": "Co-creation of decisions with stakeholders",
-        "score": 3
+        "score": 6
       },
       {
         "id": 5,
         "text": "Certification or label for stakeholder involvement",
-        "score": 4
+        "score": 8
       }
     ]
   }

@@ -16,7 +16,7 @@ import java.util.Map;
 @Service
 public interface EsgService {
 
-    EsgResultDTO calculateEsg(Long CompanyId);
+    EsgResultDTO calculateEsg();
 
 
 }

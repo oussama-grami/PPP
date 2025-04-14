@@ -1,5 +1,7 @@
 export interface Option {
+    id:number;
     text: string;
-    isSelected: boolean;
-    score: number; // Add the 'score' property to the Option interface
+    score: number; 
+
+    isSelected?: boolean;
   }

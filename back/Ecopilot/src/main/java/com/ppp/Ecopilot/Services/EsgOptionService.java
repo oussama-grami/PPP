@@ -8,6 +8,6 @@ import java.util.List;
 
 
 @Service
-public interface EsgOptionService {
+public interface EsgOptionService extends CRUDService<EsgOption,Long> {
     public List<EsgOption> findByEsgQuestionId(Long questionId);
 }
