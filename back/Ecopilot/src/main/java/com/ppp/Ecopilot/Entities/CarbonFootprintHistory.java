@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
-import java.util.Date;
+import java.time.YearMonth;
 
 @Getter
 @Setter
@@ -18,14 +18,19 @@ import java.util.Date;
 @Entity
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,
         property = "id")
-public class CarboneFootprintHistory extends BaseEntity<Long> {
+
+@Table(
+        uniqueConstraints = @UniqueConstraint(columnNames = {"date"})
+)
+public class CarbonFootprintHistory extends BaseEntity<Long> {
     @Column(nullable = false)
-    private Date date;
+    private YearMonth date;
+
     @Column(nullable = false)
     private boolean predicted;
     @Column(nullable = false)
-    private int value;
-    @ManyToOne(cascade = CascadeType.ALL)
+    private double value;
+    @ManyToOne()
     @JoinColumn(name = "companyOwner_id")
     private CompanyOwner companyOwner;
 }

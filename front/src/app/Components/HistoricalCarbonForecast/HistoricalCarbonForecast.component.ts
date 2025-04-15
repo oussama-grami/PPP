@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { CarbonFootprintData, HistoricalPredictionService } from '../../Service/historical-prediction.service';
+import { HistoricalPredictionService } from '../../Service/historical-prediction.service';
 import { Chart } from 'chart.js';
 import { RoutesEnum } from 'src/app/enumerations/Routes.enum';
+import { CarbonFootprintData } from '../../Models/carbonFooprintData';
 @Component({
   selector: 'app-HistoricalCarbonForecast',
   templateUrl: './HistoricalCarbonForecast.component.html',
@@ -22,7 +23,6 @@ export class HistoricalCarbonForecastComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadData();
-    this.createChart();
   }
 
   loadData(): void {
@@ -30,6 +30,8 @@ export class HistoricalCarbonForecastComponent implements OnInit {
       this.carbonData = data;
       this.chartData = this.carbonData.map(item => item.value);
       this.chartLabels = this.carbonData.map(item => item.date);
+      this.createChart();
+
     });
   }
   
@@ -106,15 +108,16 @@ export class HistoricalCarbonForecastComponent implements OnInit {
   
   
   addElement(): void {
-    const lastId = this.carbonData.length > 0 ? this.carbonData[this.carbonData.length - 1].id : 0;
-    this.newEntry = { id: lastId + 1, date: '', value: 0 , predicted: false }; // Initialize new entry
+    this.newEntry = { date: '',predicted: false, value: 0 }; 
   }
 
   saveNewElement(): void {
+    console.log('New entry:', this.newEntry);
     if (this.newEntry && this.newEntry.date && this.newEntry.value) {
+    
       this.carbonFootprintService.addData(this.newEntry).subscribe(() => {
-        this.newEntry = null; // Clear the new entry
-        this.loadData(); // Reload data to update chart
+        this.newEntry = null; 
+        this.loadData(); 
         this.createChart();
       });
     }
@@ -161,7 +164,7 @@ export class HistoricalCarbonForecastComponent implements OnInit {
   saveEdit(element: CarbonFootprintData, newValue: number): void {
     if (element.id !== undefined) {
       const updatedElement = { ...element, value: newValue };
-      this.carbonFootprintService.updateData(updatedElement).subscribe(() => {
+      this.carbonFootprintService.updateData(element.id,updatedElement).subscribe(() => {
         this.editingElementId = null; // Exit edit mode
         this.loadData(); // Reload data to update chart
         this.createChart();

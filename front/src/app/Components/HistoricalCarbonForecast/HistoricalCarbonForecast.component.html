@@ -67,7 +67,8 @@
                 </tr>
                 <tr *ngIf="newEntry">
                   <td>
-                    <input type="date" [(ngModel)]="newEntry.date" class="form-control form-control-sm">
+                    <input type="month" [(ngModel)]="newEntry.date" class="form-control form-control-sm">
+
                   </td>
                   <td>
                     <input type="number" [(ngModel)]="newEntry.value" class="form-control form-control-sm">

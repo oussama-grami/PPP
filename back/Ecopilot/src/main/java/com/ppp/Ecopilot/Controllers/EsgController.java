@@ -2,7 +2,6 @@ package com.ppp.Ecopilot.Controllers;
 
 
 import com.ppp.Ecopilot.DTO.*;
-import com.ppp.Ecopilot.Enums.EsgCategory;
 import com.ppp.Ecopilot.Services.EsgQuestionService;
 import com.ppp.Ecopilot.Services.EsgResponseService;
 import com.ppp.Ecopilot.Services.EsgService;
