@@ -9,7 +9,8 @@ import { RoutesEnum } from 'src/app/enumerations/Routes.enum';
 @Component({
   selector: 'app-esg-assessment',
   templateUrl: './esg-assessment.component.html',
-  styleUrls: ['./esg-assessment.component.css']
+  styleUrls: ['./esg-assessment.component.css'],
+  
 })
 export class EsgAssessmentComponent implements OnInit {
   questions: Question[] = []; 
@@ -20,7 +21,8 @@ export class EsgAssessmentComponent implements OnInit {
   warnUser: boolean = false;
   res: EsgResult = {} as EsgResult;
   routesEnum = RoutesEnum;
-  selectedOption: Option | null = null; // Track the selected option
+  selectedOption: Option | null = null; 
+  loading: boolean = true;
 
   constructor(
     private esgService: EsgService,
@@ -29,23 +31,21 @@ export class EsgAssessmentComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    
-
+    // Start loading questions asynchronously
     this.esgService.loadQuestions().subscribe((data) => {
-    this.questions = data;
-    
-    // Get current index (useful for routing/bookmarking)
-    this.route.params.subscribe(params => {
-      const questionId = +params['questionId'];
-      const index = this.questions.findIndex(q => q.id === questionId);
-      if (index >= 0) {
-        this.esgService.setCurrentIndex(index);
-      }
-      this.loadCurrentQuestion();
+      this.questions = data;
+      this.route.params.subscribe(params => {
+        const questionId = +params['questionId'];
+        const index = this.questions.findIndex(q => q.id === questionId);
+        if (index >= 0) {
+          this.esgService.setCurrentIndex(index);
+        }
+        this.loadCurrentQuestion();
+        this.loading = false;  // Stop loading after data is ready
+      });
     });
-  });
-   
   }
+
   loadCurrentQuestion() {
     this.currentQuestionIndex = this.esgService.getCurrentIndex();
     this.question = this.esgService.getCurrentQuestion();
@@ -56,7 +56,6 @@ export class EsgAssessmentComponent implements OnInit {
     this.choiceSelected = false;
     this.warnUser = false;
   }
-
  
   warning() {
     this.warnUser = true;
@@ -79,21 +78,25 @@ export class EsgAssessmentComponent implements OnInit {
     const selectedIndex = this.selectedOption.id;
     const questionId = this.question!.id;
   
-    this.esgService.updateResponse(questionId, selectedIndex).subscribe(() => {
-      if (!this.esgService.next()) {
-        this.esgService.calculateEsg().subscribe((res) => {
-          this.res = res;
-          this.router.navigate([`/${this.routesEnum.RESULT_ESG}`]);
-        });
-      } else {
-        const nextQuestion = this.esgService.getCurrentQuestion();
-        this.router.navigate([
-          nextQuestion ? `/${this.routesEnum.ESG_ASSESSMENT.replace(':questionId', nextQuestion.id.toString())}` : `/${this.routesEnum.ESG}`
-        ]);
-        this.loadCurrentQuestion();
-      }
+    const hasNext = this.esgService.next();
+    const nextQuestion = this.esgService.getCurrentQuestion();
+    if (hasNext && nextQuestion) {
+      this.router.navigate([
+        `/${this.routesEnum.ESG_ASSESSMENT.replace(':questionId', nextQuestion.id.toString())}`
+      ]);
+      this.loadCurrentQuestion();
+    } else {
+      this.esgService.calculateEsg().subscribe((res) => {
+        this.res = res;
+        this.router.navigate([`/${this.routesEnum.RESULT_ESG}`]);
+      });
+    }
+  
+    this.esgService.updateResponse(questionId, selectedIndex).subscribe({
+      error: err => console.error('Failed to save response', err)
     });
   }
+  
   
   goBack() {
     if (this.esgService.previous()) {

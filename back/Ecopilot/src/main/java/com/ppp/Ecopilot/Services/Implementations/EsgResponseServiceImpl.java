@@ -42,10 +42,9 @@ public class EsgResponseServiceImpl  implements EsgResponseService {
     }
 
     public List<EsgResponsesByCategoryDTO> getAllEsgResponsesByCategory(Long companyId) {
-        // Fetch and group responses by category
         List<EsgResponsesByCategoryDTO> responsesByCategory = List.of(EsgCategory.values()).stream()
                 .map(category -> new EsgResponsesByCategoryDTO(
-                        category, // Pass the EsgCategory directly
+                        category,
                         esgResponseMapper.toDtoList(
                                 esgResponseRepo.findByEsgQuestionCategoryAndCompanyOwnerId(category, companyId)
                         )
@@ -58,21 +57,16 @@ public class EsgResponseServiceImpl  implements EsgResponseService {
 
     @Override
     public EsgResponseDTO save(CreateResponseDTO dto) {
-        // Get the companyId dynamically (adjust as per your business logic, e.g., from DTO, session, etc.)
         long companyId = 7L;
 
-        // Check if an existing EsgResponse already exists for the given company and question
         EsgResponse existingResponse = esgResponseRepo.findByCompanyOwnerIdAndEsgQuestionId(companyId, dto.getQuestionId());
 
         EsgResponse esgResponse;
         if (existingResponse != null) {
-            // If the response exists, update it
             esgResponse = existingResponse;
         } else {
-            // If no existing response, create a new one
             esgResponse = new EsgResponse();
 
-            // Fetch and validate CompanyOwner
             CompanyOwner companyOwner = companyOwnerService.findById(companyId);
             if (companyOwner == null) {
                 throw new IllegalArgumentException("CompanyOwner not found for id: " + companyId);
@@ -80,24 +74,20 @@ public class EsgResponseServiceImpl  implements EsgResponseService {
             esgResponse.setCompanyOwner(companyOwner);
         }
 
-        // Set the EsgQuestion
         EsgQuestion esgQuestion = esgQuestionService.findById(dto.getQuestionId());
         if (esgQuestion == null) {
             throw new IllegalArgumentException("EsgQuestion not found for id: " + dto.getQuestionId());
         }
         esgResponse.setEsgQuestion(esgQuestion);
 
-        // Set the EsgOption
         EsgOption esgOption = esgOptionService.findById(dto.getOptionId());
         if (esgOption == null) {
             throw new IllegalArgumentException("EsgOption not found for id: " + dto.getOptionId());
         }
         esgResponse.setEsgOption(esgOption);
 
-        // Save or update the response
         esgResponseRepo.save(esgResponse);
 
-        // Return the DTO after mapping
         return esgResponseMapper.toDto(esgResponse);
     }
 

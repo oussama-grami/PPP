@@ -12,4 +12,5 @@ public interface EsgQuestionRepo extends JpaRepository<EsgQuestion, Long> {
     @EntityGraph(attributePaths = {"esgOptions"})
     List<EsgQuestion> findByCategory(EsgCategory esgCategory);
 
-}
+    @EntityGraph(attributePaths = {"esgOptions"})
+    List<EsgQuestion> findAll();}

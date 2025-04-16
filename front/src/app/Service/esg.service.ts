@@ -18,6 +18,7 @@ export class EsgService {
    
   }
   loadQuestions(): Observable<Question[]> {
+    console.log('Loading questions...');
     this.currentIndex = 0; 
     return new Observable((observer) => {
       if (this.questions.length > 0) {

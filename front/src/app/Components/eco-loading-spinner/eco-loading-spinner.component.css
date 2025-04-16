@@ -1,0 +1,68 @@
+.eco-loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    margin-top:100px;
+  }
+  
+  .eco-spinner {
+    width: 100px;
+    height: 100px;
+    position: relative;
+  }
+  
+  .eco-spinner-svg {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg); /* Start progress from top */
+  }
+  
+  .eco-track {
+    stroke: rgba(0,0,0,0.05);
+  }
+  
+  .eco-progress {
+    stroke: #388E3C;
+    stroke-dasharray: 283;
+    stroke-dashoffset: 283;
+    animation: eco-progress 1.5s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+  }
+  
+  .eco-icon {
+    animation: eco-float 2s ease-in-out infinite;
+    transform-origin: center;
+  }
+  
+  .eco-loading-text {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #616161;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+  }
+  
+  @keyframes eco-progress {
+    0% {
+      stroke-dashoffset: 283;
+    }
+    50% {
+      stroke-dashoffset: 0;
+    }
+    100% {
+      stroke-dashoffset: -283;
+    }
+  }
+  
+  @keyframes eco-float {
+    0%, 100% {
+      transform: translateY(0) rotate(0deg);
+      opacity: 1;
+    }
+    50% {
+      transform: translateY(-5px) rotate(2deg);
+      opacity: 0.9;
+    }
+  }

@@ -75,8 +75,7 @@ public class EsgQuestionServiceImpl extends AbstractCrudService<EsgQuestion, Lon
         return questions.stream()
                 .map(question -> {
                     EsgQuestionDTO dto = esgQuestionMapper.toDto(question);
-                    List<EsgOption> options = esgOptionService.findByEsgQuestionId(question.getId());
-                    dto.setOptions(options.stream().map(esgOptionMapper::toDto).collect(Collectors.toList()));
+                    dto.setOptions(question.getEsgOptions().stream().map(esgOptionMapper::toDto).collect(Collectors.toList()));
                     return dto;
                 })
                 .collect(Collectors.toList());
