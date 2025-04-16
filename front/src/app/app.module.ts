@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {AppRoutingModule} from './app-routing.module';
+
 import {AppComponent} from './app.component';
 import {HomeComponent} from './Components/home/home.component';
 import {EnergieComponent} from './Components/energie/energie.component';
@@ -56,7 +57,7 @@ import { EventFormComponent } from './Components/event-form/event-form.component
 import { EventFootprintComponent } from './Components/event-footprint/event-footprint.component';
 import { EventResultComponent } from './Components/event-result/event-result.component';
 import { PaymentConfirmationComponent } from './Components/payment-confirmation/payment-confirmation.component';
-
+import{ EcoLoadingSpinnerComponent } from './Components/eco-loading-spinner/eco-loading-spinner.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -107,6 +108,7 @@ import { PaymentConfirmationComponent } from './Components/payment-confirmation/
     EventFootprintComponent,
     EventResultComponent,
     PaymentConfirmationComponent,
+    EcoLoadingSpinnerComponent
   ],
   imports: [
     BrowserModule,
@@ -118,7 +120,7 @@ import { PaymentConfirmationComponent } from './Components/payment-confirmation/
     ReactiveFormsModule,
     MatTableModule,
     MatButtonModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
 
   ],
   providers: [],

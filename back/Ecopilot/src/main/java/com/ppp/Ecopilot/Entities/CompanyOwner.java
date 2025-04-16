@@ -12,7 +12,6 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
@@ -41,7 +40,7 @@ public class CompanyOwner extends User {
     private Roles role;
 
     @OneToMany(mappedBy = "companyOwner")
-    public List<CarboneFootprintHistory> carboneFootprintHistory;
+    public List<CarbonFootprintHistory> carboneFootprintHistory;
 
     @OneToMany(mappedBy = "companyOwner")
     public List<Score> scores;

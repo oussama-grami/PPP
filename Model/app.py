@@ -58,37 +58,43 @@ class EventData:
 
 
 app = Flask(__name__)
+@app.route('/forecast', methods=['POST'])
 
-@app.route("/predict-samar/", methods=["POST"])
-def predictSamar():
+def ForecastCarbonFootprint():
     try:
-        # Get the uploaded file from the request
         file = request.files['file']
 
-        # Read the CSV file
         content = file.stream.read().decode("utf-8")
-        df = pd.read_csv(StringIO(content))  # Use StringIO to read CSV content
+        df = pd.read_csv(StringIO(content))
 
-        # Ensure correct column names
-        if "date" not in df.columns or "carbon_footprint_kgCO2" not in df.columns:
-            return jsonify({"error": "CSV must contain 'date' and 'carbon_footprint_kgCO2' columns"}), 400
+        if "year" not in df.columns or "month" not in df.columns or "carbon_footprint_kgCO2" not in df.columns:
+            return jsonify({"error": "CSV must contain 'year', 'month', and 'carbon_footprint_kgCO2' columns"}), 400
 
-        # Convert 'date' column to datetime
-        df["date"] = pd.to_datetime(df["date"])
+        df['date'] = pd.to_datetime(df[['year', 'month']].assign(day=1))
 
-        # Train/Test Split (80% training data)
-        train_size = int(len(df) * 0.8)
-        train = df["carbon_footprint_kgCO2"][:train_size]
 
-        # Fit the Exponential Smoothing Model
+        train = df["carbon_footprint_kgCO2"]
+
         model = sm.tsa.ExponentialSmoothing(train, trend='mul', seasonal='add', seasonal_periods=12)
         fitted_model = model.fit()
 
-        # Predict the next 12 months
-        forecast = fitted_model.forecast(12).tolist()
+        forecast = fitted_model.forecast(6).tolist()
 
-        # Return only the predicted values as response
-        return jsonify({"predicted_carbon_footprint_kgCO2": forecast})
+       
+        last_date = df['date'].iloc[-1]  
+        forecast_dates = pd.date_range(start=last_date, periods=7, freq='M')[1:]  
+
+        forecast_df = pd.DataFrame({
+            "date": forecast_dates,
+            "carbon_footprint_kgCO2": forecast
+        })
+
+        forecast_df['year'] = forecast_df['date'].dt.year
+        forecast_df['month'] = forecast_df['date'].dt.month
+
+        result = forecast_df[['year', 'month', 'carbon_footprint_kgCO2']].to_dict(orient='records')
+
+        return jsonify({"predicted_carbon_footprint_kgCO2": result})
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
@@ -100,7 +106,7 @@ def custom_loss(y_true, y_pred):
     gradient = np.where(y_pred < 0, -1, 2 * (y_pred - y_true))
     hessian = np.where(y_pred < 0, 0, 2)
     return gradient, hessian
-
+'''
 # Load the ensemble model
 ensemble_model = joblib.load('ensemble_event_emission_model.pkl')
 xgb_pipeline = ensemble_model['xgb_model']
@@ -149,7 +155,7 @@ def eventPredict():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-
+'''
 @app.route('/predict', methods=['POST'])
 def predict():
     try:
@@ -432,6 +438,6 @@ def generate_recommendations_event():
             "recommendations": []
         }), 500
 
-    
+
 if __name__ == '__main__':
     app.run(debug=True)

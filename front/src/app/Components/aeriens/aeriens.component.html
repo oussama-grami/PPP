@@ -11,8 +11,7 @@
       <div id="wizard_container">
         <form [formGroup]="depForm" (ngSubmit)="onNext()" id="wrapped">
           <div class="step">
-            <h3 class="main_question mt-2"><strong>4/7</strong> Enter the data related to your company's business air
-              travel</h3>
+            <h3 class="main_question mt-2"><strong>4/7</strong> Enter the data related to your company's business air travel</h3>
             <!-- Error Message Display -->
             <div *ngIf="errorMessage" class="alert alert-danger">
               {{ errorMessage }}
@@ -20,27 +19,27 @@
 
             <!-- Short-haul Trips -->
             <div class="form-group">
-              <input type="number" class="form-control" formControlName="nbrArretRetourC"
+              <input type="number" class="form-control" formControlName="numberOfShortHaulRoundTrips"
                      placeholder="Number of short-haul round trips (- 3000 Km)">
-              <small class="text-danger" *ngIf="nbrArretRetourC?.touched && nbrArretRetourC?.invalid">
+              <small class="text-danger" *ngIf="numberOfShortHaulRoundTrips?.touched && numberOfShortHaulRoundTrips?.invalid">
                 Short-haul trips are required.
               </small>
             </div>
 
             <!-- Medium-haul Trips -->
             <div class="form-group">
-              <input type="number" class="form-control" formControlName="nbrArretRetourM"
+              <input type="number" class="form-control" formControlName="numberOfMediumHaulRoundTrips"
                      placeholder="Number of medium-haul round trips (3,000 Km to 6,000 Km)">
-              <small class="text-danger" *ngIf="nbrArretRetourM?.touched && nbrArretRetourM?.invalid">
+              <small class="text-danger" *ngIf="numberOfMediumHaulRoundTrips?.touched && numberOfMediumHaulRoundTrips?.invalid">
                 Medium-haul trips are required.
               </small>
             </div>
 
             <!-- Long-haul Trips -->
             <div class="form-group">
-              <input type="number" class="form-control" formControlName="nbrArretRetourL"
+              <input type="number" class="form-control" formControlName="numberOfLongHaulRoundTrips"
                      placeholder="Number of long-haul round trips (+ 6000 Km)">
-              <small class="text-danger" *ngIf="nbrArretRetourL?.touched && nbrArretRetourL?.invalid">
+              <small class="text-danger" *ngIf="numberOfLongHaulRoundTrips?.touched && numberOfLongHaulRoundTrips?.invalid">
                 Long-haul trips are required.
               </small>
             </div>
@@ -48,8 +47,8 @@
 
           <!-- Buttons Section -->
           <div id="bottom-wizard2 mb-2 pb-2">
-              <button type="button" name="backward" class="btnbackward" [routerLink]="'/' + RoutesEnum.CARBURANT">Back</button>
-              <button type="submit" name="forward" class="btnforward">Continue</button>
+            <button type="button" name="backward" class="btnbackward" [routerLink]="'/' + RoutesEnum.CARBURANT">Back</button>
+            <button type="submit" name="forward" class="btnforward">Continue</button>
           </div>
 
         </form>
@@ -57,5 +56,3 @@
     </div>
   </div>
 </div>
-
-
