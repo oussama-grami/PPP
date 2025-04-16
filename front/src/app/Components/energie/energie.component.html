@@ -1,137 +1,123 @@
 <div class="container-fluid full-height" style="margin-top: 50px;">
-  <div class="row ">
+  <div class="row">
     <div class="col-lg-6 content-left1">
       <div class="content-left-wrapper">
-
-        <img src="assets/img/energy.png" class="img-title" id="descriptionImage"/>
+        <img src="assets/img/energy.png" class="img-title" id="descriptionImage" />
         <h2 id="descriptionTitle">Energy</h2>
-        <p id="descriptionText">Energy consumption is key information in your carbon footprint. Take the questionnaire
-          to find out more!</p>
+        <p id="descriptionText">
+          Energy consumption is key information in your carbon footprint. Take the questionnaire
+          to find out more!
+        </p>
       </div>
     </div>
+
     <div class="col-lg-6 content-right" id="start" style="overflow-y: hidden;">
       <div id="wizard_container">
-        <form [formGroup]="energieForm" (ngSubmit)="onNext()" >
-          <!-- Step Indicator -->
+        <form [formGroup]="energieForm" (ngSubmit)="onNext()">
           <div class="step">
             <h3 class="main_question mt-2"><strong>2/7</strong> Energy Consumption Form</h3>
 
-            <!-- Error Message Display -->
             <div *ngIf="errorMessage" class="alert alert-danger">
               {{ errorMessage }}
             </div>
 
             <!-- Number of Employees -->
-            <div class="form-group col-md-12 mb-2"> <!-- Reduced margin-bottom -->
-              <label for="nbEmployee" class="form-label">Number of Employees</label>
-              <input type="number" formControlName="nbEmployee" class="form-control" id="nbEmployee"
+            <div class="form-group col-md-12 mb-2">
+              <label for="numberOfEmployees" class="form-label">Number of Employees</label>
+              <input type="number" formControlName="numberOfEmployees" class="form-control" id="numberOfEmployees"
                      placeholder="Enter number of employees">
-              <small class="text-danger" *ngIf="nbEmployee?.touched && nbEmployee?.invalid">
+              <small class="text-danger" *ngIf="numberOfEmployees?.touched && numberOfEmployees?.invalid">
                 Number of employees is required (minimum value: 1).
               </small>
             </div>
 
-            <!-- Percentage of Telecommuting -->
-
-            <div class="form-group col-md-12 mb-2"> <!-- Reduced margin-bottom -->
-              <label for="pourcentageTeleTravail" class="form-label">Percentage of Telecommuting</label>
-              <input type="number" formControlName="pourcentageTeleTravail" class="form-control"
-                     id="pourcentageTeleTravail" placeholder="Enter percentage of telecommuting">
-              <small class="text-danger" *ngIf="pourcentageTeleTravail?.touched && pourcentageTeleTravail?.invalid">
+            <!-- Telecommuting -->
+            <div class="form-group col-md-12 mb-2">
+              <label for="percentageOfTelework" class="form-label">Percentage of Telecommuting</label>
+              <input type="number" formControlName="percentageOfTelework" class="form-control"
+                     id="percentageOfTelework" placeholder="Enter percentage of telecommuting">
+              <small class="text-danger" *ngIf="percentageOfTelework?.touched && percentageOfTelework?.invalid">
                 Percentage of telecommuting is required (between 0 and 100).
               </small>
             </div>
 
-
-            <div class="row g-1"> <!-- g-3 class reduces gap between columns -->
-              <!-- Electricity -->
+            <div class="row g-1">
               <div class="form-group col-md-6 mb-2">
-                <label for="electricite" class="form-label">Electricity Usage</label>
-                <input type="number" formControlName="electricite" class="form-control" id="electricite"
+                <label for="annualConsumptionOfElectricity" class="form-label">Electricity Usage</label>
+                <input type="number" formControlName="annualConsumptionOfElectricity" class="form-control" id="annualConsumptionOfElectricity"
                        placeholder="Enter electricity usage">
-                <small class="text-danger" *ngIf="electricite?.touched && electricite?.invalid">
+                <small class="text-danger" *ngIf="annualConsumptionOfElectricity?.touched && annualConsumptionOfElectricity?.invalid">
                   Electricity usage is required.
                 </small>
               </div>
 
-              <!-- Propane -->
               <div class="form-group col-md-6 mb-2">
-                <label for="propane" class="form-label">Propane Usage</label>
-                <input type="number" formControlName="propane" class="form-control" id="propane"
+                <label for="annualConsumptionOfPropane" class="form-label">Propane Usage</label>
+                <input type="number" formControlName="annualConsumptionOfPropane" class="form-control" id="annualConsumptionOfPropane"
                        placeholder="Enter propane usage">
-                <small class="text-danger" *ngIf="propane?.touched && propane?.invalid">
+                <small class="text-danger" *ngIf="annualConsumptionOfPropane?.touched && annualConsumptionOfPropane?.invalid">
                   Propane usage is required.
                 </small>
               </div>
             </div>
 
             <div class="row g-1">
-              <!-- Gas -->
               <div class="form-group col-md-6 mb-2">
-                <label for="gaz" class="form-label">Gas Usage</label>
-                <input type="number" formControlName="gaz" class="form-control" id="gaz" placeholder="Enter gas usage">
-                <small class="text-danger" *ngIf="gaz?.touched && gaz?.invalid">
+                <label for="annualConsumptionOfGas" class="form-label">Gas Usage</label>
+                <input type="number" formControlName="annualConsumptionOfGas" class="form-control" id="annualConsumptionOfGas"
+                       placeholder="Enter gas usage">
+                <small class="text-danger" *ngIf="annualConsumptionOfGas?.touched && annualConsumptionOfGas?.invalid">
                   Gas usage is required.
                 </small>
               </div>
 
-              <!-- Fuel -->
               <div class="form-group col-md-6 mb-2">
-                <label for="fioul" class="form-label">Fuel Usage</label>
-                <input type="number" formControlName="fioul" class="form-control" id="fioul"
+                <label for="annualConsumptionOfFuel" class="form-label">Fuel Usage</label>
+                <input type="number" formControlName="annualConsumptionOfFuel" class="form-control" id="annualConsumptionOfFuel"
                        placeholder="Enter fuel usage">
-                <small class="text-danger" *ngIf="fioul?.touched && fioul?.invalid">
+                <small class="text-danger" *ngIf="annualConsumptionOfFuel?.touched && annualConsumptionOfFuel?.invalid">
                   Fuel usage is required.
                 </small>
               </div>
             </div>
 
             <div class="row g-1">
-              <!-- Charcoal -->
               <div class="form-group col-md-6 mb-2">
-                <label for="charbon" class="form-label">Charcoal Usage</label>
-                <input type="number" formControlName="charbon" class="form-control" id="charbon"
+                <label for="annualConsumptionOfCharcoal" class="form-label">Charcoal Usage</label>
+                <input type="number" formControlName="annualConsumptionOfCharcoal" class="form-control" id="annualConsumptionOfCharcoal"
                        placeholder="Enter charcoal usage">
-                <small class="text-danger" *ngIf="charbon?.touched && charbon?.invalid">
+                <small class="text-danger" *ngIf="annualConsumptionOfCharcoal?.touched && annualConsumptionOfCharcoal?.invalid">
                   Charcoal usage is required.
                 </small>
               </div>
 
-              <!-- Refrigerant Fluid -->
               <div class="form-group col-md-6 mb-2">
-                <label for="fluideFrig" class="form-label">Refrigerant Fluid Usage</label>
-                <input type="number" formControlName="fluideFrig" class="form-control" id="fluideFrig"
+                <label for="annualConsumptionOfRefrigerant" class="form-label">Refrigerant Fluid Usage</label>
+                <input type="number" formControlName="annualConsumptionOfRefrigerant" class="form-control" id="annualConsumptionOfRefrigerant"
                        placeholder="Enter refrigerant fluid usage">
-                <small class="text-danger" *ngIf="fluideFrig?.touched && fluideFrig?.invalid">
+                <small class="text-danger" *ngIf="annualConsumptionOfRefrigerant?.touched && annualConsumptionOfRefrigerant?.invalid">
                   Refrigerant fluid usage is required.
                 </small>
               </div>
             </div>
 
-
-            <!-- GPL -->
             <div class="form-group col-md-12 mb-2">
-              <label for="gpl" class="form-label">GPL Usage</label>
-              <input type="number" formControlName="gpl" class="form-control" id="gpl" placeholder="Enter GPL usage">
-              <small class="text-danger" *ngIf="gpl?.touched && gpl?.invalid">
+              <label for="annualConsumptionOfGPL" class="form-label">GPL Usage</label>
+              <input type="number" formControlName="annualConsumptionOfGPL" class="form-control" id="annualConsumptionOfGPL"
+                     placeholder="Enter GPL usage">
+              <small class="text-danger" *ngIf="annualConsumptionOfGPL?.touched && annualConsumptionOfGPL?.invalid">
                 GPL usage is required.
               </small>
             </div>
           </div>
 
-          <!-- Navigation Buttons -->
-          <br/>
-          <div id="bottom-wizard2  mb-2 pb-2">
-
-              <button type="button" name="backward" class="btnbackward" [routerLink]="'/' + RoutesEnum.INFO">Back</button>
-              <button type="submit" name="forward" class="btnforward"   >Continue</button>
+          <br />
+          <div id="bottom-wizard2 mb-2 pb-2">
+            <button type="button" name="backward" class="btnbackward" [routerLink]="'/' + RoutesEnum.INFO">Back</button>
+            <button type="submit" name="forward" class="btnforward">Continue</button>
           </div>
-
         </form>
       </div>
     </div>
   </div>
 </div>
-
-
-

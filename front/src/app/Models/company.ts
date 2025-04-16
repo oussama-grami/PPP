@@ -1,8 +1,9 @@
 export class Company {
-  constructor(public name: string,
-              public country: string,
-              public sector: string ,
-              public beginDate: Date,
-              public endDate: Date) {
-  }
+  constructor(
+    public companyName: string,
+    public country: string,
+    public activitySector: string,
+    public beginDate: Date,
+    public endDate: Date
+  ) {}
 }

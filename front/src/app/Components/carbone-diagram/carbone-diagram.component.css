@@ -1,0 +1,24 @@
+.charts-container {
+  display: flex;
+  flex-direction: row; /* Default to row on larger screens */
+  justify-content: space-between;
+  gap: 20px; /* Optional: Add space between the charts */
+}
+
+.chart-item {
+  width: 48%; /* Ensure each item takes up half the space */
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 767px) {
+  .charts-container {
+    flex-direction: column; /* Switch to column on small screens */
+  }
+
+  .chart-item {
+    width: 100%; /* Take up full width on small screens */
+    margin-bottom: 20px; /* Add space between items */
+  }
+}

@@ -1,4 +1,4 @@
-export enum Unite{
+export enum Unit{
   DT='DT',
   Dolar='Dolar',
   Euro='Euro'

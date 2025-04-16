@@ -378,7 +378,6 @@ color: #014131;
   text-align: center;
   position: relative;
   background: transparent;
-  background: -webkit-linear-gradient(top, transparent, rgba(255, 255, 255, 0.5));
   background: linear-gradient(to bottom, transparent, rgba(74, 74, 74, 0.5));
 }
 @media (max-width: 991px) {
@@ -461,7 +460,6 @@ a#logo {
   top: 15px;
   display: block;
   height: 700px;
-  width: px;
 }
 @media (max-width: 991px) {
   a#logo {

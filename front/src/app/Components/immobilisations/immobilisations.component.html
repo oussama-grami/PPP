@@ -7,22 +7,24 @@
         <p id="descriptionText">Evaluate the emissions from the production of capital goods purchased or acquired by your company.</p>
       </div>
     </div>
-    <div class="col-lg-6 content-right" id="start"style="overflow-y: hidden;">
+    <div class="col-lg-6 content-right" id="start" style="overflow-y: hidden;">
       <div id="wizard_container">
         <form [formGroup]="immeForm" (ngSubmit)="onSubmit()">
           <br><br>
           <div class="step">
             <h3 class="main_question"><strong>7/7</strong></h3>
+
             <!-- Error Message Display -->
             <div *ngIf="errorMessage" class="alert alert-danger">
               {{ errorMessage }}
             </div>
+
             <!-- Buildings Section -->
             <h5 style="color: #014131;">Buildings:</h5>
             <h6>Indicate the data related to your acquired or purchased buildings that are less than 20 years old:</h6>
             <div class="form-group">
-              <input type="number" class="form-control" formControlName="surface" placeholder="Built area (m²)">
-              <small class="text-danger" *ngIf="immeForm.controls['surface'].touched && immeForm.controls['surface'].invalid">
+              <input type="number" class="form-control" formControlName="surfaceArea" placeholder="Built area (m²)">
+              <small class="text-danger" *ngIf="immeForm.controls['surfaceArea'].touched && immeForm.controls['surfaceArea'].invalid">
                 Built area is required and must be a valid number.
               </small>
             </div>
@@ -32,22 +34,22 @@
             <h6>Enter the number of vehicles (less than 10 years old) in your vehicle fleet by type:</h6>
             <div class="flex-container">
               <div class="form-group">
-                <input type="number" class="form-control" formControlName="nbVoituresLegers" placeholder="Light Duty Vehicles (Vehicle)">
-                <small class="text-danger" *ngIf="immeForm.controls['nbVoituresLegers'].touched && immeForm.controls['nbVoituresLegers'].invalid">
+                <input type="number" class="form-control" formControlName="numberOfLightVehicles" placeholder="Light Duty Vehicles (Vehicle)">
+                <small class="text-danger" *ngIf="immeForm.controls['numberOfLightVehicles'].touched && immeForm.controls['numberOfLightVehicles'].invalid">
                   Light duty vehicles count is required.
                 </small>
               </div>
               <div class="form-group">
-                <input type="number" class="form-control" formControlName="nbVoituresUtilitaires" placeholder="Commercial Vehicles (Vehicle)">
-                <small class="text-danger" *ngIf="immeForm.controls['nbVoituresUtilitaires'].touched && immeForm.controls['nbVoituresUtilitaires'].invalid">
+                <input type="number" class="form-control" formControlName="numberOfUtilityVehicles" placeholder="Commercial Vehicles (Vehicle)">
+                <small class="text-danger" *ngIf="immeForm.controls['numberOfUtilityVehicles'].touched && immeForm.controls['numberOfUtilityVehicles'].invalid">
                   Commercial vehicles count is required.
                 </small>
               </div>
             </div>
 
             <div class="form-group">
-              <input type="number" class="form-control" formControlName="nbVoituresLourds" placeholder="Heavy Vehicles (Vehicle)">
-              <small class="text-danger" *ngIf="immeForm.controls['nbVoituresLourds'].touched && immeForm.controls['nbVoituresLourds'].invalid">
+              <input type="number" class="form-control" formControlName="numberOfHeavyVehicles" placeholder="Heavy Vehicles (Vehicle)">
+              <small class="text-danger" *ngIf="immeForm.controls['numberOfHeavyVehicles'].touched && immeForm.controls['numberOfHeavyVehicles'].invalid">
                 Heavy vehicles count is required.
               </small>
             </div>
@@ -57,14 +59,14 @@
             <h6>Enter the number of your IT equipment (less than 3 years old), by type:</h6>
             <div class="flex-container">
               <div class="form-group">
-                <input type="number" class="form-control" formControlName="nbPostes" placeholder="Desktop Computers (Unit)">
-                <small class="text-danger" *ngIf="immeForm.controls['nbPostes'].touched && immeForm.controls['nbPostes'].invalid">
+                <input type="number" class="form-control" formControlName="numberOfWorkstations" placeholder="Desktop Computers (Unit)">
+                <small class="text-danger" *ngIf="immeForm.controls['numberOfWorkstations'].touched && immeForm.controls['numberOfWorkstations'].invalid">
                   Desktop computers count is required.
                 </small>
               </div>
               <div class="form-group">
-                <input type="number" class="form-control" formControlName="nbPc" placeholder="Laptops (Unit)">
-                <small class="text-danger" *ngIf="immeForm.controls['nbPc'].touched && immeForm.controls['nbPc'].invalid">
+                <input type="number" class="form-control" formControlName="numberOfPCs" placeholder="Laptops (Unit)">
+                <small class="text-danger" *ngIf="immeForm.controls['numberOfPCs'].touched && immeForm.controls['numberOfPCs'].invalid">
                   Laptops count is required.
                 </small>
               </div>
@@ -72,14 +74,14 @@
 
             <div class="flex-container">
               <div class="form-group">
-                <input type="number" class="form-control" formControlName="nbImprimantesIndiv" placeholder="Individual Printers (Unit)">
-                <small class="text-danger" *ngIf="immeForm.controls['nbImprimantesIndiv'].touched && immeForm.controls['nbImprimantesIndiv'].invalid">
+                <input type="number" class="form-control" formControlName="numberOfIndividualPrinters" placeholder="Individual Printers (Unit)">
+                <small class="text-danger" *ngIf="immeForm.controls['numberOfIndividualPrinters'].touched && immeForm.controls['numberOfIndividualPrinters'].invalid">
                   Individual printers count is required.
                 </small>
               </div>
               <div class="form-group">
-                <input type="number" class="form-control" formControlName="nbImprimantesMilti" placeholder="Multifunction Printers (Unit)">
-                <small class="text-danger" *ngIf="immeForm.controls['nbImprimantesMilti'].touched && immeForm.controls['nbImprimantesMilti'].invalid">
+                <input type="number" class="form-control" formControlName="numberOfMultiPrinters" placeholder="Multifunction Printers (Unit)">
+                <small class="text-danger" *ngIf="immeForm.controls['numberOfMultiPrinters'].touched && immeForm.controls['numberOfMultiPrinters'].invalid">
                   Multifunction printers count is required.
                 </small>
               </div>
@@ -87,30 +89,26 @@
 
             <div class="flex-container">
               <div class="form-group">
-                <input type="number" class="form-control" formControlName="nbServeurs" placeholder="Servers (Unit)">
-                <small class="text-danger" *ngIf="immeForm.controls['nbServeurs'].touched && immeForm.controls['nbServeurs'].invalid">
+                <input type="number" class="form-control" formControlName="numberOfServers" placeholder="Servers (Unit)">
+                <small class="text-danger" *ngIf="immeForm.controls['numberOfServers'].touched && immeForm.controls['numberOfServers'].invalid">
                   Servers count is required.
                 </small>
               </div>
               <div class="form-group">
-                <input type="number" class="form-control" formControlName="nbEcran" placeholder="Flat Panel Screens (Unit)">
-                <small class="text-danger" *ngIf="immeForm.controls['nbEcran'].touched && immeForm.controls['nbEcran'].invalid">
+                <input type="number" class="form-control" formControlName="numberOfMonitors" placeholder="Flat Panel Screens (Unit)">
+                <small class="text-danger" *ngIf="immeForm.controls['numberOfMonitors'].touched && immeForm.controls['numberOfMonitors'].invalid">
                   Flat panel screens count is required.
                 </small>
               </div>
             </div>
           </div>
 
-
           <div id="bottom-wizard2 mb-2 pb-2">
-              <button type="button" class="btnbackward" [routerLink]="'/' + RoutesEnum.CONSOMMABLES">Back</button>
-              <button type="submit" class="btnforward" >See Results</button>
+            <button type="button" class="btnbackward" [routerLink]="'/' + RoutesEnum.CONSOMMABLES">Back</button>
+            <button type="submit" class="btnforward">See Results</button>
           </div>
         </form>
       </div>
     </div>
   </div>
-
 </div>
-
-
