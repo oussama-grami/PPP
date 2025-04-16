@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Chart, registerables} from 'chart.js';
 import 'chartjs-plugin-datalabels';
+import { EsgResponse } from 'src/app/Models/esgResponse';
 import {EsgService} from 'src/app/Service/esg.service';
 
 @Component({
@@ -15,24 +16,27 @@ export class ESGdiagramComponent implements OnInit {
   chart!: Chart<'radar', number[], string>;
 
   ngOnInit(): void {
-    // Get responses from the service
-    this.esgService.getResponses().subscribe(responses => {
-      // Calculate scores for each question
-      this.Scores = Array(15).fill(0); // Initialize array with 15 elements
-      for (let i = 1; i <= 15; i++) {
-        this.esgService.getQuestionById(i).subscribe(question => {
-          const selectedOptionId = responses[i];
-          if (selectedOptionId !== undefined) {
-            // Normalize score to 1-5 range (since original scores are 0-8 in steps of 2)
-            this.Scores[i-1] = (question.options[selectedOptionId].score / 2) + 1;
-          }
-        });
-      }
+    this.esgService.getResponses().subscribe((rawResponses: any[]) => {
+      const responses: EsgResponse[] = rawResponses.map(item => ({
+        category: item.category,
+        responses: item.response
+      }));
+      this.Scores = []; // to store 15 normalized scores
+  
+      responses.forEach((responseCategory) => {
+        if (responseCategory.responses) {
+          responseCategory.responses.forEach((question: any) => {
+            const normalizedScore = (question.score / 2) + 1;
+            this.Scores.push(normalizedScore); 
+          });
+        }
+      });
+  
       this.createChart();
     });
-
-   
   }
+  
+  
 
   createChart(): void {
     const canvas = document.getElementById('myChart1') as HTMLCanvasElement;
@@ -40,9 +44,7 @@ export class ESGdiagramComponent implements OnInit {
     canvas.height = 775;
     const ctx = canvas.getContext('2d');
     if (ctx) {
-      Chart.register(...registerables); // Register the chart types
-
-      // Create a custom plugin using the beforeDraw hook
+      Chart.register(...registerables); 
       const customPlugin = {
         id: 'customBeforeDraw',
         beforeDraw: (chart: any, args: any, options: any) => {
@@ -99,11 +101,10 @@ export class ESGdiagramComponent implements OnInit {
         }
       };
 
-      // Register the custom plugin
       Chart.register(customPlugin);
 
       this.chart = new Chart(ctx, {
-        type: 'radar', // Change the chart type to 'radar'
+        type: 'radar', 
         data: {
           labels: [
             "1.Reducing GHG emissions",
@@ -127,10 +128,10 @@ export class ESGdiagramComponent implements OnInit {
               label: 'Entreprise',
               data: this.Scores,
               backgroundColor: '#7D7D7D57',
-              borderColor: 'rgba(109, 109, 109, 1)', // Border color for the radar line
-              pointBackgroundColor: 'rgba(109, 109, 109, 1)', // Background color for the data points
-              pointBorderColor: 'rgba(109, 109, 109, 1)', // Border color for the data points
-              pointRadius: 0, // Adjust the data points' radius
+              borderColor: 'rgba(109, 109, 109, 1)', 
+              pointBackgroundColor: 'rgba(109, 109, 109, 1)', 
+              pointBorderColor: 'rgba(109, 109, 109, 1)', 
+              pointRadius: 0, 
             },
           ],
         },

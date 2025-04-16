@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {AppRoutingModule} from './app-routing.module';
+
 import {AppComponent} from './app.component';
 import {HomeComponent} from './Components/home/home.component';
 import {EnergieComponent} from './Components/energie/energie.component';
@@ -55,7 +56,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { EventFormComponent } from './Components/event-form/event-form.component';
 import { EventFootprintComponent } from './Components/event-footprint/event-footprint.component';
 import { EventResultComponent } from './Components/event-result/event-result.component';
-
+import{ EcoLoadingSpinnerComponent } from './Components/eco-loading-spinner/eco-loading-spinner.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -105,6 +106,7 @@ import { EventResultComponent } from './Components/event-result/event-result.com
     EventFormComponent,
     EventFootprintComponent,
     EventResultComponent,
+    EcoLoadingSpinnerComponent
   ],
   imports: [
     BrowserModule,
@@ -116,7 +118,7 @@ import { EventResultComponent } from './Components/event-result/event-result.com
     ReactiveFormsModule,
     MatTableModule,
     MatButtonModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
 
   ],
   providers: [],

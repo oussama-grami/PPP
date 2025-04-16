@@ -1,4 +1,4 @@
-package com.ppp.Ecopilot.Controllers;
+/*package com.ppp.Ecopilot.Controllers;
 
 import com.ppp.Ecopilot.DTO.ProjectOwnerDTO;
 import com.ppp.Ecopilot.Entities.ChartLine;
@@ -58,3 +58,4 @@ public class ProjectOwnerController implements CrudController<ProjectOwner,
         return ResponseEntity.ok(savedEntity.getId());
     }
 }
+*/

@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import { EsgResponse } from 'src/app/Models/esgResponse';
 import {EsgService} from 'src/app/Service/esg.service';
 
 @Component({
@@ -27,22 +28,21 @@ export class RoadmapComponent implements OnInit {
   constructor(private esgService: EsgService) { }
 
   ngOnInit() {
-    // Get all responses from the service
-    this.esgService.getResponses().subscribe(responses => {
+    this.esgService.getResponses().subscribe((responses) => {
       // Environment scores (questions 1-5)
       this.Envi1 = this.getNormalizedScore(1, responses);
       this.Envi2 = this.getNormalizedScore(2, responses);
       this.Envi3 = this.getNormalizedScore(3, responses);
       this.Envi4 = this.getNormalizedScore(4, responses);
       this.Envi5 = this.getNormalizedScore(5, responses);
-
+  
       // Social scores (questions 6-10)
       this.Soc1 = this.getNormalizedScore(6, responses);
       this.Soc2 = this.getNormalizedScore(7, responses);
       this.Soc3 = this.getNormalizedScore(8, responses);
       this.Soc4 = this.getNormalizedScore(9, responses);
       this.Soc5 = this.getNormalizedScore(10, responses);
-
+  
       // Governance scores (questions 11-15)
       this.GOUV1 = this.getNormalizedScore(11, responses);
       this.GOUV2 = this.getNormalizedScore(12, responses);
@@ -50,26 +50,25 @@ export class RoadmapComponent implements OnInit {
       this.GOUV4 = this.getNormalizedScore(14, responses);
       this.GOUV5 = this.getNormalizedScore(15, responses);
     });
-
-    
+  
+    console.log("hello");
   }
-
-  private getNormalizedScore(questionId: number, responses: {[id: number]: number}): number {
-    const selectedOptionId = responses[questionId];
-
-    if (selectedOptionId !== undefined) {
-      const question = this.esgService.getQuestionById(questionId);
-      let normalizedScore = 0;
-
-      question.subscribe(q => {
-        // Normalize score to 1-5 range (since original scores are 0-8 in steps of 2)
-        normalizedScore = (q.options[selectedOptionId].score / 2) + 1;
-      });
-
-      return normalizedScore;
+  
+  private getNormalizedScore(questionId: number, responses: any[]): number {
+    console.log("questionId", questionId);
+    console.log("responses", responses);
+  
+    const allResponses = responses.flatMap(category => category.response); // ✅ fixed here
+  
+    const response = allResponses[questionId - 1]; // 1-based index
+    if (response && typeof response.score === 'number') {
+      return (response.score / 2) + 1;
     }
-    return 0; // Default score if no response
+  
+    return 0; 
   }
+  
+  
   printRoadMap() {
     let printContent: HTMLElement | null = null; // Select the content to print
 

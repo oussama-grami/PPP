@@ -1,4 +1,4 @@
-package com.ppp.Ecopilot.Controllers;
+/*package com.ppp.Ecopilot.Controllers;
 
 import com.ppp.Ecopilot.Entities.BaseEntity;
 import com.ppp.Ecopilot.Mappers.EntityMapper;
@@ -46,4 +46,4 @@ public interface CrudController<T extends BaseEntity<ID>, ID, DTO> {
     }
 
 }
-
+*/
