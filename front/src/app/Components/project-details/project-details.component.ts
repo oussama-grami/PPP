@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
-import {project} from "../../Models/project";
+import {Project} from "../../Models/project";
 import {ProjectsService} from "../../Service/projects.service";
-import {transaction} from "../../Models/transaction";
+import {Transaction} from "../../Models/transaction";
 import {TransactionService} from "../../Service/transaction.service";
 import {RoutesEnum} from "../../enumerations/Routes.enum";
 
@@ -12,9 +12,9 @@ import {RoutesEnum} from "../../enumerations/Routes.enum";
   styleUrls: ['./project-details.component.css']
 })
 export class ProjectDetailsComponent implements OnInit{
-  transactions:transaction[] = [];
+  transactions:Transaction[] = [];
   projectId: number | undefined;
-  projects: project[] = [];
+  projects: Project[] = [];
   selectedImage = '/assets/img/details.png'
   carouselMainElement = '/assets/img/details1.png'
   carouselOtherElements = '/assets/img/details2.png'

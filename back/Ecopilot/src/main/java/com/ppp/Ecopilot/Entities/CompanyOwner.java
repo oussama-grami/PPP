@@ -1,9 +1,11 @@
 package com.ppp.Ecopilot.Entities;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.ppp.Ecopilot.Enums.Roles;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -23,6 +25,13 @@ import java.util.List;
 public class CompanyOwner extends User {
     @Column(nullable = false)
     private int country;
+    @Column(nullable = false)
+    private String companyName;
+    @Column(nullable = false)
+    private String companyCode;
+    @Email
+    @Column(nullable = false)
+    private String email;
     @Column(nullable = false)
     private String domaine;
     @Column(nullable = false)

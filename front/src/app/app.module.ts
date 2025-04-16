@@ -56,6 +56,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { EventFormComponent } from './Components/event-form/event-form.component';
 import { EventFootprintComponent } from './Components/event-footprint/event-footprint.component';
 import { EventResultComponent } from './Components/event-result/event-result.component';
+import { PaymentConfirmationComponent } from './Components/payment-confirmation/payment-confirmation.component';
 import{ EcoLoadingSpinnerComponent } from './Components/eco-loading-spinner/eco-loading-spinner.component';
 @NgModule({
   declarations: [
@@ -106,6 +107,7 @@ import{ EcoLoadingSpinnerComponent } from './Components/eco-loading-spinner/eco-
     EventFormComponent,
     EventFootprintComponent,
     EventResultComponent,
+    PaymentConfirmationComponent,
     EcoLoadingSpinnerComponent
   ],
   imports: [

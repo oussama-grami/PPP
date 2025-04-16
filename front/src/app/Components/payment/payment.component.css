@@ -250,3 +250,78 @@
   font-style: normal;
   font-weight: 400;
 }
+
+/*  Payment form stripe */
+/* src/app/Component/payment/payment.component.css */
+#stripe-payment-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* Fond assombri */
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#stripe-payment-modal {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 500px;
+  padding: 20px;
+  z-index: 1001;
+}
+
+#stripe-payment-form {
+  display: block;
+  width: 100%;
+}
+
+#stripe-payment-form h3 {
+  margin-top: 0;
+  color: #333;
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#payment-element {
+  margin-bottom: 20px;
+}
+
+.pay-button {
+  background-color: #635bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 12px 16px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 16px;
+}
+
+.pay-button:disabled {
+  background-color: #a5a5a5;
+  cursor: not-allowed;
+}
+
+.payment-error {
+  color: #ff3d33;
+  margin-top: 16px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.success-message {
+  color: #28a745;
+  text-align: center;
+  margin-top: 16px;
+  font-size: 16px;
+  font-weight: 600;
+}

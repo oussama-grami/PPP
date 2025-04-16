@@ -4,10 +4,8 @@
     <table>
       <thead>
       <tr>
-        <th></th>
         <th>Country</th>
         <th>Cost</th>
-        <th>Quantity</th>
         <th>Date</th>
         <th>Description</th>
         <th>Action</th>
@@ -15,10 +13,8 @@
       </thead>
       <tbody>
       <tr *ngFor="let transaction of transactions">
-        <td><img [src]="transaction.flag"></td>
         <td>{{ transaction.country }}</td>
         <td>{{ transaction.cost | currency:'USD' }}</td>
-        <td>{{ transaction.quantity }}</td>
         <td>{{ transaction.date.toLocaleString() }}</td>
         <td>Nothing</td>
         <td>

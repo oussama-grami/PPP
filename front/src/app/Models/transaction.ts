@@ -1,4 +1,4 @@
-export class transaction{
+export class Transaction {
   public country:string;
   public flag:string;
   public cost:number;

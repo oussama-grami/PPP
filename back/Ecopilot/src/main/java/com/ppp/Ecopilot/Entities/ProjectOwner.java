@@ -1,6 +1,7 @@
 package com.ppp.Ecopilot.Entities;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -46,6 +47,7 @@ public class ProjectOwner extends User {
     @Column(nullable = false)
     private String website;
     @OneToMany(mappedBy = "projectOwner", fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Project> Projects;
 
 }

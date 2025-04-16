@@ -1,0 +1,126 @@
+<div class="payment-confirmation-container">
+  <div class="payment-status-display">
+    <!-- Processing State -->
+    <div *ngIf="status === 'processing'" class="processing-container">
+      <div class="spinner"></div>
+      <h2>Proceeding of your payment...</h2>
+      <p>Please wait while we finalize your eco-friendly transaction. 🌱</p>
+    </div>
+
+    <!-- Error State -->
+    <div *ngIf="status === 'error'" class="error-container">
+      <div class="error-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="15" y1="9" x2="9" y2="15"></line>
+          <line x1="9" y1="9" x2="15" y2="15"></line>
+        </svg>
+      </div>
+      <h2>An error occured</h2>
+      <p>{{ message }}</p>
+      <button class="retry-button" (click)="goToHome()">Return To Home</button>
+    </div>
+
+    <!-- Success State -->
+    <div *ngIf="status === 'success'" class="success-container">
+      <!-- Header & Animation -->
+      <div class="success-header" [@flyIn]="animationState">
+        <div class="success-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+          </svg>
+        </div>
+        <h1>payment succeeded!</h1>
+      </div>
+
+      <!-- Order Details -->
+      <div class="order-details" [@fadeIn]="animationState">
+        <div class="detail-card">
+          <h3>Order Details</h3>
+          <div class="detail-row">
+            <span>Order Number:</span>
+            <span class="detail-value">{{ orderNumber }}</span>
+          </div>
+          <div class="detail-row">
+            <span>Amount Paid:</span>
+            <span class="detail-value">{{ totalCost | currency:'EUR' }}</span>
+          </div>
+          <div class="detail-row">
+            <span>Date:</span>
+            <span class="detail-value">{{ status === 'success' ? (currentDate | date:'dd/MM/yyyy HH:mm') : '-' }}</span>
+
+          </div>
+          <div class="detail-row">
+            <span>Status:</span>
+            <span class="detail-value status-badge">Confirmed</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Environmental Impact -->
+      <div class="eco-impact" [@growTree]="animationState">
+        <h3>Your Environmental Impact</h3>
+        <p class="impact-intro">Thanks to your purchase, you are contributing to our environmental mission:</p>
+
+        <div class="eco-stats">
+          <div class="eco-stat-item" *ngFor="let benefit of ecoBenefits">
+            <div class="eco-icon" [ngClass]="benefit.icon">
+              <!-- Icons rendered based on class -->
+            </div>
+            <div class="eco-stat-details">
+              <span class="eco-label">{{ benefit.label }}</span>
+              <span class="eco-value">{{ benefit.value }}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="tree-animation">
+          <div class="tree-container">
+            <div class="tree" *ngFor="let i of [].constructor(treeCount > 5 ? 5 : treeCount)"></div>
+          </div>
+          <div class="ground"></div>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="action-buttons" [@fadeIn]="animationState">
+        <button class="primary-button" (click)="downloadReceipt()">Download the Receipt</button>
+        <button class="secondary-button" (click)="goToHome()">Return To Home</button>
+      </div>
+
+      <!-- Share impact -->
+      <div class="share-impact" [@fadeIn]="animationState">
+        <h4>Share Your Impact</h4>
+        <p>Show your friends how you're helping the planet!</p>
+        <div class="social-buttons" >
+          <button class="social-button facebook" (click)="share('facebook')">
+            <svg viewBox="0 0 24 24" width="24" height="24">
+              <path fill="currentColor" d="M18.77,7.46H14.5v-1.9c0-.9.6-1.1,1-1.1h3V.5L14.17.5C10.09.5,9.45,3.91,9.45,6.3v1.16H6.23v5H9.45V24h5.05V12.46h3.95l.53-5Z"/>
+            </svg>
+          </button>
+          <button class="social-button twitter" (click)="share('x')">
+            <svg viewBox="0 0 24 24" width="24" height="24">
+              <path fill="currentColor" d="M23.32,6.44a.5.5,0,0,0-.2-.87l-.79-.19A.49.49,0,0,1,22,4.67L21.18,3.8a.5.5,0,0,0-.75-.07l-.71.72a.51.51,0,0,1-.71,0l-.85-.85a.28.28,0,0,0-.55.06L16.31,9.59a.73.73,0,0,1-1.35-.06l-.29-1.09A.51.51,0,0,0,14,8.11l-.9.42a.5.5,0,0,1-.65-.11l-.4-.52a.22.22,0,0,0-.4.05L9.57,16a.73.73,0,0,1-1.2.11l-.73-.73a.5.5,0,0,0-.7,0l-1.39,1.5a.52.52,0,0,0-.11.57l.35.68a.51.51,0,0,1-.27.68l-.62.22a.54.54,0,0,0-.13.91L6.31,21.5a11.52,11.52,0,0,0,5.6,1.5h0a11.54,11.54,0,0,0,8.19-3.39l3.13-3.13A.5.5,0,0,0,23.32,16L22,15.13a.5.5,0,0,1-.16-.77l.81-.81a.53.53,0,0,0,0-.7l-.43-.43a.5.5,0,0,1,0-.71l1.18-1.18a.5.5,0,0,0-.06-.76l-1.05-.65a.5.5,0,0,1-.15-.74Z"/>
+            </svg>
+          </button>
+          <button class="social-button instagram" (click)="share('instagram')">
+            <svg viewBox="0 0 24 24" width="24" height="24">
+              <path fill="currentColor" d="M12,2.16c3.2,0,3.58,0,4.85.07,3.25.15,4.77,1.69,4.92,4.92.06,1.27.07,1.65.07,4.85,0,3.2,0,3.58-.07,4.85-.15,3.23-1.66,4.77-4.92,4.92-1.27.06-1.64.07-4.85.07-3.2,0-3.58,0-4.85-.07-3.26-.15-4.77-1.7-4.92-4.92-.06-1.27-.07-1.64-.07-4.85,0-3.2,0-3.58.07-4.85C2.38,3.92,3.9,2.38,7.15,2.23,8.42,2.18,8.8,2.16,12,2.16ZM12,0C8.74,0,8.33,0,7.05.07c-4.35.2-6.78,2.62-6.98,6.98C0,8.33,0,8.74,0,12S0,15.67.07,17c.2,4.36,2.63,6.78,6.98,6.98C8.33,24,8.74,24,12,24s3.67,0,4.95-.07c4.35-.2,6.78-2.62,7-6.98.06-1.27.07-1.68.07-4.95s0-3.67-.07-4.95c-.2-4.35-2.63-6.78-7-6.98C15.67,0,15.26,0,12,0Zm0,5.84A6.16,6.16,0,1,0,18.16,12,6.16,6.16,0,0,0,12,5.84ZM12,16a4,4,0,1,1,4-4A4,4,0,0,1,12,16ZM18.41,4.15a1.44,1.44,0,1,0,1.43,1.44A1.44,1.44,0,0,0,18.41,4.15Z"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Thank you note -->
+      <div class="thank-you-note" [@fadeIn]="animationState">
+        <p>Thank you for contributing to a greener and more sustainable future through your purchase. 🌍💚!</p>
+        <div class="eco-badge">
+          <span>Purchase</span>
+          <span class="eco-plus">+</span>
+          <span>Eco</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

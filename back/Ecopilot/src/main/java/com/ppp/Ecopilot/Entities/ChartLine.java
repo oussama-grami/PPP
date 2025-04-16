@@ -1,6 +1,7 @@
 package com.ppp.Ecopilot.Entities;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.*;
@@ -21,14 +22,14 @@ import java.util.List;
 public class ChartLine extends BaseEntity<Long> {
     @Column(nullable = false)
     private int quantity;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
     @JoinColumn(name = "chart_id")
     private Chart chart;
-
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "transaction_id")
     private Transaction transaction;
-
-    @OneToMany(mappedBy = "chartLine")
-    private List<Project> projects;
+    @ManyToOne()
+    @JoinColumn(name = "project_id")
+    @JsonManagedReference("project-chartlines")
+    private Project project;
 }

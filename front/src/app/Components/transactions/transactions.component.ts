@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {transaction} from "../../Models/transaction";
+import {Transaction} from "../../Models/transaction";
 import {TransactionService} from "../../Service/transaction.service";
 
 @Component({
@@ -8,7 +8,7 @@ import {TransactionService} from "../../Service/transaction.service";
   styleUrls: ['./transactions.component.css']
 })
 export class TransactionsComponent  implements OnInit{
-transactions:transaction[] = []
+transactions:Transaction[] = []
   constructor(private transactionsSerice:TransactionService) {
   }
   ngOnInit() {
@@ -19,7 +19,7 @@ transactions:transaction[] = []
   )
 }
 
-  printInvoice(transaction: transaction) {
+  printInvoice(transaction: Transaction) {
     console.log("printed")
   }
 }
