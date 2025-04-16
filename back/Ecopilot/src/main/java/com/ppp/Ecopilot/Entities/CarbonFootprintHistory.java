@@ -30,7 +30,7 @@ public class CarbonFootprintHistory extends BaseEntity<Long> {
     private boolean predicted;
     @Column(nullable = false)
     private double value;
-    @ManyToOne()
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "companyOwner_id")
     private CompanyOwner companyOwner;
 }

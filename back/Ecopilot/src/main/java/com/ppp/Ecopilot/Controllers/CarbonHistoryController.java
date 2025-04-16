@@ -14,7 +14,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/carbonHistory")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost:4200") // Port Angular
+@CrossOrigin(origins = "http://localhost:4200")
 
 public class CarbonHistoryController  {
 
