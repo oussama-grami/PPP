@@ -19,7 +19,7 @@
     letter-spacing: 0em;font-style: normal;
     justify-content: left;
     font-size: 24px;
-    color: #000000;
+    color: var(--text-primary);
     margin-bottom: 30px;
   }
   .box img {

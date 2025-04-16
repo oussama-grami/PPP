@@ -1,5 +1,5 @@
 <app-esg-header [currentQuestion]="currentQuestion"></app-esg-header>
-<div class="container" style="display: flex; flex-direction: column; justify-content: space-between;margin-top: 50px;">
+<div class="container mt-5" style="display: flex; flex-direction: column; justify-content: space-between;margin-top: 50px;">
   <div *ngIf="warnUser" class="alert alert-warning alert-dismissible fade show" role="alert">
     You should select an answer!
     <button type="button" class="btn-close" data-bs-dismiss="alert" (click)="warnUser=false"
