@@ -59,6 +59,7 @@ export class PaymentConfirmationComponent implements OnInit {
   carbonOffset: number = 0;
   treeCount: number = 0;
   ecoBenefits: { icon: string, label: string, value: string }[] = [];
+  totalCost: string = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -67,46 +68,45 @@ export class PaymentConfirmationComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Start animations after a short delay
     setTimeout(() => {
       this.animationState = 'active';
     }, 300);
+    this.status='success'
 
     this.route.queryParams.subscribe(params => {
+      console.log(params);
       const paymentIntentId = params['id'];
       const redirectStatus = params['redirect_status'];
+      const OrderNumber = +params['orderNumber'];
+      this.amount = Math.floor(+params['totalQuantity']);
+      this.totalCost = params['totalPrice'];
 
-      // Generate random order number
-      this.orderNumber = 'ECO-' + Math.floor(10000000 + Math.random() * 90000000).toString();
+      this.orderNumber = 'ECO-' + Math.floor(OrderNumber).toString();
 
-      // Random amount for demo (in real app, this would come from the backend)
-      this.amount = Math.floor(Math.random() * 500) + 50;
+      this.carbonOffset = parseFloat((this.amount * 10000).toFixed(2));
+      this.treeCount = Math.floor(this.amount*1000/25);
+      console.log("totalCost:"+this.totalCost);
 
-      // Calculate environmental impact (for demo purposes)
-      this.carbonOffset = parseFloat((this.amount * 0.05).toFixed(2));
-      this.treeCount = Math.floor(this.amount / 25);
-
-      // Environmental benefits
       this.ecoBenefits = [
         {
           icon: 'co2',
-          label: 'CO₂ compensé',
+          label: 'CO₂ compensated',
           value: `${this.carbonOffset} kg`
         },
         {
           icon: 'forest',
-          label: 'Arbres plantés',
+          label: 'Planted trees',
           value: `${this.treeCount}`
         },
         {
           icon: 'water',
-          label: 'Eau économisée',
-          value: `${Math.floor(this.amount * 3)} L`
+          label: 'Economized water',
+          value: `${Math.floor(this.amount * 3000)} L`
         },
         {
           icon: 'energy',
-          label: 'Énergie renouvelable',
-          value: `${Math.floor(this.amount * 0.8)} kWh`
+          label: 'Renewable energy',
+          value: `${Math.floor(this.amount * 0.8*1000)} kWh`
         }
       ];
 
@@ -115,31 +115,10 @@ export class PaymentConfirmationComponent implements OnInit {
         return;
       }
 
-      if (redirectStatus === 'succeeded') {
-        this.confirmPayment(paymentIntentId);
-      } else {
-        this.handleError('Le paiement a échoué. Veuillez réessayer.');
-      }
     });
   }
 
-  confirmPayment(paymentIntentId: string): void {
-    this.paymentService.confirmPaymentSuccess(paymentIntentId).subscribe(
-      response => {
-        this.status = 'success';
-        this.message = 'Paiement réussi! Votre commande a été confirmée.';
-      },
-      error => {
-        // For demo purposes, let's still show success if there's a 200 status
-        if (error.status === 200) {
-          this.status = 'success';
-          this.message = 'Paiement réussi! Votre commande a été confirmée.';
-        } else {
-          this.handleError('Erreur lors de la confirmation du paiement.');
-        }
-      }
-    );
-  }
+
 
   handleError(errorMessage: string): void {
     this.status = 'error';
@@ -150,10 +129,6 @@ export class PaymentConfirmationComponent implements OnInit {
     this.router.navigate(['/']);
   }
 
-  viewOrder(): void {
-    // In a real app, this would navigate to the order details page
-    this.router.navigate(['/']);
-  }
   share(platform:string) {
     let url = window.location.href;
     let shareUrl = '';
@@ -176,7 +151,6 @@ export class PaymentConfirmationComponent implements OnInit {
   }
 
   downloadReceipt(): void {
-    // In a real app, this would download a receipt PDF
     alert('Téléchargement du reçu en cours...');
   }
 

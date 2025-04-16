@@ -113,7 +113,7 @@ public class TransactionServiceImpl extends AbstractCrudService<Transaction,Long
                                 .collect(Collectors.toList()))
                         .build();
 
-                this.save(transactionInsertDTO);
+                response.put("orderNumber",this.save(transactionInsertDTO).getId().toString());
                 return response;
             } else {
                 response.put("status", "error");

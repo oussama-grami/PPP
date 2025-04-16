@@ -27,6 +27,8 @@ export class PaymentComponent implements OnInit {
   elements: any;
   paymentElement: any;
   submitted: boolean = false;
+  totalQuantity:number=0;
+  totalPrice:number=this.getTotalPrice();
 
   paymentState: PaymentState = PaymentState.IDLE;
   errorMessage: string = '';
@@ -136,7 +138,8 @@ export class PaymentComponent implements OnInit {
         console.log("Paiement réussi, statut:", paymentIntent.status);
 
         try {
-          await firstValueFrom(this.paymentService.confirmPaymentSuccess(paymentIntent.id));
+          const response  = await firstValueFrom(this.paymentService.confirmPaymentSuccess(paymentIntent.id));
+          console.log(Response);
 
           this.paymentState = PaymentState.SUCCESS;
           this.cartService.clearCart();
@@ -145,7 +148,10 @@ export class PaymentComponent implements OnInit {
             this.router.navigate(['/payment-confirmation'], {
               queryParams: {
                 id: paymentIntent.id,
-                redirect_status: paymentIntent.status
+                redirect_status: paymentIntent.status,
+                orderNumber:response.orderNumber,
+                totalQuantity:this.getTotalQuantity(),
+                totalPrice:this.totalPrice
               }
             });
           }, 1500);
@@ -179,5 +185,11 @@ export class PaymentComponent implements OnInit {
 
   getTotalPrice() {
     return this.cartService.getTotalPrice();
+  }
+  getTotalQuantity(){
+    for (let i = 0; i < this.cartItems.length; i++) {
+      this.totalQuantity+=this.cartItems[i].quantity;
+    }
+    return this.totalQuantity;
   }
 }

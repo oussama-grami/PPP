@@ -3,8 +3,8 @@
     <!-- Processing State -->
     <div *ngIf="status === 'processing'" class="processing-container">
       <div class="spinner"></div>
-      <h2>Traitement de votre paiement...</h2>
-      <p>Veuillez patienter pendant que nous finalisons votre transaction écologique.</p>
+      <h2>Proceeding of your payment...</h2>
+      <p>Please wait while we finalize your eco-friendly transaction. 🌱</p>
     </div>
 
     <!-- Error State -->
@@ -16,9 +16,9 @@
           <line x1="9" y1="9" x2="15" y2="15"></line>
         </svg>
       </div>
-      <h2>Une erreur est survenue</h2>
+      <h2>An error occured</h2>
       <p>{{ message }}</p>
-      <button class="retry-button" (click)="goToHome()">Retourner à l'accueil</button>
+      <button class="retry-button" (click)="goToHome()">Return To Home</button>
     </div>
 
     <!-- Success State -->
@@ -31,20 +31,20 @@
             <polyline points="22 4 12 14.01 9 11.01"></polyline>
           </svg>
         </div>
-        <h1>Paiement Réussi!</h1>
+        <h1>payment succeeded!</h1>
       </div>
 
       <!-- Order Details -->
       <div class="order-details" [@fadeIn]="animationState">
         <div class="detail-card">
-          <h3>Détails de la commande</h3>
+          <h3>Order Details</h3>
           <div class="detail-row">
-            <span>Numéro de commande:</span>
+            <span>Order Number:</span>
             <span class="detail-value">{{ orderNumber }}</span>
           </div>
           <div class="detail-row">
-            <span>Montant payé:</span>
-            <span class="detail-value">{{ amount | currency:'EUR' }}</span>
+            <span>Amount Paid:</span>
+            <span class="detail-value">{{ totalCost | currency:'EUR' }}</span>
           </div>
           <div class="detail-row">
             <span>Date:</span>
@@ -52,16 +52,16 @@
 
           </div>
           <div class="detail-row">
-            <span>Statut:</span>
-            <span class="detail-value status-badge">Confirmé</span>
+            <span>Status:</span>
+            <span class="detail-value status-badge">Confirmed</span>
           </div>
         </div>
       </div>
 
       <!-- Environmental Impact -->
       <div class="eco-impact" [@growTree]="animationState">
-        <h3>Votre Impact Environnemental</h3>
-        <p class="impact-intro">Grâce à votre achat, vous contribuez à notre mission environnementale:</p>
+        <h3>Your Environmental Impact</h3>
+        <p class="impact-intro">Thanks to your purchase, you are contributing to our environmental mission:</p>
 
         <div class="eco-stats">
           <div class="eco-stat-item" *ngFor="let benefit of ecoBenefits">
@@ -85,14 +85,14 @@
 
       <!-- Action Buttons -->
       <div class="action-buttons" [@fadeIn]="animationState">
-        <button class="primary-button" (click)="downloadReceipt()">Télécharger le Recu</button>
-        <button class="secondary-button" (click)="goToHome()">Retourner à l'acceuil</button>
+        <button class="primary-button" (click)="downloadReceipt()">Download the Receipt</button>
+        <button class="secondary-button" (click)="goToHome()">Return To Home</button>
       </div>
 
       <!-- Share impact -->
       <div class="share-impact" [@fadeIn]="animationState">
-        <h4>Partagez votre impact</h4>
-        <p>Montrez à vos amis comment vous aidez la planète!</p>
+        <h4>Share Your Impact</h4>
+        <p>Show your friends how you're helping the planet!</p>
         <div class="social-buttons" >
           <button class="social-button facebook" (click)="share('facebook')">
             <svg viewBox="0 0 24 24" width="24" height="24">
@@ -114,9 +114,9 @@
 
       <!-- Thank you note -->
       <div class="thank-you-note" [@fadeIn]="animationState">
-        <p>Merci de contribuer à un avenir plus vert et plus durable grâce à votre achat!</p>
+        <p>Thank you for contributing to a greener and more sustainable future through your purchase. 🌍💚!</p>
         <div class="eco-badge">
-          <span>Achat</span>
+          <span>Purchase</span>
           <span class="eco-plus">+</span>
           <span>Eco</span>
         </div>

@@ -18,9 +18,9 @@ export class CartService {
   }
 
   private loadCart() {
-    this.cartItems.push({id:1, name: 'Tree planting in Testour', availableStock: 200, cost: '2.48', url: '/assets/img/modalPhoto1.svg', quantity: 1 },
-      {id:2, name: 'Wind farm in Tunisia', availableStock: 500, cost: '2.25', url: '/assets/img/modalPhoto2.svg', quantity: 1 },
-      {id:3, name: 'Forestry project in Madagascar', availableStock: 500, cost: '7.5', url: '/assets/img/modalPhoto3.svg', quantity: 1 });
+    this.cartItems.push({id:4, name: 'Tree planting in Testour', availableStock: 200, cost: '2.48', url: '/assets/img/modalPhoto1.svg', quantity: 1 },
+      {id:5, name: 'Wind farm in Tunisia', availableStock: 500, cost: '2.25', url: '/assets/img/modalPhoto2.svg', quantity: 1 },
+      {id:6, name: 'Forestry project in Madagascar', availableStock: 500, cost: '7.5', url: '/assets/img/modalPhoto3.svg', quantity: 1 });
   }
 
   getItems(): PartialProject[] {
