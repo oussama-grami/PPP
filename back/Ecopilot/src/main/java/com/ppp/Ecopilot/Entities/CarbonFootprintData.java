@@ -13,6 +13,7 @@ import java.util.Date;
 
 @Getter
 @Setter
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 
@@ -122,7 +123,8 @@ public class CarbonFootprintData extends BaseEntity<Long> {
     private Unit unitPaper;
     @Column(nullable = false)
     private double vehicleFuelEfficiecy;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "companyOwner_id")
     private CompanyOwner companyOwner;
+
 }

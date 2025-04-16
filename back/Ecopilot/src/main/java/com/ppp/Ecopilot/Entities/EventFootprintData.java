@@ -51,7 +51,7 @@ public class EventFootprintData extends BaseEntity<Long> {
     private String transportMode;
     @Column(nullable = false)
     private String venueType;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "companyOwner_id")
     private CompanyOwner companyOwner;
 
