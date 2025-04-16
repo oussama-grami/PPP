@@ -2,7 +2,6 @@ import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {AppRoutingModule} from './app-routing.module';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'; // Import the spinner module
 
 import {AppComponent} from './app.component';
 import {HomeComponent} from './Components/home/home.component';
@@ -120,7 +119,6 @@ import{ EcoLoadingSpinnerComponent } from './Components/eco-loading-spinner/eco-
     MatTableModule,
     MatButtonModule,
     BrowserAnimationsModule,
-    MatProgressSpinnerModule,
 
   ],
   providers: [],

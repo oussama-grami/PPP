@@ -5,7 +5,7 @@
     
 }
 .retour{
-  margin-top: 20px;
+  margin-top: 10px;
   margin-left: 50px;
 }
 .retour button {
@@ -33,7 +33,6 @@
 .title{
   margin-left: 50px;
     margin-top: 30px;
-    margin-bottom: 15px;
     color: #014131 !important;
     font-family: Roboto;
     font-size: 32px;
@@ -43,7 +42,6 @@
 }
 .container-fluid {
   padding: 0 1.5rem;
-  margin-top: 1rem;
 
  
  
@@ -289,4 +287,9 @@ canvas#carbonChart {
   background-color: #e6f0eb !important;
   font-weight: bold;
   color: #014131 !important;
+}
+.table-container {
+  max-height: 300px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
 }

@@ -3,12 +3,14 @@ import { HistoricalPredictionService } from '../../Service/historical-prediction
 import { Chart } from 'chart.js';
 import { RoutesEnum } from 'src/app/enumerations/Routes.enum';
 import { CarbonFootprintData } from '../../Models/carbonFooprintData';
+import { ViewChild, ElementRef, AfterViewChecked } from '@angular/core';
+
 @Component({
   selector: 'app-HistoricalCarbonForecast',
   templateUrl: './HistoricalCarbonForecast.component.html',
   styleUrls: ['./HistoricalCarbonForecast.component.css']
 })
-export class HistoricalCarbonForecastComponent implements OnInit {
+export class HistoricalCarbonForecastComponent implements OnInit ,AfterViewChecked {
   routesEnum = RoutesEnum;
   newEntry: CarbonFootprintData | null = null; // Stores the new entry
   editingElementId: number | null = null; // Stores the ID of the element being edited
@@ -18,13 +20,33 @@ export class HistoricalCarbonForecastComponent implements OnInit {
   chart: any;
 
   displayedColumns: string[] = ['date', 'value', 'actions'];
+  @ViewChild('newRow') newRowRef: ElementRef | undefined;
+  @ViewChild('tableContainer') tableContainerRef: ElementRef | undefined;
+  scrolledToNewRow: boolean = false; // Flag to check if scrolled to new row
 
   constructor(private carbonFootprintService: HistoricalPredictionService) {}
 
   ngOnInit(): void {
     this.loadData();
   }
+  
+  ngAfterViewChecked(): void {
+    if (this.newRowRef && this.tableContainerRef && !this.scrolledToNewRow) {
+      const newRowEl = this.newRowRef.nativeElement;
+      const tableContainerEl = this.tableContainerRef.nativeElement;
 
+      // Scroll the table container to make newRow visible
+      const offsetTop = newRowEl.offsetTop;
+      tableContainerEl.scrollTo({ top: offsetTop, behavior: 'smooth' });
+
+      this.scrolledToNewRow = true;
+    }
+  }
+
+  addElement() {
+    this.newEntry = { date: '', value: 0, predicted: false }; // Initialize new entry
+    this.scrolledToNewRow = false;
+  }
   loadData(): void {
     this.carbonFootprintService.getData().subscribe(data => {
       this.carbonData = data;
@@ -107,12 +129,9 @@ export class HistoricalCarbonForecastComponent implements OnInit {
   
   
   
-  addElement(): void {
-    this.newEntry = { date: '',predicted: false, value: 0 }; 
-  }
+  
 
   saveNewElement(): void {
-    console.log('New entry:', this.newEntry);
     if (this.newEntry && this.newEntry.date && this.newEntry.value) {
     
       this.carbonFootprintService.addData(this.newEntry).subscribe(() => {
@@ -144,13 +163,22 @@ export class HistoricalCarbonForecastComponent implements OnInit {
   }
 
   deleteElement(id: number | undefined): void {
-    if (id === undefined) return; // Avoid deleting undefined IDs
-    this.carbonFootprintService.deleteData(id).subscribe(() => {
-      this.loadData(); // Reload data to update chart
-      this.createChart();
-      console.log('Deleted element with ID:', id);
+    if (id === undefined) return;
+  
+    this.carbonData = this.carbonData.filter(element => element.id !== id);
+  
+    this.carbonFootprintService.deleteData(id).subscribe({
+      next: () => {
+        this.createChart();  
+        console.log('Deleted element with ID:', id);
+      },
+      error: (err) => {
+        console.error('Error deleting element with ID:', id, err);
+       
+      }
     });
   }
+  
 
   startEdit(id: number | undefined): void {
     if (id === undefined) return; 
