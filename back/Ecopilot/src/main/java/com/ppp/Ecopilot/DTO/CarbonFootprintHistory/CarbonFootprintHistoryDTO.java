@@ -1,4 +1,4 @@
-package com.ppp.Ecopilot.DTO;
+package com.ppp.Ecopilot.DTO.CarbonFootprintHistory;
 
 
 import jakarta.persistence.MappedSuperclass;

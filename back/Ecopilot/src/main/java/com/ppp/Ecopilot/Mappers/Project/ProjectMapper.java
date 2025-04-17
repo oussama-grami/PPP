@@ -30,7 +30,6 @@ public class ProjectMapper implements EntityMapper<Project, ProjectDTO> {
                 .typeOfProject(dto.getTypeOfProject())
                 .url(dto.getUrl())
                 .projectOwner(ProjectOwner.builder().id(dto.getProjectOwnerId()).build());
-        // Optionnel : si tu veux mapper les IDs vers des entités "vides" avec juste l'ID
         if (dto.getChartLinesIds().isPresent()) {
             List<ChartLine> chartLines = dto.getChartLinesIds().get().stream()
                     .map(id -> {

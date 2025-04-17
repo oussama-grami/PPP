@@ -97,32 +97,7 @@ export class HistoricalCarbonForecastComponent implements OnInit ,AfterViewCheck
             }
           }
         },
-        plugins: {
-          legend: {
-            display: true,
-            labels: {
-              generateLabels: function(chart) {
-                return [
-                  {
-                    text: 'Actual Data',
-                    fillStyle: 'rgba(1, 65, 49, 0.8)',
-                    strokeStyle: 'rgba(1, 65, 49, 0.8)',
-                    lineWidth: 1
-                  },
-                  {
-                    text: 'Predicted Data',
-                    fillStyle: 'red',
-                    strokeStyle: 'red',
-                    lineWidth: 1
-                  }
-                ];
-              },
-              // Make legend boxes smaller
-              boxWidth: 10,  // Smaller box size
-              boxHeight: 10, // Smaller box size
-            }
-          }
-        }
+        
       }
     });
   }

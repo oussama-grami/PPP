@@ -1,32 +1,22 @@
 package com.ppp.Ecopilot.Entities;
 
-
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.ppp.Ecopilot.Enums.CarburantType;
 import com.ppp.Ecopilot.Enums.Unit;
 import jakarta.persistence.*;
 import lombok.*;
-import lombok.experimental.SuperBuilder;
 
 import java.util.Date;
 
 @Getter
 @Setter
-@Builder
-@AllArgsConstructor
 @NoArgsConstructor
-
+@AllArgsConstructor
 @ToString
-@SuperBuilder
-/**
- * The CarbonFootprintData class represents the carbon footprint data of a company.
- * It includes various fields related to the company's activities, emissions, and consumption.
- * The class uses Lombok annotations for boilerplate code generation.
- */
 @Entity
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "id")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+
 public class CarbonFootprintData extends BaseEntity<Long> {
     @Column(nullable = false)
     private String activitySector;
@@ -122,7 +112,7 @@ public class CarbonFootprintData extends BaseEntity<Long> {
     @Enumerated(EnumType.STRING)
     private Unit unitPaper;
     @Column(nullable = false)
-    private double vehicleFuelEfficiecy;
+    private double vehicleFuelEfficiency;
     @ManyToOne
     @JoinColumn(name = "companyOwner_id")
     private CompanyOwner companyOwner;

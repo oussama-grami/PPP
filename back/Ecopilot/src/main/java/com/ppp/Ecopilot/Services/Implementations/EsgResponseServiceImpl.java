@@ -1,19 +1,20 @@
 package com.ppp.Ecopilot.Services.Implementations;
 
-import com.ppp.Ecopilot.DTO.CreateResponseDTO;
-import com.ppp.Ecopilot.DTO.EsgResponseDTO;
-import com.ppp.Ecopilot.DTO.EsgResponsesByCategoryDTO;
+import com.ppp.Ecopilot.DTO.EsgOptionDTO;
+import com.ppp.Ecopilot.DTO.Response.CreateResponseDTO;
+import com.ppp.Ecopilot.DTO.Response.EsgResponseDTO;
+import com.ppp.Ecopilot.DTO.Response.EsgResponsesByCategoryDTO;
 import com.ppp.Ecopilot.Entities.CompanyOwner;
 import com.ppp.Ecopilot.Entities.EsgOption;
 import com.ppp.Ecopilot.Entities.EsgQuestion;
 import com.ppp.Ecopilot.Entities.EsgResponse;
 import com.ppp.Ecopilot.Enums.EsgCategory;
 import com.ppp.Ecopilot.Repositories.CompanyOwnerRepo;
+import com.ppp.Ecopilot.Repositories.EsgOptionRepo;
 import com.ppp.Ecopilot.Services.CompanyOwnerService;
 import com.ppp.Ecopilot.Services.EsgResponseService;
 import com.ppp.Ecopilot.Repositories.EsgResponseRepo;
 import com.ppp.Ecopilot.Mappers.EsgResponseMapper;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -41,7 +42,8 @@ public class EsgResponseServiceImpl  implements EsgResponseService {
         return esgResponseMapper.toDtoList(esgResponses);
     }
 
-    public List<EsgResponsesByCategoryDTO> getAllEsgResponsesByCategory(Long companyId) {
+    public List<EsgResponsesByCategoryDTO> getAllEsgResponsesByCategory() {
+        long companyId = 7L; // Replace with the actual company ID
         List<EsgResponsesByCategoryDTO> responsesByCategory = List.of(EsgCategory.values()).stream()
                 .map(category -> new EsgResponsesByCategoryDTO(
                         category,
@@ -56,7 +58,7 @@ public class EsgResponseServiceImpl  implements EsgResponseService {
 
 
     @Override
-    public EsgResponseDTO save(CreateResponseDTO dto) {
+    public EsgResponse save(CreateResponseDTO dto) {
         long companyId = 7L;
 
         EsgResponse existingResponse = esgResponseRepo.findByCompanyOwnerIdAndEsgQuestionId(companyId, dto.getQuestionId());
@@ -80,7 +82,7 @@ public class EsgResponseServiceImpl  implements EsgResponseService {
         }
         esgResponse.setEsgQuestion(esgQuestion);
 
-        EsgOption esgOption = esgOptionService.findById(dto.getOptionId());
+        EsgOption esgOption = esgOptionService.findByIdEsgOption(dto.getOptionId());
         if (esgOption == null) {
             throw new IllegalArgumentException("EsgOption not found for id: " + dto.getOptionId());
         }
@@ -88,12 +90,34 @@ public class EsgResponseServiceImpl  implements EsgResponseService {
 
         esgResponseRepo.save(esgResponse);
 
-        return esgResponseMapper.toDto(esgResponse);
+        return esgResponse;
     }
 
 
 
 
+    @Override
+    public void deleteById(Long id) {
+        EsgResponse esgResponse = esgResponseRepo.findById(id).orElseThrow(() -> new RuntimeException("Response not found"));
+        esgResponseRepo.delete(esgResponse);
+
+    }
+
+    @Override
+    public EsgResponseDTO findById(Long id) {
+        EsgResponse esgResponse = esgResponseRepo.findById(id).orElseThrow(() -> new RuntimeException("Response not found"));
+        return esgResponseMapper.toDto(esgResponse);
+
+    }
+
+    @Override
+    public EsgResponseDTO getAnswerByCompanyIdAndQuestionId(long companyId, long questionId) {
+        EsgResponse esgResponse = esgResponseRepo.findByCompanyOwnerIdAndEsgQuestionId(companyId, questionId);
+        if (esgResponse == null) {
+            return null;
+        }
+        return esgResponseMapper.toDto(esgResponse);
+    }
 
 
 }

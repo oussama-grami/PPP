@@ -1,7 +1,9 @@
 package com.ppp.Ecopilot.Services.Implementations;
 
-import com.ppp.Ecopilot.DTO.CarbonFootprintHistoryDTO;
-import com.ppp.Ecopilot.DTO.CreateCarbonFootprintHistoryDTO;
+import com.ppp.Ecopilot.DTO.CarbonFootprintHistory.CarbonFootprintForecastRequest;
+import com.ppp.Ecopilot.DTO.CarbonFootprintHistory.CarbonFootprintForecastResponse;
+import com.ppp.Ecopilot.DTO.CarbonFootprintHistory.CarbonFootprintHistoryDTO;
+import com.ppp.Ecopilot.DTO.CarbonFootprintHistory.CreateCarbonFootprintHistoryDTO;
 import com.ppp.Ecopilot.Entities.CarbonFootprintData;
 import com.ppp.Ecopilot.Entities.CarbonFootprintHistory;
 import com.ppp.Ecopilot.Entities.CompanyOwner;
@@ -9,10 +11,17 @@ import com.ppp.Ecopilot.Mappers.CarbonHistoryMapper;
 import com.ppp.Ecopilot.Repositories.CarbonFootprintHistoryRepo;
 import com.ppp.Ecopilot.Services.CarbonFootprintHistoryService;
 import com.ppp.Ecopilot.Services.CompanyOwnerService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Mono;
 
 import java.time.YearMonth;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -20,15 +29,19 @@ import java.util.List;
 @Service
 public class CarbonFootprintHistoryServiceImpl extends AbstractCrudService<CarbonFootprintHistory, Long> implements CarbonFootprintHistoryService {
 
-
     private final CarbonFootprintHistoryRepo carbonFootprintHistoryRepo;
     private final CarbonHistoryMapper historyMapper;
     private final CompanyOwnerService companyOwnerService;
+    private final WebClient webClient;
 
-    public CarbonFootprintHistoryServiceImpl(CarbonFootprintHistoryRepo carboneFootprintHistoryRepo, CarbonHistoryMapper historyMapper, CompanyOwnerService companyOwnerService) {
+    public CarbonFootprintHistoryServiceImpl(CarbonFootprintHistoryRepo carboneFootprintHistoryRepo, CarbonHistoryMapper historyMapper, CompanyOwnerService companyOwnerService, WebClient.Builder webClientBuilder) {
         this.carbonFootprintHistoryRepo = carboneFootprintHistoryRepo;
         this.historyMapper = historyMapper;
         this.companyOwnerService = companyOwnerService;
+
+        this.webClient = webClientBuilder
+                .baseUrl("http://localhost:5000") // Flask API URL
+                .build();
     }
 
     @Override
@@ -64,14 +77,55 @@ public class CarbonFootprintHistoryServiceImpl extends AbstractCrudService<Carbo
 
     }
 
-    @Override
-    public CarbonFootprintHistory[] forecastData(CarbonFootprintHistory[] data) {
-        return new CarbonFootprintHistory[0];
-    }
 
-    @Override
-    public void saveForecastData(CarbonFootprintHistoryDTO[] data) {
 
+    public CarbonFootprintHistoryDTO[] forecastData() {
+        try {
+            CarbonFootprintHistoryDTO[] historyList = this.findByCurrentCompanyOwner();
+
+            // Convert historical data to API request format
+            CarbonFootprintForecastRequest request = new CarbonFootprintForecastRequest();
+
+            List<Integer> years = new ArrayList<>();
+            List<Integer> months = new ArrayList<>();
+            List<Double> values = new ArrayList<>();
+
+            for (CarbonFootprintHistoryDTO entry : historyList) {
+                YearMonth ym = entry.getDate();
+                years.add(ym.getYear());
+                months.add(ym.getMonthValue());
+                values.add(entry.getValue());
+            }
+
+            request.setYear(years);
+            request.setMonth(months);
+            request.setCarbon_footprint_kgCO2(values);
+
+            // Send request to forecasting API
+            Mono<CarbonFootprintForecastResponse> responseMono = webClient.post()
+                    .uri("/forecast")
+                    .bodyValue(request)
+                    .retrieve()
+                    .bodyToMono(CarbonFootprintForecastResponse.class);
+
+            CarbonFootprintForecastResponse response = responseMono.block();
+
+            // Convert API response to CarbonFootprintHistoryDTO[]
+            List<CarbonFootprintHistoryDTO> forecastList = new ArrayList<>();
+            for (CarbonFootprintForecastResponse.PredictedEntry entry : response.getPredicted_carbon_footprint_kgCO2()) {
+                CarbonFootprintHistoryDTO dto = new CarbonFootprintHistoryDTO();
+                dto.setDate(YearMonth.of(entry.getYear(), entry.getMonth()));
+                dto.setValue(entry.getCarbon_footprint_kgCO2());
+                dto.setPredicted(true);
+                forecastList.add(dto);
+            }
+
+            return forecastList.toArray(new CarbonFootprintHistoryDTO[0]);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new CarbonFootprintHistoryDTO[0];
+        }
     }
 
     @Override

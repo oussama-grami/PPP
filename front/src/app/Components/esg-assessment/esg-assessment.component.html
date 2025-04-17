@@ -1,35 +1,56 @@
 <app-esg-header [currentQuestion]="currentQuestionIndex+1"></app-esg-header>
-<div *ngIf="loading" class="container" style="display: flex; flex-direction: column; justify-content: center; align-items: center; margin-top: 50px;">
+
+<!-- Loading State -->
+<div *ngIf="loading" class="loading-container">
   <app-eco-loading-spinner [loadingText]="'Loading...'"></app-eco-loading-spinner>
 </div>
 
-
-
-<div *ngIf="!loading" class="container" style="display: flex; flex-direction: column; justify-content: space-between;margin-top: 50px;">
-  <div *ngIf="warnUser" class="alert alert-warning alert-dismissible fade show" role="alert">
-    You should select an answer!
-    <button type="button" class="btn-close" data-bs-dismiss="alert" (click)="warnUser=false"
-            aria-label="Close"></button>
+<!-- Question Content -->
+<div *ngIf="!loading" class="survey-container">
+  <!-- Warning Alert -->
+  <div *ngIf="warnUser" class="warning-alert">
+    <div class="warning-icon">
+      <svg viewBox="0 0 24 24" fill="none">
+        <path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+      </svg>
+    </div>
+    <div class="warning-message">You should select an answer!</div>
+    <button type="button" class="warning-close" data-bs-dismiss="alert" (click)="warnUser=false" aria-label="Close">
+      <svg viewBox="0 0 24 24" fill="none">
+        <path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+      </svg>
+    </button>
   </div>
-  <h2 class="question-text">{{ question?.text }}<span class="text-span"> (Select the answer that best fits your business)</span>
-  </h2>
-  <div *ngFor="let option of options; let i = index"
-       [ngClass]="{ 'custom-div-clicked': option.isSelected }"
-       class="custom-div"
-       style="box-sizing: border-box; border: 1px solid #939393; border-radius: 10px; align-items: center; margin-bottom: 30px; padding: 10px;"
-       (click)="onDivClick(option)">
-    <h6
-      style="font-family: 'Roboto', sans-serif; font-style: normal; font-weight: 300; font-size: 18px; line-height: 21px; margin: 0;">
-      {{ option.text }}
-    </h6>
+  
+  <!-- Question Header -->
+  <div class="question-header">
+    <h2 class="question-title">{{ question?.text }}</h2>
+    <span class="question-subtitle">(Select the answer that best fits your business)</span>
   </div>
-  <div style="display: flex; justify-content: right;" class="mb-3">
-    <button class="go-back-btn" (click)="goBack()">Back</button>
-    <button *ngIf="choiceSelected" (click)="addScoreAndNavigate()" class="continue-btn">Continue</button>
-    <button *ngIf="!choiceSelected" class="continue-btn" (click)="warning()">Continue</button>
+
+  <!-- Options -->
+  <div class="options-container">
+    <div *ngFor="let option of options; let i = index"
+         [ngClass]="{ 'option-selected': option.isSelected }"
+         class="option-card"
+         (click)="onDivClick(option)">
+      <div class="option-content">
+        <div class="option-text">{{ option.text }}</div>
+        <div class="option-indicator">
+          <div class="checkbox">
+            <svg *ngIf="option.isSelected" viewBox="0 0 24 24" fill="none">
+              <path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <div class="navigation-container">
+    <button class="btn-back" (click)="goBack()">Back</button>
+    <button *ngIf="choiceSelected" class="btn-continue" (click)="addScoreAndNavigate()">Continue</button>
+    <button *ngIf="!choiceSelected" class="btn-continue" (click)="warning()">Continue</button>
   </div>
 </div>
-
-
-
-

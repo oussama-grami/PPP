@@ -39,14 +39,9 @@ export class HistoricalPredictionService {
   
 
   predictValues(): Observable<CarbonFootprintData[]> {
-   /* const predictedData: CarbonFootprintData[] = this.staticData.map(item => ({
-      ...item,
-      id: this.staticData.length + 1 + this.staticData.indexOf(item), // Assign new unique IDs
-      date: new Date(new Date(item.date).setMonth(new Date(item.date).getMonth() + 1)).toISOString().split('T')[0], // Predict for the next month
-      value: item.value * 1.1 ,predicted: true // Example prediction logic
-    }));
-    */
-    return of([]);
+    return this.http.post<CarbonFootprintData[]>(`${this.apiUrl}/forecast`, {});
+
+
   }
 
   saveData(data: CarbonFootprintData[]): Observable<void> {
