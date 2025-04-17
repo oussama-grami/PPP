@@ -62,20 +62,24 @@ app = Flask(__name__)
 
 def ForecastCarbonFootprint():
     try:
-        file = request.files['file']
+        # Expecting JSON data
+        data = request.get_json()
 
-        content = file.stream.read().decode("utf-8")
-        df = pd.read_csv(StringIO(content))
+        # Check if required keys exist in the input JSON
+        if not all(k in data for k in ['year', 'month', 'carbon_footprint_kgCO2']):
+            return jsonify({"error": "JSON must contain 'year', 'month', and 'carbon_footprint_kgCO2' keys"}), 400
 
+        # Create a DataFrame from the JSON data
+        df = pd.DataFrame(data)
         if "year" not in df.columns or "month" not in df.columns or "carbon_footprint_kgCO2" not in df.columns:
-            return jsonify({"error": "CSV must contain 'year', 'month', and 'carbon_footprint_kgCO2' columns"}), 400
+            return jsonify({"error": "JSON must contain 'year', 'month', and 'carbon_footprint_kgCO2' columns"}), 400
 
         df['date'] = pd.to_datetime(df[['year', 'month']].assign(day=1))
 
 
         train = df["carbon_footprint_kgCO2"]
 
-        model = sm.tsa.ExponentialSmoothing(train, trend='mul', seasonal='add', seasonal_periods=12)
+        model = sm.tsa.ExponentialSmoothing(train, trend='mul', seasonal='add', seasonal_periods=6)
         fitted_model = model.fit()
 
         forecast = fitted_model.forecast(6).tolist()
@@ -106,7 +110,7 @@ def custom_loss(y_true, y_pred):
     gradient = np.where(y_pred < 0, -1, 2 * (y_pred - y_true))
     hessian = np.where(y_pred < 0, 0, 2)
     return gradient, hessian
-'''
+
 # Load the ensemble model
 ensemble_model = joblib.load('ensemble_event_emission_model.pkl')
 xgb_pipeline = ensemble_model['xgb_model']
@@ -155,7 +159,7 @@ def eventPredict():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-'''
+
 @app.route('/predict', methods=['POST'])
 def predict():
     try:
@@ -333,6 +337,7 @@ def generate_event_prompt(event_data):
     Do not give an empty response or a response that does not respect the format
     """
 # Endpoint Flask
+
 @app.route('/generate-recommendations-entreprise', methods=['POST'])
 def generate_recommendations_entreprise():
     try:
