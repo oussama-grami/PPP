@@ -1,4 +1,4 @@
-<div class="container-fluid full-height"style="margin-top: 50px;">
+<div class="container-fluid full-height" style="margin-top: 50px;">
   <div class="row row-height">
     <div class="col-lg-6 content-left1">
       <div class="content-left-wrapper">
@@ -7,7 +7,7 @@
         <p id="descriptionText">Evaluate the emissions of your expenses on office supplies. </p>
       </div>
     </div>
-    <div class="col-lg-6 content-right" id="start"style="overflow-y: hidden;">
+    <div class="col-lg-6 content-right" id="start" style="overflow-y: hidden;">
       <div id="wizard_container">
         <form [formGroup]="consForm" (ngSubmit)="onNext()" id="wrapped">
           <div class="step">
@@ -18,46 +18,46 @@
               {{ errorMessage }}
             </div>
 
-            <!-- Montant Papier with Unit -->
+            <!-- Expenses on Paper with Unit -->
             <div class="form-group row">
               <div class="col-9">
-                <label for="montantPapier">Montant Papier</label>
-                <input type="number" class="form-control" id="montantPapier" formControlName="montantPapier" placeholder="Montant Papier">
-                <small class="text-danger" *ngIf="consForm.controls['montantPapier'].touched && consForm.controls['montantPapier'].invalid">
-                  Montant Papier is required.
+                <label for="expensesOnPaper">Expenses on Paper</label>
+                <input type="number" class="form-control" id="expensesOnPaper" formControlName="expensesOnPaper" placeholder="Expenses on Paper">
+                <small class="text-danger" *ngIf="consForm.controls['expensesOnPaper'].touched && consForm.controls['expensesOnPaper'].invalid">
+                  Expenses on Paper is required.
                 </small>
               </div>
               <div class="col-3">
-                <label for="unitePapier">Unite</label>
-                <select class="form-control" id="unitePapier" formControlName="unitePapier">
-                  <option [value]="Unite.Dolar">Dollar</option>
-                  <option [value]="Unite.Euro">Euro</option>
-                  <option [value]="Unite.DT">DT</option>
+                <label for="unitPaper">Unit</label>
+                <select class="form-control" id="unitPaper" formControlName="unitPaper">
+                  <option [value]="Unit.Dolar">Dollar</option>
+                  <option [value]="Unit.Euro">Euro</option>
+                  <option [value]="Unit.DT">DT</option>
                 </select>
-                <small class="text-danger" *ngIf="consForm.controls['unitePapier'].touched && consForm.controls['unitePapier'].invalid">
-                  Unite Papier is required.
+                <small class="text-danger" *ngIf="consForm.controls['unitPaper'].touched && consForm.controls['unitPaper'].invalid">
+                  Unit Paper is required.
                 </small>
               </div>
             </div>
 
-            <!-- Montant Fournitures with Unit -->
+            <!-- Expenses on Office Supplies with Unit -->
             <div class="form-group row">
               <div class="col-9">
-                <label for="montantFournitures">Montant Fournitures</label>
-                <input type="number" class="form-control" id="montantFournitures" formControlName="montantFournitures" placeholder="Montant Fournitures">
-                <small class="text-danger" *ngIf="consForm.controls['montantFournitures'].touched && consForm.controls['montantFournitures'].invalid">
-                  Montant Fournitures is required.
+                <label for="expensesOnSmallOfficeSupplies">Expenses on Office Supplies</label>
+                <input type="number" class="form-control" id="expensesOnSmallOfficeSupplies" formControlName="expensesOnSmallOfficeSupplies" placeholder="Expenses on Office Supplies">
+                <small class="text-danger" *ngIf="consForm.controls['expensesOnSmallOfficeSupplies'].touched && consForm.controls['expensesOnSmallOfficeSupplies'].invalid">
+                  Expenses on Office Supplies is required.
                 </small>
               </div>
               <div class="col-3">
-                <label for="uniteFourniture">Unite</label>
-                <select class="form-control" id="uniteFourniture" formControlName="uniteFourniture">
-                  <option [value]="Unite.Dolar">Dollar</option>
-                  <option [value]="Unite.Euro">Euro</option>
-                  <option [value]="Unite.DT">DT</option>
+                <label for="unitOfficeSupplies">Unit</label>
+                <select class="form-control" id="unitOfficeSupplies" formControlName="unitOfficeSupplies">
+                  <option [value]="Unit.Dolar">Dollar</option>
+                  <option [value]="Unit.Euro">Euro</option>
+                  <option [value]="Unit.DT">DT</option>
                 </select>
-                <small class="text-danger" *ngIf="consForm.controls['uniteFourniture'].touched && consForm.controls['uniteFourniture'].invalid">
-                  Unite Fourniture is required.
+                <small class="text-danger" *ngIf="consForm.controls['unitOfficeSupplies'].touched && consForm.controls['unitOfficeSupplies'].invalid">
+                  Unit Office Supplies is required.
                 </small>
               </div>
             </div>
@@ -65,8 +65,8 @@
 
           <!-- Buttons Section -->
           <div id="bottom-wizard2 mb-2 pb-2">
-              <button type="button" name="backward" class="btnbackward" [routerLink]="'/' + RoutesEnum.FRET">Back</button>
-              <button type="submit" name="forward" class="btnforward">Continue</button>
+            <button type="button" name="backward" class="btnbackward" [routerLink]="'/' + RoutesEnum.FRET">Back</button>
+            <button type="submit" name="forward" class="btnforward">Continue</button>
           </div>
 
         </form>
@@ -75,5 +75,3 @@
     </div>
   </div>
 </div>
-
-

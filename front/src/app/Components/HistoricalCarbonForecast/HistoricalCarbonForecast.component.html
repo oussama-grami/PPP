@@ -29,13 +29,13 @@
     </div>
 
     <!-- Right Column: Table -->
-    <div class="col-lg-5 d-flex h-100">
+    <div  class="col-lg-5 d-flex h-100">
       <div class="card shadow-lg w-100 h-100 d-flex flex-column">
         <div class="card-header d-flex justify-content-between align-items-center bg-dark text-white">
           <h5 class="card-title mb-0">Carbon Footprint History</h5>
         </div>
         <div class="card-body p-0 flex-grow-1">
-          <div class="table-responsive">
+          <div #tableContainer class="table-responsive">
             <table class="table table-hover table-striped mb-0">
               <thead class="table-light">
                 <tr>
@@ -65,9 +65,10 @@
                     </button>
                   </td>
                 </tr>
-                <tr *ngIf="newEntry">
+                <tr *ngIf="newEntry" #newRow>
                   <td>
-                    <input type="date" [(ngModel)]="newEntry.date" class="form-control form-control-sm">
+                    <input type="month" [(ngModel)]="newEntry.date" class="form-control form-control-sm">
+
                   </td>
                   <td>
                     <input type="number" [(ngModel)]="newEntry.value" class="form-control form-control-sm">

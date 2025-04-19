@@ -2,10 +2,10 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Company} from '../Models/company';
 import {Carburant} from '../Models/carburant';
-import {Energie} from '../Models/energie';
-import {DeplacemetAerien} from '../Models/deplacemetAerien';
-import {Fret} from '../Models/fret';
-import {Consommables} from '../Models/consommables';
+import {Energy} from '../Models/energy';
+import {Aerien} from '../Models/aerien';
+import {Freight} from '../Models/freight';
+import {Consumables} from '../Models/consumables';
 import {Immobilisation} from '../Models/immobilisation';
 import {Observable, of} from "rxjs";
 
@@ -16,10 +16,10 @@ export class CarbonFootprintService {
   // Variables to store form data
   private infoData: Company | null = null;
   private carburantData: Carburant | null = null;
-  private energieData: Energie | null = null;
-  private depData: DeplacemetAerien | null = null;
-  private fretData: Fret | null = null;
-  private consData: Consommables | null = null;
+  private energyData: Energy | null = null;
+  private aerienData: Aerien | null = null;
+  private freightData: Freight | null = null;
+  private consData: Consumables | null = null;
   private immeData: Immobilisation | null = null;
 
   constructor(private httpClient: HttpClient) {}
@@ -33,19 +33,19 @@ export class CarbonFootprintService {
     this.carburantData = carburant;
   }
 
-  updateEnergie(energie: Energie): void {
-    this.energieData = energie;
+  updateEnergy(energy: Energy): void {
+    this.energyData = energy;
   }
 
-  updateDeplacementAerien(dep: DeplacemetAerien): void {
-    this.depData = dep;
+  updateAerien(aerien: Aerien): void {
+    this.aerienData = aerien;
   }
 
-  updateFret(fret: Fret): void {
-    this.fretData = fret;
+  updateFreight(freight: Freight): void {
+    this.freightData = freight;
   }
 
-  updateConsommable(cons: Consommables): void {
+  updateConsumables(cons: Consumables): void {
     this.consData = cons;
   }
 
@@ -58,9 +58,9 @@ export class CarbonFootprintService {
     return {
       info: this.infoData,
       carburant: this.carburantData,
-      energie: this.energieData,
-      dep: this.depData,
-      fret: this.fretData,
+      energy: this.energyData,
+      aerien: this.aerienData,
+      freight: this.freightData,
       cons: this.consData,
       imme: this.immeData
     };

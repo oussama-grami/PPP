@@ -1,9 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {CarbonFootprintService} from '../../Service/carbon-footprint.service'; // Use CarbonFootprintService
-import {Router} from '@angular/router';
-import {Energie} from '../../Models/energie';
-import {RoutesEnum} from "../../enumerations/Routes.enum"; // Assuming Energie model is defined
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CarbonFootprintService } from '../../Service/carbon-footprint.service';
+import { Router } from '@angular/router';
+import { Energy } from '../../Models/energy';
+import { RoutesEnum } from '../../enumerations/Routes.enum';
 
 @Component({
   selector: 'app-energie',
@@ -12,92 +12,82 @@ import {RoutesEnum} from "../../enumerations/Routes.enum"; // Assuming Energie m
 })
 export class EnergieComponent implements OnInit {
   energieForm!: FormGroup;
-  errorMessage: string = '';  // To store error messages
+  errorMessage: string = '';
 
   constructor(
     private fb: FormBuilder,
-    private carbonService: CarbonFootprintService,  // Inject CarbonFootprintService
+    private carbonService: CarbonFootprintService,
     private router: Router
   ) {}
 
   ngOnInit() {
     window.scrollTo(0, 0);
 
-    // Initialize the Reactive Form with the updated fields from Energie model
     this.energieForm = this.fb.group({
-      nbEmployee: ['', [Validators.required, Validators.min(1)]],
-      pourcentageTeleTravail: ['', [Validators.required, Validators.min(0), Validators.max(100)]],
-      electricite: ['', [Validators.required, Validators.min(0)]],
-      propane: ['', [Validators.required, Validators.min(0)]],
-      gaz: ['', [Validators.required, Validators.min(0)]],
-      fioul: ['', [Validators.required, Validators.min(0)]],
-      charbon: ['', [Validators.required, Validators.min(0)]],
-      fluideFrig: ['', [Validators.required, Validators.min(0)]],
-      gpl: ['', [Validators.required, Validators.min(0)]]
+      numberOfEmployees: ['', [Validators.required, Validators.min(1)]],
+      percentageOfTelework: ['', [Validators.required, Validators.min(0), Validators.max(100)]],
+      annualConsumptionOfElectricity: ['', [Validators.required, Validators.min(0)]],
+      annualConsumptionOfPropane: ['', [Validators.required, Validators.min(0)]],
+      annualConsumptionOfGas: ['', [Validators.required, Validators.min(0)]],
+      annualConsumptionOfFuel: ['', [Validators.required, Validators.min(0)]],
+      annualConsumptionOfCharcoal: ['', [Validators.required, Validators.min(0)]],
+      annualConsumptionOfRefrigerant: ['', [Validators.required, Validators.min(0)]],
+      annualConsumptionOfGPL: ['', [Validators.required, Validators.min(0)]]
     });
   }
 
-  // Getter for each form control (like InfoComponent)
-  get nbEmployee() {
-    return this.energieForm.get('nbEmployee');
+  get numberOfEmployees() {
+    return this.energieForm.get('numberOfEmployees');
   }
 
-  get pourcentageTeleTravail() {
-    return this.energieForm.get('pourcentageTeleTravail');
+  get percentageOfTelework() {
+    return this.energieForm.get('percentageOfTelework');
   }
 
-  get electricite() {
-    return this.energieForm.get('electricite');
+  get annualConsumptionOfElectricity() {
+    return this.energieForm.get('annualConsumptionOfElectricity');
   }
 
-  get propane() {
-    return this.energieForm.get('propane');
+  get annualConsumptionOfPropane() {
+    return this.energieForm.get('annualConsumptionOfPropane');
   }
 
-  get gaz() {
-    return this.energieForm.get('gaz');
+  get annualConsumptionOfGas() {
+    return this.energieForm.get('annualConsumptionOfGas');
   }
 
-  get fioul() {
-    return this.energieForm.get('fioul');
+  get annualConsumptionOfFuel() {
+    return this.energieForm.get('annualConsumptionOfFuel');
   }
 
-  get charbon() {
-    return this.energieForm.get('charbon');
+  get annualConsumptionOfCharcoal() {
+    return this.energieForm.get('annualConsumptionOfCharcoal');
   }
 
-  get fluideFrig() {
-    return this.energieForm.get('fluideFrig');
+  get annualConsumptionOfRefrigerant() {
+    return this.energieForm.get('annualConsumptionOfRefrigerant');
   }
 
-  get gpl() {
-    return this.energieForm.get('gpl');
+  get annualConsumptionOfGPL() {
+    return this.energieForm.get('annualConsumptionOfGPL');
   }
 
-  // Method to handle the form submission (onNext)
   onNext() {
     if (this.energieForm.valid) {
-      // Create an instance of Energie
-      const energieData = new Energie();
+      const energyData = new Energy();
+      energyData.numberOfEmployees = this.energieForm.value.numberOfEmployees;
+      energyData.percentageOfTelework = this.energieForm.value.percentageOfTelework;
+      energyData.annualConsumptionOfElectricity = this.energieForm.value.annualConsumptionOfElectricity;
+      energyData.annualConsumptionOfPropane = this.energieForm.value.annualConsumptionOfPropane;
+      energyData.annualConsumptionOfNaturalGas = this.energieForm.value.annualConsumptionOfGas;
+      energyData.annualConsumptionOfFuel = this.energieForm.value.annualConsumptionOfFuel;
+      energyData.annualConsumptionOfCoal = this.energieForm.value.annualConsumptionOfCharcoal;
+      energyData.annualConsumptionOfRefrigerant = this.energieForm.value.annualConsumptionOfRefrigerant;
+      energyData.annualConsumptionOfGPL = this.energieForm.value.annualConsumptionOfGPL;
 
-      // Manually assign the form values to the Energie instance
-      energieData.nbEmployee = this.energieForm.value.nbEmployee;
-      energieData.pourcentageTeleTravail = this.energieForm.value.pourcentageTeleTravail;
-      energieData.electricite = this.energieForm.value.electricite;
-      energieData.propane = this.energieForm.value.propane;
-      energieData.gaz = this.energieForm.value.gaz;
-      energieData.fioul = this.energieForm.value.fioul;
-      energieData.charbon = this.energieForm.value.charbon;
-      energieData.fluideFrig = this.energieForm.value.fluideFrig;
-      energieData.gpl = this.energieForm.value.gpl;
-
-      // Update the CarbonFootprintService with the energie data
-      this.carbonService.updateEnergie(energieData);
-
-      // Navigate to the next page (e.g., the 'NextPage' form page)
-      this.router.navigate(['/'+RoutesEnum.CARBURANT]);
+      this.carbonService.updateEnergy(energyData);
+      this.router.navigate(['/' + RoutesEnum.CARBURANT]);
     } else {
-      // If the form is invalid, set the error message
       this.errorMessage = 'Please fill out all required fields correctly.';
     }
   }

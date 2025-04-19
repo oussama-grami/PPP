@@ -1,11 +1,10 @@
-import {TypeCarburant} from "../enumerations/typeCarburant";
+import { CarburantType } from "../enumerations/carburantType";
 
 export class Carburant {
-  essence!:number;
-  diesel!:number;
-  gpl!:number;
-  kilometrage!:number;
-  efficacite!:number;
-  typeCarburant:TypeCarburant = TypeCarburant.Diesel;
+  dieselFuelConsumption!: number;               // essence -> dieselFuelConsumption
+  gasolineFuelConsumption!: number;             // diesel -> gasolineFuelConsumption
+  lpgFuelConsumption!: number;                  // lpg -> lpgFuelConsumption
+  vehicleMileage!: number;                      // kilometrage -> vehicleMileage
+  fuelEfficiency!: number;                      // efficacite -> fuelEfficiency
+  carburantType!: CarburantType; // typeCarburant -> fuelType
 }
-

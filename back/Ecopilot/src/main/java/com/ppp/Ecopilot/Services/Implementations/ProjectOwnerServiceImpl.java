@@ -1,4 +1,4 @@
-package com.ppp.Ecopilot.Services.Implementations;
+/*package com.ppp.Ecopilot.Services.Implementations;
 
 import com.ppp.Ecopilot.Entities.ProjectOwner;
 import com.ppp.Ecopilot.Repositories.ProjectOwnerRepo;
@@ -21,4 +21,4 @@ public class ProjectOwnerServiceImpl extends AbstractCrudService<ProjectOwner,
     protected Class<ProjectOwner> getEntityClass() {
         return ProjectOwner.class;
     }
-}
+}*/

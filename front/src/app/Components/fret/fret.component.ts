@@ -1,9 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Fret} from "../../Models/fret";
-import {Router} from "@angular/router";
-import {CarbonFootprintService} from "../../Service/carbon-footprint.service";
-import {RoutesEnum} from "../../enumerations/Routes.enum";
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Freight } from "../../Models/freight";
+import { Router } from "@angular/router";
+import { CarbonFootprintService } from "../../Service/carbon-footprint.service";
+import { RoutesEnum } from "../../enumerations/Routes.enum";
 
 @Component({
   selector: 'app-fret',
@@ -12,7 +12,7 @@ import {RoutesEnum} from "../../enumerations/Routes.enum";
 })
 export class FretComponent implements OnInit {
   fForm!: FormGroup;
-  fData: Fret = new Fret();
+  fData: Freight = new Freight();
   isSubmitting = false;
   errorMessage: string = '';
 
@@ -23,28 +23,28 @@ export class FretComponent implements OnInit {
 
     // Initialize Reactive Form with validation rules
     this.fForm = this.fb.group({
-      fretAerien: ['', [Validators.required, Validators.min(0)]],
-      fretAerien1: ['', [Validators.required, Validators.min(0)]],
-      fretMaritme: ['', [Validators.required, Validators.min(0)]],
-      fretMaritme1: ['', [Validators.required, Validators.min(0)]]
+      freightAirLong: ['', [Validators.required, Validators.min(0)]],
+      freightAirShort: ['', [Validators.required, Validators.min(0)]],
+      freightSeaLong: ['', [Validators.required, Validators.min(0)]],
+      freightSeaShort: ['', [Validators.required, Validators.min(0)]]
     });
   }
 
   // Submit form data to fret service
   onNext() {
     if (this.fForm.valid) {
-      const fData: Fret = {
-        fretAerien: this.fForm.value.fretAerien,
-        fretAerien1: this.fForm.value.fretAerien1,
-        fretMaritme: this.fForm.value.fretMaritme,
-        fretMaritme1: this.fForm.value.fretMaritme1
+      const fData: Freight = {
+        freightAirLong: this.fForm.value.freightAirLong,
+        freightAirShort: this.fForm.value.freightAirShort,
+        freightSeaLong: this.fForm.value.freightSeaLong,
+        freightSeaShort: this.fForm.value.freightSeaShort
       };
 
       // Update the fret service with the collected data
-      this.carbonService.updateFret(fData); // Use the updateFret method
+      this.carbonService.updateFreight(fData); // Use the updateFret method
 
       // Navigate to the next page (e.g., the 'Next Page' form page)
-      this.router.navigate(['/'+RoutesEnum.CONSOMMABLES]);  // Replace '/nextPage' with your actual next page route
+      this.router.navigate(['/' + RoutesEnum.CONSOMMABLES]);  // Replace '/nextPage' with your actual next page route
     } else {
       this.errorMessage = 'Please fill in all required fields correctly.';
     }

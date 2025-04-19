@@ -1,9 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {CarbonFootprintService} from "../../Service/carbon-footprint.service";
-import {DeplacemetAerien} from "../../Models/deplacemetAerien";
-import {Router} from "@angular/router";
-import {RoutesEnum} from "../../enumerations/Routes.enum";
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CarbonFootprintService } from "../../Service/carbon-footprint.service";
+import { Aerien } from "../../Models/aerien";
+import { Router } from "@angular/router";
+import { RoutesEnum } from "../../enumerations/Routes.enum";
 
 @Component({
   selector: 'app-aeriens',
@@ -12,7 +12,7 @@ import {RoutesEnum} from "../../enumerations/Routes.enum";
 })
 export class AeriensComponent implements OnInit {
   depForm!: FormGroup;
-  depData: DeplacemetAerien = new DeplacemetAerien();
+  aerienData: Aerien = new Aerien();
   isSubmitting = false;
   errorMessage: string = '';
 
@@ -27,35 +27,34 @@ export class AeriensComponent implements OnInit {
 
     // Initialize Reactive Form with validation rules
     this.depForm = this.fb.group({
-      nbrArretRetourC: ['', [Validators.required, Validators.min(0)]],
-      nbrArretRetourM: ['', [Validators.required, Validators.min(0)]],
-      nbrArretRetourL: ['', [Validators.required, Validators.min(0)]]
+      numberOfShortHaulRoundTrips: ['', [Validators.required, Validators.min(0)]],
+      numberOfMediumHaulRoundTrips: ['', [Validators.required, Validators.min(0)]],
+      numberOfLongHaulRoundTrips: ['', [Validators.required, Validators.min(0)]]
     });
   }
-  get nbrArretRetourC() {
-    return this.depForm.get('nbrArretRetourC');
+
+  get numberOfShortHaulRoundTrips() {
+    return this.depForm.get('numberOfShortHaulRoundTrips');
   }
 
-  get nbrArretRetourM() {
-    return this.depForm.get('nbrArretRetourM');
+  get numberOfMediumHaulRoundTrips() {
+    return this.depForm.get('numberOfMediumHaulRoundTrips');
   }
 
-  get nbrArretRetourL() {
-    return this.depForm.get('nbrArretRetourL');
+  get numberOfLongHaulRoundTrips() {
+    return this.depForm.get('numberOfLongHaulRoundTrips');
   }
-
 
   onNext() {
     if (this.depForm.valid) {
-      const depData: DeplacemetAerien = {
-        nbrArretRetourC: this.depForm.value.nbrArretRetourC,
-        nbrArretRetourM: this.depForm.value.nbrArretRetourM,
-        nbrArretRetourL: this.depForm.value.nbrArretRetourL
+      const aerienData: Aerien = {
+        numberOfShortHaulRoundTrips: this.depForm.value.numberOfShortHaulRoundTrips,
+        numberOfMediumHaulRoundTrips: this.depForm.value.numberOfMediumHaulRoundTrips,
+        numberOfLongHaulRoundTrips: this.depForm.value.numberOfLongHaulRoundTrips
       };
 
-
-      this.carbonService.updateDeplacementAerien(depData);
-      this.router.navigate(['/'+RoutesEnum.CONSOMMABLES]);
+      this.carbonService.updateAerien(aerienData);
+      this.router.navigate(['/' + RoutesEnum.CONSOMMABLES]);
     } else {
       this.errorMessage = 'Please fill in all required fields correctly.';
     }

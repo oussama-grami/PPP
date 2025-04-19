@@ -83,9 +83,12 @@ export class EsgOverviewComponent implements OnInit {
   ngOnInit(): void {
     
     const scores = this.esgService.calculateEsg().subscribe((scores) => {
-    this.categories[0].score = scores.Environment;
-    this.categories[1].score = scores.Social;
-    this.categories[2].score = scores.Governance;})}
+      this.categories[0].score = scores.environment;
+    this.categories[1].score = scores.social;
+    this.categories[2].score = scores.governance;})
+    console.log("hello",this.categories);
+
+  }
 
   getActiveLevel(category: EsgCategory) {
     return category.levels.find(level => 

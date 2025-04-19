@@ -1,5 +1,11 @@
-<app-esg-header [currentQuestion]="currentQuestion"></app-esg-header>
-<div class="container" style="display: flex; flex-direction: column; justify-content: space-between;margin-top: 50px;">
+<app-esg-header [currentQuestion]="currentQuestionIndex+1"></app-esg-header>
+<div *ngIf="loading" class="container" style="display: flex; flex-direction: column; justify-content: center; align-items: center; margin-top: 50px;">
+  <app-eco-loading-spinner [loadingText]="'Loading...'"></app-eco-loading-spinner>
+</div>
+
+
+
+<div *ngIf="!loading" class="container" style="display: flex; flex-direction: column; justify-content: space-between;margin-top: 50px;">
   <div *ngIf="warnUser" class="alert alert-warning alert-dismissible fade show" role="alert">
     You should select an answer!
     <button type="button" class="btn-close" data-bs-dismiss="alert" (click)="warnUser=false"
