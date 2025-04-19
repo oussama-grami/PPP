@@ -17,7 +17,7 @@ import xgboost as xgb
 import base64
 import os
 import joblib
-
+'''
 class EventData:
     def __init__(self,
                  event_name: str,
@@ -149,7 +149,8 @@ def eventPredict():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-
+'''
+app = Flask(__name__)
 @app.route('/predict', methods=['POST'])
 def predict():
     try:
@@ -184,7 +185,7 @@ def predict():
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
-
+'''
 # Configuration Azure
 AZURE_ENDPOINT = "https://models.inference.ai.azure.com"
 AZURE_TOKEN = "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"
@@ -431,7 +432,7 @@ def generate_recommendations_event():
             "status": "error",
             "recommendations": []
         }), 500
-
+'''
     
 if __name__ == '__main__':
     app.run(debug=True)

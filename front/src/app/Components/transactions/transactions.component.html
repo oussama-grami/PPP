@@ -1,27 +1,61 @@
 <div class="transactions-container">
-  <h2>My Transactions</h2>
+  <h2>Green Project Investments</h2>
+
+  <div class="green-project-info">
+    <div class="project-icon">
+      <i class="fa fa-seedling"></i>
+    </div>
+    <div class="project-text">
+      Track your investments in environmental projects across different countries. Each transaction contributes to reducing carbon footprints.
+      <strong>Thank you for supporting a greener future!</strong>
+    </div>
+  </div>
+
   <div class="table-responsive">
     <table>
       <thead>
       <tr>
         <th>Country</th>
-        <th>Cost</th>
+        <th>Investment</th>
         <th>Date</th>
-        <th>Description</th>
+        <th>Environmental Impact</th>
+        <th>Project Description</th>
         <th>Action</th>
       </tr>
       </thead>
       <tbody>
       <tr *ngFor="let transaction of transactions">
-        <td>{{ transaction.country }}</td>
+        <td>
+            <span class="country-flag">
+              <i class="flag-icon flag-icon-{{ getCountryCode(transaction.country) }}"></i>
+            </span>
+          <span>{{ transaction.country }}</span>
+        </td>
         <td>{{ transaction.cost | currency:'USD' }}</td>
         <td>{{ transaction.date.toLocaleString() }}</td>
-        <td>Nothing</td>
         <td>
-          <button (click)="printInvoice(transaction)" class="print-btn">Print</button>
+          <div class="environmental-impact">
+              <span class="impact-indicator"
+                    [ngClass]="{'high-impact': transaction.cost >= 100,
+                               'medium-impact': transaction.cost >= 50 && transaction.cost < 100,
+                               'low-impact': transaction.cost < 50}">
+              </span>
+            <span>{{ transaction.cost >= 100 ? 'High' :
+              (transaction.cost >= 50 && transaction.cost < 100) ? 'Medium' : 'Standard' }}</span>
+          </div>
+        </td>
+        <td>{{ 'Green Investment Project' }}</td>
+        <td>
+          <button (click)="printInvoice(transaction)" class="print-btn">
+            <i class="fa fa-print"></i> Print
+          </button>
         </td>
       </tr>
       </tbody>
     </table>
+  </div>
+
+  <div class="total-contribution" *ngIf="transactions.length > 0">
+    Total Environmental Contribution: {{ calculateTotalContribution() }} kg CO₂ saved
   </div>
 </div>
