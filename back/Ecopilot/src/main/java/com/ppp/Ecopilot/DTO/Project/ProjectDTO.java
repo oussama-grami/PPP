@@ -24,5 +24,6 @@ public class ProjectDTO extends BaseDTO {
     private String typeOfProject;
     private String url;
     private Long projectOwnerId;
+    private String mapUrl;
     private Optional<List<Long>> chartLinesIds;
 }

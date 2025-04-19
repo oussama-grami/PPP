@@ -22,7 +22,12 @@ public class ProjectSpecification {
     }
 
     public static Specification<Project> hasCost(Integer cost) {
-        return (root, query, builder) -> cost == null ? null : builder.equal(root.get("cost"), cost);
+        return (root, query, cb) -> {
+            if (cost == null) {
+                return cb.conjunction(); // No filtering on cost
+            }
+            return cb.lessThanOrEqualTo(root.get("cost"), cost);
+        };
     }
 
     public static Specification<Project> hasCountry(String country) {

@@ -66,6 +66,7 @@ public class ProjectMapper implements EntityMapper<Project, ProjectDTO> {
                 .routing(entity.getRouting())
                 .typeOfProject(entity.getTypeOfProject())
                 .url(entity.getUrl())
+                .mapUrl(entity.getMapUrl())
                 .projectOwnerId(entity.getProjectOwner().getId())
                 .chartLinesIds(chartLineIds)
                 .build();

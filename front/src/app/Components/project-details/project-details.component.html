@@ -15,10 +15,10 @@
        [ngStyle]="{'background-image': 'url(' + selectedImage +' )'}">
     <div class="backgroundText">
       <div class="countryDetails">
-        <span class="flag">
+        <!--<span class="flag">
           <svg xmlns="http://www.w3.org/2000/svg" width="26" height="18" viewBox="0 0 26 18" fill="none">
             <g clip-path="url(#clip0_206_5230)">
-              <path d="M0 0.5H26V17.5002H0V0.5Z" fill="#D80027"/>
+               <path d="M0 0.5H26V17.5002H0V0.5Z" fill="#D80027"/>
               <path d="M13 13.781C15.6924 13.781 17.875 11.6404 17.875 8.99976C17.875 6.35915 15.6924 4.21851 13 4.21851C10.3076 4.21851 8.125 6.35915 8.125 8.99976C8.125 11.6404 10.3076 13.781 13 13.781Z" fill="white"/>
               <path d="M13.6005 7.17188L14.4369 8.30219L15.7914 7.87143L14.9537 9.0008L15.79 10.1311L14.4359 9.69877L13.5983 10.8281L13.5991 9.43162L12.2451 8.99921L13.5997 8.5685L13.6005 7.17188Z" fill="#D80027"/>
               <path d="M14.1079 11.8252C12.5169 11.8252 11.2273 10.5603 11.2273 8.99992C11.2273 7.43954 12.5169 6.17465 14.1079 6.17465C14.604 6.17465 15.0707 6.29767 15.4783 6.51427C14.839 5.90117 13.9648 5.52271 13 5.52271C11.042 5.52271 9.45453 7.07955 9.45453 8.99997C9.45453 10.9204 11.042 12.4772 13 12.4772C13.9648 12.4772 14.839 12.0988 15.4783 11.4857C15.0707 11.7022 14.604 11.8252 14.1079 11.8252Z" fill="#D80027"/>
@@ -29,11 +29,12 @@
               </clipPath>
             </defs>
           </svg>
-        </span>
-        <span class="countryName">Tunisia</span>
+        </span> -->
+        <span class="flag"><img [src]="project.flag"></span>
+        <span class="countryName">{{ project.country }}</span>
       </div>
-      <div class="projectName">Tree planting in Testour</div>
-      <div class="projectCategory">Arboriculture</div>
+      <div class="projectName">{{ project.name }}</div>
+      <div class="projectCategory">{{ project.category }}</div>
     </div>
   </div>
 </div>
@@ -45,7 +46,7 @@
         <div class="section-title">Description</div>
 
         <div class="category">
-          <span>
+          <!--<span>
             <svg xmlns="http://www.w3.org/2000/svg" width="27" height="18" viewBox="0 0 27 18" fill="none">
               <g clip-path="url(#clip0_206_5244)">
                 <path d="M0 0H27V18.0002H0V0Z" fill="#D80027"/>
@@ -62,83 +63,15 @@
             <span>
               <img class="vertical-separator" src="/assets/img/lineSeparator.png" alt="" height="14px">
             </span>
-            <span id="categoryText">Trees & Forests</span>
-          </span>
+            <span id="categoryText">{{ project.typeOfProject }}</span>
+          </span>-->
+          <span style="margin: 10px" class="flag"><img [src]="project.flag"></span>
+          <span id="categoryText">{{ project.typeOfProject }}</span>
         </div>
 
         <div class="project-title">Tree planting in Testour</div>
 
         <div class="description">
-          <div class="description-paragraph">
-            In Testour, the tree planting project focuses on the olive tree, an evergreen plant known for its active
-            role in carbon dioxide sequestration. The olive tree's deep roots help stabilize the soil, reducing erosion
-            risk and enhancing the health of local ecosystems. Well-managed olive groves can also act as carbon sinks,
-            storing carbon in the soil. Therefore, incorporating olive trees into climate change strategies presents a
-            comprehensive approach that merges environmental preservation with agricultural production and carbon
-            sequestration, paving the way for a more sustainable future. Additionally, the almond tree, while its roots
-            are not as deep as those of the olive tree, offers similar environmental benefits.​
-            <br>Trees are distributed as follows:
-          </div>
-
-          <div class="tree-inventory">
-            <h3 class="project-subtitle">Nature of the project:</h3>
-
-            <h2 class="tree-count">10,430 trees:</h2>
-
-            <ul class="tree-list">
-              <li class="tree-item">
-                <span class="tree-count">3500</span>
-                <span class="tree-type">Olive trees</span>
-                <span class="tree-variety">Koroneiki</span>
-                <span class="tree-age">4 years</span>
-              </li>
-
-              <li class="tree-item">
-                <span class="tree-count">500</span>
-                <span class="tree-type">Olive trees</span>
-                <span class="tree-variety">Picholine</span>
-                <span class="tree-age">4 years</span>
-              </li>
-
-              <li class="tree-item">
-                <span class="tree-count">4440</span>
-                <span class="tree-type">Olive trees</span>
-                <span class="tree-variety">Koroneiki</span>
-                <span class="tree-age">3 years</span>
-              </li>
-
-              <li class="tree-item">
-                <span class="tree-count">1000</span>
-                <span class="tree-type">Olive trees</span>
-                <span class="tree-variety">Frenjivento</span>
-                <span class="tree-age">3 years</span>
-              </li>
-
-              <li class="tree-item">
-                <span class="tree-count">560</span>
-                <span class="tree-type">Olive trees</span>
-                <span class="tree-variety">Arbaquina</span>
-                <span class="tree-age">3 years</span>
-              </li>
-
-              <li class="tree-item">
-                <span class="tree-count">110</span>
-                <span class="tree-type">Old olive trees</span>
-                <span class="tree-description">variety</span>
-                <span class="tree-variety">Oueslati</span>
-                <span class="tree-age">55 years</span>
-              </li>
-
-              <li class="tree-item">
-                <span class="tree-count">320</span>
-                <span class="tree-type">Almond trees</span>
-                <span class="tree-variety">Lauranne</span>
-                <span class="tree-age">4 years</span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="bold-description region-title">The Testour region:</div>
           <div class="description-paragraph">
             The tree planting project is situated in the Testour region of Tunisia, an
             area distinguished by its diverse and functional natural landscape. Dominated by expansive olive groves, the
@@ -158,7 +91,7 @@
             <div class="details-list">
               <div class="detail-row">
                 <span class="detail-title">Country</span>
-                <span class="detail-value">Tunisia</span>
+                <span class="detail-value">{{ project.country }}</span>
               </div>
               <div class="divider"></div>
 
@@ -175,55 +108,26 @@
               <div class="divider"></div>
 
               <div class="detail-row">
-                <span class="detail-title">Blockchain address</span>
-                <a href="'https://polygon.technology/'" class="detail-value">https://polygon.technology/</a>
-              </div>
-              <div class="divider"></div>
-
-              <div class="detail-row">
                 <span class="detail-title">Type of project</span>
-                <span class="detail-value">Arboriculture</span>
+                <span class="detail-value">{{ project.category }}</span>
               </div>
               <div class="divider"></div>
 
               <div class="detail-row">
                 <span class="detail-title">Mechanism</span>
-                <span class="detail-value">Elimination</span>
+                <span class="detail-value">{{ project.mechanism }}</span>
               </div>
             </div>
           </div>
 
           <div class="col-lg-5 col-md-12">
             <div class="map-container">
-              <img src="/assets/img/map.svg" alt="map" class="map-image">
+              <img [src]="project.mapUrl" alt="map" class="map-image">
             </div>
           </div>
         </div>
 
-        <div class="section-title">Latest transactions</div>
 
-        <div class="transactions-container">
-          <div *ngFor="let transaction of transactions; let i=index" class="transaction-row">
-            <div class="transaction-details">
-              <div class="transaction-country">
-                <img class="flag-icon" [src]="transaction.flag" alt="">
-                <span>{{transaction.country}}</span>
-              </div>
-
-              <div class="transaction-amount">
-                <span class="transaction-price">{{ transaction.totalPrice }}$</span>
-                <br>
-                <span class="transaction-unity">{{ transaction.quantity }} tCO2e</span>
-              </div>
-
-              <div class="transaction-date">
-                {{ transaction.date.toLocaleString() }}
-              </div>
-            </div>
-
-            <div class="divider" *ngIf="transactions.length != i+1"></div>
-          </div>
-        </div>
 
         <div class="section-title">Sustainable development objectives</div>
 
