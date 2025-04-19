@@ -11,51 +11,75 @@
     </div>
   </div>
 
-  <div class="table-responsive">
-    <table>
-      <thead>
-      <tr>
-        <th>Country</th>
-        <th>Investment</th>
-        <th>Date</th>
-        <th>Environmental Impact</th>
-        <th>Project Description</th>
-        <th>Action</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let transaction of transactions">
-        <td>
-            <span class="country-flag">
-              <i class="flag-icon flag-icon-{{ getCountryCode(transaction.country) }}"></i>
-            </span>
-          <span>{{ transaction.country }}</span>
-        </td>
-        <td>{{ transaction.cost | currency:'USD' }}</td>
-        <td>{{ transaction.date.toLocaleString() }}</td>
-        <td>
-          <div class="environmental-impact">
-              <span class="impact-indicator"
-                    [ngClass]="{'high-impact': transaction.cost >= 100,
-                               'medium-impact': transaction.cost >= 50 && transaction.cost < 100,
-                               'low-impact': transaction.cost < 50}">
-              </span>
-            <span>{{ transaction.cost >= 100 ? 'High' :
-              (transaction.cost >= 50 && transaction.cost < 100) ? 'Medium' : 'Standard' }}</span>
-          </div>
-        </td>
-        <td>{{ 'Green Investment Project' }}</td>
-        <td>
-          <button (click)="printInvoice(transaction)" class="print-btn">
-            <i class="fa fa-print"></i> Print
-          </button>
-        </td>
-      </tr>
-      </tbody>
-    </table>
+  <!-- Spinner affiché pendant le chargement -->
+  <div *ngIf="loading" class="loading-spinner">
+    <div class="spinner">
+      <i class="fa fa-circle-notch fa-spin"></i>
+    </div>
+    <p>Loading your green investments...</p>
   </div>
 
-  <div class="total-contribution" *ngIf="transactions.length > 0">
-    Total Environmental Contribution: {{ calculateTotalContribution() }} kg CO₂ saved
+  <!-- Message si aucune transaction n'est trouvée -->
+  <div *ngIf="!loading && transactions.length === 0" class="no-data">
+    <i class="fa fa-info-circle"></i>
+    <p>No green investments found. Start investing in environmental projects today!</p>
+  </div>
+
+  <!-- Tableau affiché uniquement quand les données sont chargées et non vides -->
+  <div *ngIf="!loading && transactions.length > 0">
+    <div class="table-responsive">
+      <table>
+        <thead>
+        <tr>
+          <th>Country</th>
+          <th>Investment</th>
+          <th>Date</th>
+          <th>Environmental Impact</th>
+          <th>Project Description</th>
+          <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let transaction of transactions">
+          <td>
+              <span class="country-flag">
+                <i class="flag-icon flag-icon-{{ getCountryCode(transaction.country) }}"></i>
+              </span>
+            <span>{{ transaction.country }}</span>
+          </td>
+          <td>{{ transaction.totalPrice | currency:'USD' }}</td>
+          <td>{{ transaction.createdAt.toLocaleString() }}</td>
+          <td>
+            <div class="environmental-impact">
+                <span class="impact-indicator"
+                      [ngClass]="{'high-impact': transaction.totalPrice >= 100,
+                                 'medium-impact': transaction.totalPrice >= 50 && transaction.totalPrice < 100,
+                                 'low-impact': transaction.totalPrice < 50}">
+                </span>
+              <span>{{ transaction.totalPrice >= 100 ? 'High' :
+                (transaction.totalPrice >= 50 && transaction.totalPrice < 100) ? 'Medium' : 'Standard' }}</span>
+            </div>
+          </td>
+          <td>{{ transaction.description || 'Green Investment Project' }}</td>
+          <td>
+            <button (click)="printInvoice(transaction)" class="print-btn">
+              <i class="fa fa-print"></i> Print
+            </button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="total-contribution">
+      Total Environmental Contribution: {{ calculateTotalContribution() }} kg CO₂ saved
+    </div>
   </div>
 </div>
+<app-pagination
+  [totalPages]="totalPages"
+  [currentPage]="currentPage"
+  (pageChanged)="onPageChanged($event)">
+</app-pagination>
+
+

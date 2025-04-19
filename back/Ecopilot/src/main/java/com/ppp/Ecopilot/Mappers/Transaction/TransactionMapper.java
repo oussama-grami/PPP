@@ -22,6 +22,7 @@ public class TransactionMapper implements EntityMapper<Transaction, TransactionD
                 .description(dto.getDescription())
                 .totalPrice(dto.getTotalPrice())
                 .companyOwner(CompanyOwner.builder().id(dto.getCompanyOwnerId()).build());
+
         List<ChartLine> chartLines = dto.getChartLineIds().stream()
                 .map(id -> {
                     ChartLine cl = new ChartLine();
@@ -45,6 +46,12 @@ public class TransactionMapper implements EntityMapper<Transaction, TransactionD
                 .description(entity.getDescription())
                 .totalPrice(entity.getTotalPrice())
                 .companyOwnerId(entity.getCompanyOwner().getId())
-                .chartLineIds(chartLineIds).build();
+                .chartLineIds(chartLineIds)
+                .province(entity.getProvince())
+                .city(entity.getCity())
+                .country(entity.getCountry())
+                .address(entity.getAddress())
+                .createdAt(entity.getCreatedDate())
+                .build();
     }
 }
