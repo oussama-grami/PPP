@@ -17,6 +17,7 @@ public class ProjectUpdateDTO {
     private String mechanism;
     private Integer minimumPurchase;
     private String name;
+    private String description;
     private String routing;
     private String typeOfProject;
     private String url;

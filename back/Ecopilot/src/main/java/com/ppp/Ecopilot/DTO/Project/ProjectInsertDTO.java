@@ -14,6 +14,7 @@ public class ProjectInsertDTO {
     private int cost;
     private String country;
     private String flag;
+    private String description;
     private String mechanism;
     private int minimumPurchase;
     private String name;

@@ -36,6 +36,7 @@ export class ProjectDetailsComponent implements OnInit{
       })
     this.projectsService.getProjectById(this.projectId).subscribe(data => {
       this.project = data;
+      console.log("project is :"+data.description);
       console.log(this.project);
     })
     if (this.transactions.length > 10) {

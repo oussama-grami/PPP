@@ -72,15 +72,7 @@
         <div class="project-title">Tree planting in Testour</div>
 
         <div class="description">
-          <div class="description-paragraph">
-            The tree planting project is situated in the Testour region of Tunisia, an
-            area distinguished by its diverse and functional natural landscape. Dominated by expansive olive groves, the
-            region forms a robust agricultural base. The gently rolling hills provide panoramic views of these
-            plantations, and the rivers weaving through the area support the irrigation essential for local agriculture.
-            The inhabitants of Testour benefit from this agricultural richness, with the surrounding mountains offering
-            a picturesque natural backdrop. Thus, the Testour region represents a harmonious blend of agricultural
-            functionality and natural beauty, striking a balance between the practical needs of the local community and
-            the innate allure of the environment.​
+          <div class="description-paragraph" [innerHTML]="project.description | formatDescription">
           </div>
         </div>
 
