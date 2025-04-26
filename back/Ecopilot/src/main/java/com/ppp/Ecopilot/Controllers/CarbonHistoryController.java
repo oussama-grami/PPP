@@ -1,12 +1,10 @@
 package com.ppp.Ecopilot.Controllers;
 
 
-import com.ppp.Ecopilot.DTO.CarbonFootprintHistoryDTO;
-import com.ppp.Ecopilot.DTO.CreateCarbonFootprintHistoryDTO;
-import com.ppp.Ecopilot.Entities.CarbonFootprintHistory;
+import com.ppp.Ecopilot.DTO.CarbonFootprintHistory.CarbonFootprintHistoryDTO;
+import com.ppp.Ecopilot.DTO.CarbonFootprintHistory.CreateCarbonFootprintHistoryDTO;
 import com.ppp.Ecopilot.Services.CarbonFootprintHistoryService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -37,6 +35,9 @@ public class CarbonHistoryController  {
     }
     @PostMapping("/saveAll")
     public void createAllCarbonHistory(@RequestBody List<CreateCarbonFootprintHistoryDTO> data) {
+        System.out.println("Data: " + data);
+        System.out.println("here");
+
         carbonHistoryService.saveAllCarbonFootprint(data);
     }
 
@@ -49,5 +50,12 @@ public class CarbonHistoryController  {
     public void deleteCarbonHistory(@PathVariable Long id) {
         carbonHistoryService.deleteCarbonFootprint(id);
     }
+
+
+    @PostMapping("/forecast")
+    public CarbonFootprintHistoryDTO[] forecastData() {
+        return carbonHistoryService.forecastData();
+    }
+
 
 }

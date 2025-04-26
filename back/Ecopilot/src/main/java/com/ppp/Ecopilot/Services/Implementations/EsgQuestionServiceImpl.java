@@ -9,10 +9,8 @@ import com.ppp.Ecopilot.Repositories.EsgQuestionRepo;
 import com.ppp.Ecopilot.Entities.EsgQuestion;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -28,10 +26,7 @@ public class EsgQuestionServiceImpl extends AbstractCrudService<EsgQuestion, Lon
         this.esgOptionMapper = esgOptionMapper;
     }
 
-    @Override
-    public List<EsgQuestion> findByCategory(String category) {
-        return esgQuestionRepo.findByCategory(EsgCategory.valueOf(category));
-    }
+
 
     @Override
     protected JpaRepository<EsgQuestion, Long> getRepository() {
@@ -44,16 +39,17 @@ public class EsgQuestionServiceImpl extends AbstractCrudService<EsgQuestion, Lon
     }
 
     @Override
-    public EsgQuestionDTO getQuestioById(Long id) {
-        Optional<EsgQuestion> question = esgQuestionRepo.findById(id);
-        if (question.isPresent()) {
-            EsgQuestionDTO dto = esgQuestionMapper.toDto(question.get());
-            List<EsgOption> options = esgOptionService.findByEsgQuestionId(id);
-            dto.setOptions(options.stream().map(esgOptionMapper::toDto).collect(Collectors.toList()));
-            return dto;
-        }
-        return null;
+    public EsgQuestionDTO getQuestionById(Long id) {
+        EsgQuestion question = esgQuestionRepo.findById(id).orElseThrow(() -> new RuntimeException("Question not found"));
+        EsgQuestionDTO dto = esgQuestionMapper.toDto(question);
+        List<EsgOption> options = esgOptionService.findByEsgQuestionId(id);
+        dto.setOptions(options.stream().map(esgOptionMapper::toDto).collect(Collectors.toList()));
+        return dto;
+
+
     }
+
+
 
     @Override
     public List<EsgQuestionDTO> loadQuestionByCategoryWithOption(EsgCategory category) {
@@ -80,4 +76,38 @@ public class EsgQuestionServiceImpl extends AbstractCrudService<EsgQuestion, Lon
                 })
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public void saveQuestion(EsgQuestionDTO questionDTO) {
+        EsgQuestion question = esgQuestionMapper.toEntity(questionDTO);
+        List<EsgOption> options = questionDTO.getOptions().stream()
+                .map(esgOptionMapper::toEntity)
+                .collect(Collectors.toList());
+        question.setEsgOptions(options);
+        esgQuestionRepo.save(question);
     }
+
+    @Override
+    public void updateQuestion(EsgQuestionDTO questionDTO, Long id) {
+        EsgQuestion question = esgQuestionRepo.findById(id)
+                .orElseThrow(() -> new RuntimeException("Question not found"));
+
+        // Update only non-null fields
+        if (questionDTO.getText() != null) {
+            question.setText(questionDTO.getText());
+        }
+        if (questionDTO.getCategory() != null) {
+            question.setCategory(questionDTO.getCategory());
+        }
+        if (questionDTO.getOptions() != null) {
+            List<EsgOption> options = questionDTO.getOptions().stream()
+                    .map(esgOptionMapper::toEntity)
+                    .collect(Collectors.toList());
+            question.setEsgOptions(options);
+        }
+
+        esgQuestionRepo.save(question);
+    }
+
+
+}

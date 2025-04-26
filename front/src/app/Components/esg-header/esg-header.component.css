@@ -1,89 +1,237 @@
-.container {
+/* Main Container */
+.progress-header {
   display: flex;
   justify-content: space-between;
-  box-sizing: border-box;
-  margin-top: 40px;
-  width: 100%;
-}
-
-.box {
-  height: 40px;
-  border-radius: 5px;
+  align-items: center;
+  margin: 20px auto;
+  width: 95%;
+  max-width: 1200px;
+  height: 70px;
   position: relative;
-  width: 45%;
-  margin: 10px;
 }
 
-.box img {
+/* Section Boxes (Environment, Social, Governance, Results) */
+.section-box {
+  flex: 1.5;
+  height: 60px;
+  border-radius: 8px;
+  position: relative;
+  margin: 0 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Section Icons */
+.section-icon {
   width: 24px;
   height: 24px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 4px;
 }
 
-.env {
+.section-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: all 0.3s ease;
+}
+
+/* Section Labels */
+.section-label {
   font-family: 'Roboto', sans-serif;
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: 0em;
+  font-size: 12px;
+  font-weight: 600;
   text-align: center;
-  font-style: normal;
-  line-height: 21px;
-  width: 107px;
-  height: 21px;
-  position: absolute;
-  bottom: -40px; /* Adjust the value based on your needs */
-  left: 50%;
-  transform: translateX(-50%);
-  color: #6D6D6D;
-  margin-left: 5px;
+  line-height: 1.2;
+  color: #4A4A4A;
+  white-space: nowrap;
+  transition: all 0.3s ease;
 }
 
-.green {
-  background-color: #014131;
+/* Question Boxes */
+.question-box {
+  flex: 1;
+  height: 20px;
+  width:20px;
+  border-radius: 6px;
+  position: relative;
+  margin: 0 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
 }
 
-.grey {
-  background-color: #F2F2F2;
-}
-
-
-.number {
+/* Question Numbers */
+.question-number {
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
   font-weight: 600;
-  line-height: 35px;
-  letter-spacing: 0em;
-  text-align: center;
-  margin: auto;
+  color: #9E9E9E;
+  transition: all 0.3s ease;
 }
-.bar {
-  width: 7px;
-  height: 39px;
-  border-radius: 5px;
+
+/* Progress Indicators */
+.progress-indicator {
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
   position: absolute;
-  left: 50%;
-  top: 87%;
-  transform: translate(-50%, -50%) rotate(-90deg);
-  background-color: #01413133;
+  bottom: -8px;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
 }
 
-
-
-
-
-
-
-.bar.active {
-  background-color: #014131; /* Your green color */
- 
+/* Active States */
+.section-box.active {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
-.box.grey.social {
- background-color: #87C4E4;
 
+.section-box.active .section-label {
+  color: #333;
+  font-weight: 700;
 }
-.box.grey.governance {  
-  background-color: #FECD7C;
- }
+
+.question-box.current .question-number {
+  color: #333;
+  font-size: 18px;
+}
+
+.question-box.current .progress-indicator {
+  height: 5px;
+  bottom: -10px;
+}
+
+/* Completed States */
+.question-box.completed .question-number {
+  color: #014131;
+}
+
+/* Section-Specific Styles */
+/* Environment */
+.section-box.environment {
+  background-color: #E8F5E9;
+}
+
+.section-box.environment.active {
+  background-color: #70a471;
+}
+
+.section-box.environment.active .section-label {
+  color: #014131;
+}
+
+.section-box.environment .progress-indicator {
+  background-color: rgba(1, 65, 49, 0.2);
+}
+
+.section-box.environment.active .progress-indicator,
+.question-box.environment.current .progress-indicator {
+  background-color: #014131;
+}
+
+/* Social */
+.section-box.social {
+  background-color: #E3F2FD;
+}
+
+.section-box.social.active {
+  background-color: #BBDEFB;
+}
+
+.section-box.social.active .section-label {
+  color: #0D47A1;
+}
+
+.section-box.social .progress-indicator {
+  background-color: rgba(135, 196, 228, 0.3);
+}
+
+.section-box.social.active .progress-indicator,
+.question-box.social.current .progress-indicator {
+  background-color: #2196F3;
+}
+
+/* Governance */
+.section-box.governance {
+  background-color: #FFF8E1;
+}
+
+.section-box.governance.active {
+  background-color: #FFECB3;
+}
+
+.section-box.governance.active .section-label {
+  color: #763707;
+}
+
+.section-box.governance .progress-indicator {
+  background-color: rgba(254, 205, 124, 0.3);
+}
+
+.section-box.governance.active .progress-indicator,
+.question-box.governance.current .progress-indicator {
+  background-color: #FFC107;
+}
+
+/* Results */
+.section-box.results {
+  background-color: #99dbbd;
+}
+
+.section-box.results.active {
+  background-color: rgb(123, 177, 153);
+}
+
+.section-box.results.active .section-label {
+  color: #41aa7b;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .progress-header {
+    flex-wrap: wrap;
+    height: auto;
+    padding: 10px 5px;
+  }
+  
+  .section-box {
+    order: -1;
+    width: 22%;
+    margin: 5px 1%;
+    height: 50px;
+  }
+  
+  .question-box {
+    width: 12%;
+    margin: 5px 1%;
+    height: 35px;
+  }
+  
+  .section-label {
+    font-size: 10px;
+    margin-top: 2px;
+  }
+  
+  .question-number {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-label {
+    display: none;
+  }
+  
+  .section-icon {
+    margin-bottom: 0;
+  }
+}

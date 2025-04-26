@@ -1,101 +1,146 @@
-<div class="retour"> <button [routerLink]="'/' + routesEnum.PREDICTION_INFO">
-  <div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-      <path d="M19.5 12H4.5M4.5 12L10.125 6M4.5 12L10.125 18" stroke="black" stroke-width="1.5"
-        stroke-linecap="round" stroke-linejoin="round" />
-    </svg></div>
-    <div class="retour-text" >
-      Back
+<div class="page-header">
+  <div class="container-fluid">
+    <div class="breadcrumb-nav">
+      <button class="back-btn" [routerLink]="'/' + routesEnum.PREDICTION_INFO">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none">
+          <path d="M19.5 12H4.5M4.5 12L10.125 6M4.5 12L10.125 18" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        Back to Dashboard
+      </button>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <h1 class="title">Carbon Footprint Forecast</h1>
+        <p class="subtitle">Track, analyze, and predict your organization's environmental impact</p>
+      </div>
+    </div>
   </div>
-</button>
 </div>
-<div class=" col-lg-12 text-left">
-  <h1 class="title">Carbon Footprint Forecast</h1>
-</div>
-<div class="container-fluid py-4 d-flex justify-content-center align-items-center">
-  <div class="row justify-content-center align-items-stretch w-100">
+
+<div class="container-fluid py-4 ">
+  <div class="row g-4">
     
     <!-- Left Column: Chart -->
-    <div class="col-lg-7 mb-4 d-flex h-100" >
-      <div class="card shadow-lg w-100 h-100 d-flex flex-column" >
-        <div class="card-body p-3 d-flex flex-column align-items-center flex-grow-1">
-          <canvas id="carbonChart" width="500" height="400"></canvas>
+    <div class="col-lg-7">
+      <div class="dashboard-card h-100">
+        <div class="card-header d-flex justify-content-between align-items-center">
+          <h5 class="card-title">Carbon Emissions Trend</h5>
+          
         </div>
-        <div class="d-flex justify-content-center mt-auto p-3">
-          <button class="btn btn-predict btn-light btn-sm" (click)="predict()">
-            <i class="bi bi-graph-up"></i> Predict
-          </button>
+        <div class="card-body d-flex flex-column">
+          <div class="chart-container">
+            <canvas id="carbonChart"></canvas>
+          </div>
+          <div class="mt-auto">
+            <div class="chart-legend d-flex justify-content-center gap-4 mb-3">
+              <div class="legend-item d-flex align-items-center gap-2">
+                <span class="legend-indicator actual"></span>
+                <span>Actual Data</span>
+              </div>
+              <div class="legend-item d-flex align-items-center gap-2">
+                <span class="legend-indicator predicted"></span>
+                <span>Predicted Values</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="footer-info">
+            <i class="bi bi-info-circle"></i>
+            <span>Last updated: April 17, 2025</span>
+          </div>
+          <div class="footer-actions">
+            <button class="primary-btn" (click)="predict()">
+              <i class="bi bi-graph-up"></i>
+              Generate Forecast
+            </button>
+          </div>
         </div>
       </div>
     </div>
 
     <!-- Right Column: Table -->
-    <div  class="col-lg-5 d-flex h-100">
-      <div class="card shadow-lg w-100 h-100 d-flex flex-column">
-        <div class="card-header d-flex justify-content-between align-items-center bg-dark text-white">
-          <h5 class="card-title mb-0">Carbon Footprint History</h5>
+    <div class="col-lg-5">
+      <div class="dashboard-card h-100">
+        <div class="card-header d-flex justify-content-between align-items-center">
+          <h5 class="card-title">Carbon Footprint Records</h5>
+          <div class="header-actions">
+            <button class="action-btn" title="Export Data">
+              <i class="bi bi-download"></i>
+            </button>
+           
+          </div>
         </div>
-        <div class="card-body p-0 flex-grow-1">
-          <div #tableContainer class="table-responsive">
-            <table class="table table-hover table-striped mb-0">
-              <thead class="table-light">
+        <div class="card-body p-0">
+          <div #tableContainer class="data-table-container">
+            <table class="data-table">
+              <thead>
                 <tr>
-                  <th>Date</th>
-                  <th>Value (kg CO₂)</th>
+                  <th>Date <i class="bi bi-arrow-down-up"></i></th>
+                  <th>Value (kg CO₂) <i class="bi bi-arrow-down-up"></i></th>
                   <th class="text-end">Actions</th>
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let element of carbonData" [ngClass]="{'predicted-row': element.predicted}" >
+                <tr *ngFor="let element of carbonData" [ngClass]="{'predicted-row': element.predicted, 'table-row-animate': true}">
                   <td>{{element.date}}</td>
-                  <td>
-                    <span *ngIf="editingElementId !== element.id" class="fw-medium">{{ element.value }}</span>
-                    <input *ngIf="editingElementId === element.id" [(ngModel)]="element.value" type="number" />
-  
+                  <td class="value-cell">
+                    <span *ngIf="editingElementId !== element.id">{{ element.value }}</span>
+                    <input *ngIf="editingElementId === element.id" [(ngModel)]="element.value" type="number" class="form-control" />
                   </td>
                   <td class="text-end">
-                    <button *ngIf="editingElementId!==element.id" class="action-btn btn-outline-custom btn-sm me-1" title="Edit" (click)="startEdit(element.id)">
-                      <i class="bi bi-pencil"></i>
-                    </button>
-                    <button *ngIf="editingElementId === element.id" class="action-btn btn-outline-success btn-sm me-1" title="Save" 
-                    (click)="saveEdit(element, element.value)">
-                      <i class="bi bi-check"></i>
-                    </button>
-                    <button class="action-btn btn-outline-danger btn-sm" title="Delete"(click)="deleteElement(element.id)" >
-                      <i class="bi bi-trash" ></i>
-                    </button>
+                    <div class="d-flex justify-content-end">
+                      <button *ngIf="editingElementId !== element.id" class="action-btn edit-btn" title="Edit" (click)="startEdit(element.id)">
+                        <i class="bi bi-pencil"></i>
+                      </button>
+                      <button *ngIf="editingElementId === element.id" class="action-btn save-btn" title="Save" (click)="saveEdit(element, element.value)">
+                        <i class="bi bi-check-lg"></i>
+                      </button>
+                      <button class="action-btn delete-btn" title="Delete" (click)="deleteElement(element.id)">
+                        <i class="bi bi-trash"></i>
+                      </button>
+                    </div>
                   </td>
                 </tr>
-                <tr *ngIf="newEntry" #newRow>
+                <tr *ngIf="newEntry" #newRow class="table-row-animate">
                   <td>
-                    <input type="month" [(ngModel)]="newEntry.date" class="form-control form-control-sm">
-
+                    <input type="month" [(ngModel)]="newEntry.date" class="form-control">
                   </td>
                   <td>
-                    <input type="number" [(ngModel)]="newEntry.value" class="form-control form-control-sm">
+                    <input type="number" [(ngModel)]="newEntry.value" class="form-control">
                   </td>
                   <td class="text-end">
-                    <button class="action-btn btn-outline-success btn-sm me-1"  (click)="saveNewElement()">
-                      <i class="bi bi-check"></i>
-                    </button>
-                    <button class="action-btn  btn-outline-danger btn-sm me-1" (click)="newEntry = null">
-                      <i class="bi bi-x"></i>
-                    </button>
+                    <div class="d-flex justify-content-end">
+                      <button class="action-btn save-btn" (click)="saveNewElement()">
+                        <i class="bi bi-check-lg"></i>
+                      </button>
+                      <button class="action-btn cancel-btn" (click)="newEntry = null">
+                        <i class="bi bi-x-lg"></i>
+                      </button>
+                    </div>
                   </td>
                 </tr>
               </tbody>
             </table>
           </div>
         </div>
-        <div class="card-footer d-flex justify-content-between align-items-center">
-          <span class="text-muted small">Showing {{carbonData.length}} records</span>
-          <button class="btn custom-btn btn-dark btn-sm" (click)="addElement()" *ngIf="!newEntry">
-            <i class="bi bi-plus-lg"></i> Add New Record
-          </button>
-          <button class="btn custom-btn btn-dark btn-sm" *ngIf="!newEntry" (click)="savePredictions()">
-            <i class="bi bi-save"></i> Save Prediction
-          </button>
-
-          
+        <div class="card-footer">
+          <div class="footer-info">
+            <i class="bi bi-clipboard-data"></i>
+            <span>Showing {{carbonData.length}} records</span>
+          </div>
+          <div class="footer-actions">
+            <button class="secondary-btn" (click)="addElement()" *ngIf="!newEntry">
+              <i class="bi bi-plus-lg"></i>
+              Add New Record
+            </button>
+            <button class="primary-btn" *ngIf="!newEntry" (click)="savePredictions()">
+              <i class="bi bi-save"></i>
+              Save Predictions
+            </button>
+          </div>
         </div>
       </div>
     </div>

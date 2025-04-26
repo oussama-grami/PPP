@@ -1,4 +1,4 @@
-package com.ppp.Ecopilot.DTO;
+package com.ppp.Ecopilot.DTO.CarbonFootprintHistory;
 
 
 import jakarta.persistence.MappedSuperclass;
@@ -12,7 +12,8 @@ import java.time.YearMonth;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class CreateCarbonFootprintHistoryDTO {
+public class CarbonFootprintHistoryDTO {
+    private Long id;
     private YearMonth date;
     private boolean predicted;
     private double value;

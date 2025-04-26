@@ -8,15 +8,14 @@
   }
   
   .eco-spinner {
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
     position: relative;
   }
   
   .eco-spinner-svg {
     width: 100%;
     height: 100%;
-    transform: rotate(-90deg); /* Start progress from top */
   }
   
   .eco-track {
@@ -24,7 +23,7 @@
   }
   
   .eco-progress {
-    stroke: #388E3C;
+    stroke: #82BE38;
     stroke-dasharray: 283;
     stroke-dashoffset: 283;
     animation: eco-progress 1.5s cubic-bezier(0.65, 0, 0.35, 1) infinite;

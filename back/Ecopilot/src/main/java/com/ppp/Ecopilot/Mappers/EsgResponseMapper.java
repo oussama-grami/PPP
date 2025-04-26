@@ -1,6 +1,6 @@
 package com.ppp.Ecopilot.Mappers;
 
-import com.ppp.Ecopilot.DTO.EsgResponseDTO;
+import com.ppp.Ecopilot.DTO.Response.EsgResponseDTO;
 import com.ppp.Ecopilot.Entities.EsgResponse;
 import org.springframework.stereotype.Component;
 

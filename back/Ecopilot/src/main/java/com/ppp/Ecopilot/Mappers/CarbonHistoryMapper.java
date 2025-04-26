@@ -1,7 +1,7 @@
 package com.ppp.Ecopilot.Mappers;
 
-import com.ppp.Ecopilot.DTO.CarbonFootprintHistoryDTO;
-import com.ppp.Ecopilot.DTO.CreateCarbonFootprintHistoryDTO;
+import com.ppp.Ecopilot.DTO.CarbonFootprintHistory.CarbonFootprintHistoryDTO;
+import com.ppp.Ecopilot.DTO.CarbonFootprintHistory.CreateCarbonFootprintHistoryDTO;
 import com.ppp.Ecopilot.Entities.CarbonFootprintHistory;
 import org.springframework.stereotype.Service;
 

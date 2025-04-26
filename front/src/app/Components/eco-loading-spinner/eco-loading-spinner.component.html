@@ -1,18 +1,27 @@
 <div class="eco-loading-container">
   <div class="eco-spinner">
     <svg class="eco-spinner-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-      <!-- Circular track -->
-      <circle class="eco-track" cx="50" cy="50" r="45" fill="none" stroke-width="4"></circle>
-      <!-- Animated progress -->
-      <circle class="eco-progress" cx="50" cy="50" r="45" fill="none" stroke-width="4" stroke-linecap="round"></circle>
-      
-      <!-- Modern leaf icon in the center -->
-      <g class="eco-icon">
-        <!-- Leaf with subtle vein details -->
-        <path d="M50 30C50 30 30 40 35 60C40 80 50 75 50 75C50 75 60 80 65 60C70 40 50 30 50 30Z" fill="#014131"/>
-        <path d="M50 35L50 65M50 40L45 50M50 40L55 50M50 45L43 60M50 45L57 60" stroke="#81C784" stroke-width="1" fill="none"/>
-      </g>
-    </svg>
+  <!-- Circular track -->
+  <circle class="eco-track" cx="50" cy="50" r="45" fill="none" stroke-width="4"></circle>
+  <!-- Animated progress -->
+  <circle class="eco-progress" cx="50" cy="50" r="45" fill="none" stroke-width="4" stroke-linecap="round"></circle>
+  
+  <!-- Modern leaf icon in the center -->
+  <g class="eco-icon">
+    <!-- External SVG image properly referenced -->
+    <image 
+      href="assets/img/leaf.jpg"
+      x="30" 
+      y="37" 
+      width="40" 
+      height="40" 
+      class="eco-leaf-icon"
+      preserveAspectRatio="xMidYMid meet"
+    />
+    <!-- Optional decorative veins -->
+    
+  </g>
+</svg>
   </div>
   <p class="eco-loading-text">{{ loadingText }}</p>
 </div>
