@@ -20,6 +20,7 @@ public class ProjectInsertMapper  implements EntityMapper<Project, ProjectInsert
                 .minimumPurchase(dto.getMinimumPurchase())
                 .name(dto.getName())
                 .routing(dto.getRouting())
+                .description(dto.getDescription())
                 .typeOfProject(dto.getTypeOfProject())
                 .url(dto.getUrl())
                 .projectOwner(ProjectOwner.builder().id(dto.getProjectOwnerId()).build());
@@ -41,6 +42,7 @@ public class ProjectInsertMapper  implements EntityMapper<Project, ProjectInsert
                         .typeOfProject(entity.getTypeOfProject())
                         .url(entity.getUrl())
                         .projectOwnerId(entity.getProjectOwner().getId())
+                            .description(entity.getDescription())
                         .build();
 
 }

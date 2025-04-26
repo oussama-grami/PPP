@@ -6,15 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="a44dcea4-1b65-477f-816a-e4da98dae22a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../back/Ecopilot/src/main/java/com/ppp/Ecopilot/Controllers/CarbonHistoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../back/Ecopilot/src/main/java/com/ppp/Ecopilot/Controllers/CarbonHistoryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../back/Ecopilot/src/main/java/com/ppp/Ecopilot/Entities/CarbonFootprintHistory.java" beforeDir="false" afterPath="$PROJECT_DIR$/../back/Ecopilot/src/main/java/com/ppp/Ecopilot/Entities/CarbonFootprintHistory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../back/Ecopilot/src/main/java/com/ppp/Ecopilot/Services/Implementations/CarbonFootprintHistoryServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../back/Ecopilot/src/main/java/com/ppp/Ecopilot/Services/Implementations/CarbonFootprintHistoryServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front/src/app/Components/HistoricalCarbonForecast/HistoricalCarbonForecast.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../front/src/app/Components/HistoricalCarbonForecast/HistoricalCarbonForecast.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front/src/app/Components/eco-loading-spinner/eco-loading-spinner.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../front/src/app/Components/eco-loading-spinner/eco-loading-spinner.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front/src/app/Components/eco-loading-spinner/eco-loading-spinner.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../front/src/app/Components/eco-loading-spinner/eco-loading-spinner.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front/src/app/Components/esg-assessment/esg-assessment.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../front/src/app/Components/esg-assessment/esg-assessment.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front/src/app/Service/historical-prediction.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../front/src/app/Service/historical-prediction.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,25 +41,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Flask server.Model.executor&quot;: &quot;Run&quot;,
-    &quot;Python.Model.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Samar&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Program Files/Python313&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Flask server.Model.executor": "Run",
+    "Python.Model.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "oussama",
+    "last_opened_file_path": "C:/PPP-new/PPP/Model",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
 }</component>
   <component name="RunManager" selected="Python.Model">
@@ -115,8 +101,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-7c0b70fcd90d-JavaScript-PY-242.21829.153" />
-        <option value="bundled-python-sdk-464836ebc622-b74155a9e76b-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-242.21829.153" />
+        <option value="bundled-js-predefined-d6986cc7102b-76f8388c3a79-JavaScript-PY-243.24978.54" />
+        <option value="bundled-python-sdk-91e3b7efe1d4-466328ff949b-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-243.24978.54" />
       </set>
     </attachedChunks>
   </component>
@@ -136,18 +122,7 @@
       <workItem from="1744664829269" duration="40000" />
       <workItem from="1744665926556" duration="17000" />
       <workItem from="1744665956995" duration="95000" />
-      <workItem from="1744899714674" duration="45000" />
-      <workItem from="1744899762397" duration="40000" />
-      <workItem from="1744899827155" duration="217000" />
-      <workItem from="1744900089446" duration="5775000" />
-      <workItem from="1744981737106" duration="1493000" />
-      <workItem from="1745247351277" duration="615000" />
-      <workItem from="1745588003510" duration="623000" />
-      <workItem from="1745589287617" duration="63000" />
-      <workItem from="1745665521323" duration="59000" />
-      <workItem from="1745683771368" duration="25000" />
-      <workItem from="1745684398135" duration="2000" />
-      <workItem from="1745691001835" duration="603000" />
+      <workItem from="1745257201854" duration="198000" />
     </task>
     <servers />
   </component>

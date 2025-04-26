@@ -26,6 +26,7 @@ public class ProjectMapper implements EntityMapper<Project, ProjectDTO> {
                 .mechanism(dto.getMechanism())
                 .minimumPurchase(dto.getMinimumPurchase())
                 .name(dto.getName())
+                .description(dto.getDescription())
                 .routing(dto.getRouting())
                 .typeOfProject(dto.getTypeOfProject())
                 .url(dto.getUrl())
@@ -64,7 +65,9 @@ public class ProjectMapper implements EntityMapper<Project, ProjectDTO> {
                 .name(entity.getName())
                 .routing(entity.getRouting())
                 .typeOfProject(entity.getTypeOfProject())
+                .description(entity.getDescription())
                 .url(entity.getUrl())
+                .mapUrl(entity.getMapUrl())
                 .projectOwnerId(entity.getProjectOwner().getId())
                 .chartLinesIds(chartLineIds)
                 .build();
