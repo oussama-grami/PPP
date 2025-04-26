@@ -1,17 +1,156 @@
+/* Main Container Styles */
+.full-height {
+  min-height: 100vh;
+}
+
+.row-height {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Left Panel Styling */
+.content-left {
+  background-color: #f8f9fa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url("../../../assets/img/carbonForm2.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 .content-left-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
+  padding: 2rem;
 }
 
 .img-title {
-  margin-bottom: 10px;
+  width: 120px; /* Larger image size as requested */
+  height: auto;
+  margin-bottom: 1.5rem;
 }
-.btnbackward{
+
+#descriptionTitle {
+  color: #FFFFFF;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  font-size: 2rem;
+}
+
+#descriptionText {
+  font-size: 1.2rem;
+  color: #e9ffde;
+}
+
+/* Right Panel Styling */
+.content-right {
+  display: flex;
+  align-items: center;
+  padding: 2rem;
+  overflow-y: visible; /* Remove scrollbar as requested */
+}
+
+#wizard_container {
+  width: 100%;
+  max-width: 550px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* Page Number Indicator */
+.page-indicator {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #014131;
+  color: white;
+  font-size: 1.2rem; /* Larger page number as requested */
+  font-weight: bold;
+  padding: 8px 15px;
+  border-radius: 20px;
+  z-index: 10;
+}
+
+.current-page, .total-pages {
+  font-size: 1.2rem;
+}
+
+/* Form Elements */
+.step {
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  margin-top: 2rem;
+  background-color: white;
+}
+
+.main_question {
+  color: #014131;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+h6 {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-control, .form-select {
+  padding: 0.75rem;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-control:focus, .form-select:focus {
+  border-color: #014131;
+  box-shadow: 0 0 0 0.25rem rgba(1, 65, 49, 0.25);
+}
+
+/* Date Section Styling */
+.date-section {
+  margin-bottom: 1.5rem;
+}
+
+.date-container {
+  display: flex;
+  gap: 1rem;
+}
+
+.date-input {
+  flex: 1;
+}
+
+.to-label {
+  margin-left: 165px;
+}
+
+/* Select Section Styling */
+.select-section {
+  margin-bottom: 1.5rem;
+}
+
+/* Button Styles */
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+
+.btnbackward {
   float: left;
-  border: none;
+  border-color: #013527!important;
   color: black;
   text-decoration: none;
   transition: background .5s ease;
@@ -37,7 +176,8 @@
   line-height: 1;
   padding: 12px 20px;
 }
-.btnforward{
+
+.btnforward {
   float: right;
   border: none;
   color: #fff;
@@ -61,8 +201,56 @@
   border-radius: 3px;
   line-height: 1;
   padding: 12px 20px;
-
 }
 
+.btnforward:hover {
+  background-color: #013527;
+}
 
+.btnbackward:hover {
+  background-color: rgba(83, 114, 95, 0.84) !important;
+  border-color: #013527 !important;
+}
 
+/* Error message styling */
+.text-danger {
+  color: #dc3545;
+  font-size: 0.85rem;
+  display: block;
+  margin-top: 0.25rem;
+}
+
+.alert-danger {
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+  color: #721c24;
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 1rem;
+  border-radius: 0.25rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 991px) {
+  .row-height {
+    flex-direction: column;
+  }
+
+  .content-left, .content-right {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .date-container {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .to-label {
+    margin-left: 100px;
+  }
+
+  .page-indicator {
+    top: -10px;
+    right: 10px;
+  }
+}

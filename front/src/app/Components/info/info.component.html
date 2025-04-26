@@ -1,24 +1,31 @@
-<div class="container-fluid full-height" style="margin-top: 50px;">
+<div class="container-fluid full-height">
   <div class="row row-height">
-    <div class="col-lg-6 content-left1">
+    <!-- Left Info Panel -->
+    <div class="col-lg-6 content-left">
       <div class="content-left-wrapper">
-
-        <img src="assets/img/info.svg" class="img-title" id="descriptionImage"/>
+        <img src="assets/img/info.svg" class="img-title" id="descriptionImage" alt="Information Icon"/>
         <h2 id="descriptionTitle">General Information</h2>
         <p id="descriptionText">Please tell us about your business.</p>
       </div>
     </div>
 
-
-    <div class="col-lg-6 content-right" id="start" style="overflow-y: hidden;">
+    <!-- Right Form Panel -->
+    <div class="col-lg-6 content-right" id="start">
       <div id="wizard_container">
+        <!-- Page Number Indicator -->
+        <div class="page-indicator">
+          <span class="current-page">1</span>/<span class="total-pages">7</span>
+        </div>
+
         <form [formGroup]="infoFormGroup" (ngSubmit)="onNext()" id="wrapped">
-          <div class="step">
-            <h3 class="main_question mt-2"><strong>1/7</strong> Your company name</h3>
-            <!-- Error Message Display -->
-            <div *ngIf="errorMessage" class="alert alert-danger">
-              {{ errorMessage }}
-            </div>
+          <!-- Error Message Display -->
+          <div *ngIf="errorMessage" class="alert alert-danger">
+            {{ errorMessage }}
+          </div>
+
+          <div class="step card">
+            <h3 class="main_question">Your company name</h3>
+
             <!-- Company Name -->
             <div class="form-group">
               <input type="text" formControlName="companyName" class="form-control" placeholder="Company name"
@@ -29,67 +36,74 @@
             </div>
 
             <!-- Date Fields -->
-            <h6 style="font-size: small;">From <span style="margin-left: 165px;">To</span></h6>
-            <div class="flex-container" style="justify-content: normal;">
-              <div class="form-group mb-3" style="width: 200px;">
-                <input type="date" class="form-control" placeholder="From" formControlName="beginDate">
-                <small class="text-danger" *ngIf="beginDate?.touched && beginDate?.invalid">
-                  Begin date is required.
-                </small>
-              </div>
-              <div class="form-group mb-3" style="width: 200px;">
-                <input type="date" class="form-control" placeholder="To" formControlName="endDate">
-                <small class="text-danger" *ngIf="endDate?.touched && endDate?.invalid">
-                  End date is required.
-                </small>
+            <div class="date-section">
+              <h6>From <span class="to-label">To</span></h6>
+              <div class="date-container">
+                <div class="form-group date-input">
+                  <input type="date" class="form-control" placeholder="From" formControlName="beginDate">
+                  <small class="text-danger" *ngIf="beginDate?.touched && beginDate?.invalid">
+                    Begin date is required.
+                  </small>
+                </div>
+                <div class="form-group date-input">
+                  <input type="date" class="form-control" placeholder="To" formControlName="endDate">
+                  <small class="text-danger" *ngIf="endDate?.touched && endDate?.invalid">
+                    End date is required.
+                  </small>
+                  <small class="text-danger" *ngIf="isEndDateBeforeBeginDate()">
+                    End date must be after the start date.
+                  </small>
+                </div>
               </div>
             </div>
 
             <!-- Country -->
-            <h6>Your country</h6>
-            <div class="form-group">
-              <select class="nice-select wide mb-3" formControlName="country" id="country">
-                <option class="option">Algeria</option>
-                <option class="option">Canada</option>
-                <option class="option">France</option>
-                <option class="option">Morocco</option>
-                <option class="option">Saudi Arabia</option>
-                <option class="option" selected>Tunisia</option>
-                <option class="option">UAE</option>
-                <option class="option">UK</option>
-                <option class="option">USA</option>
-              </select>
-              <small class="text-danger" *ngIf="country?.touched && country?.invalid">
-                Country selection is required.
-              </small>
+            <div class="select-section">
+              <h6>Your country</h6>
+              <div class="form-group">
+                <select class="form-select" formControlName="country" id="country">
+                  <option value="" disabled>Select your country</option>
+                  <option value="Algeria">Algeria</option>
+                  <option value="Canada">Canada</option>
+                  <option value="France">France</option>
+                  <option value="Morocco">Morocco</option>
+                  <option value="Saudi Arabia">Saudi Arabia</option>
+                  <option value="Tunisia" selected>Tunisia</option>
+                  <option value="UAE">UAE</option>
+                  <option value="UK">UK</option>
+                  <option value="USA">USA</option>
+                </select>
+                <small class="text-danger" *ngIf="country?.touched && country?.invalid">
+                  Country selection is required.
+                </small>
+              </div>
             </div>
 
             <!-- Sector -->
-            <h6>Your activity sector</h6>
-            <div class="form-group">
-              <select class="nice-select wide mb-3" formControlName="sector" id="sector">
-                <option class="option">Bank / Insurance</option>
-                <option class="option">Trade / Trading / Distribution</option>
-                <option class="option">Electronics / Electrical</option>
-                <option class="option">Publishing / Communication / Multimedia</option>
-              </select>
-              <small class="text-danger" *ngIf="activitySector?.touched && activitySector?.invalid">
-                Sector selection is required.
-              </small>
+            <div class="select-section">
+              <h6>Your activity sector</h6>
+              <div class="form-group">
+                <select class="form-select" formControlName="activitySector" id="sector">
+                  <option value="" disabled>Select your sector</option>
+                  <option value="Bank / Insurance">Bank / Insurance</option>
+                  <option value="Trade / Trading / Distribution">Trade / Trading / Distribution</option>
+                  <option value="Electronics / Electrical">Electronics / Electrical</option>
+                  <option value="Publishing / Communication / Multimedia">Publishing / Communication / Multimedia</option>
+                </select>
+                <small class="text-danger" *ngIf="activitySector?.touched && activitySector?.invalid">
+                  Sector selection is required.
+                </small>
+              </div>
             </div>
           </div>
 
-          <br/>
-          <div id="bottom-wizard2 mb-2 pb-2">
-              <button type="button" name="backward" class="btnbackward" [routerLink]="'/' + RoutesEnum.CARBONE">Back</button>
-              <button type="submit" name="forward" class="btnforward">Continue</button>
+          <!-- Navigation Buttons -->
+          <div class="button-group">
+            <button type="button" name="backward" class="btnbackward" [routerLink]="'/' + RoutesEnum.CARBONE">Back</button>
+            <button type="submit" name="forward" class="btnforward">Continue</button>
           </div>
         </form>
-
-
       </div>
     </div>
   </div>
 </div>
-
-

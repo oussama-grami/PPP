@@ -29,4 +29,5 @@ public class TransactionInsertDTO {
     private String province;
     private Long companyOwnerId;
     private List<Long> chartLineIds;
+
 }

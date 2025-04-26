@@ -1,8 +1,9 @@
-<div class="container-fluid full-height" style="margin-top: 50px;">
-  <div class="row">
-    <div class="col-lg-6 content-left1">
+<div class="container-fluid full-height">
+  <div class="row row-height">
+    <!-- Left Info Panel -->
+    <div class="col-lg-6 content-left">
       <div class="content-left-wrapper">
-        <img src="assets/img/energy.png" class="img-title" id="descriptionImage" />
+        <img src="assets/img/energy.png" class="img-title" id="descriptionImage" alt="Energy Icon"/>
         <h2 id="descriptionTitle">Energy</h2>
         <p id="descriptionText">
           Energy consumption is key information in your carbon footprint. Take the questionnaire
@@ -11,18 +12,25 @@
       </div>
     </div>
 
-    <div class="col-lg-6 content-right" id="start" style="overflow-y: hidden;">
+    <!-- Right Form Panel -->
+    <div class="col-lg-6 content-right" id="start">
       <div id="wizard_container">
-        <form [formGroup]="energieForm" (ngSubmit)="onNext()">
-          <div class="step">
-            <h3 class="main_question mt-2"><strong>2/7</strong> Energy Consumption Form</h3>
+        <!-- Page Number Indicator -->
+        <div class="page-indicator">
+          <span class="current-page">2</span>/<span class="total-pages">7</span>
+        </div>
 
-            <div *ngIf="errorMessage" class="alert alert-danger">
-              {{ errorMessage }}
-            </div>
+        <form [formGroup]="energieForm" (ngSubmit)="onNext()" id="wrapped">
+          <!-- Error Message Display -->
+          <div *ngIf="errorMessage" class="alert alert-danger">
+            {{ errorMessage }}
+          </div>
+
+          <div class="step card">
+            <h3 class="main_question">Energy Consumption Form</h3>
 
             <!-- Number of Employees -->
-            <div class="form-group col-md-12 mb-2">
+            <div class="form-group">
               <label for="numberOfEmployees" class="form-label">Number of Employees</label>
               <input type="number" formControlName="numberOfEmployees" class="form-control" id="numberOfEmployees"
                      placeholder="Enter number of employees">
@@ -32,7 +40,7 @@
             </div>
 
             <!-- Telecommuting -->
-            <div class="form-group col-md-12 mb-2">
+            <div class="form-group">
               <label for="percentageOfTelework" class="form-label">Percentage of Telecommuting</label>
               <input type="number" formControlName="percentageOfTelework" class="form-control"
                      id="percentageOfTelework" placeholder="Enter percentage of telecommuting">
@@ -41,78 +49,94 @@
               </small>
             </div>
 
-            <div class="row g-1">
-              <div class="form-group col-md-6 mb-2">
-                <label for="annualConsumptionOfElectricity" class="form-label">Electricity Usage</label>
-                <input type="number" formControlName="annualConsumptionOfElectricity" class="form-control" id="annualConsumptionOfElectricity"
-                       placeholder="Enter electricity usage">
-                <small class="text-danger" *ngIf="annualConsumptionOfElectricity?.touched && annualConsumptionOfElectricity?.invalid">
-                  Electricity usage is required.
-                </small>
+            <div class="usage-section">
+              <h6>Energy Usage Details</h6>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="annualConsumptionOfElectricity" class="form-label">Electricity Usage</label>
+                    <input type="number" formControlName="annualConsumptionOfElectricity" class="form-control"
+                           id="annualConsumptionOfElectricity" placeholder="Enter electricity usage">
+                    <small class="text-danger" *ngIf="annualConsumptionOfElectricity?.touched && annualConsumptionOfElectricity?.invalid">
+                      Electricity usage is required.
+                    </small>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="annualConsumptionOfPropane" class="form-label">Propane Usage</label>
+                    <input type="number" formControlName="annualConsumptionOfPropane" class="form-control"
+                           id="annualConsumptionOfPropane" placeholder="Enter propane usage">
+                    <small class="text-danger" *ngIf="annualConsumptionOfPropane?.touched && annualConsumptionOfPropane?.invalid">
+                      Propane usage is required.
+                    </small>
+                  </div>
+                </div>
               </div>
 
-              <div class="form-group col-md-6 mb-2">
-                <label for="annualConsumptionOfPropane" class="form-label">Propane Usage</label>
-                <input type="number" formControlName="annualConsumptionOfPropane" class="form-control" id="annualConsumptionOfPropane"
-                       placeholder="Enter propane usage">
-                <small class="text-danger" *ngIf="annualConsumptionOfPropane?.touched && annualConsumptionOfPropane?.invalid">
-                  Propane usage is required.
-                </small>
-              </div>
-            </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="annualConsumptionOfGas" class="form-label">Gas Usage</label>
+                    <input type="number" formControlName="annualConsumptionOfGas" class="form-control"
+                           id="annualConsumptionOfGas" placeholder="Enter gas usage">
+                    <small class="text-danger" *ngIf="annualConsumptionOfGas?.touched && annualConsumptionOfGas?.invalid">
+                      Gas usage is required.
+                    </small>
+                  </div>
+                </div>
 
-            <div class="row g-1">
-              <div class="form-group col-md-6 mb-2">
-                <label for="annualConsumptionOfGas" class="form-label">Gas Usage</label>
-                <input type="number" formControlName="annualConsumptionOfGas" class="form-control" id="annualConsumptionOfGas"
-                       placeholder="Enter gas usage">
-                <small class="text-danger" *ngIf="annualConsumptionOfGas?.touched && annualConsumptionOfGas?.invalid">
-                  Gas usage is required.
-                </small>
-              </div>
-
-              <div class="form-group col-md-6 mb-2">
-                <label for="annualConsumptionOfFuel" class="form-label">Fuel Usage</label>
-                <input type="number" formControlName="annualConsumptionOfFuel" class="form-control" id="annualConsumptionOfFuel"
-                       placeholder="Enter fuel usage">
-                <small class="text-danger" *ngIf="annualConsumptionOfFuel?.touched && annualConsumptionOfFuel?.invalid">
-                  Fuel usage is required.
-                </small>
-              </div>
-            </div>
-
-            <div class="row g-1">
-              <div class="form-group col-md-6 mb-2">
-                <label for="annualConsumptionOfCharcoal" class="form-label">Charcoal Usage</label>
-                <input type="number" formControlName="annualConsumptionOfCharcoal" class="form-control" id="annualConsumptionOfCharcoal"
-                       placeholder="Enter charcoal usage">
-                <small class="text-danger" *ngIf="annualConsumptionOfCharcoal?.touched && annualConsumptionOfCharcoal?.invalid">
-                  Charcoal usage is required.
-                </small>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="annualConsumptionOfFuel" class="form-label">Fuel Usage</label>
+                    <input type="number" formControlName="annualConsumptionOfFuel" class="form-control"
+                           id="annualConsumptionOfFuel" placeholder="Enter fuel usage">
+                    <small class="text-danger" *ngIf="annualConsumptionOfFuel?.touched && annualConsumptionOfFuel?.invalid">
+                      Fuel usage is required.
+                    </small>
+                  </div>
+                </div>
               </div>
 
-              <div class="form-group col-md-6 mb-2">
-                <label for="annualConsumptionOfRefrigerant" class="form-label">Refrigerant Fluid Usage</label>
-                <input type="number" formControlName="annualConsumptionOfRefrigerant" class="form-control" id="annualConsumptionOfRefrigerant"
-                       placeholder="Enter refrigerant fluid usage">
-                <small class="text-danger" *ngIf="annualConsumptionOfRefrigerant?.touched && annualConsumptionOfRefrigerant?.invalid">
-                  Refrigerant fluid usage is required.
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="annualConsumptionOfCharcoal" class="form-label">Charcoal Usage</label>
+                    <input type="number" formControlName="annualConsumptionOfCharcoal" class="form-control"
+                           id="annualConsumptionOfCharcoal" placeholder="Enter charcoal usage">
+                    <small class="text-danger" *ngIf="annualConsumptionOfCharcoal?.touched && annualConsumptionOfCharcoal?.invalid">
+                      Charcoal usage is required.
+                    </small>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="annualConsumptionOfRefrigerant" class="form-label">Refrigerant Fluid Usage</label>
+                    <input type="number" formControlName="annualConsumptionOfRefrigerant" class="form-control"
+                           id="annualConsumptionOfRefrigerant" placeholder="Enter refrigerant fluid usage">
+                    <small class="text-danger" *ngIf="annualConsumptionOfRefrigerant?.touched && annualConsumptionOfRefrigerant?.invalid">
+                      Refrigerant fluid usage is required.
+                    </small>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="annualConsumptionOfGPL" class="form-label">GPL Usage</label>
+                <input type="number" formControlName="annualConsumptionOfGPL" class="form-control"
+                       id="annualConsumptionOfGPL" placeholder="Enter GPL usage">
+                <small class="text-danger" *ngIf="annualConsumptionOfGPL?.touched && annualConsumptionOfGPL?.invalid">
+                  GPL usage is required.
                 </small>
               </div>
-            </div>
-
-            <div class="form-group col-md-12 mb-2">
-              <label for="annualConsumptionOfGPL" class="form-label">GPL Usage</label>
-              <input type="number" formControlName="annualConsumptionOfGPL" class="form-control" id="annualConsumptionOfGPL"
-                     placeholder="Enter GPL usage">
-              <small class="text-danger" *ngIf="annualConsumptionOfGPL?.touched && annualConsumptionOfGPL?.invalid">
-                GPL usage is required.
-              </small>
             </div>
           </div>
 
-          <br />
-          <div id="bottom-wizard2 mb-2 pb-2">
+          <!-- Navigation Buttons -->
+          <div class="button-group">
             <button type="button" name="backward" class="btnbackward" [routerLink]="'/' + RoutesEnum.INFO">Back</button>
             <button type="submit" name="forward" class="btnforward">Continue</button>
           </div>

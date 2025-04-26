@@ -58,7 +58,24 @@ export class InfoComponent {
     const year = parseInt(dateParts[2], 10);
     return new Date(year, month, day);
   }
+// Add this to your InfoComponent class
+  isEndDateBeforeBeginDate(): boolean {
+    const beginDateValue = this.infoFormGroup.get('beginDate')?.value;
+    const endDateValue = this.infoFormGroup.get('endDate')?.value;
 
+    if (beginDateValue && endDateValue) {
+      // Convert to Date objects to ensure proper comparison
+      const beginDate = new Date(beginDateValue);
+      const endDate = new Date(endDateValue);
+
+      // Only validate if both dates are valid
+      if (beginDate instanceof Date && !isNaN(beginDate.getTime()) &&
+        endDate instanceof Date && !isNaN(endDate.getTime())) {
+        return endDate < beginDate;
+      }
+    }
+    return false;
+  }
   onNext() {
     if (this.infoFormGroup.valid) {
       // Create an instance of the Company model with the form values

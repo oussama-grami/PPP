@@ -15,13 +15,16 @@ import java.util.Date;
 @AllArgsConstructor
 @ToString
 @Entity
+@SuperBuilder
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 
 public class CarbonFootprintData extends BaseEntity<Long> {
     @Column(nullable = false)
+    private String country;
+    @Column(nullable = false)
     private String activitySector;
     @Column(nullable = false)
-    private double AerienEmission;
+    private double aerienEmission;
     @Column(nullable = false)
     private double annualConsumptionOfCoal;
     @Column(nullable = false)
@@ -50,7 +53,7 @@ public class CarbonFootprintData extends BaseEntity<Long> {
     @Column(nullable = false)
     private double consumptionOfLPG;
     @Column(nullable = false)
-    private double DrivenDistance;
+    private double drivenDistance;
     @Column(nullable = false)
     private Date endDate;
     @Column(nullable = false)
@@ -96,13 +99,13 @@ public class CarbonFootprintData extends BaseEntity<Long> {
     @Column(nullable = false)
     private int percentageOfTelework;
     @Column(nullable = false)
-    private double TonsOfAirFreightLong;
+    private double tonsOfAirFreightLong;
     @Column(nullable = false)
-    private double TonsOfAirFreightShort;
+    private double tonsOfAirFreightShort;
     @Column(nullable = false)
-    private double TonsOfSeaFreightLong;
+    private double tonsOfSeaFreightLong;
     @Column(nullable = false)
-    private double TonsOfSeaFreightShort;
+    private double tonsOfSeaFreightShort;
     @Column(nullable = false)
     private double totalEmissions;
     @Column(nullable = false)
