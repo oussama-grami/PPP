@@ -18,6 +18,7 @@ import base64
 import os
 import joblib
 
+
 class EventData:
     def __init__(self,
                  event_name: str,
@@ -37,7 +38,6 @@ class EventData:
                  printed_material: float,
                  decoration_material: float,
                  total_emissions: float):
-        
         self.event_name = event_name
         self.event_type = event_type
         self.duration = duration
@@ -58,64 +58,238 @@ class EventData:
 
 
 app = Flask(__name__)
-@app.route('/forecast', methods=['POST'])
 
+
+from prophet import Prophet
+
+from flask import Flask, request, jsonify
+import pandas as pd
+from prophet import Prophet
+
+
+from statsmodels.tsa.arima.model import ARIMA
+from prophet import Prophet
+import itertools
+
+
+
+from flask import Flask, request, jsonify
+import pandas as pd
+import numpy as np
+
+# forecasting libraries
+from statsmodels.tsa.statespace.sarimax import SARIMAX
+from statsmodels.tsa.holtwinters import ExponentialSmoothing
+from prophet import Prophet
+
+from sklearn.metrics import mean_absolute_error, r2_score, mean_squared_error
+import itertools
+
+app = Flask(__name__)
+
+def validate_input(data):
+    required = {'year', 'month', 'carbon_footprint_kgCO2'}
+    if not isinstance(data, dict) or not required.issubset(data):
+        missing = required - set(data)
+        raise ValueError(f"Missing required fields: {missing}")
+    df = pd.DataFrame(data)
+    if not np.issubdtype(df['year'].dtype, np.integer):
+        raise ValueError("Year must be integer values")
+    if not df['month'].between(1, 12).all():
+        raise ValueError("Month values must be between 1 and 12")
+
+def preprocess_data(df):
+    df = df.copy()
+    df['date'] = pd.to_datetime({
+        'year':  df['year'],
+        'month': df['month'],
+        'day':   1
+    })
+    df = df.set_index('date').sort_index().asfreq('MS')
+
+    if len(df) < 12:
+        raise ValueError("Need at least 12 months of data")
+
+    # Remove extreme outliers (3×IQR)
+    q1 = df['carbon_footprint_kgCO2'].quantile(0.25)
+    q3 = df['carbon_footprint_kgCO2'].quantile(0.75)
+    iqr = q3 - q1
+    mask = (df['carbon_footprint_kgCO2'] >= q1 - 3*iqr) & \
+           (df['carbon_footprint_kgCO2'] <= q3 + 3*iqr)
+    df = df.loc[mask]
+
+    # Interpolate and fill missing, then clamp to non-negative
+    df['carbon_footprint_kgCO2'] = (
+        df['carbon_footprint_kgCO2']
+          .interpolate(method='time')
+          .bfill()
+          .ffill()
+    )
+    df['carbon_footprint_kgCO2'] = df['carbon_footprint_kgCO2'].clip(lower=0)
+    return df
+
+def tune_and_select(train, val):
+    best_mae = np.inf
+    best = (None, None, None, None)
+    h = len(val)
+
+    # Seasonal SARIMAX grid
+    non_seasonal = list(itertools.product(range(0,3), repeat=3))
+    seasonal = [(P, D, Q, 12) for P, D, Q in itertools.product(range(0,2), repeat=3)]
+    for order in non_seasonal:
+        for seas in seasonal:
+            try:
+                m = SARIMAX(
+                    train,
+                    order=order,
+                    seasonal_order=seas,
+                    enforce_stationarity=False,
+                    enforce_invertibility=False
+                )
+                res = m.fit(disp=False)
+                pred = res.forecast(h)
+                # clamp negatives
+                pred = np.clip(pred, 0, None)
+                mae = mean_absolute_error(val, pred)
+                name = f"SARIMAX{order}x{seas}"
+                if mae < best_mae:
+                    best_mae = mae
+                    best = (res, name, 'sarimax', best_mae)
+            except Exception:
+                continue
+
+    # ETS grid with damping
+    for trend, seasonal, damp in itertools.product(['add','mul'], ['add','mul'], [True]):
+        try:
+            m = ExponentialSmoothing(
+                train,
+                trend=trend,
+                seasonal=seasonal,
+                seasonal_periods=12,
+                damped_trend=damp
+            ).fit(optimized=True)
+            pred = m.forecast(h)
+            pred = np.clip(pred, 0, None)
+            mae = mean_absolute_error(val, pred)
+            name = f"ETS(trend={trend},seasonal={seasonal},damped={damp})"
+            if mae < best_mae:
+                best_mae = mae
+                best = (m, name, 'ets', best_mae)
+        except Exception:
+            continue
+
+    # Prophet grid
+    try:
+        pdf = train.reset_index().rename(columns={'date':'ds', 'carbon_footprint_kgCO2':'y'})
+        m = Prophet(yearly_seasonality=True, interval_width=0.95)
+        m.fit(pdf)
+        future = m.make_future_dataframe(periods=h, freq='MS')
+        fcst = m.predict(future)['yhat'].iloc[-h:].values
+        fcst = np.clip(fcst, 0, None)
+        mae = mean_absolute_error(val, fcst)
+        name = 'Prophet'
+        if mae < best_mae:
+            best_mae = mae
+            best = (m, name, 'prophet', best_mae)
+    except Exception:
+        pass
+
+    return best
+
+@app.route('/forecast', methods=['POST'])
 def ForecastCarbonFootprint():
     try:
-        # Expecting JSON data
-        data = request.get_json()
+        data = request.get_json(force=True)
+        validate_input(data)
 
-        # Check if required keys exist in the input JSON
-        if not all(k in data for k in ['year', 'month', 'carbon_footprint_kgCO2']):
-            return jsonify({"error": "JSON must contain 'year', 'month', and 'carbon_footprint_kgCO2' keys"}), 400
-
-        # Create a DataFrame from the JSON data
         df = pd.DataFrame(data)
-        if "year" not in df.columns or "month" not in df.columns or "carbon_footprint_kgCO2" not in df.columns:
-            return jsonify({"error": "JSON must contain 'year', 'month', and 'carbon_footprint_kgCO2' columns"}), 400
+        df = preprocess_data(df)
+        series = df['carbon_footprint_kgCO2']
 
-        df['date'] = pd.to_datetime(df[['year', 'month']].assign(day=1))
+        # split 80/20 train/validation
+        n = len(series)
+        train_size = int(np.floor(0.8 * n))
+        train = series.iloc[:train_size]
+        val = series.iloc[train_size:]
+        val_horizon = len(val)
 
+        model_obj, model_name, model_type, best_mae = tune_and_select(train, val)
+        if model_obj is None:
+            raise RuntimeError("All model fits failed")
 
-        train = df["carbon_footprint_kgCO2"]
+        # Print selected model and accuracy metrics
+        print(f"Model used: {model_name}")
+        if model_type in ['sarimax', 'ets']:
+            val_pred = model_obj.forecast(val_horizon)
+        else:
+            future_val = model_obj.make_future_dataframe(periods=val_horizon, freq='MS')
+            val_pred = model_obj.predict(future_val)['yhat'].iloc[-val_horizon:].values
+        val_pred = np.clip(val_pred, 0, None)
+        r2 = r2_score(val, val_pred)
+        print(f"Hold-out MAE:  {best_mae:.2f}")
+        print(f"Hold-out RMSE: {np.sqrt(mean_squared_error(val, val_pred)):.2f}")
+        print(f"Hold-out R²:   {r2:.3f}")
+        print(f"Hold-out MAPE: {(np.mean(np.abs((val - val_pred) / val)) * 100):.1f}%")
 
-        model = sm.tsa.ExponentialSmoothing(train, trend='mul', seasonal='add', seasonal_periods=6)
-        fitted_model = model.fit()
+        # Refit on full series and forecast next 6 months
+        forecast_horizon = 6
+        if model_type == 'sarimax':
+            order = model_obj.model.order
+            seas = model_obj.model.seasonal_order
+            full = SARIMAX(
+                series,
+                order=order,
+                seasonal_order=seas,
+                enforce_stationarity=False,
+                enforce_invertibility=False
+            ).fit(disp=False)
+            fcst = full.forecast(forecast_horizon)
+        elif model_type == 'ets':
+            fcst = model_obj.forecast(forecast_horizon)
+        else:
+            pdf_full = series.reset_index().rename(columns={'date':'ds','carbon_footprint_kgCO2':'y'})
+            m = Prophet(yearly_seasonality=True, interval_width=0.95)
+            m.fit(pdf_full)
+            fut = m.make_future_dataframe(periods=forecast_horizon, freq='MS')
+            fcst = m.predict(fut)['yhat'].tail(forecast_horizon).values
+        # clamp forecast
+        fcst = np.clip(fcst, 0, None)
 
-        forecast = fitted_model.forecast(6).tolist()
+        # build output
+        last = df.index[-1]
+        future_idx = pd.date_range(start=last, periods=forecast_horizon+1, freq='MS')[1:]
+        out = [
+            {
+                'year': int(d.year),
+                'month': int(d.month),
+                'carbon_footprint_kgCO2': round(float(max(v, 0)), 2)
+            } for d, v in zip(future_idx, fcst)
+        ]
 
-       
-        last_date = df['date'].iloc[-1]  
-        forecast_dates = pd.date_range(start=last_date, periods=7, freq='M')[1:]  
-
-        forecast_df = pd.DataFrame({
-            "date": forecast_dates,
-            "carbon_footprint_kgCO2": forecast
+        return jsonify({
+            'model_used': model_name,
+            'predicted_carbon_footprint_kgCO2': out
         })
-
-        forecast_df['year'] = forecast_df['date'].dt.year
-        forecast_df['month'] = forecast_df['date'].dt.month
-
-        result = forecast_df[['year', 'month', 'carbon_footprint_kgCO2']].to_dict(orient='records')
-
-        return jsonify({"predicted_carbon_footprint_kgCO2": result})
-
     except Exception as e:
-        return jsonify({"error": str(e)}), 500
+        print(f"Forecast endpoint error: {e}")
+        return jsonify({'error': str(e)}), 400
 
-
-#partie eya
+if __name__ == '__main__':
+    app.run(debug=True)
+# partie eya
 # Define the custom_loss function (must match the one used during training)
 def custom_loss(y_true, y_pred):
     gradient = np.where(y_pred < 0, -1, 2 * (y_pred - y_true))
     hessian = np.where(y_pred < 0, 0, 2)
     return gradient, hessian
 
+
 # Load the ensemble model
 ensemble_model = joblib.load('ensemble_event_emission_model.pkl')
 xgb_pipeline = ensemble_model['xgb_model']
 gamma_pipeline = ensemble_model['gamma_model']
 best_alpha = ensemble_model['alpha']
+
 
 @app.route('/eventPredict', methods=['POST'])
 def eventPredict():
@@ -171,15 +345,16 @@ def predict():
         numerical_cols = X.select_dtypes(include=['int64', 'float64']).columns
 
         preprocessor = ColumnTransformer(
-        transformers=[
-        ('num', StandardScaler(), numerical_cols),
-        ('cat', OneHotEncoder(handle_unknown='ignore'), categorical_cols)
-        ])
+            transformers=[
+                ('num', StandardScaler(), numerical_cols),
+                ('cat', OneHotEncoder(handle_unknown='ignore'), categorical_cols)
+            ])
 
         model = Pipeline(steps=[
-        ('preprocessor', preprocessor),
-        ('regressor',
-        xgb.XGBRegressor(objective='reg:squarederror', n_estimators=100, learning_rate=0.1, max_depth=5, random_state=42))
+            ('preprocessor', preprocessor),
+            ('regressor',
+             xgb.XGBRegressor(objective='reg:squarederror', n_estimators=100, learning_rate=0.1, max_depth=5,
+                              random_state=42))
         ])
         model.fit(X, y)
         data = request.get_json()
@@ -195,10 +370,13 @@ def predict():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
+
 # Configuration Azure
 AZURE_ENDPOINT = "https://models.inference.ai.azure.com"
 AZURE_TOKEN = "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"
 MODEL_NAME = "gpt-4o-mini"
+
+
 # Fonction pour générer le prompt à partir des données
 def generate_prompt(data):
     return f"""
@@ -274,6 +452,7 @@ def generate_prompt(data):
     Do not give an empty response or a response that does not respect the format
     """
 
+
 def generate_event_prompt(event_data):
     return f"""
     ### EVENT CONTEXT ###
@@ -336,6 +515,8 @@ def generate_event_prompt(event_data):
     Non-compliant responses will be rejected
     Do not give an empty response or a response that does not respect the format
     """
+
+
 # Endpoint Flask
 
 @app.route('/generate-recommendations-entreprise', methods=['POST'])
@@ -377,13 +558,14 @@ def generate_recommendations_entreprise():
             "status": "error",
             "recommendations": []
         }), 500
-      
+
+
 @app.route('/generate-recommendations-event', methods=['POST'])
 def generate_recommendations_event():
     try:
         # Récupérer les données JSON de la requête
         data = request.get_json()
-    
+
         # Créer une instance de EventData avec les données reçues
         mapped_data = {
             "event_name": data.get("eventName", "Not specified"),

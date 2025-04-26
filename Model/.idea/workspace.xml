@@ -5,39 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a44dcea4-1b65-477f-816a-e4da98dae22a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/Model.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Model.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../back/Ecopilot/src/main/java/com/ppp/Ecopilot/Controllers/CarbonHistoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../back/Ecopilot/src/main/java/com/ppp/Ecopilot/Controllers/CarbonHistoryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../back/Ecopilot/src/main/java/com/ppp/Ecopilot/Controllers/EsgController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../back/Ecopilot/src/main/java/com/ppp/Ecopilot/Controllers/EsgController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../back/Ecopilot/src/main/java/com/ppp/Ecopilot/DTO/CarbonFootprintHistoryDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../back/Ecopilot/src/main/java/com/ppp/Ecopilot/DTO/CarbonFootprintHistory/CarbonFootprintHistoryDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../back/Ecopilot/src/main/java/com/ppp/Ecopilot/DTO/CreateCarbonFootprintHistoryDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../back/Ecopilot/src/main/java/com/ppp/Ecopilot/DTO/CarbonFootprintHistory/CreateCarbonFootprintHistoryDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../back/Ecopilot/src/main/java/com/ppp/Ecopilot/DTO/CreateResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../back/Ecopilot/src/main/java/com/ppp/Ecopilot/DTO/Response/CreateResponseDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../back/Ecopilot/src/main/java/com/ppp/Ecopilot/DTO/EsgResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../back/Ecopilot/src/main/java/com/ppp/Ecopilot/DTO/Response/EsgResponseDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../back/Ecopilot/src/main/java/com/ppp/Ecopilot/DTO/EsgResponsesByCategoryDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../back/Ecopilot/src/main/java/com/ppp/Ecopilot/DTO/Response/EsgResponsesByCategoryDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../back/Ecopilot/src/main/java/com/ppp/Ecopilot/Entities/CarbonFootprintData.java" beforeDir="false" afterPath="$PROJECT_DIR$/../back/Ecopilot/src/main/java/com/ppp/Ecopilot/Entities/CarbonFootprintData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../back/Ecopilot/src/main/java/com/ppp/Ecopilot/Mappers/CarbonHistoryMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../back/Ecopilot/src/main/java/com/ppp/Ecopilot/Mappers/CarbonHistoryMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../back/Ecopilot/src/main/java/com/ppp/Ecopilot/Mappers/EsgResponseMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../back/Ecopilot/src/main/java/com/ppp/Ecopilot/Mappers/EsgResponseMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../back/Ecopilot/src/main/java/com/ppp/Ecopilot/Mappers/Project/ProjectMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../back/Ecopilot/src/main/java/com/ppp/Ecopilot/Mappers/Project/ProjectMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../back/Ecopilot/src/main/java/com/ppp/Ecopilot/Services/CarbonFootprintHistoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../back/Ecopilot/src/main/java/com/ppp/Ecopilot/Services/CarbonFootprintHistoryService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../back/Ecopilot/src/main/java/com/ppp/Ecopilot/Services/EsgOptionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../back/Ecopilot/src/main/java/com/ppp/Ecopilot/Services/EsgOptionService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../back/Ecopilot/src/main/java/com/ppp/Ecopilot/Services/EsgQuestionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../back/Ecopilot/src/main/java/com/ppp/Ecopilot/Services/EsgQuestionService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../back/Ecopilot/src/main/java/com/ppp/Ecopilot/Services/EsgResponseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../back/Ecopilot/src/main/java/com/ppp/Ecopilot/Services/EsgResponseService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../back/Ecopilot/src/main/java/com/ppp/Ecopilot/Services/EsgService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../back/Ecopilot/src/main/java/com/ppp/Ecopilot/Services/EsgService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../back/Ecopilot/src/main/java/com/ppp/Ecopilot/Entities/CarbonFootprintHistory.java" beforeDir="false" afterPath="$PROJECT_DIR$/../back/Ecopilot/src/main/java/com/ppp/Ecopilot/Entities/CarbonFootprintHistory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../back/Ecopilot/src/main/java/com/ppp/Ecopilot/Services/Implementations/CarbonFootprintHistoryServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../back/Ecopilot/src/main/java/com/ppp/Ecopilot/Services/Implementations/CarbonFootprintHistoryServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../back/Ecopilot/src/main/java/com/ppp/Ecopilot/Services/Implementations/EsgOptionServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../back/Ecopilot/src/main/java/com/ppp/Ecopilot/Services/Implementations/EsgOptionServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../back/Ecopilot/src/main/java/com/ppp/Ecopilot/Services/Implementations/EsgQuestionServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../back/Ecopilot/src/main/java/com/ppp/Ecopilot/Services/Implementations/EsgQuestionServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../back/Ecopilot/src/main/java/com/ppp/Ecopilot/Services/Implementations/EsgResponseServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../back/Ecopilot/src/main/java/com/ppp/Ecopilot/Services/Implementations/EsgResponseServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../back/Ecopilot/src/main/java/com/ppp/Ecopilot/Services/Implementations/EsgServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../back/Ecopilot/src/main/java/com/ppp/Ecopilot/Services/Implementations/EsgServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front/src/app/Components/HistoricalCarbonForecast/HistoricalCarbonForecast.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../front/src/app/Components/HistoricalCarbonForecast/HistoricalCarbonForecast.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front/src/app/Components/HistoricalCarbonForecast/HistoricalCarbonForecast.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../front/src/app/Components/HistoricalCarbonForecast/HistoricalCarbonForecast.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../front/src/app/Components/HistoricalCarbonForecast/HistoricalCarbonForecast.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../front/src/app/Components/HistoricalCarbonForecast/HistoricalCarbonForecast.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front/src/app/Components/carbone-diagram/carbone-diagram.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../front/src/app/Components/carbone-diagram/carbone-diagram.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front/src/app/Components/esg-assessment/esg-assessment.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../front/src/app/Components/esg-assessment/esg-assessment.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../front/src/app/Components/eco-loading-spinner/eco-loading-spinner.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../front/src/app/Components/eco-loading-spinner/eco-loading-spinner.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../front/src/app/Components/eco-loading-spinner/eco-loading-spinner.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../front/src/app/Components/eco-loading-spinner/eco-loading-spinner.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../front/src/app/Components/esg-assessment/esg-assessment.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../front/src/app/Components/esg-assessment/esg-assessment.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front/src/app/Components/esg-header/esg-header.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../front/src/app/Components/esg-header/esg-header.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front/src/app/Components/esg-header/esg-header.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../front/src/app/Components/esg-header/esg-header.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../front/src/app/Service/historical-prediction.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../front/src/app/Service/historical-prediction.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,27 +50,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Flask server.Model.executor": "Run",
-    "Python.Model.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "Samar",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Program Files/Python313",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Flask server.Model.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Model.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Samar&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Program Files/Python313&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Python.Model">
     <configuration name="Model" type="PythonConfigurationType" factoryName="Python">
       <module name="Model" />
@@ -162,7 +139,15 @@
       <workItem from="1744899714674" duration="45000" />
       <workItem from="1744899762397" duration="40000" />
       <workItem from="1744899827155" duration="217000" />
-      <workItem from="1744900089446" duration="5389000" />
+      <workItem from="1744900089446" duration="5775000" />
+      <workItem from="1744981737106" duration="1493000" />
+      <workItem from="1745247351277" duration="615000" />
+      <workItem from="1745588003510" duration="623000" />
+      <workItem from="1745589287617" duration="63000" />
+      <workItem from="1745665521323" duration="59000" />
+      <workItem from="1745683771368" duration="25000" />
+      <workItem from="1745684398135" duration="2000" />
+      <workItem from="1745691001835" duration="603000" />
     </task>
     <servers />
   </component>
@@ -180,7 +165,17 @@
       </map>
     </option>
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/TimeSeriesModel/app.py</url>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Model$Model.coverage" NAME="Model Coverage Results" MODIFIED="1744902736486" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Model$Model.coverage" NAME="Model Coverage Results" MODIFIED="1744981963637" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>

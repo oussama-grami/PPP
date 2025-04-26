@@ -45,7 +45,7 @@ export class HistoricalPredictionService {
   }
 
   saveData(data: CarbonFootprintData[]): Observable<void> {
-    return this.http.post<void>(`${this.apiUrl}/save`, data);
+    return this.http.post<void>(`${this.apiUrl}/saveAll`, data);
   }
   
 }

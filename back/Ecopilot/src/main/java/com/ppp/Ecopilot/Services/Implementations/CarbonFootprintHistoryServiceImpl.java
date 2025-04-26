@@ -75,6 +75,7 @@ public class CarbonFootprintHistoryServiceImpl extends AbstractCrudService<Carbo
     @Override
     public void interpolateData(CarbonFootprintData data, Long id) {
 
+
     }
 
 
@@ -82,6 +83,7 @@ public class CarbonFootprintHistoryServiceImpl extends AbstractCrudService<Carbo
     public CarbonFootprintHistoryDTO[] forecastData() {
         try {
             CarbonFootprintHistoryDTO[] historyList = this.findByCurrentCompanyOwner();
+            System.out.println("History List: " + Arrays.toString(historyList));
 
             // Convert historical data to API request format
             CarbonFootprintForecastRequest request = new CarbonFootprintForecastRequest();
@@ -100,7 +102,7 @@ public class CarbonFootprintHistoryServiceImpl extends AbstractCrudService<Carbo
             request.setYear(years);
             request.setMonth(months);
             request.setCarbon_footprint_kgCO2(values);
-
+            System.out.println("Request: " + request);
             // Send request to forecasting API
             Mono<CarbonFootprintForecastResponse> responseMono = webClient.post()
                     .uri("/forecast")
@@ -139,13 +141,18 @@ public class CarbonFootprintHistoryServiceImpl extends AbstractCrudService<Carbo
     }
 
     @Override
-    public void saveAllCarbonFootprint(List<CreateCarbonFootprintHistoryDTO> data) {
-        CompanyOwner owner= companyOwnerService.findById(7L);
-        for (CreateCarbonFootprintHistoryDTO dto : data) {
-            CarbonFootprintHistory entity = historyMapper.toEntity(dto);
+    public void saveAllCarbonFootprint(List<CreateCarbonFootprintHistoryDTO> dataList) {
+        List<CarbonFootprintHistory> entities = new ArrayList<>();
+
+        CompanyOwner owner = companyOwnerService.findById(7L); // Fetch once, not inside the loop!
+
+        for (CreateCarbonFootprintHistoryDTO data : dataList) {
+            CarbonFootprintHistory entity = historyMapper.toEntity(data);
             entity.setCompanyOwner(owner);
-            carbonFootprintHistoryRepo.save(entity);
+            entities.add(entity);
         }
+
+        carbonFootprintHistoryRepo.saveAll(entities);
     }
 
     @Override

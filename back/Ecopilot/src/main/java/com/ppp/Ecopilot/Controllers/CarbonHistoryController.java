@@ -35,6 +35,9 @@ public class CarbonHistoryController  {
     }
     @PostMapping("/saveAll")
     public void createAllCarbonHistory(@RequestBody List<CreateCarbonFootprintHistoryDTO> data) {
+        System.out.println("Data: " + data);
+        System.out.println("here");
+
         carbonHistoryService.saveAllCarbonFootprint(data);
     }
 
