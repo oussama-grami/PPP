@@ -26,11 +26,11 @@ public class ProjectMapper implements EntityMapper<Project, ProjectDTO> {
                 .mechanism(dto.getMechanism())
                 .minimumPurchase(dto.getMinimumPurchase())
                 .name(dto.getName())
+                .description(dto.getDescription())
                 .routing(dto.getRouting())
                 .typeOfProject(dto.getTypeOfProject())
                 .url(dto.getUrl())
                 .projectOwner(ProjectOwner.builder().id(dto.getProjectOwnerId()).build());
-        // Optionnel : si tu veux mapper les IDs vers des entités "vides" avec juste l'ID
         if (dto.getChartLinesIds().isPresent()) {
             List<ChartLine> chartLines = dto.getChartLinesIds().get().stream()
                     .map(id -> {
@@ -65,7 +65,9 @@ public class ProjectMapper implements EntityMapper<Project, ProjectDTO> {
                 .name(entity.getName())
                 .routing(entity.getRouting())
                 .typeOfProject(entity.getTypeOfProject())
+                .description(entity.getDescription())
                 .url(entity.getUrl())
+                .mapUrl(entity.getMapUrl())
                 .projectOwnerId(entity.getProjectOwner().getId())
                 .chartLinesIds(chartLineIds)
                 .build();

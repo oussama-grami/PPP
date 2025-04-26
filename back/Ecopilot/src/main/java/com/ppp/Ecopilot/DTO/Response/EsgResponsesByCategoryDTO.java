@@ -1,7 +1,6 @@
-package com.ppp.Ecopilot.DTO;
+package com.ppp.Ecopilot.DTO.Response;
 
 
-import com.ppp.Ecopilot.Entities.EsgResponse;
 import com.ppp.Ecopilot.Enums.EsgCategory;
 import lombok.*;
 

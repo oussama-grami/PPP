@@ -39,6 +39,11 @@ public class Project extends BaseEntity<Long> {
     private String typeOfProject;
     @Column(nullable = false)
     private String url;
+    @Column(nullable = true)
+    private String mapUrl;
+    @Lob
+    @Column(nullable = true, columnDefinition = "TEXT")
+    private String description;
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "projectOwner_id")
     @JsonIgnore

@@ -19,9 +19,7 @@ import java.time.YearMonth;
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,
         property = "id")
 
-@Table(
-        uniqueConstraints = @UniqueConstraint(columnNames = {"date"})
-)
+
 public class CarbonFootprintHistory extends BaseEntity<Long> {
     @Column(nullable = false)
     private YearMonth date;

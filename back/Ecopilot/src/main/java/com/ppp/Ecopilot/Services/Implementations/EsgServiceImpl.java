@@ -1,18 +1,13 @@
 package com.ppp.Ecopilot.Services.Implementations;
 
-import com.ppp.Ecopilot.DTO.EsgResponseDTO;
+import com.ppp.Ecopilot.DTO.Response.EsgResponseDTO;
 import com.ppp.Ecopilot.DTO.EsgResultDTO;
-import com.ppp.Ecopilot.Entities.EsgOption;
-import com.ppp.Ecopilot.Entities.EsgQuestion;
 
-import com.ppp.Ecopilot.Mappers.EsgResponseMapper;
-import com.ppp.Ecopilot.Repositories.EsgResponseRepo;
 import com.ppp.Ecopilot.Services.EsgResponseService;
 import org.springframework.stereotype.Service;
 import com.ppp.Ecopilot.Enums.EsgCategory;
 
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class EsgServiceImpl  implements com.ppp.Ecopilot.Services.EsgService {

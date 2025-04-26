@@ -58,6 +58,7 @@ import { EventFootprintComponent } from './Components/event-footprint/event-foot
 import { EventResultComponent } from './Components/event-result/event-result.component';
 import { PaymentConfirmationComponent } from './Components/payment-confirmation/payment-confirmation.component';
 import{ EcoLoadingSpinnerComponent } from './Components/eco-loading-spinner/eco-loading-spinner.component';
+import { FormatDescriptionPipe } from './pipes/format-description.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -108,7 +109,8 @@ import{ EcoLoadingSpinnerComponent } from './Components/eco-loading-spinner/eco-
     EventFootprintComponent,
     EventResultComponent,
     PaymentConfirmationComponent,
-    EcoLoadingSpinnerComponent
+    EcoLoadingSpinnerComponent,
+    FormatDescriptionPipe
   ],
   imports: [
     BrowserModule,
