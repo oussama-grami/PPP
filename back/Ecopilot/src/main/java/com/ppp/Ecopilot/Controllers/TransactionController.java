@@ -67,9 +67,11 @@ public class TransactionController {
         return ResponseEntity.noContent().build();
     }
     @GetMapping("/paginated")
-    public Page<Transaction> getPaginatedProjects(
-            @RequestParam(defaultValue = "0") int skip,
+    public Page<TransactionDTO> getPaginatedProjects(
+            @RequestParam(defaultValue = "1") int skip,
             @RequestParam(defaultValue = "10") int limit) {
-        return transactionService.getPaginatedProjects(skip-1, limit);
+
+        int page = Math.max(skip - 1, 0); // pour éviter les pages négatives
+        return transactionService.getPaginatedTransactions(page, limit);
     }
 }

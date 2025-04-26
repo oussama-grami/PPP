@@ -1,181 +1,58 @@
 import {Injectable} from '@angular/core';
 import {Project} from "../Models/project";
 import {map, Observable, of} from "rxjs";
+import {HttpClient, HttpParams} from "@angular/common/http";
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProjectsService {
+  private baseUrl = `${environment.apiUrl}/project`;
   projects: Project[] = []
 
-  constructor() {
-    this.getProjects().subscribe(data => {
-      this.projects = data;
-    })
-  }
+  constructor(private http: HttpClient) {}
 
-  getProjectById(id: number) {
-    return this.getProjects().pipe(
-      map(projects => projects.find(project => project.id === id))
-    );
-  }
 
   getProjects(): Observable<Project[]> {
-    //simulation of database request
-    this.projects.push({
-        id: 1,
-        url: '/assets/img/projet1.png',
-        cost: '2.48',
-        routing: "/details",
-        category: "Trees & Forests'",
-        name: 'Tree planting in Testour',
-        flag: '/assets/img/tunisiaFlag.svg',
-        availableStock: 200,
-        minimumPurchase: 20
-      },
-      {
-        id: 2,
-        url: '/assets/img/projet1.png',
-        cost: '2.48',
-        routing: '/details',
-        category: 'Trees & Forests',
-        name: 'Tree planting in Testour',
-        flag: '/assets/img/tunisiaFlag.svg',
-        availableStock: 5000,
-        minimumPurchase: 20
-      },
-      {
-        id: 3,
-        url: '/assets/img/projet1.png',
-        cost: '2.48',
-        routing: '/details',
-        category: 'Trees & Forests',
-        name: 'Tree planting in Testour',
-        flag: '/assets/img/tunisiaFlag.svg',
-        availableStock: 200,
-        minimumPurchase: 20
-      },
-      {
-        id: 4,
-        url: '/assets/img/projet1.png',
-        cost: '2.48',
-        routing: '/details',
-        category: 'Trees & Forests',
-        name: 'Tree planting in Testour',
-        flag: '/assets/img/tunisiaFlag.svg',
-        availableStock: 200,
-        minimumPurchase: 20
-      },
-      {
-        id: 5,
-        url: '/assets/img/projet1.png',
-        cost: '2.48',
-        routing: '/details',
-        category: 'Trees & Forests',
-        name: 'Tree planting in Testour',
-        flag: '/assets/img/tunisiaFlag.svg',
-        availableStock: 200,
-        minimumPurchase: 20
-      },
-      {
-        id: 6,
-        url: '/assets/img/projet1.png',
-        cost: '2.48',
-        routing: '/details',
-        category: 'Trees & Forests',
-        name: 'Tree planting in Testour',
-        flag: '/assets/img/tunisiaFlag.svg',
-        availableStock: 200,
-        minimumPurchase: 20
-      },
-      {
-        id: 7,
-        url: '/assets/img/projet1.png',
-        cost: '2.48',
-        routing: '/details',
-        category: 'Trees & Forests',
-        name: 'Tree planting in Testour',
-        flag: '/assets/img/tunisiaFlag.svg',
-        availableStock: 200,
-        minimumPurchase: 20
-      },
-      {
-        id: 8,
-        url: '/assets/img/projet1.png',
-        cost: '2.48',
-        routing: '/details',
-        category: 'Trees & Forests',
-        name: 'Tree planting in Testour',
-        flag: '/assets/img/tunisiaFlag.svg',
-        availableStock: 200,
-        minimumPurchase: 20
-      },
-      {
-        id: 9,
-        url: '/assets/img/projet1.png',
-        cost: '2.48',
-        routing: '/details',
-        category: 'Trees & Forests',
-        name: 'Tree planting in Testour',
-        flag: '/assets/img/tunisiaFlag.svg',
-        availableStock: 200,
-        minimumPurchase: 20
-      },
-      {
-        id: 10,
-        url: '/assets/img/projet1.png',
-        cost: '2.48',
-        routing: '/details',
-        category: 'Trees & Forests',
-        name: 'Tree planting in Testour',
-        flag: '/assets/img/tunisiaFlag.svg',
-        availableStock: 200,
-        minimumPurchase: 20
-      },
-      {
-        id: 11,
-        url: '/assets/img/projet1.png',
-        cost: '2.48',
-        routing: '/details',
-        category: 'Trees & Forests',
-        name: 'Tree planting in Testour',
-        flag: '/assets/img/tunisiaFlag.svg',
-        availableStock: 200,
-        minimumPurchase: 20
-      },
-      {
-        id: 12,
-        url: '/assets/img/projet1.png',
-        cost: '2.48',
-        routing: '/details',
-        category: 'Trees & Forests',
-        name: 'Tree planting in Testour',
-        flag: '/assets/img/tunisiaFlag.svg',
-        availableStock: 200,
-        minimumPurchase: 20
-      },
-      {
-        id: 13,
-        url: '/assets/img/projet1.png',
-        cost: '2.48',
-        routing: '/details',
-        category: 'Trees & Forests',
-        name: 'Tree planting in Testour',
-        flag: '/assets/img/tunisiaFlag.svg',
-        availableStock: 200,
-        minimumPurchase: 20
-      },
-      {
-        id: 14,
-        url: '/assets/img/projet1.png',
-        cost: '2.48',
-        routing: '/details',
-        category: 'Trees & Forests',
-        name: 'Tree planting in Testour',
-        flag: '/assets/img/tunisiaFlag.svg',
-        availableStock: 200,
-        minimumPurchase: 20
-      });
-    return of(this.projects);
+    return this.http.get<Project[]>(`${this.baseUrl}`);
+  }
+
+  getProjectById(id: number): Observable<Project> {
+    return this.http.get<Project>(`${this.baseUrl}/${id}`);
+  }
+
+  updateProject(id: number, projectDTO: Project): Observable<Project> {
+    return this.http.put<Project>(`${this.baseUrl}/${id}`, projectDTO);
+  }
+
+  deleteProject(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/${id}`);
+  }
+
+  getProjectsByCostLessThan(maxCost: number): Observable<Project[]> {
+    let params = new HttpParams().set('max', maxCost.toString());
+    return this.http.get<Project[]>(`${this.baseUrl}/cost`, { params });
+  }
+
+  getFilteredProjects(filters: any) {
+    let params = new HttpParams();
+
+    if (filters.name) params = params.set('name', filters.name);
+    if (filters.certified !== null && filters.certified !== undefined) params = params.set('certified', filters.certified);
+    if (filters.category) params = params.set('category', filters.category);
+    if (filters.mechanism) params = params.set('mechanism', filters.mechanism);
+    if (filters.cost) params = params.set('cost', filters.cost);
+    if (filters.country) params = params.set('country', filters.country);
+
+    return this.http.get<Project[]>(`${this.baseUrl}/filter`, { params });
+  }
+
+  getPaginatedProjects(skip = 1, limit = 10): Observable<any> {
+    const params = new HttpParams()
+      .set('skip', skip.toString())
+      .set('limit', limit.toString());
+
+    return this.http.get<any>(`${this.baseUrl}/paginated`, { params });
   }
 }

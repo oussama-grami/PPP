@@ -43,5 +43,8 @@ public class ProjectUpdateMapper{
         if (dto.getUrl() != null) {
             entity.setUrl(dto.getUrl());
         }
+        if(dto.getDescription() != null){
+            entity.setDescription(dto.getDescription());
+        }
     }
 }

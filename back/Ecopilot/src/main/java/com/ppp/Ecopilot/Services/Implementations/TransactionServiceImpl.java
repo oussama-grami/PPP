@@ -1,11 +1,13 @@
 package com.ppp.Ecopilot.Services.Implementations;
 
+import com.ppp.Ecopilot.DTO.TransactionDTO.TransactionDTO;
 import com.ppp.Ecopilot.DTO.TransactionDTO.TransactionInsertDTO;
 import com.ppp.Ecopilot.Entities.ChartLine;
 import com.ppp.Ecopilot.Entities.CompanyOwner;
 import com.ppp.Ecopilot.Entities.Project;
 import com.ppp.Ecopilot.Entities.Transaction;
 import com.ppp.Ecopilot.Mappers.Transaction.TransactionInsertMapper;
+import com.ppp.Ecopilot.Mappers.Transaction.TransactionMapper;
 import com.ppp.Ecopilot.Models.PaymentRequest;
 import com.ppp.Ecopilot.Models.PaymentResponse;
 import com.ppp.Ecopilot.Repositories.ChartLineRepo;
@@ -37,6 +39,7 @@ public class TransactionServiceImpl extends AbstractCrudService<Transaction,Long
     private String stripePublicKey;
     private final TransactionRepo transactionRepo;
     private final TransactionInsertMapper transactionInsertMapper;
+    private final TransactionMapper transactionMapper;
     private final CompanyOwnerRepo companyOwnerRepo;
     private final ChartLineRepo chartLineRepo;
     @Override
@@ -83,10 +86,13 @@ public class TransactionServiceImpl extends AbstractCrudService<Transaction,Long
         transaction.setDescription(newDescription);
         return transactionRepo.save(transaction);
     }
-    public Page<Transaction> getPaginatedProjects(int skip, int limit) {
+    public Page<TransactionDTO> getPaginatedTransactions(int skip, int limit) {
         Pageable pageable = PageRequest.of(skip, limit);
-        return transactionRepo.findAll(pageable);
+        Page<Transaction> transactionPage = transactionRepo.findAll(pageable);
+
+        return transactionPage.map(transactionMapper::toDto);
     }
+
     public Map<String, String> paymentSuccess(String paymentIntentId){
         try {
             PaymentIntent paymentIntent = PaymentIntent.retrieve(paymentIntentId);

@@ -319,7 +319,7 @@ line-height: 20px; /* 142.857% */
     font-size: 14px;
     font-style: normal;
     font-weight: 500;
-    line-height: 20px; /* 142.857% */
+    line-height: 20px;
 }
 .pagginationNumber2{
     display: inline-flex;
@@ -361,7 +361,7 @@ font-family: Roboto;
 font-size: 14px;
 font-style: normal;
 font-weight: 400;
-line-height: 20px; /* 142.857% */
+line-height: 20px;
 }
 .paysFilter{
     display: flex;
@@ -370,9 +370,9 @@ line-height: 20px; /* 142.857% */
     margin-left: 2vh;
 }
 .paysFilter .form-check {
-    display: flex; /* Ensure the form-check container is a flex container */
-    justify-content: space-between; /* Push the checkbox to the right */
-    align-items: center; /* Align items vertically within the container */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
 
@@ -403,23 +403,6 @@ line-height: 24px; /* 150% */
     cursor: pointer;
 }
 
-
-
-/* .from-body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-  } */
-
-  /* .form-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: stretch;
-  } */
 
   form {
 
