@@ -106,8 +106,7 @@ def custom_loss(y_true, y_pred):
     gradient = np.where(y_pred < 0, -1, 2 * (y_pred - y_true))
     hessian = np.where(y_pred < 0, 0, 2)
     return gradient, hessian
-'''
-# Load the ensemble model
+
 ensemble_model = joblib.load('ensemble_event_emission_model.pkl')
 xgb_pipeline = ensemble_model['xgb_model']
 gamma_pipeline = ensemble_model['gamma_model']
@@ -155,7 +154,7 @@ def eventPredict():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-'''
+
 @app.route('/predict', methods=['POST'])
 def predict():
     try:
