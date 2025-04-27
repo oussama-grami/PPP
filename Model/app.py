@@ -4,12 +4,19 @@ import statsmodels.api as sm
 import matplotlib.pyplot as plt
 from io import StringIO
 import io
+from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
+from sklearn.model_selection import train_test_split
+import joblib
+from flask import request, jsonify
+from sklearn.compose import ColumnTransformer
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import StandardScaler, OneHotEncoder
+import xgboost as xgb
+import os
 from flask import Flask, request, jsonify
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
 from statsmodels.tsa.statespace.sarimax import SARIMAX
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
-from sklearn.compose import ColumnTransformer
-from sklearn.pipeline import Pipeline
 from azure.ai.inference import ChatCompletionsClient
 from azure.ai.inference.models import SystemMessage, UserMessage
 from azure.core.credentials import AzureKeyCredential
@@ -17,8 +24,10 @@ import xgboost as xgb
 import base64
 import os
 import joblib
+MODEL_PATH = 'model.joblib'
+DATASET_PATH = 'carbon_footprint_dataset.csv'
 
-
+"""
 class EventData:
     def __init__(self,
                  event_name: str,
@@ -331,49 +340,86 @@ def eventPredict():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
+"""
 
+
+
+
+# Flask app
+app = Flask(__name__)
+
+def train_model():
+    print("🚀 Training model...")
+    data = pd.read_csv(DATASET_PATH)
+    X = data.drop(columns=['carbon_footprint'])
+    y = data['carbon_footprint']
+
+    categorical_cols = X.select_dtypes(include=['object']).columns.tolist()
+    numerical_cols = X.select_dtypes(include=['int64', 'float64']).columns.tolist()
+
+    preprocessor = ColumnTransformer(
+        transformers=[
+            ('num', StandardScaler(), numerical_cols),
+            ('cat', OneHotEncoder(handle_unknown='ignore', sparse_output=False), categorical_cols)
+        ]
+    )
+
+    model = Pipeline(steps=[
+        ('preprocessor', preprocessor),
+        ('regressor', xgb.XGBRegressor(
+            objective='reg:squarederror',
+            n_estimators=800,
+            learning_rate=0.03,
+            max_depth=8,
+            subsample=0.85,
+            colsample_bytree=0.85,
+            random_state=42,
+            n_jobs=-1
+        ))
+    ])
+
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+    model.fit(X_train, y_train)
+    y_pred = model.predict(X_test)
+    rmse = np.sqrt(mean_squared_error(y_test, y_pred))
+    mae = mean_absolute_error(y_test, y_pred)
+    r2 = r2_score(y_test, y_pred)
+
+    print(f"✅ Model trained and saved.")
+    print(f"📈 Performance on Test Set:")
+    print(f"   - RMSE : {rmse:.2f}")
+    print(f"   - MAE  : {mae:.2f}")
+    print(f"   - R²   : {r2:.2f}")
+    joblib.dump(model, MODEL_PATH)
+if not os.path.exists(MODEL_PATH):
+    train_model()
+model = joblib.load(MODEL_PATH)
 @app.route('/predict', methods=['POST'])
 def predict():
     try:
-        data = pd.read_csv('carbon_footprint_dataset.csv')
-        X = data.drop(columns=['carbon_footprint'])
-        y = data['carbon_footprint']
-
-        categorical_cols = X.select_dtypes(include=['object']).columns
-        numerical_cols = X.select_dtypes(include=['int64', 'float64']).columns
-
-        preprocessor = ColumnTransformer(
-            transformers=[
-                ('num', StandardScaler(), numerical_cols),
-                ('cat', OneHotEncoder(handle_unknown='ignore'), categorical_cols)
-            ])
-
-        model = Pipeline(steps=[
-            ('preprocessor', preprocessor),
-            ('regressor',
-             xgb.XGBRegressor(objective='reg:squarederror', n_estimators=100, learning_rate=0.1, max_depth=5,
-                              random_state=42))
-        ])
-        model.fit(X, y)
         data = request.get_json()
         params = data.get('parameters')
 
         if not params:
             return jsonify({"error": "Paramètres manquants"}), 400
+
         input_data = pd.DataFrame([params])
         prediction = model.predict(input_data)
         prediction_value = float(prediction[0])
+
         return jsonify({"carbon_footprint_prediction": prediction_value})
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
+if __name__ == '__main__':
+    app.run(debug=True)
 
 # Configuration Azure
 AZURE_ENDPOINT = "https://models.inference.ai.azure.com"
 AZURE_TOKEN = "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"
 MODEL_NAME = "gpt-4o-mini"
-
 
 # Fonction pour générer le prompt à partir des données
 def generate_prompt(data):
