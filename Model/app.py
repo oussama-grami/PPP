@@ -18,6 +18,30 @@ import base64
 import os
 import joblib
 
+from prophet import Prophet
+
+from flask import Flask, request, jsonify
+import pandas as pd
+from prophet import Prophet
+
+
+from statsmodels.tsa.arima.model import ARIMA
+from prophet import Prophet
+import itertools
+
+
+
+from flask import Flask, request, jsonify
+import pandas as pd
+import numpy as np
+
+# forecasting libraries
+from statsmodels.tsa.statespace.sarimax import SARIMAX
+from statsmodels.tsa.holtwinters import ExponentialSmoothing
+from prophet import Prophet
+
+from sklearn.metrics import mean_absolute_error, r2_score, mean_squared_error
+import itertools
 
 class EventData:
     def __init__(self,
@@ -55,35 +79,6 @@ class EventData:
         self.printed_material = printed_material
         self.decoration_material = decoration_material
         self.total_emissions = total_emissions
-
-
-app = Flask(__name__)
-
-
-from prophet import Prophet
-
-from flask import Flask, request, jsonify
-import pandas as pd
-from prophet import Prophet
-
-
-from statsmodels.tsa.arima.model import ARIMA
-from prophet import Prophet
-import itertools
-
-
-
-from flask import Flask, request, jsonify
-import pandas as pd
-import numpy as np
-
-# forecasting libraries
-from statsmodels.tsa.statespace.sarimax import SARIMAX
-from statsmodels.tsa.holtwinters import ExponentialSmoothing
-from prophet import Prophet
-
-from sklearn.metrics import mean_absolute_error, r2_score, mean_squared_error
-import itertools
 
 app = Flask(__name__)
 
@@ -274,8 +269,6 @@ def ForecastCarbonFootprint():
         print(f"Forecast endpoint error: {e}")
         return jsonify({'error': str(e)}), 400
 
-if __name__ == '__main__':
-    app.run(debug=True)
 # partie eya
 # Define the custom_loss function (must match the one used during training)
 def custom_loss(y_true, y_pred):
@@ -370,9 +363,9 @@ def predict():
 
 
 # Configuration Azure
-AZURE_ENDPOINT = "https://models.inference.ai.azure.com"
-AZURE_TOKEN = "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"
-MODEL_NAME = "gpt-4o-mini"
+AZURE_ENDPOINT ="https://models.github.ai/inference"
+AZURE_TOKEN = "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"
+MODEL_NAME = "openai/gpt-4.1-mini"
 
 
 # Fonction pour générer le prompt à partir des données
@@ -395,44 +388,44 @@ def generate_prompt(data):
     ### DATA ###
     ## GENERAL ##
     - Country : {data.get('country', 'Not specified')}
-    - Business Sector : {data.get('activitySector', 'Not specified')}
-    - Number of Full-Time Employees : {data.get('numberOfFullTimeEmployees', 'Not specified')}
-    - Telework Percentage : {data.get('percentageOfTelework', 'Not specified')}%
+    - Business Sector : {data.get('activity_sector', 'Not specified')}
+    - Number of Full-Time Employees : {data.get('number_of_full_time_employees', 'Not specified')}
+    - Telework Percentage : {data.get('percentage_of_telework', 'Not specified')}%
     ## Energy ##
-    - Annual Electricity Consumption : {data.get('annualConsumptionOfElectricity', 0)}
-    - Annual Natural Gas Consumption : {data.get('annualConsumptionOfNaturalGas', 0)}
-    - Annual Propane Consumption : {data.get('annualConsumptionOfPropane', 0)}
-    - Annual Fuel Consumption : {data.get('annualConsumptionOfFuel', 0)}
-    - Annual Coal Consumption : {data.get('annualConsumptionOfCoal', 0)}
-    - Annual Refrigerant Consumption : {data.get('annualConsumptionOfRefrigerant', 0)}
-    - Annual LPG Consumption : {data.get('annualConsumptionOfGPL', 0)}
+    - Annual Electricity Consumption : {data.get('annual_consumption_of_electricity', 0)}
+    - Annual Natural Gas Consumption : {data.get('annual_consumption_of_natural_gas', 0)}
+    - Annual Propane Consumption : {data.get('annual_consumption_of_propane', 0)}
+    - Annual Fuel Consumption : {data.get('annual_consumption_of_fuel', 0)}
+    - Annual Coal Consumption : {data.get('annual_consumption_of_coal', 0)}
+    - Annual Refrigerant Consumption : {data.get('annual_consumption_of_refrigerant', 0)}
+    - Annual LPG Consumption : {data.get('annual_consumption_of_GPL', 0)}
     ## Transport ##
-    - Gasoline Fuel Consumption : {data.get('fuelConsumptionOfGasoline', 0)}
-    - Diesel Fuel Consumption : {data.get('fuelConsumptionOfDiesel', 0)}
-    - LPG Consumption : {data.get('consumptionOfLPG', 0)}
-    - Number of Light Duty Vehicles : {data.get('numberOfLightDutyVehicles', 0)}
-    - Number of Commercial Vehicles : {data.get('numberOfCommercialVehicles', 0)}
-    - Number of Heavy Vehicles : {data.get('numberOfHeavyVehicles', 0)}
+    - Gasoline Fuel Consumption : {data.get('fuel_consumption_of_gasoline', 0)}
+    - Diesel Fuel Consumption : {data.get('fuel_consumption_of_diesel', 0)}
+    - LPG Consumption : {data.get('consumption_of_LPG', 0)}
+    - Number of Light Duty Vehicles : {data.get('number_of_light_duty_vehicles', 0)}
+    - Number of Commercial Vehicles : {data.get('number_of_commercial_vehicles', 0)}
+    - Number of Heavy Vehicles : {data.get('number_of_heavy_vehicles', 0)}
     ## Logistics ##
-    - Air Freight (<3000 tons) : {data.get('tonsOfAirFreightLt3000', 0)}
-    - Air Freight (>3000 tons) : {data.get('tonsOfAirFreightGt3000', 0)}
-    - Sea Freight (<3000 tons) : {data.get('tonsOfSeaFreightLt3000', 0)}
-    - Sea Freight (>3000 tons) : {data.get('tonsOfSeaFreightGt3000', 0)}
+    - Air Freight (<3000 tons) : {data.get('tons_of_air_freight_lt_3000', 0)}
+    - Air Freight (>3000 tons) : {data.get('tons_of_air_freight_gt_3000', 0)}
+    - Sea Freight (<3000 tons) : {data.get('tons_of_sea_freight_lt_3000', 0)}
+    - Sea Freight (>3000 tons) : {data.get('tons_of_sea_freight_gt_3000', 0)}
     ## Office ##
-    - Paper Expenses : {data.get('expensesOfPaper', 0)}
-    - Office Supplies Expenses : {data.get('expensesOfSmallOfficeSupplies', 0)}
-    - Company Built Area : {data.get('builtAreaOfCompany', 0)}
+    - Paper Expenses : {data.get('expenses_of_paper', 0)}
+    - Office Supplies Expenses : {data.get('expenses_of_small_office_supplies', 0)}
+    - Company Built Area : {data.get('built_area_of_company', 0)}
     ## IT ##
-    - Number of Desktop Computers : {data.get('numberOfDesktopComputers', 0)}
-    - Number of Laptops : {data.get('numberOfLaptops', 0)}
-    - Number of Individual Printers : {data.get('numberOfIndividualPrinters', 0)}
-    - Number of Servers : {data.get('numberOfServers', 0)}
-    - Number of Multifunction Printers : {data.get('numberOfMultifunctionPrinters', 0)}
-    - Number of Flat Panel Screens : {data.get('numberOfFlatPanelScreens', 0)}
+    - Number of Desktop Computers : {data.get('number_of_desktop_computers', 0)}
+    - Number of Laptops : {data.get('number_of_laptops', 0)}
+    - Number of Individual Printers : {data.get('number_of_individual_printers', 0)}
+    - Number of Servers : {data.get('number_of_servers', 0)}
+    - Number of Multifunction Printers : {data.get('number_of_multifunction_printers', 0)}
+    - Number of Flat Panel Screens : {data.get('number_of_flat_panel_screens', 0)}
     ## Mobility ##
-    - Short-Haul Round Trips: {data.get('numberOfShortHaulRoundTrip', 0)}
-    - Medium-Haul Round Trips: {data.get('numberOfMediumHaulRoundTrip', 0)}
-    - Long-Haul Round Trips: {data.get('numberOfLongHaulRoundTrip', 0)}
+    - Short-Haul Round Trips: {data.get('number_of_short_haul_round_trip', 0)}
+    - Medium-Haul Round Trips: {data.get('number_of_medium_haul_round_trip', 0)}
+    - Long-Haul Round Trips: {data.get('number_of_long_haul_round_trip', 0)}
     ### VALID EXAMPLES ###
     [
     {{
@@ -524,13 +517,11 @@ def generate_recommendations_entreprise():
         data = request.get_json()
         # Générer le prompt
         prompt = generate_prompt(data)
-
         # Initialiser le client Azure
         client = ChatCompletionsClient(
             endpoint=AZURE_ENDPOINT,
             credential=AzureKeyCredential(AZURE_TOKEN),
         )
-
         # Appeler l'API Azure
         response = client.complete(
             messages=[
@@ -540,11 +531,9 @@ def generate_recommendations_entreprise():
                 UserMessage(prompt),
             ],
             model=MODEL_NAME,
-            temperature=0.74,
-            max_tokens=4096,
+            temperature=1,
             top_p=1
         )
-
         # Extraire le contenu de la réponse
         raw_recommendations = response.choices[0].message.content
         return jsonify({

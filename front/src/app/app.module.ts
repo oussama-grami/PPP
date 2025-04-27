@@ -59,6 +59,8 @@ import { EventResultComponent } from './Components/event-result/event-result.com
 import { PaymentConfirmationComponent } from './Components/payment-confirmation/payment-confirmation.component';
 import{ EcoLoadingSpinnerComponent } from './Components/eco-loading-spinner/eco-loading-spinner.component';
 import { FormatDescriptionPipe } from './pipes/format-description.pipe';
+import { ApiModule } from './api/api.module';
+import { environment } from 'src/environments/environment';
 @NgModule({
   declarations: [
     AppComponent,
@@ -123,6 +125,9 @@ import { FormatDescriptionPipe } from './pipes/format-description.pipe';
     MatTableModule,
     MatButtonModule,
     BrowserAnimationsModule,
+    ApiModule.forRoot({
+      rootUrl: environment.apiUrl
+    })
 
   ],
   providers: [],

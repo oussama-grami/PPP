@@ -32,15 +32,15 @@ public class ProjectOwner extends User {
     private String companyIdentifier;
     @Column(nullable = false)
     private String description;
-    @Column(nullable = false)
-    private String estimation;
+    @Column()
+    private boolean estimation = false;
     @Column(nullable = false)
     private float estimationValue;
     @Column(nullable = false)
     private String firstname;
     @Column(nullable = false)
     private String job_function;
-    @Column(nullable = false,unique = true)
+    @Column(nullable = false, unique = true)
     private String phone;
     @Column(nullable = false)
     private String region;

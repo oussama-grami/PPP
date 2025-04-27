@@ -10,7 +10,6 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
-
 stripe:
   api:
     key: sk_test_51PXiywF8Z6bWeMKqcDN9MXuxRefQjhGucEbVV3TnLCQFepXXL0Q41msQoasi4qVgPOsXFuIgrgXRjH8leDDUoeLk00W7IXsAEj
@@ -21,3 +20,8 @@ logging:
     root: WARN   # This will only log WARN and ERROR messages globally.
     org.springframework.web: INFO   # Only INFO and higher for Spring Web
     org.springframework.orm.hibernate5: ERROR  # Set Hibernate to log only errors
+flask:
+  api:
+    url: http://127.0.0.1:5000/
+    url.enterprise: ${flask.api.url}generate-recommendations-entreprise
+    url.event: ${flask.api.url}generate-recommendations-event
