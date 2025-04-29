@@ -1,95 +1,203 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-white mx-auto w-100 fs-6">
-  <div class="container-fluid">
-    <a class="navbar-brand" [routerLink]="'/'+RoutesEnum.HOME">
-      <img src="assets/Ecopilot/ecopilot_logo.png" alt="Logo"
-           style="width: 100px; height: 60px; border-radius: 4px">
+<nav class="navbar" [class.navbar-scrolled]="isScrolled">
+  <div class="container">
+    <!-- Brand logo -->
+    <a class="navbar-brand" [routerLink]="'/'">
+      <img src="assets/Ecopilot/ecopilot_logo.png" alt="EcoPilot Logo" />
     </a>
-    <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse"
-            data-bs-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false"
-            aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <ul class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav d-flex flex-lg-row flex-column align-items-lg-center w-100">
-        <div class="d-lg-flex me-lg-auto">
+
+    <!-- Navigation content - enhanced for horizontal layout -->
+    <div class="navbar-center">
+      <div class="navbar-content" [ngClass]="{ active: mobileMenuOpen }">
+        <ul class="navbar-nav">
+          <!-- Home -->
           <li class="nav-item">
-            <a class="nav-link fff" [ngClass]="{ 'selected': isRoute0Active()}"
-               [routerLink]="'/'+RoutesEnum.HOME" (click)="closeNavbar()">Home</a>
-          </li>
-          <li class="nav-item dropdown fff">
-            <a class="nav-link dropdown-toggle"
-               [ngClass]="{ 'selected': isRoute1Active()}"
-               href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"
-               (click)="toggleAiToolsMenu()">
-              <i class="fas fa-sharp fa-thin fa-robot"></i>
+            <a
+              class="nav-link"
+              [routerLink]="'/'"
+              [class.active]="router.url === '/'"
+              (click)="mobileMenuOpen = false"
+            >
+              <i class="bi bi-house"></i> Home
             </a>
-            <ul class="dropdown-menu dropdown-menu-start">
-              <li><a class="dropdown-item" [routerLink]="'/'+RoutesEnum.CARBONE"
-                     (click)="closeNavbar()">Carbon
-                Footprint Calculator</a></li>
-              <li><a class="dropdown-item" [routerLink]="'/'+RoutesEnum.PREDICTION_INFO"
-                     (click)="closeNavbar()">Carbon
-                Forecast</a></li>
-              <li><a class="dropdown-item" [routerLink]="'/'+RoutesEnum.EVENT_FOOTPRINT"
-                     (click)="closeNavbar()">Event
-                Carbon
-                Footprint Caculator</a></li>
-            </ul>
           </li>
-          <li class="nav-item dropdown fff">
-            <a class="nav-link dropdown-toggle"
-               [ngClass]="{ 'selected': isRoute1Active()}"
-               href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Assessment tools
+
+          <!-- AI Tools Dropdown -->
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link"
+              (click)="toggleDropdown('ai-tools', $event)"
+              [class.active]="
+                isRouteActivePartial([
+                  routes.CARBONE,
+                  routes.PREDICTION_INFO,
+                  routes.EVENT_FOOTPRINT
+                ])
+              "
+            >
+              <i class="bi bi-cpu"></i> AI Tools
+              <i
+                class="bi bi-chevron-down"
+                [ngClass]="{ 'bi-chevron-up': isDropdownActive('ai-tools') }"
+              ></i>
             </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" [routerLink]="'/'+RoutesEnum.PORTEUR">Carbon
-                Offset Projects</a></li>
-              <li><a class="dropdown-item" [routerLink]="'/'+RoutesEnum.ESG">ESG
-                Assessment</a></li>
-            </ul>
+            <div
+              class="dropdown-menu"
+              [class.show]="isDropdownActive('ai-tools')"
+            >
+              <div class="mobile-dropdown-wrapper">
+                <a
+                  class="dropdown-item"
+                  [routerLink]="'/' + routes.CARBONE"
+                  (click)="mobileMenuOpen = false"
+                >
+                  <i class="bi bi-calculator"></i> Carbon Footprint Calculator
+                </a>
+                <a
+                  class="dropdown-item"
+                  [routerLink]="'/' + routes.PREDICTION_INFO"
+                  (click)="mobileMenuOpen = false"
+                >
+                  <i class="bi bi-graph-up"></i> Carbon Forecast
+                </a>
+                <a
+                  class="dropdown-item"
+                  [routerLink]="'/' + routes.EVENT_FOOTPRINT"
+                  (click)="mobileMenuOpen = false"
+                >
+                  <i class="bi bi-calendar-event"></i> Event Carbon Calculator
+                </a>
+              </div>
+            </div>
           </li>
+
+          <!-- Assessment Tools -->
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link"
+              (click)="toggleDropdown('assessment-tools', $event)"
+              [class.active]="
+                isRouteActivePartial([routes.PORTEUR, routes.ESG])
+              "
+            >
+              <i class="bi bi-clipboard-data"></i> Assessment Tools
+              <i
+                class="bi bi-chevron-down"
+                [ngClass]="{
+                  'bi-chevron-up': isDropdownActive('assessment-tools')
+                }"
+              ></i>
+            </a>
+            <div
+              class="dropdown-menu"
+              [class.show]="isDropdownActive('assessment-tools')"
+            >
+              <div class="mobile-dropdown-wrapper">
+                <a
+                  class="dropdown-item"
+                  [routerLink]="'/' + routes.PORTEUR"
+                  (click)="mobileMenuOpen = false"
+                >
+                  <i class="bi bi-tree"></i> Carbon Offset Projects
+                </a>
+                <a
+                  class="dropdown-item"
+                  [routerLink]="'/' + routes.ESG"
+                  (click)="mobileMenuOpen = false"
+                >
+                  <i class="bi bi-shield-check"></i> ESG Assessment
+                </a>
+              </div>
+            </div>
+          </li>
+
+          <!-- Marketplace -->
           <li class="nav-item">
-            <a class="nav-link fff" [ngClass]="{ 'selected': isRoute5Active()}"
-               [routerLink]="'/'+RoutesEnum.MARKETPLACE" (click)="closeNavbar()">Marketplace</a>
+            <a
+              class="nav-link"
+              [routerLink]="'/' + routes.MARKETPLACE"
+              [class.active]="isRouteActive(routes.MARKETPLACE)"
+              (click)="mobileMenuOpen = false"
+            >
+              <i class="bi bi-bag"></i> Marketplace
+            </a>
           </li>
+
+          <!-- Knowledge Hub -->
           <li class="nav-item">
-            <a class="nav-link fff" [ngClass]="{ 'selected': isRoute4Active()}"
-               [routerLink]="'/'+RoutesEnum.RESOURCES"
-               (click)="closeNavbar()">EcoPilot
-              Knowledge</a>
-          </li>
-        </div>
-        <ul class="navbar-nav d-flex flex-row me-1 align-items-baseline">
-          <li class="nav-item ms-lg-auto me-5 me-lg-0 mt-0">
-            <a class="nav-link fff mt-0 h-auto"
-               [ngClass]="{ 'selected': isRoute6Active()}"
-               [routerLink]="'/'+RoutesEnum.CHECKOUT" (click)="closeNavbar()">
-              <i class="fas fa-shopping-cart text-black w-100"></i>
+            <a
+              class="nav-link"
+              [routerLink]="'/' + routes.RESOURCES"
+              [class.active]="isRouteActive(routes.RESOURCES)"
+              (click)="mobileMenuOpen = false"
+            >
+              <i class="bi bi-journal-text"></i> Knowledge Hub
             </a>
-          </li>
-          <li class="nav-item dropdown ms-lg-3">
-            <a class="nav-link dropdown-toggle" href="#" id="userMenu" role="button"
-               data-bs-toggle="dropdown"
-               aria-expanded="false">
-              <i class="fas fa-user-circle text-black w-100"></i>
-            </a>
-            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenu"
-                [class.show]="showAccountMenu">
-              <li><a class="dropdown-item" [routerLink]="'/'+RoutesEnum.TRANSACTIONS"
-                     (click)="closeNavbar()">Transactions</a>
-              </li>
-              <li>
-                <hr class="dropdown-divider">
-              </li>
-              <li>
-                <button class="dropdown-item" (click)="logout()">Logout</button>
-              </li>
-            </ul>
           </li>
         </ul>
-      </ul>
-    </ul>
+
+        <!-- Action Items -->
+        <div class="navbar-actions">
+          <!-- Cart -->
+          <a
+            class="nav-action"
+            [routerLink]="'/' + routes.CHECKOUT"
+            [class.active]="isRouteActive(routes.CHECKOUT)"
+            (click)="mobileMenuOpen = false"
+            aria-label="Cart"
+          >
+            <i class="bi bi-bag"></i>
+          </a>
+
+          <!-- User Menu -->
+          <div class="nav-item dropdown user-dropdown">
+            <a
+              class="nav-action"
+              (click)="toggleDropdown('user', $event)"
+              aria-label="User menu"
+            >
+              <i class="bi bi-person"></i>
+            </a>
+            <div
+              class="dropdown-menu dropdown-menu-right"
+              [class.show]="isDropdownActive('user')"
+            >
+              <a
+                class="dropdown-item"
+                [routerLink]="'/' + routes.TRANSACTIONS"
+                (click)="mobileMenuOpen = false"
+              >
+                <i class="bi bi-clock-history"></i> Transactions
+              </a>
+              <div class="dropdown-divider"></div>
+              <button
+                class="dropdown-item"
+                (click)="logout(); mobileMenuOpen = false"
+              >
+                <i class="bi bi-box-arrow-right"></i> Logout
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Toggle Button -->
+    <button
+      class="mobile-toggle"
+      [class.active]="mobileMenuOpen"
+      (click)="toggleMobileMenu()"
+      aria-label="Toggle navigation"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </div>
 </nav>
+
+<!-- Backdrop for mobile menu -->
+<div
+  class="mobile-backdrop"
+  [class.show]="mobileMenuOpen"
+  (click)="mobileMenuOpen = false"
+></div>
