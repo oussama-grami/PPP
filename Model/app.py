@@ -115,6 +115,7 @@ def preprocess_data(df):
           .bfill()
           .ffill()
     )
+
     df['carbon_footprint_kgCO2'] = df['carbon_footprint_kgCO2'].clip(lower=0)
     return df
 
