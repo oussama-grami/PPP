@@ -17,7 +17,27 @@ import xgboost as xgb
 import base64
 import os
 import joblib
+from flask import Flask, request, jsonify
+import pandas as pd
+from prophet import Prophet
 
+
+from statsmodels.tsa.arima.model import ARIMA
+from prophet import Prophet
+import itertools
+
+
+from flask import Flask, request, jsonify
+import pandas as pd
+import numpy as np
+
+# forecasting libraries
+from statsmodels.tsa.statespace.sarimax import SARIMAX
+from statsmodels.tsa.holtwinters import ExponentialSmoothing
+from prophet import Prophet
+
+from sklearn.metrics import mean_absolute_error, r2_score, mean_squared_error
+import itertools
 
 class EventData:
     def __init__(self,
@@ -56,36 +76,6 @@ class EventData:
         self.decoration_material = decoration_material
         self.total_emissions = total_emissions
 
-
-app = Flask(__name__)
-
-
-from prophet import Prophet
-
-from flask import Flask, request, jsonify
-import pandas as pd
-from prophet import Prophet
-
-
-from statsmodels.tsa.arima.model import ARIMA
-from prophet import Prophet
-import itertools
-
-
-
-from flask import Flask, request, jsonify
-import pandas as pd
-import numpy as np
-
-# forecasting libraries
-from statsmodels.tsa.statespace.sarimax import SARIMAX
-from statsmodels.tsa.holtwinters import ExponentialSmoothing
-from prophet import Prophet
-
-from sklearn.metrics import mean_absolute_error, r2_score, mean_squared_error
-import itertools
-
-app = Flask(__name__)
 
 def validate_input(data):
     required = {'year', 'month', 'carbon_footprint_kgCO2'}
@@ -195,7 +185,7 @@ def tune_and_select(train, val):
         pass
 
     return best
-
+app = Flask(__name__)
 @app.route('/forecast', methods=['POST'])
 def ForecastCarbonFootprint():
     try:
@@ -274,8 +264,7 @@ def ForecastCarbonFootprint():
         print(f"Forecast endpoint error: {e}")
         return jsonify({'error': str(e)}), 400
 
-if __name__ == '__main__':
-    app.run(debug=True)
+
 # partie eya
 # Define the custom_loss function (must match the one used during training)
 def custom_loss(y_true, y_pred):
