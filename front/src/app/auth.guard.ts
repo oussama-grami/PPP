@@ -1,7 +1,11 @@
-import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Observable } from 'rxjs';
 import {KeycloakAuthGuard, KeycloakService} from "keycloak-angular";
+import {
+  ActivatedRouteSnapshot,
+  Router,
+  RouterStateSnapshot,
+  UrlTree
+} from "@angular/router";
+import {Injectable} from "@angular/core";
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +23,7 @@ export class AuthGuard extends KeycloakAuthGuard {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Promise<boolean | UrlTree> {
 
-    if (!this.authenticated) {
+    if (!this.authenticated || this.keycloak.isTokenExpired()) {
       await this.keycloak.login({
         redirectUri: window.location.origin + state.url,
       });

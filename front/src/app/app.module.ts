@@ -5,7 +5,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {HomeComponent} from './Components/home/home.component';
 import {EnergieComponent} from './Components/energie/energie.component';
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {CarburantComponent} from './Components/carburant/carburant.component';
 import {AeriensComponent} from './Components/aeriens/aeriens.component';
 import {FretComponent} from './Components/fret/fret.component';
@@ -27,7 +27,7 @@ import {ResultESGComponent} from './Components/result-esg/result-esg.component';
 import {NavAcceuilComponent} from './Components/nav-acceuil/nav-acceuil.component';
 import {ESGdiagramComponent} from './Components/esgdiagram/esgdiagram.component';
 import {ArboricultureComponent} from './Components/arboriculture/arboriculture.component';
-import {HttpClientModule} from "@angular/common/http";
+import {HttpClientModule} from '@angular/common/http';
 import {PisteComponent} from './Components/piste/piste.component';
 import {MarketplaceComponent} from './Components/marketplace/marketplace.component';
 import {FilterItemComponent} from './Components/filter-item/filter-item.component';
@@ -61,7 +61,7 @@ import {PriceDetailsComponent} from './Components/price-details/price-details.co
 import {EsgOverviewComponent} from './Components/esg-overview/esg-overview.component';
 import {
   ProjectsCarouselComponent
-} from "./Components/projects-carousel/projects-carousel.component";
+} from './Components/projects-carousel/projects-carousel.component';
 import {InfoSectionComponent} from './Components/InfoSection/InfoSection.component';
 import {
   CarbonPredictionInfoComponent
@@ -74,8 +74,8 @@ import {MatButtonModule} from '@angular/material/button';
 import {TransactionsComponent} from './Components/transactions/transactions.component';
 import {
   InstructionsListComponent
-} from "./Components/instructions-list/instructions-list.component";
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+} from './Components/instructions-list/instructions-list.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {EventFormComponent} from './Components/event-form/event-form.component';
 import {
   EventFootprintComponent
@@ -90,7 +90,7 @@ import {
 import {FormatDescriptionPipe} from './pipes/format-description.pipe';
 import {ApiModule} from './api/api.module';
 import {environment} from 'src/environments/environment';
-import {KeycloakAngularModule, KeycloakService} from "keycloak-angular";
+import {KeycloakAngularModule, KeycloakService} from 'keycloak-angular';
 
 /*export function initializeKeycloak(
   keycloak: KeycloakService
@@ -156,10 +156,9 @@ import {KeycloakAngularModule, KeycloakService} from "keycloak-angular";
     EventResultComponent,
     PaymentConfirmationComponent,
     EcoLoadingSpinnerComponent,
-    FormatDescriptionPipe
+    FormatDescriptionPipe,
   ],
   imports: [
-    KeycloakAngularModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
@@ -171,23 +170,39 @@ import {KeycloakAngularModule, KeycloakService} from "keycloak-angular";
     MatButtonModule,
     BrowserAnimationsModule,
     ApiModule.forRoot({
-      rootUrl: environment.apiUrl
-    })
-
+      rootUrl: environment.apiUrl,
+    }),
+    KeycloakAngularModule,
   ],
   providers: [
     {
       provide: APP_INITIALIZER,
-      useFactory: kcFactory,
+      useFactory: initializeKeycloak,
+      multi: true,
       deps: [KeycloakService],
-      multi: true
-    }
+    },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {
 }
 
-export function kcFactory(kcService: KeycloakService) {
-  return () => kcService.init();
+export function initializeKeycloak(keycloak: KeycloakService) {
+  return () =>
+    keycloak.init({
+      config: {
+        url: 'http://localhost:8080',
+        realm: 'booksproject',
+        clientId: 'admin',
+      },
+      initOptions: {
+        onLoad: 'login-required',
+        useNonce : true,
+        checkLoginIframe: false,
+        timeSkew: 0,
+      },
+      enableBearerInterceptor: true,
+      loadUserProfileAtStartUp: true,
+      updateMinValidity: 20,
+    });
 }

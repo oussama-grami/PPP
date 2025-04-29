@@ -1,10 +1,13 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-white mx-auto w-100 fs-6">
   <div class="container-fluid">
     <a class="navbar-brand" [routerLink]="'/'+RoutesEnum.HOME">
-      <img src="assets/Ecopilot/ecopilot_logo.png" alt="Logo" style="width: 100px; height: 60px; border-radius: 4px">
+      <img src="assets/Ecopilot/ecopilot_logo.png" alt="Logo"
+           style="width: 100px; height: 60px; border-radius: 4px">
     </a>
-    <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false"
+            aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <ul class="collapse navbar-collapse" id="navbarNav">
@@ -17,15 +20,19 @@
           <li class="nav-item dropdown fff">
             <a class="nav-link dropdown-toggle"
                [ngClass]="{ 'selected': isRoute1Active()}"
-               href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" (click)="toggleAiToolsMenu()">
+               href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"
+               (click)="toggleAiToolsMenu()">
               <i class="fas fa-sharp fa-thin fa-robot"></i>
             </a>
             <ul class="dropdown-menu dropdown-menu-start">
-              <li><a class="dropdown-item" [routerLink]="'/'+RoutesEnum.CARBONE" (click)="closeNavbar()">Carbon
+              <li><a class="dropdown-item" [routerLink]="'/'+RoutesEnum.CARBONE"
+                     (click)="closeNavbar()">Carbon
                 Footprint Calculator</a></li>
-              <li><a class="dropdown-item" [routerLink]="'/'+RoutesEnum.PREDICTION_INFO" (click)="closeNavbar()">Carbon
+              <li><a class="dropdown-item" [routerLink]="'/'+RoutesEnum.PREDICTION_INFO"
+                     (click)="closeNavbar()">Carbon
                 Forecast</a></li>
-              <li><a class="dropdown-item" [routerLink]="'/'+RoutesEnum.EVENT_FOOTPRINT" (click)="closeNavbar()">Event
+              <li><a class="dropdown-item" [routerLink]="'/'+RoutesEnum.EVENT_FOOTPRINT"
+                     (click)="closeNavbar()">Event
                 Carbon
                 Footprint Caculator</a></li>
             </ul>
@@ -37,8 +44,10 @@
               Assessment tools
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" [routerLink]="'/'+RoutesEnum.PORTEUR">Carbon Offset Projects</a></li>
-              <li><a class="dropdown-item" [routerLink]="'/'+RoutesEnum.ESG">ESG Assessment</a></li>
+              <li><a class="dropdown-item" [routerLink]="'/'+RoutesEnum.PORTEUR">Carbon
+                Offset Projects</a></li>
+              <li><a class="dropdown-item" [routerLink]="'/'+RoutesEnum.ESG">ESG
+                Assessment</a></li>
             </ul>
           </li>
           <li class="nav-item">
@@ -46,25 +55,34 @@
                [routerLink]="'/'+RoutesEnum.MARKETPLACE" (click)="closeNavbar()">Marketplace</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link fff" [ngClass]="{ 'selected': isRoute4Active()}" [routerLink]="'/'+RoutesEnum.RESOURCES"
+            <a class="nav-link fff" [ngClass]="{ 'selected': isRoute5Active()}"
+               [routerLink]="'/test'" (click)="closeNavbar()">Test</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link fff" [ngClass]="{ 'selected': isRoute4Active()}"
+               [routerLink]="'/'+RoutesEnum.RESOURCES"
                (click)="closeNavbar()">EcoPilot
               Knowledge</a>
           </li>
         </div>
         <ul class="navbar-nav d-flex flex-row me-1 align-items-baseline">
           <li class="nav-item ms-lg-auto me-5 me-lg-0 mt-0">
-            <a class="nav-link fff mt-0 h-auto" [ngClass]="{ 'selected': isRoute6Active()}"
+            <a class="nav-link fff mt-0 h-auto"
+               [ngClass]="{ 'selected': isRoute6Active()}"
                [routerLink]="'/'+RoutesEnum.CHECKOUT" (click)="closeNavbar()">
               <i class="fas fa-shopping-cart text-black w-100"></i>
             </a>
           </li>
           <li class="nav-item dropdown ms-lg-3">
-            <a class="nav-link dropdown-toggle" href="#" id="userMenu" role="button" data-bs-toggle="dropdown"
+            <a class="nav-link dropdown-toggle" href="#" id="userMenu" role="button"
+               data-bs-toggle="dropdown"
                aria-expanded="false">
               <i class="fas fa-user-circle text-black w-100"></i>
             </a>
-            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenu" [class.show]="showAccountMenu">
-              <li><a class="dropdown-item" [routerLink]="'/'+RoutesEnum.TRANSACTIONS" (click)="closeNavbar()">Transactions</a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenu"
+                [class.show]="showAccountMenu">
+              <li><a class="dropdown-item" [routerLink]="'/'+RoutesEnum.TRANSACTIONS"
+                     (click)="closeNavbar()">Transactions</a>
               </li>
               <li>
                 <hr class="dropdown-divider">

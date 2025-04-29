@@ -61,7 +61,7 @@ import {EventResultComponent} from './Components/event-result/event-result.compo
 import {
   PaymentConfirmationComponent
 } from './Components/payment-confirmation/payment-confirmation.component';
-import {AuthGuard} from "./auth-guard.guard";
+import {AuthGuard} from "./auth.guard";
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
