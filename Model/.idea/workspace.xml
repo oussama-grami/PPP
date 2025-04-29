@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="88f2a7b4-9a41-410d-8241-3ead0dcfb0f1" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/carbon_footprint_dataset.csv" beforeDir="false" afterPath="$PROJECT_DIR$/carbon_footprint_dataset.csv" afterDir="false" />
-    </list>
+    <list default="true" id="88f2a7b4-9a41-410d-8241-3ead0dcfb0f1" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -80,7 +76,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1745764772455</updated>
-      <workItem from="1745764777552" duration="4421000" />
+      <workItem from="1745764777552" duration="4506000" />
     </task>
     <servers />
   </component>
