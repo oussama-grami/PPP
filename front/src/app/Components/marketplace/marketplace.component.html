@@ -1,8 +1,4 @@
 <div class="container-fluid">
-  <!-- Ajout du spinner -->
-<!--  <app-eco-loading-spinner [loadingText]='"Wait for projects"' *ngIf="isLoading"></app-eco-loading-spinner>-->
-  <app-spinner *ngIf="isLoading"></app-spinner>
-
   <div class="position-relative" style="margin-top: 5rem; background-image: url(/assets/img/marketplaceBackground.png); background-repeat: no-repeat; background-size: cover; width: 100%; height: 530px;">
     <div class="backgroundText">
       <p class="p1">Your carbon compensation market</p>
@@ -144,19 +140,9 @@
         </span>
       </div>
       <br>
-
-      <!-- Ajout d'un conteneur avec une hauteur minimale pour les projets -->
-      <div class="projects-container">
-        <!-- Affichage conditionnel d'un message si aucun projet n'est trouvé -->
-        <div *ngIf="!isLoading && projects.length === 0" class="no-projects-message">
-          No projects match your current filters. Try adjusting your filter criteria.
-        </div>
-
-        <!-- Liste des projets -->
-        <div class="row mt-5" style="display: flex; flex-wrap: wrap;">
-          <div *ngFor="let project of displayedProjects" class="col-6 col-sm-4 col-md-4" style="margin-top: 5px;">
-            <app-project-ad [project]="project" class="products"></app-project-ad>
-          </div>
+      <div class="row mt-5" style="display: flex; flex-wrap: wrap;">
+        <div *ngFor="let project of displayedProjects" class="col-6 col-sm-4 col-md-4" style="margin-top: 5px;">
+          <app-project-ad [project]="project" class="products"></app-project-ad>
         </div>
       </div>
 

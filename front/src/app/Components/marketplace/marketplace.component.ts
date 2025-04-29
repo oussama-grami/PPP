@@ -3,7 +3,7 @@ import {Project} from "../../Models/project";
 import {ProjectsService} from "../../Service/projects.service";
 import {RoutesEnum} from "../../enumerations/Routes.enum";
 import {forkJoin, Observable, of} from "rxjs";
-import {mergeMap, map, finalize} from "rxjs/operators";
+import {mergeMap, map} from "rxjs/operators";
 
 @Component({
   selector: 'app-marketplace',
@@ -23,8 +23,8 @@ export class MarketplaceComponent implements OnInit {
   public numberOfProjects = this.projects.length;
   public totalPages = Math.round(this.numberOfProjects/9);
   public currentPage: number = 1;
-  isLoading = false;
 
+  // Maps pour suivre l'état des checkboxes
   selectedCountries: Map<string, boolean> = new Map();
   selectedTypes: Map<string, boolean> = new Map();
 
@@ -36,12 +36,7 @@ export class MarketplaceComponent implements OnInit {
 
   ngOnInit() {
     window.scrollTo(0, 0);
-    this.isLoading = true;
-    this.projectService.getProjects().pipe(
-      finalize(() => {
-        this.isLoading = false;
-      })
-    ).subscribe(data => {
+    this.projectService.getProjects().subscribe(data => {
       this.projects = data;
       this.numberOfProjects = this.projects.length;
       this.totalPages = Math.ceil(this.numberOfProjects / 9);
@@ -51,9 +46,6 @@ export class MarketplaceComponent implements OnInit {
   }
 
   applyFilters() {
-    // Activer le spinner pendant le chargement
-    this.isLoading = true;
-
     // Récupérer les filtres actifs
     const selectedCountries = Array.from(this.selectedCountries.entries())
       .filter(([_, isSelected]) => isSelected)
@@ -146,11 +138,7 @@ export class MarketplaceComponent implements OnInit {
         this.projectService.getFilteredProjects(filter)
       );
 
-      forkJoin(requests).pipe(
-        finalize(() => {
-          this.isLoading = false;
-        })
-      ).subscribe(results => {
+      forkJoin(requests).subscribe(results => {
         // Fusionner tous les résultats et éliminer les doublons
         const allProjects = results.flat();
         const uniqueProjects = this.removeDuplicates(allProjects);
@@ -167,11 +155,7 @@ export class MarketplaceComponent implements OnInit {
         cost: this.priceFilter !== 99 ? this.priceFilter : undefined,
         certified: this.certification,
         mechanism: this.mechanismType
-      }).pipe(
-        finalize(() => {
-          this.isLoading = false;
-        })
-      ).subscribe(filteredProjects => {
+      }).subscribe(filteredProjects => {
         this.projects = filteredProjects;
         this.numberOfProjects = this.projects.length;
         this.totalPages = Math.ceil(this.numberOfProjects / 9);
@@ -181,7 +165,6 @@ export class MarketplaceComponent implements OnInit {
     }
   }
 
-  // Le reste du code reste inchangé...
   // Fonction pour éliminer les doublons dans la liste des projets
   removeDuplicates(projects: Project[]): Project[] {
     const uniqueIds = new Set<number>();

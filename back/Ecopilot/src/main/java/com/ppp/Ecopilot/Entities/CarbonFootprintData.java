@@ -6,7 +6,6 @@ import com.ppp.Ecopilot.Enums.CarburantType;
 import com.ppp.Ecopilot.Enums.Unit;
 import jakarta.persistence.*;
 import lombok.*;
-import lombok.experimental.SuperBuilder;
 
 import java.util.Date;
 
