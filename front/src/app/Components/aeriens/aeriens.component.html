@@ -1,26 +1,38 @@
-<div class="container-fluid full-height" style="margin-top: 50px;">
+<div class="container-fluid full-height">
   <div class="row row-height">
-    <div class="col-lg-6 content-left1">
+    <!-- Left Info Panel -->
+    <div class="col-lg-6 content-left">
       <div class="content-left-wrapper">
-        <img src="assets/img/aerienne.png" class="img-title" id="descriptionImage"/>
-        <h2 id="descriptionTitle">Business air travel </h2>
-        <p id="descriptionText">Evaluate your employees' business air travel emissions.</p>
+        <img src="assets/img/aerienne.png" class="img-title" id="descriptionImage" alt="Air Travel Icon"/>
+        <h2 id="descriptionTitle">Business Air Travel</h2>
+        <p id="descriptionText">
+          Evaluate your employees' business air travel emissions.
+        </p>
       </div>
     </div>
-    <div class="col-lg-6 content-right" id="start" style="overflow-y: hidden;">
+
+    <!-- Right Form Panel -->
+    <div class="col-lg-6 content-right" id="start">
       <div id="wizard_container">
+        <!-- Page Number Indicator -->
+        <div class="page-indicator">
+          <span class="current-page">4</span>/<span class="total-pages">7</span>
+        </div>
+
         <form [formGroup]="depForm" (ngSubmit)="onNext()" id="wrapped">
-          <div class="step">
-            <h3 class="main_question mt-2"><strong>4/7</strong> Enter the data related to your company's business air travel</h3>
-            <!-- Error Message Display -->
-            <div *ngIf="errorMessage" class="alert alert-danger">
-              {{ errorMessage }}
-            </div>
+          <!-- Error Message Display -->
+          <div *ngIf="errorMessage" class="alert alert-danger">
+            {{ errorMessage }}
+          </div>
+
+          <div class="step card">
+            <h3 class="main_question">Business Air Travel Form</h3>
 
             <!-- Short-haul Trips -->
             <div class="form-group">
+              <label for="numberOfShortHaulRoundTrips" class="form-label">Short-haul Round Trips (- 3000 Km)</label>
               <input type="number" class="form-control" formControlName="numberOfShortHaulRoundTrips"
-                     placeholder="Number of short-haul round trips (- 3000 Km)">
+                     id="numberOfShortHaulRoundTrips" placeholder="Enter number of short-haul trips">
               <small class="text-danger" *ngIf="numberOfShortHaulRoundTrips?.touched && numberOfShortHaulRoundTrips?.invalid">
                 Short-haul trips are required.
               </small>
@@ -28,8 +40,9 @@
 
             <!-- Medium-haul Trips -->
             <div class="form-group">
+              <label for="numberOfMediumHaulRoundTrips" class="form-label">Medium-haul Round Trips (3,000 - 6,000 Km)</label>
               <input type="number" class="form-control" formControlName="numberOfMediumHaulRoundTrips"
-                     placeholder="Number of medium-haul round trips (3,000 Km to 6,000 Km)">
+                     id="numberOfMediumHaulRoundTrips" placeholder="Enter number of medium-haul trips">
               <small class="text-danger" *ngIf="numberOfMediumHaulRoundTrips?.touched && numberOfMediumHaulRoundTrips?.invalid">
                 Medium-haul trips are required.
               </small>
@@ -37,20 +50,20 @@
 
             <!-- Long-haul Trips -->
             <div class="form-group">
+              <label for="numberOfLongHaulRoundTrips" class="form-label">Long-haul Round Trips (+ 6000 Km)</label>
               <input type="number" class="form-control" formControlName="numberOfLongHaulRoundTrips"
-                     placeholder="Number of long-haul round trips (+ 6000 Km)">
+                     id="numberOfLongHaulRoundTrips" placeholder="Enter number of long-haul trips">
               <small class="text-danger" *ngIf="numberOfLongHaulRoundTrips?.touched && numberOfLongHaulRoundTrips?.invalid">
                 Long-haul trips are required.
               </small>
             </div>
           </div>
 
-          <!-- Buttons Section -->
-          <div id="bottom-wizard2 mb-2 pb-2">
+          <!-- Navigation Buttons -->
+          <div class="button-group">
             <button type="button" name="backward" class="btnbackward" [routerLink]="'/' + RoutesEnum.CARBURANT">Back</button>
             <button type="submit" name="forward" class="btnforward">Continue</button>
           </div>
-
         </form>
       </div>
     </div>

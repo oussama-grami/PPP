@@ -1,34 +1,62 @@
 import { Injectable } from '@angular/core';
-import { Event } from '../Models/eventForm'; // Import the Event
+import { HttpClient } from '@angular/common/http';
+import { Event } from '../Models/eventForm';
+import { EventResponse } from '../Models/eventResponse';
+import { Observable, of } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EventFootprintService {
-  // Store the event data in the service
   private eventData: Event | null = null;
+  private eventResponses: EventResponse[] = [];  // cached list
+  private readonly apiUrl = 'http://localhost:8080/api/event';
 
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
-  // Method to update the event data
   updateEventData(event: Event): void {
     this.eventData = event;
   }
 
-  // Method to get the stored event data
   getEventData(): Event | null {
     return this.eventData;
   }
-  getTotalFootprint(){
-    return this.calculateEventFootprint(this.eventData!);
+
+  createEvent(eventData: Event): Observable<any> {
+    console.log(eventData);
+    return this.http.post(`${this.apiUrl}`, eventData);
   }
 
-  // Simulated calculation of event's carbon footprint (for now, this is just a placeholder)
-  calculateEventFootprint(eventData: Event): number {
-    // Placeholder for the actual logic to calculate carbon footprint
-    // You can replace this with a more detailed calculation based on event data
-    const estimatedFootprint = 100; // Example carbon footprint
-    alert('done');
-    return estimatedFootprint;
+  getEventById(id: number): Observable<EventResponse> {
+    return this.http.get<EventResponse>(`${this.apiUrl}/${id}`);
+  }
+
+  getEventsByCompanyOwnerId(ownerId: number): Observable<EventResponse[]> {
+    return this.http.get<EventResponse[]>(`${this.apiUrl}?companyOwnerId=${ownerId}`).pipe(
+      map(events => {
+        this.eventResponses = events;  // cache list
+        return events;
+      })
+    );
+  }
+
+  getTotalFootprint(eventId: number): Observable<number> {
+    if (this.eventResponses.length > 0) {
+      const found = this.eventResponses.find(e => e.id === eventId);
+      if (found) {
+        return of(found.totalEmission);
+      }
+    }
+    return this.getEventById(eventId).pipe(map(e => e.totalEmission));
+  }
+
+  deleteEvent(eventId: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${eventId}`);
+  }
+
+  // Optionally expose the list for components
+  getCachedEventResponses(): EventResponse[] {
+    return this.eventResponses;
   }
 }

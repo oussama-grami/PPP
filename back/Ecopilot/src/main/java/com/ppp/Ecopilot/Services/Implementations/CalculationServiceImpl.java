@@ -1,20 +1,25 @@
 package com.ppp.Ecopilot.Services.Implementations;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.ppp.Ecopilot.DTO.EventFootprintDTO.CreateEventFootprintDataDto;
 import com.ppp.Ecopilot.Entities.CarbonFootprintData;
 import com.ppp.Ecopilot.Enums.Unit;
 import com.ppp.Ecopilot.Models.CarbonFootprintModelRequest;
+import com.ppp.Ecopilot.Models.EventPredictionRequest;
 import com.ppp.Ecopilot.Services.CalculationService;
 import org.springframework.stereotype.Service;
-
+import org.springframework.http.*;
+import org.springframework.web.client.RestTemplate;
+import java.util.Collections;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
+import java.util.List;
+
 @Service
 public class CalculationServiceImpl implements CalculationService {
 
@@ -192,6 +197,45 @@ public class CalculationServiceImpl implements CalculationService {
                 .numberOfMultifunctionPrinters(data.getNumberOfMultifunctionPrinters())
                 .numberOfFlatPanelScreens(data.getNumberOfFlatPanelScreens())
                 .build();
+    }
+
+
+    public double fetchTotalEmissionsFromFlask(CreateEventFootprintDataDto dto) {
+        EventPredictionRequest requestPayload = new EventPredictionRequest(
+                dto.getDuration(),
+                dto.getParticipantsNbr(),
+                dto.getDeviceNbr(),
+                dto.getAvgPowerPerDevice(),
+                dto.getEnergyUsageHours(),
+                dto.getTransportDistance(),
+                dto.getAttendeesUsingTransport(),
+                dto.getNbrOfMeals(),
+                dto.getPrintedMaterial(),
+                dto.getDecorationMaterial(),
+                dto.getEventType(),
+                dto.getVenueType(),
+                dto.getLocation(),
+                dto.getTransportMode(),
+                dto.getMealType()
+        );
+
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        HttpEntity<Object> entity = new HttpEntity<>(Collections.singletonList(requestPayload), headers);
+
+        String flaskUrl = "http://localhost:5000/eventPredict"; // change to actual URL if needed
+
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<Map> response = restTemplate.postForEntity(flaskUrl, entity, Map.class);
+
+        if (response.getStatusCode() == HttpStatus.OK && response.getBody() != null) {
+            List<Double> predictions = (List<Double>) response.getBody().get("predictions");
+            return predictions.get(0); // Assuming only one event is sent
+        } else {
+            throw new RuntimeException("Failed to fetch emission prediction from Flask API.");
+        }
     }
 
 

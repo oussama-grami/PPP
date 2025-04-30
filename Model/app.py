@@ -273,50 +273,52 @@ def custom_loss(y_true, y_pred):
     hessian = np.where(y_pred < 0, 0, 2)
     return gradient, hessian
 
-ensemble_model = joblib.load('ensemble_event_emission_model.pkl')
-xgb_pipeline = ensemble_model['xgb_model']
-gamma_pipeline = ensemble_model['gamma_model']
-best_alpha = ensemble_model['alpha']
+model = joblib.load('ensemble_event_emission_model.pkl')
+xgb_pipeline = model["xgb_model"]
+gamma_pipeline = model["gamma_model"]
 
+# Used columns (exclude Event Type, Venue Type, Location)
+used_columns = [
+    "Duration (hours)", "Participants", "Number of Devices", "Avg Power per Device (kW)",
+    "Energy Usage Hours", "Transport Distance (km)", "Attendees Using Transport",
+    "Number of Meals", "Printed Material (kg)", "Decoration Material (kg)",
+    "Transport Mode", "Meal Type"
+]
 
 @app.route('/eventPredict', methods=['POST'])
 def eventPredict():
     try:
-        # Get the JSON data from the request
         data = request.get_json(force=True)
 
-        # Ensure the input is a list of dictionaries
         if not isinstance(data, list):
-            return jsonify({"error": "Input data must be a list of dictionaries"}), 400
+            return jsonify({"error": "Input must be a list of event objects"}), 400
 
-        # Convert input data to a DataFrame
-        input_data = pd.DataFrame(data)
+        input_df = pd.DataFrame(data)
 
-        # Define required columns
-        required_columns = [
-            "Duration (hours)", "Participants", "Number of Devices", "Avg Power per Device (kW)",
-            "Energy Usage Hours", "Transport Distance (km)", "Attendees Using Transport",
-            "Number of Meals", "Printed Material (kg)", "Decoration Material (kg)",
-            "Event Type", "Venue Type", "Location", "Transport Mode", "Meal Type"
-        ]
-        missing_columns = set(required_columns) - set(input_data.columns)
-        if missing_columns:
-            return jsonify({"error": f"Columns are missing: {missing_columns}"}), 400
+        missing = set(used_columns) - set(input_df.columns)
+        if missing:
+            return jsonify({"error": f"Missing columns: {missing}"}), 400
 
-        # Make predictions using the XGBoost model
-        xgb_pred = xgb_pipeline.predict(input_data)
+        categorical_features = ["Transport Mode", "Meal Type"]
+        for col in categorical_features:
+            if col in input_df.columns and input_df[col].dtype == object:
+                input_df[col] = input_df[col].str.lower()
 
-        # Make predictions using the Gamma Regression model
-        gamma_pred = np.expm1(gamma_pipeline.predict(input_data))  # Reverse log-transform
+        input_filtered = input_df[used_columns]
 
-        # Combine predictions using the best alpha value
-        ensemble_pred = best_alpha * xgb_pred + (1 - best_alpha) * gamma_pred
+        xgb_preds = xgb_pipeline.predict(input_filtered)
+        final_preds = []
 
-        # Replace negative ensemble predictions with Gamma Regression predictions
-        ensemble_pred = np.where(ensemble_pred < 0, gamma_pred, ensemble_pred)
+        for i, pred in enumerate(xgb_preds):
+            if pred < 0:
+                gamma_pred = np.expm1(gamma_pipeline.predict(input_filtered.iloc[[i]]))[0]
+                averaged = (pred + gamma_pred) / 2
+                final_preds.append(float(averaged))
+            else:
+                final_preds.append(float(pred))
 
-        # Return the predictions as a JSON response
-        return jsonify({"predictions": ensemble_pred.tolist()})
+        print("Final Predictions:", final_preds)
+        return jsonify({"predictions": final_preds})
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
@@ -370,7 +372,7 @@ def generate_prompt(data):
     return f"""
     ### COMPANY CONTEXT ###
     Generate as many relevant technical recommendations as possible
-    related to the value of each parameter below 
+    related to the value of each parameter below
     unknown to the company or normal user IN ENGLISH
     and only for parameters with values
     slightly high or very high compared to standards
@@ -587,11 +589,11 @@ def generate_recommendations_event():
         response = client.complete(
             messages=[
                 SystemMessage("""
-                              Vous êtes un assistant d’analyse de données spécialisé 
-                              dans la génération de 
-                              prédictions précises et détaillées. Votre tâche est de 
-                              fournir des prédictions claires en respectant le 
-                              format demandé, sans ajouter de texte superflu 
+                              Vous êtes un assistant d’analyse de données spécialisé
+                              dans la génération de
+                              prédictions précises et détaillées. Votre tâche est de
+                              fournir des prédictions claires en respectant le
+                              format demandé, sans ajouter de texte superflu
                               ou d'explications hors sujet.
                               """),
                 UserMessage(prompt),

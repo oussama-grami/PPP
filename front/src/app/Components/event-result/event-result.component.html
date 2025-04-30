@@ -1,17 +1,42 @@
 <div class="container-fluid">
   <div class="row justify-content-center">
-    <!-- Left Section: Total Emissions -->
-    <div class="col-lg-8 col-md-10 d-flex flex-column align-items-center position-relative event-container">
+    <!-- Enhanced Total Emissions Section -->
+    <div class="col-lg-10 col-md-12 d-flex flex-column align-items-center position-relative">
       <div class="header">
-        <span class="header-bold">Event’s Total Carbon Footprint</span>
+        <span class="header-bold">Event's Total Carbon Footprint</span>
       </div>
 
-      <div class="total-emissions card">
-        <div class="total-header">
-          Total Event Emissions:
-        </div>
-        <div class="total-value">
-          <span class="result-text">{{ totalCarbonFootprint.toFixed(2) }} tCO2</span>
+      <div class="total-emissions">
+        <div class="result-container">
+
+
+          <!-- Main Result Display -->
+          <div class="result-display">
+            <div class="result-text">
+              <i class="fas fa-cloud result-icon"></i>
+              {{ totalCarbonFootprint.toFixed(2) }} <sub>KgCO<sub>2</sub></sub>
+            </div>
+
+          </div>
+
+
+
+          <!-- Progress Bar -->
+          <div class="carbon-progress">
+            <div class="carbon-progress-bar" style="width: 50%;"></div>
+          </div>
+
+          <div class="impact-scale">
+            <span class="impact-label">LOW IMPACT</span>
+            <span class="impact-label">HIGH IMPACT</span>
+          </div>
+
+          <div class="separator"></div>
+
+          <!-- Equivalence Information -->
+          <div class="equivalence">
+            <p>Equivalent to <strong>{{ (totalCarbonFootprint / 8.887).toFixed(1) }}</strong> days of average household emissions</p>
+          </div>
         </div>
       </div>
     </div>
@@ -26,5 +51,16 @@
       <app-instruction-list></app-instruction-list>
     </div>
 
+    <!-- Action Section -->
+    <div class="col-lg-8 col-md-10">
+      <div class="action-section">
+        <button class="action-button primary-btn">
+          <i class="fas fa-file-download"></i> Download Full Report
+        </button>
+        <button class="action-button secondary-btn " [routerLink]="['/']+RoutesEnum.MARKETPLACE">
+          <i class="fas fa-leaf"></i> Offset Your Emissions
+        </button>
+      </div>
+    </div>
   </div>
 </div>

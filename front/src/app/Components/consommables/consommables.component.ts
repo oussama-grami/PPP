@@ -8,8 +8,8 @@ import { RoutesEnum } from "../../enumerations/Routes.enum";
 
 @Component({
   selector: 'app-consommables',
-  templateUrl: './Consommables.component.html',
-  styleUrls: ['./Consommables.component.css']
+  templateUrl: './consommables.component.html',
+  styleUrls: ['./consommables.component.css']
 })
 export class ConsommablesComponent implements OnInit {
   consForm!: FormGroup;

@@ -39,6 +39,7 @@ import {EventFormComponent} from "./Components/event-form/event-form.component";
 import {EventFootprintComponent} from "./Components/event-footprint/event-footprint.component";
 import {EventResultComponent} from "./Components/event-result/event-result.component";
 import {PaymentConfirmationComponent} from "./Components/payment-confirmation/payment-confirmation.component";
+import {EventHistoryComponent} from "./Components/event-history/event-history.component";
 
 const routes: Routes = [
     {path: '', component: HomeComponent},
@@ -85,7 +86,8 @@ const routes: Routes = [
     },
     {path: RoutesEnum.EVENT_FORM, component: EventFormComponent},
   {path:RoutesEnum.EVENT_FOOTPRINT, component: EventFootprintComponent},
-  {path: RoutesEnum.EVENT_RESULT, component: EventResultComponent},
+  { path: `${RoutesEnum.EVENT_RESULT}/:id`, component: EventResultComponent },
+  {path: RoutesEnum.EVENT_HISTORY, component: EventHistoryComponent},
 ];
 
 @NgModule({

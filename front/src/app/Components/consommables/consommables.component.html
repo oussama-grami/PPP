@@ -1,40 +1,51 @@
-<div class="container-fluid full-height" style="margin-top: 50px;">
+<!-- HTML -->
+<div class="container-fluid full-height">
   <div class="row row-height">
-    <div class="col-lg-6 content-left1">
+    <!-- Left Info Panel - Always full height -->
+    <div class="col-lg-6 content-left">
       <div class="content-left-wrapper">
-        <img src="assets/img/Consommable.png" class="img-title" id="descriptionImage"/>
+        <img src="assets/img/Consommable.png" class="img-title" id="descriptionImage" alt="Office Supplies Icon"/>
         <h2 id="descriptionTitle">Office Supplies</h2>
-        <p id="descriptionText">Evaluate the emissions of your expenses on office supplies. </p>
+        <p id="descriptionText">
+          Evaluate the emissions of your expenses on office supplies.
+        </p>
       </div>
     </div>
-    <div class="col-lg-6 content-right" id="start" style="overflow-y: hidden;">
-      <div id="wizard_container">
-        <form [formGroup]="consForm" (ngSubmit)="onNext()" id="wrapped">
-          <div class="step">
-            <h3 class="main_question mt-2"><strong>6/7</strong> Enter the data related to your company's consumables</h3>
 
-            <!-- Error Message Display -->
-            <div *ngIf="errorMessage" class="alert alert-danger">
-              {{ errorMessage }}
-            </div>
+    <!-- Right Form Panel - Centered content -->
+    <div class="col-lg-6 content-right" id="start">
+      <div id="wizard_container">
+        <!-- Page Number Indicator -->
+        <div class="page-indicator">
+          <span class="current-page">6</span>/<span class="total-pages">7</span>
+        </div>
+
+        <form [formGroup]="consForm" (ngSubmit)="onNext()" id="wrapped">
+          <!-- Error Message Display -->
+          <div *ngIf="errorMessage" class="alert alert-danger">
+            {{ errorMessage }}
+          </div>
+
+          <div class="step card">
+            <h3 class="main_question">Office Supplies Form</h3>
 
             <!-- Expenses on Paper with Unit -->
             <div class="form-group row">
               <div class="col-9">
-                <label for="expensesOnPaper">Expenses on Paper</label>
-                <input type="number" class="form-control" id="expensesOnPaper" formControlName="expensesOnPaper" placeholder="Expenses on Paper">
-                <small class="text-danger" *ngIf="consForm.controls['expensesOnPaper'].touched && consForm.controls['expensesOnPaper'].invalid">
+                <label for="expensesOnPaper" class="form-label">Expenses on Paper</label>
+                <input type="number" class="form-control" id="expensesOnPaper" formControlName="expensesOnPaper" placeholder="Enter paper expenses">
+                <small class="text-danger" *ngIf="consForm.get('expensesOnPaper')?.touched && consForm.get('expensesOnPaper')?.invalid">
                   Expenses on Paper is required.
                 </small>
               </div>
               <div class="col-3">
-                <label for="unitPaper">Unit</label>
+                <label for="unitPaper" class="form-label">Unit</label>
                 <select class="form-control" id="unitPaper" formControlName="unitPaper">
                   <option [value]="Unit.Dolar">Dollar</option>
                   <option [value]="Unit.Euro">Euro</option>
                   <option [value]="Unit.DT">DT</option>
                 </select>
-                <small class="text-danger" *ngIf="consForm.controls['unitPaper'].touched && consForm.controls['unitPaper'].invalid">
+                <small class="text-danger" *ngIf="consForm.get('unitPaper')?.touched && consForm.get('unitPaper')?.invalid">
                   Unit Paper is required.
                 </small>
               </div>
@@ -43,34 +54,32 @@
             <!-- Expenses on Office Supplies with Unit -->
             <div class="form-group row">
               <div class="col-9">
-                <label for="expensesOnSmallOfficeSupplies">Expenses on Office Supplies</label>
-                <input type="number" class="form-control" id="expensesOnSmallOfficeSupplies" formControlName="expensesOnSmallOfficeSupplies" placeholder="Expenses on Office Supplies">
-                <small class="text-danger" *ngIf="consForm.controls['expensesOnSmallOfficeSupplies'].touched && consForm.controls['expensesOnSmallOfficeSupplies'].invalid">
+                <label for="expensesOnSmallOfficeSupplies" class="form-label">Expenses on Office Supplies</label>
+                <input type="number" class="form-control" id="expensesOnSmallOfficeSupplies" formControlName="expensesOnSmallOfficeSupplies" placeholder="Enter office supplies expenses">
+                <small class="text-danger" *ngIf="consForm.get('expensesOnSmallOfficeSupplies')?.touched && consForm.get('expensesOnSmallOfficeSupplies')?.invalid">
                   Expenses on Office Supplies is required.
                 </small>
               </div>
               <div class="col-3">
-                <label for="unitOfficeSupplies">Unit</label>
+                <label for="unitOfficeSupplies" class="form-label">Unit</label>
                 <select class="form-control" id="unitOfficeSupplies" formControlName="unitOfficeSupplies">
                   <option [value]="Unit.Dolar">Dollar</option>
                   <option [value]="Unit.Euro">Euro</option>
                   <option [value]="Unit.DT">DT</option>
                 </select>
-                <small class="text-danger" *ngIf="consForm.controls['unitOfficeSupplies'].touched && consForm.controls['unitOfficeSupplies'].invalid">
+                <small class="text-danger" *ngIf="consForm.get('unitOfficeSupplies')?.touched && consForm.get('unitOfficeSupplies')?.invalid">
                   Unit Office Supplies is required.
                 </small>
               </div>
             </div>
           </div>
 
-          <!-- Buttons Section -->
-          <div id="bottom-wizard2 mb-2 pb-2">
+          <!-- Navigation Buttons -->
+          <div class="button-group">
             <button type="button" name="backward" class="btnbackward" [routerLink]="'/' + RoutesEnum.FRET">Back</button>
             <button type="submit" name="forward" class="btnforward">Continue</button>
           </div>
-
         </form>
-
       </div>
     </div>
   </div>

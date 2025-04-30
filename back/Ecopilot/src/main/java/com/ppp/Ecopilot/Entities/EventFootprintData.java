@@ -36,7 +36,7 @@ public class EventFootprintData extends BaseEntity<Long> {
     @Column(nullable = false)
     private String location;
     @Column(nullable = false)
-    private String melType;
+    private String mealType;
     @Column(nullable = false)
     private int nbrOfMeals;
     @Column(nullable = false)
