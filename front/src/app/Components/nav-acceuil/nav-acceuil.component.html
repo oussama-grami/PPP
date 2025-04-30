@@ -41,6 +41,18 @@
               <li><a class="dropdown-item" [routerLink]="'/'+RoutesEnum.ESG">ESG Assessment</a></li>
             </ul>
           </li>
+
+          <li class="nav-item dropdown fff">
+            <a class="nav-link dropdown-toggle"
+               [ngClass]="{ 'selected': isRoute1Active()}"
+               href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Assessment Results
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" [routerLink]="'/'+RoutesEnum.ESG_HISTORY">Esg Results</a></li>
+              <li><a class="dropdown-item" [routerLink]="">Carbon Emission Predictions</a></li>
+            </ul>
+          </li>
           <li class="nav-item">
             <a class="nav-link fff" [ngClass]="{ 'selected': isRoute5Active()}"
                [routerLink]="'/'+RoutesEnum.MARKETPLACE" (click)="closeNavbar()">Marketplace</a>

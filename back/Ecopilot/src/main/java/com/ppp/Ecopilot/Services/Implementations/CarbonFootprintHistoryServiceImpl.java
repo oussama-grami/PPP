@@ -8,11 +8,15 @@ import com.ppp.Ecopilot.Entities.CarbonFootprintData;
 import com.ppp.Ecopilot.Entities.CarbonFootprintHistory;
 import com.ppp.Ecopilot.Entities.CompanyOwner;
 import com.ppp.Ecopilot.Mappers.CarbonHistoryMapper;
+import com.ppp.Ecopilot.Mappers.CarbonInterpolationMapper;
 import com.ppp.Ecopilot.Repositories.CarbonFootprintHistoryRepo;
 import com.ppp.Ecopilot.Services.CarbonFootprintHistoryService;
 import com.ppp.Ecopilot.Services.CompanyOwnerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
@@ -20,10 +24,8 @@ import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
 import java.time.YearMonth;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
+import java.util.*;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -33,11 +35,14 @@ public class CarbonFootprintHistoryServiceImpl extends AbstractCrudService<Carbo
     private final CarbonHistoryMapper historyMapper;
     private final CompanyOwnerService companyOwnerService;
     private final WebClient webClient;
+    private final CarbonInterpolationMapper carbonInterpolationMapper;
+    private static final String FLASK_INTERPOLATE_URL = "http://localhost:5000/interpolate";
 
-    public CarbonFootprintHistoryServiceImpl(CarbonFootprintHistoryRepo carboneFootprintHistoryRepo, CarbonHistoryMapper historyMapper, CompanyOwnerService companyOwnerService, WebClient.Builder webClientBuilder) {
+    public CarbonFootprintHistoryServiceImpl(CarbonFootprintHistoryRepo carboneFootprintHistoryRepo, CarbonHistoryMapper historyMapper, CompanyOwnerService companyOwnerService, WebClient.Builder webClientBuilder, CarbonInterpolationMapper carbonInterpolationMapper) {
         this.carbonFootprintHistoryRepo = carboneFootprintHistoryRepo;
         this.historyMapper = historyMapper;
         this.companyOwnerService = companyOwnerService;
+        this.carbonInterpolationMapper = carbonInterpolationMapper;
 
         this.webClient = webClientBuilder
                 .baseUrl("http://localhost:5000") // Flask API URL
@@ -72,14 +77,9 @@ public class CarbonFootprintHistoryServiceImpl extends AbstractCrudService<Carbo
 
 
 
-    @Override
-    public void interpolateData(CarbonFootprintData data, Long id) {
 
 
-    }
-
-
-
+@Override
     public CarbonFootprintHistoryDTO[] forecastData() {
         try {
             CarbonFootprintHistoryDTO[] historyList = this.findByCurrentCompanyOwner();
@@ -103,18 +103,19 @@ public class CarbonFootprintHistoryServiceImpl extends AbstractCrudService<Carbo
             request.setMonth(months);
             request.setCarbon_footprint_kgCO2(values);
             System.out.println("Request: " + request);
+
             // Send request to forecasting API
-            Mono<CarbonFootprintForecastResponse> responseMono = webClient.post()
+            Mono<List<CarbonFootprintForecastResponse.PredictedEntry>> responseMono = webClient.post()
                     .uri("/forecast")
                     .bodyValue(request)
                     .retrieve()
-                    .bodyToMono(CarbonFootprintForecastResponse.class);
+                    .bodyToMono(new ParameterizedTypeReference<List<CarbonFootprintForecastResponse.PredictedEntry>>() {});
 
-            CarbonFootprintForecastResponse response = responseMono.block();
+            List<CarbonFootprintForecastResponse.PredictedEntry> response = responseMono.block();
 
             // Convert API response to CarbonFootprintHistoryDTO[]
             List<CarbonFootprintHistoryDTO> forecastList = new ArrayList<>();
-            for (CarbonFootprintForecastResponse.PredictedEntry entry : response.getPredicted_carbon_footprint_kgCO2()) {
+            for (CarbonFootprintForecastResponse.PredictedEntry entry : response) {
                 CarbonFootprintHistoryDTO dto = new CarbonFootprintHistoryDTO();
                 dto.setDate(YearMonth.of(entry.getYear(), entry.getMonth()));
                 dto.setValue(entry.getCarbon_footprint_kgCO2());
@@ -133,11 +134,15 @@ public class CarbonFootprintHistoryServiceImpl extends AbstractCrudService<Carbo
     @Override
     public void saveCarbonFootprint(CreateCarbonFootprintHistoryDTO data) {
         CarbonFootprintHistory entity = historyMapper.toEntity(data);
-        CompanyOwner owner= companyOwnerService.findById(7L);
+        CompanyOwner owner = companyOwnerService.findById(7L); // Replace with dynamic owner id as needed
         entity.setCompanyOwner(owner);
-        carbonFootprintHistoryRepo.save(entity);
 
-
+        try {
+            carbonFootprintHistoryRepo.save(entity);
+        } catch (DataIntegrityViolationException e) {
+            // Handle the exception or log it here if needed
+            throw e; // Rethrow to be caught in the controller
+        }
     }
 
     @Override
@@ -166,12 +171,87 @@ public class CarbonFootprintHistoryServiceImpl extends AbstractCrudService<Carbo
 
 
     }
+    public List<CreateCarbonFootprintHistoryDTO> getInterpolatedData(
+            Long companyOwnerId,
+            YearMonth startDate,
+            YearMonth endDate,
+            double totalValue) {
 
+        List<CarbonFootprintHistory> historyList = carbonFootprintHistoryRepo.findByCompanyOwnerIdOrderByDateAsc(companyOwnerId);
+
+        if (historyList.isEmpty()) {
+            throw new RuntimeException("No historical data found.");
+        }
+
+        // Step 2: Use mapper to convert to Flask-compatible format
+        List<Map<String, Object>> historicalJson = carbonInterpolationMapper.toHistoricalData(historyList);
+
+        // Step 3: Build request body
+        Map<String, Object> flaskRequestBody = Map.of(
+                "historical", historicalJson,
+                "start_date", startDate + "-01",
+                "end_date", endDate + "-01",
+                "total_value", totalValue
+        );
+
+        // Step 4: Call Flask API
+        ResponseEntity<List<CreateCarbonFootprintHistoryDTO>> response = webClient.post()
+                .uri(FLASK_INTERPOLATE_URL)
+                .body(Mono.just(flaskRequestBody), Map.class)
+                .retrieve()
+                .toEntity(new ParameterizedTypeReference<List<CreateCarbonFootprintHistoryDTO>>() {})
+                .block();
+
+        if (response == null || !response.hasBody()) {
+            throw new RuntimeException("No response from Flask API");
+        }
+
+        List<CreateCarbonFootprintHistoryDTO> flaskResult = response.getBody();
+
+        flaskResult.forEach(dto -> dto.setPredicted(true));
+
+        return flaskResult;
+    }
     @Override
     public void deleteCarbonFootprint(Long id) {
         CarbonFootprintHistory entity = carbonFootprintHistoryRepo.findById(id).orElseThrow(() -> new RuntimeException("Carbon footprint history not found"));
         carbonFootprintHistoryRepo.delete(entity);
 
+    }
+
+    @Override
+    public void interpolateData(CarbonFootprintData data, Long id) {
+
+    }
+
+
+
+    public void saveOrUpdateAll(List<CreateCarbonFootprintHistoryDTO> dtos, Long companyOwnerId) {
+        for (CreateCarbonFootprintHistoryDTO dto : dtos) {
+            Optional<CarbonFootprintHistory> existingRecord = carbonFootprintHistoryRepo.findByCompanyOwnerIdOrderByDateAsc(companyOwnerId)
+                    .stream()
+                    .filter(record -> record.getDate().equals(dto.getDate()))
+                    .findFirst();
+
+            CarbonFootprintHistory historyEntity;
+
+            if (existingRecord.isPresent()) {
+                // Update existing record
+                historyEntity = existingRecord.get();
+                historyEntity.setValue(dto.getValue());
+                historyEntity.setPredicted(dto.isPredicted());
+            } else {
+                historyEntity = new CarbonFootprintHistory();
+                historyEntity.setDate(dto.getDate());
+                historyEntity.setValue(dto.getValue());
+                historyEntity.setPredicted(dto.isPredicted());
+
+                CompanyOwner owner = companyOwnerService.findById(companyOwnerId);
+                historyEntity.setCompanyOwner(owner);
+            }
+
+            carbonFootprintHistoryRepo.save(historyEntity);
+        }
     }
 
 

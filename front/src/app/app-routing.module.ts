@@ -39,7 +39,7 @@ import {EventFormComponent} from "./Components/event-form/event-form.component";
 import {EventFootprintComponent} from "./Components/event-footprint/event-footprint.component";
 import {EventResultComponent} from "./Components/event-result/event-result.component";
 import {PaymentConfirmationComponent} from "./Components/payment-confirmation/payment-confirmation.component";
-
+import { EsgHistoryComponent } from './Components/esg-history/esg-history.component';
 const routes: Routes = [
     {path: '', component: HomeComponent},
     {path: RoutesEnum.PORTEUR, component: PorteurComponent},
@@ -72,6 +72,7 @@ const routes: Routes = [
     {path: 'historical-carbon-forecast', component: HistoricalCarbonForecastComponent},
     {path: RoutesEnum.TRANSACTIONS, component: TransactionsComponent},
     { path: 'payment-confirmation', component: PaymentConfirmationComponent },
+    {path: RoutesEnum.ESG_HISTORY, component: EsgHistoryComponent },
     {
         path: "test", component: InstructionsListComponent, data: {
             instructions: [

@@ -23,6 +23,7 @@ export class HistoricalCarbonForecastComponent implements OnInit ,AfterViewCheck
   @ViewChild('newRow') newRowRef: ElementRef | undefined;
   @ViewChild('tableContainer') tableContainerRef: ElementRef | undefined;
   scrolledToNewRow: boolean = false; // Flag to check if scrolled to new row
+  warningMessage:string|null='' ;// Stores the warning message
 
   constructor(private carbonFootprintService: HistoricalPredictionService) {}
 
@@ -64,7 +65,7 @@ export class HistoricalCarbonForecastComponent implements OnInit ,AfterViewCheck
       this.chart.destroy();
       this.chart = null;
     }
-  
+
     const labelsToShow = this.chartLabels.slice(-18);
     const dataToShow = this.chartData.slice(-18);
     const carbonDataToShow = this.carbonData.slice(-18);
@@ -105,18 +106,30 @@ export class HistoricalCarbonForecastComponent implements OnInit ,AfterViewCheck
   }
   
   
-  
-
   saveNewElement(): void {
-    if (this.newEntry && this.newEntry.date && this.newEntry.value) {
-    
-      this.carbonFootprintService.addData(this.newEntry).subscribe(() => {
-        this.newEntry = null; 
-        this.loadData(); 
-        this.createChart();
+    if (this.newEntry && this.newEntry.date && this.newEntry.value !== null && this.newEntry.value !== undefined){
+      this.carbonFootprintService.addData(this.newEntry).subscribe({
+        next: () => {
+          this.newEntry = { date: '', value: 0, predicted: false }; // Initialize new entry
+          this.loadData();  // Assuming you want to reload the data
+          this.createChart();  // Assuming you want to recreate the chart
+          this.warningMessage = null;  // Clear any previous warning
+        },
+        error: (error) => {
+          if (error.status === 409) {  // Duplicate entry error
+            this.warningMessage = 'A carbon footprint record already exists for this date.';
+          } else {
+            this.warningMessage = 'An error occurred while saving the data.';
+          }
+        }
       });
     }
   }
+
+  closeWarning(): void {
+    this.warningMessage = null;
+  }
+
 
   predict(): void {
     console.log('Predicting values...');
