@@ -133,6 +133,18 @@
               <i class="bi bi-journal-text"></i> Knowledge Hub
             </a>
           </li>
+
+          <!-- Admin Section - Only visible for admin role -->
+          <li class="nav-item" *ngIf="isAuthenticated && hasRole('admin')">
+            <a
+              class="nav-link"
+              [routerLink]="'/' + routes.NEW_PROJECT"
+              [class.active]="isRouteActive(routes.NEW_PROJECT)"
+              (click)="mobileMenuOpen = false"
+            >
+              <i class="bi bi-shield-lock"></i> Admin
+            </a>
+          </li>
         </ul>
 
         <!-- Action Items -->
@@ -148,25 +160,44 @@
             <i class="bi bi-bag"></i>
           </a>
 
-          <!-- User Menu -->
-          <div class="nav-item dropdown user-dropdown">
+          <!-- User Menu - Authenticated State -->
+          <div class="nav-item dropdown user-dropdown" *ngIf="isAuthenticated">
             <a
               class="nav-action"
               (click)="toggleDropdown('user', $event)"
               aria-label="User menu"
             >
-              <i class="bi bi-person"></i>
+              <i class="bi bi-person-fill"></i>
+              <span class="username-display" *ngIf="username">{{
+                username
+              }}</span>
             </a>
             <div
               class="dropdown-menu dropdown-menu-right"
               [class.show]="isDropdownActive('user')"
             >
+              <div class="dropdown-header" *ngIf="username">
+                <strong>{{ username }}</strong>
+                <div class="user-roles" *ngIf="userRoles.length > 0">
+                  <small>Roles: {{ userRoles.join(", ") }}</small>
+                </div>
+              </div>
+              <div class="dropdown-divider" *ngIf="username"></div>
               <a
                 class="dropdown-item"
                 [routerLink]="'/' + routes.TRANSACTIONS"
                 (click)="mobileMenuOpen = false"
               >
                 <i class="bi bi-clock-history"></i> Transactions
+              </a>
+              <!-- Project Owner Section for users with project_owner role -->
+              <a
+                class="dropdown-item"
+                [routerLink]="'/' + routes.NEW_PROJECT"
+                (click)="mobileMenuOpen = false"
+                *ngIf="hasRole('project_owner')"
+              >
+                <i class="bi bi-plus-square"></i> Add New Project
               </a>
               <div class="dropdown-divider"></div>
               <button
@@ -176,6 +207,16 @@
                 <i class="bi bi-box-arrow-right"></i> Logout
               </button>
             </div>
+          </div>
+
+          <!-- Login Button - Non-authenticated State -->
+          <div class="nav-item" *ngIf="!isAuthenticated">
+            <button
+              class="btn btn-login"
+              (click)="login(); mobileMenuOpen = false"
+            >
+              <i class="bi bi-box-arrow-in-right"></i> Login
+            </button>
           </div>
         </div>
       </div>

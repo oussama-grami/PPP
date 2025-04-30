@@ -1,8 +1,10 @@
-import {Component, HostListener, OnDestroy, OnInit} from '@angular/core';
-import {NavigationEnd, Router} from '@angular/router';
-import {RoutesEnum} from '../../enumerations/Routes.enum';
-import {filter} from 'rxjs/operators';
-import {Subscription} from 'rxjs';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
+import { RoutesEnum } from '../../enumerations/Routes.enum';
+import { filter } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
+import { AuthService } from '../../auth.service';
+import { KeycloakService } from 'keycloak-angular';
 
 @Component({
   selector: 'app-nav-acceuil',
@@ -14,11 +16,18 @@ export class NavAcceuilComponent implements OnInit, OnDestroy {
   isScrolled = false;
   activeDropdown: string | null = null;
   routes = RoutesEnum; // Expose routes to template
+  isAuthenticated = false;
+  username = '';
+  userRoles: string[] = [];
 
   private routerSubscription: Subscription | undefined;
+  private authSubscription: Subscription | undefined;
 
-  constructor(public router: Router) {
-  }
+  constructor(
+    public router: Router,
+    private authService: AuthService,
+    private keycloakService: KeycloakService
+  ) {}
 
   ngOnInit(): void {
     // Check initial scroll position
@@ -35,6 +44,47 @@ export class NavAcceuilComponent implements OnInit, OnDestroy {
         this.activeDropdown = null;
         document.body.classList.remove('no-scroll');
       });
+
+    // Subscribe to authentication state changes
+    this.authSubscription = this.authService
+      .getAuthenticationState()
+      .subscribe((authenticated: boolean) => {
+        this.isAuthenticated = authenticated;
+        if (authenticated) {
+          this.loadUserInfo();
+        } else {
+          this.username = '';
+          this.userRoles = [];
+        }
+      });
+
+    // Initial authentication check
+    this.checkAuthenticationStatus();
+  }
+
+  private async checkAuthenticationStatus(): Promise<void> {
+    try {
+      this.isAuthenticated = await this.keycloakService.isLoggedIn();
+      if (this.isAuthenticated) {
+        this.loadUserInfo();
+      }
+    } catch (error: unknown) {
+      console.error('Error checking authentication status:', error);
+      this.isAuthenticated = false;
+    }
+  }
+
+  private loadUserInfo(): void {
+    try {
+      this.username = this.authService.getUsername();
+      this.userRoles = this.authService.getRoles();
+    } catch (error: unknown) {
+      console.error('Error loading user info:', error);
+    }
+  }
+
+  hasRole(role: string): boolean {
+    return this.authService.hasRole(role);
   }
 
   ngOnDestroy(): void {
@@ -43,6 +93,10 @@ export class NavAcceuilComponent implements OnInit, OnDestroy {
 
     if (this.routerSubscription) {
       this.routerSubscription.unsubscribe();
+    }
+
+    if (this.authSubscription) {
+      this.authSubscription.unsubscribe();
     }
 
     // Ensure no-scroll is removed when component is destroyed
@@ -213,7 +267,24 @@ export class NavAcceuilComponent implements OnInit, OnDestroy {
   }
 
   logout(): void {
-    console.log('Logging out...');
-    // Add your logout logic here
+    this.authService
+      .logout()
+      .then(() => {
+        console.log('Successfully logged out');
+      })
+      .catch((error: unknown) => {
+        console.error('Error during logout:', error);
+      });
+  }
+
+  login(): void {
+    this.authService
+      .login()
+      .then(() => {
+        console.log('Successfully logged in');
+      })
+      .catch((error: unknown) => {
+        console.error('Error during login:', error);
+      });
   }
 }

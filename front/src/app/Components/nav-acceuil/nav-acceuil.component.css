@@ -604,5 +604,94 @@ body.no-scroll {
   }
 }
 
+/* Login button styling */
+.btn-login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius);
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-login:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.btn-login i {
+  margin-right: 6px;
+  font-size: 14px;
+}
+
+/* User dropdown styles */
+.user-dropdown .nav-action {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: auto;
+  padding: 0 10px;
+}
+
+.username-display {
+  font-size: 14px;
+  font-weight: 500;
+  max-width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dropdown-header {
+  padding: 10px 16px;
+  color: var(--text-primary);
+}
+
+.user-roles {
+  font-size: 11px;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 1040px) {
+  .btn-login {
+    width: 100%;
+    margin: 10px 0;
+    padding: 12px;
+  }
+  
+  .username-display {
+    display: none; /* Hide username on mobile to save space */
+  }
+}
+
+/* Admin and Project Owner specific styles */
+.nav-link .bi-shield-lock,
+.dropdown-item .bi-plus-square {
+  color: var(--primary-color);
+}
+
+/* Dark mode adjustments */
+:root.dark-mode .btn-login {
+  background-color: var(--primary-color);
+  color: var(--bg-dark);
+}
+
+:root.dark-mode .dropdown-header {
+  color: var(--text-light);
+}
+
+:root.dark-mode .user-roles {
+  color: var(--text-muted-light);
+}
+
 /* Remove the redundant dark theme styles since we're using CSS variables now */
 /* These styles are no longer needed since the variables will automatically handle dark mode */
