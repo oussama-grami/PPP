@@ -3,8 +3,6 @@ package com.ppp.Ecopilot.Mappers.CarbonFootprint;
 import com.ppp.Ecopilot.DTO.CarbonFootprintDTO.CarbonFootprintCreateDTO;
 import com.ppp.Ecopilot.Entities.CarbonFootprintData;
 import com.ppp.Ecopilot.Entities.CompanyOwner;
-import com.ppp.Ecopilot.Enums.CarburantType;
-import com.ppp.Ecopilot.Enums.Unit;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -19,7 +17,6 @@ public class CarbonFootprintCreateMapper {
 
         CarbonFootprintData entity = new CarbonFootprintData();
 
-        // Map all fields from DTO to Entity
         entity.setCountry(dto.getCountry());
         entity.setActivitySector(dto.getActivitySector());
         entity.setAnnualConsumptionOfCoal(dto.getAnnualConsumptionOfCoal());
@@ -55,27 +52,22 @@ public class CarbonFootprintCreateMapper {
         entity.setTonsOfSeaFreightLong(dto.getTonsOfSeaFreightLong());
         entity.setTonsOfSeaFreightShort(dto.getTonsOfSeaFreightShort());
         entity.setVehicleFuelEfficiency(dto.getVehicleFuelEfficiency());
+        entity.setUnitPaper(dto.getUnitPaper());
+        entity.setUnitFourniture(dto.getUnitFourniture());
+        entity.setCarburantType(dto.getCarburantType());
+        entity.setCompanyName(dto.getCompanyName());
 
-        // Handle company owner reference
-        if (entity.getCompanyOwner() != null) {
-            dto.setCompanyOwnerId(entity.getCompanyOwner().getId());
+        if (dto.getCompanyOwnerId() != null) {
+            CompanyOwner companyOwner = new CompanyOwner();
+            companyOwner.setId(dto.getCompanyOwnerId());
+            entity.setCompanyOwner(companyOwner);
         }
 
-        // Handle special fields
         if (dto.getBeginDate() != null) {
             entity.setBeginDate(new Date(dto.getBeginDate().getTime()));
         }
         if (dto.getEndDate() != null) {
             entity.setEndDate(new Date(dto.getEndDate().getTime()));
-        }
-        if (dto.getCarburantType() != null) {
-            entity.setCarburantType(dto.getCarburantType());
-        }
-        if (dto.getUnitFourniture() != null) {
-            entity.setUnitFourniture(dto.getUnitFourniture());
-        }
-        if (dto.getUnitPaper() != null) {
-            entity.setUnitPaper(dto.getUnitPaper());
         }
 
         return entity;
@@ -88,7 +80,6 @@ public class CarbonFootprintCreateMapper {
 
         CarbonFootprintCreateDTO dto = new CarbonFootprintCreateDTO();
 
-        // Map all fields from Entity to DTO
         dto.setCountry(entity.getCountry());
         dto.setActivitySector(entity.getActivitySector());
         dto.setAnnualConsumptionOfCoal(entity.getAnnualConsumptionOfCoal());
@@ -124,45 +115,30 @@ public class CarbonFootprintCreateMapper {
         dto.setTonsOfSeaFreightLong(entity.getTonsOfSeaFreightLong());
         dto.setTonsOfSeaFreightShort(entity.getTonsOfSeaFreightShort());
         dto.setVehicleFuelEfficiency(entity.getVehicleFuelEfficiency());
+        dto.setUnitPaper(entity.getUnitPaper());
+        dto.setUnitFourniture(entity.getUnitFourniture());
+        dto.setCarburantType(entity.getCarburantType());
+        dto.setCompanyName(entity.getCompanyName());
 
-        // Handle company owner reference
-        if (dto.getCompanyOwnerId() != null) {
-            CompanyOwner companyOwner = new CompanyOwner();
-            companyOwner.setId(dto.getCompanyOwnerId());
-            entity.setCompanyOwner(companyOwner);
+        if (entity.getCompanyOwner() != null) {
+            dto.setCompanyOwnerId(entity.getCompanyOwner().getId());
         }
 
-        // Handle special fields
         if (entity.getBeginDate() != null) {
             dto.setBeginDate(new Date(entity.getBeginDate().getTime()));
         }
         if (entity.getEndDate() != null) {
             dto.setEndDate(new Date(entity.getEndDate().getTime()));
         }
-        if (entity.getCarburantType() != null) {
-            dto.setCarburantType(entity.getCarburantType());
-        }
-        if (entity.getUnitFourniture() != null) {
-            dto.setUnitFourniture(entity.getUnitFourniture());
-        }
-        if (entity.getUnitPaper() != null) {
-            dto.setUnitPaper(entity.getUnitPaper());
-        }
 
         return dto;
     }
+
     public CarbonFootprintData toEntityWithOwner(CarbonFootprintCreateDTO dto, CompanyOwner owner) {
         CarbonFootprintData entity = toEntity(dto);
         entity.setCompanyOwner(owner);
-        entity.setAerienEmission(0);
-        entity.setCarburantEmissions(0);
-        entity.setConsomableEmissions(0);
-        entity.setEnergyEmissions(0);
-        entity.setFreightEmission(0);
-        entity.setImmobilisationEmissions(0);
-        entity.setTotalEmissions(0);
 
+        // Suppression des initialisations d'émissions
         return entity;
     }
-
 }

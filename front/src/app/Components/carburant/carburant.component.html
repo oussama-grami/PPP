@@ -83,9 +83,9 @@
               <label for="carburantType" class="form-label">Fuel Type</label>
               <select class="form-control" formControlName="carburantType" id="carburantType">
                 <option value="" disabled selected>Select fuel type</option>
-                <option [value]="CarburantType.Diesel">Diesel</option>
-                <option [value]="CarburantType.Essence">Gasoline</option>
-                <option [value]="CarburantType.Gpl">LPG</option>
+                <option [value]="CarburantType.DIESEL">Diesel</option>
+                <option [value]="CarburantType.GASOLINE">Gasoline</option>
+                <option [value]="CarburantType.LPG">LPG</option>
               </select>
               <small class="text-danger" *ngIf="carburantForm.get('carburantType')?.touched && carburantForm.get('carburantType')?.invalid">
                 Please select a fuel type.

@@ -1,5 +1,5 @@
-export enum CarburantType{
-  Diesel='Diesel',
-  Essence='Essence',
-  Gpl='Gpl'
+export enum CarburantType {
+  DIESEL = 'DIESEL',
+  GASOLINE = 'GASOLINE',
+  LPG = 'LPG'
 }

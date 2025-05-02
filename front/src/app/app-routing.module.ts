@@ -40,6 +40,7 @@ import {EventFootprintComponent} from "./Components/event-footprint/event-footpr
 import {EventResultComponent} from "./Components/event-result/event-result.component";
 import {PaymentConfirmationComponent} from "./Components/payment-confirmation/payment-confirmation.component";
 import {EventHistoryComponent} from "./Components/event-history/event-history.component";
+import {CarbonHistoryComponent} from "./Components/carbon-history/carbon-history.component";
 
 const routes: Routes = [
     {path: '', component: HomeComponent},
@@ -51,7 +52,7 @@ const routes: Routes = [
     {path: RoutesEnum.CONSOMMABLES, component: ConsommablesComponent},
     {path: RoutesEnum.IMMOBILISATIONS, component: ImmobilisationsComponent},
     {path: RoutesEnum.PANNEAUX, component: PanneauxComponent},
-    {path: RoutesEnum.RESULTAT_CARBONE, component: ResultatCarboneComponent},
+    { path: `${RoutesEnum.RESULTAT_CARBONE}/:id`, component: ResultatCarboneComponent },
     {path: 'esg', component: EsgComponent},
     {path: RoutesEnum.CARBONE, component: CarboneComponent},
     {path: 'esg-result', component: ResultESGComponent},
@@ -88,6 +89,8 @@ const routes: Routes = [
   {path:RoutesEnum.EVENT_FOOTPRINT, component: EventFootprintComponent},
   { path: `${RoutesEnum.EVENT_RESULT}/:id`, component: EventResultComponent },
   {path: RoutesEnum.EVENT_HISTORY, component: EventHistoryComponent},
+  {path: RoutesEnum.CARBON_HISTORY, component: CarbonHistoryComponent}
+
 ];
 
 @NgModule({

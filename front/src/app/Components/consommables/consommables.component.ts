@@ -28,9 +28,9 @@ export class ConsommablesComponent implements OnInit {
     // Initialize Reactive Form
     this.consForm = this.fb.group({
       expensesOnPaper: ['', [Validators.required, Validators.min(0)]],
-      unitPaper: [Unit.Dolar, [Validators.required]],
+      unitPaper: [Unit.DOLLAR, [Validators.required]],
       expensesOnSmallOfficeSupplies: ['', [Validators.required, Validators.min(0)]],
-      unitOfficeSupplies: [Unit.Dolar, [Validators.required]]
+      unitOfficeSupplies: [Unit.DOLLAR, [Validators.required]]
     });
   }
 

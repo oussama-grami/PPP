@@ -1,65 +1,111 @@
+<!-- Event Result Component HTML -->
 <div class="container-fluid">
-  <div class="row justify-content-center">
-    <!-- Enhanced Total Emissions Section -->
-    <div class="col-lg-10 col-md-12 d-flex flex-column align-items-center position-relative">
+  <div class="row">
+    <!-- Back Button Section if needed -->
+    <div class="col-12">
+      <div class="retour">
+        <button>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M19.5 12H4.5M4.5 12L10.125 6M4.5 12L10.125 18" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="retour-text" [routerLink]="'/'+RoutesEnum.EVENT_HISTORY">Back</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
       <div class="header">
         <span class="header-bold">Event's Total Carbon Footprint</span>
       </div>
 
-      <div class="total-emissions">
-        <div class="result-container">
+      <!-- Two-column layout for desktop -->
+      <div class="dashboard-layout">
+        <!-- Left Column: Information Display Section -->
+        <div class="info-column">
+          <div class="info-section">
+            <div class="info-grid">
+              <div class="info-card">
+                <div class="info-icon">
+                  <i class="fas fa-calendar-check"></i>
+                </div>
+                <div class="info-content">
+                  <div class="info-label">Event Name</div>
+                  <div class="info-value">{{ latestEvent?.eventName }}</div>
+                </div>
+              </div>
 
+              <div class="info-card">
+                <div class="info-icon">
+                  <i class="fas fa-tag"></i>
+                </div>
+                <div class="info-content">
+                  <div class="info-label">Event Type</div>
+                  <div class="info-value">{{ latestEvent?.eventType }}</div>
+                </div>
+              </div>
 
-          <!-- Main Result Display -->
-          <div class="result-display">
-            <div class="result-text">
-              <i class="fas fa-cloud result-icon"></i>
-              {{ totalCarbonFootprint.toFixed(2) }} <sub>KgCO<sub>2</sub></sub>
+              <div class="info-card">
+                <div class="info-icon">
+                  <i class="fas fa-calendar-alt"></i>
+                </div>
+                <div class="info-content">
+                  <div class="info-label">Date</div>
+                  <div class="info-value">{{ latestEvent?.created_at }}</div>
+                </div>
+              </div>
+
             </div>
-
           </div>
+        </div>
 
+        <!-- Right Column: Carbon Footprint Display (using your original code) -->
+        <div class="emissions-column">
+          <div class="total-emissions">
+            <div class="result-container">
+              <!-- Main Result Display -->
+              <div class="result-display">
+                <div class="result-text">
+                  <i class="fas fa-cloud result-icon"></i>
+                  {{ totalCarbonFootprint.toFixed(2) }} <sub>KgCO<sub>2</sub></sub>
+                </div>
+              </div>
 
+              <!-- Progress Bar -->
+              <div class="carbon-progress">
+                <div class="carbon-progress-bar" style="width: 50%;"></div>
+              </div>
 
-          <!-- Progress Bar -->
-          <div class="carbon-progress">
-            <div class="carbon-progress-bar" style="width: 50%;"></div>
-          </div>
+              <div class="impact-scale">
+                <span class="impact-label">LOW IMPACT</span>
+                <span class="impact-label">HIGH IMPACT</span>
+              </div>
 
-          <div class="impact-scale">
-            <span class="impact-label">LOW IMPACT</span>
-            <span class="impact-label">HIGH IMPACT</span>
-          </div>
+              <div class="separator"></div>
 
-          <div class="separator"></div>
-
-          <!-- Equivalence Information -->
-          <div class="equivalence">
-            <p>Equivalent to <strong>{{ (totalCarbonFootprint / 8.887).toFixed(1) }}</strong> days of average household emissions</p>
+              <!-- Equivalence Information -->
+              <div class="equivalence">
+                <p>Equivalent to <strong>{{ (totalCarbonFootprint / 8.887).toFixed(1) }}</strong> days of average household emissions</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- Title for Recommendations Section -->
-    <div class="col-lg-8 col-md-10 text-center my-4 mt-5">
-      <h2 class="see-recommendations-title">Recommendations</h2>
-    </div>
-
-    <!-- Right Section: Recommendations List -->
-    <div class="col-lg-8 col-md-10">
-      <app-instruction-list></app-instruction-list>
-    </div>
-
-    <!-- Action Section -->
-    <div class="col-lg-8 col-md-10">
+      <!-- Action Buttons -->
       <div class="action-section">
-        <button class="action-button primary-btn">
-          <i class="fas fa-file-download"></i> Download Full Report
-        </button>
-        <button class="action-button secondary-btn " [routerLink]="['/']+RoutesEnum.MARKETPLACE">
+
+        <button class="action-button secondary-btn" [routerLink]="['/']+RoutesEnum.MARKETPLACE">
           <i class="fas fa-leaf"></i> Offset Your Emissions
         </button>
+      </div>
+
+      <!-- Title for Recommendations Section -->
+      <div class="recommendation-section">
+        <h2 class="see-recommendations-title">Recommendations</h2>
+
+        <!-- Recommendations List -->
+        <app-instruction-list></app-instruction-list>
       </div>
     </div>
   </div>

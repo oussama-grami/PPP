@@ -33,4 +33,5 @@ export enum RoutesEnum {
   EVENT_RESULT = 'event-result',
   TRANSACTIONS = 'transactions',
   EVENT_HISTORY= 'event-history',
+  CARBON_HISTORY = 'carbon-history',
 }

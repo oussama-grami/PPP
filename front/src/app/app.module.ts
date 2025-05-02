@@ -17,7 +17,6 @@ import {PanneauxComponent} from './Components/panneaux/panneaux.component';
 import {ResultatCarboneComponent} from './Components/resultat-carbone/resultat-carbone.component';
 import {EsgComponent} from './Components/esg/esg.component';
 import {CarboneComponent} from './Components/carbone/carbone.component';
-import {CarboneDiagramComponent} from './Components/carbone-diagram/carbone-diagram.component';
 import {ResultESGComponent} from './Components/result-esg/result-esg.component';
 import {NavAcceuilComponent} from './Components/nav-acceuil/nav-acceuil.component';
 import {ESGdiagramComponent} from './Components/esgdiagram/esgdiagram.component';
@@ -60,6 +59,7 @@ import { PaymentConfirmationComponent } from './Components/payment-confirmation/
 import{ EcoLoadingSpinnerComponent } from './Components/eco-loading-spinner/eco-loading-spinner.component';
 import { FormatDescriptionPipe } from './pipes/format-description.pipe';
 import { EventHistoryComponent } from './Components/event-history/event-history.component';
+import { CarbonHistoryComponent } from './Components/carbon-history/carbon-history.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -77,7 +77,6 @@ import { EventHistoryComponent } from './Components/event-history/event-history.
     ResultatCarboneComponent,
     EsgComponent,
     CarboneComponent,
-    CarboneDiagramComponent,
     ResultESGComponent,
     NavAcceuilComponent,
     ESGdiagramComponent,
@@ -112,7 +111,8 @@ import { EventHistoryComponent } from './Components/event-history/event-history.
     PaymentConfirmationComponent,
     EcoLoadingSpinnerComponent,
     FormatDescriptionPipe,
-    EventHistoryComponent
+    EventHistoryComponent,
+    CarbonHistoryComponent
   ],
   imports: [
     BrowserModule,

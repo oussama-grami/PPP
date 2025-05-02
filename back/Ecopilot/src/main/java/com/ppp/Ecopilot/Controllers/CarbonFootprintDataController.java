@@ -19,6 +19,7 @@ public class CarbonFootprintDataController {
 
     @PostMapping
     public void create(@RequestBody CarbonFootprintCreateDTO dto) {
+        System.out.println("Received DTO: " + dto);
         service.saveData(dto);
     }
 

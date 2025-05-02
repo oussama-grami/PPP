@@ -3,7 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { EventFootprintService } from '../../Service/event-footprint.service'; // Import the service
 import { Event } from '../../Models/eventForm';
-import { RoutesEnum } from "../../enumerations/Routes.enum"; // Import the model
+import { RoutesEnum } from "../../enumerations/Routes.enum";
+import {switchMap} from "rxjs/operators"; // Import the model
 
 @Component({
   selector: 'app-event-form',
@@ -94,20 +95,35 @@ export class EventFormComponent {
   onSubmit() {
     if (this.eventFormGroup.valid) {
       const eventData: Event = this.eventFormGroup.value;
-      eventData.companyOwnerId = 7; // or hardcoded for now
+      eventData.companyOwnerId = 7; // temporairement en dur
 
-      this.eventFootprintService.createEvent(eventData).subscribe({
-        next: (response: any) => {
-          console.log('Event successfully submitted:', response);
-          this.router.navigate(['/' + RoutesEnum.EVENT_RESULT]);
+      this.eventFootprintService.createEvent(eventData).pipe(
+        switchMap(() =>
+          this.eventFootprintService.getEventsByCompanyOwnerId(eventData.companyOwnerId!)
+        )
+      ).subscribe({
+        next: (updatedEvents) => {
+          if (updatedEvents.length > 0) {
+            // On suppose que le dernier est le plus récent
+            const latestEvent = updatedEvents.reduce((a, b) =>
+              new Date(a.created_at).getTime() > new Date(b.created_at).getTime() ? a : b
+            );
+
+            console.log('Latest event:', latestEvent);
+            this.router.navigate([`/${RoutesEnum.EVENT_RESULT}`, latestEvent.id]);
+          } else {
+            this.errorMessage = 'No events found after submission.';
+          }
         },
         error: (error) => {
           console.error('Submission failed:', error);
           this.errorMessage = 'An error occurred while submitting the event.';
         }
       });
+
     } else {
       this.errorMessage = 'Please fill in all required fields before submitting.';
     }
   }
+
 }

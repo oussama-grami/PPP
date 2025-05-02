@@ -41,9 +41,9 @@
               <div class="col-3">
                 <label for="unitPaper" class="form-label">Unit</label>
                 <select class="form-control" id="unitPaper" formControlName="unitPaper">
-                  <option [value]="Unit.Dolar">Dollar</option>
-                  <option [value]="Unit.Euro">Euro</option>
-                  <option [value]="Unit.DT">DT</option>
+                  <option [value]="Unit.DOLLAR">Dollar</option>
+                  <option [value]="Unit.EURO">Euro</option>
+                  <option [value]="Unit.TUNISIAN_DINAR">DT</option>
                 </select>
                 <small class="text-danger" *ngIf="consForm.get('unitPaper')?.touched && consForm.get('unitPaper')?.invalid">
                   Unit Paper is required.
@@ -63,9 +63,9 @@
               <div class="col-3">
                 <label for="unitOfficeSupplies" class="form-label">Unit</label>
                 <select class="form-control" id="unitOfficeSupplies" formControlName="unitOfficeSupplies">
-                  <option [value]="Unit.Dolar">Dollar</option>
-                  <option [value]="Unit.Euro">Euro</option>
-                  <option [value]="Unit.DT">DT</option>
+                  <option [value]="Unit.DOLLAR">Dollar</option>
+                  <option [value]="Unit.EURO">Euro</option>
+                  <option [value]="Unit.TUNISIAN_DINAR">DT</option>
                 </select>
                 <small class="text-danger" *ngIf="consForm.get('unitOfficeSupplies')?.touched && consForm.get('unitOfficeSupplies')?.invalid">
                   Unit Office Supplies is required.
