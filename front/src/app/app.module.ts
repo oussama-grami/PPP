@@ -59,6 +59,22 @@ import {
 import {PaginationComponent} from './Components/pagination/pagination.component';
 import {PriceDetailsComponent} from './Components/price-details/price-details.component';
 import {EsgOverviewComponent} from './Components/esg-overview/esg-overview.component';
+import {ProjectsCarouselComponent} from "./Components/projects-carousel/projects-carousel.component";
+import { InfoSectionComponent } from './Components/InfoSection/InfoSection.component';
+import { CarbonPredictionInfoComponent } from './Components/CarbonPredictionInfo/CarbonPredictionInfo.component';
+import{ HistoricalCarbonForecastComponent } from './Components/HistoricalCarbonForecast/HistoricalCarbonForecast.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatButtonModule } from '@angular/material/button';
+import { TransactionsComponent } from './Components/transactions/transactions.component';
+import {InstructionsListComponent} from "./Components/instructions-list/instructions-list.component";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { EventFormComponent } from './Components/event-form/event-form.component';
+import { EventFootprintComponent } from './Components/event-footprint/event-footprint.component';
+import { EventResultComponent } from './Components/event-result/event-result.component';
+import { PaymentConfirmationComponent } from './Components/payment-confirmation/payment-confirmation.component';
+import{ EcoLoadingSpinnerComponent } from './Components/eco-loading-spinner/eco-loading-spinner.component';
+import { FormatDescriptionPipe } from './pipes/format-description.pipe';
+import { EsgHistoryComponent } from './Components/esg-history/esg-history.component';
 import {
   ProjectsCarouselComponent
 } from './Components/projects-carousel/projects-carousel.component';
@@ -145,6 +161,7 @@ import {HttpTokenInterceptor} from './keycloaktoken.interceptor';
     PaymentConfirmationComponent,
     EcoLoadingSpinnerComponent,
     FormatDescriptionPipe,
+    EsgHistoryComponent,
   ],
   imports: [
     BrowserModule,

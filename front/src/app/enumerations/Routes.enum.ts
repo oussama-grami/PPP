@@ -32,4 +32,5 @@ export enum RoutesEnum {
   EVENT_FORM = 'event-form',
   EVENT_RESULT = 'event-result',
   TRANSACTIONS = 'transactions',
+  ESG_HISTORY = 'esg-history',
 }
