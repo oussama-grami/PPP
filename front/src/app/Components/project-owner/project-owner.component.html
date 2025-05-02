@@ -1,170 +1,741 @@
-<div class="container mt-5">
-  <div class="mb-3">
-    <button class="btn btn-link text-decoration-none text-black" [routerLink]="'/'+RoutesEnum.MARKETPLACE">
-      <span>
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-          <path d="M19.5 12H4.5M4.5 12L10.125 6M4.5 12L10.125 18" stroke="black" stroke-width="1.5"
-                stroke-linecap="round" stroke-linejoin="round"/>
+<div class="project-owner-container animate__animated animate__fadeIn">
+  <div class="header-area">
+    <button
+      class="back-button"
+      [routerLink]="'/' + RoutesEnum.MARKETPLACE"
+      style="color: #014131"
+    >
+      <span class="icon">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+        >
+          <path
+            d="M19.5 12H4.5M4.5 12L10.125 6M4.5 12L10.125 18"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
         </svg>
       </span>
-      <span>Back</span>
+      <span class="text">Back to Marketplace</span>
     </button>
   </div>
-  <div class="mb-4">
-    <h2 class="h4">You would like to submit your sustainable project in order to sell your carbon credits on our
-      marketplace – you are in the right place</h2>
+
+  <!-- Success/Error Messages -->
+  <div class="message-container">
+    <div
+      *ngIf="submitSuccess"
+      class="success-message animate__animated animate__fadeIn"
+      role="alert"
+    >
+      <div class="icon">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+          <polyline points="22 4 12 14.01 9 11.01"></polyline>
+        </svg>
+      </div>
+      <div class="text">
+        Your project owner account has been successfully created!
+      </div>
+    </div>
+    <div
+      *ngIf="submitError"
+      class="error-message animate__animated animate__fadeIn"
+      role="alert"
+    >
+      <div class="icon">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="12" y1="8" x2="12" y2="12"></line>
+          <line x1="12" y1="16" x2="12.01" y2="16"></line>
+        </svg>
+      </div>
+      <div class="text">{{ submitError }}</div>
+    </div>
   </div>
-  <div class="mb-3">
-    <h3 class="h6">Please enter the following information:</h3>
+
+  <div
+    class="intro-section animate__animated animate__fadeIn animate__delay-1s"
+  >
+    <h2 class="title">Submit your Sustainable Project</h2>
+    <p class="subtitle">
+      Join our marketplace to sell your carbon credits and make a positive
+      environmental impact
+    </p>
   </div>
-  <form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
-    <div class="row">
-      <div class="col-12 col-md-7">
-        <div class="mb-3">
-          <div class="row">
-            <div class="col-6 mb-3">
-              <input type="text" class="form-control" placeholder="First name *" formControlName="firstName">
+
+  <div
+    class="content-section animate__animated animate__fadeIn animate__delay-2s"
+  >
+    <form
+      [formGroup]="projectForm"
+      (ngSubmit)="onSubmit()"
+      class="project-form"
+    >
+      <div class="row">
+        <div class="col-12 col-md-7 form-column">
+          <div class="form-section">
+            <h3 class="section-title">Personal Information</h3>
+            <div class="input-row">
+              <div class="form-floating mb-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="firstNameInput"
+                  placeholder="First name"
+                  formControlName="firstName"
+                />
+                <label for="firstNameInput">First name *</label>
+                <div
+                  class="invalid-feedback"
+                  *ngIf="
+                    projectForm.get('firstName')?.invalid &&
+                    (projectForm.get('firstName')?.touched || isSubmitted)
+                  "
+                >
+                  <span
+                    *ngIf="projectForm.get('firstName')?.errors?.['required']"
+                    >First name is required.</span
+                  >
+                  <span
+                    *ngIf="projectForm.get('firstName')?.errors?.['minlength']"
+                    >First name must be at least 2 characters.</span
+                  >
+                  <span
+                    *ngIf="projectForm.get('firstName')?.errors?.['maxlength']"
+                    >First name cannot exceed 50 characters.</span
+                  >
+                  <span
+                    *ngIf="projectForm.get('firstName')?.errors?.['pattern']"
+                    >First name should contain only letters.</span
+                  >
+                </div>
+              </div>
+              <div class="form-floating mb-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="nameInput"
+                  placeholder="Last name"
+                  formControlName="name"
+                />
+                <label for="nameInput">Last name *</label>
+                <div
+                  class="invalid-feedback"
+                  *ngIf="
+                    projectForm.get('name')?.invalid &&
+                    (projectForm.get('name')?.touched || isSubmitted)
+                  "
+                >
+                  <span *ngIf="projectForm.get('name')?.errors?.['required']"
+                    >Last name is required.</span
+                  >
+                  <span *ngIf="projectForm.get('name')?.errors?.['minlength']"
+                    >Last name must be at least 2 characters.</span
+                  >
+                  <span *ngIf="projectForm.get('name')?.errors?.['maxlength']"
+                    >Last name cannot exceed 50 characters.</span
+                  >
+                  <span *ngIf="projectForm.get('name')?.errors?.['pattern']"
+                    >Last name should contain only letters.</span
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div class="form-floating mb-3">
+              <input
+                type="text"
+                class="form-control"
+                id="companyInput"
+                placeholder="Company"
+                formControlName="company"
+              />
+              <label for="companyInput">Company you represent *</label>
               <div
-                *ngIf="projectForm.get('firstName')?.invalid && (projectForm.get('firstName')?.touched || isSubmitted )"
-                class="text-danger">
-                First name is required.
+                class="invalid-feedback"
+                *ngIf="
+                  projectForm.get('company')?.invalid &&
+                  (projectForm.get('company')?.touched || isSubmitted)
+                "
+              >
+                <span *ngIf="projectForm.get('company')?.errors?.['required']"
+                  >Company name is required.</span
+                >
+                <span *ngIf="projectForm.get('company')?.errors?.['minlength']"
+                  >Company name must be at least 2 characters.</span
+                >
+                <span *ngIf="projectForm.get('company')?.errors?.['maxlength']"
+                  >Company name cannot exceed 100 characters.</span
+                >
               </div>
             </div>
-            <div class="col-6 mb-3">
-              <input type="text" class="form-control" placeholder="Name *" formControlName="name">
-              <div *ngIf="projectForm.get('name')?.invalid && (projectForm.get('name')?.touched || isSubmitted)"
-                   class="text-danger">
-                Name is required.
+
+            <div class="form-floating mb-3">
+              <input
+                type="text"
+                class="form-control"
+                id="companyIdentifierInput"
+                placeholder="Company Identifier"
+                formControlName="companyIdentifier"
+              />
+              <label for="companyIdentifierInput"
+                >Company Identifier * (lowercase letters, numbers, and hyphens
+                only)</label
+              >
+              <div
+                class="invalid-feedback"
+                *ngIf="
+                  projectForm.get('companyIdentifier')?.invalid &&
+                  (projectForm.get('companyIdentifier')?.touched || isSubmitted)
+                "
+              >
+                <span
+                  *ngIf="projectForm.get('companyIdentifier')?.errors?.['required']"
+                  >Company identifier is required.</span
+                >
+                <span
+                  *ngIf="projectForm.get('companyIdentifier')?.errors?.['minlength']"
+                  >Company identifier must be at least 2 characters.</span
+                >
+                <span
+                  *ngIf="projectForm.get('companyIdentifier')?.errors?.['maxlength']"
+                  >Company identifier cannot exceed 100 characters.</span
+                >
+                <span
+                  *ngIf="projectForm.get('companyIdentifier')?.errors?.['pattern']"
+                  >Company identifier can only contain lowercase letters,
+                  numbers, and hyphens.</span
+                >
               </div>
             </div>
-            <div class="col-12 mb-3">
-              <input type="text" class="form-control" placeholder="Company you represent *" formControlName="company">
-              <div *ngIf="projectForm.get('company')?.invalid && (projectForm.get('company')?.touched || isSubmitted) "
-                   class="text-danger">
-                Company is required.
+
+            <div class="form-floating mb-3">
+              <input
+                type="text"
+                class="form-control"
+                id="functionInput"
+                placeholder="Function"
+                formControlName="function"
+              />
+              <label for="functionInput">Function within the company</label>
+              <div
+                class="invalid-feedback"
+                *ngIf="
+                  projectForm.get('function')?.invalid &&
+                  (projectForm.get('function')?.touched || isSubmitted)
+                "
+              >
+                <span *ngIf="projectForm.get('function')?.errors?.['maxlength']"
+                  >Function cannot exceed 100 characters.</span
+                >
               </div>
             </div>
-            <div class="col-12 mb-3">
-              <input type="text" class="form-control" placeholder="Function within the company"
-                     formControlName="function">
+
+            <div class="form-floating mb-3">
+              <input
+                type="text"
+                class="form-control"
+                id="websiteInput"
+                placeholder="Website"
+                formControlName="website"
+              />
+              <label for="websiteInput">Company website URL</label>
+              <div
+                class="invalid-feedback"
+                *ngIf="
+                  projectForm.get('website')?.invalid &&
+                  (projectForm.get('website')?.touched || isSubmitted)
+                "
+              >
+                <span *ngIf="projectForm.get('website')?.errors?.['pattern']"
+                  >Please enter a valid website URL (example:
+                  https://example.com).</span
+                >
+                <span *ngIf="projectForm.get('website')?.errors?.['maxlength']"
+                  >Website URL cannot exceed 200 characters.</span
+                >
+              </div>
             </div>
-            <div class="col-12 mb-3">
-              <input type="text" class="form-control" placeholder="Company website url" formControlName="website">
-            </div>
-            <div class="col-12 mb-3">
-              <div class="row">
-                <div class="col-3">
-                  <div class="dropdown">
-                    <button class="btn btn-outline-secondary dropdown-toggle w-100" type="button" id="countryDropdown"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                      <span class="flag-icon" [ngClass]="selectedCountry.iconClass"></span> {{ selectedCountry.code }}
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-scrollable" aria-labelledby="countryDropdown">
-                      <li *ngFor="let country of countries">
-                        <a class="dropdown-item" (click)="selectCountry(country)">
-                          <span class="flag-icon"
-                                [ngClass]="country.iconClass"></span> {{ country.code }} {{ country.name }}
-                        </a>
-                      </li>
-                    </ul>
+
+            <div class="phone-input mb-3">
+              <div class="country-select">
+                <button
+                  type="button"
+                  class="country-button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <span
+                    class="flag-icon"
+                    [ngClass]="selectedCountry.iconClass"
+                  ></span>
+                  <span class="country-code">{{ selectedCountry.code }}</span>
+                  <span class="dropdown-icon">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      fill="currentColor"
+                      viewBox="0 0 16 16"
+                    >
+                      <path
+                        d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"
+                      />
+                    </svg>
+                  </span>
+                </button>
+                <div class="dropdown-menu country-dropdown">
+                  <input
+                    type="text"
+                    class="form-control country-search"
+                    placeholder="Search country..."
+                    (input)="filterCountries($event)"
+                  />
+                  <div class="country-list">
+                    <a
+                      class="dropdown-item"
+                      *ngFor="let country of filteredCountries"
+                      (click)="selectCountry(country)"
+                    >
+                      <span
+                        class="flag-icon"
+                        [ngClass]="country.iconClass"
+                      ></span>
+                      <span class="country-code-item">{{ country.code }}</span>
+                      <span class="country-name">{{ country.name }}</span>
+                    </a>
                   </div>
                 </div>
-                <div class="col-9">
-                  <input class="form-control" placeholder="Phone number" formControlName="phone">
+              </div>
+              <div class="form-floating phone-number">
+                <input
+                  type="tel"
+                  class="form-control"
+                  id="phoneInput"
+                  placeholder="Phone"
+                  formControlName="phone"
+                />
+                <label for="phoneInput">Phone number</label>
+                <div
+                  class="invalid-feedback"
+                  *ngIf="
+                    projectForm.get('phone')?.invalid &&
+                    (projectForm.get('phone')?.touched || isSubmitted)
+                  "
+                >
+                  <span *ngIf="projectForm.get('phone')?.errors?.['pattern']"
+                    >Please enter a valid phone number.</span
+                  >
+                  <span *ngIf="projectForm.get('phone')?.errors?.['maxlength']"
+                    >Phone number is too long.</span
+                  >
                 </div>
               </div>
             </div>
-            <div class="col-12 mb-3">
-              <input type="email" class="form-control" placeholder="E-mail *" formControlName="email">
-              <div *ngIf="projectForm.get('email')?.invalid && (projectForm.get('email')?.touched || isSubmitted)"
-                   class="text-danger">
-                Valid email is required.
-              </div>
-            </div>
-            <div class="col-12 mb-3">
-              <select class="form-select" formControlName="projectCountry">
-                <option disabled selected>Country where the project is located *</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </select>
+
+            <div class="form-floating mb-3">
+              <input
+                type="email"
+                class="form-control"
+                id="emailInput"
+                placeholder="Email"
+                formControlName="email"
+              />
+              <label for="emailInput">Email address *</label>
               <div
-                *ngIf="projectForm.get('projectCountry')?.invalid && (projectForm.get('projectCountry')?.touched || isSubmitted)"
-                class="text-danger">
-                Project country is required.
+                class="invalid-feedback"
+                *ngIf="
+                  projectForm.get('email')?.invalid &&
+                  (projectForm.get('email')?.touched || isSubmitted)
+                "
+              >
+                <span *ngIf="projectForm.get('email')?.errors?.['required']"
+                  >Email address is required.</span
+                >
+                <span *ngIf="projectForm.get('email')?.errors?.['email']"
+                  >Please enter a valid email address format.</span
+                >
+                <span *ngIf="projectForm.get('email')?.errors?.['maxlength']"
+                  >Email address cannot exceed 100 characters.</span
+                >
               </div>
             </div>
-            <div class="col-12 mb-3">
-              <input type="text" class="form-control" placeholder="Region where the project is located"
-                     formControlName="region">
-            </div>
-            <div class="col-12 mb-3">
-              <select class="form-select" formControlName="projectNature">
-                <option disabled selected>Nature of the project</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+
+            <h3 class="section-title">Project Information</h3>
+
+            <div class="form-floating mb-3">
+              <select
+                class="form-select"
+                id="projectCountrySelect"
+                formControlName="projectCountry"
+              >
+                <option value="" disabled selected>Select a country</option>
+                <option
+                  *ngFor="let country of countries"
+                  [value]="country.name"
+                >
+                  {{ country.name }}
+                </option>
               </select>
-            </div>
-            <div class="col-12 mb-3">
-              <input type="text" class="form-control" placeholder="Description of the project in a few sentences *"
-                     formControlName="description">
+              <label for="projectCountrySelect"
+                >Country where the project is located *</label
+              >
               <div
-                *ngIf="projectForm.get('description')?.invalid && (projectForm.get('description')?.touched && isSubmitted)"
-                class="text-danger">
-                Description is required.
+                class="invalid-feedback"
+                *ngIf="
+                  projectForm.get('projectCountry')?.invalid &&
+                  (projectForm.get('projectCountry')?.touched || isSubmitted)
+                "
+              >
+                <span
+                  *ngIf="projectForm.get('projectCountry')?.errors?.['required']"
+                  >Please select the country where the project is located.</span
+                >
               </div>
             </div>
-            <div class="col-12 mb-3">
-              <h4 class="h6">Do you have an estimate of the project's annual potential in terms of reducing/avoiding
-                carbon emissions?</h4>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" formControlName="estimation" value="Yes">
-                <label class="form-check-label">Yes</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" formControlName="estimation" value="No">
-                <label class="form-check-label">No</label>
-              </div>
-            </div>
-            <div class="col-12 mb-3" *ngIf="projectForm.get('estimation')?.value === 'Yes'">
-              <input type="text" class="form-control" placeholder="How much in tCO2e?"
-                     formControlName="estimationValue">
-            </div>
-            <div class="col-12 mb-3">
-              <h4 class="h6">Is the project certified by an organization?</h4>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" formControlName="certified" value="Yes">
-                <label class="form-check-label">Yes</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" formControlName="certified" value="No">
-                <label class="form-check-label">No</label>
+
+            <div class="form-floating mb-3">
+              <input
+                type="text"
+                class="form-control"
+                id="regionInput"
+                placeholder="Region"
+                formControlName="region"
+              />
+              <label for="regionInput"
+                >Region where the project is located</label
+              >
+              <div
+                class="invalid-feedback"
+                *ngIf="
+                  projectForm.get('region')?.invalid &&
+                  (projectForm.get('region')?.touched || isSubmitted)
+                "
+              >
+                <span *ngIf="projectForm.get('region')?.errors?.['maxlength']"
+                  >Region name cannot exceed 100 characters.</span
+                >
               </div>
             </div>
-            <div class="col-12 mb-3">
-              <label for="pdfFile" class="form-label">Submit PDF files *</label>
+
+            <div class="form-floating mb-3">
+              <select
+                class="form-select"
+                id="natureSelect"
+                formControlName="projectNature"
+              >
+                <option value="" disabled selected>
+                  Select project nature
+                </option>
+                <option value="Trees & Forests">Trees & Forests</option>
+                <option value="Biodiversity">Biodiversity</option>
+                <option value="Renewable energies">Renewable energies</option>
+                <option value="Waste management">Waste management</option>
+                <option value="Soil management">Soil management</option>
+                <option value="Tree planting">Tree planting</option>
+              </select>
+              <label for="natureSelect">Nature of the project</label>
+              <div
+                class="invalid-feedback"
+                *ngIf="
+                  projectForm.get('projectNature')?.invalid &&
+                  (projectForm.get('projectNature')?.touched || isSubmitted)
+                "
+              >
+                <span
+                  *ngIf="projectForm.get('projectNature')?.errors?.['required']"
+                  >Please select the nature of your project.</span
+                >
+              </div>
+            </div>
+
+            <div class="form-floating mb-3">
+              <textarea
+                class="form-control"
+                id="descriptionInput"
+                placeholder="Description"
+                formControlName="description"
+                style="height: 100px"
+              ></textarea>
+              <label for="descriptionInput">Description of the project *</label>
+              <div
+                class="invalid-feedback"
+                *ngIf="
+                  projectForm.get('description')?.invalid &&
+                  (projectForm.get('description')?.touched || isSubmitted)
+                "
+              >
+                <span
+                  *ngIf="projectForm.get('description')?.errors?.['required']"
+                  >Project description is required.</span
+                >
+                <span
+                  *ngIf="projectForm.get('description')?.errors?.['minlength']"
+                  >Description must be at least 50 characters.</span
+                >
+                <span
+                  *ngIf="projectForm.get('description')?.errors?.['maxlength']"
+                  >Description cannot exceed 2000 characters.</span
+                >
+              </div>
+            </div>
+
+            <div class="radio-group mb-3">
+              <div class="radio-label">
+                Do you have an estimate of the project's annual potential in
+                terms of reducing/avoiding carbon emissions?
+              </div>
+              <div class="radio-options">
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    id="estimationYes"
+                    formControlName="estimation"
+                    value="Yes"
+                  />
+                  <label class="form-check-label" for="estimationYes"
+                    >Yes</label
+                  >
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    id="estimationNo"
+                    formControlName="estimation"
+                    value="No"
+                  />
+                  <label class="form-check-label" for="estimationNo">No</label>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="form-floating mb-3"
+              *ngIf="projectForm.get('estimation')?.value === 'Yes'"
+              [@fadeInOut]
+            >
+              <input
+                type="number"
+                class="form-control"
+                id="estimationValueInput"
+                placeholder="Estimation value"
+                formControlName="estimationValue"
+              />
+              <label for="estimationValueInput">How much in tCO2e?</label>
+              <div
+                class="invalid-feedback"
+                *ngIf="
+                  projectForm.get('estimationValue')?.invalid &&
+                  (projectForm.get('estimationValue')?.touched ||
+                    isSubmitted) &&
+                  projectForm.get('estimation')?.value === 'Yes'
+                "
+              >
+                <span
+                  *ngIf="projectForm.get('estimationValue')?.errors?.['required']"
+                  >Please enter your CO2e reduction estimate.</span
+                >
+                <span
+                  *ngIf="projectForm.get('estimationValue')?.errors?.['min']"
+                  >Value must be greater than 0.</span
+                >
+                <span
+                  *ngIf="projectForm.get('estimationValue')?.errors?.['max']"
+                  >Value cannot exceed 100,000,000 tCO2e.</span
+                >
+              </div>
+            </div>
+
+            <div class="radio-group mb-3">
+              <div class="radio-label">
+                Is the project certified by an organization?
+              </div>
+              <div class="radio-options">
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    id="certifiedYes"
+                    formControlName="certified"
+                    value="Yes"
+                  />
+                  <label class="form-check-label" for="certifiedYes">Yes</label>
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    id="certifiedNo"
+                    formControlName="certified"
+                    value="No"
+                  />
+                  <label class="form-check-label" for="certifiedNo">No</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="file-upload mb-4">
+              <label for="pdfFile" class="file-label">
+                <div class="file-icon">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path
+                      d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+                    ></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="12" y1="18" x2="12" y2="12"></line>
+                    <line x1="9" y1="15" x2="15" y2="15"></line>
+                  </svg>
+                </div>
+                <div class="file-text">
+                  <span class="file-title">Submit PDF files *</span>
+                  <span class="file-description"
+                    >Click to browse or drag and drop files here</span
+                  >
+                </div>
+              </label>
               <input
                 type="file"
-                class="form-control custom-file-input bg-white" id="pdfFile" (change)="onFileChange($event)"
-                accept="application/pdf" multiple>
-              <div *ngIf="fileError" class="text-danger">
-                {{ fileError }}
+                class="file-input"
+                id="pdfFile"
+                (change)="onFileChange($event)"
+                accept="application/pdf"
+                multiple
+              />
+              <div class="selected-files" *ngIf="pdfFiles.length > 0">
+                <div
+                  class="selected-file"
+                  *ngFor="let file of pdfFiles; let i = index"
+                >
+                  <span class="file-name">{{ file.name }}</span>
+                  <button
+                    type="button"
+                    class="remove-file-btn"
+                    (click)="removeFile(i)"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <line x1="18" y1="6" x2="6" y2="18"></line>
+                      <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div class="file-error" *ngIf="fileError && isSubmitted">
+                <span
+                  *ngIf="fileError === 'Please upload at least one PDF file'"
+                  >At least one PDF file is required for project
+                  verification.</span
+                >
+                <span *ngIf="fileError.includes('size')"
+                  >File size exceeds the maximum limit of 10MB per file.</span
+                >
+                <span *ngIf="fileError.includes('format')"
+                  >Only PDF files are accepted. Please convert your documents to
+                  PDF format.</span
+                >
+                <span *ngIf="fileError.includes('too many')"
+                  >You can upload a maximum of 5 PDF files.</span
+                >
               </div>
             </div>
-            <div class="col-12 d-flex justify-content-end text-black ">
-              <button type="button" class="btn btn-outline-secondary me-2" [routerLink]="'/'+RoutesEnum.MARKETPLACE">
-                Back
+
+            <div class="form-actions">
+              <button
+                type="button"
+                class="btn btn-outline"
+                [routerLink]="'/' + RoutesEnum.MARKETPLACE"
+                style="border-color: #014131; color: #014131"
+                onmouseover="this.style.backgroundColor='#f1f8f3'"
+                onmouseout="this.style.backgroundColor='#fff'"
+              >
+                Cancel
               </button>
-              <button type="submit" class="btn btn-secondary">Checkout</button>
+              <button
+                type="submit"
+                class="btn btn-primary"
+                [disabled]="submitSuccess"
+                style="background-color: #014131; border-color: #014131"
+              >
+                <span class="button-text">Submit Project</span>
+                <span
+                  class="spinner-border spinner-border-sm"
+                  *ngIf="isSubmitting"
+                  role="status"
+                  aria-hidden="true"
+                ></span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-5 image-column">
+          <div class="image-container">
+            <img
+              src="/assets/img/proteur.svg"
+              alt="Sustainable Project"
+              class="project-image"
+            />
+            <div class="image-overlay">
+              <div class="overlay-text">
+                <h3>Why Submit Your Project?</h3>
+                <ul>
+                  <li>Access our global marketplace of eco-conscious buyers</li>
+                  <li>Get fair value for your carbon credits</li>
+                  <li>Contribute to global sustainability goals</li>
+                  <li>Receive support from our environmental experts</li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="col-12 col-md-5 order-first order-md-last mb-5">
-        <img src="/assets/img/proteur.svg" alt="" class="img-fluid rounded">
-      </div>
-    </div>
-  </form>
+    </form>
+  </div>
 </div>
-

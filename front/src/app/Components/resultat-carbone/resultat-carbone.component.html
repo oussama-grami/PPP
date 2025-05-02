@@ -1,94 +1,184 @@
-<div style="display: flex; flex-direction: column;">
-  <div class="container mx-auto" style="flex-grow: 1; overflow-y: auto;">
-    <div class="row" >
+<div style="display: flex; flex-direction: column">
+  <!-- Loading Spinner -->
+  <div
+    *ngIf="isLoading"
+    class="d-flex justify-content-center align-items-center"
+    style="min-height: 300px"
+  >
+    <app-eco-loading-spinner></app-eco-loading-spinner>
+  </div>
 
+  <div
+    *ngIf="!isLoading"
+    class="container mx-auto"
+    style="flex-grow: 1; overflow-y: auto"
+  >
+    <div class="row">
       <div class="col-12">
         <div class="retour">
           <button [routerLink]="'/imob'">
-      <span>
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-          <path d="M19.5 12H4.5M4.5 12L10.125 6M4.5 12L10.125 18" stroke="black" stroke-width="1.5"
-                stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </span>
+            <span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+              >
+                <path
+                  d="M19.5 12H4.5M4.5 12L10.125 6M4.5 12L10.125 18"
+                  stroke="black"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </span>
             <span class="retour-text">Back</span>
           </button>
         </div>
       </div>
 
-
       <div class="container-fluid d-flex flex-column">
         <!-- Main Section: Flex container with full viewport height -->
         <div class="row flex-fill d-flex">
           <!-- Left Section: Total Emissions and Action Button -->
-          <div class="col-5 col-md-5 d-flex flex-column justify-content-between">
-
+          <div
+            class="col-5 col-md-5 d-flex flex-column justify-content-between"
+          >
             <div class="header">
-              Your company’s
-              <br>
-              <span class="header-bold">Carbon Footprint’s Total Emissions</span>
+              Your company's
+              <br />
+              <span class="header-bold"
+                >Carbon Footprint's Total Emissions</span
+              >
             </div>
 
             <div class="position-relative mt-4">
-              <div class="background mx-auto w-100 proportional-content"
-                   [ngStyle]="{'background-image': 'url(/assets/img/equivalent.svg)', 'background-repeat': 'no-repeat', 'background-size':'cover', 'background-position':'center 90%'}">
-                <div class="mx-auto" style="color: transparent;">a</div>
-                <div class="mx-auto position-absolute w-auto" style="top:25%;left:25%">
+              <div
+                class="background mx-auto w-100 proportional-content"
+                [ngStyle]="{
+                  'background-image': 'url(/assets/img/equivalent.svg)',
+                  'background-repeat': 'no-repeat',
+                  'background-size': 'cover',
+                  'background-position': 'center 90%'
+                }"
+              >
+                <div class="mx-auto" style="color: transparent">a</div>
+                <div
+                  class="mx-auto position-absolute w-auto"
+                  style="top: 25%; left: 25%"
+                >
                   <span class="result-text">{{ this.total.toFixed(0) }} </span>
                   <span class="result-text" style="font-weight: 500">tCO2</span>
-                  <span class="equivalent-text">{{ (total / 0.025).toFixed() }}</span>
+                  <span class="equivalent-text">{{
+                    (total / 0.025).toFixed()
+                  }}</span>
                 </div>
               </div>
             </div>
-            <button class="pagginationButton" routerLink="/piste">
-              <span style="margin-right: 8px;" class="pagginationButtonText">Take actions</span>
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <path d="M4.5 12H19.5M19.5 12L13.875 6M19.5 12L13.875 18" stroke="#014131" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </button>
+            <div class="d-flex flex-column gap-3">
+              <button class="pagginationButton" routerLink="/piste">
+                <span style="margin-right: 8px" class="pagginationButtonText"
+                  >Take actions</span
+                >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                >
+                  <path
+                    d="M4.5 12H19.5M19.5 12L13.875 6M19.5 12L13.875 18"
+                    stroke="#014131"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+              <button
+                class="btn btn-outline-secondary"
+                (click)="recalculateFootprint()"
+              >
+                <span style="margin-right: 8px">Recalculate footprint</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-arrow-repeat"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z"
+                  />
+                  <path
+                    fill-rule="evenodd"
+                    d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z"
+                  />
+                </svg>
+              </button>
+            </div>
           </div>
 
           <!-- Right Section: Chart Component -->
-          <div class="col-7 col-md-7 d-flex justify-content-center align-items-center">
+          <div
+            class="col-7 col-md-7 d-flex justify-content-center align-items-center"
+          >
             <div class="row w-100 mx-auto">
               <app-carbone-diagram></app-carbone-diagram>
             </div>
           </div>
-
-
         </div>
+
         <!-- Title for Recommendations Section -->
         <div class="col-lg-8 col-md-10 text-center my-4 mt-5">
           <h2 class="see-recommendations-title">Recommendations</h2>
         </div>
 
+        <!-- Message when no recommendations are available -->
+        <div
+          *ngIf="!hasRecommendations"
+          class="col-lg-8 col-md-10 mx-auto alert alert-info"
+        >
+          <p class="text-center mb-0">
+            No recommendations are currently available. Please complete the
+            carbon footprint assessment to get personalized recommendations.
+          </p>
+          <div class="text-center mt-3">
+            <button class="btn btn-primary" (click)="recalculateFootprint()">
+              Start assessment
+            </button>
+          </div>
+        </div>
+
         <!-- Right Section: Recommendations List -->
-        <div class="col-lg-8 col-md-10">
+        <div *ngIf="hasRecommendations" class="col-lg-8 col-md-10">
           <app-instruction-list></app-instruction-list>
         </div>
       </div>
-
     </div>
-
-
-
 
     <!-- Actions Section -->
     <div class="container mx-auto">
       <div class="mx-auto">
-        <div id="marketplace-header">Explore our Carbon Offset Projects Marketplace</div>
-        <div class="row mt-5 ">
-           <app-projects-carousel></app-projects-carousel>
+        <div id="marketplace-header">
+          Explore our Carbon Offset Projects Marketplace
+        </div>
+        <div class="row mt-5">
+          <app-projects-carousel></app-projects-carousel>
         </div>
 
         <div class="d-flex justify-content-center mx-auto">
           <button [routerLink]="'/marketplace'" class="explore-button mx-auto">
-            <div class="explore-button-text">Explore all the green projects</div>
+            <div class="explore-button-text">
+              Explore all the green projects
+            </div>
           </button>
         </div>
       </div>
     </div>
-
-
   </div>
 </div>
