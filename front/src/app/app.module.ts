@@ -74,6 +74,8 @@ import { EventResultComponent } from './Components/event-result/event-result.com
 import { PaymentConfirmationComponent } from './Components/payment-confirmation/payment-confirmation.component';
 import{ EcoLoadingSpinnerComponent } from './Components/eco-loading-spinner/eco-loading-spinner.component';
 import { FormatDescriptionPipe } from './pipes/format-description.pipe';
+import { EventHistoryComponent } from './Components/event-history/event-history.component';
+import { CarbonHistoryComponent } from './Components/carbon-history/carbon-history.component';
 import { EsgHistoryComponent } from './Components/esg-history/esg-history.component';
 import {
   ProjectsCarouselComponent
@@ -126,7 +128,6 @@ import {HttpTokenInterceptor} from './keycloaktoken.interceptor';
     ResultatCarboneComponent,
     EsgComponent,
     CarboneComponent,
-    CarboneDiagramComponent,
     ResultESGComponent,
     NavAcceuilComponent,
     ESGdiagramComponent,
@@ -161,6 +162,8 @@ import {HttpTokenInterceptor} from './keycloaktoken.interceptor';
     PaymentConfirmationComponent,
     EcoLoadingSpinnerComponent,
     FormatDescriptionPipe,
+    EventHistoryComponent,
+    CarbonHistoryComponent
     EsgHistoryComponent,
   ],
   imports: [

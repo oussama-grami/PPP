@@ -1,88 +1,225 @@
+/* Enhanced carousel styles for better project display */
 .carousel {
   position: relative;
   width: 100%;
+  padding: 0 50px; /* Increased padding for arrow placement */
+  box-sizing: border-box;
+  margin: 30px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .carousel-inner {
   overflow: hidden;
+  padding: 10px 0 30px; /* Added bottom padding for indicators */
 }
 
 .carousel-item {
   transition: transform 0.6s ease-in-out;
+  display: none;
 }
 
+.carousel-item.active {
+  display: block;
+}
+
+/* Improved row and project spacing */
 .row.justify-content-center {
   display: flex;
-  justify-content: center; /* Center the items horizontally */
-  flex-wrap: wrap; /* Allow items to wrap when the screen shrinks */
-}
-
-.col-md-3 {
-  display: flex;
   justify-content: center;
-  align-items: center;
-  margin-bottom: 15px; /* Space between rows */
-  padding: 0 10px; /* Ensures there's space between the projects */
-  flex: 1 1 22%; /* Allow the project to shrink, with a base width of 22% */
-  /* Using `flex` ensures the project resizes as the screen size changes */
-  box-sizing: border-box; /* Ensures padding doesn't affect width */
+  flex-wrap: wrap;
+  margin: 0 -12px; /* Tighter spacing between projects */
+  width: 100%;
 }
 
-/* Adjusting for different screen sizes */
-@media (max-width: 1400px) {
-  .col-md-3 {
-    flex: 1 1 28%; /* Adjust width as needed */
-  }
+/* Project column styling with consistent spacing */
+.project-col {
+  display: flex;
+  padding: 12px;
+  transition: all 0.3s ease;
 }
 
-@media (max-width: 1216px) {
-  .col-md-3 {
-    flex: 1 1 30%; /* Further adjust width for smaller screens */
-  }
+/* Column sizing for various breakpoints */
+.project-col.col-xl-3 {
+  flex: 0 0 25%;
+  max-width: 25%;
 }
 
-@media (max-width: 1000px) {
-  .col-md-3 {
-    flex: 1 1 40%; /* Make projects wider on smaller screens */
-  }
+.project-col.col-lg-4 {
+  flex: 0 0 33.333333%;
+  max-width: 33.333333%;
 }
 
-@media (max-width: 767px) {
-  .col-md-3 {
-    flex: 1 1 90%; /* Make projects take up most of the screen on very small screens */
-    padding: 0 5px; /* Reduce padding for better fit */
-  }
+.project-col.col-md-6 {
+  flex: 0 0 50%;
+  max-width: 50%;
 }
 
+/* Single project view enhancement */
+.project-col.col-12 {
+  flex: 0 0 100%;
+  max-width: 350px; /* Controlled width for single project */
+  margin: 0 auto;
+}
+
+/* Better arrow controls */
 .carousel-controls {
   position: absolute;
-  top: 50%;
-  width: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   z-index: 10;
-  transform: translateY(-50%);
-  display: flex;
-  justify-content: space-between;
-  padding: 0 15px;
+  pointer-events: none;
 }
 
 .carousel-control-prev,
 .carousel-control-next {
-  background-color: rgba(0, 0, 0, 0.3); /* Light transparent background */
-  border-radius: 50%;
-  padding: 10px;
-  width: 30px;
-  height: 30px;
+  position: absolute;
+  top: 40%; /* Positioned at project image height */
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: all 0.3s ease;
+  pointer-events: auto;
+  z-index: 20;
 }
 
 .carousel-control-prev {
-  left: 0;
+  left: 5px;
 }
 
 .carousel-control-next {
-  right: 0;
+  right: 5px;
 }
 
-/* Ensure projects have space from the container's edges */
-.carousel-item .row {
-  margin: 0 15px; /* Margin around the row */
+/* Enhance arrow visibility on hover */
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+  opacity: 1;
+  transform: translateY(-50%) scale(1.1);
+  background-color: rgba(0,0,0, 0.4) !important;
+  border-radius: 50%;
+}
+
+/* Clean arrow styling */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+}
+
+.carousel-control-prev-icon {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23333'%3E%3Cpath d='M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z'/%3E%3C/svg%3E");
+}
+
+.carousel-control-next-icon {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23333'%3E%3Cpath d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
+}
+
+/* Improved carousel indicators */
+.carousel-indicators {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  margin: 0 0 10px;
+  list-style: none;
+}
+
+.carousel-indicators button {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #ccc;
+  opacity: 0.5;
+  transition: all 0.3s ease;
+  margin: 0 5px;
+  padding: 0;
+  border: 0;
+  cursor: pointer;
+}
+
+.carousel-indicators button.active {
+  opacity: 1;
+  background-color: #014131; /* Match button color theme */
+  transform: scale(1.2);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1199px) {
+  .carousel {
+    padding: 0 45px;
+  }
+
+  .project-col {
+    padding: 10px;
+  }
+}
+
+@media (max-width: 991px) {
+  .carousel {
+    padding: 0 40px;
+  }
+
+  /* Adjust 3-column layout on medium screens */
+  .project-col.col-lg-4 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+}
+
+@media (max-width: 767px) {
+  .carousel {
+    padding: 0 35px;
+  }
+
+  /* All projects get same treatment on small screens */
+  .project-col.col-md-6,
+  .project-col.col-lg-4,
+  .project-col.col-xl-3 {
+    padding: 8px;
+  }
+
+  .project-col.col-12 {
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 575px) {
+  .carousel {
+    padding: 0 30px;
+  }
+
+  .carousel-control-prev,
+  .carousel-control-next {
+    width: 30px;
+    height: 30px;
+  }
+
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .project-col.col-12 {
+    max-width: 280px;
+  }
 }

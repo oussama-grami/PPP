@@ -1,5 +1,5 @@
-export enum Unit{
-  DT='DT',
-  Dolar='Dolar',
-  Euro='Euro'
+export enum Unit {
+  DOLLAR = 'DOLLAR',
+  EURO = 'EURO',
+  TUNISIAN_DINAR = 'TUNISIAN_DINAR'
 }

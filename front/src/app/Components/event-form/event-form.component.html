@@ -43,8 +43,8 @@
             </div>
 
             <label>Participants:</label>
-            <input type="number" formControlName="participants" class="form-control" />
-            <div *ngIf="participants?.invalid && participants?.touched" class="text-danger">
+            <input type="number" formControlName="participantsNbr" class="form-control" />
+            <div *ngIf="participantsNbr?.invalid && participantsNbr?.touched" class="text-danger">
               Must be at least 1 participant.
             </div>
 
@@ -65,8 +65,8 @@
           <div *ngIf="currentStep === 2">
             <h3 class="main_question"><strong>2/3</strong> Energy & Transport</h3>
             <label>Number of Devices:</label>
-            <input type="number" formControlName="numberOfDevices" class="form-control" />
-            <div *ngIf="numberOfDevices?.invalid && numberOfDevices?.touched" class="text-danger">
+            <input type="number" formControlName="deviceNbr" class="form-control" />
+            <div *ngIf="deviceNbr?.invalid && deviceNbr?.touched" class="text-danger">
               Must be at least 0.
             </div>
 
@@ -111,8 +111,8 @@
             </div>
 
             <label>Number of Meals:</label>
-            <input type="number" formControlName="numberOfMeals" class="form-control" />
-            <div *ngIf="numberOfMeals?.invalid && numberOfMeals?.touched" class="text-danger">
+            <input type="number" formControlName="nbrOfMeals" class="form-control" />
+            <div *ngIf="nbrOfMeals?.invalid && nbrOfMeals?.touched" class="text-danger">
               Must be at least 0 meals.
             </div>
 

@@ -55,6 +55,9 @@ import {EventFormComponent} from "./Components/event-form/event-form.component";
 import {EventFootprintComponent} from "./Components/event-footprint/event-footprint.component";
 import {EventResultComponent} from "./Components/event-result/event-result.component";
 import {PaymentConfirmationComponent} from "./Components/payment-confirmation/payment-confirmation.component";
+import {EventHistoryComponent} from "./Components/event-history/event-history.component";
+import {CarbonHistoryComponent} from "./Components/carbon-history/carbon-history.component";
+
 import { EsgHistoryComponent } from './Components/esg-history/esg-history.component';
 const routes: Routes = [
     {path: '', component: HomeComponent},
@@ -66,7 +69,7 @@ const routes: Routes = [
     {path: RoutesEnum.CONSOMMABLES, component: ConsommablesComponent},
     {path: RoutesEnum.IMMOBILISATIONS, component: ImmobilisationsComponent},
     {path: RoutesEnum.PANNEAUX, component: PanneauxComponent},
-    {path: RoutesEnum.RESULTAT_CARBONE, component: ResultatCarboneComponent},
+    { path: `${RoutesEnum.RESULTAT_CARBONE}/:id`, component: ResultatCarboneComponent },
     {path: 'esg', component: EsgComponent},
     {path: RoutesEnum.CARBONE, component: CarboneComponent},
     {path: 'esg-result', component: ResultESGComponent},
@@ -100,6 +103,12 @@ const routes: Routes = [
             title: 'Procédure de demande'
         }
     },
+    {path: RoutesEnum.EVENT_FORM, component: EventFormComponent},
+  {path:RoutesEnum.EVENT_FOOTPRINT, component: EventFootprintComponent},
+  { path: `${RoutesEnum.EVENT_RESULT}/:id`, component: EventResultComponent },
+  {path: RoutesEnum.EVENT_HISTORY, component: EventHistoryComponent},
+  {path: RoutesEnum.CARBON_HISTORY, component: CarbonHistoryComponent}
+
   },
   {path: RoutesEnum.EVENT_FORM, component: EventFormComponent},
   {path: RoutesEnum.EVENT_FOOTPRINT, component: EventFootprintComponent},

@@ -1,0 +1,77 @@
+<div class="eco-dashboard">
+  <!-- Fixed button for adding new events -->
+  <div class="d-flex justify-content-end mb-4">
+    <button [routerLink]="['/'+RoutesEnum.EVENT_FOOTPRINT]" class="eco-btn-primary">
+      <i class="fa fa-leaf me-2"></i> New Carbon Calculation
+    </button>
+  </div>
+
+  <!-- Main content container -->
+  <div class="event-panel">
+    <!-- Panel header with dark green -->
+    <div class="panel-header">
+      <div class="header-content">
+        <h4>Carbon Footprint Events</h4>
+        <span class="event-counter" *ngIf="events.length">{{events.length}} Events</span>
+      </div>
+    </div>
+
+    <!-- Loading State -->
+    <div *ngIf="isLoading" class="eco-loading-state">
+      <div class="eco-spinner">
+        <div class="spinner-leaf"></div>
+      </div>
+      <p>Loading your environmental impact data...</p>
+    </div>
+
+    <!-- No Events State -->
+    <div *ngIf="!isLoading && events.length === 0" class="empty-state">
+      <div class="empty-icon">
+        <i class="fa fa-seedling"></i>
+      </div>
+      <p>Start tracking your carbon footprint</p>
+      <button [routerLink]="['/'+RoutesEnum.EVENT_FOOTPRINT]"  class="eco-btn-primary">
+        Plant Your First Event
+      </button>
+    </div>
+
+    <!-- Table with Events -->
+    <div class="eco-table-container" *ngIf="!isLoading && events.length">
+      <table class="eco-table">
+        <thead>
+        <tr>
+          <th>Event Name</th>
+          <th class="text-center">Event Type</th>
+          <th>Total Emission (tCO₂)</th>
+          <th>Created At</th>
+          <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let event of events; let i = index" [ngClass]="{'alt-row': i % 2 !== 0}">
+          <td class="event-name-cell">
+            <span class="event-name">{{ event.eventName }}</span>
+          </td>
+          <td class="text-center">
+            <span class="eco-badge">{{ event.eventType }}</span>
+          </td>
+          <td class="emission-cell">
+            <span class="emission-value">{{ event.totalEmission.toFixed(2) }}</span>
+          </td>
+          <td>{{ event.created_at | date: 'MMM d, y' }}</td>
+          <td>
+            <div class="action-buttons">
+              <button [routerLink]="['/'+RoutesEnum.EVENT_RESULT,event.id]"  class="eco-btn-view" aria-label="View">
+                <i class="fa fa-eye"></i>
+              </button>
+              <button (click)="deleteEvent(event.id)" class="eco-btn-delete" aria-label="Delete">
+                <i class="fa fa-trash"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

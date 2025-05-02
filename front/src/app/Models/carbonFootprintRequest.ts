@@ -1,0 +1,47 @@
+import {Unit} from "../enumerations/unit";
+import {CarburantType} from "../enumerations/carburantType";
+
+export interface CarbonFootprintRequest {
+  country: string;
+  companyName: string;
+  activitySector: string;
+  annualConsumptionOfCoal: number;
+  annualConsumptionOfElectricity: number;
+  annualConsumptionOfFuel: number;
+  annualConsumptionOfGPL: number;
+  annualConsumptionOfNaturalGas: number;
+  annualConsumptionOfPropane: number;
+  annualConsumptionOfRefrigerant: number;
+  beginDate: Date;
+  builtAreaOfCompany: number;
+  carburantType: CarburantType;
+  consumptionOfLPG: number;
+  drivenDistance: number;
+  endDate: Date;
+  expensesOnPaper: number;
+  expensesOnSmallOfficeSupplies: number;
+  fuelConsumptionOfDiesel: number;
+  fuelConsumptionOfGasoline: number;
+  numberOfCommercialVehicles: number;
+  numberOfDesktopComputers: number;
+  numberOfFlatPanelScreens: number;
+  numberOfFullTimeEmployees: number;
+  numberOfHeavyVehicles: number;
+  numberOfIndividualPrinters: number;
+  numberOfLaptops: number;
+  numberOfLightDutyVehicles: number;
+  numberOfLongHaulRoundTrips: number;
+  numberOfMediumHaulRoundTrips: number;
+  numberOfMultifunctionPrinters: number;
+  numberOfServers: number;
+  numberOfShortHaulRoundTrips: number;
+  percentageOfTelework: number;
+  tonsOfAirFreightLong: number;
+  tonsOfAirFreightShort: number;
+  tonsOfSeaFreightLong: number;
+  tonsOfSeaFreightShort: number;
+  unitFourniture: Unit;
+  unitPaper: Unit;
+  vehicleFuelEfficiency: number;
+  companyOwnerId: number;
+}

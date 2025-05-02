@@ -1,26 +1,67 @@
-<div id="projectCarousel" class="carousel slide" data-bs-ride="carousel">
-  <div class="carousel-inner">
-    <div
-      *ngFor="let chunk of projectChunks; let i = index"
-      class="carousel-item"
-      [ngClass]="{'active': i === 0}"
-    >
-      <div class="row justify-content-center">
-        <div *ngFor="let project of chunk" class="col-md-3 d-flex justify-content-center">
-          <app-project-ad [project]="project"></app-project-ad>
-        </div>
-      </div>
+<div class="carousel-container">
+  <!-- Loading state -->
+  <div class="loading-spinner" *ngIf="loading">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Loading...</span>
     </div>
   </div>
 
-  <!-- Carousel Controls (Separated Arrows) -->
-  <div class="carousel-controls d-flex justify-content-between w-100">
-    <!-- Carousel Controls -->
-    <button class="carousel-control-prev" type="button" data-bs-target="#projectCarousel" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#projectCarousel" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    </button>
+  <!-- Main carousel -->
+  <div id="projectCarousel" class="carousel slide" data-bs-ride="carousel" *ngIf="!loading">
+    <div class="carousel-inner" *ngIf="projectChunks.length > 0">
+      <div
+        *ngFor="let chunk of projectChunks; let i = index"
+        class="carousel-item"
+        [ngClass]="{
+          'active': i === 0,
+          'single-project-view': projectsPerSlide === 1
+        }"
+      >
+        <div class="row justify-content-center">
+          <div
+            *ngFor="let project of chunk"
+            class="project-col"
+            [ngClass]="{
+              'col-12': projectsPerSlide === 1,
+              'col-md-6': projectsPerSlide === 2,
+              'col-lg-4': projectsPerSlide === 3,
+              'col-xl-3': projectsPerSlide === 4
+            }"
+          >
+            <app-project-ad [project]="project"></app-project-ad>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Carousel controls - only show if more than one slide -->
+    <div class="carousel-controls" *ngIf="projectChunks.length > 1">
+      <button class="carousel-control-prev" type="button" (click)="prev()">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" (click)="next()">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+
+    <!-- Carousel indicators - only show if more than one slide -->
+    <div class="carousel-indicators" *ngIf="projectChunks.length > 1">
+      <button
+        *ngFor="let chunk of projectChunks; let i = index"
+        type="button"
+        data-bs-target="#projectCarousel"
+        [attr.data-bs-slide-to]="i"
+        [ngClass]="{'active': i === 0}"
+        aria-current="true"
+        [attr.aria-label]="'Slide ' + (i + 1)">
+      </button>
+    </div>
+
+    <!-- No projects message -->
+    <div class="no-projects-message" *ngIf="projectChunks.length === 0">
+      <p>No projects available at the moment.</p>
+    </div>
   </div>
 </div>
