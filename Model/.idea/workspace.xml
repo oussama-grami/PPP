@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="AutoImportSettings">
-    <option name="autoReloadType" value="SELECTIVE" />
-  </component>
   <component name="ChangeListManager">
     <list default="true" id="0fd7f9b8-10a6-48ed-be24-8e52f0f7064a" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/../back/Ecopilot/src/main/java/com/ppp/Ecopilot/Services/YearMonthAttributeConverter.java" afterDir="false" />

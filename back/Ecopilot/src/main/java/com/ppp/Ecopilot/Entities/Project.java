@@ -1,6 +1,6 @@
 package com.ppp.Ecopilot.Entities;
 
-import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
@@ -18,7 +18,7 @@ public class Project extends BaseEntity<Long> {
     @Column(nullable = false)
     private boolean certified;
     @Column(nullable = false)
-    private int availableStock;
+    private int availableStock;//en ToCO2
     @Column(nullable = false)
     private String category;
     @Column(nullable = false)
@@ -41,6 +41,14 @@ public class Project extends BaseEntity<Long> {
     private String url;
     @Column(nullable = true)
     private String mapUrl;
+    private String imageUrl1;
+    private String imageUrl2;
+    private String imageUrl3;
+    private String imageUrl4;
+    @Column()
+    private boolean estimation = false;
+    @Column(nullable = false)
+    private float estimationValue;
     @Lob
     @Column(nullable = true, columnDefinition = "TEXT")
     private String description;

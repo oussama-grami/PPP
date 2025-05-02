@@ -1,12 +1,9 @@
 package com.ppp.Ecopilot.DTO;
 
-import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,11 +13,12 @@ import java.util.Optional;
 @NoArgsConstructor
 
 public class ProjectOwnerDTO extends UserDTO {
+    private long id;
     private boolean certified;
     private String company;
     private String companyIdentifier;
     private String description;
-    private String estimation;
+    private boolean estimation;
     private float estimationValue;
     private String firstname;
     private String job_function;

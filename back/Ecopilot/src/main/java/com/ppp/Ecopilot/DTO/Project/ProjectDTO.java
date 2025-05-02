@@ -2,11 +2,13 @@ package com.ppp.Ecopilot.DTO.Project;
 
 import com.ppp.Ecopilot.DTO.BaseDTO;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 import java.util.List;
 import java.util.Optional;
+@EqualsAndHashCode(callSuper = true)
 @Data
 @SuperBuilder
 @NoArgsConstructor
