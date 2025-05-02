@@ -1,0 +1,1 @@
+{ "input": "spec.json", "output": "src/app/api", "ignoreUnusedModels": false } 

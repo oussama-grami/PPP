@@ -7,7 +7,7 @@ import {RoutesEnum} from "../../enumerations/Routes.enum";
 @Component({
   selector: 'app-event-result',
   templateUrl: './event-result.component.html',
-  styleUrls: ['./event-result.component.css']
+  styleUrls: ['./event-result.component.css'],
 })
 export class EventResultComponent implements OnInit {
   totalCarbonFootprint: number = 0;

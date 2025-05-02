@@ -6,6 +6,7 @@ import com.ppp.Ecopilot.DTO.CarbonFootprintHistory.CreateCarbonFootprintHistoryD
 import com.ppp.Ecopilot.Entities.CarbonFootprintHistory;
 import com.ppp.Ecopilot.Entities.CarbonFootprintData;
 
+import java.time.YearMonth;
 import java.util.List;
 
 public interface CarbonFootprintHistoryService extends CRUDService<CarbonFootprintHistory, Long> {
@@ -20,7 +21,14 @@ public interface CarbonFootprintHistoryService extends CRUDService<CarbonFootpri
     CarbonFootprintHistoryDTO[] forecastData();
     void saveCarbonFootprint(CreateCarbonFootprintHistoryDTO data);
     void saveAllCarbonFootprint(List<CreateCarbonFootprintHistoryDTO> data);
+    public List<CreateCarbonFootprintHistoryDTO> getInterpolatedData(
+            Long companyOwnerId,
+            YearMonth startDate,
+            YearMonth endDate,
+            double totalValue);
 
+
+    public void saveOrUpdateAll(List<CreateCarbonFootprintHistoryDTO> dtos, Long companyOwnerId);
 
 
 

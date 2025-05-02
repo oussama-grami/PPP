@@ -1,0 +1,41 @@
+/* Spinner styles */
+.spinner-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #014131;
+  border-radius: 50%;
+  border-top-color: transparent;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Ajout d'un état loading pour les projets */
+.projects-container {
+  min-height: 400px;
+  position: relative;
+}
+
+.no-projects-message {
+  text-align: center;
+  color: #575757;
+  font-family: Roboto;
+  font-size: 16px;
+  padding: 50px 0;
+}

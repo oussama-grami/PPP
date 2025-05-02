@@ -7,7 +7,7 @@ import { RoutesEnum } from '../../enumerations/Routes.enum';
 @Component({
   selector: 'app-resultat-carbone',
   templateUrl: './resultat-carbone.component.html',
-  styleUrls: ['./resultat-carbone.component.css']
+  styleUrls: ['./resultat-carbone.component.css'],
 })
 export class ResultatCarboneComponent implements OnInit {
   carbonFootprintResponse: CarbonFootprintResponse | null = null;

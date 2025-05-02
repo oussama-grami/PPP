@@ -29,8 +29,10 @@ export class RoadmapComponent implements OnInit {
 
   ngOnInit() {
     this.esgService.getResponses().subscribe((responses) => {
+
       // Environment scores (questions 1-5)
       this.Envi1 = this.getNormalizedScore(1, responses);
+
       this.Envi2 = this.getNormalizedScore(2, responses);
       this.Envi3 = this.getNormalizedScore(3, responses);
       this.Envi4 = this.getNormalizedScore(4, responses);
