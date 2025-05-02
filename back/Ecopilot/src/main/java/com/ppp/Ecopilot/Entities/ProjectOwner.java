@@ -25,17 +25,9 @@ import java.util.List;
         property = "id")
 public class ProjectOwner extends User {
     @Column(nullable = false)
-    private boolean certified;
-    @Column(nullable = false)
     private String company;
     @Column(nullable = false)
     private String companyIdentifier;
-    @Column(nullable = false)
-    private String description;
-    @Column()
-    private boolean estimation = false;
-    @Column(nullable = false)
-    private float estimationValue;
     @Column(nullable = false)
     private String firstname;
     @Column(nullable = false)
