@@ -282,6 +282,63 @@
                 >
               </div>
             </div>
+            
+            <!-- URL Image Upload -->
+            <div class="image-selection mb-4">
+              <h4>Upload Website Image</h4>
+              <p class="text-muted">
+                Upload an image for your website URL (optional)
+              </p>
+              <div class="file-upload url-upload">
+                <label for="urlImageInput" class="file-label">
+                  <div class="file-icon">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                      <circle cx="8.5" cy="8.5" r="1.5" />
+                      <path d="M21 14.7c0 1.1-.9 2-2 2H5c-1.1 0-2-.9-2-2V7c0-1.1.9-2 2-2h14c1.1 0 2 .9 2 2v7.7z" />
+                      <path d="M16 3.5v17" />
+                      <path d="M8 13.5l4-3 4 3" />
+                    </svg>
+                  </div>
+                  <div class="file-text">
+                    <span class="file-title">Upload Website Image</span>
+                    <span class="file-description"
+                      >Click to browse or drag and drop image here</span
+                    >
+                  </div>
+                </label>
+                <input
+                  type="file"
+                  class="file-input"
+                  id="urlImageInput"
+                  (change)="onImageUpload($event, 'url')"
+                  accept="image/*"
+                />
+                <div class="image-preview" *ngIf="urlImagePreview">
+                  <img
+                    [src]="urlImagePreview"
+                    alt="URL preview"
+                    class="preview-img"
+                  />
+                </div>
+              </div>
+              <div
+                class="invalid-feedback d-block"
+                *ngIf="submitError && submitError.includes('URL')"
+              >
+                <span>{{ submitError }}</span>
+              </div>
+            </div>
 
             <div class="phone-input mb-3">
               <div class="country-select">
@@ -390,6 +447,35 @@
             <h3 class="section-title">Project Information</h3>
 
             <div class="form-floating mb-3">
+              <input
+                type="text"
+                class="form-control"
+                id="projectNameInput"
+                placeholder="Project Name"
+                formControlName="projectName"
+              />
+              <label for="projectNameInput">Project Name *</label>
+              <div
+                class="invalid-feedback"
+                *ngIf="
+                  projectForm.get('projectName')?.invalid &&
+                  (projectForm.get('projectName')?.touched || isSubmitted)
+                "
+              >
+                <span
+                  *ngIf="projectForm.get('projectName')?.errors?.['required']"
+                >
+                  Project name is required.
+                </span>
+                <span
+                  *ngIf="projectForm.get('projectName')?.errors?.['maxlength']"
+                >
+                  Project name cannot exceed 100 characters.
+                </span>
+              </div>
+            </div>
+
+            <div class="form-floating mb-3">
               <select
                 class="form-select"
                 id="projectCountrySelect"
@@ -460,7 +546,7 @@
                 <option value="Soil management">Soil management</option>
                 <option value="Tree planting">Tree planting</option>
               </select>
-              <label for="natureSelect">Nature of the project</label>
+              <label for="natureSelect">Nature of the project *</label>
               <div
                 class="invalid-feedback"
                 *ngIf="
@@ -471,6 +557,127 @@
                 <span
                   *ngIf="projectForm.get('projectNature')?.errors?.['required']"
                   >Please select the nature of your project.</span
+                >
+              </div>
+            </div>
+
+            <div class="form-floating mb-3">
+              <select
+                class="form-select"
+                id="mechanismSelect"
+                formControlName="mechanism"
+              >
+                <option value="" disabled selected>
+                  Select carbon reduction mechanism
+                </option>
+                <option value="Afforestation">Afforestation</option>
+                <option value="Reforestation">Reforestation</option>
+                <option value="Forest conservation">Forest conservation</option>
+                <option value="Renewable energy">Renewable energy</option>
+                <option value="Energy efficiency">Energy efficiency</option>
+                <option value="Methane capture">Methane capture</option>
+                <option value="Sustainable agriculture">
+                  Sustainable agriculture
+                </option>
+              </select>
+              <label for="mechanismSelect">Carbon Reduction Mechanism *</label>
+              <div
+                class="invalid-feedback"
+                *ngIf="
+                  projectForm.get('mechanism')?.invalid &&
+                  (projectForm.get('mechanism')?.touched || isSubmitted)
+                "
+              >
+                <span *ngIf="projectForm.get('mechanism')?.errors?.['required']"
+                  >Please select a carbon reduction mechanism.</span
+                >
+              </div>
+            </div>
+
+            <div class="input-row">
+              <div class="form-floating mb-3">
+                <input
+                  type="number"
+                  class="form-control"
+                  id="availableStockInput"
+                  placeholder="Available Stock"
+                  formControlName="availableStock"
+                  min="1"
+                />
+                <label for="availableStockInput"
+                  >Available Carbon Credits (tCO2e) *</label
+                >
+                <div
+                  class="invalid-feedback"
+                  *ngIf="
+                    projectForm.get('availableStock')?.invalid &&
+                    (projectForm.get('availableStock')?.touched || isSubmitted)
+                  "
+                >
+                  <span
+                    *ngIf="projectForm.get('availableStock')?.errors?.['required']"
+                    >Available stock is required.</span
+                  >
+                  <span
+                    *ngIf="projectForm.get('availableStock')?.errors?.['min']"
+                    >Value must be greater than 0.</span
+                  >
+                </div>
+              </div>
+
+              <div class="form-floating mb-3">
+                <input
+                  type="number"
+                  class="form-control"
+                  id="costInput"
+                  placeholder="Cost per Credit"
+                  formControlName="cost"
+                  min="1"
+                />
+                <label for="costInput">Cost per Credit ($/tCO2e) *</label>
+                <div
+                  class="invalid-feedback"
+                  *ngIf="
+                    projectForm.get('cost')?.invalid &&
+                    (projectForm.get('cost')?.touched || isSubmitted)
+                  "
+                >
+                  <span *ngIf="projectForm.get('cost')?.errors?.['required']"
+                    >Cost per credit is required.</span
+                  >
+                  <span *ngIf="projectForm.get('cost')?.errors?.['min']"
+                    >Value must be greater than 0.</span
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div class="form-floating mb-3">
+              <input
+                type="number"
+                class="form-control"
+                id="minimumPurchaseInput"
+                placeholder="Minimum Purchase"
+                formControlName="minimumPurchase"
+                min="1"
+              />
+              <label for="minimumPurchaseInput"
+                >Minimum Purchase Amount (tCO2e) *</label
+              >
+              <div
+                class="invalid-feedback"
+                *ngIf="
+                  projectForm.get('minimumPurchase')?.invalid &&
+                  (projectForm.get('minimumPurchase')?.touched || isSubmitted)
+                "
+              >
+                <span
+                  *ngIf="projectForm.get('minimumPurchase')?.errors?.['required']"
+                  >Minimum purchase amount is required.</span
+                >
+                <span
+                  *ngIf="projectForm.get('minimumPurchase')?.errors?.['min']"
+                  >Value must be greater than 0.</span
                 >
               </div>
             </div>
@@ -503,6 +710,193 @@
                   *ngIf="projectForm.get('description')?.errors?.['maxlength']"
                   >Description cannot exceed 2000 characters.</span
                 >
+              </div>
+            </div>
+
+            <!-- Banner Image Upload -->
+            <div class="image-selection mb-4">
+              <h4>Upload Banner Image *</h4>
+              <p class="text-muted">
+                Upload an image that will be displayed as the main project image
+              </p>
+              <div class="file-upload banner-upload">
+                <label for="bannerImageInput" class="file-label">
+                  <div class="file-icon">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                      <circle cx="8.5" cy="8.5" r="1.5" />
+                      <polyline points="21 15 16 10 5 21" />
+                    </svg>
+                  </div>
+                  <div class="file-text">
+                    <span class="file-title">Upload Banner Image *</span>
+                    <span class="file-description"
+                      >Click to browse or drag and drop image here</span
+                    >
+                  </div>
+                </label>
+                <input
+                  type="file"
+                  class="file-input"
+                  id="bannerImageInput"
+                  (change)="onImageUpload($event, 'banner')"
+                  accept="image/*"
+                />
+                <div class="image-preview" *ngIf="bannerImagePreview">
+                  <img
+                    [src]="bannerImagePreview"
+                    alt="Banner preview"
+                    class="preview-img"
+                  />
+                </div>
+              </div>
+              <div
+                class="invalid-feedback d-block"
+                *ngIf="
+                  (projectForm.get('bannerImage')?.invalid && isSubmitted) ||
+                  (submitError && submitError.includes('banner'))
+                "
+              >
+                <span
+                  *ngIf="projectForm.get('bannerImage')?.errors?.['required']"
+                >
+                  Please upload a banner image.
+                </span>
+                <span *ngIf="submitError && submitError.includes('banner')">
+                  {{ submitError }}
+                </span>
+              </div>
+            </div>
+
+            <!-- Map Image Upload -->
+            <div class="image-selection mb-4">
+              <h4>Upload Map Image *</h4>
+              <p class="text-muted">
+                Upload an image that shows the project location
+              </p>
+              <div class="file-upload map-upload">
+                <label for="mapImageInput" class="file-label">
+                  <div class="file-icon">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <polygon
+                        points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"
+                      />
+                      <line x1="8" y1="2" x2="8" y2="18" />
+                      <line x1="16" y1="6" x2="16" y2="22" />
+                    </svg>
+                  </div>
+                  <div class="file-text">
+                    <span class="file-title">Upload Map Image *</span>
+                    <span class="file-description"
+                      >Click to browse or drag and drop image here</span
+                    >
+                  </div>
+                </label>
+                <input
+                  type="file"
+                  class="file-input"
+                  id="mapImageInput"
+                  (change)="onImageUpload($event, 'map')"
+                  accept="image/*"
+                />
+                <div class="image-preview" *ngIf="mapImagePreview">
+                  <img
+                    [src]="mapImagePreview"
+                    alt="Map preview"
+                    class="preview-img"
+                  />
+                </div>
+              </div>
+              <div
+                class="invalid-feedback d-block"
+                *ngIf="
+                  (projectForm.get('mapImage')?.invalid && isSubmitted) ||
+                  (submitError && submitError.includes('map'))
+                "
+              >
+                <span *ngIf="projectForm.get('mapImage')?.errors?.['required']">
+                  Please upload a map image.
+                </span>
+                <span *ngIf="submitError && submitError.includes('map')">
+                  {{ submitError }}
+                </span>
+              </div>
+            </div>
+
+            <!-- Objective Images Selection -->
+            <div class="image-selection mb-4">
+              <h4>Select Sustainable Development Goals *</h4>
+              <p class="text-muted">
+                Select exactly 4 sustainable development goals that your project contributes to
+              </p>
+              <div class="selection-counter mb-2" [ngClass]="{'text-success': selectedObjectiveImages.length === 4, 'text-danger': selectedObjectiveImages.length > 4}">
+                {{ selectedObjectiveImages.length }} of 4 goals selected
+              </div>
+              <div class="image-gallery sdg-gallery">
+                <div
+                  *ngFor="let image of availableObjectiveImages; let i = index"
+                  class="image-option sdg-option"
+                  [class.selected]="isObjectiveImageSelected(image)"
+                  (click)="selectObjectiveImage(image, i + 1)"
+                >
+                  <img [src]="image" [alt]="'SDG ' + (i+1)" />
+                  <div class="image-number">{{ i + 1 }}</div>
+                  <div
+                    class="image-check"
+                    *ngIf="isObjectiveImageSelected(image)"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <polyline points="9 11 12 14 22 4"></polyline>
+                      <path
+                        d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"
+                      ></path>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="invalid-feedback d-block"
+                *ngIf="
+                  ((projectForm.get('objectiveImage1')?.invalid ||
+                    projectForm.get('objectiveImage2')?.invalid ||
+                    projectForm.get('objectiveImage3')?.invalid ||
+                    projectForm.get('objectiveImage4')?.invalid) &&
+                  isSubmitted) ||
+                  (submitError && submitError.includes('objectives'))
+                "
+              >
+                <span *ngIf="selectedObjectiveImages.length !== 4">Please select exactly 4 sustainable development goals.</span>
+                <span *ngIf="submitError && submitError.includes('objectives')">{{ submitError }}</span>
               </div>
             </div>
 
@@ -599,90 +993,6 @@
                   />
                   <label class="form-check-label" for="certifiedNo">No</label>
                 </div>
-              </div>
-            </div>
-
-            <div class="file-upload mb-4">
-              <label for="pdfFile" class="file-label">
-                <div class="file-icon">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path
-                      d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
-                    ></path>
-                    <polyline points="14 2 14 8 20 8"></polyline>
-                    <line x1="12" y1="18" x2="12" y2="12"></line>
-                    <line x1="9" y1="15" x2="15" y2="15"></line>
-                  </svg>
-                </div>
-                <div class="file-text">
-                  <span class="file-title">Submit PDF files *</span>
-                  <span class="file-description"
-                    >Click to browse or drag and drop files here</span
-                  >
-                </div>
-              </label>
-              <input
-                type="file"
-                class="file-input"
-                id="pdfFile"
-                (change)="onFileChange($event)"
-                accept="application/pdf"
-                multiple
-              />
-              <div class="selected-files" *ngIf="pdfFiles.length > 0">
-                <div
-                  class="selected-file"
-                  *ngFor="let file of pdfFiles; let i = index"
-                >
-                  <span class="file-name">{{ file.name }}</span>
-                  <button
-                    type="button"
-                    class="remove-file-btn"
-                    (click)="removeFile(i)"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    >
-                      <line x1="18" y1="6" x2="6" y2="18"></line>
-                      <line x1="6" y1="6" x2="18" y2="18"></line>
-                    </svg>
-                  </button>
-                </div>
-              </div>
-              <div class="file-error" *ngIf="fileError && isSubmitted">
-                <span
-                  *ngIf="fileError === 'Please upload at least one PDF file'"
-                  >At least one PDF file is required for project
-                  verification.</span
-                >
-                <span *ngIf="fileError.includes('size')"
-                  >File size exceeds the maximum limit of 10MB per file.</span
-                >
-                <span *ngIf="fileError.includes('format')"
-                  >Only PDF files are accepted. Please convert your documents to
-                  PDF format.</span
-                >
-                <span *ngIf="fileError.includes('too many')"
-                  >You can upload a maximum of 5 PDF files.</span
-                >
               </div>
             </div>
 

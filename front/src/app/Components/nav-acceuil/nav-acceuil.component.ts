@@ -287,4 +287,6 @@ export class NavAcceuilComponent implements OnInit, OnDestroy {
         console.error('Error during login:', error);
       });
   }
+
+  protected readonly RoutesEnum = RoutesEnum;
 }

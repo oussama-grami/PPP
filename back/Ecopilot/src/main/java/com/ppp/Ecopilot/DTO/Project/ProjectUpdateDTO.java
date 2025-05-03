@@ -21,4 +21,12 @@ public class ProjectUpdateDTO {
     private String routing;
     private String typeOfProject;
     private String url;
+    private String mapUrl;     // URL for the map image
+    private String urlImage;   // URL for the website image
+    private String imageUrl1;  // URL for objective image 1
+    private String imageUrl2;  // URL for objective image 2 
+    private String imageUrl3;  // URL for objective image 3
+    private String imageUrl4;  // URL for objective image 4
+    private Boolean estimation;
+    private Float estimationValue;
 }
