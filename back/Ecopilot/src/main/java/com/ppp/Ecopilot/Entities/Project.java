@@ -33,25 +33,21 @@ public class Project extends BaseEntity<Long> {
     private int minimumPurchase;
     @Column(nullable = false)
     private String name;
-    @Column()
+    @Column(nullable = false)
     private String routing;
     @Column(nullable = false)
     private String typeOfProject;
-    @Column(nullable = true)
+    @Column(nullable = false)
     private String url;
     @Column(nullable = true)
     private String mapUrl;
-    @Column(nullable = true)
     private String imageUrl1;
-    @Column(nullable = true)
     private String imageUrl2;
-    @Column(nullable = true)
     private String imageUrl3;
-    @Column(nullable = true)
     private String imageUrl4;
-    @Column(nullable = true)
-    private Boolean estimation = false;
-    @Column(nullable = true)
+    @Column()
+    private boolean estimation = false;
+    @Column(nullable = false)
     private float estimationValue;
     @Lob
     @Column(nullable = true, columnDefinition = "TEXT")

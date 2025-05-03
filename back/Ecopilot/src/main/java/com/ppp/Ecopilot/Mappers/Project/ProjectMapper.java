@@ -30,13 +30,6 @@ public class ProjectMapper implements EntityMapper<Project, ProjectDTO> {
                 .routing(dto.getRouting())
                 .typeOfProject(dto.getTypeOfProject())
                 .url(dto.getUrl())
-                .mapUrl(dto.getMapUrl())
-                .imageUrl1(dto.getImageUrl1())
-                .imageUrl2(dto.getImageUrl2())
-                .imageUrl3(dto.getImageUrl3())
-                .imageUrl4(dto.getImageUrl4())
-                .estimation(dto.getEstimation())
-                .estimationValue(dto.getEstimationValue())
                 .projectOwner(ProjectOwner.builder().id(dto.getProjectOwnerId()).build());
         if (dto.getChartLinesIds().isPresent()) {
             List<ChartLine> chartLines = dto.getChartLinesIds().get().stream()
@@ -75,12 +68,6 @@ public class ProjectMapper implements EntityMapper<Project, ProjectDTO> {
                 .description(entity.getDescription())
                 .url(entity.getUrl())
                 .mapUrl(entity.getMapUrl())
-                .imageUrl1(entity.getImageUrl1())
-                .imageUrl2(entity.getImageUrl2())
-                .imageUrl3(entity.getImageUrl3())
-                .imageUrl4(entity.getImageUrl4())
-                .estimation(entity.getEstimation())
-                .estimationValue(entity.getEstimationValue())
                 .projectOwnerId(entity.getProjectOwner().getId())
                 .chartLinesIds(chartLineIds)
                 .build();

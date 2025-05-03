@@ -18,7 +18,6 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/project")
 @RequiredArgsConstructor
-
 public class ProjectController {
     private final ProjectServiceImpl projectService;
     private final ProjectMapper projectMapper;
@@ -32,7 +31,6 @@ public class ProjectController {
     };
     @PostMapping("/create")
     public ResponseEntity<Long> create(@RequestBody ProjectInsertDTO projectDTO) {
-        System.out.println(projectDTO.toString());
         Project saved = projectService.save(projectDTO);
         return ResponseEntity.ok(saved.getId());
     }

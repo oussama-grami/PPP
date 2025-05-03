@@ -5,7 +5,6 @@ import {ProjectsService} from "../../Service/projects.service";
 import {Transaction} from "../../Models/transaction";
 import {TransactionService} from "../../Service/transaction.service";
 import {RoutesEnum} from "../../enumerations/Routes.enum";
-import {environment} from "../../../environments/environment";
 
 @Component({
   selector: 'app-project-details',
@@ -51,5 +50,4 @@ export class ProjectDetailsComponent implements OnInit{
   }
 
   protected readonly RoutesEnum = RoutesEnum;
-  protected readonly environment = environment;
 }

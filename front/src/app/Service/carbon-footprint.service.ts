@@ -1,20 +1,21 @@
-import {Injectable} from '@angular/core';
-import {BehaviorSubject, Observable, of} from "rxjs";
-import {Company} from '../Models/company';
-import {Carburant} from '../Models/carburant';
-import {Energy} from '../Models/energy';
-import {Aerien} from '../Models/aerien';
-import {Freight} from '../Models/freight';
-import {Consumables} from '../Models/consumables';
-import {Immobilisation} from '../Models/immobilisation';
-import {CarbonFootprintRequest} from "../Models/carbonFootprintRequest";
-import {Unit} from "../enumerations/unit";
-import {CarburantType} from "../enumerations/carburantType";
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable, of } from "rxjs";
+import { Company } from '../Models/company';
+import { Carburant } from '../Models/carburant';
+import { Energy } from '../Models/energy';
+import { Aerien } from '../Models/aerien';
+import { Freight } from '../Models/freight';
+import { Consumables } from '../Models/consumables';
+import { Immobilisation } from '../Models/immobilisation';
+import { CarbonFootprintRequest } from "../Models/carbonFootprintRequest";
+import { Unit } from "../enumerations/unit";
+import { CarburantType } from "../enumerations/carburantType";
 import {CarbonFootprintResponse} from "../Models/carbonFootprintResponse";
-import {map} from 'rxjs/operators';
-import {CarbonControllerService} from '../api/services';
-import {CarbonFootprintModelRequest, CarbonResponse} from '../api/models';
-import {HttpClient} from "@angular/common/http";
+import { map, switchMap, tap } from 'rxjs/operators';
+import { Observable, of, BehaviorSubject } from 'rxjs';
+import { CarbonControllerService } from '../api/services';
+import { CarbonFootprintModelRequest, CarbonResponse } from '../api/models';
 
 @Injectable({
   providedIn: 'root',
@@ -43,9 +44,7 @@ export class CarbonFootprintService {
   // Observable that components can subscribe to
   public recommendations$ = this.recommendationsSubject.asObservable();
 
-  constructor(private carbonAIController: CarbonControllerService,
-              private httpClient: HttpClient
-  ) {
+  constructor(private carbonAIController: CarbonControllerService) {
     // Load saved recommendations from localStorage on service initialization
     this.loadSavedRecommendations();
     this.loadSavedFormData();
@@ -137,10 +136,9 @@ export class CarbonFootprintService {
       vehicleFuelEfficiency: carburantData?.fuelEfficiency ?? 0,
       companyOwnerId: 7,
     };
-    this.getEnterpriseRecommendations();
+
     return this.httpClient.post(this.apiUrl, payload);
   }
-
   updateImmobilisation(imme: Immobilisation): void {
     this.immeData = imme;
     this.saveFormData();
@@ -160,13 +158,14 @@ export class CarbonFootprintService {
   }
 
 
+
   getCalculationById(id: number): Observable<CarbonFootprintResponse> {
     return this.httpClient.get<CarbonFootprintResponse>(`${this.apiUrl}/${id}`);
   }
 
   getAllByCompanyOwnerId(companyOwnerId: number): Observable<CarbonFootprintResponse[]> {
     return this.httpClient.get<CarbonFootprintResponse[]>(`${this.apiUrl}`, {
-      params: {companyOwnerId: companyOwnerId.toString()}
+      params: { companyOwnerId: companyOwnerId.toString() }
     }).pipe(
       map(responses => {
         this.calculations = responses; // cache list
@@ -184,7 +183,6 @@ export class CarbonFootprintService {
     }
     return this.getCalculationById(id).pipe(map(c => c.totalEmissions));
   }
-
   getCalculationByIdOrLast(companyOwnerId: number, id?: number): Observable<CarbonFootprintResponse | null> {
     // If ID is provided, try to find the calculation by ID
     if (id) {
@@ -217,12 +215,14 @@ export class CarbonFootprintService {
       return currentDate > latestDate ? current : latest;
     });
   }
-
 // Delete a carbon footprint record by ID
   deleteById(id: number): Observable<void> {
     return this.httpClient.delete<void>(`${this.apiUrl}/${id}`);
   }
 
+  updateImmobilisation(immeData: Immobilisation) {
+    this.immeData = immeData;
+  }
   // Save form data to localStorage
   private saveFormData(): void {
     try {
@@ -232,7 +232,6 @@ export class CarbonFootprintService {
       console.error('Error saving form data to localStorage:', error);
     }
   }
-
   // Load saved form data from localStorage
   private loadSavedFormData(): void {
     try {
@@ -290,20 +289,20 @@ export class CarbonFootprintService {
       annual_consumption_of_GPL: this.energyData?.annualConsumptionOfGPL,
       annual_consumption_of_coal: this.energyData?.annualConsumptionOfCoal,
       annual_consumption_of_electricity:
-      this.energyData?.annualConsumptionOfElectricity,
+        this.energyData?.annualConsumptionOfElectricity,
       annual_consumption_of_fuel: this.carburantData?.dieselFuelConsumption,
       annual_consumption_of_natural_gas:
-      this.energyData?.annualConsumptionOfNaturalGas,
+        this.energyData?.annualConsumptionOfNaturalGas,
       annual_consumption_of_propane:
-      this.energyData?.annualConsumptionOfPropane,
+        this.energyData?.annualConsumptionOfPropane,
       annual_consumption_of_refrigerant:
-      this.energyData?.annualConsumptionOfRefrigerant,
+        this.energyData?.annualConsumptionOfRefrigerant,
       built_area_of_company: this.immeData?.surfaceArea,
       consumption_of_LPG: this.carburantData?.lpgFuelConsumption,
       country: this.infoData?.country,
       expenses_of_paper: this.consData?.expensesOnPaper,
       expenses_of_small_office_supplies:
-      this.consData?.expensesOnSmallOfficeSupplies,
+        this.consData?.expensesOnSmallOfficeSupplies,
       fuel_consumption_of_diesel: this.carburantData?.dieselFuelConsumption,
       fuel_consumption_of_gasoline: this.carburantData?.gasolineFuelConsumption,
       number_of_commercial_vehicles: this.immeData?.numberOfUtilityVehicles,
@@ -315,13 +314,13 @@ export class CarbonFootprintService {
       number_of_laptops: this.immeData?.numberOfPCs,
       number_of_light_duty_vehicles: this.immeData?.numberOfLightVehicles,
       number_of_long_haul_round_trip:
-      this.aerienData?.numberOfLongHaulRoundTrips,
+        this.aerienData?.numberOfLongHaulRoundTrips,
       number_of_medium_haul_round_trip:
-      this.aerienData?.numberOfMediumHaulRoundTrips,
+        this.aerienData?.numberOfMediumHaulRoundTrips,
       number_of_multifunction_printers: this.immeData?.numberOfMultiPrinters,
       number_of_servers: this.immeData?.numberOfServers,
       number_of_short_haul_round_trip:
-      this.aerienData?.numberOfShortHaulRoundTrips,
+        this.aerienData?.numberOfShortHaulRoundTrips,
       percentage_of_telework: this.energyData?.percentageOfTelework,
       tons_of_air_freight_gt_3000: this.freightData?.freightAirLong,
       tons_of_air_freight_lt_3000: this.freightData?.freightAirShort,
@@ -341,6 +340,10 @@ export class CarbonFootprintService {
         this.recommendationsSubject.next(response);
         alert('done with success ');
       });
+  }
+
+  submitAllData() {
+    this.getEnterpriseRecommendations();
   }
 
   // Simulated API call - Replace this with an actual backend call if needed
