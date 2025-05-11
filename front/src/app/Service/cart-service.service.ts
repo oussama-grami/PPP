@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core';
-import { Project } from "../Models/project";
+import { Project } from '../Models/project';
 
-type PartialProject = Partial<Project> & Pick<Project,'id'| 'name' | 'availableStock' | 'cost' | 'url'> & { quantity: number };
+type PartialProject = Partial<Project> &
+  Pick<Project, 'id' | 'name' | 'availableStock' | 'cost' | 'url'> & {
+    quantity: number;
+  };
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CartService {
   private cartItems: PartialProject[] = [];
@@ -18,9 +21,7 @@ export class CartService {
   }
 
   private loadCart() {
-    this.cartItems.push({id:4, name: 'Tree planting in Testour', availableStock: 200, cost: '2.48', url: '/assets/img/modalPhoto1.svg', quantity: 1 },
-      {id:5, name: 'Wind farm in Tunisia', availableStock: 500, cost: '2.25', url: '/assets/img/modalPhoto2.svg', quantity: 1 },
-      {id:6, name: 'Forestry project in Madagascar', availableStock: 500, cost: '7.5', url: '/assets/img/modalPhoto3.svg', quantity: 1 });
+    this.cartItems = JSON.parse(localStorage.getItem('cart') || '[]');
   }
 
   getItems(): PartialProject[] {
@@ -28,19 +29,24 @@ export class CartService {
   }
 
   getTotalPrice(): number {
-    return this.cartItems.reduce((total, item) => total + (item.quantity || 0) * (+item.cost || 0), 0);
+    return this.cartItems.reduce(
+      (total, item) => total + (item.quantity || 0) * (+item.cost || 0),
+      0
+    );
   }
 
   addItem(item: PartialProject) {
-    const existingItem = this.cartItems.find(cartItem => cartItem.name === item.name);
+    const existingItem = this.cartItems.find(
+      (cartItem) => cartItem.name === item.name
+    );
     if (existingItem) {
-      existingItem.quantity = (existingItem.quantity || 0) + (item.quantity || 1);
+      existingItem.quantity =
+        (existingItem.quantity || 0) + (item.quantity || 1);
     } else {
       this.cartItems.push({ ...item, quantity: item.quantity || 1 });
     }
     this.saveCart();
   }
-
 
   removeItem(index: number) {
     this.cartItems.splice(index, 1);
@@ -62,7 +68,7 @@ export class CartService {
     }
     this.saveCart();
   }
-  clearCart(){
+  clearCart() {
     this.cartItems = [];
   }
 }
