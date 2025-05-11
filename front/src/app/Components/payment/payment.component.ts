@@ -70,7 +70,7 @@ export class PaymentComponent implements OnInit {
           amount: Math.round(this.getTotalPrice() * 100),
           currency: 'eur',
           description: 'Achat sur votre application',
-          companyOwnerId: 7,
+          companyOwnerId: 152,
           cartLineIds: this.cartItems.map(item => item.id),
           customerInfo: this.checkoutForm.value,
           totalPrice:this.getTotalPrice().toString(),
