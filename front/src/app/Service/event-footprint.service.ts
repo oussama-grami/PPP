@@ -1,11 +1,13 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {Event} from '../Models/eventForm';
-import {EventResponse} from '../Models/eventResponse';
-import {BehaviorSubject, Observable, of} from 'rxjs';
-import {map} from 'rxjs/operators';
-import {CarbonControllerService} from '../api/services';
-import {CarbonResponse} from '../api/models';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Event } from '../Models/eventForm';
+import { EventResponse } from '../Models/eventResponse';
+import { Observable, of } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
+import { Event } from '../Models/eventForm';
+import { Observable, of, BehaviorSubject } from 'rxjs';
+import { CarbonControllerService } from '../api/services';
+import { CarbonResponse } from '../api/models';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +17,7 @@ export class EventFootprintService {
   private eventResponses: EventResponse[] = [];  // cached list
   private readonly apiUrl = 'http://localhost:8080/api/event';
 
-
+  constructor(private http: HttpClient) {}
   recommendations: CarbonResponse | null = null;
 
   // Storage keys for localStorage
@@ -29,7 +31,7 @@ export class EventFootprintService {
   // Observable that components can subscribe to
   public recommendations$ = this.recommendationsSubject.asObservable();
 
-  constructor(private carbonAIController: CarbonControllerService, private http: HttpClient) {
+  constructor(private carbonAIController: CarbonControllerService) {
     // Load saved recommendations from localStorage on service initialization
     this.loadSavedRecommendations();
     this.loadSavedFormData();
@@ -79,9 +81,7 @@ export class EventFootprintService {
   // Optionally expose the list for components
   getCachedEventResponses(): EventResponse[] {
     return this.eventResponses;
-    // Save form data to localStorage
-  }
-
+  // Save form data to localStorage
   private saveFormData(): void {
     try {
       localStorage.setItem(this.FORM_DATA_KEY, JSON.stringify(this.eventData));
@@ -165,15 +165,15 @@ export class EventFootprintService {
     this.getEventRecommendations();
   }
 
-  /*  getTotalFootprint() {
-      return this.calculateEventFootprint(this.eventData!);
-    }*/
+  getTotalFootprint() {
+    return this.calculateEventFootprint(this.eventData!);
+  }
 
   // Simulated calculation of event's carbon footprint (for now, this is just a placeholder)
-  /*  calculateEventFootprint(eventData: Event): number {
-      // Placeholder for the actual logic to calculate carbon footprint
-      // You can replace this with a more detailed calculation based on event data
-      const estimatedFootprint = 100; // Example carbon footprint
-      return estimatedFootprint;
-    }*/
+  calculateEventFootprint(eventData: Event): number {
+    // Placeholder for the actual logic to calculate carbon footprint
+    // You can replace this with a more detailed calculation based on event data
+    const estimatedFootprint = 100; // Example carbon footprint
+    return estimatedFootprint;
+  }
 }

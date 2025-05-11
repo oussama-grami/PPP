@@ -2,10 +2,8 @@
 <div class="retour">
   <button [routerLink]=RoutesEnum.MARKETPLACE class="retour-btn">
     <span class="back-icon">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-           fill="none">
-        <path d="M19.5 12H4.5M4.5 12L10.125 6M4.5 12L10.125 18" stroke="black"
-              stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path d="M19.5 12H4.5M4.5 12L10.125 6M4.5 12L10.125 18" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
     </span>
     <span class="retour-text">Retour aux projets</span>
@@ -74,8 +72,7 @@
         <div class="project-title">Tree planting in Testour</div>
 
         <div class="description">
-          <div class="description-paragraph"
-               [innerHTML]="project.description | formatDescription">
+          <div class="description-paragraph" [innerHTML]="project.description | formatDescription">
           </div>
         </div>
 
@@ -117,26 +114,20 @@
 
           <div class="col-lg-5 col-md-12">
             <div class="map-container">
-              <img
-                [src]="environment.apiUrl +
-              project.mapUrl" alt="map"
-                class="map-image">
+              <img [src]="project.mapUrl" alt="map" class="map-image">
             </div>
           </div>
         </div>
 
 
+
         <div class="section-title">Sustainable development objectives</div>
 
         <div class="objectives-container">
-          <div class="objective-item"><img src="/assets/img/objectif1.png"
-                                           alt="objectif1"></div>
-          <div class="objective-item"><img src="/assets/img/objectif2.png"
-                                           alt="objectif2"></div>
-          <div class="objective-item"><img src="/assets/img/objectif3.png"
-                                           alt="objectif3"></div>
-          <div class="objective-item"><img src="/assets/img/objectif4.png"
-                                           alt="objectif4"></div>
+          <div class="objective-item"><img src="/assets/img/objectif1.png" alt="objectif1"></div>
+          <div class="objective-item"><img src="/assets/img/objectif2.png" alt="objectif2"></div>
+          <div class="objective-item"><img src="/assets/img/objectif3.png" alt="objectif3"></div>
+          <div class="objective-item"><img src="/assets/img/objectif4.png" alt="objectif4"></div>
         </div>
 
       </div>
