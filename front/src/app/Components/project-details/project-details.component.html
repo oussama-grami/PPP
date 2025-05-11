@@ -14,7 +14,7 @@
 
 <div class="hero-container">
   <div class="container-img"
-       [ngStyle]="{'background-image': 'url(' + selectedImage +' )'}">
+       [ngStyle]="{'background-image': 'url(' + environment.apiUrl +project.mapUrl +' )'}">
     <div class="backgroundText">
       <div class="countryDetails">
         <!--<span class="flag">
@@ -32,8 +32,8 @@
             </defs>
           </svg>
         </span> -->
-        <span class="flag"><img [src]="project.flag"></span>
-        <span class="countryName">{{ project.country }}</span>
+       <!-- <span class="flag"><img [src]="project.flag"></span>-->
+       <!-- <span class="countryName">{{ project.country }}</span>-->
       </div>
       <div class="projectName">{{ project.name }}</div>
       <div class="projectCategory">{{ project.category }}</div>
@@ -45,7 +45,7 @@
   <div class="row">
     <div class="col-lg-8 col-md-12">
       <div class="description-content">
-        <div class="section-title">Description</div>
+        <!--<div class="section-title">Description</div>-->
 
         <div class="category">
           <!--<span>
@@ -67,8 +67,8 @@
             </span>
             <span id="categoryText">{{ project.typeOfProject }}</span>
           </span>-->
-          <span style="margin: 10px" class="flag"><img [src]="project.flag"></span>
-          <span id="categoryText">{{ project.typeOfProject }}</span>
+        <!--   <span style="margin: 10px" class="flag"><img [src]="project.flag"></span> -->
+         <!-- <span id="categoryText">{{ project.typeOfProject }}</span>-->
         </div>
 
         <div class="project-title">Tree planting in Testour</div>
@@ -127,16 +127,19 @@
 
 
         <div class="section-title">Sustainable development objectives</div>
-
         <div class="objectives-container">
-          <div class="objective-item"><img src="/assets/img/objectif1.png"
-                                           alt="objectif1"></div>
-          <div class="objective-item"><img src="/assets/img/objectif2.png"
-                                           alt="objectif2"></div>
-          <div class="objective-item"><img src="/assets/img/objectif3.png"
-                                           alt="objectif3"></div>
-          <div class="objective-item"><img src="/assets/img/objectif4.png"
-                                           alt="objectif4"></div>
+          <div class="objective-item">
+            <img [src]="project.imageUrl1" alt="objectif1" class="small-image">
+          </div>
+          <div class="objective-item">
+            <img [src]="project.imageUrl2" alt="objectif2" class="small-image">
+          </div>
+          <div class="objective-item">
+            <img [src]="project.imageUrl3" alt="objectif3" class="small-image">
+          </div>
+          <div class="objective-item">
+            <img [src]="project.imageUrl4" alt="objectif4" class="small-image">
+          </div>
         </div>
 
       </div>

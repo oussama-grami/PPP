@@ -94,6 +94,7 @@ import {ApiModule} from './api/api.module';
 import {environment} from 'src/environments/environment';
 import {KeycloakAngularModule, KeycloakService} from 'keycloak-angular';
 import {HttpTokenInterceptor} from './keycloaktoken.interceptor';
+import {SpinnerComponent} from "./Components/spinner/spinner.component";
 
 @NgModule({
   declarations: [
@@ -149,6 +150,7 @@ import {HttpTokenInterceptor} from './keycloaktoken.interceptor';
     EventHistoryComponent,
     CarbonHistoryComponent,
     EsgHistoryComponent,
+    SpinnerComponent,
   ],
   imports: [
     BrowserModule,

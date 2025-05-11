@@ -1031,3 +1031,22 @@ body {
     font-size: 14px;
   }
 }
+.objectives-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.objective-item {
+  flex: 1;
+  min-width: 0;
+  text-align: center;
+}
+
+.small-image {
+  max-width: 100%;
+  height: auto;
+  width: 100px; /* Vous pouvez ajuster cette valeur selon vos besoins */
+}

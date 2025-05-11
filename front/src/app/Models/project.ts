@@ -11,6 +11,10 @@ export class Project {
   public category : string  = '';
   public name : string  ='';
   public flag : string = '';
+  public imageUrl1 = '';
+  public imageUrl2 = '';
+  public imageUrl3 = '';
+  public imageUrl4 = '';
   public mapUrl : string = '';
   public availableStock: number = 0;
   public minimumPurchase:number = 0;
