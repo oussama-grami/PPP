@@ -1,7 +1,6 @@
 package com.ppp.Ecopilot.Entities;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.ppp.Ecopilot.Enums.Roles;
 import jakarta.persistence.*;
