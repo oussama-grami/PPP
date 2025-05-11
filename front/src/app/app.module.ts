@@ -59,6 +59,7 @@ import { EventResultComponent } from './Components/event-result/event-result.com
 import { PaymentConfirmationComponent } from './Components/payment-confirmation/payment-confirmation.component';
 import{ EcoLoadingSpinnerComponent } from './Components/eco-loading-spinner/eco-loading-spinner.component';
 import { FormatDescriptionPipe } from './pipes/format-description.pipe';
+import {SpinnerComponent} from "./Components/spinner/spinner.component";
 @NgModule({
   declarations: [
     AppComponent,
@@ -123,6 +124,7 @@ import { FormatDescriptionPipe } from './pipes/format-description.pipe';
     MatTableModule,
     MatButtonModule,
     BrowserAnimationsModule,
+    SpinnerComponent,
 
   ],
   providers: [],
