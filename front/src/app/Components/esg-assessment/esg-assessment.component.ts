@@ -41,7 +41,7 @@ export class EsgAssessmentComponent implements OnInit {
           this.esgService.setCurrentIndex(index);
         }
         this.loadCurrentQuestion();
-        this.loading = false;  // Stop loading after data is ready
+        this.loading = false;  
       });
     });
   }
@@ -66,7 +66,7 @@ export class EsgAssessmentComponent implements OnInit {
       option.isSelected = option === selectedOption;
     });
     this.choiceSelected = true;
-    this.selectedOption = selectedOption; // Store the selected option
+    this.selectedOption = selectedOption; 
   }
 
   addScoreAndNavigate() {

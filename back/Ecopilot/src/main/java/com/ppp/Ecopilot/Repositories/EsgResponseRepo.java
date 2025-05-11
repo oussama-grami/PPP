@@ -17,5 +17,4 @@ public interface EsgResponseRepo extends JpaRepository<EsgResponse, Long> {
     @EntityGraph(attributePaths = {"esgQuestion", "esgOption"})
     EsgResponse findByCompanyOwnerIdAndEsgQuestionId(long companyId , long questionId);
 
-
 }

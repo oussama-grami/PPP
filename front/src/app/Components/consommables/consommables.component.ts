@@ -8,8 +8,8 @@ import { RoutesEnum } from "../../enumerations/Routes.enum";
 
 @Component({
   selector: 'app-consommables',
-  templateUrl: './Consommables.component.html',
-  styleUrls: ['./Consommables.component.css']
+  templateUrl: './consommables.component.html',
+  styleUrls: ['./consommables.component.css']
 })
 export class ConsommablesComponent implements OnInit {
   consForm!: FormGroup;
@@ -28,9 +28,9 @@ export class ConsommablesComponent implements OnInit {
     // Initialize Reactive Form
     this.consForm = this.fb.group({
       expensesOnPaper: ['', [Validators.required, Validators.min(0)]],
-      unitPaper: [Unit.Dolar, [Validators.required]],
+      unitPaper: [Unit.DOLLAR, [Validators.required]],
       expensesOnSmallOfficeSupplies: ['', [Validators.required, Validators.min(0)]],
-      unitOfficeSupplies: [Unit.Dolar, [Validators.required]]
+      unitOfficeSupplies: [Unit.DOLLAR, [Validators.required]]
     });
   }
 

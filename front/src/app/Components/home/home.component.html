@@ -1,56 +1,77 @@
-<!-- Banner Section -->
+<!-- Banner Section - Keeping Original Structure -->
 <div style="overflow: auto;">
   <div style="position: relative;"
        [ngStyle]="{'background-image': 'url(/assets/Ecopilot/pan1.png)', 'background-size': 'cover', 'background-repeat': 'no-repeat', 'background-position': 'top center', 'width': '100%', 'height': '100%'}">
-    <div [ngStyle]="{'background-image': 'url(/assets/img/pan1.png)', 'background-size': 'cover', 'background-repeat': 'no-repeat', 'background-position': 'top center', 'width': '100%', 'height': '50vh'}" style="padding-top: 7%;">
-      <p class="headline-text">Measure your carbon footprint and take action for a more sustainable future</p>
-      <p class="subheading-text">EcoPilot is your partner in the fight against climate change and the promotion of responsible practices</p>
+    <div [ngStyle]="{'background-image': 'url(/assets/img/pan1.png)', 'background-size': 'cover', 'background-repeat': 'no-repeat', 'background-position': 'top center', 'width': '100%', 'height': '50vh'}" class="banner-container">
+      <div class="banner-content">
+        <p class="headline-text">Measure your carbon footprint and take action for a more sustainable future</p>
+        <p class="subheading-text">EcoPilot is your partner in the fight against climate change and the promotion of responsible practices</p>
+        <button class="btn  btn-primary-green-v2 mt-4">Get Started</button>
+      </div>
     </div>
   </div>
 </div>
 
-<!-- Section 1 -->
+<!-- Section 1 - Keeping Original Structure -->
 <div class="container my-5">
   <div class="row align-items-center">
     <!-- Mobile order -->
-    <div class="col-12 d-md-none text-center">
+    <div class="col-12 d-md-none text-center content-box">
       <p class="section-heading">Are you looking for a <span class="highlight-text">simple, easy, and reliable solution</span> to engage your company in the sustainability journey?</p>
       <p class="section-paragraph">Our platform is designed to help you make relevant decisions regarding sustainability and implement concrete measures to reduce your environmental impact and strengthen your ESG performance.</p>
     </div>
     <div class="col-12 d-md-none">
-      <img src="/assets/img/home_photo.jpg" class="img-fluid w-100" alt="EcoPilot">
+      <img src="/assets/img/home_photo.jpg" class="img-fluid w-100 rounded shadow-img" alt="EcoPilot">
     </div>
 
     <!-- Desktop order -->
-    <div class="col-md-6 d-none d-md-block">
+    <div class="col-md-6 d-none d-md-block content-box">
       <p class="section-heading">Are you looking for a <span class="highlight-text">simple, easy, and reliable solution</span> to engage your company in the sustainability journey?</p>
       <p class="section-paragraph">Our platform is designed to help you make relevant decisions regarding sustainability and implement concrete measures to reduce your environmental impact and strengthen your ESG performance.</p>
+      <button class="btn btn-outline-green">Learn More</button>
     </div>
     <div class="col-md-6 d-none d-md-block">
-      <img src="/assets/img/home_photo.jpg" class="img-fluid w-100" alt="EcoPilot">
+      <img src="/assets/img/home_photo.jpg" class="img-fluid w-100 rounded shadow-img" alt="EcoPilot">
+    </div>
+  </div>
+</div>
+
+<!-- Services Header -->
+<div class="container-fluid bg-light-green py-4">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 text-center">
+        <h6 class="section-title">• OUR SERVICES •</h6>
+        <h2 class="services-main-heading">Comprehensive Sustainability Solutions</h2>
+      </div>
     </div>
   </div>
 </div>
 
 <!-- Section 2 - ESG -->
-<div class="container my-5">
+<div class="container my-5 service-section">
   <div class="row align-items-center">
     <!-- Mobile order -->
-    <div class="col-12 d-md-none text-center">
+    <div class="col-12 d-md-none text-center content-box">
       <div class="section-title">• ESG criteria •</div>
       <h2 class="section-heading">ESG Performance</h2>
       <div class="section-paragraph">We provide an analysis of your ESG approach, highlighting your strengths and areas for improvement, along with a personalized roadmap to enhance your ESG position.​</div>
       <button class="btn btn-green mt-3 w-100" [routerLink]="'/esg'">Calculate Your ESG Performance</button>
     </div>
     <div class="col-12 d-md-none">
-      <img src="assets/img/ph3.svg" class="img-fluid w-100" alt="ESG Performance">
+      <div class="image-wrapper">
+        <img src="assets/img/ph3.svg" class="img-fluid w-100" alt="ESG Performance">
+      </div>
     </div>
 
     <!-- Desktop order -->
     <div class="col-md-6 d-none d-md-block">
-      <img src="assets/img/ph3.svg" class="img-fluid w-100" alt="ESG Performance">
+      <div class="image-wrapper">
+        <img src="assets/img/ph3.svg" class="img-fluid w-100" alt="ESG Performance">
+        <div class="accent-circle accent-circle-1"></div>
+      </div>
     </div>
-    <div class="col-md-6 text-md-left d-none d-md-block">
+    <div class="col-md-6 text-md-left d-none d-md-block content-box">
       <div class="section-title">• ESG criteria •</div>
       <h2 class="section-heading">ESG Performance</h2>
       <div class="section-paragraph">We provide an analysis of your ESG approach, highlighting your strengths and areas for improvement, along with a personalized roadmap to enhance your ESG position.​</div>
@@ -60,51 +81,61 @@
 </div>
 
 <!-- Section 3 - Carbon -->
-<div class="container my-5">
+<div class="container my-5 service-section">
   <div class="row align-items-center">
     <!-- Mobile order -->
-    <div class="col-12 d-md-none text-center">
+    <div class="col-12 d-md-none text-center content-box">
       <div class="section-title">• Carbon Emission •</div>
       <h2 class="section-heading">Managing your carbon emissions</h2>
       <p class="section-paragraph">We offer a carbon footprint calculation tool that simplifies evaluating your activity's environmental impact through an easy-to-use questionnaire, streamlining the evaluation process.​</p>
       <button class="btn btn-green mt-3 w-100" [routerLink]="'/carbone'">Calculate Your Carbon Emissions</button>
     </div>
     <div class="col-12 d-md-none">
-      <img src="assets/img/ph4.svg" class="img-fluid w-100" alt="Carbon Emission">
+      <div class="image-wrapper">
+        <img src="assets/img/ph4.svg" class="img-fluid w-100" alt="Carbon Emission">
+      </div>
     </div>
 
     <!-- Desktop order -->
-    <div class="col-md-6 d-none d-md-block">
+    <div class="col-md-6 d-none d-md-block content-box">
       <div class="section-title">• Carbon Emission •</div>
       <h2 class="section-heading">Managing your carbon emissions</h2>
       <p class="section-paragraph">We offer a carbon footprint calculation tool that simplifies evaluating your activity's environmental impact through an easy-to-use questionnaire, streamlining the evaluation process.​</p>
       <button class="btn btn-green mt-3" [routerLink]="'/carbone'">Calculate Your Carbon Emissions</button>
     </div>
     <div class="col-md-6 d-none d-md-block">
-      <img src="assets/img/ph4.svg" class="img-fluid w-100" alt="Carbon Emission">
+      <div class="image-wrapper">
+        <img src="assets/img/ph4.svg" class="img-fluid w-100" alt="Carbon Emission">
+        <div class="accent-circle accent-circle-2"></div>
+      </div>
     </div>
   </div>
 </div>
 
 <!-- Section 4 - Green Projects -->
-<div class="container my-5">
+<div class="container my-5 service-section">
   <div class="row align-items-center">
     <!-- Mobile order -->
-    <div class="col-12 d-md-none text-center">
+    <div class="col-12 d-md-none text-center content-box">
       <div class="section-title">• PROJECT OBJECTIVES •</div>
       <h2 class="section-heading">Potential of green projects</h2>
       <div class="section-paragraph">Our platform offers ecological project leaders an assessment of the CO2 absorption/reduction potential of their green initiatives.</div>
       <button class="btn btn-green mt-3 w-100" [routerLink]="'/porteur'">Calculate your carbon reductions</button>
     </div>
     <div class="col-12 d-md-none">
-      <img src="assets/img/ph5.svg" class="img-fluid w-100" alt="Green Projects">
+      <div class="image-wrapper">
+        <img src="assets/img/ph5.svg" class="img-fluid w-100" alt="Green Projects">
+      </div>
     </div>
 
     <!-- Desktop order -->
     <div class="col-md-6 d-none d-md-block">
-      <img src="assets/img/ph5.svg" class="img-fluid w-100" alt="Green Projects">
+      <div class="image-wrapper">
+        <img src="assets/img/ph5.svg" class="img-fluid w-100" alt="Green Projects">
+        <div class="accent-circle accent-circle-3"></div>
+      </div>
     </div>
-    <div class="col-md-6 d-none d-md-block">
+    <div class="col-md-6 d-none d-md-block content-box">
       <div class="section-title">• PROJECT OBJECTIVES •</div>
       <h2 class="section-heading">Potential of green projects</h2>
       <div class="section-paragraph">Our platform offers ecological project leaders an assessment of the CO2 absorption/reduction potential of their green initiatives.</div>
@@ -113,19 +144,32 @@
   </div>
 </div>
 
-<!-- Section 5 - Marketplace -->
-<div class="container my-5">
-  <div class="m-2 mt-5">
-    <div class="mt-2 section-title center">• Sustainable Projects Marketplace •</div>
-    <div class="marketplace-header">Explore the Carbon Credits Marketplace</div>
-    <div class="marketplace-text">
-      If you are looking to offset your carbon emissions by purchasing carbon credits, or if you wish to submit a sustainable project to sell your carbon credits on a voluntary pan-African market, you have come to the right place.
+<!-- Section 5 - Marketplace with CTA Inside -->
+<div class="container-fluid bg-light-green py-5">
+  <div class="container-fluid px-4" style="width: 90%;">
+    <div class="row justify-content-center">
+      <div class="col-12">
+        <div class="marketplace-container">
+          <div class="mb-4 text-center">
+
+            <div class="section-title center">• Sustainable Projects Marketplace •</div>
+            <div class="marketplace-header">Explore the Carbon Credits Marketplace</div>
+            <div class="marketplace-text">
+              If you are looking to offset your carbon emissions by purchasing carbon credits, or if you wish to submit a sustainable project to sell your carbon credits on a voluntary pan-African market, you have come to the right place.
+            </div>
+          </div>
+
+          <!-- Carousel Section with 90% Width -->
+          <div class="carousel-container">
+            <app-projects-carousel></app-projects-carousel>
+          </div>
+          <div class="text-center mt-4">
+            <button [routerLink]="'/marketplace'" class="btn btn-primary-green explore-button">
+              <span  >Explore all the green projects</span>
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="row mt-5">
-      <app-projects-carousel></app-projects-carousel>
-    </div>
-    <button [routerLink]="'/marketplace'" class="btn btn-outline-green explore-button">
-      <span class="explore-button-text">Explore all the green projects</span>
-    </button>
   </div>
 </div>

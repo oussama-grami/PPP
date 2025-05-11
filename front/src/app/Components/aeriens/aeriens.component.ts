@@ -54,7 +54,7 @@ export class AeriensComponent implements OnInit {
       };
 
       this.carbonService.updateAerien(aerienData);
-      this.router.navigate(['/' + RoutesEnum.CONSOMMABLES]);
+      this.router.navigate(['/' + RoutesEnum.FRET]);
     } else {
       this.errorMessage = 'Please fill in all required fields correctly.';
     }

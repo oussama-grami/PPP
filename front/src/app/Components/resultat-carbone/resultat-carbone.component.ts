@@ -1,74 +1,39 @@
-import {Component, OnInit} from '@angular/core';
-import {CarburantService} from "../../Service/carburant.service";
-import {EnergieService} from "../../Service/energie.service";
-import {ConsommablesService} from "../../Service/consommables.service";
-import {AerienService} from "../../Service/aerien.service";
-import {FretService} from "../../Service/fret.service";
-import {ImmobilisationService} from "../../Service/immobilisation.service";
-import {forkJoin} from "rxjs";
+import { Component, OnInit } from '@angular/core';
+import { CarbonFootprintService } from '../../Service/carbon-footprint.service';
+import { CarbonFootprintResponse } from '../../Models/carbonFootprintResponse';
+import { ActivatedRoute } from '@angular/router';
+import { RoutesEnum } from '../../enumerations/Routes.enum';
 
 @Component({
   selector: 'app-resultat-carbone',
   templateUrl: './resultat-carbone.component.html',
-  styleUrls: ['./resultat-carbone.component.css']
+  styleUrls: ['./resultat-carbone.component.css'],
 })
 export class ResultatCarboneComponent implements OnInit {
-  value = 50;
-  emE: number = 0;
-  emC: number = 0;
-  emD: number = 0;
-  emF: number = 0;
-  emI: number = 0;
-  emCo: number = 0;
-  total: number = 0;
-  percentageA: number = 0;
-  percentageE: number = 0;
-  percentageC: number = 0;
-  percentageI: number = 0;
-  percentageCo: number = 0;
-  percentageF: number = 0;
+  carbonFootprintResponse: CarbonFootprintResponse | null = null;
+  companyOwnerId: number = 0;
+  calculationId?: number;
 
-  constructor(private carService: CarburantService, private eneService: EnergieService, private conService: ConsommablesService, private depService: AerienService, private fretService: FretService, private immService: ImmobilisationService) {
-  }
-
+  constructor(
+    private carboneFootprintService: CarbonFootprintService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     window.scrollTo(0, 0);
+    this.route.paramMap.subscribe(params => {
+      const ownerId = params.get('companyOwnerId');
+      const calcId = params.get('id');
+      this.companyOwnerId =7;
+      if (calcId) this.calculationId = +calcId;
 
-    const observables = [
-      this.carService.calculer(2023, 1),
-      this.eneService.calculer(2023, 1),
-      this.conService.calculer(2023, 1),
-      this.depService.calculer(2023, 1),
-      this.fretService.calculer(2023, 1),
-      this.immService.calculer(2023, 1),
-    ];
-
-
-    forkJoin(observables).subscribe((results: number[]) => {
-      [this.emC, this.emE, this.emCo, this.emD, this.emF, this.emI] = results;
-
-      this.total = this.emI + this.emE + this.emD + this.emCo + this.emF + this.emC;
-
-      if (this.total !== 0) {
-        this.percentageA = (this.emD / this.total) * 100;
-        this.percentageE = (this.emE / this.total) * 100;
-        this.percentageI = (this.emI / this.total) * 100;
-        this.percentageC = (this.emC / this.total) * 100;
-        this.percentageCo = (this.emCo / this.total) * 100;
-        this.percentageF = (this.emF / this.total) * 100;
-      }
-      console.log(this.emC);
-
-
-      console.log("Energy", this.percentageE);
-      console.log("Fuel", this.percentageC);
-      console.log("Air travel", this.percentageA);
-      console.log("Freights", this.percentageF);
-      console.log("Consumables", this.percentageCo);
-      console.log("Fixed assets", this.percentageI);
-
-
+      this.carboneFootprintService
+        .getCalculationByIdOrLast(this.companyOwnerId, this.calculationId)
+        .subscribe(response => {
+          this.carbonFootprintResponse = response;
+        });
     });
   }
+
+  protected readonly RoutesEnum = RoutesEnum;
 }

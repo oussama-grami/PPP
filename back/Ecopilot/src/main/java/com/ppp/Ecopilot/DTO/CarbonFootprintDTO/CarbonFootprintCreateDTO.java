@@ -1,6 +1,5 @@
 package com.ppp.Ecopilot.DTO.CarbonFootprintDTO;
 
-import com.ppp.Ecopilot.DTO.BaseDTO;
 import com.ppp.Ecopilot.Enums.CarburantType;
 import com.ppp.Ecopilot.Enums.Unit;
 import lombok.*;
@@ -14,9 +13,12 @@ import java.util.Date;
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CarbonFootprintCreateDTO  {
-    @NotBlank(message = "Country is required")
+public class CarbonFootprintCreateDTO {
 
+    @NotBlank(message = "Company name is required")
+    private String companyName;
+
+    @NotBlank(message = "Country is required")
     private String country;
 
     @NotBlank(message = "Activity sector is required")
@@ -126,6 +128,9 @@ public class CarbonFootprintCreateDTO  {
 
     @PositiveOrZero(message = "Value must be positive or zero")
     private double tonsOfSeaFreightShort;
+
+    @PositiveOrZero(message = "Value must be positive or zero")
+    private double totalEmissions;
 
     private Unit unitFourniture;
     private Unit unitPaper;

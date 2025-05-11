@@ -52,29 +52,7 @@ public class CarbonFootprintDataServiceImpl
         return CarbonFootprintData.class;
     }
 
-    // --- Entity-level CRUD ---
 
-    @Override
-    public CarbonFootprintData save(CarbonFootprintData entity) {
-        return super.save(entity);
-    }
-
-    @Override
-    public List<CarbonFootprintData> findAll() {
-        return super.findAll();
-    }
-
-    @Override
-    public CarbonFootprintData findById(Long id) {
-        return super.findById(id);
-    }
-
-    @Override
-    public void deleteById(Long id) {
-        super.deleteById(id);
-    }
-
-    // --- DTO-based methods ---
 
     @Override
     public CarbonFootprintData saveData(CarbonFootprintCreateDTO dto) {
@@ -82,22 +60,10 @@ public class CarbonFootprintDataServiceImpl
                 .orElseThrow(() -> new EntityNotFoundException("CompanyOwner not found"));
 
         CarbonFootprintData entity = createMapper.toEntityWithOwner(dto, owner);
-
-        // Step 1: Build request and send POST to model API
         CarbonFootprintModelRequest modelRequest = calculationService.buildModelRequestFromEntity(entity);
 
-        // Step 2: Compute individual emissions and set on entity
-        entity.setCarburantEmissions(calculationService.calculateCarburantEmissions(entity));
-        entity.setEnergyEmissions(calculationService.calculateEnergyEmissions(entity));
-        entity.setImmobilisationEmissions(calculationService.calculateImmobilisationEmissions(entity));
-        entity.setConsomableEmissions(calculationService.calculateConsomableEmissions(entity));
-        entity.setFreightEmission(calculationService.calculateFreightEmissions(entity));
-        entity.setAerienEmission(calculationService.calculateAerienEmissions(entity));
-
-        // Step 3: Get total emission using the jobId
         CompletableFuture<Double> totalEmission = calculationService.calculateTotalEmissionFromModelAsync(modelRequest);
         entity.setTotalEmissions(totalEmission.join());
-        // Step 4: Save everything
         return repository.save(entity);
     }
 
@@ -115,7 +81,6 @@ public class CarbonFootprintDataServiceImpl
         return dataMapper.toDto(entity);
     }
 
-    // --- Business-specific methods ---
 
     @Override
     public List<CarbonFootprintDataDTO> findByCompanyOwnerId(Long ownerId) {

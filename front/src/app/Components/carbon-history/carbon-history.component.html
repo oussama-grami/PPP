@@ -1,0 +1,90 @@
+<div class="eco-dashboard">
+  <!-- Fixed button for adding new events -->
+  <div class="d-flex justify-content-end mb-4">
+    <button [routerLink]="['/'+RoutesEnum.CARBONE]" class="eco-btn-primary">
+      <i class="fa fa-leaf me-2"></i> New Carbon Calculation
+    </button>
+  </div>
+
+  <!-- Main content container -->
+  <div class="event-panel">
+    <!-- Panel header with dark green -->
+    <div class="panel-header">
+      <div class="header-content">
+        <h4>Carbon Footprint History</h4>
+        <span class="event-counter" *ngIf="carbonHistory.length">{{carbonHistory.length}} Records</span>
+      </div>
+    </div>
+
+    <!-- Loading State -->
+    <div *ngIf="isLoading" class="eco-loading-state">
+      <div class="eco-spinner">
+        <div class="spinner-leaf"></div>
+      </div>
+      <p>Loading your environmental impact data...</p>
+    </div>
+
+    <!-- Error message -->
+    <div *ngIf="errorMessage" class="empty-state">
+      <div class="empty-icon">
+        <i class="fa fa-exclamation-triangle"></i>
+      </div>
+      <p>{{ errorMessage }}</p>
+      <button [routerLink]="['/'+RoutesEnum.CARBONE]" class="eco-btn-primary">
+        Try Again
+      </button>
+    </div>
+
+    <!-- No Records State -->
+    <div *ngIf="!isLoading && !errorMessage && carbonHistory.length === 0" class="empty-state">
+      <div class="empty-icon">
+        <i class="fa fa-seedling"></i>
+      </div>
+      <p>Start tracking your carbon footprint</p>
+      <button [routerLink]="['/'+RoutesEnum.CARBONE]" class="eco-btn-primary">
+        Create Your First Record
+      </button>
+    </div>
+
+    <!-- Table with Carbon History -->
+    <div class="eco-table-container" *ngIf="!isLoading && !errorMessage && carbonHistory.length">
+      <table class="eco-table">
+        <thead>
+        <tr>
+          <th>Date</th>
+          <th>Country</th>
+          <th class="text-center">Activity Sector</th>
+          <th>Carbon Emissions</th>
+          <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let record of carbonHistory; let i = index" [ngClass]="{'alt-row': i % 2 !== 0}">
+          <td class="event-name-cell">
+            {{ record.createdDate }}
+          </td>
+          <td>
+            {{ record.country }}
+          </td>
+          <td class="text-center">
+            <span class="eco-badge">{{ record.activitySector }}</span>
+          </td>
+          <td class="emission-cell">
+            <span class="emission-value">{{ record.totalEmissions }} kg CO₂</span>
+          </td>
+          <td>
+            <div class="action-buttons">
+              <button [routerLink]="['/'+RoutesEnum.RESULTAT_CARBONE, record.id]" class="eco-btn-view" aria-label="View">
+                <i class="fa fa-eye"></i>
+              </button>
+              <button (click)="deleteRecord(record.id)" class="eco-btn-delete" aria-label="Delete">
+                <i class="fa fa-trash"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

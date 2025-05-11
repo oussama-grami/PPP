@@ -1,24 +1,47 @@
-import pandas as pd
-import numpy as np
-import statsmodels.api as sm
-import matplotlib.pyplot as plt
-from io import StringIO
-import io
-from flask import Flask, request, jsonify
+
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
-from statsmodels.tsa.statespace.sarimax import SARIMAX
-from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 from azure.ai.inference import ChatCompletionsClient
 from azure.ai.inference.models import SystemMessage, UserMessage
 from azure.core.credentials import AzureKeyCredential
 import xgboost as xgb
-import base64
-import os
+
 import joblib
+from flask import Flask, request, jsonify
+import pandas as pd
+from prophet import Prophet
 
 
+from statsmodels.tsa.arima.model import ARIMA
+from prophet import Prophet
+import itertools
+
+
+from flask import Flask, request, jsonify
+import pandas as pd
+import numpy as np
+
+# forecasting libraries
+from statsmodels.tsa.statespace.sarimax import SARIMAX
+from statsmodels.tsa.holtwinters import ExponentialSmoothing
+from prophet import Prophet
+
+from sklearn.metrics import mean_absolute_error, r2_score, mean_squared_error
+import itertools
+import torch
+import torch.nn as nn
+from datetime import datetime
+from dateutil.relativedelta import relativedelta
+
+
+
+
+from flask import Flask, request, jsonify
+import pandas as pd
+import numpy as np
+app = Flask(__name__)
 class EventData:
     def __init__(self,
                  event_name: str,
@@ -57,225 +80,8 @@ class EventData:
         self.total_emissions = total_emissions
 
 
-app = Flask(__name__)
 
 
-from prophet import Prophet
-
-from flask import Flask, request, jsonify
-import pandas as pd
-from prophet import Prophet
-
-
-from statsmodels.tsa.arima.model import ARIMA
-from prophet import Prophet
-import itertools
-
-
-
-from flask import Flask, request, jsonify
-import pandas as pd
-import numpy as np
-
-# forecasting libraries
-from statsmodels.tsa.statespace.sarimax import SARIMAX
-from statsmodels.tsa.holtwinters import ExponentialSmoothing
-from prophet import Prophet
-
-from sklearn.metrics import mean_absolute_error, r2_score, mean_squared_error
-import itertools
-
-app = Flask(__name__)
-
-def validate_input(data):
-    required = {'year', 'month', 'carbon_footprint_kgCO2'}
-    if not isinstance(data, dict) or not required.issubset(data):
-        missing = required - set(data)
-        raise ValueError(f"Missing required fields: {missing}")
-    df = pd.DataFrame(data)
-    if not np.issubdtype(df['year'].dtype, np.integer):
-        raise ValueError("Year must be integer values")
-    if not df['month'].between(1, 12).all():
-        raise ValueError("Month values must be between 1 and 12")
-
-def preprocess_data(df):
-    df = df.copy()
-    df['date'] = pd.to_datetime({
-        'year':  df['year'],
-        'month': df['month'],
-        'day':   1
-    })
-    df = df.set_index('date').sort_index().asfreq('MS')
-
-    if len(df) < 12:
-        raise ValueError("Need at least 12 months of data")
-
-    # Remove extreme outliers (3×IQR)
-    q1 = df['carbon_footprint_kgCO2'].quantile(0.25)
-    q3 = df['carbon_footprint_kgCO2'].quantile(0.75)
-    iqr = q3 - q1
-    mask = (df['carbon_footprint_kgCO2'] >= q1 - 3*iqr) & \
-           (df['carbon_footprint_kgCO2'] <= q3 + 3*iqr)
-    df = df.loc[mask]
-
-    # Interpolate and fill missing, then clamp to non-negative
-    df['carbon_footprint_kgCO2'] = (
-        df['carbon_footprint_kgCO2']
-          .interpolate(method='time')
-          .bfill()
-          .ffill()
-    )
-    df['carbon_footprint_kgCO2'] = df['carbon_footprint_kgCO2'].clip(lower=0)
-    return df
-
-def tune_and_select(train, val):
-    best_mae = np.inf
-    best = (None, None, None, None)
-    h = len(val)
-
-    # Seasonal SARIMAX grid
-    non_seasonal = list(itertools.product(range(0,3), repeat=3))
-    seasonal = [(P, D, Q, 12) for P, D, Q in itertools.product(range(0,2), repeat=3)]
-    for order in non_seasonal:
-        for seas in seasonal:
-            try:
-                m = SARIMAX(
-                    train,
-                    order=order,
-                    seasonal_order=seas,
-                    enforce_stationarity=False,
-                    enforce_invertibility=False
-                )
-                res = m.fit(disp=False)
-                pred = res.forecast(h)
-                # clamp negatives
-                pred = np.clip(pred, 0, None)
-                mae = mean_absolute_error(val, pred)
-                name = f"SARIMAX{order}x{seas}"
-                if mae < best_mae:
-                    best_mae = mae
-                    best = (res, name, 'sarimax', best_mae)
-            except Exception:
-                continue
-
-    # ETS grid with damping
-    for trend, seasonal, damp in itertools.product(['add','mul'], ['add','mul'], [True]):
-        try:
-            m = ExponentialSmoothing(
-                train,
-                trend=trend,
-                seasonal=seasonal,
-                seasonal_periods=12,
-                damped_trend=damp
-            ).fit(optimized=True)
-            pred = m.forecast(h)
-            pred = np.clip(pred, 0, None)
-            mae = mean_absolute_error(val, pred)
-            name = f"ETS(trend={trend},seasonal={seasonal},damped={damp})"
-            if mae < best_mae:
-                best_mae = mae
-                best = (m, name, 'ets', best_mae)
-        except Exception:
-            continue
-
-    # Prophet grid
-    try:
-        pdf = train.reset_index().rename(columns={'date':'ds', 'carbon_footprint_kgCO2':'y'})
-        m = Prophet(yearly_seasonality=True, interval_width=0.95)
-        m.fit(pdf)
-        future = m.make_future_dataframe(periods=h, freq='MS')
-        fcst = m.predict(future)['yhat'].iloc[-h:].values
-        fcst = np.clip(fcst, 0, None)
-        mae = mean_absolute_error(val, fcst)
-        name = 'Prophet'
-        if mae < best_mae:
-            best_mae = mae
-            best = (m, name, 'prophet', best_mae)
-    except Exception:
-        pass
-
-    return best
-
-@app.route('/forecast', methods=['POST'])
-def ForecastCarbonFootprint():
-    try:
-        data = request.get_json(force=True)
-        validate_input(data)
-
-        df = pd.DataFrame(data)
-        df = preprocess_data(df)
-        series = df['carbon_footprint_kgCO2']
-
-        # split 80/20 train/validation
-        n = len(series)
-        train_size = int(np.floor(0.8 * n))
-        train = series.iloc[:train_size]
-        val = series.iloc[train_size:]
-        val_horizon = len(val)
-
-        model_obj, model_name, model_type, best_mae = tune_and_select(train, val)
-        if model_obj is None:
-            raise RuntimeError("All model fits failed")
-
-        # Print selected model and accuracy metrics
-        print(f"Model used: {model_name}")
-        if model_type in ['sarimax', 'ets']:
-            val_pred = model_obj.forecast(val_horizon)
-        else:
-            future_val = model_obj.make_future_dataframe(periods=val_horizon, freq='MS')
-            val_pred = model_obj.predict(future_val)['yhat'].iloc[-val_horizon:].values
-        val_pred = np.clip(val_pred, 0, None)
-        r2 = r2_score(val, val_pred)
-        print(f"Hold-out MAE:  {best_mae:.2f}")
-        print(f"Hold-out RMSE: {np.sqrt(mean_squared_error(val, val_pred)):.2f}")
-        print(f"Hold-out R²:   {r2:.3f}")
-        print(f"Hold-out MAPE: {(np.mean(np.abs((val - val_pred) / val)) * 100):.1f}%")
-
-        # Refit on full series and forecast next 6 months
-        forecast_horizon = 6
-        if model_type == 'sarimax':
-            order = model_obj.model.order
-            seas = model_obj.model.seasonal_order
-            full = SARIMAX(
-                series,
-                order=order,
-                seasonal_order=seas,
-                enforce_stationarity=False,
-                enforce_invertibility=False
-            ).fit(disp=False)
-            fcst = full.forecast(forecast_horizon)
-        elif model_type == 'ets':
-            fcst = model_obj.forecast(forecast_horizon)
-        else:
-            pdf_full = series.reset_index().rename(columns={'date':'ds','carbon_footprint_kgCO2':'y'})
-            m = Prophet(yearly_seasonality=True, interval_width=0.95)
-            m.fit(pdf_full)
-            fut = m.make_future_dataframe(periods=forecast_horizon, freq='MS')
-            fcst = m.predict(fut)['yhat'].tail(forecast_horizon).values
-        # clamp forecast
-        fcst = np.clip(fcst, 0, None)
-
-        # build output
-        last = df.index[-1]
-        future_idx = pd.date_range(start=last, periods=forecast_horizon+1, freq='MS')[1:]
-        out = [
-            {
-                'year': int(d.year),
-                'month': int(d.month),
-                'carbon_footprint_kgCO2': round(float(max(v, 0)), 2)
-            } for d, v in zip(future_idx, fcst)
-        ]
-
-        return jsonify({
-            'model_used': model_name,
-            'predicted_carbon_footprint_kgCO2': out
-        })
-    except Exception as e:
-        print(f"Forecast endpoint error: {e}")
-        return jsonify({'error': str(e)}), 400
-
-if __name__ == '__main__':
-    app.run(debug=True)
 # partie eya
 # Define the custom_loss function (must match the one used during training)
 def custom_loss(y_true, y_pred):
@@ -283,50 +89,52 @@ def custom_loss(y_true, y_pred):
     hessian = np.where(y_pred < 0, 0, 2)
     return gradient, hessian
 
-ensemble_model = joblib.load('ensemble_event_emission_model.pkl')
-xgb_pipeline = ensemble_model['xgb_model']
-gamma_pipeline = ensemble_model['gamma_model']
-best_alpha = ensemble_model['alpha']
+model = joblib.load('ensemble_event_emission_model.pkl')
+xgb_pipeline = model["xgb_model"]
+gamma_pipeline = model["gamma_model"]
 
+# Used columns (exclude Event Type, Venue Type, Location)
+used_columns = [
+    "Duration (hours)", "Participants", "Number of Devices", "Avg Power per Device (kW)",
+    "Energy Usage Hours", "Transport Distance (km)", "Attendees Using Transport",
+    "Number of Meals", "Printed Material (kg)", "Decoration Material (kg)",
+    "Transport Mode", "Meal Type"
+]
 
 @app.route('/eventPredict', methods=['POST'])
 def eventPredict():
     try:
-        # Get the JSON data from the request
         data = request.get_json(force=True)
 
-        # Ensure the input is a list of dictionaries
         if not isinstance(data, list):
-            return jsonify({"error": "Input data must be a list of dictionaries"}), 400
+            return jsonify({"error": "Input must be a list of event objects"}), 400
 
-        # Convert input data to a DataFrame
-        input_data = pd.DataFrame(data)
+        input_df = pd.DataFrame(data)
 
-        # Define required columns
-        required_columns = [
-            "Duration (hours)", "Participants", "Number of Devices", "Avg Power per Device (kW)",
-            "Energy Usage Hours", "Transport Distance (km)", "Attendees Using Transport",
-            "Number of Meals", "Printed Material (kg)", "Decoration Material (kg)",
-            "Event Type", "Venue Type", "Location", "Transport Mode", "Meal Type"
-        ]
-        missing_columns = set(required_columns) - set(input_data.columns)
-        if missing_columns:
-            return jsonify({"error": f"Columns are missing: {missing_columns}"}), 400
+        missing = set(used_columns) - set(input_df.columns)
+        if missing:
+            return jsonify({"error": f"Missing columns: {missing}"}), 400
 
-        # Make predictions using the XGBoost model
-        xgb_pred = xgb_pipeline.predict(input_data)
+        categorical_features = ["Transport Mode", "Meal Type"]
+        for col in categorical_features:
+            if col in input_df.columns and input_df[col].dtype == object:
+                input_df[col] = input_df[col].str.lower()
 
-        # Make predictions using the Gamma Regression model
-        gamma_pred = np.expm1(gamma_pipeline.predict(input_data))  # Reverse log-transform
+        input_filtered = input_df[used_columns]
 
-        # Combine predictions using the best alpha value
-        ensemble_pred = best_alpha * xgb_pred + (1 - best_alpha) * gamma_pred
+        xgb_preds = xgb_pipeline.predict(input_filtered)
+        final_preds = []
 
-        # Replace negative ensemble predictions with Gamma Regression predictions
-        ensemble_pred = np.where(ensemble_pred < 0, gamma_pred, ensemble_pred)
+        for i, pred in enumerate(xgb_preds):
+            if pred < 0:
+                gamma_pred = np.expm1(gamma_pipeline.predict(input_filtered.iloc[[i]]))[0]
+                averaged = (pred + gamma_pred) / 2
+                final_preds.append(float(averaged))
+            else:
+                final_preds.append(float(pred))
 
-        # Return the predictions as a JSON response
-        return jsonify({"predictions": ensemble_pred.tolist()})
+        print("Final Predictions:", final_preds)
+        return jsonify({"predictions": final_preds})
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
@@ -370,9 +178,9 @@ def predict():
 
 
 # Configuration Azure
-AZURE_ENDPOINT = "https://models.inference.ai.azure.com"
-AZURE_TOKEN = "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"
-MODEL_NAME = "gpt-4o-mini"
+AZURE_ENDPOINT ="https://models.github.ai/inference"
+AZURE_TOKEN = "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"
+MODEL_NAME = "openai/gpt-4.1-mini"
 
 
 # Fonction pour générer le prompt à partir des données
@@ -380,7 +188,7 @@ def generate_prompt(data):
     return f"""
     ### COMPANY CONTEXT ###
     Generate as many relevant technical recommendations as possible
-    related to the value of each parameter below 
+    related to the value of each parameter below
     unknown to the company or normal user IN ENGLISH
     and only for parameters with values
     slightly high or very high compared to standards
@@ -395,44 +203,44 @@ def generate_prompt(data):
     ### DATA ###
     ## GENERAL ##
     - Country : {data.get('country', 'Not specified')}
-    - Business Sector : {data.get('activitySector', 'Not specified')}
-    - Number of Full-Time Employees : {data.get('numberOfFullTimeEmployees', 'Not specified')}
-    - Telework Percentage : {data.get('percentageOfTelework', 'Not specified')}%
+    - Business Sector : {data.get('activity_sector', 'Not specified')}
+    - Number of Full-Time Employees : {data.get('number_of_full_time_employees', 'Not specified')}
+    - Telework Percentage : {data.get('percentage_of_telework', 'Not specified')}%
     ## Energy ##
-    - Annual Electricity Consumption : {data.get('annualConsumptionOfElectricity', 0)}
-    - Annual Natural Gas Consumption : {data.get('annualConsumptionOfNaturalGas', 0)}
-    - Annual Propane Consumption : {data.get('annualConsumptionOfPropane', 0)}
-    - Annual Fuel Consumption : {data.get('annualConsumptionOfFuel', 0)}
-    - Annual Coal Consumption : {data.get('annualConsumptionOfCoal', 0)}
-    - Annual Refrigerant Consumption : {data.get('annualConsumptionOfRefrigerant', 0)}
-    - Annual LPG Consumption : {data.get('annualConsumptionOfGPL', 0)}
+    - Annual Electricity Consumption : {data.get('annual_consumption_of_electricity', 0)}
+    - Annual Natural Gas Consumption : {data.get('annual_consumption_of_natural_gas', 0)}
+    - Annual Propane Consumption : {data.get('annual_consumption_of_propane', 0)}
+    - Annual Fuel Consumption : {data.get('annual_consumption_of_fuel', 0)}
+    - Annual Coal Consumption : {data.get('annual_consumption_of_coal', 0)}
+    - Annual Refrigerant Consumption : {data.get('annual_consumption_of_refrigerant', 0)}
+    - Annual LPG Consumption : {data.get('annual_consumption_of_GPL', 0)}
     ## Transport ##
-    - Gasoline Fuel Consumption : {data.get('fuelConsumptionOfGasoline', 0)}
-    - Diesel Fuel Consumption : {data.get('fuelConsumptionOfDiesel', 0)}
-    - LPG Consumption : {data.get('consumptionOfLPG', 0)}
-    - Number of Light Duty Vehicles : {data.get('numberOfLightDutyVehicles', 0)}
-    - Number of Commercial Vehicles : {data.get('numberOfCommercialVehicles', 0)}
-    - Number of Heavy Vehicles : {data.get('numberOfHeavyVehicles', 0)}
+    - Gasoline Fuel Consumption : {data.get('fuel_consumption_of_gasoline', 0)}
+    - Diesel Fuel Consumption : {data.get('fuel_consumption_of_diesel', 0)}
+    - LPG Consumption : {data.get('consumption_of_LPG', 0)}
+    - Number of Light Duty Vehicles : {data.get('number_of_light_duty_vehicles', 0)}
+    - Number of Commercial Vehicles : {data.get('number_of_commercial_vehicles', 0)}
+    - Number of Heavy Vehicles : {data.get('number_of_heavy_vehicles', 0)}
     ## Logistics ##
-    - Air Freight (<3000 tons) : {data.get('tonsOfAirFreightLt3000', 0)}
-    - Air Freight (>3000 tons) : {data.get('tonsOfAirFreightGt3000', 0)}
-    - Sea Freight (<3000 tons) : {data.get('tonsOfSeaFreightLt3000', 0)}
-    - Sea Freight (>3000 tons) : {data.get('tonsOfSeaFreightGt3000', 0)}
+    - Air Freight (<3000 tons) : {data.get('tons_of_air_freight_lt_3000', 0)}
+    - Air Freight (>3000 tons) : {data.get('tons_of_air_freight_gt_3000', 0)}
+    - Sea Freight (<3000 tons) : {data.get('tons_of_sea_freight_lt_3000', 0)}
+    - Sea Freight (>3000 tons) : {data.get('tons_of_sea_freight_gt_3000', 0)}
     ## Office ##
-    - Paper Expenses : {data.get('expensesOfPaper', 0)}
-    - Office Supplies Expenses : {data.get('expensesOfSmallOfficeSupplies', 0)}
-    - Company Built Area : {data.get('builtAreaOfCompany', 0)}
+    - Paper Expenses : {data.get('expenses_of_paper', 0)}
+    - Office Supplies Expenses : {data.get('expenses_of_small_office_supplies', 0)}
+    - Company Built Area : {data.get('built_area_of_company', 0)}
     ## IT ##
-    - Number of Desktop Computers : {data.get('numberOfDesktopComputers', 0)}
-    - Number of Laptops : {data.get('numberOfLaptops', 0)}
-    - Number of Individual Printers : {data.get('numberOfIndividualPrinters', 0)}
-    - Number of Servers : {data.get('numberOfServers', 0)}
-    - Number of Multifunction Printers : {data.get('numberOfMultifunctionPrinters', 0)}
-    - Number of Flat Panel Screens : {data.get('numberOfFlatPanelScreens', 0)}
+    - Number of Desktop Computers : {data.get('number_of_desktop_computers', 0)}
+    - Number of Laptops : {data.get('number_of_laptops', 0)}
+    - Number of Individual Printers : {data.get('number_of_individual_printers', 0)}
+    - Number of Servers : {data.get('number_of_servers', 0)}
+    - Number of Multifunction Printers : {data.get('number_of_multifunction_printers', 0)}
+    - Number of Flat Panel Screens : {data.get('number_of_flat_panel_screens', 0)}
     ## Mobility ##
-    - Short-Haul Round Trips: {data.get('numberOfShortHaulRoundTrip', 0)}
-    - Medium-Haul Round Trips: {data.get('numberOfMediumHaulRoundTrip', 0)}
-    - Long-Haul Round Trips: {data.get('numberOfLongHaulRoundTrip', 0)}
+    - Short-Haul Round Trips: {data.get('number_of_short_haul_round_trip', 0)}
+    - Medium-Haul Round Trips: {data.get('number_of_medium_haul_round_trip', 0)}
+    - Long-Haul Round Trips: {data.get('number_of_long_haul_round_trip', 0)}
     ### VALID EXAMPLES ###
     [
     {{
@@ -524,13 +332,11 @@ def generate_recommendations_entreprise():
         data = request.get_json()
         # Générer le prompt
         prompt = generate_prompt(data)
-
         # Initialiser le client Azure
         client = ChatCompletionsClient(
             endpoint=AZURE_ENDPOINT,
             credential=AzureKeyCredential(AZURE_TOKEN),
         )
-
         # Appeler l'API Azure
         response = client.complete(
             messages=[
@@ -540,11 +346,9 @@ def generate_recommendations_entreprise():
                 UserMessage(prompt),
             ],
             model=MODEL_NAME,
-            temperature=0.74,
-            max_tokens=4096,
+            temperature=1,
             top_p=1
         )
-
         # Extraire le contenu de la réponse
         raw_recommendations = response.choices[0].message.content
         return jsonify({
@@ -561,10 +365,8 @@ def generate_recommendations_entreprise():
 @app.route('/generate-recommendations-event', methods=['POST'])
 def generate_recommendations_event():
     try:
-        # Récupérer les données JSON de la requête
         data = request.get_json()
 
-        # Créer une instance de EventData avec les données reçues
         mapped_data = {
             "event_name": data.get("eventName", "Not specified"),
             "event_type": data.get("eventType", "Not specified"),
@@ -585,7 +387,6 @@ def generate_recommendations_event():
             "total_emissions": data.get("totalEmissions", 0.0),
         }
         event_data = EventData(**mapped_data)
-        # Générer le prompt
         prompt = generate_event_prompt(event_data)
         # Initialiser le client Azure
         client = ChatCompletionsClient(
@@ -593,15 +394,14 @@ def generate_recommendations_event():
             credential=AzureKeyCredential(AZURE_TOKEN),
         )
 
-        # Appeler l'API Azure
         response = client.complete(
             messages=[
                 SystemMessage("""
-                              Vous êtes un assistant d’analyse de données spécialisé 
-                              dans la génération de 
-                              prédictions précises et détaillées. Votre tâche est de 
-                              fournir des prédictions claires en respectant le 
-                              format demandé, sans ajouter de texte superflu 
+                              Vous êtes un assistant d’analyse de données spécialisé
+                              dans la génération de
+                              prédictions précises et détaillées. Votre tâche est de
+                              fournir des prédictions claires en respectant le
+                              format demandé, sans ajouter de texte superflu
                               ou d'explications hors sujet.
                               """),
                 UserMessage(prompt),
@@ -623,6 +423,109 @@ def generate_recommendations_event():
             "recommendations": []
         }), 500
 
+
+
+def validate_input(data):
+    required_keys = {'year', 'month', 'carbon_footprint_kgCO2'}
+    for key in required_keys:
+        if key not in data:
+            raise ValueError(f"Missing required field: {key}")
+
+    if len(data['year']) != len(data['month']) or len(data['year']) != len(data['carbon_footprint_kgCO2']):
+        raise ValueError("The lengths of 'year', 'month', and 'carbon_footprint_kgCO2' must be the same.")
+
+    if not np.issubdtype(np.array(data['year']).dtype, np.integer):
+        raise ValueError("Year must be integers.")
+    if not np.all((np.array(data['month']) >= 1) & (np.array(data['month']) <= 12)):
+        raise ValueError("Month must be in range 1-12.")
+    if not np.issubdtype(np.array(data['carbon_footprint_kgCO2']).dtype, np.floating):
+        raise ValueError("Carbon footprint must be float values.")
+
+class LSTMModel(nn.Module):
+    def __init__(self, input_size=1, hidden_size=64, num_layers=2):
+        super(LSTMModel, self).__init__()
+        self.lstm = nn.LSTM(input_size, hidden_size, num_layers, batch_first=True)
+        self.fc = nn.Linear(hidden_size, 1)
+
+    def forward(self, x):
+        out, _ = self.lstm(x)
+        return self.fc(out[:, -1, :])
+
+@app.route('/forecast', methods=['POST'])
+def predict_carbon_footprint():
+    try:
+        # Get and validate input
+        raw = request.get_json(force=True)
+        validate_input(raw)
+
+        df = pd.DataFrame({
+            'year': raw['year'],
+            'month': raw['month'],
+            'carbon_footprint_kgCO2': raw['carbon_footprint_kgCO2']
+        })
+        df['date'] = pd.to_datetime(df['year'].astype(str) + '-' + df['month'].astype(str))
+        df.sort_values('date', inplace=True)
+        df.reset_index(drop=True, inplace=True)
+
+        #Normalize data
+        values = df['carbon_footprint_kgCO2'].values.astype(np.float32)
+        min_val, max_val = values.min(), values.max()
+        normalized = (values - min_val) / (max_val - min_val)
+
+        #Prepare training sequence
+        sequence_length = 6
+        X, y = [], []
+        for i in range(len(normalized) - sequence_length):
+            X.append(normalized[i:i+sequence_length])
+            y.append(normalized[i+sequence_length])
+        X, y = np.array(X), np.array(y)
+
+        X_tensor = torch.tensor(X).unsqueeze(-1)
+        y_tensor = torch.tensor(y)
+
+        #Train LSTM
+        model = LSTMModel()
+        criterion = nn.MSELoss()
+        optimizer = torch.optim.Adam(model.parameters(), lr=0.01)
+
+        model.train()
+        for epoch in range(300):
+            output = model(X_tensor)
+            loss = criterion(output.squeeze(), y_tensor)
+            optimizer.zero_grad()
+            loss.backward()
+            optimizer.step()
+
+        #Forecast next 6 months
+        model.eval()
+        predictions = []
+        input_seq = normalized[-sequence_length:].tolist()
+
+        for _ in range(6):
+            seq_tensor = torch.tensor(input_seq[-sequence_length:]).unsqueeze(0).unsqueeze(-1)
+            with torch.no_grad():
+                pred = model(seq_tensor).item()
+            predictions.append(pred)
+            input_seq.append(pred)
+
+        #Denormalize predictions
+        denorm = [(p * (max_val - min_val) + min_val) for p in predictions]
+
+        #Construct date info for output
+        last_date = df['date'].iloc[-1]
+        result = []
+        for value in denorm:
+            last_date += relativedelta(months=1)
+            result.append({
+                'year': last_date.year,
+                'month': last_date.month,
+                'carbon_footprint_kgCO2': round(float(max(0, value)), 2)
+            })
+
+        return jsonify(result)
+
+    except Exception as e:
+        return jsonify({'error': str(e)}), 400
 
 if __name__ == '__main__':
     app.run(debug=True)

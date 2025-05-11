@@ -46,5 +46,28 @@ public class ProjectUpdateMapper{
         if(dto.getDescription() != null){
             entity.setDescription(dto.getDescription());
         }
+        if(dto.getMapUrl() != null){
+            entity.setMapUrl(dto.getMapUrl());
+        }
+        // Handle image URLs
+        if(dto.getImageUrl1() != null){
+            entity.setImageUrl1(dto.getImageUrl1());
+        }
+        if(dto.getImageUrl2() != null){
+            entity.setImageUrl2(dto.getImageUrl2());
+        }
+        if(dto.getImageUrl3() != null){
+            entity.setImageUrl3(dto.getImageUrl3());
+        }
+        if(dto.getImageUrl4() != null){
+            entity.setImageUrl4(dto.getImageUrl4());
+        }
+        // Handle estimation fields
+        if(dto.getEstimation() != null){
+            entity.setEstimation(dto.getEstimation());
+        }
+        if(dto.getEstimationValue() != null){
+            entity.setEstimationValue(dto.getEstimationValue());
+        }
     }
 }

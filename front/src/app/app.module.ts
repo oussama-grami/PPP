@@ -60,6 +60,28 @@ import { PaymentConfirmationComponent } from './Components/payment-confirmation/
 import{ EcoLoadingSpinnerComponent } from './Components/eco-loading-spinner/eco-loading-spinner.component';
 import { FormatDescriptionPipe } from './pipes/format-description.pipe';
 import {SpinnerComponent} from "./Components/spinner/spinner.component";
+import {EventFormComponent} from './Components/event-form/event-form.component';
+import {
+  EventFootprintComponent
+} from './Components/event-footprint/event-footprint.component';
+import {EventResultComponent} from './Components/event-result/event-result.component';
+import {
+  PaymentConfirmationComponent
+} from './Components/payment-confirmation/payment-confirmation.component';
+import {
+  EcoLoadingSpinnerComponent
+} from './Components/eco-loading-spinner/eco-loading-spinner.component';
+import {FormatDescriptionPipe} from './pipes/format-description.pipe';
+import {EventHistoryComponent} from './Components/event-history/event-history.component';
+import {
+  CarbonHistoryComponent
+} from './Components/carbon-history/carbon-history.component';
+import {EsgHistoryComponent} from './Components/esg-history/esg-history.component';
+import {ApiModule} from './api/api.module';
+import {environment} from 'src/environments/environment';
+import {KeycloakAngularModule, KeycloakService} from 'keycloak-angular';
+import {HttpTokenInterceptor} from './keycloaktoken.interceptor';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -126,6 +148,10 @@ import {SpinnerComponent} from "./Components/spinner/spinner.component";
     BrowserAnimationsModule,
     SpinnerComponent,
 
+    ApiModule.forRoot({
+      rootUrl: environment.apiUrl,
+    }),
+    KeycloakAngularModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

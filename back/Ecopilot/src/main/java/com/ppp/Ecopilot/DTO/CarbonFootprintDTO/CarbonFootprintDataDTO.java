@@ -11,17 +11,14 @@ import java.util.Date;
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CarbonFootprintDataDTO  {
+public class CarbonFootprintDataDTO {
     private Date beginDate;
     private Date endDate;
+    private String companyName;
+    private String country;
+    private String activitySector;
     private LocalDateTime createdDate;
-
-    private double carburantEmissions;
-    private double energyEmissions;
-    private double immobilisationEmissions;
-    private double consomableEmissions;
-    private double freightEmission;
-    private double aerienEmission;
+    private Long id;
 
     private double totalEmissions;
 

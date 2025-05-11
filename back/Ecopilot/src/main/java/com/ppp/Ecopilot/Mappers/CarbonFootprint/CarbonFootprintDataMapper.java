@@ -13,16 +13,14 @@ public class CarbonFootprintDataMapper implements EntityMapper<CarbonFootprintDa
     public CarbonFootprintDataDTO toDto(CarbonFootprintData entity) {
         CarbonFootprintDataDTO dto = new CarbonFootprintDataDTO();
 
+        dto.setId(entity.getId());
         dto.setBeginDate(entity.getBeginDate());
         dto.setEndDate(entity.getEndDate());
         dto.setCreatedDate(entity.getCreatedDate());
 
-        dto.setCarburantEmissions(entity.getCarburantEmissions());
-        dto.setEnergyEmissions(entity.getEnergyEmissions());
-        dto.setImmobilisationEmissions(entity.getImmobilisationEmissions());
-        dto.setConsomableEmissions(entity.getConsomableEmissions());
-        dto.setFreightEmission(entity.getFreightEmission());
-        dto.setAerienEmission(entity.getAerienEmission());
+        dto.setCompanyName(entity.getCompanyName());
+        dto.setCountry(entity.getCountry());
+        dto.setActivitySector(entity.getActivitySector());
 
         dto.setTotalEmissions(entity.getTotalEmissions());
 
@@ -38,16 +36,14 @@ public class CarbonFootprintDataMapper implements EntityMapper<CarbonFootprintDa
     public CarbonFootprintData toEntity(CarbonFootprintDataDTO dto) {
         CarbonFootprintData entity = new CarbonFootprintData();
 
-        // Optional: Only set fields needed for entity creation — or skip if handled elsewhere
+        entity.setId(dto.getId());
         entity.setBeginDate(dto.getBeginDate());
         entity.setEndDate(dto.getEndDate());
+        entity.setCreatedDate(dto.getCreatedDate());
 
-        entity.setCarburantEmissions(dto.getCarburantEmissions());
-        entity.setEnergyEmissions(dto.getEnergyEmissions());
-        entity.setImmobilisationEmissions(dto.getImmobilisationEmissions());
-        entity.setConsomableEmissions(dto.getConsomableEmissions());
-        entity.setFreightEmission(dto.getFreightEmission());
-        entity.setAerienEmission(dto.getAerienEmission());
+        entity.setCompanyName(dto.getCompanyName());
+        entity.setCountry(dto.getCountry());
+        entity.setActivitySector(dto.getActivitySector());
 
         entity.setTotalEmissions(dto.getTotalEmissions());
 

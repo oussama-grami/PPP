@@ -1,16 +1,64 @@
 import {Component} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {RoutesEnum} from "../../enumerations/Routes.enum";
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {RoutesEnum} from '../../enumerations/Routes.enum';
+import {ProjectOwnerService} from '../../Service/project-owner.service';
+import {Router} from '@angular/router';
+import {animate, state, style, transition, trigger,} from '@angular/animations';
 
 @Component({
   selector: 'app-project-owner',
   templateUrl: './project-owner.component.html',
-  styleUrls: ['./project-owner.component.css']
+  styleUrls: ['./project-owner.component.css'],
+  animations: [
+    trigger('fadeInOut', [
+      state(
+        'void',
+        style({
+          opacity: 0,
+          height: 0,
+          padding: 0,
+        })
+      ),
+      transition('void <=> *', [animate('0.3s ease-in-out')]),
+    ]),
+  ],
 })
 export class ProjectOwnerComponent {
   projectForm: FormGroup = new FormGroup({});
-  pdfFiles: File[] = [];
   fileError: string | null = null;
+  submitSuccess = false;
+  submitError: string | null = null;
+  isSubmitting = false;
+  filteredCountries: any[] = [];
+
+  // Image upload related properties
+  bannerImage: File | null = null;
+  mapImage: File | null = null;
+  urlImage: File | null = null;
+  bannerImagePreview: string = '';
+  mapImagePreview: string = '';
+  urlImagePreview: string = '';
+  availableObjectiveImages: string[] = [
+    '/assets/img/objectif1.jpg',
+    '/assets/img/objectif2.jpg',
+    '/assets/img/objectif3.jpg',
+    '/assets/img/objectif4.jpg',
+    '/assets/img/objectif5.jpg',
+    '/assets/img/objectif6.jpg',
+    '/assets/img/objectif7.jpg',
+    '/assets/img/objectif8.jpg',
+    '/assets/img/objectif9.jpg',
+    '/assets/img/objectif10.jpg',
+    '/assets/img/objectif11.jpg',
+    '/assets/img/objectif12.jpg',
+    '/assets/img/objectif13.jpg',
+    '/assets/img/objectif14.jpg',
+    '/assets/img/objectif15.jpg',
+    '/assets/img/objectif16.jpg',
+    '/assets/img/objectif17.jpg',
+  ];
+
+  selectedObjectiveImages: string[] = [];
 
   countries = [
     {name: 'Afghanistan', iconClass: 'flag-icon-af', code: '+93'},
@@ -42,23 +90,39 @@ export class ProjectOwnerComponent {
     {name: 'Cameroon', iconClass: 'flag-icon-cm', code: '+237'},
     {name: 'Canada', iconClass: 'flag-icon-ca', code: '+1'},
     {name: 'Cape Verde', iconClass: 'flag-icon-cv', code: '+238'},
-    {name: 'Central African Republic', iconClass: 'flag-icon-cf', code: '+236'},
+    {
+      name: 'Central African Republic',
+      iconClass: 'flag-icon-cf',
+      code: '+236',
+    },
     {name: 'Chad', iconClass: 'flag-icon-td', code: '+235'},
     {name: 'Chile', iconClass: 'flag-icon-cl', code: '+56'},
     {name: 'China', iconClass: 'flag-icon-cn', code: '+86'},
     {name: 'Colombia', iconClass: 'flag-icon-co', code: '+57'},
     {name: 'Comoros', iconClass: 'flag-icon-km', code: '+269'},
-    {name: 'Congo (Congo-Brazzaville)', iconClass: 'flag-icon-cg', code: '+242'},
+    {
+      name: 'Congo (Congo-Brazzaville)',
+      iconClass: 'flag-icon-cg',
+      code: '+242',
+    },
     {name: 'Costa Rica', iconClass: 'flag-icon-cr', code: '+506'},
     {name: 'Croatia', iconClass: 'flag-icon-hr', code: '+385'},
     {name: 'Cuba', iconClass: 'flag-icon-cu', code: '+53'},
     {name: 'Cyprus', iconClass: 'flag-icon-cy', code: '+357'},
-    {name: 'Czechia (Czech Republic)', iconClass: 'flag-icon-cz', code: '+420'},
+    {
+      name: 'Czechia (Czech Republic)',
+      iconClass: 'flag-icon-cz',
+      code: '+420',
+    },
     {name: 'Denmark', iconClass: 'flag-icon-dk', code: '+45'},
     {name: 'Djibouti', iconClass: 'flag-icon-dj', code: '+253'},
     {name: 'Dominica', iconClass: 'flag-icon-dm', code: '+1'},
     {name: 'Dominican Republic', iconClass: 'flag-icon-do', code: '+1'},
-    {name: 'East Timor (Timor-Leste)', iconClass: 'flag-icon-tl', code: '+670'},
+    {
+      name: 'East Timor (Timor-Leste)',
+      iconClass: 'flag-icon-tl',
+      code: '+670',
+    },
     {name: 'Ecuador', iconClass: 'flag-icon-ec', code: '+593'},
     {name: 'Egypt', iconClass: 'flag-icon-eg', code: '+20'},
     {name: 'El Salvador', iconClass: 'flag-icon-sv', code: '+503'},
@@ -202,55 +266,395 @@ export class ProjectOwnerComponent {
     {name: 'Vietnam', iconClass: 'flag-icon-vn', code: '+84'},
     {name: 'Yemen', iconClass: 'flag-icon-ye', code: '+967'},
     {name: 'Zambia', iconClass: 'flag-icon-zm', code: '+260'},
-    {name: 'Zimbabwe', iconClass: 'flag-icon-zw', code: '+263'}
-  ]
-  selectedCountry = {name: 'Tunisia', iconClass: 'flag-icon-tn', code: '+216'}
+    {name: 'Zimbabwe', iconClass: 'flag-icon-zw', code: '+263'},
+  ];
+  selectedCountry = {
+    name: 'Tunisia',
+    iconClass: 'flag-icon-tn',
+    code: '+216',
+  };
   isSubmitted = false;
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private projectOwnerService: ProjectOwnerService,
+    private router: Router
+  ) {
     this.projectForm = this.fb.group({
-      firstName: ['', Validators.required],
-      name: ['', Validators.required],
-      company: ['', Validators.required],
-      function: [''],
-      website: [''],
-      phone: [''],
-      email: ['', [Validators.required, Validators.email]],
+      // Project Owner fields
+      firstName: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(2),
+          Validators.maxLength(50),
+          Validators.pattern("^[a-zA-ZÀ-ÿ\\s\\-']+$"),
+        ],
+      ],
+      name: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(2),
+          Validators.maxLength(50),
+          Validators.pattern("^[a-zA-ZÀ-ÿ\\s\\-']+$"),
+        ],
+      ],
+      company: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(2),
+          Validators.maxLength(100),
+        ],
+      ],
+      companyIdentifier: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(2),
+          Validators.maxLength(100),
+          Validators.pattern('^[a-z0-9-]+$'),
+        ],
+      ],
+      function: ['', [Validators.maxLength(100)]],
+      website: [
+        '',
+        [
+          Validators.maxLength(200),
+          Validators.pattern(
+            '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?'
+          ),
+        ],
+      ],
+      phone: [
+        '',
+        [
+          Validators.maxLength(20),
+          Validators.pattern('^[0-9\\s\\+\\-\\(\\)]+$'),
+        ],
+      ],
+      email: [
+        '',
+        [Validators.required, Validators.email, Validators.maxLength(100)],
+      ],
+
+      // Project fields
+      projectName: ['', [Validators.required, Validators.maxLength(100)]],
       projectCountry: ['', Validators.required],
-      region: [''],
-      projectNature: [''],
-      description: ['', Validators.required],
-      estimation: [''],
+      region: ['', Validators.maxLength(100)],
+      projectNature: ['', Validators.required],
+      description: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(50),
+          Validators.maxLength(2000),
+        ],
+      ],
+      estimation: ['No'],
       estimationValue: [''],
-      certified: ['']
+      certified: ['No'],
+      // Removed pdf input field
+      availableStock: [0, [Validators.required, Validators.min(1)]],
+      cost: [0, [Validators.required, Validators.min(1)]],
+      minimumPurchase: [0, [Validators.required, Validators.min(1)]],
+      mechanism: ['', Validators.required],
+      objectiveImage1: ['', Validators.required],
+      objectiveImage2: ['', Validators.required],
+      objectiveImage3: ['', Validators.required],
+      objectiveImage4: ['', Validators.required],
+    });
+
+    // Add conditional validation for estimationValue
+    this.projectForm.get('estimation')?.valueChanges.subscribe((value) => {
+      const estimationValueControl = this.projectForm.get('estimationValue');
+      if (value === 'Yes') {
+        estimationValueControl?.setValidators([
+          Validators.required,
+          Validators.min(0.01),
+          Validators.max(100000000),
+        ]);
+      } else {
+        estimationValueControl?.clearValidators();
+      }
+      estimationValueControl?.updateValueAndValidity();
+    });
+
+    // Initialize filtered countries
+    this.filteredCountries = [...this.countries];
+  }
+
+  ngOnInit() {
+    // Add animation classes when component loads
+    document.addEventListener('DOMContentLoaded', () => {
+      this.animateElements();
     });
   }
 
-  onFileChange(event: any): void {
-    const files: FileList = event.target.files;
-    this.pdfFiles = [];
-    this.fileError = null;
+  // Add staggered animation to form elements
+  animateElements() {
+    const formElements = document.querySelectorAll(
+      '.form-floating, .radio-group, .file-upload, .image-selection'
+    );
+    formElements.forEach((element, index) => {
+      setTimeout(() => {
+        element.classList.add('animate__animated', 'animate__fadeInUp');
+      }, 100 * index);
+    });
+  }
 
-    for (let i = 0; i < files.length; i++) {
-      if (files[i].type !== 'application/pdf') {
-        this.fileError = 'Only PDF files are allowed.';
+  // Filter countries based on search input
+  filterCountries(event: any) {
+    const searchValue = event.target.value.toLowerCase();
+    this.filteredCountries = this.countries.filter(
+      (country) =>
+        country.name.toLowerCase().includes(searchValue) ||
+        country.code.toLowerCase().includes(searchValue)
+    );
+  }
+
+  // Enhanced image upload handler
+  onImageUpload(event: any, imageType: 'banner' | 'map' | 'url'): void {
+    const file = event.target.files[0];
+    if (file) {
+      // Validate file is an image
+      if (!file.type.startsWith('image/')) {
+        this.submitError = `${
+          imageType === 'banner' ? 'Banner' : imageType === 'map' ? 'Map' : 'URL'
+        } file must be an image`;
         return;
       }
-      this.pdfFiles.push(files[i]);
+
+      // Validate file size (max 5MB)
+      if (file.size > 5 * 1024 * 1024) {
+        this.submitError = `${
+          imageType === 'banner' ? 'Banner' : imageType === 'map' ? 'Map' : 'URL'
+        } image size must be less than 5MB`;
+        return;
+      }
+
+      // Store the file and create a preview
+      if (imageType === 'banner') {
+        this.bannerImage = file;
+
+        // Create preview
+        const reader = new FileReader();
+        reader.onload = () => {
+          this.bannerImagePreview = reader.result as string;
+        };
+        reader.readAsDataURL(file);
+      } else if (imageType === 'map') {
+        this.mapImage = file;
+
+        // Create preview
+        const reader = new FileReader();
+        reader.onload = () => {
+          this.mapImagePreview = reader.result as string;
+        };
+        reader.readAsDataURL(file);
+      } else if (imageType === 'url') {
+        this.urlImage = file;
+
+        // Create preview
+        const reader = new FileReader();
+        reader.onload = () => {
+          this.urlImagePreview = reader.result as string;
+        };
+        reader.readAsDataURL(file);
+      }
+
+      // Clear any previous errors
+      this.submitError = null;
     }
   }
 
   selectCountry(selectedCountry: any) {
-    this.selectedCountry = selectedCountry
+    this.selectedCountry = selectedCountry;
+  }
+
+  selectObjectiveImage(imageUrl: string, controlIndex: number) {
+    const controlName = `objectiveImage${controlIndex}`;
+    
+    // If already selected, deselect it
+    if (this.selectedObjectiveImages.includes(imageUrl)) {
+      // Remove from selected list
+      this.selectedObjectiveImages = this.selectedObjectiveImages.filter(img => img !== imageUrl);
+      
+      // Clear the form control value
+      this.projectForm.patchValue({
+        [controlName]: ''
+      });
+    } else {
+      // Check if already 4 objectives are selected
+      if (this.selectedObjectiveImages.length >= 4) {
+        // Show error message
+        this.submitError = 'You can only select 4 sustainable development objectives';
+        return;
+      }
+      
+      // Find next available objectiveImage slot (1-4)
+      let availableSlot = 0;
+      for (let i = 1; i <= 4; i++) {
+        const slotName = `objectiveImage${i}`;
+        if (!this.projectForm.get(slotName)?.value) {
+          availableSlot = i;
+          break;
+        }
+      }
+      
+      if (availableSlot === 0) {
+        // This should not happen as we check length above, but just in case
+        return;
+      }
+      
+      // Add to selected list
+      this.selectedObjectiveImages.push(imageUrl);
+      
+      // Update the form control
+      this.projectForm.patchValue({
+        [`objectiveImage${availableSlot}`]: imageUrl
+      });
+    }
+    
+    // Clear any error message when selection changes
+    if (this.submitError && this.submitError.includes('objectives')) {
+      this.submitError = null;
+    }
+  }
+
+  isObjectiveImageSelected(imageUrl: string): boolean {
+    return this.selectedObjectiveImages.includes(imageUrl);
   }
 
   onSubmit() {
-    if (this.projectForm?.valid) {
-      const input = {...this.projectForm.value, phone: this.selectedCountry.code + this.projectForm.value.phone};
-    } else {
-      this.fileError = this.pdfFiles.length === 0 ? 'Please upload at least one PDF file.' : null;
-    }
     this.isSubmitted = true;
+    // Validate the form
+    if (this.projectForm?.valid && this.bannerImage && this.mapImage) {
+      this.isSubmitting = true;
+
+      // Prepare project owner data
+      const projectOwnerData = {
+        firstname: this.projectForm.value.firstName,
+        nom: this.projectForm.value.name,
+        company: this.projectForm.value.company,
+        job_function: this.projectForm.value.function,
+        website: this.projectForm.value.website,
+        phone: this.selectedCountry.code + this.projectForm.value.phone,
+        email: this.projectForm.value.email,
+        region: this.projectForm.value.region,
+        description: this.projectForm.value.description,
+        estimation: this.projectForm.value.estimation === 'Yes',
+        estimationValue: this.projectForm.value.estimationValue || 0,
+        certified: this.projectForm.value.certified === 'Yes',
+        companyIdentifier: this.projectForm.value.companyIdentifier,
+        password: 'defaultPassword123', // We'll need to implement proper password handling
+      };
+
+      // Prepare project data
+      const projectData = {
+        name: this.projectForm.value.projectName,
+        country: this.projectForm.value.projectCountry,
+        category: this.projectForm.value.projectNature,
+        description: this.projectForm.value.description,
+        certified: this.projectForm.value.certified === 'Yes',
+        estimation: this.projectForm.value.estimation === 'Yes',
+        estimationValue: this.projectForm.value.estimationValue || 0,
+        availableStock: this.projectForm.value.availableStock,
+        cost: this.projectForm.value.cost,
+        minimumPurchase: this.projectForm.value.minimumPurchase,
+        mechanism: this.projectForm.value.mechanism,
+        typeOfProject: this.projectForm.value.projectNature,
+        imageUrl1: this.projectForm.value.objectiveImage1,
+        imageUrl2: this.projectForm.value.objectiveImage2,
+        imageUrl3: this.projectForm.value.objectiveImage3,
+        imageUrl4: this.projectForm.value.objectiveImage4,
+        flag: `/assets/img/${this.projectForm.value.projectCountry.toLowerCase()}Flag.png`,
+      };
+      console.log(projectData, projectOwnerData)
+      // Create FormData for file uploads
+      const formData = new FormData();
+
+      // Add the banner image
+      if (this.bannerImage) {
+        formData.append('bannerImage', this.bannerImage);
+      }
+
+      // Add the map image
+      if (this.mapImage) {
+        formData.append('mapImage', this.mapImage);
+      }
+
+      // Add the URL image
+      if (this.urlImage) {
+        formData.append('urlImage', this.urlImage);
+      }
+
+      // Submit to backend with delay to show loading state
+      setTimeout(() => {
+        this.projectOwnerService
+          .createProjectOwnerWithProject(
+            projectOwnerData,
+            projectData,
+            formData
+          )
+          .subscribe(
+            (response) => {
+              console.log('Project and owner created successfully:', response);
+              this.submitSuccess = true;
+              this.submitError = null;
+              this.isSubmitting = false;
+
+              // Show success message with scroll to top
+              window.scrollTo({top: 0, behavior: 'smooth'});
+
+              // Redirect after delay
+              setTimeout(() => {
+                this.router.navigate(['/' + RoutesEnum.MARKETPLACE]);
+              }, 3000);
+            },
+            (error) => {
+              console.error('Error creating project and owner:', error);
+              this.submitSuccess = false;
+              this.submitError =
+                'Failed to create project and owner. Please try again.';
+              this.isSubmitting = false;
+              // Scroll to top to show error
+              window.scrollTo({top: 0, behavior: 'smooth'});
+            }
+          );
+      }, 800); // Simulated delay for loading indicator
+    } else {
+      // Form is invalid
+      // Highlight invalid fields with animation
+      this.highlightInvalidFields();
+
+      if (!this.bannerImage) {
+        this.submitError = 'Please upload a banner image';
+      } else if (!this.mapImage) {
+        this.submitError = 'Please upload a map image';
+      }
+    }
+  }
+
+  // Highlight invalid fields with animation
+  highlightInvalidFields() {
+    const invalidElements = document.querySelectorAll('.ng-invalid.ng-touched');
+    invalidElements.forEach((el) => {
+      (el as HTMLElement).classList.add('shake-animation');
+      setTimeout(() => {
+        (el as HTMLElement).classList.remove('shake-animation');
+      }, 820);
+    });
+
+    // Scroll to the first invalid element
+    if (invalidElements.length > 0) {
+      const firstInvalid = invalidElements[0];
+      firstInvalid.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center',
+      });
+    }
   }
 
   protected readonly RoutesEnum = RoutesEnum;

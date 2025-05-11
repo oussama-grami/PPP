@@ -4,6 +4,8 @@ import {Immobilisation} from "../../Models/immobilisation";
 import {Router} from '@angular/router';
 import {CarbonFootprintService} from "../../Service/carbon-footprint.service";
 import {RoutesEnum} from "../../enumerations/Routes.enum";
+import {switchMap} from "rxjs/operators";
+import {of} from "rxjs";
 
 @Component({
   selector: 'app-immobilisations',
@@ -35,26 +37,41 @@ export class ImmobilisationsComponent implements OnInit {
 
   onSubmit() {
     if (this.immeForm.valid) {
-      const immeData: Immobilisation = {
-        surfaceArea: this.immeForm.value.surfaceArea,
-        numberOfLightVehicles: this.immeForm.value.numberOfLightVehicles,
-        numberOfUtilityVehicles: this.immeForm.value.numberOfUtilityVehicles,
-        numberOfHeavyVehicles: this.immeForm.value.numberOfHeavyVehicles,
-        numberOfWorkstations: this.immeForm.value.numberOfWorkstations,
-        numberOfPCs: this.immeForm.value.numberOfPCs,
-        numberOfIndividualPrinters: this.immeForm.value.numberOfIndividualPrinters,
-        numberOfMultiPrinters: this.immeForm.value.numberOfMultiPrinters,
-        numberOfServers: this.immeForm.value.numberOfServers,
-        numberOfMonitors: this.immeForm.value.numberOfMonitors
-      };
-
+      const immeData: Immobilisation = this.immeForm.value;
       this.carboneService.updateImmobilisation(immeData);
-      this.carboneService.submitAllData();
-      this.router.navigate(['/' + RoutesEnum.RESULTAT_CARBONE]);
+
+      this.carboneService.submitAllData().pipe(
+        switchMap(() =>
+          this.carboneService.getAllByCompanyOwnerId(7).pipe(
+            switchMap((calculations) => {
+              if (calculations.length > 0) {
+                return this.carboneService.getLastCalculation(7);
+              } else {
+                this.errorMessage = 'Aucune estimation de carbone trouvée pour cette entreprise.';
+                return of(null); // return observable with null to keep stream alive
+              }
+            })
+          )
+        )
+      ).subscribe({
+        next: (latestCalculation) => {
+          if (latestCalculation) {
+            this.router.navigate(['/' + RoutesEnum.RESULTAT_CARBONE, latestCalculation.id]);
+          }
+        },
+        error: (err) => {
+          console.error('Erreur lors de la soumission ou de la récupération des résultats :', err);
+          this.errorMessage = 'Une erreur est survenue pendant la soumission ou la récupération des résultats.';
+        }
+      });
     } else {
-      this.errorMessage = 'Please fill in all required fields correctly.';
+      this.errorMessage = 'Veuillez remplir tous les champs obligatoires correctement.';
     }
   }
+
+
+
+
 
   protected readonly RoutesEnum = RoutesEnum;
 }

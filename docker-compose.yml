@@ -31,7 +31,7 @@ services:
       KEYCLOAK_ADMIN: admin
       KEYCLOAK_ADMIN_PASSWORD: admin
     volumes:
-      - keycloak_data:/opt/keycloak/standalone/data
+      - keycloak_data:/opt/keycloak/data
     network_mode: service:localhost
 
 volumes:
