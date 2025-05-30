@@ -83,7 +83,7 @@ const routes: Routes = [
   {path: RoutesEnum.CARBONE, component: CarboneComponent},
   {path: 'esg-result', component: ResultESGComponent},
   {path: RoutesEnum.ARBORICULTURE, component: ArboricultureComponent},
-  {path: 'piste', component: PisteComponent},
+  /*{path: 'piste', component: PisteComponent},*/
   {path: RoutesEnum.MARKETPLACE, component: MarketplaceComponent},
   {path: RoutesEnum.PROJECT_DETAILS + '/:id', component: ProjectDetailsComponent},
   {path: RoutesEnum.CHECKOUT, component: CheckoutComponent},
@@ -94,7 +94,7 @@ const routes: Routes = [
   {path: RoutesEnum.MARKETPLACE_BLOG, component: MarketplaceBlogComponent},
   {path: RoutesEnum.CARBON_OFFSET_BLOG, component: CarbonOffsetBlogComponent},
   {path: RoutesEnum.CARBON_CO_BENEFITS_BLOG, component: CarbonCoBenifitsBlogComponent},
-  {path: 'roadmap', component: RoadmapComponent},
+  {path: RoutesEnum.ROADMAP, component: RoadmapComponent},
   {path: 'esg-assessment/:questionId', component: EsgAssessmentComponent},
   {path: 'prediction-info', component: CarbonPredictionInfoComponent},
   {path: 'historical-carbon-forecast', component: HistoricalCarbonForecastComponent},
