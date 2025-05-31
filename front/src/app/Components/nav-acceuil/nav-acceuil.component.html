@@ -2,7 +2,7 @@
   <div class="container">
     <!-- Brand logo -->
     <a class="navbar-brand" [routerLink]="'/'">
-      <img src="assets/Ecopilot/ecopilot_logo.png" alt="EcoPilot Logo"/>
+      <img src="assets/Ecopilot/ecopilot_logo.png" alt="EcoPilot Logo" />
     </a>
 
     <!-- Navigation content - enhanced for horizontal layout -->
@@ -110,18 +110,45 @@
             </div>
           </li>
 
-          <li class="nav-item dropdown fff">
-            <a class="nav-link dropdown-toggle"
-               href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Assessment Results
+          <!-- Assessment Results - Improved dropdown -->
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link"
+              (click)="toggleDropdown('assessment-results', $event)"
+              [class.active]="isRouteActivePartial([routes.ESG_HISTORY])"
+            >
+              <i class="bi bi-bar-chart"></i> Assessment Results
+              <i
+                class="bi bi-chevron-down"
+                [ngClass]="{
+                  'bi-chevron-up': isDropdownActive('assessment-results')
+                }"
+              ></i>
             </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" [routerLink]="'/'+RoutesEnum.ESG_HISTORY">Esg
-                Results</a></li>
-              <li><a class="dropdown-item" [routerLink]="">Carbon Emission Predictions</a>
-              </li>
-            </ul>
+            <div
+              class="dropdown-menu"
+              [class.show]="isDropdownActive('assessment-results')"
+            >
+              <div class="mobile-dropdown-wrapper">
+                <a
+                  class="dropdown-item"
+                  [routerLink]="'/' + routes.ESG_HISTORY"
+                  (click)="mobileMenuOpen = false"
+                >
+                  <i class="bi bi-clipboard-check"></i> ESG Results
+                </a>
+                <a
+                  class="dropdown-item"
+                  [routerLink]="'/' + routes.PREDICTION_INFO"
+                  (click)="mobileMenuOpen = false"
+                >
+                  <i class="bi bi-graph-up-arrow"></i> Carbon Emission
+                  Predictions
+                </a>
+              </div>
+            </div>
           </li>
+
           <li class="nav-item">
             <a
               class="nav-link"
@@ -171,7 +198,7 @@
             <i class="bi bi-bag"></i>
           </a>
 
-          <!-- User Menu - Authenticated State -->
+          <!-- User Menu - Authenticated State with fixed positioning -->
           <div class="nav-item dropdown user-dropdown" *ngIf="isAuthenticated">
             <a
               class="nav-action"
@@ -180,11 +207,11 @@
             >
               <i class="bi bi-person-fill"></i>
               <span class="username-display" *ngIf="username">{{
-                  username
-                }}</span>
+                username
+              }}</span>
             </a>
             <div
-              class="dropdown-menu dropdown-menu-right"
+              class="dropdown-menu dropdown-menu-end"
               [class.show]="isDropdownActive('user')"
             >
               <div class="dropdown-header" *ngIf="username">
@@ -243,6 +270,9 @@
     </button>
   </div>
 </nav>
+
+<!-- Add spacer to prevent content overlap -->
+<div class="navbar-spacer"></div>
 
 <!-- Backdrop for mobile menu -->
 <div

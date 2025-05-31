@@ -1,0 +1,21 @@
+<div class="error-page">
+  <div class="container">
+    <div class="error-content text-center">
+      <div class="error-icon">
+        <i class="bi bi-exclamation-triangle"></i>
+      </div>
+      <h1>Oops!</h1>
+      <h2>404 - Page Not Found</h2>
+      <p>The page you are looking for might have been removed, had its name changed, or is
+        temporarily unavailable.</p>
+      <div class="actions">
+        <button class="btn btn-primary" [routerLink]="'/'">
+          <i class="bi bi-house"></i> Go to Homepage
+        </button>
+        <button class="btn btn-outline-primary" (click)="goBack()">
+          <i class="bi bi-arrow-left"></i> Go Back
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

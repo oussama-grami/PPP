@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.ppp</groupId>
 	<artifactId>Ecopilot</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>Ecopilot</name>
 	<description>Carbon Footprint Website Made By GL3 Genuises</description>
 	<url/>

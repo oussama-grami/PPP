@@ -95,6 +95,7 @@ import {environment} from 'src/environments/environment';
 import {KeycloakAngularModule, KeycloakService} from 'keycloak-angular';
 import {HttpTokenInterceptor} from './keycloaktoken.interceptor';
 import {SpinnerComponent} from "./Components/spinner/spinner.component";
+import { ErrorPageComponent } from './error-page/error-page.component';
 
 @NgModule({
   declarations: [
@@ -151,6 +152,7 @@ import {SpinnerComponent} from "./Components/spinner/spinner.component";
     CarbonHistoryComponent,
     EsgHistoryComponent,
     SpinnerComponent,
+    ErrorPageComponent,
   ],
   imports: [
     BrowserModule,

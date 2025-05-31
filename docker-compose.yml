@@ -1,45 +1,18 @@
 version: '3.9'
 
 services:
-  localhost:
-    container_name: localhost
-    image: alpine:latest
-    command: sleep infinity
+  backend:
+    build:
+      context: ./back/Ecopilot
+      dockerfile: Dockerfile
     ports:
-      - 8080:8080
-      - 8088:8088
-      - 5432:5432
-      - 8001:8001
-
-  postgres:
-    container_name: postgres-sql-ppp
-    image: postgres
-    environment:
-      POSTGRES_USER: username
-      POSTGRES_PASSWORD: password
-      PGDATA: /var/lib/postgresql/data
-      POSTGRES_DB: Ecopilot
-    volumes:
-      - postgres:/data/postgres
-    network_mode: service:localhost
+      - "8087:8087"
     restart: unless-stopped
 
-  keycloak:
-    container_name: keycloak-ppp
-    image: azizdh091/keycloak-custom:v25
-    environment:
-      KEYCLOAK_ADMIN: admin
-      KEYCLOAK_ADMIN_PASSWORD: admin
-    volumes:
-      - keycloak_data:/opt/keycloak/data
-    network_mode: service:localhost
-
-volumes:
-  postgres:
-    driver: local
-  keycloak_data:
-    driver: local
-
-networks:
-  angular-spring-keycloak-ppp:
-    driver: bridge
+  model:
+    build:
+      context: ./Model
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    restart: unless-stopped

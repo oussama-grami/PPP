@@ -695,3 +695,48 @@ body.no-scroll {
 
 /* Remove the redundant dark theme styles since we're using CSS variables now */
 /* These styles are no longer needed since the variables will automatically handle dark mode */
+
+/* Add to nav-acceuil.component.css */
+
+/* Add bottom margin with navbar spacer */
+.navbar-spacer {
+  height: 70px; /* Adjust based on your navbar height */
+  width: 100%;
+}
+
+/* Fix for user dropdown positioning */
+.user-dropdown {
+  position: relative;
+}
+
+.user-dropdown .dropdown-menu {
+  position: absolute;
+  right: 0;
+  left: auto !important;
+  transform: none !important;
+  top: 100% !important;
+  min-width: 200px;
+}
+
+/* Ensure dropdown menu has appropriate z-index to appear above other content */
+.dropdown-menu {
+  z-index: 1030;
+}
+
+/* Ensure dropdown menu items are properly aligned */
+.dropdown-menu-end {
+  right: 0;
+  left: auto;
+}
+
+/* Add some styling to ensure consistent design with other navbar elements */
+.nav-link i {
+  margin-right: 5px;
+}
+
+/* Consistency for Assessment Results dropdown */
+.navbar-nav .dropdown .dropdown-item i {
+  margin-right: 8px;
+  width: 16px;
+  text-align: center;
+}

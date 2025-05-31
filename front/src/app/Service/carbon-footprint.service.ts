@@ -15,6 +15,7 @@ import {map} from 'rxjs/operators';
 import {CarbonControllerService} from '../api/services';
 import {CarbonFootprintModelRequest, CarbonResponse} from '../api/models';
 import {HttpClient} from "@angular/common/http";
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root',
@@ -28,7 +29,7 @@ export class CarbonFootprintService {
   private freightData: Freight | null = null;
   private consData: Consumables | null = null;
   private immeData: Immobilisation | null = null;
-  private readonly apiUrl = 'http://localhost:8080/api/carbon';
+  private readonly apiUrl = environment.apiUrl + '/api/carbon';
   private calculations: CarbonFootprintResponse[] = [];
   recommendations: CarbonResponse | null = null;
 
