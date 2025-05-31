@@ -5,22 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0fd7f9b8-10a6-48ed-be24-8e52f0f7064a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../back/Ecopilot/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../back/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../back/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../back/Ecopilot/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../back/Ecopilot/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../back/Ecopilot/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../back/Ecopilot/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front/src/app/Components/nav-acceuil/nav-acceuil.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../front/src/app/Components/nav-acceuil/nav-acceuil.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front/src/app/Components/nav-acceuil/nav-acceuil.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../front/src/app/Components/nav-acceuil/nav-acceuil.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front/src/app/Components/project-owner/project-owner.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../front/src/app/Components/project-owner/project-owner.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front/src/app/Service/carbon-footprint.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../front/src/app/Service/carbon-footprint.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front/src/app/Service/esg.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../front/src/app/Service/esg.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front/src/app/Service/event-footprint.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../front/src/app/Service/event-footprint.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front/src/app/Service/historical-prediction.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../front/src/app/Service/historical-prediction.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front/src/app/api/api-configuration.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../front/src/app/api/api-configuration.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../front/src/app/app-routing.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../front/src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../back/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../back/.idea/compiler.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,10 +17,10 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
-  <component name="KubernetesApiProvider"><![CDATA[{
-  "isMigrated": true
-}]]></component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
 }</component>
@@ -42,24 +29,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Docker.Dockerfile.executor": "Run",
-    "Flask server.Flask (TimeSeriesModel/app.py).executor": "Run",
-    "Flask server.Flask (app.py).executor": "Run",
-    "Python.app.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "Aziz",
-    "last_opened_file_path": "D:/GL3/PPP/PPP/Model",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Docker.Dockerfile.executor&quot;: &quot;Run&quot;,
+    &quot;Flask server.Flask (TimeSeriesModel/app.py).executor&quot;: &quot;Run&quot;,
+    &quot;Flask server.Flask (app.py).executor&quot;: &quot;Run&quot;,
+    &quot;Python.app.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Aziz&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/GL3/PPP/PPP/Model&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="Dockerfile" type="docker-deploy" factoryName="dockerfile" temporary="true" server-name="Docker">
       <deployment type="dockerfile">
@@ -70,7 +57,9 @@
       <method v="2" />
     </configuration>
     <configuration default="true" type="docker-deploy" factoryName="dockerfile" temporary="true">
-      <deployment type="dockerfile" />
+      <deployment type="dockerfile">
+        <settings />
+      </deployment>
       <method v="2" />
     </configuration>
     <recent_temporary>
@@ -100,6 +89,7 @@
       <workItem from="1746005454606" duration="6460000" />
       <workItem from="1746021552145" duration="2582000" />
       <workItem from="1748684330658" duration="2558000" />
+      <workItem from="1748713097236" duration="69000" />
     </task>
     <servers />
   </component>

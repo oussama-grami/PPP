@@ -4,7 +4,7 @@ spring:
   datasource:
     url: jdbc:mysql://mysql-2e1208b2-insat-3937.e.aivencloud.com:20518/defaultdb?ssl-mode=REQUIRED
     username: avnadmin
-    password: 
+    password:
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
@@ -27,7 +27,7 @@ logging:
     org.springframework.orm.hibernate5: ERROR  # Set Hibernate to log only errors
 flask:
   api:
-    url: http://127.0.0.1:5000/
+    url: https://azizougl-ecopilot.hf.space/
     url.enterprise: ${flask.api.url}generate-recommendations-entreprise
     url.event: ${flask.api.url}generate-recommendations-event
 server:

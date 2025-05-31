@@ -3,10 +3,14 @@ pandas
 numpy
 scikit-learn
 xgboost
-joblib
 prophet
 statsmodels
-torch
 azure-ai-inference
 azure-core
+torch
+joblib
 python-dateutil
+gunicorn
+pystan
+holidays
+cmdstanpy

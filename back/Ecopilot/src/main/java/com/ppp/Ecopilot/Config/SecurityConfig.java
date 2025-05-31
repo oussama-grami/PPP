@@ -44,7 +44,8 @@ public class SecurityConfig {
                                         "/swagger-ui.html",
                                         "/project/*",
                                         "/api/project-owners/",
-                                        "/api/images/*"
+                                        "/api/images/*",
+                                        "/api/carbon/ai/*"
                                 )
                                 .permitAll()
                                 .anyRequest()
