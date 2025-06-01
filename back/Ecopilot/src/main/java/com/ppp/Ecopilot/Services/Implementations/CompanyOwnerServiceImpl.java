@@ -6,8 +6,6 @@ import com.ppp.Ecopilot.Services.CompanyOwnerService;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 
 @Service
 
@@ -21,7 +19,7 @@ public class CompanyOwnerServiceImpl extends AbstractCrudService<CompanyOwner, L
 
     @Override
     protected JpaRepository<CompanyOwner, Long> getRepository() {
-        return  companyOwnerRepo;
+        return companyOwnerRepo;
     }
 
     @Override
@@ -30,6 +28,13 @@ public class CompanyOwnerServiceImpl extends AbstractCrudService<CompanyOwner, L
     }
 
 
+    @Override
+    public Boolean existsByKeycloakId(String keycloakId) {
+        return companyOwnerRepo.existsByKeycloakId(keycloakId);
+    }
 
+    @Override
+    public void AddCompanyOwner(CompanyOwner companyOwner) {
 
+    }
 }
