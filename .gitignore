@@ -2,3 +2,5 @@
 /front/node_modules/
 /back/node_modules/
 /model/node_modules/
+/model/EcopiLotModel
+back/Ecopilot/src/main/resources/application.yml

@@ -19,7 +19,6 @@ import {EsgComponent} from './Components/esg/esg.component';
 import {CarboneComponent} from './Components/carbone/carbone.component';
 import {ResultESGComponent} from './Components/result-esg/result-esg.component';
 import {ArboricultureComponent} from './Components/arboriculture/arboriculture.component';
-import {PisteComponent} from './Components/piste/piste.component';
 import {MarketplaceComponent} from './Components/marketplace/marketplace.component';
 import {
   ProjectDetailsComponent
@@ -69,9 +68,11 @@ import {
 import {EsgHistoryComponent} from './Components/esg-history/esg-history.component';
 import {CompanyOwnerFormComponent} from "./Components/company-owner-form/company-owner-form.component";
 import {RegisterCompanyOwnerComponent} from "./Components/register-company-owner/register-company-owner.component";
+import {AuthGuard} from "./auth.guard";
+import {ErrorPageComponent} from "./error-page/error-page.component";
 
 const routes: Routes = [
-  {path: '', component: HomeComponent},
+  {path: '', component: HomeComponent, canActivate: [AuthGuard]},
   {path: RoutesEnum.PORTEUR, component: PorteurComponent},
   {path: RoutesEnum.ENERGIE, component: EnergieComponent},
   {path: RoutesEnum.CARBURANT, component: CarburantComponent},
@@ -101,7 +102,11 @@ const routes: Routes = [
   {path: 'prediction-info', component: CarbonPredictionInfoComponent},
   {path: 'historical-carbon-forecast', component: HistoricalCarbonForecastComponent},
   {path: RoutesEnum.TRANSACTIONS, component: TransactionsComponent},
-  {path: 'payment-confirmation', component: PaymentConfirmationComponent},
+  {
+    path: 'payment-confirmation',
+    component: PaymentConfirmationComponent,
+    canActivate: [AuthGuard]
+  },
   {path: RoutesEnum.ESG_HISTORY, component: EsgHistoryComponent},
   {
     path: "test", component: InstructionsListComponent, data: {
@@ -123,7 +128,8 @@ const routes: Routes = [
   {path: RoutesEnum.EVENT_FOOTPRINT, component: EventFootprintComponent},
   {path: RoutesEnum.EVENT_RESULT, component: EventResultComponent},
   {path: RoutesEnum.COMPANY_OWNER_FORM, component: CompanyOwnerFormComponent},
-  {path: RoutesEnum.REGISTER_COMPANY_OWNER, component: RegisterCompanyOwnerComponent}
+  {path: RoutesEnum.REGISTER_COMPANY_OWNER, component: RegisterCompanyOwnerComponent},
+  {path: "**", component: ErrorPageComponent}
 ];
 
 @NgModule({

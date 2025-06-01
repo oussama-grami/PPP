@@ -6,6 +6,7 @@ import {BehaviorSubject, Observable, of} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {CarbonControllerService} from '../api/services';
 import {CarbonResponse} from '../api/models';
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +14,7 @@ import {CarbonResponse} from '../api/models';
 export class EventFootprintService {
   private eventData: Event | null = null;
   private eventResponses: EventResponse[] = [];  // cached list
-  private readonly apiUrl = 'http://localhost:8080/api/event';
+  private readonly apiUrl = environment.apiUrl + '/api/event';
 
 
   recommendations: CarbonResponse | null = null;

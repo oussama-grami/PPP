@@ -1,0 +1,12 @@
+flask
+pandas
+numpy
+scikit-learn
+xgboost
+joblib
+prophet
+statsmodels
+torch
+azure-ai-inference
+azure-core
+python-dateutil

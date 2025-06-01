@@ -97,6 +97,7 @@ import {HttpTokenInterceptor} from './keycloaktoken.interceptor';
 import {SpinnerComponent} from "./Components/spinner/spinner.component";
 import {CompanyOwnerFormComponent} from "./Components/company-owner-form/company-owner-form.component";
 import { RegisterCompanyOwnerComponent } from './Components/register-company-owner/register-company-owner.component';
+import { ErrorPageComponent } from './error-page/error-page.component';
 
 @NgModule({
   declarations: [
@@ -155,6 +156,7 @@ import { RegisterCompanyOwnerComponent } from './Components/register-company-own
     SpinnerComponent,
     CompanyOwnerFormComponent,
     RegisterCompanyOwnerComponent,
+    ErrorPageComponent,
   ],
   imports: [
     BrowserModule,
