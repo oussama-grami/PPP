@@ -1,11 +1,20 @@
 import {APP_INITIALIZER, NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import {CommonModule} from '@angular/common';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatTableModule} from '@angular/material/table';
+import {MatButtonModule} from '@angular/material/button';
+import {KeycloakAngularModule, KeycloakService} from 'keycloak-angular';
+
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {HomeComponent} from './Components/home/home.component';
+import {NavAcceuilComponent} from './Components/nav-acceuil/nav-acceuil.component';
+import {FooterComponent} from './Components/footer/footer.component';
 import {EnergieComponent} from './Components/energie/energie.component';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {CarburantComponent} from './Components/carburant/carburant.component';
 import {AeriensComponent} from './Components/aeriens/aeriens.component';
 import {FretComponent} from './Components/fret/fret.component';
@@ -21,20 +30,16 @@ import {
 import {EsgComponent} from './Components/esg/esg.component';
 import {CarboneComponent} from './Components/carbone/carbone.component';
 import {ResultESGComponent} from './Components/result-esg/result-esg.component';
-import {NavAcceuilComponent} from './Components/nav-acceuil/nav-acceuil.component';
 import {ESGdiagramComponent} from './Components/esgdiagram/esgdiagram.component';
 import {ArboricultureComponent} from './Components/arboriculture/arboriculture.component';
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {PisteComponent} from './Components/piste/piste.component';
 import {MarketplaceComponent} from './Components/marketplace/marketplace.component';
 import {FilterItemComponent} from './Components/filter-item/filter-item.component';
 import {ProjectAdComponent} from './Components/project-ad/project-ad.component';
-import {CommonModule} from '@angular/common';
 import {
   ProjectDetailsComponent
 } from './Components/project-details/project-details.component';
 import {CheckoutComponent} from './Components/checkout/checkout.component';
-import {FooterComponent} from './Components/footer/footer.component';
 import {PaymentComponent} from './Components/payment/payment.component';
 import {ProjectOwnerComponent} from './Components/project-owner/project-owner.component';
 import {ResourcesComponent} from './Components/resources/resources.component';
@@ -58,7 +63,7 @@ import {PriceDetailsComponent} from './Components/price-details/price-details.co
 import {EsgOverviewComponent} from './Components/esg-overview/esg-overview.component';
 import {
   ProjectsCarouselComponent
-} from "./Components/projects-carousel/projects-carousel.component";
+} from './Components/projects-carousel/projects-carousel.component';
 import {InfoSectionComponent} from './Components/InfoSection/InfoSection.component';
 import {
   CarbonPredictionInfoComponent
@@ -66,13 +71,10 @@ import {
 import {
   HistoricalCarbonForecastComponent
 } from './Components/HistoricalCarbonForecast/HistoricalCarbonForecast.component';
-import {MatTableModule} from '@angular/material/table';
-import {MatButtonModule} from '@angular/material/button';
 import {TransactionsComponent} from './Components/transactions/transactions.component';
 import {
   InstructionsListComponent
-} from "./Components/instructions-list/instructions-list.component";
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+} from './Components/instructions-list/instructions-list.component';
 import {EventFormComponent} from './Components/event-form/event-form.component';
 import {
   EventFootprintComponent
@@ -92,12 +94,17 @@ import {
 import {EsgHistoryComponent} from './Components/esg-history/esg-history.component';
 import {ApiModule} from './api/api.module';
 import {environment} from 'src/environments/environment';
-import {KeycloakAngularModule, KeycloakService} from 'keycloak-angular';
 import {HttpTokenInterceptor} from './keycloaktoken.interceptor';
-import {SpinnerComponent} from "./Components/spinner/spinner.component";
-import {CompanyOwnerFormComponent} from "./Components/company-owner-form/company-owner-form.component";
-import { RegisterCompanyOwnerComponent } from './Components/register-company-owner/register-company-owner.component';
-import { ErrorPageComponent } from './error-page/error-page.component';
+import {SpinnerComponent} from './Components/spinner/spinner.component';
+import {
+  CompanyOwnerFormComponent
+} from './Components/company-owner-form/company-owner-form.component';
+import {
+  RegisterCompanyOwnerComponent
+} from './Components/register-company-owner/register-company-owner.component';
+import {ErrorPageComponent} from './error-page/error-page.component';
+import {RedirectGuard} from './guards/redirect.guard';
+import {RedirectService} from './services/redirect.service';
 
 @NgModule({
   declarations: [
@@ -170,7 +177,7 @@ import { ErrorPageComponent } from './error-page/error-page.component';
     MatButtonModule,
     BrowserAnimationsModule,
     ApiModule.forRoot({
-      rootUrl: environment.apiUrl,
+
     }),
     KeycloakAngularModule,
   ],
@@ -186,6 +193,8 @@ import { ErrorPageComponent } from './error-page/error-page.component';
       useClass: HttpTokenInterceptor,
       multi: true,
     },
+    RedirectService,
+    RedirectGuard,
   ],
   bootstrap: [AppComponent],
 })

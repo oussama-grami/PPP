@@ -14,7 +14,8 @@ export class CompanyOwnerService {
 
   createCompanyOwner(data: CompanyOwner): Observable<any> {
     //replace with actual API call aziz
-    return this.http.post<any>(this.API_URL, data);
+    //return this.http.post<any>(this.API_URL, data);
+    return of({ success: true, message: 'Company Owner created successfully' })
   }
 
 

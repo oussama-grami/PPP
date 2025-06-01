@@ -1,11 +1,12 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
-import { Country } from '../../Models/country';
-import { CountryService } from '../../Service/country.service';
-import { CompanyOwnerService } from '../../Service/company-owner.service';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Subject} from 'rxjs';
+import {takeUntil} from 'rxjs/operators';
+import {Country} from '../../Models/country';
+import {CountryService} from '../../Service/country.service';
+import {CompanyOwnerService} from '../../Service/company-owner.service';
 import {CompanyOwner} from "../../Models/companyOwner";
+import {RedirectService} from "../../services/redirect.service";
 
 @Component({
   selector: 'app-company-owner-form',
@@ -23,7 +24,8 @@ export class CompanyOwnerFormComponent implements OnInit, OnDestroy {
   constructor(
     private fb: FormBuilder,
     private countryService: CountryService,
-    private companyOwnerService: CompanyOwnerService
+    private companyOwnerService: CompanyOwnerService,
+    private redirectService: RedirectService
   ) {
     this.companyOwnerForm = this.createForm();
   }
@@ -118,7 +120,7 @@ export class CompanyOwnerFormComponent implements OnInit, OnDestroy {
     }
 
     target.value = value;
-    this.companyOwnerForm.patchValue({ phone: value });
+    this.companyOwnerForm.patchValue({phone: value});
   }
 
   isFieldInvalid(fieldName: string): boolean {
@@ -159,14 +161,13 @@ export class CompanyOwnerFormComponent implements OnInit, OnDestroy {
   }
 
   private handleSuccessResponse(): void {
-    this.isLoading = false;
     this.showSuccessMessage = true;
 
     // Reset form after successful submission
     setTimeout(() => {
+      this.isLoading = false;
       this.companyOwnerForm.reset();
-      this.showSuccessMessage = false;
-      this.autoSelectTunisia();
+      this.redirectService.completeRegistration();
     }, 3000);
   }
 
@@ -183,11 +184,9 @@ export class CompanyOwnerFormComponent implements OnInit, OnDestroy {
 
     const firstErrorElement = document.querySelector('.form-group.error');
     if (firstErrorElement) {
-      firstErrorElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      firstErrorElement.scrollIntoView({behavior: 'smooth', block: 'center'});
     }
   }
-
-
 
 
   getFormCompletionPercentage(): number {

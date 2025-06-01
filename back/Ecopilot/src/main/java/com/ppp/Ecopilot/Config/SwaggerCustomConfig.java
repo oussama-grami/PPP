@@ -21,10 +21,10 @@ public class SwaggerCustomConfig {
 
     @Bean
     public OpenAPI openAPI() {
-        return new OpenAPI().addSecurityItem(new SecurityRequirement().
+        return new OpenAPI()/*.addSecurityItem(new SecurityRequirement().
                         addList("Bearer Authentication"))
                 .components(new Components().addSecuritySchemes
-                        ("Bearer Authentication", createAPIKeyScheme()))
+                        ("Bearer Authentication", createAPIKeyScheme()))*/
                 .info(new Info().title("Ecopilot project")
                         .description("Ecopilot ppp project Integration API.")
                         .version("1.0")

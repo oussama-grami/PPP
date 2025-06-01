@@ -19,12 +19,12 @@ public class CompanyOwnerController {
     private final ProjectOwnerMapper projectOwnerMapper;
     private final AuthService authService;
 
-    @PostMapping
+    /*@PostMapping
     public ResponseEntity<Long> create(@RequestBody @Valid ProjectOwnerDTO dto) {
         ProjectOwner entity = projectOwnerMapper.toEntity(dto);
         ProjectOwner savedEntity = service.save(entity);
         return ResponseEntity.ok(savedEntity.getId());
-    }
+    }*/
 
     @GetMapping()
     public ResponseEntity<Boolean> existsCompanyOwner() {
