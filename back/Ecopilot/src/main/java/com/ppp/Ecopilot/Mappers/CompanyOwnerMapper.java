@@ -18,6 +18,7 @@ public class CompanyOwnerMapper implements EntityMapper<CompanyOwner, CompanyOwn
                 .companyName(dto.companyName())
                 .email(dto.email())
                 .domaine(dto.domaine())
+                .nom(dto.firstName()+" "+dto.lastName())
                 .build();
     }
 

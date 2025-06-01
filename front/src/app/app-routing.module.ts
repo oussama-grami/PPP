@@ -70,6 +70,7 @@ import {CompanyOwnerFormComponent} from "./Components/company-owner-form/company
 import {RegisterCompanyOwnerComponent} from "./Components/register-company-owner/register-company-owner.component";
 import {AuthGuard} from "./auth.guard";
 import {ErrorPageComponent} from "./error-page/error-page.component";
+import {RedirectGuard} from "./guards/redirect.guard";
 
 const routes: Routes = [
   {path: '', component: HomeComponent, canActivate: [AuthGuard]},
@@ -122,7 +123,7 @@ const routes: Routes = [
   {path: RoutesEnum.EVENT_FORM, component: EventFormComponent},
   {path: RoutesEnum.EVENT_FOOTPRINT, component: EventFootprintComponent},
   {path: `${RoutesEnum.EVENT_RESULT}/:id`, component: EventResultComponent},
-  {path: RoutesEnum.EVENT_HISTORY, component: EventHistoryComponent},
+  {path: RoutesEnum.EVENT_HISTORY, component: EventHistoryComponent,canActivate:[RedirectGuard]},
   {path: RoutesEnum.CARBON_HISTORY, component: CarbonHistoryComponent},
   {path: RoutesEnum.EVENT_FORM, component: EventFormComponent},
   {path: RoutesEnum.EVENT_FOOTPRINT, component: EventFootprintComponent},

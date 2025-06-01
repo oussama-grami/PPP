@@ -45,7 +45,7 @@ export class RedirectService {
    */
   checkAuthorization(): Observable<boolean> {
     // Appel API au backend pour vérifier l'autorisation
-    return this.http.get<boolean>(`${environment.apiUrl}/api/check-authorization`);
+    return this.http.get<boolean>(`${environment.apiUrl}/api/company-owners`);
 
     // Pour les tests, vous pouvez utiliser cette ligne à la place:
     // return of(false); // Simuler une non-autorisation pour tester la redirection

@@ -6,7 +6,9 @@ public record CompanyOwnerDTO(
         String companyCode,
         String email,
         String domaine,
-        int numTelephone,
+        Double numTelephone,
+        String firstName,
+        String lastName,
         String role
 ) {
 }

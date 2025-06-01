@@ -1,6 +1,7 @@
 package com.ppp.Ecopilot.Entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -17,6 +18,7 @@ import lombok.experimental.SuperBuilder;
 @Table(name = "_user")
 public abstract class User extends BaseEntity<Long> {
     @Column(nullable = false)
+    @Email()
     protected String email;
     @Column(nullable = false)
     protected String nom;

@@ -155,7 +155,7 @@ export class CompanyOwnerFormComponent implements OnInit, OnDestroy {
       companyName: formValue.companyName,
       companyCode: formValue.companyCode,
       domaine: formValue.domaine,
-      numTelephone: formValue.countryCode + formValue.phone.replace(/\s/g, ''),
+      numTelephone: formValue.countryCode.slice(1) + formValue.phone.replace(/\s/g, ''),
       role: 'ROLE_CEO'
     };
   }

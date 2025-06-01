@@ -19,16 +19,17 @@ export class RedirectGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    
+
     // Stocker l'URL d'origine
     const originalUrl = state.url;
     this.redirectService.setOriginalUrl(originalUrl);
-    
+
     // Vérifier l'autorisation avec le backend
     return this.redirectService.checkAuthorization().pipe(
       map(isAuthorized => {
         if (isAuthorized) {
           // Si autorisé, permettre l'accès à la route
+          console.log("Accès autorisé à:", originalUrl);
           return true;
         } else {
           // Si non autorisé, rediriger vers la page RegisterCompanyOwner

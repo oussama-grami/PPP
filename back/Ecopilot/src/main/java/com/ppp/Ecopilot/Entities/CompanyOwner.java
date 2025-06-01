@@ -28,13 +28,10 @@ public class CompanyOwner extends User {
     private String companyName;
     @Column(nullable = false)
     private String companyCode;
-    @Email
-    @Column(nullable = false)
-    private String email;
     @Column(nullable = false)
     private String domaine;
     @Column(nullable = false)
-    private int numTelephone;
+    private double numTelephone;
     @Enumerated(EnumType.STRING)
     private Roles role;
 

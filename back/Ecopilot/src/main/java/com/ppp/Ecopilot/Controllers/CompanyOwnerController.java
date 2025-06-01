@@ -21,6 +21,7 @@ public class CompanyOwnerController {
 
     @PostMapping
     public ResponseEntity<Long> create(@RequestBody @Valid CompanyOwnerDTO dto) {
+        System.out.println("Creating company owner with DTO: " + dto.toString());
         CompanyOwner companyOwner = companyOwnerMapper.toEntity(dto);
         companyOwner.setKeycloakId(authService.getCurrentUser().keycloak_id());
         return ResponseEntity.ok(service.AddCompanyOwner(companyOwner));
