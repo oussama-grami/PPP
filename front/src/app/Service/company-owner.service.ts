@@ -8,20 +8,14 @@ import { CompanyOwner } from '../Models/companyOwner';
   providedIn: 'root'
 })
 export class CompanyOwnerService {
-  private readonly API_URL = '/api/company-owners';
+  private readonly API_URL = '/api/'; // add api call here
 
   constructor(private http: HttpClient) {}
 
   createCompanyOwner(data: CompanyOwner): Observable<any> {
+    //replace with actual API call aziz
     return this.http.post<any>(this.API_URL, data);
   }
 
-  // For testing purposes - simulates API call
-  simulateCreateCompanyOwner(data: CompanyOwner): Observable<any> {
-    console.log('Company Owner Data:', data);
 
-    // Simulate API delay and response
-    return of({ success: true, message: 'Company owner created successfully', data })
-      .pipe(delay(2000));
-  }
 }

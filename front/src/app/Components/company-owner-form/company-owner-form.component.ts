@@ -132,20 +132,13 @@ export class CompanyOwnerFormComponent implements OnInit, OnDestroy {
       const companyOwnerData = this.prepareFormData();
 
       // Use the actual API service or simulation
-      this.companyOwnerService.simulateCreateCompanyOwner(companyOwnerData)
+      this.companyOwnerService.createCompanyOwner(companyOwnerData)
         .pipe(takeUntil(this.destroy$))
         .subscribe({
-          next: (response) => {
-            console.log('Success:', response);
-            this.handleSuccessResponse();
-          },
-          error: (error) => {
-            console.error('Error:', error);
-            this.handleErrorResponse(error);
-          }
+          next: () => this.handleSuccessResponse(),
+          error: (error) => this.handleErrorResponse(error)
         });
-    } else {
-      this.handleInvalidForm();
+
     }
   }
 
@@ -194,20 +187,7 @@ export class CompanyOwnerFormComponent implements OnInit, OnDestroy {
     }
   }
 
-  private submitToActualAPI(data: CompanyOwner): void {
-    this.companyOwnerService.createCompanyOwner(data)
-      .pipe(takeUntil(this.destroy$))
-      .subscribe({
-        next: (response) => {
-          console.log('Success:', response);
-          this.handleSuccessResponse();
-        },
-        error: (error) => {
-          console.error('Error:', error);
-          this.handleErrorResponse(error);
-        }
-      });
-  }
+
 
 
   getFormCompletionPercentage(): number {
