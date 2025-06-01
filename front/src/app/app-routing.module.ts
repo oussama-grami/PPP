@@ -108,7 +108,7 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {path: RoutesEnum.ESG_HISTORY, component: EsgHistoryComponent},
-  {
+  /*{
     path: "test", component: InstructionsListComponent, data: {
       instructions: [
         'Connectez-vous à votre compte',
@@ -118,7 +118,7 @@ const routes: Routes = [
       ],
       title: 'Procédure de demande'
     }
-  },
+  },*/
   {path: RoutesEnum.EVENT_FORM, component: EventFormComponent},
   {path: RoutesEnum.EVENT_FOOTPRINT, component: EventFootprintComponent},
   {path: `${RoutesEnum.EVENT_RESULT}/:id`, component: EventResultComponent},

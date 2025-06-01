@@ -2,6 +2,7 @@ package com.ppp.Ecopilot.Config;
 
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -22,6 +23,8 @@ import java.util.List;
 public class SecurityConfig {
 
     private final CorsConfig corsConfig;
+    @Value("${front.url}")
+    private String frontUrl;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws
@@ -61,7 +64,7 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("http://localhost:4200"));
+        configuration.setAllowedOrigins(List.of(frontUrl));
         configuration.setAllowedMethods(List.of("*"));
         configuration.setAllowedHeaders(List.of("*"));
         configuration.setAllowCredentials(true);

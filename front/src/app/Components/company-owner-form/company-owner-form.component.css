@@ -4,6 +4,11 @@
   position: relative;
   display: inline-block;
 }
+.error-message {
+  background-color: #feeef0;
+  border-left: 4px solid #ea4335;
+  color: #dc3545;
+}
 
 .eco-icon-bg {
   position: absolute;

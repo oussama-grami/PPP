@@ -20,9 +20,6 @@ import java.util.List;
 @RequestMapping("/esg")
 @RequiredArgsConstructor
 
-
-@CrossOrigin(origins = "http://localhost:4200") // Port Angular
-
 public class EsgController  {
 
     private final EsgService esgService;

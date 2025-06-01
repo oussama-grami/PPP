@@ -20,6 +20,7 @@ export class CompanyOwnerFormComponent implements OnInit, OnDestroy {
   isLoading = false;
   showSuccessMessage = false;
   private destroy$ = new Subject<void>();
+  protected submitError: string | null = null;
 
   constructor(
     private fb: FormBuilder,
@@ -132,7 +133,6 @@ export class CompanyOwnerFormComponent implements OnInit, OnDestroy {
     if (this.companyOwnerForm.valid) {
       this.isLoading = true;
       const companyOwnerData = this.prepareFormData();
-
       // Use the actual API service or simulation
       this.companyOwnerService.createCompanyOwner(companyOwnerData)
         .pipe(takeUntil(this.destroy$))
@@ -156,7 +156,7 @@ export class CompanyOwnerFormComponent implements OnInit, OnDestroy {
       companyCode: formValue.companyCode,
       domaine: formValue.domaine,
       numTelephone: formValue.countryCode + formValue.phone.replace(/\s/g, ''),
-      role: 'COMPANY_OWNER'
+      role: 'ROLE_CEO'
     };
   }
 
@@ -167,13 +167,15 @@ export class CompanyOwnerFormComponent implements OnInit, OnDestroy {
     setTimeout(() => {
       this.isLoading = false;
       this.companyOwnerForm.reset();
+      this.showSuccessMessage = false;
+      this.submitError = null;
       this.redirectService.completeRegistration();
     }, 3000);
   }
 
   private handleErrorResponse(error: any): void {
     this.isLoading = false;
-
+    this.submitError = 'An error occurred while submitting the form. Please try again later.';
   }
 
   private handleInvalidForm(): void {

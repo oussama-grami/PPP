@@ -1,8 +1,8 @@
 package com.ppp.Ecopilot.Controllers;
 
-import com.ppp.Ecopilot.DTO.ProjectOwnerDTO;
-import com.ppp.Ecopilot.Entities.ProjectOwner;
-import com.ppp.Ecopilot.Mappers.ProjectOwnerMapper;
+import com.ppp.Ecopilot.DTO.CompanyOwnerDTO;
+import com.ppp.Ecopilot.Entities.CompanyOwner;
+import com.ppp.Ecopilot.Mappers.CompanyOwnerMapper;
 import com.ppp.Ecopilot.Services.AuthService;
 import com.ppp.Ecopilot.Services.CompanyOwnerService;
 import jakarta.validation.Valid;
@@ -16,15 +16,15 @@ import org.springframework.web.bind.annotation.*;
 public class CompanyOwnerController {
 
     private final CompanyOwnerService service;
-    private final ProjectOwnerMapper projectOwnerMapper;
     private final AuthService authService;
+    private final CompanyOwnerMapper companyOwnerMapper;
 
-    /*@PostMapping
-    public ResponseEntity<Long> create(@RequestBody @Valid ProjectOwnerDTO dto) {
-        ProjectOwner entity = projectOwnerMapper.toEntity(dto);
-        ProjectOwner savedEntity = service.save(entity);
-        return ResponseEntity.ok(savedEntity.getId());
-    }*/
+    @PostMapping
+    public ResponseEntity<Long> create(@RequestBody @Valid CompanyOwnerDTO dto) {
+        CompanyOwner companyOwner = companyOwnerMapper.toEntity(dto);
+        companyOwner.setKeycloakId(authService.getCurrentUser().keycloak_id());
+        return ResponseEntity.ok(service.AddCompanyOwner(companyOwner));
+    }
 
     @GetMapping()
     public ResponseEntity<Boolean> existsCompanyOwner() {

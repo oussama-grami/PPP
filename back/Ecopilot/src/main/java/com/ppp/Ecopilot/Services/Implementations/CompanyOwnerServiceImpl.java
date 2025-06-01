@@ -34,7 +34,7 @@ public class CompanyOwnerServiceImpl extends AbstractCrudService<CompanyOwner, L
     }
 
     @Override
-    public void AddCompanyOwner(CompanyOwner companyOwner) {
-
+    public Long AddCompanyOwner(CompanyOwner companyOwner) {
+        return companyOwnerRepo.save(companyOwner).getId();
     }
 }
