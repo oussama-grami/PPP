@@ -95,6 +95,8 @@ import {environment} from 'src/environments/environment';
 import {KeycloakAngularModule, KeycloakService} from 'keycloak-angular';
 import {HttpTokenInterceptor} from './keycloaktoken.interceptor';
 import {SpinnerComponent} from "./Components/spinner/spinner.component";
+import {CompanyOwnerFormComponent} from "./Components/company-owner-form/company-owner-form.component";
+import { RegisterCompanyOwnerComponent } from './Components/register-company-owner/register-company-owner.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
 
 @NgModule({
@@ -152,6 +154,8 @@ import { ErrorPageComponent } from './error-page/error-page.component';
     CarbonHistoryComponent,
     EsgHistoryComponent,
     SpinnerComponent,
+    CompanyOwnerFormComponent,
+    RegisterCompanyOwnerComponent,
     ErrorPageComponent,
   ],
   imports: [

@@ -1,0 +1,206 @@
+
+
+.eco-icon-container {
+  position: relative;
+  display: inline-block;
+}
+
+.eco-icon-bg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #198754 0%, #20c997 100%);
+  border-radius: 50%;
+  opacity: 0.1;
+  animation: pulse 2s infinite;
+}
+
+.eco-icon {
+  position: relative;
+  z-index: 1;
+}
+
+.progress-indicator {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.progress-step {
+  padding: 8px 16px;
+  border-radius: 20px;
+  background: #e9ecef;
+  color: #6c757d;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.progress-step.active {
+  background: linear-gradient(135deg, #198754 0%, #20c997 100%);
+  color: white;
+  transform: scale(1.05);
+}
+
+.form-container {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.form-decoration {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: linear-gradient(135deg, #198754 0%, #20c997 100%);
+}
+
+.section-header {
+  border-bottom: 2px solid #e9ecef;
+  padding-bottom: 1rem;
+}
+
+.section-icon {
+  width: 50px;
+  height: 50px;
+  background: #d1e7dd;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-floating > .form-control,
+.form-floating > .form-select {
+  border: 2px solid #e9ecef;
+  transition: all 0.3s ease;
+}
+
+.form-floating > .form-control:focus,
+.form-floating > .form-select:focus {
+  border-color: #198754;
+  box-shadow: 0 0 0 0.2rem rgba(25, 135, 84, 0.1);
+}
+
+.form-floating > label {
+  color: #6c757d;
+  font-weight: 500;
+}
+
+.btn-eco {
+  background: linear-gradient(135deg, #198754 0%, #20c997 100%);
+  border: none;
+  color: white;
+  font-weight: 600;
+  border-radius: 15px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-eco:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(25, 135, 84, 0.3);
+  color: white;
+}
+
+.btn-eco:disabled {
+  background: #6c757d;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.btn-tooltip {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 6px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  margin-bottom: 8px;
+}
+
+.btn-eco:disabled:hover .btn-tooltip {
+  opacity: 1;
+}
+
+.loading-container {
+  padding: 2rem;
+}
+
+.loading-dots {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+}
+
+.loading-dots span {
+  width: 8px;
+  height: 8px;
+  background: #198754;
+  border-radius: 50%;
+  animation: loadingDot 1.4s infinite ease-in-out both;
+}
+
+.loading-dots span:nth-child(1) { animation-delay: -0.32s; }
+.loading-dots span:nth-child(2) { animation-delay: -0.16s; }
+
+.form-progress .progress {
+  border-radius: 10px;
+  background: #e9ecef;
+}
+
+.form-progress .progress-bar {
+  border-radius: 10px;
+  transition: width 0.3s ease;
+}
+
+.sticky-bottom {
+  position: sticky;
+  bottom: 0;
+  z-index: 10;
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes pulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); }
+  50% { transform: translate(-50%, -50%) scale(1.1); }
+}
+
+@keyframes loadingDot {
+  0%, 80%, 100% { transform: scale(0); }
+  40% { transform: scale(1); }
+}
+
+@media (max-width: 768px) {
+  .progress-indicator {
+    gap: 1rem;
+  }
+
+  .progress-step {
+    padding: 6px 12px;
+    font-size: 0.75rem;
+  }
+
+  .btn-eco {
+    font-size: 0.875rem;
+    padding: 12px 24px !important;
+  }
+
+  .form-container {
+    margin: 0 15px;
+  }
+}
