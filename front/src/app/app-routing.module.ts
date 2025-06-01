@@ -67,6 +67,8 @@ import {
 } from "./Components/carbon-history/carbon-history.component";
 
 import {EsgHistoryComponent} from './Components/esg-history/esg-history.component';
+import {CompanyOwnerFormComponent} from "./Components/company-owner-form/company-owner-form.component";
+import {RegisterCompanyOwnerComponent} from "./Components/register-company-owner/register-company-owner.component";
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -120,6 +122,8 @@ const routes: Routes = [
   {path: RoutesEnum.EVENT_FORM, component: EventFormComponent},
   {path: RoutesEnum.EVENT_FOOTPRINT, component: EventFootprintComponent},
   {path: RoutesEnum.EVENT_RESULT, component: EventResultComponent},
+  {path: RoutesEnum.COMPANY_OWNER_FORM, component: CompanyOwnerFormComponent},
+  {path: RoutesEnum.REGISTER_COMPANY_OWNER, component: RegisterCompanyOwnerComponent}
 ];
 
 @NgModule({
