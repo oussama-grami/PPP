@@ -1,0 +1,58 @@
+# Node.js dependencies and build artifacts
+node_modules
+npm-debug.log
+yarn-error.log
+yarn-debug.log
+
+# Build output directories
+dist
+tmp
+out-tsc
+
+# IDE and editor files
+.idea
+.project
+.classpath
+.c9
+*.launch
+.settings
+*.sublime-workspace
+.vscode
+
+# Git and version control
+.git
+.gitignore
+
+# Testing and coverage files
+coverage
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Docker files (no need to copy these into the build)
+Dockerfile
+.dockerignore
+docker-compose*.yml
+
+# Environment files that might contain secrets
+.env
+.env.*
+
+# Kubernetes deployment files
+*.yaml
+*.yml
+!nginx/*.yml
+!nginx/*.yaml
+
+# Documentation
+README.md
+LICENSE
+CHANGELOG.md
+
+# Logs
+logs
+*.log
+
+# Specific to this project
+spec_fixed.json

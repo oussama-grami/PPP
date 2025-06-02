@@ -2,6 +2,6 @@
 export interface  CarbonFootprintData {
   id?: number,
   date: string,
-  predicted: boolean 
+  predicted: boolean
   value: number,
 }

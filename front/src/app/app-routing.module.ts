@@ -66,8 +66,11 @@ import {
 } from "./Components/carbon-history/carbon-history.component";
 
 import {EsgHistoryComponent} from './Components/esg-history/esg-history.component';
+import {CompanyOwnerFormComponent} from "./Components/company-owner-form/company-owner-form.component";
+import {RegisterCompanyOwnerComponent} from "./Components/register-company-owner/register-company-owner.component";
 import {AuthGuard} from "./auth.guard";
 import {ErrorPageComponent} from "./error-page/error-page.component";
+import {RedirectGuard} from "./guards/redirect.guard";
 
 const routes: Routes = [
   {path: '', component: HomeComponent, canActivate: [AuthGuard]},
@@ -106,7 +109,7 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {path: RoutesEnum.ESG_HISTORY, component: EsgHistoryComponent},
-  {
+  /*{
     path: "test", component: InstructionsListComponent, data: {
       instructions: [
         'Connectez-vous à votre compte',
@@ -116,15 +119,17 @@ const routes: Routes = [
       ],
       title: 'Procédure de demande'
     }
-  },
+  },*/
   {path: RoutesEnum.EVENT_FORM, component: EventFormComponent},
   {path: RoutesEnum.EVENT_FOOTPRINT, component: EventFootprintComponent},
   {path: `${RoutesEnum.EVENT_RESULT}/:id`, component: EventResultComponent},
-  {path: RoutesEnum.EVENT_HISTORY, component: EventHistoryComponent},
+  {path: RoutesEnum.EVENT_HISTORY, component: EventHistoryComponent,canActivate:[RedirectGuard]},
   {path: RoutesEnum.CARBON_HISTORY, component: CarbonHistoryComponent},
   {path: RoutesEnum.EVENT_FORM, component: EventFormComponent},
   {path: RoutesEnum.EVENT_FOOTPRINT, component: EventFootprintComponent},
   {path: RoutesEnum.EVENT_RESULT, component: EventResultComponent},
+  {path: RoutesEnum.COMPANY_OWNER_FORM, component: CompanyOwnerFormComponent},
+  {path: RoutesEnum.REGISTER_COMPANY_OWNER, component: RegisterCompanyOwnerComponent},
   {path: "**", component: ErrorPageComponent}
 ];
 

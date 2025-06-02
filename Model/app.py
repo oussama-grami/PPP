@@ -18,6 +18,7 @@ import torch
 import torch.nn as nn
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
+import os
 app = Flask(__name__)
 class EventData:
     def __init__(self,
@@ -155,9 +156,9 @@ def predict():
 
 
 # Configuration Azure
-AZURE_ENDPOINT ="https://models.github.ai/inference"
-AZURE_TOKEN = "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"
-MODEL_NAME = "openai/gpt-4.1-mini"
+AZURE_ENDPOINT = os.getenv("AZURE_ENDPOINT", "https://models.github.ai/inference")
+AZURE_TOKEN = os.getenv("AZURE_TOKEN")
+MODEL_NAME = os.getenv("MODEL_NAME", "openai/gpt-4.1-mini")
 
 
 # Fonction pour générer le prompt à partir des données
@@ -307,13 +308,16 @@ def generate_recommendations_entreprise():
     try:
         # Récupérer les données JSON de la requête
         data = request.get_json()
+        print("+++++++++++++++++++++++++++")
         # Générer le prompt
         prompt = generate_prompt(data)
+        print("---------------------------")
         # Initialiser le client Azure
         client = ChatCompletionsClient(
             endpoint=AZURE_ENDPOINT,
             credential=AzureKeyCredential(AZURE_TOKEN),
         )
+        print("***************************")
         # Appeler l'API Azure
         response = client.complete(
             messages=[
@@ -326,6 +330,8 @@ def generate_recommendations_entreprise():
             temperature=1,
             top_p=1
         )
+        print("/////////////////////////////////")
+        print(response)
         # Extraire le contenu de la réponse
         raw_recommendations = response.choices[0].message.content
         return jsonify({
@@ -333,6 +339,7 @@ def generate_recommendations_entreprise():
             "recommendations": raw_recommendations
         })
     except Exception as e:
+        print(f"Error generating recommendations: {e}")
         return jsonify({
             "status": "error",
             "recommendations": []
@@ -505,4 +512,4 @@ def predict_carbon_footprint():
         return jsonify({'error': str(e)}), 400
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False,port=7860,host="0.0.0.0")

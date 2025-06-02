@@ -35,4 +35,6 @@ export enum RoutesEnum {
   EVENT_HISTORY= 'event-history',
   CARBON_HISTORY = 'carbon-history',
   ESG_HISTORY = 'esg-history',
+  COMPANY_OWNER_FORM = 'company-owner',
+  REGISTER_COMPANY_OWNER= 'register-company-owner',
 }

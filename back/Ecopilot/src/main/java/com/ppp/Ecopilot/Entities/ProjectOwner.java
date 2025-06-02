@@ -32,7 +32,7 @@ public class ProjectOwner extends User {
     private String firstname;
     @Column(nullable = false)
     private String job_function;
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String phone;
     @Column(nullable = false)
     private String region;

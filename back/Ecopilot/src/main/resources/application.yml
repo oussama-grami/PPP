@@ -2,9 +2,9 @@ spring:
   application:
     name: Ecopilot
   datasource:
-    url: jdbc:mysql://mysql-2e1208b2-insat-3937.e.aivencloud.com:20518/defaultdb?ssl-mode=REQUIRED
-    username: avnadmin
-    password: 
+    url: ${DATASOURCE_URL:jdbc:mysql://mysql-2e1208b2-insat-3937.e.aivencloud.com:20518/defaultdb?ssl-mode=REQUIRED}
+    username: ${DATASOURCE_USERNAME:avnadmin}
+    password: ${DATABSE_PASSWORD}
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
@@ -17,9 +17,9 @@ spring:
           issuer-uri: "https://keycloak-custom-v25.onrender.com/realms/booksproject"
 stripe:
   api:
-    key: sk_test_51PXiywF8Z6bWeMKqcDN9MXuxRefQjhGucEbVV3TnLCQFepXXL0Q41msQoasi4qVgPOsXFuIgrgXRjH8leDDUoeLk00W7IXsAEj
+    key: ${STRIPE_API_KEY:sk_test_51PXiywF8Z6bWeMKqcDN9MXuxRefQjhGucEbVV3TnLCQFepXXL0Q41msQoasi4qVgPOsXFuIgrgXRjH8leDDUoeLk00W7IXsAEj}
   public:
-    key: pk_test_51PXiywF8Z6bWeMKqugWRfPksVOGqhWanFvATWLFhIpB4yJ5Hh4hN6K0j0R9aAzEtEGZfvXPzjb9OZcOMntiQT39h00HzHCJWtl
+    key: ${STRIPE_PUBLIC_KEY:pk_test_51PXiywF8Z6bWeMKqugWRfPksVOGqhWanFvATWLFhIpB4yJ5Hh4hN6K0j0R9aAzEtEGZfvXPzjb9OZcOMntiQT39h00HzHCJWtl}
 logging:
   level:
     root: WARN   # This will only log WARN and ERROR messages globally.
@@ -27,10 +27,12 @@ logging:
     org.springframework.orm.hibernate5: ERROR  # Set Hibernate to log only errors
 flask:
   api:
-    url: http://127.0.0.1:5000/
+    url: ${MODEL_API:https://azizougl-ecopilot.hf.space/}
     url.enterprise: ${flask.api.url}generate-recommendations-entreprise
     url.event: ${flask.api.url}generate-recommendations-event
 server:
-  port: 8087
+  port: ${SPRING_APP_PORT:8087}
 file:
   upload-dir: ./uploads
+front:
+  url : ${FRONTEND_URL:http://localhost:4200}

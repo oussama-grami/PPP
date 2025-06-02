@@ -4,3 +4,4 @@
 /model/node_modules/
 /model/EcopiLotModel
 back/Ecopilot/src/main/resources/application.yml
+.env
