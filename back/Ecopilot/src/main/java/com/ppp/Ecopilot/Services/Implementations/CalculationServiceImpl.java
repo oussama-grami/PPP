@@ -8,6 +8,7 @@ import com.ppp.Ecopilot.Enums.Unit;
 import com.ppp.Ecopilot.Models.CarbonFootprintModelRequest;
 import com.ppp.Ecopilot.Models.EventPredictionRequest;
 import com.ppp.Ecopilot.Services.CalculationService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
@@ -22,9 +23,9 @@ import java.util.List;
 
 @Service
 public class CalculationServiceImpl implements CalculationService {
-
+    @Value("${flask.api.url}")
+    private String baseUrl;
     public CompletableFuture<Double> calculateTotalEmissionFromModelAsync(CarbonFootprintModelRequest request) {
-        String baseUrl = "http://localhost:5000";
         ObjectMapper mapper = new ObjectMapper();
         HttpClient client = HttpClient.newHttpClient();
 
@@ -37,7 +38,7 @@ public class CalculationServiceImpl implements CalculationService {
         }
 
         HttpRequest postRequest = HttpRequest.newBuilder()
-                .uri(URI.create(baseUrl + "/predict"))
+                .uri(URI.create(baseUrl + "predict"))
                 .header("Content-Type", "application/json")
                 .POST(HttpRequest.BodyPublishers.ofString(requestBody))
                 .build();
@@ -129,7 +130,7 @@ public class CalculationServiceImpl implements CalculationService {
 
         HttpEntity<Object> entity = new HttpEntity<>(Collections.singletonList(requestPayload), headers);
 
-        String flaskUrl = "http://localhost:5000/eventPredict";
+        String flaskUrl = baseUrl+"eventPredict";
 
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<Map> response = restTemplate.postForEntity(flaskUrl, entity, Map.class);

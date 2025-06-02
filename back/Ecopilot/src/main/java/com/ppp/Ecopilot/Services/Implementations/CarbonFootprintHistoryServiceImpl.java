@@ -12,20 +12,17 @@ import com.ppp.Ecopilot.Mappers.CarbonInterpolationMapper;
 import com.ppp.Ecopilot.Repositories.CarbonFootprintHistoryRepo;
 import com.ppp.Ecopilot.Services.CarbonFootprintHistoryService;
 import com.ppp.Ecopilot.Services.CompanyOwnerService;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.HttpClientErrorException;
-import org.springframework.web.client.RestTemplate;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
 import java.time.YearMonth;
 import java.util.*;
-import java.util.stream.Collectors;
 
 
 @Service
@@ -36,7 +33,9 @@ public class CarbonFootprintHistoryServiceImpl extends AbstractCrudService<Carbo
     private final CompanyOwnerService companyOwnerService;
     private final WebClient webClient;
     private final CarbonInterpolationMapper carbonInterpolationMapper;
-    private static final String FLASK_INTERPOLATE_URL = "http://localhost:5000/interpolate";
+    @Value("${flask.api.url}")
+    private static String flaskUrl;
+    private static final String FLASK_INTERPOLATE_URL = flaskUrl+"interpolate";
 
     public CarbonFootprintHistoryServiceImpl(CarbonFootprintHistoryRepo carboneFootprintHistoryRepo, CarbonHistoryMapper historyMapper, CompanyOwnerService companyOwnerService, WebClient.Builder webClientBuilder, CarbonInterpolationMapper carbonInterpolationMapper) {
         this.carbonFootprintHistoryRepo = carboneFootprintHistoryRepo;
@@ -45,7 +44,7 @@ public class CarbonFootprintHistoryServiceImpl extends AbstractCrudService<Carbo
         this.carbonInterpolationMapper = carbonInterpolationMapper;
 
         this.webClient = webClientBuilder
-                .baseUrl("http://localhost:5000") // Flask API URL
+                .baseUrl(flaskUrl) // Flask API URL
                 .build();
     }
 
@@ -76,10 +75,7 @@ public class CarbonFootprintHistoryServiceImpl extends AbstractCrudService<Carbo
     }
 
 
-
-
-
-@Override
+    @Override
     public CarbonFootprintHistoryDTO[] forecastData() {
         try {
             CarbonFootprintHistoryDTO[] historyList = this.findByCurrentCompanyOwner();
@@ -106,10 +102,11 @@ public class CarbonFootprintHistoryServiceImpl extends AbstractCrudService<Carbo
 
             // Send request to forecasting API
             Mono<List<CarbonFootprintForecastResponse.PredictedEntry>> responseMono = webClient.post()
-                    .uri("/forecast")
+                    .uri("forecast")
                     .bodyValue(request)
                     .retrieve()
-                    .bodyToMono(new ParameterizedTypeReference<List<CarbonFootprintForecastResponse.PredictedEntry>>() {});
+                    .bodyToMono(new ParameterizedTypeReference<List<CarbonFootprintForecastResponse.PredictedEntry>>() {
+                    });
 
             List<CarbonFootprintForecastResponse.PredictedEntry> response = responseMono.block();
 
@@ -161,7 +158,7 @@ public class CarbonFootprintHistoryServiceImpl extends AbstractCrudService<Carbo
     }
 
     @Override
-    public void updateCarbonFootprint(Long id,CarbonFootprintHistoryDTO data) {
+    public void updateCarbonFootprint(Long id, CarbonFootprintHistoryDTO data) {
         CarbonFootprintHistory entity = carbonFootprintHistoryRepo.findById(id).orElseThrow(() -> new RuntimeException("Carbon footprint history not found"));
         entity.setDate(data.getDate());
         entity.setPredicted(data.isPredicted());
@@ -169,8 +166,8 @@ public class CarbonFootprintHistoryServiceImpl extends AbstractCrudService<Carbo
         carbonFootprintHistoryRepo.save(entity);
 
 
-
     }
+
     public List<CreateCarbonFootprintHistoryDTO> getInterpolatedData(
             Long companyOwnerId,
             YearMonth startDate,
@@ -199,7 +196,8 @@ public class CarbonFootprintHistoryServiceImpl extends AbstractCrudService<Carbo
                 .uri(FLASK_INTERPOLATE_URL)
                 .body(Mono.just(flaskRequestBody), Map.class)
                 .retrieve()
-                .toEntity(new ParameterizedTypeReference<List<CreateCarbonFootprintHistoryDTO>>() {})
+                .toEntity(new ParameterizedTypeReference<List<CreateCarbonFootprintHistoryDTO>>() {
+                })
                 .block();
 
         if (response == null || !response.hasBody()) {
@@ -212,6 +210,7 @@ public class CarbonFootprintHistoryServiceImpl extends AbstractCrudService<Carbo
 
         return flaskResult;
     }
+
     @Override
     public void deleteCarbonFootprint(Long id) {
         CarbonFootprintHistory entity = carbonFootprintHistoryRepo.findById(id).orElseThrow(() -> new RuntimeException("Carbon footprint history not found"));
@@ -223,7 +222,6 @@ public class CarbonFootprintHistoryServiceImpl extends AbstractCrudService<Carbo
     public void interpolateData(CarbonFootprintData data, Long id) {
 
     }
-
 
 
     public void saveOrUpdateAll(List<CreateCarbonFootprintHistoryDTO> dtos, Long companyOwnerId) {
