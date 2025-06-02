@@ -10,6 +10,7 @@ import com.ppp.Ecopilot.Mappers.CarbonFootprint.CarbonFootprintCreateMapper;
 import com.ppp.Ecopilot.Mappers.CarbonFootprint.CarbonFootprintDataMapper;
 import com.ppp.Ecopilot.Repositories.CarbonFootprintDataRepo;
 import com.ppp.Ecopilot.Repositories.CompanyOwnerRepo;
+import com.ppp.Ecopilot.Services.AuthService;
 import com.ppp.Ecopilot.Services.CalculationService;
 import com.ppp.Ecopilot.Services.CarbonFootprintDataService;
 import jakarta.persistence.EntityNotFoundException;
@@ -40,6 +41,7 @@ public class CarbonFootprintDataServiceImpl
     private final CarbonFootprintDataMapper dataMapper;
     private final CarbonFootprintCreateMapper createMapper;
     private final CalculationService calculationService;
+    private final AuthService authService;
 
     // Base repository provider for generic CRUD
     @Override
@@ -56,10 +58,14 @@ public class CarbonFootprintDataServiceImpl
 
     @Override
     public CarbonFootprintData saveData(CarbonFootprintCreateDTO dto) {
-        CompanyOwner owner = companyOwnerRepository.findById(dto.getCompanyOwnerId())
+        String keycloakId = authService.getCurrentUser().keycloak_id();
+        if (keycloakId == null) {
+            throw new IllegalStateException("User is not authenticated");
+        }
+        CompanyOwner owner = companyOwnerRepository.findById(Long.valueOf(keycloakId))
                 .orElseThrow(() -> new EntityNotFoundException("CompanyOwner not found"));
-
-        CarbonFootprintData entity = createMapper.toEntityWithOwner(dto, owner);
+        owner.keycloakId=keycloakId;
+        CarbonFootprintData entity = createMapper.toEntity(dto);
         CarbonFootprintModelRequest modelRequest = calculationService.buildModelRequestFromEntity(entity);
 
         CompletableFuture<Double> totalEmission = calculationService.calculateTotalEmissionFromModelAsync(modelRequest);
@@ -83,18 +89,13 @@ public class CarbonFootprintDataServiceImpl
 
 
     @Override
-    public List<CarbonFootprintDataDTO> findByCompanyOwnerId(Long ownerId) {
+    public List<CarbonFootprintDataDTO> findByCompanyOwnerId( ) {
+        Long ownerId = authService.getCurrentCompanyOwner().getId();
         return repository.findByCompanyOwner_Id(ownerId).stream()
                 .map(dataMapper::toDto)
                 .collect(Collectors.toList());
     }
 
-    @Override
-    public Double calculateTotalEmissionsForOwner(Long ownerId) {
-        return repository.findByCompanyOwner_Id(ownerId).stream()
-                .mapToDouble(CarbonFootprintData::getTotalEmissions)
-                .sum();
-    }
 
 
 

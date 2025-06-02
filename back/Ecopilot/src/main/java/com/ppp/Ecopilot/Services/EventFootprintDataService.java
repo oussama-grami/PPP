@@ -14,7 +14,8 @@ public interface EventFootprintDataService extends CRUDService<EventFootprintDat
 
     EventFootprintDataDto getEventFootprintById(Long id);
 
-    List<EventFootprintDataDto> getEventFootprintsByCompanyOwner(Long companyOwnerId);
+    List<EventFootprintDataDto> getEventFootprintsByCompanyOwner();
 
     void deleteById(Long id);
+
 }

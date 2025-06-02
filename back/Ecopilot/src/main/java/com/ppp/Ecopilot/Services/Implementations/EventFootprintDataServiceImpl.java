@@ -8,6 +8,7 @@ import com.ppp.Ecopilot.Mappers.EventFootprint.CreateEventFootprintDataMapper;
 import com.ppp.Ecopilot.Mappers.EventFootprint.EventFootprintDataMapper;
 import com.ppp.Ecopilot.Repositories.EventFootprintDataRepo;
 import com.ppp.Ecopilot.Repositories.CompanyOwnerRepo;
+import com.ppp.Ecopilot.Services.AuthService;
 import com.ppp.Ecopilot.Services.CalculationService;
 import com.ppp.Ecopilot.Services.EventFootprintDataService;
 import lombok.RequiredArgsConstructor;
@@ -28,15 +29,16 @@ public class EventFootprintDataServiceImpl extends AbstractCrudService<EventFoot
     private final EventFootprintDataMapper eventFootprintDataMapper;
     private final CreateEventFootprintDataMapper createEventFootprintDataMapper;
     private final CalculationService calculationService;
+    private final AuthService authService;
 
     @Override
     public void create(CreateEventFootprintDataDto createDto) {
-        CompanyOwner companyOwner = companyOwnerRepository.findById(createDto.getCompanyOwnerId())
+        long companyOwnerId = authService.getCurrentCompanyOwner().getId();
+        CompanyOwner companyOwner = companyOwnerRepository.findById(companyOwnerId)
                 .orElseThrow(() -> new RuntimeException("CompanyOwner not found"));
-
+        System.out.println("Creating EventFootprintData for CompanyOwner ID: " + companyOwnerId);
         EventFootprintData entity = createEventFootprintDataMapper.toEntity(createDto);
         entity.setCompanyOwner(companyOwner);
-
 
         double totalEmissions = calculationService.fetchTotalEmissionsFromFlask(createDto);
         entity.setTotalEmission(totalEmissions);
@@ -61,7 +63,8 @@ public class EventFootprintDataServiceImpl extends AbstractCrudService<EventFoot
     }
 
     @Override
-    public List<EventFootprintDataDto> getEventFootprintsByCompanyOwner(Long companyOwnerId) {
+    public List<EventFootprintDataDto> getEventFootprintsByCompanyOwner() {
+        long companyOwnerId = authService.getCurrentCompanyOwner().getId();
         CompanyOwner companyOwner = companyOwnerRepository.findById(companyOwnerId)
                 .orElseThrow(() -> new RuntimeException("CompanyOwner not found"));
 
@@ -88,4 +91,8 @@ public class EventFootprintDataServiceImpl extends AbstractCrudService<EventFoot
     protected Class<EventFootprintData> getEntityClass() {
         return EventFootprintData.class;
     }
+
+
+
+
 }

@@ -12,7 +12,6 @@ import {RoutesEnum} from "../../enumerations/Routes.enum";
 export class EventHistoryComponent implements OnInit {
   events: EventResponse[] = [];
   isLoading = true;
-  companyOwnerId: number = 7; // Ideally fetched from an auth service
 
   constructor(
     private eventService: EventFootprintService,
@@ -24,7 +23,7 @@ export class EventHistoryComponent implements OnInit {
   }
 
   loadEvents(): void {
-    this.eventService.getEventsByCompanyOwnerId(this.companyOwnerId).subscribe({
+    this.eventService.getEventsByCompanyOwnerId().subscribe({
       next: (data) => {
         this.events = data;
         this.isLoading = false;

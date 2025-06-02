@@ -138,6 +138,4 @@ public class CarbonFootprintCreateDTO {
     @Positive(message = "Value must be positive")
     private double vehicleFuelEfficiency;
 
-    @NotNull(message = "Company owner ID is required")
-    private Long companyOwnerId;
 }

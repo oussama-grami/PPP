@@ -10,8 +10,5 @@ public interface CarbonFootprintDataService extends CRUDService<CarbonFootprintD
     CarbonFootprintData saveData(CarbonFootprintCreateDTO dto);
     List<CarbonFootprintDataDTO> findAllData();
     CarbonFootprintDataDTO findDataById(Long id);
-
-    // Business-specific operations
-    List<CarbonFootprintDataDTO> findByCompanyOwnerId(Long ownerId);
-    Double calculateTotalEmissionsForOwner(Long ownerId);
+    List<CarbonFootprintDataDTO> findByCompanyOwnerId();
 }

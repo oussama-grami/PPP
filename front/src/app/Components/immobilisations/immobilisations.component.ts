@@ -42,7 +42,7 @@ export class ImmobilisationsComponent implements OnInit {
 
       this.carboneService.submitAllData().pipe(
         switchMap(() =>
-          this.carboneService.getAllByCompanyOwnerId(7).pipe(
+          this.carboneService.getAllByCompanyOwnerId().pipe(
             switchMap((calculations) => {
               if (calculations.length > 0) {
                 return this.carboneService.getLastCalculation(7);

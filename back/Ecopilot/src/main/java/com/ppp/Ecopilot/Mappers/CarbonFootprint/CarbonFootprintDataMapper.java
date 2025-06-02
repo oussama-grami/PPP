@@ -24,10 +24,6 @@ public class CarbonFootprintDataMapper implements EntityMapper<CarbonFootprintDa
 
         dto.setTotalEmissions(entity.getTotalEmissions());
 
-        if (entity.getCompanyOwner() != null) {
-            dto.setCompanyOwnerId(entity.getCompanyOwner().getId());
-            dto.setCompanyOwnerName(entity.getCompanyOwner().getCompanyName());
-        }
 
         return dto;
     }
@@ -50,9 +46,4 @@ public class CarbonFootprintDataMapper implements EntityMapper<CarbonFootprintDa
         return entity;
     }
 
-    public CarbonFootprintData toEntityWithOwner(CarbonFootprintDataDTO dto, CompanyOwner owner) {
-        CarbonFootprintData entity = toEntity(dto);
-        entity.setCompanyOwner(owner);
-        return entity;
-    }
 }

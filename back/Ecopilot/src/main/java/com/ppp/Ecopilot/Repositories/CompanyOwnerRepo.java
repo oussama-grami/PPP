@@ -7,5 +7,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CompanyOwnerRepo extends JpaRepository<CompanyOwner, Long> {
+
+    CompanyOwner findByKeycloakId(String keycloakId);
     Boolean existsByKeycloakId(String keycloakId);
 }

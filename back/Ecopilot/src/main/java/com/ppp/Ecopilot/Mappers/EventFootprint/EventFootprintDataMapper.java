@@ -33,12 +33,6 @@ public class EventFootprintDataMapper {
             entity.setCreatedDate(createdDate);
         }
 
-        // Set companyOwner if ID is provided
-        if (dto.getCompanyOwnerId() != null) {
-            CompanyOwner owner = new CompanyOwner();
-            owner.setId(dto.getCompanyOwnerId());
-            entity.setCompanyOwner(owner);
-        }
 
         return entity;
     }
@@ -61,14 +55,9 @@ public class EventFootprintDataMapper {
                 .eventName(entity.getEventName())
                 .eventType(entity.getEventType())
                 .totalEmission(entity.getTotalEmission())
-                .companyOwnerId(entity.getCompanyOwner() != null ? entity.getCompanyOwner().getId() : null)
                 .created_at(createdAtDate)
                 .build();
     }
 
-    public EventFootprintData toEntityWithCompanyOwner(EventFootprintDataDto dto, CompanyOwner owner) {
-        EventFootprintData entity = toEntity(dto);
-        entity.setCompanyOwner(owner);
-        return entity;
-    }
+
 }

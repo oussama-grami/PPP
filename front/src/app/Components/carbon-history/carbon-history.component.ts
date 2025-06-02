@@ -22,20 +22,14 @@ export class CarbonHistoryComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(params => {
-      const idParam = 7;
-      if (idParam) {
-        this.companyOwnerId = +idParam;
-        this.fetchCarbonHistory();
-      }
-    });
+    this.fetchCarbonHistory();
   }
 
   fetchCarbonHistory(): void {
     this.isLoading = true;
     this.errorMessage = '';
 
-    this.carbonFootprintService.getAllByCompanyOwnerId(this.companyOwnerId).subscribe({
+    this.carbonFootprintService.getAllByCompanyOwnerId().subscribe({
       next: (history) => {
         this.carbonHistory = history;
         this.isLoading = false;

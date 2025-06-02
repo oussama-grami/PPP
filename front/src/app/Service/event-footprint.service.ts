@@ -54,14 +54,15 @@ export class EventFootprintService {
     return this.http.get<EventResponse>(`${this.apiUrl}/${id}`);
   }
 
-  getEventsByCompanyOwnerId(ownerId: number): Observable<EventResponse[]> {
-    return this.http.get<EventResponse[]>(`${this.apiUrl}?companyOwnerId=${ownerId}`).pipe(
+  getEventsByCompanyOwnerId(): Observable<EventResponse[]> {
+    return this.http.get<EventResponse[]>(`${this.apiUrl}`).pipe(
       map(events => {
         this.eventResponses = events;  // cache list
         return events;
       })
     );
   }
+
 
   getTotalFootprint(eventId: number): Observable<number> {
     if (this.eventResponses.length > 0) {

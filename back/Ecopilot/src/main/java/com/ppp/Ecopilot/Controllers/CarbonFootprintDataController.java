@@ -25,22 +25,22 @@ public class CarbonFootprintDataController {
 
     @GetMapping
     public List<CarbonFootprintDataDTO> getAll() {
-        return service.findAllData();  // Changed from findAll() to findAllData()
+        return service.findAllData();
     }
 
     @GetMapping("/{id}")
     public CarbonFootprintDataDTO getById(@PathVariable Long id) {
-        return service.findDataById(id);  // Changed from findById() to findDataById()
+        return service.findDataById(id);
     }
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
-        service.deleteById(id);  // This can stay as is since it doesn't return a DTO
+        service.deleteById(id);
     }
 
     // You can add your business endpoints too
-    @GetMapping("/owner/{ownerId}")
-    public List<CarbonFootprintDataDTO> getByOwnerId(@PathVariable Long ownerId) {
-        return service.findByCompanyOwnerId(ownerId);
+    @GetMapping("/owner")
+    public List<CarbonFootprintDataDTO> getByOwnerId() {
+        return service.findByCompanyOwnerId();
     }
 }

@@ -165,10 +165,8 @@ export class CarbonFootprintService {
     return this.httpClient.get<CarbonFootprintResponse>(`${this.apiUrl}/${id}`);
   }
 
-  getAllByCompanyOwnerId(companyOwnerId: number): Observable<CarbonFootprintResponse[]> {
-    return this.httpClient.get<CarbonFootprintResponse[]>(`${this.apiUrl}`, {
-      params: {companyOwnerId: companyOwnerId.toString()}
-    }).pipe(
+  getAllByCompanyOwnerId(): Observable<CarbonFootprintResponse[]> {
+    return this.httpClient.get<CarbonFootprintResponse[]>(`${this.apiUrl}`).pipe(
       map(responses => {
         this.calculations = responses; // cache list
         return responses;
@@ -204,7 +202,7 @@ export class CarbonFootprintService {
       return of(this.getLatestFromList());
     }
 
-    return this.getAllByCompanyOwnerId(companyOwnerId).pipe(
+    return this.getAllByCompanyOwnerId().pipe(
       map(() => this.getLatestFromList())
     );
   }

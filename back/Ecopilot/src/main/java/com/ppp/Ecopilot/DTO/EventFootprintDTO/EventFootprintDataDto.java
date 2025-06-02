@@ -13,7 +13,6 @@ import java.util.Date;
 public class EventFootprintDataDto {
     private Long id;
     private double totalEmission;
-    private Long companyOwnerId;
     private String eventName;
     private String eventType;
     private Date created_at;

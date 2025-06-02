@@ -95,11 +95,9 @@ export class EventFormComponent {
   onSubmit() {
     if (this.eventFormGroup.valid) {
       const eventData: Event = this.eventFormGroup.value;
-      eventData.companyOwnerId = 7; // temporairement en dur
-
       this.eventFootprintService.createEvent(eventData).pipe(
         switchMap(() =>
-          this.eventFootprintService.getEventsByCompanyOwnerId(eventData.companyOwnerId!)
+          this.eventFootprintService.getEventsByCompanyOwnerId()
         )
       ).subscribe({
         next: (updatedEvents) => {

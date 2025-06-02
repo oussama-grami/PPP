@@ -45,6 +45,5 @@ public class CreateEventFootprintDataDto {
     private String transportMode;
     @NotNull
     private String venueType;
-    @NotNull
-    private Long companyOwnerId;
+
 }

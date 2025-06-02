@@ -19,7 +19,6 @@ public class EventFootprintDataController {
     public void create(@RequestBody CreateEventFootprintDataDto createDto) {
         try {
             System.out.println("controller");
-            System.out.println(createDto.getCompanyOwnerId());
             eventFootprintDataService.create(createDto);
         } catch (EntityNotFoundException e) {
             throw new EntityNotFoundException("Company owner not found for the given ID");
@@ -30,9 +29,9 @@ public class EventFootprintDataController {
     }
 
     @GetMapping
-    public List<EventFootprintDataDto> findAllByCompanyOwner(@RequestParam Long companyOwnerId) {
+    public List<EventFootprintDataDto> findAllByCompanyOwner() {
         try {
-            return eventFootprintDataService.getEventFootprintsByCompanyOwner(companyOwnerId);
+            return eventFootprintDataService.getEventFootprintsByCompanyOwner();
         } catch (EntityNotFoundException e) {
             throw new EntityNotFoundException("Company owner not found for the given ID");
         } catch (Exception e) {

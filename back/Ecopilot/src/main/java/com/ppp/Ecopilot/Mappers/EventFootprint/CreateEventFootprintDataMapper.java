@@ -32,11 +32,6 @@ public class CreateEventFootprintDataMapper {
         entity.setTransportMode(dto.getTransportMode());
         entity.setVenueType(dto.getVenueType());
 
-        if (dto.getCompanyOwnerId() != null) {
-            CompanyOwner companyOwner = new CompanyOwner();
-            companyOwner.setId(dto.getCompanyOwnerId());
-            entity.setCompanyOwner(companyOwner);
-        }
 
         return entity;
     }
@@ -63,7 +58,6 @@ public class CreateEventFootprintDataMapper {
                 .transportDistance(entity.getTransportDistance())
                 .transportMode(entity.getTransportMode())
                 .venueType(entity.getVenueType())
-                .companyOwnerId(entity.getCompanyOwner() != null ? entity.getCompanyOwner().getId() : null)
                 .build();
     }
 }

@@ -22,6 +22,4 @@ public class CarbonFootprintDataDTO {
 
     private double totalEmissions;
 
-    private Long companyOwnerId;
-    private String companyOwnerName;
 }

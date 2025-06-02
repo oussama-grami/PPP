@@ -27,6 +27,13 @@ public class CompanyOwnerServiceImpl extends AbstractCrudService<CompanyOwner, L
         return CompanyOwner.class;
     }
 
+    public CompanyOwner findByKeycloakId(String keycloakId){
+        CompanyOwner companyOwner = companyOwnerRepo.findByKeycloakId(keycloakId);
+        if (companyOwner == null) {
+            throw new RuntimeException("Company owner not found with Keycloak ID: " + keycloakId);
+        }
+        return companyOwner;
+    }
 
     @Override
     public Boolean existsByKeycloakId(String keycloakId) {

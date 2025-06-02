@@ -57,11 +57,6 @@ public class CarbonFootprintCreateMapper {
         entity.setCarburantType(dto.getCarburantType());
         entity.setCompanyName(dto.getCompanyName());
 
-        if (dto.getCompanyOwnerId() != null) {
-            CompanyOwner companyOwner = new CompanyOwner();
-            companyOwner.setId(dto.getCompanyOwnerId());
-            entity.setCompanyOwner(companyOwner);
-        }
 
         if (dto.getBeginDate() != null) {
             entity.setBeginDate(new Date(dto.getBeginDate().getTime()));
@@ -120,9 +115,6 @@ public class CarbonFootprintCreateMapper {
         dto.setCarburantType(entity.getCarburantType());
         dto.setCompanyName(entity.getCompanyName());
 
-        if (entity.getCompanyOwner() != null) {
-            dto.setCompanyOwnerId(entity.getCompanyOwner().getId());
-        }
 
         if (entity.getBeginDate() != null) {
             dto.setBeginDate(new Date(entity.getBeginDate().getTime()));
@@ -134,11 +126,4 @@ public class CarbonFootprintCreateMapper {
         return dto;
     }
 
-    public CarbonFootprintData toEntityWithOwner(CarbonFootprintCreateDTO dto, CompanyOwner owner) {
-        CarbonFootprintData entity = toEntity(dto);
-        entity.setCompanyOwner(owner);
-
-        // Suppression des initialisations d'émissions
-        return entity;
-    }
 }
