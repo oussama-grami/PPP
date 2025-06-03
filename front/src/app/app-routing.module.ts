@@ -73,7 +73,7 @@ import {ErrorPageComponent} from "./error-page/error-page.component";
 import {RedirectGuard} from "./guards/redirect.guard";
 
 const routes: Routes = [
-  {path: '', component: HomeComponent, canActivate: [AuthGuard]},
+  {path: '', component: HomeComponent},
   {path: RoutesEnum.PORTEUR, component: PorteurComponent},
   {path: RoutesEnum.ENERGIE, component: EnergieComponent},
   {path: RoutesEnum.CARBURANT, component: CarburantComponent},
@@ -101,7 +101,7 @@ const routes: Routes = [
   {path: RoutesEnum.ROADMAP, component: RoadmapComponent},
   {path: 'esg-assessment/:questionId', component: EsgAssessmentComponent},
   {path: 'prediction-info', component: CarbonPredictionInfoComponent},
-  {path: 'historical-carbon-forecast', component: HistoricalCarbonForecastComponent},
+  {path: 'historical-carbon-forecast', component: HistoricalCarbonForecastComponent,canActivate:[RedirectGuard]},
   {path: RoutesEnum.TRANSACTIONS, component: TransactionsComponent},
   {
     path: 'payment-confirmation',
@@ -124,7 +124,7 @@ const routes: Routes = [
   {path: RoutesEnum.EVENT_FOOTPRINT, component: EventFootprintComponent},
   {path: `${RoutesEnum.EVENT_RESULT}/:id`, component: EventResultComponent},
   {path: RoutesEnum.EVENT_HISTORY, component: EventHistoryComponent,canActivate:[RedirectGuard]},
-  {path: RoutesEnum.CARBON_HISTORY, component: CarbonHistoryComponent},
+  {path: RoutesEnum.CARBON_HISTORY, component: CarbonHistoryComponent,canActivate:[RedirectGuard]},
   {path: RoutesEnum.EVENT_FORM, component: EventFormComponent},
   {path: RoutesEnum.EVENT_FOOTPRINT, component: EventFootprintComponent},
   {path: RoutesEnum.EVENT_RESULT, component: EventResultComponent},

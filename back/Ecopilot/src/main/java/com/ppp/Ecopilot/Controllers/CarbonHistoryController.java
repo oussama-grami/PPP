@@ -67,6 +67,7 @@ public class CarbonHistoryController  {
     @PostMapping("/interpolate")
     public ResponseEntity<Void> interpolate(@RequestBody InterpolationRequestDTO request) {
         try {
+            
             List<CreateCarbonFootprintHistoryDTO> results = carbonHistoryService.getInterpolatedData(
                     request.getCompanyOwnerId(),
                     request.getStartDate(),

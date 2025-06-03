@@ -4,11 +4,11 @@ spring:
   datasource:
     url: ${DATASOURCE_URL:jdbc:mysql://mysql-2e1208b2-insat-3937.e.aivencloud.com:20518/defaultdb?ssl-mode=REQUIRED}
     username: ${DATASOURCE_USERNAME:avnadmin}
-    password: ${DATABSE_PASSWORD}
+    password: ${DATABASE_PASSWORD}
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     show-sql: true
   security:
     oauth2:
