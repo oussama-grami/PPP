@@ -43,5 +43,4 @@ export interface CarbonFootprintRequest {
   unitFourniture: Unit;
   unitPaper: Unit;
   vehicleFuelEfficiency: number;
-  companyOwnerId: number;
 }

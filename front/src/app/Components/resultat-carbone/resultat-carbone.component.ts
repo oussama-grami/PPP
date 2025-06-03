@@ -28,7 +28,7 @@ export class ResultatCarboneComponent implements OnInit {
       if (calcId) this.calculationId = +calcId;
 
       this.carboneFootprintService
-        .getCalculationByIdOrLast(this.companyOwnerId, this.calculationId)
+        .getCalculationByIdOrLast( this.calculationId)
         .subscribe(response => {
           this.carbonFootprintResponse = response;
         });

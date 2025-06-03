@@ -139,11 +139,19 @@
                 </a>
                 <a
                   class="dropdown-item"
-                  [routerLink]="'/' + routes.PREDICTION_INFO"
+                  [routerLink]="'/' + routes.CARBON_HISTORY"
                   (click)="mobileMenuOpen = false"
                 >
-                  <i class="bi bi-graph-up-arrow"></i> Carbon Emission
-                  Predictions
+                  <i class="bi bi-graph-up-arrow"></i> Carbon Footprint
+                  History
+                </a>
+                <a
+                  class="dropdown-item"
+                  [routerLink]="'/' + routes.EVENT_HISTORY"
+                  (click)="mobileMenuOpen = false"
+                >
+                  <i class="bi bi-graph-up-arrow"></i> Event Footprint
+                  History
                 </a>
               </div>
             </div>

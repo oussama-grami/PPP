@@ -15,7 +15,6 @@ export class Event {
   nbrOfMeals: number;
   printedMaterial: number;
   decorationMaterial: number;
-  companyOwnerId: number; // Required field
 
   constructor(
     eventName: string = '',
@@ -52,6 +51,5 @@ export class Event {
     this.nbrOfMeals = nbrOfMeals;
     this.printedMaterial = printedMaterial;
     this.decorationMaterial = decorationMaterial;
-    this.companyOwnerId = companyOwnerId;
   }
 }

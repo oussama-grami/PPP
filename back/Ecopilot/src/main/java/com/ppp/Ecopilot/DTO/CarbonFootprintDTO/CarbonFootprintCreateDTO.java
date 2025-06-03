@@ -46,7 +46,7 @@ public class CarbonFootprintCreateDTO {
     private double annualConsumptionOfRefrigerant;
 
     @NotNull(message = "Begin date is required")
-    private Date beginDate;
+        private Date beginDate;
 
     @PositiveOrZero(message = "Value must be positive or zero")
     private double builtAreaOfCompany;

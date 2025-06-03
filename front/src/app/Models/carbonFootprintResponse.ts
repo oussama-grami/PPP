@@ -10,6 +10,4 @@ export interface CarbonFootprintResponse {
   companyName: string;
   totalEmissions: number;
 
-  companyOwnerId: number;
-  companyOwnerName: string;
 }
