@@ -136,7 +136,6 @@ export class CarbonFootprintService {
       unitFourniture: consumablesData?.unitOfficeSupplies ?? Unit.DOLLAR,
       unitPaper: consumablesData?.unitPaper ?? Unit.DOLLAR,
       vehicleFuelEfficiency: carburantData?.fuelEfficiency ?? 0,
-      companyOwnerId: 7,
     };
     this.getEnterpriseRecommendations();
     return this.httpClient.post(this.apiUrl, payload);
@@ -184,7 +183,7 @@ export class CarbonFootprintService {
     return this.getCalculationById(id).pipe(map(c => c.totalEmissions));
   }
 
-  getCalculationByIdOrLast(companyOwnerId: number, id?: number): Observable<CarbonFootprintResponse | null> {
+  getCalculationByIdOrLast( id?: number): Observable<CarbonFootprintResponse | null> {
     // If ID is provided, try to find the calculation by ID
     if (id) {
       const found = this.calculations.find(c => c.id === id);
@@ -192,12 +191,11 @@ export class CarbonFootprintService {
         return of(found);
       }
     }
-
     // If ID is not found or not provided, get the most recent calculation
-    return this.getLastCalculation(companyOwnerId);
+    return this.getLastCalculation();
   }
 
-  getLastCalculation(companyOwnerId: number): Observable<CarbonFootprintResponse | null> {
+  getLastCalculation(): Observable<CarbonFootprintResponse | null> {
     if (this.calculations.length > 0) {
       return of(this.getLatestFromList());
     }
@@ -334,11 +332,8 @@ export class CarbonFootprintService {
       })
       .subscribe((response) => {
         this.recommendations = response;
-        // Save to localStorage for persistence
         this.saveRecommendations(response);
-        // Emit the new value to all subscribers
         this.recommendationsSubject.next(response);
-        alert('done with success ');
       });
   }
 

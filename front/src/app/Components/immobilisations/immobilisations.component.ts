@@ -45,9 +45,9 @@ export class ImmobilisationsComponent implements OnInit {
           this.carboneService.getAllByCompanyOwnerId().pipe(
             switchMap((calculations) => {
               if (calculations.length > 0) {
-                return this.carboneService.getLastCalculation(7);
+                return this.carboneService.getLastCalculation();
               } else {
-                this.errorMessage = 'Aucune estimation de carbone trouvée pour cette entreprise.';
+                this.errorMessage = 'No estimation found.';
                 return of(null); // return observable with null to keep stream alive
               }
             })

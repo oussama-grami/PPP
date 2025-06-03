@@ -2,10 +2,10 @@ package com.ppp.Ecopilot.Services.Implementations;
 
 import com.ppp.Ecopilot.DTO.CarbonFootprintDTO.CarbonFootprintCreateDTO;
 import com.ppp.Ecopilot.DTO.CarbonFootprintDTO.CarbonFootprintDataDTO;
+import com.ppp.Ecopilot.DTO.CarbonFootprintHistory.CreateCarbonFootprintHistoryDTO;
 import com.ppp.Ecopilot.Entities.CarbonFootprintData;
 import com.ppp.Ecopilot.Entities.CompanyOwner;
-import com.ppp.Ecopilot.Enums.Unit;
-import com.ppp.Ecopilot.Enums.CarburantType;
+
 import com.ppp.Ecopilot.Mappers.CarbonFootprint.CarbonFootprintCreateMapper;
 import com.ppp.Ecopilot.Mappers.CarbonFootprint.CarbonFootprintDataMapper;
 import com.ppp.Ecopilot.Repositories.CarbonFootprintDataRepo;
@@ -13,19 +13,14 @@ import com.ppp.Ecopilot.Repositories.CompanyOwnerRepo;
 import com.ppp.Ecopilot.Services.AuthService;
 import com.ppp.Ecopilot.Services.CalculationService;
 import com.ppp.Ecopilot.Services.CarbonFootprintDataService;
-import jakarta.persistence.EntityNotFoundException;
+import com.ppp.Ecopilot.Services.CarbonFootprintHistoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ppp.Ecopilot.Models.CarbonFootprintModelRequest;
-
-import java.io.IOException;
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
+import java.time.YearMonth;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
@@ -41,6 +36,7 @@ public class CarbonFootprintDataServiceImpl
     private final CarbonFootprintDataMapper dataMapper;
     private final CarbonFootprintCreateMapper createMapper;
     private final CalculationService calculationService;
+    private final CarbonFootprintHistoryService carbonFootprintHistoryService;
     private final AuthService authService;
 
     // Base repository provider for generic CRUD
@@ -54,23 +50,40 @@ public class CarbonFootprintDataServiceImpl
         return CarbonFootprintData.class;
     }
 
+    private YearMonth convertToYearMonth(Date date) {
+        return YearMonth.from(date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+    }
 
 
     @Override
     public CarbonFootprintData saveData(CarbonFootprintCreateDTO dto) {
-        String keycloakId = authService.getCurrentUser().keycloak_id();
-        if (keycloakId == null) {
-            throw new IllegalStateException("User is not authenticated");
-        }
-        CompanyOwner owner = companyOwnerRepository.findById(Long.valueOf(keycloakId))
-                .orElseThrow(() -> new EntityNotFoundException("CompanyOwner not found"));
-        owner.keycloakId=keycloakId;
-        CarbonFootprintData entity = createMapper.toEntity(dto);
-        CarbonFootprintModelRequest modelRequest = calculationService.buildModelRequestFromEntity(entity);
+        CompanyOwner companyOwner = authService.getCurrentCompanyOwner();
 
+        // Step 1: Convert DTO to entity
+        CarbonFootprintData entity = createMapper.toEntity(dto);
+        entity.setCompanyOwner(companyOwner);
+
+        // Step 2: Build model request and calculate total emission
+        CarbonFootprintModelRequest modelRequest = calculationService.buildModelRequestFromEntity(entity);
         CompletableFuture<Double> totalEmission = calculationService.calculateTotalEmissionFromModelAsync(modelRequest);
         entity.setTotalEmissions(totalEmission.join());
-        return repository.save(entity);
+
+        // Step 3: Save the CarbonFootprintData entity
+        CarbonFootprintData savedData = repository.save(entity);
+
+        // Step 4: Interpolate and save CarbonFootprintHistory
+        YearMonth startDate = convertToYearMonth(dto.getBeginDate());
+        System.out.println("Start Date: " + startDate);
+        YearMonth endDate = convertToYearMonth(dto.getEndDate());
+        System.out.println("End Date: " + endDate);
+        double totalValue = entity.getTotalEmissions(); // Or dto.getTotalValue() if it comes from input
+
+        List<CreateCarbonFootprintHistoryDTO> interpolatedData =
+                carbonFootprintHistoryService.getInterpolatedData(companyOwner.getId(), startDate, endDate, totalValue);
+        System.out.println("Interpolated Data: " + interpolatedData);
+        carbonFootprintHistoryService.saveOrUpdateAll(interpolatedData, companyOwner.getId());
+
+        return savedData;
     }
 
 

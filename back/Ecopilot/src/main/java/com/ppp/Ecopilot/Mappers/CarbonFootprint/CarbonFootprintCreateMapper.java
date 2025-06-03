@@ -2,7 +2,6 @@ package com.ppp.Ecopilot.Mappers.CarbonFootprint;
 
 import com.ppp.Ecopilot.DTO.CarbonFootprintDTO.CarbonFootprintCreateDTO;
 import com.ppp.Ecopilot.Entities.CarbonFootprintData;
-import com.ppp.Ecopilot.Entities.CompanyOwner;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
