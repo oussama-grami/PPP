@@ -405,7 +405,7 @@ body.no-scroll {
 }
 
 /* Desktop hover effects */
-@media (min-width: 1040px) {
+@media (min-width: 1370px) {
   .nav-item.dropdown:hover .dropdown-menu {
     opacity: 1;
     visibility: visible;
@@ -424,7 +424,7 @@ body.no-scroll {
 }
 
 /* Mobile and tablet styles */
-@media (max-width: 1040px) {
+@media (max-width: 1370px) {
   .navbar {
     height: 60px;
   }
