@@ -1,10 +1,10 @@
-import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
-import { RoutesEnum } from '../../enumerations/Routes.enum';
-import { filter } from 'rxjs/operators';
-import { Subscription } from 'rxjs';
-import { AuthService } from '../../auth.service';
-import { KeycloakService } from 'keycloak-angular';
+import {Component, HostListener, OnDestroy, OnInit} from '@angular/core';
+import {NavigationEnd, Router} from '@angular/router';
+import {RoutesEnum} from '../../enumerations/Routes.enum';
+import {filter} from 'rxjs/operators';
+import {Subscription} from 'rxjs';
+import {AuthService} from '../../auth.service';
+import {KeycloakService} from 'keycloak-angular';
 
 @Component({
   selector: 'app-nav-acceuil',
@@ -27,7 +27,8 @@ export class NavAcceuilComponent implements OnInit, OnDestroy {
     public router: Router,
     private authService: AuthService,
     private keycloakService: KeycloakService
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     // Check initial scroll position
@@ -263,7 +264,7 @@ export class NavAcceuilComponent implements OnInit, OnDestroy {
   }
 
   isRouteActivePartial(routes: string[]): boolean {
-    return routes.some((route) => this.router.url.includes(route));
+    return routes.some((route) => this.router.url == '/' + route);
   }
 
   logout(): void {

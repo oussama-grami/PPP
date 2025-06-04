@@ -2,7 +2,7 @@
   <div class="container">
     <!-- Brand logo -->
     <a class="navbar-brand" [routerLink]="'/'">
-      <img src="assets/Ecopilot/ecopilot_logo.png" alt="EcoPilot Logo" />
+      <img src="assets/Ecopilot/ecopilot_logo.png" alt="EcoPilot Logo"/>
     </a>
 
     <!-- Navigation content - enhanced for horizontal layout -->
@@ -115,7 +115,7 @@
             <a
               class="nav-link"
               (click)="toggleDropdown('assessment-results', $event)"
-              [class.active]="isRouteActivePartial([routes.ESG_HISTORY])"
+              [class.active]="isRouteActivePartial([routes.ESG_HISTORY,routes.CARBON_HISTORY,routes.EVENT_HISTORY])"
             >
               <i class="bi bi-bar-chart"></i> Assessment Results
               <i
@@ -142,7 +142,7 @@
                   [routerLink]="'/' + routes.CARBON_HISTORY"
                   (click)="mobileMenuOpen = false"
                 >
-                  <i class="bi bi-graph-up-arrow"></i> Carbon Footprint
+                  <i class="bi bi-clock-history"></i> Carbon Footprint
                   History
                 </a>
                 <a
@@ -215,8 +215,8 @@
             >
               <i class="bi bi-person-fill"></i>
               <span class="username-display" *ngIf="username">{{
-                username
-              }}</span>
+                  username
+                }}</span>
             </a>
             <div
               class="dropdown-menu dropdown-menu-end"
