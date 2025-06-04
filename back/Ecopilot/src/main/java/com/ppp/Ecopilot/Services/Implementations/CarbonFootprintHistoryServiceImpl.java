@@ -22,6 +22,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
+import java.net.URI;
 import java.time.YearMonth;
 import java.util.*;
 
@@ -36,8 +37,8 @@ public class CarbonFootprintHistoryServiceImpl extends AbstractCrudService<Carbo
     private final WebClient webClient;
     private final CarbonInterpolationMapper carbonInterpolationMapper;
     @Value("${flask.api.url}")
-    private static String flaskUrl;
-    private static final String FLASK_INTERPOLATE_URL = flaskUrl+"interpolate";
+    private  String flaskUrl;
+    private  final String FLASK_INTERPOLATE_URL = flaskUrl+"interpolate";
 
     public CarbonFootprintHistoryServiceImpl(CarbonFootprintHistoryRepo carboneFootprintHistoryRepo, CarbonHistoryMapper historyMapper, CompanyOwnerService companyOwnerService, WebClient.Builder webClientBuilder, CarbonInterpolationMapper carbonInterpolationMapper,AuthService authService) {
         this.carbonFootprintHistoryRepo = carboneFootprintHistoryRepo;
@@ -105,7 +106,7 @@ public class CarbonFootprintHistoryServiceImpl extends AbstractCrudService<Carbo
 
             // Send request to forecasting API
             Mono<List<CarbonFootprintForecastResponse.PredictedEntry>> responseMono = webClient.post()
-                    .uri("forecast")
+                    .uri(URI.create(flaskUrl+"forecast"))
                     .bodyValue(request)
                     .retrieve()
                     .bodyToMono(new ParameterizedTypeReference<List<CarbonFootprintForecastResponse.PredictedEntry>>() {
