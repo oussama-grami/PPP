@@ -36,6 +36,7 @@ export class EsgService {
           }));
           return question;
         });
+        console.log('Questions loaded:', this.questions);
         this.currentIndex = 0;
         observer.next(this.questions);
         observer.complete();
