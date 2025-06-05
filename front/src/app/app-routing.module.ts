@@ -73,7 +73,7 @@ import {ErrorPageComponent} from "./error-page/error-page.component";
 import {RedirectGuard} from "./guards/redirect.guard";
 
 const routes: Routes = [
-  {path: '', component: HomeComponent, canActivate: [AuthGuard]},
+  {path: '', component: HomeComponent},
   {path: RoutesEnum.PORTEUR, component: PorteurComponent , canActivate: [AuthGuard , RedirectGuard]},
   {path: RoutesEnum.ENERGIE, component: EnergieComponent, canActivate: [AuthGuard , RedirectGuard]},
   {path: RoutesEnum.CARBURANT, component: CarburantComponent, canActivate: [AuthGuard , RedirectGuard]},
@@ -83,9 +83,9 @@ const routes: Routes = [
   {path: RoutesEnum.IMMOBILISATIONS, component: ImmobilisationsComponent, canActivate: [AuthGuard , RedirectGuard]},
   {path: RoutesEnum.PANNEAUX, component: PanneauxComponent},
   {path: `${RoutesEnum.RESULTAT_CARBONE}/:id`, component: ResultatCarboneComponent,  canActivate: [AuthGuard , RedirectGuard]},
-  {path: 'esg', component: EsgComponent},
+  {path: RoutesEnum.ESG, component: EsgComponent},
   {path: RoutesEnum.CARBONE, component: CarboneComponent,canActivate: [AuthGuard , RedirectGuard]},
-  {path: 'esg-result', component: ResultESGComponent},
+  {path: RoutesEnum.RESULT_ESG, component: ResultESGComponent,canActivate: [AuthGuard , RedirectGuard]},
   {path: RoutesEnum.ARBORICULTURE, component: ArboricultureComponent},
   /*{path: 'piste', component: PisteComponent},*/
   {path: RoutesEnum.MARKETPLACE, component: MarketplaceComponent},
@@ -98,17 +98,17 @@ const routes: Routes = [
   {path: RoutesEnum.MARKETPLACE_BLOG, component: MarketplaceBlogComponent},
   {path: RoutesEnum.CARBON_OFFSET_BLOG, component: CarbonOffsetBlogComponent},
   {path: RoutesEnum.CARBON_CO_BENEFITS_BLOG, component: CarbonCoBenifitsBlogComponent},
-  {path: RoutesEnum.ROADMAP, component: RoadmapComponent},
-  {path: 'esg-assessment/:questionId', component: EsgAssessmentComponent},
-  {path: 'prediction-info', component: CarbonPredictionInfoComponent},
-  {path: 'historical-carbon-forecast', component: HistoricalCarbonForecastComponent},
+  {path: RoutesEnum.ROADMAP, component: RoadmapComponent,canActivate :[AuthGuard, RedirectGuard]},
+  {path:RoutesEnum.ESG_ASSESSMENT+'/:questionId?', component: EsgAssessmentComponent,canActivate: [AuthGuard , RedirectGuard]},
+  {path: RoutesEnum.PREDICTION_INFO, component: CarbonPredictionInfoComponent},
+  {path: RoutesEnum.HISTORICAL_CARBON_FORECAST, component: HistoricalCarbonForecastComponent,canActivate: [AuthGuard , RedirectGuard]},
   {path: RoutesEnum.TRANSACTIONS, component: TransactionsComponent},
   {
     path: 'payment-confirmation',
     component: PaymentConfirmationComponent,
     canActivate: [AuthGuard]
   },
-  {path: RoutesEnum.ESG_HISTORY, component: EsgHistoryComponent},
+  {path: RoutesEnum.ESG_HISTORY, component: EsgHistoryComponent,canActivate: [AuthGuard , RedirectGuard]},
   /*{
     path: "test", component: InstructionsListComponent, data: {
       instructions: [
@@ -124,11 +124,11 @@ const routes: Routes = [
   {path: RoutesEnum.EVENT_FOOTPRINT, component: EventFootprintComponent, canActivate: [AuthGuard , RedirectGuard]},
   {path: `${RoutesEnum.EVENT_RESULT}/:id`, component: EventResultComponent, canActivate: [AuthGuard , RedirectGuard]},
   {path: RoutesEnum.EVENT_HISTORY, component: EventHistoryComponent,canActivate:[RedirectGuard]},
-  {path: RoutesEnum.CARBON_HISTORY, component: CarbonHistoryComponent},
+  {path: RoutesEnum.CARBON_HISTORY, component: CarbonHistoryComponent,canActivate: [AuthGuard , RedirectGuard]},
   {path: RoutesEnum.EVENT_FORM, component: EventFormComponent,canActivate: [AuthGuard , RedirectGuard]},
   {path: RoutesEnum.EVENT_FOOTPRINT, component: EventFootprintComponent, canActivate: [AuthGuard , RedirectGuard]},
   {path: RoutesEnum.EVENT_RESULT, component: EventResultComponent, canActivate: [AuthGuard , RedirectGuard]},
-  {path: RoutesEnum.COMPANY_OWNER_FORM, component: CompanyOwnerFormComponent},
+  {path: RoutesEnum.COMPANY_OWNER_FORM, component: CompanyOwnerFormComponent,canActivate: [AuthGuard]},
   {path: RoutesEnum.REGISTER_COMPANY_OWNER, component: RegisterCompanyOwnerComponent},
   {path: "**", component: ErrorPageComponent}
 ];
