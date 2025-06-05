@@ -100,7 +100,6 @@ import { RegisterCompanyOwnerComponent } from './Components/register-company-own
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { RedirectGuard } from './guards/redirect.guard';
 import { RedirectService } from './services/redirect.service';
-import { BackButtonComponent } from './Components/back-button/back-button.component';
 
 @NgModule({
   declarations: [
@@ -160,7 +159,6 @@ import { BackButtonComponent } from './Components/back-button/back-button.compon
     CompanyOwnerFormComponent,
     RegisterCompanyOwnerComponent,
     ErrorPageComponent,
-    BackButtonComponent,
   ],
   imports: [
     BrowserModule,
