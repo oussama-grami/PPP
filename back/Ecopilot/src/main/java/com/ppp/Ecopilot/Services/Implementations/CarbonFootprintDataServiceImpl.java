@@ -58,34 +58,33 @@ public class CarbonFootprintDataServiceImpl
     @Override
     public CarbonFootprintData saveData(CarbonFootprintCreateDTO dto) {
         CompanyOwner companyOwner = authService.getCurrentCompanyOwner();
-        System.out.println("Current Company Owner: " + companyOwner);
 
+        // Step 1: Convert DTO to entity
         CarbonFootprintData entity = createMapper.toEntity(dto);
         entity.setCompanyOwner(companyOwner);
 
+        // Step 2: Build model request and calculate total emission
         CarbonFootprintModelRequest modelRequest = calculationService.buildModelRequestFromEntity(entity);
         CompletableFuture<Double> totalEmission = calculationService.calculateTotalEmissionFromModelAsync(modelRequest);
         entity.setTotalEmissions(totalEmission.join());
 
+        // Step 3: Save the CarbonFootprintData entity
         CarbonFootprintData savedData = repository.save(entity);
 
+        // Step 4: Interpolate and save CarbonFootprintHistory
         YearMonth startDate = convertToYearMonth(dto.getBeginDate());
+        System.out.println("Start Date: " + startDate);
         YearMonth endDate = convertToYearMonth(dto.getEndDate());
-        double totalValue = entity.getTotalEmissions();
+        System.out.println("End Date: " + endDate);
+        double totalValue = entity.getTotalEmissions(); // Or dto.getTotalValue() if it comes from input
 
         List<CreateCarbonFootprintHistoryDTO> interpolatedData =
                 carbonFootprintHistoryService.getInterpolatedData(companyOwner.getId(), startDate, endDate, totalValue);
-
-        if (!interpolatedData.isEmpty()) {
-            System.out.println("Interpolated Data: " + interpolatedData);
-            carbonFootprintHistoryService.saveOrUpdateAll(interpolatedData, companyOwner.getId());
-        } else {
-            System.out.println("No interpolation data to save.");
-        }
+        System.out.println("Interpolated Data: " + interpolatedData);
+        carbonFootprintHistoryService.saveOrUpdateAll(interpolatedData, companyOwner.getId());
 
         return savedData;
     }
-
 
 
     @Override
