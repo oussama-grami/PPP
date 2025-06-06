@@ -73,7 +73,7 @@ import {ErrorPageComponent} from "./error-page/error-page.component";
 import {RedirectGuard} from "./guards/redirect.guard";
 
 const routes: Routes = [
-  {path: '', component: HomeComponent, canActivate: [AuthGuard]},
+  {path: '', component: HomeComponent},
   {path: RoutesEnum.PORTEUR, component: PorteurComponent , canActivate: [AuthGuard , RedirectGuard]},
   {path: RoutesEnum.ENERGIE, component: EnergieComponent, canActivate: [AuthGuard , RedirectGuard]},
   {path: RoutesEnum.CARBURANT, component: CarburantComponent, canActivate: [AuthGuard , RedirectGuard]},

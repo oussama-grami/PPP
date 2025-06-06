@@ -55,6 +55,7 @@ export class EventFootprintService {
   }
 
   getEventsByCompanyOwnerId(): Observable<EventResponse[]> {
+    this.getEventRecommendations();
     return this.http.get<EventResponse[]>(`${this.apiUrl}`).pipe(
       map(events => {
         this.eventResponses = events;  // cache list
@@ -144,11 +145,8 @@ export class EventFootprintService {
 
   getEventRecommendations() {
     if (!this.eventData) {
-      console.error('Event data is missing');
       return;
     }
-
-    console.log('eventData:', this.eventData);
     this.carbonAIController
       .generateRecommendationsEvent({
         body: this.eventData,
@@ -159,13 +157,9 @@ export class EventFootprintService {
         this.saveRecommendations(response);
         // Emit the new value to all subscribers
         this.recommendationsSubject.next(response);
-        alert('Event recommendations generated successfully');
       });
   }
 
-  submitEventData() {
-    this.getEventRecommendations();
-  }
 
   /*  getTotalFootprint() {
       return this.calculateEventFootprint(this.eventData!);
