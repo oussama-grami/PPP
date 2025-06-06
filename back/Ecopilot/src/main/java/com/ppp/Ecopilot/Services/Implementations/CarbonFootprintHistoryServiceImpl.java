@@ -174,16 +174,16 @@ public class CarbonFootprintHistoryServiceImpl extends AbstractCrudService<Carbo
             YearMonth endDate,
             double totalValue) {
 
-        List<CarbonFootprintHistory> historyList =
-                carbonFootprintHistoryRepo.findByCompanyOwnerIdOrderByDateAsc(companyOwnerId);
+        List<CarbonFootprintHistory> historyList = carbonFootprintHistoryRepo.findByCompanyOwnerIdOrderByDateAsc(companyOwnerId);
 
         if (historyList.isEmpty()) {
-            System.out.println("No historical data found, skipping interpolation.");
-            return List.of(); // Retourne une liste vide au lieu de lever une exception
+            throw new RuntimeException("No historical data found.");
         }
 
+        // Step 2: Use mapper to convert to Flask-compatible format
         List<Map<String, Object>> historicalJson = carbonInterpolationMapper.toHistoricalData(historyList);
 
+        // Step 3: Build request body
         Map<String, Object> flaskRequestBody = Map.of(
                 "historical", historicalJson,
                 "start_date", startDate + "-01",
@@ -191,23 +191,25 @@ public class CarbonFootprintHistoryServiceImpl extends AbstractCrudService<Carbo
                 "total_value", totalValue
         );
 
+        // Step 4: Call Flask API
         ResponseEntity<List<CreateCarbonFootprintHistoryDTO>> response = webClient.post()
                 .uri(FLASK_INTERPOLATE_URL)
                 .body(Mono.just(flaskRequestBody), Map.class)
                 .retrieve()
-                .toEntity(new ParameterizedTypeReference<List<CreateCarbonFootprintHistoryDTO>>() {})
+                .toEntity(new ParameterizedTypeReference<List<CreateCarbonFootprintHistoryDTO>>() {
+                })
                 .block();
 
         if (response == null || !response.hasBody()) {
-            System.out.println("Flask API returned no data, skipping interpolation.");
-            return List.of(); // Retourne aussi une liste vide en cas d’erreur d’API
+            throw new RuntimeException("No response from Flask API");
         }
 
         List<CreateCarbonFootprintHistoryDTO> flaskResult = response.getBody();
+
         flaskResult.forEach(dto -> dto.setPredicted(true));
+
         return flaskResult;
     }
-
 
     @Override
     public void deleteCarbonFootprint(Long id) {
