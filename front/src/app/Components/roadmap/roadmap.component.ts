@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import { EsgResponse } from 'src/app/Models/esgResponse';
 import {EsgService} from 'src/app/Service/esg.service';
-
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-roadmap',
   templateUrl: './roadmap.component.html',
@@ -25,7 +25,7 @@ export class RoadmapComponent implements OnInit {
   Soc4!: number;
   Soc5!: number;
 
-  constructor(private esgService: EsgService) { }
+  constructor(private esgService: EsgService,private location: Location) { }
 
   ngOnInit() {
     this.esgService.getResponses().subscribe((responses) => {
@@ -37,14 +37,14 @@ export class RoadmapComponent implements OnInit {
       this.Envi3 = this.getNormalizedScore(3, responses);
       this.Envi4 = this.getNormalizedScore(4, responses);
       this.Envi5 = this.getNormalizedScore(5, responses);
-  
+
       // Social scores (questions 6-10)
       this.Soc1 = this.getNormalizedScore(6, responses);
       this.Soc2 = this.getNormalizedScore(7, responses);
       this.Soc3 = this.getNormalizedScore(8, responses);
       this.Soc4 = this.getNormalizedScore(9, responses);
       this.Soc5 = this.getNormalizedScore(10, responses);
-  
+
       // Governance scores (questions 11-15)
       this.GOUV1 = this.getNormalizedScore(11, responses);
       this.GOUV2 = this.getNormalizedScore(12, responses);
@@ -52,25 +52,25 @@ export class RoadmapComponent implements OnInit {
       this.GOUV4 = this.getNormalizedScore(14, responses);
       this.GOUV5 = this.getNormalizedScore(15, responses);
     });
-  
+
     console.log("hello");
   }
-  
+
   private getNormalizedScore(questionId: number, responses: any[]): number {
     console.log("questionId", questionId);
     console.log("responses", responses);
-  
+
     const allResponses = responses.flatMap(category => category.response); // ✅ fixed here
-  
+
     const response = allResponses[questionId - 1]; // 1-based index
     if (response && typeof response.score === 'number') {
       return (response.score / 2) + 1;
     }
-  
-    return 0; 
+
+    return 0;
   }
-  
-  
+
+
   printRoadMap() {
     let printContent: HTMLElement | null = null; // Select the content to print
 
@@ -128,5 +128,9 @@ export class RoadmapComponent implements OnInit {
     console.log('Selected category:', category);
 
 
+  }
+
+  goBack() {
+    this.location.back();
   }
 }
