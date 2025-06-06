@@ -10,7 +10,6 @@ import lombok.experimental.SuperBuilder;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-
 @ToString
 @SuperBuilder
 @Entity
@@ -51,8 +50,9 @@ public class EventFootprintData extends BaseEntity<Long> {
     private String transportMode;
     @Column(nullable = false)
     private String venueType;
+
     @ManyToOne
     @JoinColumn(name = "companyOwner_id")
+    @ToString.Exclude // Exclure de toString pour éviter la référence circulaire
     private CompanyOwner companyOwner;
-
 }

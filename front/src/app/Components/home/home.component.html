@@ -6,7 +6,6 @@
       <div class="banner-content">
         <p class="headline-text">Measure your carbon footprint and take action for a more sustainable future</p>
         <p class="subheading-text">EcoPilot is your partner in the fight against climate change and the promotion of responsible practices</p>
-        <button class="btn  btn-primary-green-v2 mt-4">Get Started</button>
       </div>
     </div>
   </div>
@@ -56,7 +55,7 @@
       <div class="section-title">• ESG criteria •</div>
       <h2 class="section-heading">ESG Performance</h2>
       <div class="section-paragraph">We provide an analysis of your ESG approach, highlighting your strengths and areas for improvement, along with a personalized roadmap to enhance your ESG position.​</div>
-      <button class="btn btn-green mt-3 w-100" [routerLink]="'/esg'">Calculate Your ESG Performance</button>
+      <button class="btn btn-green mt-3 w-100" [routerLink]="'/'+RoutesEnum.ESG">Calculate Your ESG Performance</button>
     </div>
     <div class="col-12 d-md-none">
       <div class="image-wrapper">
@@ -75,7 +74,7 @@
       <div class="section-title">• ESG criteria •</div>
       <h2 class="section-heading">ESG Performance</h2>
       <div class="section-paragraph">We provide an analysis of your ESG approach, highlighting your strengths and areas for improvement, along with a personalized roadmap to enhance your ESG position.​</div>
-      <button class="btn btn-green mt-3" [routerLink]="'/esg'">Calculate Your ESG Performance</button>
+      <button class="btn btn-green mt-3" [routerLink]="'/'+RoutesEnum.ESG">Calculate Your ESG Performance</button>
     </div>
   </div>
 </div>
@@ -88,7 +87,7 @@
       <div class="section-title">• Carbon Emission •</div>
       <h2 class="section-heading">Managing your carbon emissions</h2>
       <p class="section-paragraph">We offer a carbon footprint calculation tool that simplifies evaluating your activity's environmental impact through an easy-to-use questionnaire, streamlining the evaluation process.​</p>
-      <button class="btn btn-green mt-3 w-100" [routerLink]="'/carbone'">Calculate Your Carbon Emissions</button>
+      <button class="btn btn-green mt-3 w-100" [routerLink]="'/'+RoutesEnum.CARBONE">Calculate Your Carbon Emissions</button>
     </div>
     <div class="col-12 d-md-none">
       <div class="image-wrapper">
@@ -101,7 +100,7 @@
       <div class="section-title">• Carbon Emission •</div>
       <h2 class="section-heading">Managing your carbon emissions</h2>
       <p class="section-paragraph">We offer a carbon footprint calculation tool that simplifies evaluating your activity's environmental impact through an easy-to-use questionnaire, streamlining the evaluation process.​</p>
-      <button class="btn btn-green mt-3" [routerLink]="'/carbone'">Calculate Your Carbon Emissions</button>
+      <button class="btn btn-green mt-3" [routerLink]="'/'+RoutesEnum.CARBONE">Calculate Your Carbon Emissions</button>
     </div>
     <div class="col-md-6 d-none d-md-block">
       <div class="image-wrapper">
@@ -120,7 +119,7 @@
       <div class="section-title">• PROJECT OBJECTIVES •</div>
       <h2 class="section-heading">Potential of green projects</h2>
       <div class="section-paragraph">Our platform offers ecological project leaders an assessment of the CO2 absorption/reduction potential of their green initiatives.</div>
-      <button class="btn btn-green mt-3 w-100" [routerLink]="'/porteur'">Calculate your carbon reductions</button>
+      <button class="btn btn-green mt-3 w-100" [routerLink]="'/'+RoutesEnum.PORTEUR">Calculate your carbon reductions</button>
     </div>
     <div class="col-12 d-md-none">
       <div class="image-wrapper">
@@ -139,7 +138,7 @@
       <div class="section-title">• PROJECT OBJECTIVES •</div>
       <h2 class="section-heading">Potential of green projects</h2>
       <div class="section-paragraph">Our platform offers ecological project leaders an assessment of the CO2 absorption/reduction potential of their green initiatives.</div>
-      <button class="btn btn-green mt-3" [routerLink]="'/porteur'">Calculate your carbon reductions</button>
+      <button class="btn btn-green mt-3" [routerLink]="'/'+RoutesEnum.PORTEUR">Calculate your carbon reductions</button>
     </div>
   </div>
 </div>
@@ -164,7 +163,7 @@
             <app-projects-carousel></app-projects-carousel>
           </div>
           <div class="text-center mt-4">
-            <button [routerLink]="'/marketplace'" class="btn btn-primary-green explore-button">
+            <button [routerLink]="'/'+RoutesEnum.MARKETPLACE" class="btn btn-primary-green explore-button">
               <span  >Explore all the green projects</span>
             </button>
           </div>
