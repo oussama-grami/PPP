@@ -20,7 +20,9 @@ export class EventFormComponent {
     private formBuilder: FormBuilder,
     private router: Router,
     private eventFootprintService: EventFootprintService // Inject the service
-  ) {}
+  ) {
+
+  }
 
   ngOnInit() {
     this.eventFormGroup = this.formBuilder.group({

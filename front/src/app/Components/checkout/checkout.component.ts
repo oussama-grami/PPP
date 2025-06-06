@@ -1,29 +1,48 @@
-import {Component, Input, OnInit} from '@angular/core';
-import { CartService } from "../../Service/cart-service.service";
-import {RoutesEnum} from "../../enumerations/Routes.enum";
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Location } from '@angular/common';
+import { CartService } from '../../Service/cart-service.service';
+import { RoutesEnum } from '../../enumerations/Routes.enum';
 
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
-  styleUrls: ['./checkout.component.css']
+  styleUrls: ['./checkout.component.css'],
 })
 export class CheckoutComponent implements OnInit {
   cartItems = this.cartService.getItems();
+  showEmptyCartNotification = false;
+  protected readonly RoutesEnum = RoutesEnum;
+  protected readonly history = history;
 
-  constructor(private cartService: CartService) {}
+  constructor(
+    private cartService: CartService,
+    private router: Router,
+    public location: Location
+  ) {}
 
   ngOnInit() {
     window.scrollTo(0, 0);
-    console.log(this.cartItems)
+  }
+
+  proceedToCheckout(): void {
+    if (this.cartItems.length === 0) {
+      this.showEmptyCartNotification = true;
+      // Auto-hide notification after 4 seconds
+      setTimeout(() => {
+        this.showEmptyCartNotification = false;
+      }, 4000);
+    } else {
+      this.router.navigate([`/${this.RoutesEnum.PAYMENT}`]);
+    }
+  }
+
+  dismissNotification(): void {
+    this.showEmptyCartNotification = false;
   }
 
   getTotalPrice(): number {
     return this.cartService.getTotalPrice();
-  }
-
-  removeItem(index: number) {
-    this.cartService.removeItem(index);
-    this.cartItems = this.cartService.getItems();
   }
 
   increaseQuantity(index: number) {
@@ -36,6 +55,8 @@ export class CheckoutComponent implements OnInit {
     this.cartItems = this.cartService.getItems();
   }
 
-  protected readonly RoutesEnum = RoutesEnum;
-  protected readonly history = history;
+  removeItem(index: number) {
+    this.cartService.removeItem(index);
+    this.cartItems = this.cartService.getItems();
+  }
 }
