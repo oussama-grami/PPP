@@ -11,7 +11,6 @@ import com.ppp.Ecopilot.Entities.EsgResponse;
 import com.ppp.Ecopilot.Enums.EsgCategory;
 import com.ppp.Ecopilot.Repositories.CompanyOwnerRepo;
 import com.ppp.Ecopilot.Repositories.EsgOptionRepo;
-import com.ppp.Ecopilot.Services.AuthService;
 import com.ppp.Ecopilot.Services.CompanyOwnerService;
 import com.ppp.Ecopilot.Services.EsgResponseService;
 import com.ppp.Ecopilot.Repositories.EsgResponseRepo;
@@ -28,15 +27,13 @@ public class EsgResponseServiceImpl  implements EsgResponseService {
     private final EsgResponseMapper esgResponseMapper;
     private final EsgQuestionServiceImpl esgQuestionService;
     private final EsgOptionServiceImpl esgOptionService;
-    private final AuthService authService;
     private final CompanyOwnerService companyOwnerService;
 
-    public EsgResponseServiceImpl(EsgResponseRepo esgResponseRepo, EsgResponseMapper esgResponseMapper, EsgQuestionServiceImpl esgQuestionService, EsgOptionServiceImpl esgOptionService, CompanyOwnerRepo companyOwnerRepo, CompanyOwnerService companyOwnerService,AuthService authService) {
+    public EsgResponseServiceImpl(EsgResponseRepo esgResponseRepo, EsgResponseMapper esgResponseMapper, EsgQuestionServiceImpl esgQuestionService, EsgOptionServiceImpl esgOptionService, CompanyOwnerRepo companyOwnerRepo, CompanyOwnerService companyOwnerService) {
         this.esgResponseRepo = esgResponseRepo;
         this.esgResponseMapper = esgResponseMapper;
         this.esgQuestionService = esgQuestionService;
         this.esgOptionService = esgOptionService;
-        this.authService=authService;
         this.companyOwnerService = companyOwnerService;
     }
 
@@ -46,7 +43,7 @@ public class EsgResponseServiceImpl  implements EsgResponseService {
     }
 
     public List<EsgResponsesByCategoryDTO> getAllEsgResponsesByCategory() {
-        long companyId = this.authService.getCurrentCompanyOwner().getId();
+        long companyId = 7L; // Replace with the actual company ID
         List<EsgResponsesByCategoryDTO> responsesByCategory = List.of(EsgCategory.values()).stream()
                 .map(category -> new EsgResponsesByCategoryDTO(
                         category,
@@ -62,9 +59,9 @@ public class EsgResponseServiceImpl  implements EsgResponseService {
 
     @Override
     public EsgResponse save(CreateResponseDTO dto) {
-        long companyOwnerId =this.authService.getCurrentCompanyOwner().getId();
+        long companyId = 7L;
 
-        EsgResponse existingResponse = esgResponseRepo.findByCompanyOwnerIdAndEsgQuestionId(companyOwnerId, dto.getQuestionId());
+        EsgResponse existingResponse = esgResponseRepo.findByCompanyOwnerIdAndEsgQuestionId(companyId, dto.getQuestionId());
 
         EsgResponse esgResponse;
         if (existingResponse != null) {
@@ -72,9 +69,9 @@ public class EsgResponseServiceImpl  implements EsgResponseService {
         } else {
             esgResponse = new EsgResponse();
 
-            CompanyOwner companyOwner = companyOwnerService.findById(companyOwnerId);
+            CompanyOwner companyOwner = companyOwnerService.findById(companyId);
             if (companyOwner == null) {
-                throw new IllegalArgumentException("CompanyOwner not found for id: " + companyOwnerId);
+                throw new IllegalArgumentException("CompanyOwner not found for id: " + companyId);
             }
             esgResponse.setCompanyOwner(companyOwner);
         }
