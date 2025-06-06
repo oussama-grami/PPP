@@ -16,9 +16,19 @@ from sklearn.metrics import mean_absolute_error, r2_score, mean_squared_error
 import itertools
 import torch
 import torch.nn as nn
-from datetime import datetime
+from datetime import datetime,date
 from dateutil.relativedelta import relativedelta
 import os
+
+from flask import Flask, request, jsonify
+import datetime
+
+# Configuration Azure
+AZURE_ENDPOINT = os.getenv("AZURE_ENDPOINT", "https://models.github.ai/inference")
+AZURE_TOKEN = os.getenv("AZURE_TOKEN")
+MODEL_NAME = os.getenv("MODEL_NAME", "openai/gpt-4.1-mini")
+
+
 app = Flask(__name__)
 class EventData:
     def __init__(self,
@@ -155,10 +165,6 @@ def predict():
         return jsonify({"error": str(e)}), 500
 
 
-# Configuration Azure
-AZURE_ENDPOINT = os.getenv("AZURE_ENDPOINT", "https://models.github.ai/inference")
-AZURE_TOKEN = os.getenv("AZURE_TOKEN")
-MODEL_NAME = os.getenv("MODEL_NAME", "openai/gpt-4.1-mini")
 
 
 # Fonction pour générer le prompt à partir des données
@@ -435,6 +441,78 @@ class LSTMModel(nn.Module):
         out, _ = self.lstm(x)
         return self.fc(out[:, -1, :])
 
+
+
+def interpolate(historical_df: pd.DataFrame, start_date: date, end_date: date, total_value: float):
+    # Step 1: Convert year/month to datetime
+    historical_df['date'] = pd.to_datetime(historical_df[['year', 'month']].assign(day=1))
+
+    # Step 2: Calculate median carbon footprint per month
+    monthly_medians = historical_df.groupby(historical_df['date'].dt.month)['carbon_footprint_kgCO2'].median()
+
+    # Step 3: Reindex to ensure all 12 months are represented
+    all_months = monthly_medians.reindex(range(1, 13))
+
+    # Step 4: Fill missing months using interpolation and fallback
+    seasonal_profile = (
+        all_months.interpolate(method='linear', limit_direction='both')
+        .ffill()
+        .bfill()
+    )
+
+    # Step 5: Normalize the seasonal profile so it sums to 1
+    seasonal_profile /= seasonal_profile.sum()
+
+    # Step 6: Generate list of months in the target date range
+    num_months = (end_date.year - start_date.year) * 12 + (end_date.month - start_date.month) + 1
+    months = [start_date + relativedelta(months=i) for i in range(num_months)]
+
+    # Step 7: Assign weights based on seasonal profile
+    weights = np.array([seasonal_profile[dt.month] for dt in months])
+    weights /= weights.sum()
+
+    # Step 8: Distribute total_value across months
+    monthly_values = weights * total_value
+
+    # Step 9: Round and adjust for rounding error
+    rounded_values = [round(float(val), 4) for val in monthly_values]
+    difference = round(total_value - sum(rounded_values), 5)  # Small tolerance for floating point drift
+
+    if abs(difference) > 1e-5:
+        rounded_values[-1] += difference  # Adjust the last month to preserve total
+
+    # Step 10: Construct final result
+    result = [
+        {
+            "year": dt.year,
+            "month": dt.month,
+            "carbon_footprint_kgCO2": val
+        }
+        for dt, val in zip(months, rounded_values)
+    ]
+
+    return result
+
+@app.route('/interpolate', methods=['POST'])
+def interpolate_handler():
+    data = request.get_json()
+
+    df = pd.DataFrame(data['historical'])
+
+    start_date = datetime.datetime.strptime(data['start_date'], "%Y-%m-%d").date()
+    end_date = datetime.datetime.strptime(data['end_date'], "%Y-%m-%d").date()
+    total_value = data['total_value']
+
+    result = interpolate(df, start_date, end_date, total_value)
+
+    # Format result to match CreateCarbonFootprintHistoryDTO shape
+    flask_result = [{
+        'date': f"{item['year']}-{item['month']:02d}",
+        'predicted': True,
+        'value': item['carbon_footprint_kgCO2']
+    } for item in result]
+
+    return jsonify(flask_result), 200
 @app.route('/forecast', methods=['POST'])
 def predict_carbon_footprint():
     try:
