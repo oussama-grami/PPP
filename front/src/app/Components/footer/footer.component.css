@@ -1,170 +1,517 @@
-.contactUs {
-    margin-top: 75px;
-    height: 300px;
+/* Modern Elegant Footer Design - Light Mode */
+.footer-container {
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%);
+  position: relative;
+  overflow: hidden;
+  margin-top: 5rem;
+  border-top: 1px solid rgba(203, 213, 225, 0.3);
 }
-#contactUsText {
-    margin-top: 27px;
-    width: 281px;
-    height: 115px;
-    flex-shrink: 0;
-    color: #575757;
-    font-family: Roboto;
+
+/* Animated background pattern */
+.footer-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 20% 20%, rgba(1, 65, 49, 0.03) 1px, transparent 1px),
+    radial-gradient(circle at 80% 80%, rgba(16, 185, 129, 0.02) 1px, transparent 1px);
+  background-size: 40px 40px, 60px 60px;
+  animation: floatingDots 20s linear infinite;
+  z-index: 1;
+}
+
+@keyframes floatingDots {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(40px, 40px); }
+}
+
+/* Main footer content */
+.footer-content {
+  position: relative;
+  z-index: 2;
+  padding: 4rem 0 2rem;
+}
+
+/* Logo section with elegant animation */
+.footer-logo-section {
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.footer-logo-container {
+  display: inline-block;
+  position: relative;
+  padding: 1rem;
+  border-radius: 20px;
+  background: transparent; /* Changed from rgba(255, 255, 255, 0.8) to transparent */
+  backdrop-filter: none; /* Removed backdrop filter */
+  border: none; /* Removed border */
+  box-shadow: none; /* Removed box shadow */
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: logoFloat 6s ease-in-out infinite;
+}
+
+@keyframes logoFloat {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.footer-logo-container:hover {
+  transform: translateY(-5px) scale(1.05);
+  background: transparent; /* Keep transparent on hover */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08); /* Subtle shadow on hover only */
+  border-color: transparent; /* Keep border transparent */
+}
+
+.footer-logo {
+  width: 120px;
+  height: auto;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.footer-logo-container:hover .footer-logo {
+  filter: brightness(1.1);
+}
+
+/* Glowing effect behind logo */
+.footer-logo-container::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 140px;
+  height: 140px;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  z-index: -1;
+  animation: logoGlow 4s ease-in-out infinite;
+}
+
+@keyframes logoGlow {
+  0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+  50% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.1); }
+}
+
+/* Elegant separator */
+.footer-separator {
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(148, 163, 184, 0.3) 20%, rgba(100, 116, 139, 0.4) 50%, rgba(148, 163, 184, 0.3) 80%, transparent 100%);
+  margin: 3rem auto;
+  max-width: 600px;
+  position: relative;
+  animation: separatorShimmer 3s ease-in-out infinite;
+}
+
+@keyframes separatorShimmer {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
+}
+
+.footer-separator::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  background: #10b981;
+  border-radius: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.6);
+  animation: separatorDot 2s ease-in-out infinite;
+}
+
+@keyframes separatorDot {
+  0%, 100% { transform: translateX(-50%) scale(1); }
+  50% { transform: translateX(-50%) scale(1.3); }
+}
+
+/* Navigation links with hover effects */
+.footer-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 3rem;
+  padding: 0 1rem;
+}
+
+.footer-nav-link {
+  color: #475569;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 10px 20px;
+  border-radius: 25px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(203, 213, 225, 0.3);
+  backdrop-filter: blur(5px);
+}
+
+.footer-nav-link::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.2), transparent);
+  transition: left 0.6s ease;
+}
+
+.footer-nav-link:hover::before {
+  left: 100%;
+}
+
+.footer-nav-link:hover {
+  color: #014131;
+  transform: translateY(-3px);
+  background: rgba(16, 185, 129, 0.1);
+  border-color: rgba(16, 185, 129, 0.4);
+  box-shadow: 0 10px 25px rgba(16, 185, 129, 0.15);
+}
+
+/* Contact information with animated icons */
+.footer-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+  padding: 0 1rem;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 1rem;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(203, 213, 225, 0.3);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.1), transparent);
+  transition: left 0.8s ease;
+}
+
+.contact-item:hover::before {
+  left: 100%;
+}
+
+.contact-item:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+.contact-icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.contact-item:hover .contact-icon {
+  transform: scale(1.1) rotate(5deg);
+  filter: drop-shadow(0 0 8px rgba(16, 185, 129, 0.4));
+}
+
+.contact-icon svg {
+  width: 100%;
+  height: 100%;
+  fill: #10b981;
+  transition: fill 0.3s ease;
+}
+
+.contact-item:hover .contact-icon svg {
+  fill: #059669;
+}
+
+.contact-text {
+  color: #64748b;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  transition: color 0.3s ease;
+  text-align: center;
+}
+
+.contact-item:hover .contact-text {
+  color: #334155;
+}
+
+/* Bottom footer section */
+.footer-bottom {
+  background: rgba(248, 250, 252, 0.8);
+  padding: 2rem 0;
+  border-top: 1px solid rgba(203, 213, 225, 0.3);
+  position: relative;
+}
+
+.footer-bottom-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 0 2rem;
+}
+
+.copyright-text {
+  color: #64748b;
+  font-size: 14px;
+  font-weight: 400;
+  margin: 0;
+}
+
+/* Social media links with elegant animations */
+.social-links {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(203, 213, 225, 0.3);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.social-link::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.2) 0%, transparent 70%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.4s ease;
+}
+
+.social-link:hover::before {
+  width: 60px;
+  height: 60px;
+}
+
+.social-link:hover {
+  transform: translateY(-3px) rotate(5deg);
+  background: rgba(16, 185, 129, 0.1);
+  border-color: rgba(16, 185, 129, 0.4);
+  box-shadow: 0 12px 25px rgba(16, 185, 129, 0.15);
+}
+
+.social-link img {
+  width: 24px;
+  height: 24px;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
+  filter: brightness(0.7) contrast(1.3); /* Darken social icons for better visibility on light background */
+}
+
+.social-link:hover img {
+  transform: scale(1.1);
+  filter: brightness(0.5) contrast(1.5); /* Make them even darker on hover */
+}
+
+/* Specific styling for Facebook icon to ensure visibility */
+.social-link[title="Facebook"] img,
+.social-link[aria-label*="Facebook"] img {
+  filter: brightness(0.3) contrast(2) sepia(1) hue-rotate(200deg) saturate(3); /* Make Facebook icon darker with blue tint */
+}
+
+.social-link[title="Facebook"]:hover img,
+.social-link[aria-label*="Facebook"]:hover img {
+  filter: brightness(0.2) contrast(2.5) sepia(1) hue-rotate(200deg) saturate(4); /* Darker blue on hover */
+}
+
+/* Alternative approach - if you want to use specific colors for each social platform */
+.social-link[title="LinkedIn"] img,
+.social-link[aria-label*="LinkedIn"] img {
+  filter: brightness(0.4) contrast(1.5) sepia(1) hue-rotate(200deg) saturate(2);
+}
+
+.social-link[title="LinkedIn"]:hover img,
+.social-link[aria-label*="LinkedIn"]:hover img {
+  filter: brightness(0.3) contrast(2) sepia(1) hue-rotate(200deg) saturate(3);
+}
+
+/* Instagram can have a gradient effect */
+.social-link[title="Instagram"] img,
+.social-link[aria-label*="Instagram"] img {
+  filter: brightness(0.5) contrast(1.3) sepia(0.8) hue-rotate(300deg) saturate(2);
+}
+
+.social-link[title="Instagram"]:hover img,
+.social-link[aria-label*="Instagram"]:hover img {
+  filter: brightness(0.4) contrast(1.5) sepia(1) hue-rotate(300deg) saturate(3);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .footer-content {
+    padding: 3rem 0 1.5rem;
+  }
+
+  .footer-nav {
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .footer-nav-link {
     font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 20px;
-    /* 142.857% */
-}
+    padding: 8px 16px;
+  }
 
-.contactUs {
-   
-}
-.contactUsButton {
-    border-radius: 5px;
-    background: #014131;
-    padding: 5px 20px 5px 20px;
-    border: none;
-
-}
-#contactUsButtonText {
-    color: #FFF;
-    font-family: Roboto;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 24px;
-    /* 171.429% */
-    margin-right: 2px;
-
-}
-.headerContactUs {
-    color: #000;
-
-    font-family: Roboto;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 20px;
-    /* 111.111% */
-    margin-top: 25px;
-}
-#serviceText {
-    margin-top: 38px;
-    width: 281px;
-}
-.service {
-    color: #575757;
-
-    font-family: Roboto;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 20px;
-    /* 142.857% */
-}
-.quote {
-    margin-top: 57px;
-    width: 282px;
-    height: 80px;
-    flex-shrink: 0;
-    border-radius: 5px;
-    background: #014131;
-    padding: 18px 24px 19px 26px;
-
-}
-
-#quoteText1 {
-    color: #FFF;
-    font-family: Roboto;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 20px;
-}
-
-#quoteText2 {
-    color: #FFF;
-    text-align: justify;
-    font-family: Roboto;
-    font-size: 14px;
-    font-style: italic;
-    font-weight: 600;
-    line-height: 20px;
-    /* 142.857% */
-}
-
-#quoteText3 {
-    color: #FFF;
-    font-family: Roboto;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 20px;
-}
-.footer {
-    background-color: #014131;
-    width: 100%;
-    height: 50px;
-    overflow: hidden;
-}
-
-.footerParagraph1 {
-    margin-top: 14px;
-    margin-left: 119px;
-    color: #FFF;
-    font-family: Roboto;
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 20px;
-
-    float: left;
-}
-
-.footerParagraph2 {
-    margin-top: 14px;
-    margin-right: 119px;
-    color: #FFF;
-    font-family: Roboto;
-    font-size: 12px;
-    font-style: italic;
-    font-weight: 300;
-    line-height: normal;
-    float: right;
-    display: flex;
+  .contact-item {
+    flex-direction: column;
+    text-align: center;
     gap: 8px;
-    
-}
-.link{
-    cursor: pointer;
-}
-.logo-footer{
-    width: 107px;
-    height: 30.411px;
-}
-.seperator{
-    margin-top: 26px;
-    margin-bottom: 28px;
-    height: 1px;
-    background: #E1E1E1;
-    width: 674px;
+    padding: 1rem 0.5rem;
+  }
+
+  .contact-text {
+    font-size: 13px;
+  }
+
+  .footer-bottom-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 1.5rem;
+  }
+
+  .footer-logo {
+    width: 100px;
+  }
+
+  .footer-logo-container {
+    padding: 0.75rem;
+  }
+
+  .footer-logo-container::after {
+    width: 120px;
+    height: 120px;
+  }
 }
 
-.contact-text{
-color: #676767;
-font-family: Roboto;
-font-size: 16px;
-font-style: normal;
-font-weight: 400;
-line-height: 150%; /* 21px */
+@media (max-width: 576px) {
+  .footer-nav {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .footer-nav-link {
+    width: 200px;
+    text-align: center;
+  }
+
+  .social-links {
+    justify-content: center;
+  }
+
+  .contact-item {
+    margin: 0 1rem;
+  }
 }
-.footer-font{
-    text-decoration: none;
-    color: #000;
-font-family: Roboto;
-font-size: 16px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
-letter-spacing: -0.205px;
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  .footer-logo-container,
+  .footer-separator,
+  .footer-separator::before,
+  .footer-logo-container::after {
+    animation: none;
+  }
+  
+  .footer-container::before {
+    animation: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .footer-nav-link,
+  .contact-text,
+  .copyright-text {
+    color: #1e293b;
+  }
+  
+  .footer-nav-link:hover {
+    background: #10b981;
+    color: #ffffff;
+  }
+  
+  .contact-item {
+    border: 2px solid #64748b;
+  }
+}
+
+/* Enhanced light mode specific styles */
+.footer-container {
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.footer-nav-link:focus {
+  outline: 2px solid #10b981;
+  outline-offset: 2px;
+}
+
+.social-link:focus {
+  outline: 2px solid #10b981;
+  outline-offset: 2px;
+}
+
+/* Add subtle texture to the background */
+.footer-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2310b981' fill-opacity='0.02'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  z-index: 1;
+  pointer-events: none;
 }
