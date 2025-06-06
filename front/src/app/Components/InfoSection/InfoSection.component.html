@@ -1,5 +1,5 @@
-<div class="container" >
-  <div class="row">
+<div class="container" style="padding-top: 100px;">
+<div class="row">
     <div class="mx-auto text-center d-flex flex-column justify-content-center align-items-center col">
       <div class="title">
         {{title}}
@@ -7,7 +7,7 @@
       <div *ngFor="let paragraph of paragraphs" class="description" >
         {{paragraph}}
       </div>
-      <button  class="paginationButton" (click)="navigateToLink()"> 
+      <button  class="paginationButton" (click)="navigateToLink()">
         <span style="margin-right: 8px; color:#FFF;" class="paginationButtonText">{{buttonText}}</span>
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
           <path d="M4.5 12H19.5M19.5 12L13.875 6M19.5 12L13.875 18" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>

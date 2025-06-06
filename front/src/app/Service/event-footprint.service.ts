@@ -47,12 +47,10 @@ export class EventFootprintService {
 
   createEvent(eventData: Event): Observable<any> {
     console.log(eventData);
-     this.getEventRecommendations();
     return this.http.post(`${this.apiUrl}`, eventData);
   }
 
   getEventById(id: number): Observable<EventResponse> {
-    this.getEventRecommendations();
     return this.http.get<EventResponse>(`${this.apiUrl}/${id}`);
   }
 

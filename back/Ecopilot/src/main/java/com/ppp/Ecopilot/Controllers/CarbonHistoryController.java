@@ -11,7 +11,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/carbonHistory")
@@ -29,15 +31,29 @@ public class CarbonHistoryController  {
 
 
     @PostMapping("/save")
-    public ResponseEntity<String> createCarbonHistory(@RequestBody CreateCarbonFootprintHistoryDTO data) {
+    public ResponseEntity<Map<String, String>> createCarbonHistory(@RequestBody CreateCarbonFootprintHistoryDTO data) {
+        System.out.println("Saving new carbon footprint entry: " + data);
+
         try {
             carbonHistoryService.saveCarbonFootprint(data);
-            return ResponseEntity.ok("Carbon footprint history saved successfully.");
+
+            Map<String, String> response = new HashMap<>();
+            response.put("message", "Carbon footprint history saved successfully.");
+
+            return ResponseEntity.ok(response);
+
         } catch (DataIntegrityViolationException ex) {
+            System.out.println("this is where the error is happening");
+            ex.printStackTrace();
+
+            Map<String, String> response = new HashMap<>();
+            response.put("error", "Duplicate entry: A record with the same YearMonth and CompanyOwner already exists.");
+
             return ResponseEntity.status(HttpStatus.CONFLICT)
-                    .body("Duplicate entry: A record with the same YearMonth and CompanyOwner already exists.");
+                    .body(response);
         }
     }
+
     @PostMapping("/saveAll")
     public void createAllCarbonHistory(@RequestBody List<CreateCarbonFootprintHistoryDTO> data) {
         System.out.println("Data: " + data);
@@ -67,6 +83,7 @@ public class CarbonHistoryController  {
     @PostMapping("/interpolate")
     public ResponseEntity<Void> interpolate(@RequestBody InterpolationRequestDTO request) {
         try {
+            
             List<CreateCarbonFootprintHistoryDTO> results = carbonHistoryService.getInterpolatedData(
                     request.getCompanyOwnerId(),
                     request.getStartDate(),

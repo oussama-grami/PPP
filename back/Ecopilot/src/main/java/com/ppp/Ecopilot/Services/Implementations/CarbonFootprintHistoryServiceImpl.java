@@ -10,6 +10,7 @@ import com.ppp.Ecopilot.Entities.CompanyOwner;
 import com.ppp.Ecopilot.Mappers.CarbonHistoryMapper;
 import com.ppp.Ecopilot.Mappers.CarbonInterpolationMapper;
 import com.ppp.Ecopilot.Repositories.CarbonFootprintHistoryRepo;
+import com.ppp.Ecopilot.Services.AuthService;
 import com.ppp.Ecopilot.Services.CarbonFootprintHistoryService;
 import com.ppp.Ecopilot.Services.CompanyOwnerService;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,6 +22,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
+import java.net.URI;
 import java.time.YearMonth;
 import java.util.*;
 
@@ -31,14 +33,16 @@ public class CarbonFootprintHistoryServiceImpl extends AbstractCrudService<Carbo
     private final CarbonFootprintHistoryRepo carbonFootprintHistoryRepo;
     private final CarbonHistoryMapper historyMapper;
     private final CompanyOwnerService companyOwnerService;
+    private final AuthService authService;
     private final WebClient webClient;
     private final CarbonInterpolationMapper carbonInterpolationMapper;
     @Value("${flask.api.url}")
-    private static String flaskUrl;
-    private static final String FLASK_INTERPOLATE_URL = flaskUrl+"interpolate";
+    private  String flaskUrl;
+    private  final String FLASK_INTERPOLATE_URL = flaskUrl+"interpolate";
 
-    public CarbonFootprintHistoryServiceImpl(CarbonFootprintHistoryRepo carboneFootprintHistoryRepo, CarbonHistoryMapper historyMapper, CompanyOwnerService companyOwnerService, WebClient.Builder webClientBuilder, CarbonInterpolationMapper carbonInterpolationMapper) {
+    public CarbonFootprintHistoryServiceImpl(CarbonFootprintHistoryRepo carboneFootprintHistoryRepo, CarbonHistoryMapper historyMapper, CompanyOwnerService companyOwnerService, WebClient.Builder webClientBuilder, CarbonInterpolationMapper carbonInterpolationMapper,AuthService authService) {
         this.carbonFootprintHistoryRepo = carboneFootprintHistoryRepo;
+        this.authService=authService;
         this.historyMapper = historyMapper;
         this.companyOwnerService = companyOwnerService;
         this.carbonInterpolationMapper = carbonInterpolationMapper;
@@ -60,7 +64,7 @@ public class CarbonFootprintHistoryServiceImpl extends AbstractCrudService<Carbo
 
     @Override
     public CarbonFootprintHistoryDTO[] findByCurrentCompanyOwner() {
-        long companyOwnerId = 7L; // Replace with dynamic retrieval if needed
+        long companyOwnerId = this.authService.getCurrentCompanyOwner().getId();
         List<CarbonFootprintHistory> historyList = carbonFootprintHistoryRepo.findByCompanyOwnerIdOrderByDateAsc(companyOwnerId);
 
         // Debugging logs
@@ -102,7 +106,7 @@ public class CarbonFootprintHistoryServiceImpl extends AbstractCrudService<Carbo
 
             // Send request to forecasting API
             Mono<List<CarbonFootprintForecastResponse.PredictedEntry>> responseMono = webClient.post()
-                    .uri("forecast")
+                    .uri(URI.create(flaskUrl+"forecast"))
                     .bodyValue(request)
                     .retrieve()
                     .bodyToMono(new ParameterizedTypeReference<List<CarbonFootprintForecastResponse.PredictedEntry>>() {
@@ -131,14 +135,13 @@ public class CarbonFootprintHistoryServiceImpl extends AbstractCrudService<Carbo
     @Override
     public void saveCarbonFootprint(CreateCarbonFootprintHistoryDTO data) {
         CarbonFootprintHistory entity = historyMapper.toEntity(data);
-        CompanyOwner owner = companyOwnerService.findById(7L); // Replace with dynamic owner id as needed
+        CompanyOwner owner = this.authService.getCurrentCompanyOwner();
         entity.setCompanyOwner(owner);
 
         try {
             carbonFootprintHistoryRepo.save(entity);
         } catch (DataIntegrityViolationException e) {
-            // Handle the exception or log it here if needed
-            throw e; // Rethrow to be caught in the controller
+            throw e;
         }
     }
 
@@ -146,8 +149,7 @@ public class CarbonFootprintHistoryServiceImpl extends AbstractCrudService<Carbo
     public void saveAllCarbonFootprint(List<CreateCarbonFootprintHistoryDTO> dataList) {
         List<CarbonFootprintHistory> entities = new ArrayList<>();
 
-        CompanyOwner owner = companyOwnerService.findById(7L); // Fetch once, not inside the loop!
-
+        CompanyOwner owner = this.authService.getCurrentCompanyOwner();
         for (CreateCarbonFootprintHistoryDTO data : dataList) {
             CarbonFootprintHistory entity = historyMapper.toEntity(data);
             entity.setCompanyOwner(owner);

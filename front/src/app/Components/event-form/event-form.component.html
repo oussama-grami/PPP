@@ -1,290 +1,142 @@
-<div class="form-container">
-  <!-- Left Section with Progress and Info -->
-  <div class="left-section">
-    <div class="progress-wrapper">
-      <!-- Step Info -->
-      <div class="step-info">
-        <div class="step-icon">
-          <svg *ngIf="currentStep === 1" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-          </svg>
-          <svg *ngIf="currentStep === 2" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
-          </svg>
-          <svg *ngIf="currentStep === 3" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M18 8h1a4 4 0 0 1 0 8h-1M2 8h16l2 8H4l-2-8z"/>
-          </svg>
-        </div>
-        <h2 class="step-title">
-          {{ currentStep === 1 ? 'Event Details' : currentStep === 2 ? 'Energy & Transport' : 'Food & Materials' }}
+<div class="container-fluid full-height">
+  <div class="row row-height">
+    <!-- Left Section with Image -->
+    <div class="col-lg-6 content-left1">
+      <div class="content-left-wrapper">
+        <img [src]="currentStep === 1 ? 'assets/img/event-information.png' : currentStep === 2 ? 'assets/img/event-energy.png' : 'assets/img/event-food.png'" class="img-title" />
+        <h2 id="descriptionTitle">
+          {{ currentStep === 1 ? 'General Information' : currentStep === 2 ? 'Energy & Transport' : 'Food & Materials' }}
         </h2>
-        <p class="step-description">
-          {{ currentStep === 1 ? 'Tell us about your event and venue details' :
-          currentStep === 2 ? 'Share information about energy consumption and transportation' :
-            'Provide details about catering and materials used' }}
+        <p id="descriptionText">
+          {{ currentStep === 1 ? 'Please tell us about your event.' : currentStep === 2 ? 'Provide details about energy usage and transport.' : 'Provide information on food and material usage.' }}
         </p>
       </div>
-      <!-- Step Progress Indicator -->
-      <div class="step-progress">
-        <div class="step-item" [class.active]="currentStep >= 1" [class.completed]="currentStep > 1">
-          <div class="step-circle">1</div>
-          <span class="step-label">General Info</span>
-        </div>
-        <div class="step-connector" [class.active]="currentStep > 1"></div>
-        <div class="step-item" [class.active]="currentStep >= 2" [class.completed]="currentStep > 2">
-          <div class="step-circle">2</div>
-          <span class="step-label">Energy & Transport</span>
-        </div>
-        <div class="step-connector" [class.active]="currentStep > 2"></div>
-        <div class="step-item" [class.active]="currentStep >= 3">
-          <div class="step-circle">3</div>
-          <span class="step-label">Food & Materials</span>
-        </div>
-      </div>
-
-
     </div>
-  </div>
 
-  <!-- Right Section with Form -->
-  <div class="right-section">
-    <div class="form-wrapper">
-      <form [formGroup]="eventFormGroup" (ngSubmit)="onSubmit()" class="event-form">
+    <!-- Right Section with Form -->
+    <div class="col-lg-6 content-right" id="start">
+      <div id="wizard_container">
+        <form [formGroup]="eventFormGroup" (ngSubmit)="onSubmit()">
+          <div *ngIf="errorMessage" class="alert alert-danger">
+            {{ errorMessage }}
+          </div>
 
-        <!-- Error Message -->
-        <div *ngIf="errorMessage" class="error-alert">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="12" cy="12" r="10"/>
-            <line x1="15" y1="9" x2="9" y2="15"/>
-            <line x1="9" y1="9" x2="15" y2="15"/>
-          </svg>
-          {{ errorMessage }}
-        </div>
-
-        <!-- Step 1: General Information -->
-        <div *ngIf="currentStep === 1" class="step-content">
-          <h3 class="form-title">General Information</h3>
-
-          <div class="form-grid">
-            <div class="form-group">
-              <label class="form-label">Event Name</label>
-              <input type="text" formControlName="eventName" class="form-input" placeholder="Enter event name">
-              <div *ngIf="eventName?.invalid && eventName?.touched" class="field-error">
-                Event name is required (minimum 2 characters)
-              </div>
+          <!-- Step 1: General Information -->
+          <div *ngIf="currentStep === 1">
+            <h3 class="main_question"><strong>1/3</strong> General Information</h3>
+            <label>Event Name:</label>
+            <input type="text" formControlName="eventName" class="form-control" />
+            <div *ngIf="eventName?.invalid && eventName?.touched" class="text-danger">
+              Event Name is required (Min: 2 characters).
             </div>
 
-            <div class="form-group">
-              <label class="form-label">Event Type</label>
-              <div class="custom-select">
-                <select formControlName="eventType" class="form-select">
-                  <option value="">Select event type</option>
-                  <option value="conference">Conference</option>
-                  <option value="workshop">Workshop</option>
-                  <option value="seminar">Seminar</option>
-                  <option value="meeting">Meeting</option>
-                  <option value="party">Party</option>
-                  <option value="wedding">Wedding</option>
-                  <option value="exhibition">Exhibition</option>
-                  <option value="other">Other</option>
-                </select>
-                <input *ngIf="eventType?.value === 'other'" type="text" class="form-input custom-input" placeholder="Specify event type">
-              </div>
-              <div *ngIf="eventType?.invalid && eventType?.touched" class="field-error">
-                Event type is required
-              </div>
+            <label>Event Type:</label>
+            <input type="text" formControlName="eventType" class="form-control" />
+            <div *ngIf="eventType?.invalid && eventType?.touched" class="text-danger">
+              Event Type is required.
             </div>
 
-            <div class="form-group">
-              <label class="form-label">Duration (hours)</label>
-              <input type="number" formControlName="duration" class="form-input" placeholder="Hours" min="1">
-              <div *ngIf="duration?.invalid && duration?.touched" class="field-error">
-                Duration must be at least 1 hour
-              </div>
+            <label>Duration (hours):</label>
+            <input type="number" formControlName="duration" class="form-control" />
+            <div *ngIf="duration?.invalid && duration?.touched" class="text-danger">
+              Duration must be at least 1 hour.
             </div>
 
-            <div class="form-group">
-              <label class="form-label">Number of Participants</label>
-              <input type="number" formControlName="participantsNbr" class="form-input" placeholder="Participants" min="1">
-              <div *ngIf="participantsNbr?.invalid && participantsNbr?.touched" class="field-error">
-                Must be at least 1 participant
-              </div>
+            <label>Participants:</label>
+            <input type="number" formControlName="participantsNbr" class="form-control" />
+            <div *ngIf="participantsNbr?.invalid && participantsNbr?.touched" class="text-danger">
+              Must be at least 1 participant.
             </div>
 
-            <div class="form-group">
-              <label class="form-label">Venue Type</label>
-              <div class="custom-select">
-                <select formControlName="venueType" class="form-select">
-                  <option value="">Select venue type</option>
-                  <option value="hotel">Hotel</option>
-                  <option value="conference-center">Conference Center</option>
-                  <option value="restaurant">Restaurant</option>
-                  <option value="outdoor">Outdoor</option>
-                  <option value="office">Office</option>
-                  <option value="university">University</option>
-                  <option value="community-center">Community Center</option>
-                  <option value="other">Other</option>
-                </select>
-                <input *ngIf="venueType?.value === 'other'" type="text" class="form-input custom-input" placeholder="Specify venue type">
-              </div>
-              <div *ngIf="venueType?.invalid && venueType?.touched" class="field-error">
-                Venue type is required
-              </div>
+            <label>Venue Type:</label>
+            <input type="text" formControlName="venueType" class="form-control" />
+            <div *ngIf="venueType?.invalid && venueType?.touched" class="text-danger">
+              Venue Type is required.
             </div>
 
-            <div class="form-group">
-              <label class="form-label">Location</label>
-              <input type="text" formControlName="location" class="form-input" placeholder="Enter location">
-              <div *ngIf="location?.invalid && location?.touched" class="field-error">
-                Location is required
-              </div>
+            <label>Location:</label>
+            <input type="text" formControlName="location" class="form-control" />
+            <div *ngIf="location?.invalid && location?.touched" class="text-danger">
+              Location is required.
             </div>
           </div>
-        </div>
 
-        <!-- Step 2: Energy & Transport -->
-        <div *ngIf="currentStep === 2" class="step-content">
-          <h3 class="form-title">Energy & Transport</h3>
-
-          <div class="form-grid">
-            <div class="form-group">
-              <label class="form-label">Number of Devices</label>
-              <input type="number" formControlName="deviceNbr" class="form-input" placeholder="Devices" min="0">
-              <div *ngIf="deviceNbr?.invalid && deviceNbr?.touched" class="field-error">
-                Must be at least 0
-              </div>
+          <!-- Step 2: Energy & Transport -->
+          <div *ngIf="currentStep === 2">
+            <h3 class="main_question"><strong>2/3</strong> Energy & Transport</h3>
+            <label>Number of Devices:</label>
+            <input type="number" formControlName="deviceNbr" class="form-control" />
+            <div *ngIf="deviceNbr?.invalid && deviceNbr?.touched" class="text-danger">
+              Must be at least 0.
             </div>
 
-            <div class="form-group">
-              <label class="form-label">Average Power per Device (kW)</label>
-              <input type="number" formControlName="avgPowerPerDevice" class="form-input" placeholder="kW" min="0" step="0.1">
-              <div *ngIf="avgPowerPerDevice?.invalid && avgPowerPerDevice?.touched" class="field-error">
-                Must be at least 0
-              </div>
+            <label>Avg Power per Device (kW):</label>
+            <input type="number" formControlName="avgPowerPerDevice" class="form-control" />
+            <div *ngIf="avgPowerPerDevice?.invalid && avgPowerPerDevice?.touched" class="text-danger">
+              Must be at least 0.
             </div>
 
-            <div class="form-group">
-              <label class="form-label">Energy Usage Hours</label>
-              <input type="number" formControlName="energyUsageHours" class="form-input" placeholder="Hours" min="0">
-              <div *ngIf="energyUsageHours?.invalid && energyUsageHours?.touched" class="field-error">
-                Must be at least 0
-              </div>
+            <label>Energy Usage Hours:</label>
+            <input type="number" formControlName="energyUsageHours" class="form-control" />
+            <div *ngIf="energyUsageHours?.invalid && energyUsageHours?.touched" class="text-danger">
+              Must be at least 0.
             </div>
 
-            <div class="form-group">
-              <label class="form-label">Primary Transport Mode</label>
-              <div class="custom-select">
-                <select formControlName="transportMode" class="form-select">
-                  <option value="">Select transport mode</option>
-                  <option value="car">Car</option>
-                  <option value="bus">Bus</option>
-                  <option value="train">Train</option>
-                  <option value="plane">Plane</option>
-                  <option value="bike">Bike</option>
-                  <option value="walking">Walking</option>
-                  <option value="public-transport">Public Transport</option>
-                  <option value="other">Other</option>
-                </select>
-                <input *ngIf="transportMode?.value === 'other'" type="text" class="form-input custom-input" placeholder="Specify transport mode">
-              </div>
-              <div *ngIf="transportMode?.invalid && transportMode?.touched" class="field-error">
-                Transport mode is required
-              </div>
+            <label>Transport Mode:</label>
+            <input type="text" formControlName="transportMode" class="form-control" />
+            <div *ngIf="transportMode?.invalid && transportMode?.touched" class="text-danger">
+              Transport Mode is required.
             </div>
 
-            <div class="form-group">
-              <label class="form-label">Average Distance (km)</label>
-              <input type="number" formControlName="transportDistance" class="form-input" placeholder="Kilometers" min="0">
-              <div *ngIf="transportDistance?.invalid && transportDistance?.touched" class="field-error">
-                Must be at least 0 km
-              </div>
+            <label>Transport Distance (km):</label>
+            <input type="number" formControlName="transportDistance" class="form-control" />
+            <div *ngIf="transportDistance?.invalid && transportDistance?.touched" class="text-danger">
+              Must be at least 0 km.
             </div>
 
-            <div class="form-group">
-              <label class="form-label">Attendees Using Transport</label>
-              <input type="number" formControlName="attendeesUsingTransport" class="form-input" placeholder="Attendees" min="0">
-              <div *ngIf="attendeesUsingTransport?.invalid && attendeesUsingTransport?.touched" class="field-error">
-                Must be at least 0 attendees
-              </div>
+            <label>Attendees Using Transport:</label>
+            <input type="number" formControlName="attendeesUsingTransport" class="form-control" />
+            <div *ngIf="attendeesUsingTransport?.invalid && attendeesUsingTransport?.touched" class="text-danger">
+              Must be at least 0 attendees.
             </div>
           </div>
-        </div>
 
-        <!-- Step 3: Food & Materials -->
-        <div *ngIf="currentStep === 3" class="step-content">
-          <h3 class="form-title">Food & Materials</h3>
-
-          <div class="form-grid">
-            <div class="form-group">
-              <label class="form-label">Meal Type</label>
-              <div class="custom-select">
-                <select formControlName="mealType" class="form-select">
-                  <option value="">Select meal type</option>
-                  <option value="breakfast">Breakfast</option>
-                  <option value="lunch">Lunch</option>
-                  <option value="dinner">Dinner</option>
-                  <option value="snacks">Snacks</option>
-                  <option value="buffet">Buffet</option>
-                  <option value="cocktail">Cocktail</option>
-                  <option value="none">No meals</option>
-                  <option value="other">Other</option>
-                </select>
-                <input *ngIf="mealType?.value === 'other'" type="text" class="form-input custom-input" placeholder="Specify meal type">
-              </div>
-              <div *ngIf="mealType?.invalid && mealType?.touched" class="field-error">
-                Meal type is required
-              </div>
+          <!-- Step 3: Food & Materials -->
+          <div *ngIf="currentStep === 3">
+            <h3 class="main_question"><strong>3/3</strong> Food & Materials</h3>
+            <label>Meal Type:</label>
+            <input type="text" formControlName="mealType" class="form-control" />
+            <div *ngIf="mealType?.invalid && mealType?.touched" class="text-danger">
+              Meal Type is required.
             </div>
 
-            <div class="form-group">
-              <label class="form-label">Number of Meals</label>
-              <input type="number" formControlName="nbrOfMeals" class="form-input" placeholder="Meals" min="0">
-              <div *ngIf="nbrOfMeals?.invalid && nbrOfMeals?.touched" class="field-error">
-                Must be at least 0 meals
-              </div>
+            <label>Number of Meals:</label>
+            <input type="number" formControlName="nbrOfMeals" class="form-control" />
+            <div *ngIf="nbrOfMeals?.invalid && nbrOfMeals?.touched" class="text-danger">
+              Must be at least 0 meals.
             </div>
 
-            <div class="form-group">
-              <label class="form-label">Printed Materials (kg)</label>
-              <input type="number" formControlName="printedMaterial" class="form-input" placeholder="Kilograms" min="0" step="0.1">
-              <div *ngIf="printedMaterial?.invalid && printedMaterial?.touched" class="field-error">
-                Must be at least 0 kg
-              </div>
+            <label>Printed Material (kg):</label>
+            <input type="number" formControlName="printedMaterial" class="form-control" />
+            <div *ngIf="printedMaterial?.invalid && printedMaterial?.touched" class="text-danger">
+              Must be at least 0 kg.
             </div>
 
-            <div class="form-group">
-              <label class="form-label">Decoration Materials (kg)</label>
-              <input type="number" formControlName="decorationMaterial" class="form-input" placeholder="Kilograms" min="0" step="0.1">
-              <div *ngIf="decorationMaterial?.invalid && decorationMaterial?.touched" class="field-error">
-                Must be at least 0 kg
-              </div>
+            <label>Decoration Material (kg):</label>
+            <input type="number" formControlName="decorationMaterial" class="form-control" />
+            <div *ngIf="decorationMaterial?.invalid && decorationMaterial?.touched" class="text-danger">
+              Must be at least 0 kg.
             </div>
           </div>
-        </div>
 
-        <!-- Navigation Buttons -->
-        <div class="form-navigation">
-          <button type="button" class="btn-secondary" (click)="prevStep()" *ngIf="currentStep > 1">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="15,18 9,12 15,6"/>
-            </svg>
-            Previous
-          </button>
-          <div class="nav-spacer"></div>
-          <button type="button" class="btn-primary" (click)="nextStep()" *ngIf="currentStep < 3">
-            Next
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="9,18 15,12 9,6"/>
-            </svg>
-          </button>
-          <button type="submit" class="btn-primary btn-submit" *ngIf="currentStep === 3">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="20,6 9,17 4,12"/>
-            </svg>
-            Calculate Footprint
-          </button>
-        </div>
-      </form>
+          <!-- Navigation Buttons -->
+          <div class="mt-3 d-flex justify-content-between">
+            <button type="button" class="backward" (click)="prevStep()" *ngIf="currentStep > 1">Previous</button>
+            <button type="button" class="forward" (click)="nextStep()" *ngIf="currentStep < 3">Next</button>
+            <button type="submit" class="forward" *ngIf="currentStep === 3">Submit</button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 </div>
