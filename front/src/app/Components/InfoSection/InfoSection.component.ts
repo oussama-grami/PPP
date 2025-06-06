@@ -4,8 +4,8 @@ import { Router } from '@angular/router';
   selector: 'app-InfoSection',
   templateUrl: './InfoSection.component.html',
   styleUrls: ['./InfoSection.component.css'],
-  
-  
+
+
 })
 export class InfoSectionComponent implements OnInit {
   @Input () title: string = '';
@@ -13,14 +13,18 @@ export class InfoSectionComponent implements OnInit {
   @Input () image: string = '';
   @Input () imageAlt: string = '';
   @Input () buttonText: string = '';
-  @Input () buttonLink: string = '';
+  @Input() buttonLink: string | any[] = '';
   constructor(private router:Router) { }
 
   ngOnInit() {
   }
   navigateToLink() {
-    console.log('Navigating to:', this.buttonLink);
-    this.router.navigate([this.buttonLink]);
+    if (Array.isArray(this.buttonLink)) {
+      this.router.navigate(this.buttonLink);
+    } else {
+      this.router.navigate([this.buttonLink]);
+    }
   }
+
 
 }

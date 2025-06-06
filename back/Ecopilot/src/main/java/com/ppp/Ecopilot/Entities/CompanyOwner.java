@@ -38,8 +38,7 @@ public class CompanyOwner extends User {
     @OneToMany(mappedBy = "companyOwner")
     public List<CarbonFootprintHistory> carboneFootprintHistory;
 
-    @OneToMany(mappedBy = "companyOwner")
-    public List<Score> scores;
+
 
     @OneToMany(mappedBy = "companyOwner")
     public List<EventFootprintData> eventFootprintData;

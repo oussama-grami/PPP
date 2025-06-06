@@ -1,3 +1,5 @@
+<div class="container-esg" >
+  <app-back-button [url]="RoutesEnum.ESG" [text]="'Go Back to info section'"></app-back-button>
 <app-esg-header [currentQuestion]="currentQuestionIndex+1"></app-esg-header>
 
 <!-- Loading State -->
@@ -5,7 +7,6 @@
   <app-eco-loading-spinner [loadingText]="'Loading Questions ...'"></app-eco-loading-spinner>
 </div>
 
-<!-- Question Content -->
 <div *ngIf="!loading" class="survey-container">
   <!-- Warning Alert -->
   <div *ngIf="warnUser" class="warning-alert">
@@ -21,7 +22,7 @@
       </svg>
     </button>
   </div>
-  
+
   <!-- Question Header -->
   <div class="question-header">
     <h2 class="question-title">{{ question?.text }}</h2>
@@ -53,4 +54,5 @@
     <button *ngIf="choiceSelected" class="btn-continue" (click)="addScoreAndNavigate()">Continue</button>
     <button *ngIf="!choiceSelected" class="btn-continue" (click)="warning()">Continue</button>
   </div>
+</div>
 </div>

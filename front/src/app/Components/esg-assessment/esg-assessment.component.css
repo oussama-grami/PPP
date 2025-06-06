@@ -2,7 +2,7 @@
 .survey-container {
   max-width: 900px;
   margin: 0 auto;
-  padding: 10 20px;
+  padding: 10px 20px;
   font-family: 'Roboto', sans-serif;
 }
 
@@ -17,6 +17,10 @@
 }
 
 /* Warning alert styles */
+.container-esg{
+  margin-top: 40px;
+  margin-left: 150px;
+}
 .warning-alert {
   display: flex;
   align-items: center;
@@ -232,16 +236,16 @@
   .question-title {
     font-size: 24px;
   }
-  
+
   .option-text {
     font-size: 16px;
   }
-  
+
   .navigation-container {
     flex-direction: column-reverse;
     gap: 12px;
   }
-  
+
   .btn-back, .btn-continue {
     width: 100%;
     text-align: center;
