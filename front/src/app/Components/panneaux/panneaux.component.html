@@ -2,7 +2,7 @@
   <div class="container-fluid h-100" style="margin-left: 0; padding: 0">
     <div class="row h-100 g-0">
       <!-- Left Panel - Hero Section -->
-      <div class="col-12 col-lg-6 h-100 p-0">
+      <div class="col-12 col-lg-6 h-100 p-0 order-1 order-lg-1">
         <div class="hero-section">
           <div class="hero-overlay"></div>
           <div class="hero-content">
@@ -13,6 +13,7 @@
                 height="20"
                 viewBox="0 0 24 24"
                 fill="none"
+                aria-hidden="true"
               >
                 <path
                   d="M12 3V21M12 3L8 7M12 3L16 7M12 21L8 17M12 21L16 17"
@@ -34,16 +35,22 @@
             </p>
             <div class="hero-stats">
               <div class="stat-item">
-                <div class="stat-number">90%+</div>
-                <div class="stat-label">CO2 Reduction</div>
+                <div class="stat-content">
+                  <div class="stat-number">90%+</div>
+                  <div class="stat-label">CO2 Reduction</div>
+                </div>
               </div>
               <div class="stat-item">
-                <div class="stat-number">25+</div>
-                <div class="stat-label">Years Lifespan</div>
+                <div class="stat-content">
+                  <div class="stat-number">25+</div>
+                  <div class="stat-label">Years Lifespan</div>
+                </div>
               </div>
               <div class="stat-item">
-                <div class="stat-number">100%</div>
-                <div class="stat-label">Clean Energy</div>
+                <div class="stat-content">
+                  <div class="stat-number">100%</div>
+                  <div class="stat-label">Clean Energy</div>
+                </div>
               </div>
             </div>
           </div>
@@ -51,498 +58,940 @@
       </div>
 
       <!-- Right Panel - Enhanced Form -->
-      <div class="col-12 col-lg-6 h-100 form-container">
+      <div class="col-12 col-lg-6 h-100 form-container order-2 order-lg-2">
         <div class="form-wrapper">
-          <form
-            [formGroup]="panneauxForm"
-            class="elegant-form"
-            (ngSubmit)="submitData()"
+          <!-- Add a content wrapper for better height management -->
+          <div
+            class="form-content-wrapper"
+            style="min-height: 100%; display: flex; flex-direction: column"
           >
-            <!-- Back Button -->
-            <div class="form-header">
-              <button
-                type="button"
-                [routerLink]="'/' + RoutesEnum.PORTEUR"
-                class="back-button"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
+            <form
+              [formGroup]="panneauxForm"
+              class="elegant-form"
+              (ngSubmit)="submitData()"
+              style="flex: 1; display: flex; flex-direction: column"
+            >
+              <!-- Back Button -->
+              <div class="form-header">
+                <button
+                  type="button"
+                  [routerLink]="'/' + RoutesEnum.PORTEUR"
+                  class="back-button"
                 >
-                  <path
-                    d="M19.5 12H4.5M4.5 12L10.125 6M4.5 12L10.125 18"
-                    stroke="currentColor"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-                <span>Back</span>
-              </button>
-            </div>
-
-            <!-- Form Introduction -->
-            <div class="form-intro">
-              <h2 class="form-main-title">Calculate Solar Impact</h2>
-              <p class="form-subtitle">
-                Provide details about your solar project to receive a
-                comprehensive CO2 footprint analysis and environmental impact
-                assessment.
-              </p>
-            </div>
-
-            <!-- Form Fields -->
-            <div class="form-fields">
-              <!-- Country Selection -->
-              <div class="form-group">
-                <label for="pays" class="form-label">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                  >
+                    <path
+                      d="M19.5 12H4.5M4.5 12L10.125 6M4.5 12L10.125 18"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                  <span>Back</span>
+                </button>
+              </div>
+
+              <!-- Form Introduction -->
+              <div class="form-intro">
+                <h2 class="form-main-title">Calculate Solar Impact</h2>
+                <p class="form-subtitle">
+                  Provide details about your solar project to receive a
+                  comprehensive CO2 footprint analysis and environmental impact
+                  assessment.
+                </p>
+              </div>
+
+              <!-- Form Fields -->
+              <div class="form-fields">
+                <!-- Country Selection -->
+                <div class="form-group">
+                  <label for="pays" class="form-label">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                    >
+                      <circle
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        stroke-width="2"
+                      />
+                      <path
+                        d="M2 12H22"
+                        stroke="currentColor"
+                        stroke-width="2"
+                      />
+                      <path
+                        d="M12 2A15.3 15.3 0 0 1 16 12A15.3 15.3 0 0 1 12 22A15.3 15.3 0 0 1 8 12A15.3 15.3 0 0 1 12 2Z"
+                        stroke="currentColor"
+                        stroke-width="2"
+                      />
+                    </svg>
+                    Project Location
+                  </label>
+                  <div class="select-wrapper">
+                    <select
+                      formControlName="pays"
+                      id="pays"
+                      class="form-control modern-select"
+                    >
+                      <option value="" disabled>Select country...</option>
+                      <option
+                        *ngFor="
+                          let country of countries;
+                          trackBy: trackByCountry
+                        "
+                        [value]="country.cca2"
+                        [selected]="country.cca2 === 'TN'"
+                      >
+                        {{ country.name.common }}
+                      </option>
+                    </select>
+                    <svg
+                      class="select-arrow"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                    >
+                      <path
+                        d="M6 9L12 15L18 9"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </div>
+                </div>
+
+                <!-- Energy Consumption -->
+                <div class="form-group">
+                  <label for="consommation" class="form-label">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                    >
+                      <path
+                        d="M13 2L3 14H12L11 22L21 10H12L13 2Z"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                    Annual Electricity Consumption
+                  </label>
+                  <div class="input-wrapper">
+                    <input
+                      type="number"
+                      formControlName="consommation"
+                      id="consommation"
+                      class="form-control modern-input"
+                      placeholder="Enter consumption in KWH..."
+                      min="1"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <!-- Results Section with proper height management -->
+              <div
+                *ngIf="displayResult"
+                class="result-container mt-4"
+                style="flex-shrink: 0; overflow: visible"
+              >
+                <div
+                  class="result-card"
+                  [ngClass]="'impact-' + getImpactLevel()"
+                  style="overflow: visible"
+                >
+                  <div class="result-header">
+                    <div class="result-icon">
+                      <svg
+                        *ngIf="getImpactLevel() === 'excellent'"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="36"
+                        height="36"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                      >
+                        <path
+                          d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z"
+                          stroke="currentColor"
+                          stroke-width="2.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                      <svg
+                        *ngIf="getImpactLevel() === 'high'"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="36"
+                        height="36"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                      >
+                        <path
+                          d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z"
+                          stroke="currentColor"
+                          stroke-width="2.5"
+                        />
+                      </svg>
+                      <svg
+                        *ngIf="getImpactLevel() === 'medium'"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="36"
+                        height="36"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                      >
+                        <path
+                          d="M12 8V12M12 16H12.01M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z"
+                          stroke="currentColor"
+                          stroke-width="2.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                      <svg
+                        *ngIf="getImpactLevel() === 'low'"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="36"
+                        height="36"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                      >
+                        <path
+                          d="M13 16H12V12H11M12 8H12.01M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z"
+                          stroke="currentColor"
+                          stroke-width="2.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </div>
+                    <div>
+                      <h3 class="result-title">Solar Impact Analysis</h3>
+                      <div
+                        class="result-subtitle"
+                        style="
+                          color: #6b7280;
+                          font-size: 0.95rem;
+                          margin-top: 0.5rem;
+                        "
+                      >
+                        {{ getSelectedCountryName() }} •
+                        {{ panneauxForm.get("consommation")?.value | number }}
+                        kWh/year • {{ getProjectScale() }} Scale Project
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="result-message">
+                    <p>
+                      <span class="impact-badge impact-{{ getImpactLevel() }}">
+                        {{ getImpactLevel() | titlecase }} Impact
+                      </span>
+                      <br /><br />
+                      {{ getImpactMessage() }}
+                      <br /><br />
+                      <small style="opacity: 0.8; font-size: 0.95rem">
+                        🌱 Every kWh of solar energy counts towards a
+                        sustainable future
+                      </small>
+                    </p>
+                  </div>
+
+                  <div class="result-stats">
+                    <div class="stat-item">
+                      <div class="stat-icon">⚡</div>
+                      <div class="stat-value">
+                        {{ formatNumber(annualConsumption, "tons") }}
+                      </div>
+                      <div class="stat-label">Current Grid tCO2e/Year</div>
+                      <div
+                        class="stat-description"
+                        style="
+                          font-size: 0.8rem;
+                          color: #9ca3af;
+                          margin-top: 0.5rem;
+                        "
+                      >
+                        Traditional electricity
+                      </div>
+                    </div>
+                    <div class="stat-item">
+                      <div class="stat-icon">☀️</div>
+                      <div class="stat-value">
+                        {{ formatNumber(minRangeConsumption, "tons") }} -
+                        {{ formatNumber(maxRangeConsumption, "tons") }}
+                      </div>
+                      <div class="stat-label">Solar tCO2e/Year</div>
+                      <div
+                        class="stat-description"
+                        style="
+                          font-size: 0.8rem;
+                          color: #9ca3af;
+                          margin-top: 0.5rem;
+                        "
+                      >
+                        Clean energy production
+                      </div>
+                    </div>
+                    <div class="stat-item">
+                      <div class="stat-icon">💚</div>
+                      <div
+                        class="stat-value"
+                        [class.positive-savings]="hasMeaningfulSavings()"
+                        [class.minimal-savings]="!hasMeaningfulSavings()"
+                      >
+                        {{
+                          formatNumber(
+                            annualConsumption - maxRangeConsumption,
+                            "tons"
+                          )
+                        }}
+                      </div>
+                      <div class="stat-label">CO2 Savings/Year</div>
+                      <div
+                        class="stat-description"
+                        style="
+                          font-size: 0.8rem;
+                          color: #9ca3af;
+                          margin-top: 0.5rem;
+                        "
+                      >
+                        Environmental benefit
+                      </div>
+                    </div>
+                    <div class="stat-item percentage-stat">
+                      <div class="stat-icon">📊</div>
+                      <div class="stat-value">
+                        {{ getReductionPercentage() | number : "1.1-1" }}%
+                      </div>
+                      <div class="stat-label">Emission Intensity Reduction</div>
+                      <div class="percentage-bar">
+                        <div
+                          class="percentage-fill"
+                          [style.width.%]="getReductionPercentage()"
+                          [class]="'fill-' + getImpactLevel()"
+                        ></div>
+                      </div>
+                      <div
+                        class="stat-description"
+                        style="
+                          font-size: 0.8rem;
+                          color: #9ca3af;
+                          margin-top: 0.5rem;
+                        "
+                      >
+                        Solar vs {{ getSelectedCountryName() }}'s grid
+                        (constant)
+                      </div>
+                    </div>
+
+                    <!-- Add a new stat for project scale -->
+                    <div class="stat-item percentage-stat">
+                      <div class="stat-icon">🎯</div>
+                      <div class="stat-value">
+                        {{ getProjectScalePercentage() | number : "1.1-1" }}%
+                      </div>
+                      <div class="stat-label">Project Scale Impact</div>
+                      <div class="percentage-bar">
+                        <div
+                          class="percentage-fill"
+                          [style.width.%]="getProjectScalePercentage()"
+                          [class]="'fill-' + getImpactLevel()"
+                        ></div>
+                      </div>
+                      <div
+                        class="stat-description"
+                        style="
+                          font-size: 0.8rem;
+                          color: #9ca3af;
+                          margin-top: 0.5rem;
+                        "
+                      >
+                        Towards meaningful change (varies by size)
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Enhanced warning for very small projects -->
+                  <div *ngIf="!hasMeaningfulSavings()" class="result-warning">
+                    <div class="warning-icon">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                      >
+                        <path
+                          d="M12 8V12M12 16H12.01M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </div>
+                    <div class="warning-text">
+                      <strong>💡 Optimization Opportunity:</strong>
+                      <br />
+                      Consider increasing your solar capacity to maximize
+                      environmental benefits. Even small increases can lead to
+                      significant cumulative impact over the system's 25-year
+                      lifespan.
+                      <br /><br />
+                      <small style="opacity: 0.8">
+                        Recommended minimum for meaningful impact:
+                        {{
+                          getSelectedCountryEmissionFactor() > 0.0005
+                            ? "2,000"
+                            : "3,000"
+                        }}
+                        kWh/year. Your
+                        {{ getProjectScale().toLowerCase() }} project
+                        {{
+                          panneauxForm.get("consommation")?.value >= 2000
+                            ? "meets this threshold"
+                            : "could benefit from expansion"
+                        }}.
+                      </small>
+                    </div>
+                  </div>
+
+                  <div
+                    class="result-info"
+                    style="overflow: visible; margin-bottom: 4rem"
+                  >
+                    <h4>Impact Analysis Details</h4>
+                    <div class="info-box" style="overflow: visible">
+                      <p>
+                        Based on <strong>{{ getSelectedCountryName() }}</strong
+                        >'s electricity grid emission factor of
+                        <strong
+                          >{{
+                            getSelectedCountryEmissionFactor() * 1000
+                              | number : "1.0-0"
+                          }}g CO2/kWh</strong
+                        >, your
+                        <strong>{{ getProjectScale().toLowerCase() }}</strong>
+                        scale
+                        <strong>{{
+                          panneauxForm.get("consommation")?.value | number
+                        }}</strong>
+                        kWh solar project achieves
+                        <strong
+                          >{{
+                            getReductionPercentage() | number : "1.1-1"
+                          }}%</strong
+                        >
+                        emission intensity reduction. The impact level considers
+                        both emission reduction and project scale:
+                      </p>
+                      <ul class="info-list">
+                        <li>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="16"
+                            height="16"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                          >
+                            <circle
+                              cx="12"
+                              cy="12"
+                              r="10"
+                              stroke="currentColor"
+                              stroke-width="2"
+                            />
+                            <path
+                              d="M2 12H22"
+                              stroke="currentColor"
+                              stroke-width="2"
+                            />
+                            <path
+                              d="M12 2A15.3 15.3 0 0 1 16 12A15.3 15.3 0 0 1 12 22A15.3 15.3 0 0 1 8 12A15.3 15.3 0 0 1 12 2Z"
+                              stroke="currentColor"
+                              stroke-width="2"
+                            />
+                          </svg>
+                          <span>
+                            <span class="bold-text"
+                              >Grid emission intensity:</span
+                            >
+                            {{ getSelectedCountryName() }}'s grid at
+                            {{ getEmissionFactorInGrams() | number : "1.0-0" }}g
+                            CO2/kWh
+                            <span class="emission-category">
+                              {{
+                                getSelectedCountryEmissionFactor() > 0.0005
+                                  ? "(high carbon - coal/gas heavy)"
+                                  : getSelectedCountryEmissionFactor() > 0.0003
+                                  ? "(medium carbon - mixed sources)"
+                                  : "(low carbon - renewable heavy)"
+                              }}
+                            </span>
+                          </span>
+                        </li>
+                        <li>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="16"
+                            height="16"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                          >
+                            <circle
+                              cx="12"
+                              cy="12"
+                              r="5"
+                              stroke="currentColor"
+                              stroke-width="2"
+                            />
+                            <path
+                              d="M12 1V3"
+                              stroke="currentColor"
+                              stroke-width="2"
+                            />
+                            <path
+                              d="M12 21V23"
+                              stroke="currentColor"
+                              stroke-width="2"
+                            />
+                            <path
+                              d="M4.22 4.22L5.64 5.64"
+                              stroke="currentColor"
+                              stroke-width="2"
+                            />
+                            <path
+                              d="M18.36 18.36L19.78 19.78"
+                              stroke="currentColor"
+                              stroke-width="2"
+                            />
+                            <path
+                              d="M1 12H3"
+                              stroke="currentColor"
+                              stroke-width="2"
+                            />
+                            <path
+                              d="M21 12H23"
+                              stroke="currentColor"
+                              stroke-width="2"
+                            />
+                            <path
+                              d="M4.22 19.78L5.64 18.36"
+                              stroke="currentColor"
+                              stroke-width="2"
+                            />
+                            <path
+                              d="M18.36 5.64L19.78 4.22"
+                              stroke="currentColor"
+                              stroke-width="2"
+                            />
+                          </svg>
+                          <span>
+                            <span class="bold-text"
+                              >Solar panel lifecycle:</span
+                            >
+                            Manufacturing and installation emissions of 20-60g
+                            CO2/kWh over 25-year lifespan, with most emissions
+                            occurring during production phase.
+                          </span>
+                        </li>
+                        <li>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="16"
+                            height="16"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                          >
+                            <path
+                              d="M3 12L21 12M21 12L15 6M21 12L15 18"
+                              stroke="currentColor"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            />
+                          </svg>
+                          <span>
+                            <span class="bold-text">Project scale impact:</span>
+                            Your {{ getProjectScale().toLowerCase() }} scale
+                            {{
+                              panneauxForm.get("consommation")?.value | number
+                            }}
+                            kWh/year project
+                            {{
+                              panneauxForm.get("consommation")?.value > 10000
+                                ? "represents a substantial renewable energy contribution with significant environmental benefits"
+                                : panneauxForm.get("consommation")?.value > 3000
+                                ? "is a solid renewable energy investment with good environmental benefits"
+                                : panneauxForm.get("consommation")?.value > 1000
+                                ? "is a positive step towards renewable energy adoption"
+                                : "is a small first step - consider expanding for greater impact"
+                            }}.
+                          </span>
+                        </li>
+                        <li>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="16"
+                            height="16"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                          >
+                            <path
+                              d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z"
+                              stroke="currentColor"
+                              stroke-width="2"
+                            />
+                          </svg>
+                          <span>
+                            <span class="bold-text">Regional benefits:</span>
+                            In {{ getSelectedCountryName() }}, solar projects
+                            like yours help reduce dependence on
+                            {{
+                              getSelectedCountryEmissionFactor() > 0.5
+                                ? "fossil fuel imports and improve energy security"
+                                : "imported energy and strengthen grid stability"
+                            }}.
+                          </span>
+                        </li>
+                      </ul>
+
+                      <!-- Expandable additional information -->
+                      <div class="info-expandable" style="overflow: visible">
+                        <div
+                          class="info-toggle"
+                          (click)="toggleAdditionalInfo()"
+                          [class.expanded]="showAdditionalInfo"
+                        >
+                          <span
+                            >{{ showAdditionalInfo ? "Hide" : "Show" }} Detailed
+                            Analysis</span
+                          >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="16"
+                            height="16"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                          >
+                            <path
+                              d="M6 9L12 15L18 9"
+                              stroke="currentColor"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            />
+                          </svg>
+                        </div>
+
+                        <div
+                          class="info-additional"
+                          [class.expanded]="showAdditionalInfo"
+                          style="overflow: hidden"
+                          [style.max-height]="
+                            showAdditionalInfo ? '2000px' : '0'
+                          "
+                        >
+                          <div
+                            class="info-grid"
+                            style="overflow: visible; padding-bottom: 3rem"
+                          >
+                            <div class="info-card">
+                              <div class="card-icon">⚡</div>
+                              <h5>Energy Payback Time</h5>
+                              <p>
+                                Your solar panels will typically recover the
+                                energy used in their manufacturing within 1-4
+                                years, then provide 20+ years of clean energy
+                                production with minimal environmental impact.
+                              </p>
+                            </div>
+                            <div class="info-card">
+                              <div class="card-icon">📊</div>
+                              <h5>25-Year Environmental Impact</h5>
+                              <p>
+                                Over 25 years, your project could save
+                                approximately
+                                {{
+                                  formatNumber(
+                                    (annualConsumption - maxRangeConsumption) *
+                                      25,
+                                    "tons"
+                                  )
+                                }}
+                                of CO2, equivalent to planting
+                                {{
+                                  ((annualConsumption - maxRangeConsumption) *
+                                    25) /
+                                    0.02 | number : "1.0-0"
+                                }}
+                                trees.
+                              </p>
+                            </div>
+                            <div class="info-card">
+                              <div class="card-icon">🔌</div>
+                              <h5>Grid Stability Impact</h5>
+                              <p>
+                                Your renewable energy production helps stabilize
+                                the grid, reduces peak demand from fossil fuel
+                                sources, and contributes to energy independence
+                                in
+                                {{ getSelectedCountryName() }}.
+                              </p>
+                            </div>
+                            <div class="info-card">
+                              <div class="card-icon">🔮</div>
+                              <h5>Future Value Proposition</h5>
+                              <p>
+                                As {{ getSelectedCountryName() }}'s grid becomes
+                                cleaner over time, your solar investment
+                                maintains high environmental value while
+                                potentially increasing in economic worth through
+                                carbon credits.
+                              </p>
+                            </div>
+                            <div class="info-card">
+                              <div class="card-icon">🌍</div>
+                              <h5>Regional Climate Benefits</h5>
+                              <p>
+                                Your solar project contributes to
+                                {{ getSelectedCountryName() }}'s renewable
+                                energy targets, helps reduce air pollution, and
+                                supports the transition to a sustainable energy
+                                economy.
+                              </p>
+                            </div>
+                            <div class="info-card">
+                              <div class="card-icon">💡</div>
+                              <h5>Technology Evolution</h5>
+                              <p>
+                                Modern solar panels are
+                                {{
+                                  getSelectedCountryEmissionFactor() > 0.0005
+                                    ? "90-95%"
+                                    : "85-90%"
+                                }}
+                                cleaner than grid electricity in
+                                {{ getSelectedCountryName() }}, with efficiency
+                                improvements making future expansions even more
+                                beneficial.
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Calculate Button -->
+              <div class="form-actions">
+                <button
+                  type="submit"
+                  class="calculate-button modern-button"
+                  [disabled]="!panneauxForm.valid || isCalculating"
+                  [class.loading]="isCalculating"
+                >
+                  <svg
+                    *ngIf="!isCalculating"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
                     viewBox="0 0 24 24"
                     fill="none"
                   >
                     <circle
                       cx="12"
                       cy="12"
-                      r="10"
+                      r="5"
                       stroke="currentColor"
                       stroke-width="2"
                     />
-                    <path d="M2 12H22" stroke="currentColor" stroke-width="2" />
+                    <path d="M12 1V3" stroke="currentColor" stroke-width="2" />
                     <path
-                      d="M12 2A15.3 15.3 0 0 1 16 12A15.3 15.3 0 0 1 12 22A15.3 15.3 0 0 1 8 12A15.3 15.3 0 0 1 12 2Z"
+                      d="M12 21V23"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    />
+                    <path
+                      d="M4.22 4.22L5.64 5.64"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    />
+                    <path
+                      d="M18.36 18.36L19.78 19.78"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    />
+                    <path d="M1 12H3" stroke="currentColor" stroke-width="2" />
+                    <path
+                      d="M21 12H23"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    />
+                    <path
+                      d="M4.22 19.78L5.64 18.36"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    />
+                    <path
+                      d="M18.36 5.64L19.78 4.22"
                       stroke="currentColor"
                       stroke-width="2"
                     />
                   </svg>
-                  Project Location
-                </label>
-                <div class="select-wrapper">
-                  <select
-                    formControlName="pays"
-                    id="pays"
-                    class="form-control modern-select"
-                  >
-                    <option value="" disabled>Select country...</option>
-                    <option
-                      *ngFor="let country of countries; trackBy: trackByCountry"
-                      [value]="country.cca2"
-                      [selected]="country.cca2 === 'TN'"
+                  <span *ngIf="!isCalculating">
+                    <span class="d-none d-sm-inline"
+                      >Calculate Solar Impact</span
                     >
-                      {{ country.name.common }}
-                    </option>
-                  </select>
+                    <span class="d-inline d-sm-none">Calculate</span>
+                  </span>
+                  <span *ngIf="isCalculating">Calculating...</span>
+                </button>
+
+                <!-- Mobile-optimized Reset Button -->
+                <button
+                  *ngIf="displayResult"
+                  type="button"
+                  class="reset-button modern-button"
+                  (click)="resetForm()"
+                  style="
+                    margin-top: 1rem;
+                    background: linear-gradient(
+                      135deg,
+                      #6b7280 0%,
+                      #4b5563 100%
+                    );
+                  "
+                >
                   <svg
-                    class="select-arrow"
                     xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
+                    width="20"
+                    height="20"
                     viewBox="0 0 24 24"
                     fill="none"
                   >
                     <path
-                      d="M6 9L12 15L18 9"
+                      d="M3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C9.61 21 7.45 20.1 5.8 18.6"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M8 18L5.8 18.6L6.4 16.4"
                       stroke="currentColor"
                       stroke-width="2"
                       stroke-linecap="round"
                       stroke-linejoin="round"
                     />
                   </svg>
-                </div>
+                  <span>
+                    <span class="d-none d-sm-inline">Calculate Again</span>
+                    <span class="d-inline d-sm-none">Reset</span>
+                  </span>
+                </button>
               </div>
-
-              <!-- Energy Consumption -->
-              <div class="form-group">
-                <label for="consommation" class="form-label">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                  >
-                    <path
-                      d="M13 2L3 14H12L11 22L21 10H12L13 2Z"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                  </svg>
-                  Annual Electricity Consumption
-                </label>
-                <div class="input-wrapper">
-                  <input
-                    type="number"
-                    formControlName="consommation"
-                    id="consommation"
-                    class="form-control modern-input"
-                    placeholder="Enter consumption in KWH..."
-                    min="1"
-                  />
-                </div>
-              </div>
-            </div>
-
-            <!-- Results Section -->
-            <div *ngIf="displayResult" class="result-container mt-4">
-              <div class="result-card" [ngClass]="'impact-' + getImpactLevel()">
-                <div class="result-header">
-                  <div class="result-icon">
-                    <svg
-                      *ngIf="getImpactLevel() === 'excellent'"
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="32"
-                      height="32"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                    >
-                      <path
-                        d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                    </svg>
-                    <svg
-                      *ngIf="getImpactLevel() === 'high'"
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="32"
-                      height="32"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                    >
-                      <path
-                        d="M7.5 7.5L16.5 16.5M7.5 16.5L16.5 7.5M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                    </svg>
-                    <svg
-                      *ngIf="getImpactLevel() === 'medium'"
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="32"
-                      height="32"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                    >
-                      <path
-                        d="M12 8V12M12 16H12.01M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                    </svg>
-                    <svg
-                      *ngIf="getImpactLevel() === 'low'"
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="32"
-                      height="32"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                    >
-                      <path
-                        d="M13 16H12V12H11M12 8H12.01M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                    </svg>
-                  </div>
-                  <h3 class="result-title">Solar Impact Analysis</h3>
-                </div>
-
-                <div class="result-message">
-                  <p>{{ getImpactMessage() }}</p>
-                </div>
-
-                <div class="result-stats">
-                  <div class="stat-item">
-                    <div class="stat-value">
-                      {{ annualConsumption | number : "1.2-2" }}
-                    </div>
-                    <div class="stat-label">Current Grid tCO2e/Year</div>
-                  </div>
-                  <div class="stat-item">
-                    <div class="stat-value">
-                      {{ minRangeConsumption | number : "1.2-2" }} -
-                      {{ maxRangeConsumption | number : "1.2-2" }}
-                    </div>
-                    <div class="stat-label">Solar tCO2e/Year</div>
-                  </div>
-                  <div class="stat-item">
-                    <div
-                      class="stat-value"
-                      [class.positive-savings]="hasMeaningfulSavings()"
-                      [class.minimal-savings]="!hasMeaningfulSavings()"
-                    >
-                      {{
-                        annualConsumption - maxRangeConsumption
-                          | number : "1.2-2"
-                      }}
-                    </div>
-                    <div class="stat-label">CO2 Savings/Year</div>
-                  </div>
-                  <div class="stat-item">
-                    <div class="stat-value">
-                      {{
-                        ((annualConsumption - maxRangeConsumption) /
-                          annualConsumption) *
-                          100 | number : "1.1-1"
-                      }}
-                    </div>
-                    <div class="stat-label">Reduction Percentage</div>
-                  </div>
-                </div>
-
-                <!-- Add warning for very small projects -->
-                <div *ngIf="!hasMeaningfulSavings()" class="result-warning">
-                  <div class="warning-icon">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="20"
-                      height="20"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                    >
-                      <path
-                        d="M12 8V12M12 16H12.01M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                    </svg>
-                  </div>
-                  <div class="warning-text">
-                    <strong>Small Project Impact:</strong> Consider increasing
-                    your solar capacity for more significant environmental
-                    benefits.
-                  </div>
-                </div>
-
-                <div class="result-info">
-                  <h4>Impact Analysis Details</h4>
-                  <div class="info-box">
-                    <p
-                      style="
-                        margin-bottom: 1rem;
-                        color: #065f46;
-                        font-weight: 500;
-                      "
-                    >
-                      Based on <strong>{{ getSelectedCountryName() }}</strong
-                      >'s electricity grid emission factor of
-                      <strong
-                        >{{
-                          getSelectedCountryEmissionFactor() * 1000
-                            | number : "1.0-0"
-                        }}g CO2/kWh</strong
-                      >, your
-                      <strong>{{
-                        panneauxForm.get("consommation")?.value | number
-                      }}</strong>
-                      kWh solar project achieves
-                      <strong
-                        >{{
-                          ((annualConsumption - maxRangeConsumption) /
-                            annualConsumption) *
-                            100 | number : "1.1-1"
-                        }}%</strong
-                      >
-                      CO2 reduction. The result range accounts for:
-                    </p>
-                    <ul class="info-list">
-                      <li>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                        >
-                          <path
-                            d="M20 6L9 17L4 12"
-                            stroke="currentColor"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                          />
-                        </svg>
-                        <span
-                          ><span class="bold-text"
-                            >Grid emission intensity:</span
-                          >
-                          {{ getSelectedCountryName() }}'s grid at
-                          {{
-                            getSelectedCountryEmissionFactor() * 1000
-                              | number : "1.0-0"
-                          }}g CO2/kWh
-                          {{
-                            getSelectedCountryEmissionFactor() > 0.5
-                              ? "(high carbon)"
-                              : getSelectedCountryEmissionFactor() > 0.3
-                              ? "(medium carbon)"
-                              : "(low carbon)"
-                          }}
-                        </span>
-                      </li>
-                      <li>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                        >
-                          <path
-                            d="M20 6L9 17L4 12"
-                            stroke="currentColor"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                          />
-                        </svg>
-                        <span
-                          ><span class="bold-text">Solar panel lifecycle:</span>
-                          Manufacturing and installation emissions of 20-60g
-                          CO2/kWh over 25-year lifespan.</span
-                        >
-                      </li>
-                      <li>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                        >
-                          <path
-                            d="M20 6L9 17L4 12"
-                            stroke="currentColor"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                          />
-                        </svg>
-                        <span
-                          ><span class="bold-text">Project scale:</span> Larger
-                          projects (>{{
-                            getSelectedCountryEmissionFactor() > 0.5
-                              ? "2,000"
-                              : "5,000"
-                          }}
-                          kWh/year) typically show more significant absolute CO2
-                          savings.</span
-                        >
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Calculate Button -->
-            <div class="form-actions">
-              <button
-                type="submit"
-                class="calculate-button modern-button"
-                [disabled]="!panneauxForm.valid || isCalculating"
-                [class.loading]="isCalculating"
-              >
-                <svg
-                  *ngIf="!isCalculating"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                >
-                  <circle
-                    cx="12"
-                    cy="12"
-                    r="5"
-                    stroke="currentColor"
-                    stroke-width="2"
-                  />
-                  <path d="M12 1V3" stroke="currentColor" stroke-width="2" />
-                  <path d="M12 21V23" stroke="currentColor" stroke-width="2" />
-                  <path
-                    d="M4.22 4.22L5.64 5.64"
-                    stroke="currentColor"
-                    stroke-width="2"
-                  />
-                  <path
-                    d="M18.36 18.36L19.78 19.78"
-                    stroke="currentColor"
-                    stroke-width="2"
-                  />
-                  <path d="M1 12H3" stroke="currentColor" stroke-width="2" />
-                  <path d="M21 12H23" stroke="currentColor" stroke-width="2" />
-                  <path
-                    d="M4.22 19.78L5.64 18.36"
-                    stroke="currentColor"
-                    stroke-width="2"
-                  />
-                  <path
-                    d="M18.36 5.64L19.78 4.22"
-                    stroke="currentColor"
-                    stroke-width="2"
-                  />
-                </svg>
-                <span *ngIf="!isCalculating">Calculate Solar Impact</span>
-                <span *ngIf="isCalculating">Calculating...</span>
-              </button>
-
-              <!-- Add Reset Button -->
-              <button
-                *ngIf="displayResult"
-                type="button"
-                class="reset-button modern-button"
-                (click)="resetForm()"
-                style="
-                  margin-top: 1rem;
-                  background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
-                "
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                >
-                  <path
-                    d="M3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C9.61 21 7.45 20.1 5.8 18.6"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                  <path
-                    d="M8 18L5.8 18.6L6.4 16.4"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-                <span>Calculate Again</span>
-              </button>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
       </div>
     </div>
+  </div>
+</div>
+
+<!-- Additional Information Section (conditionally shown) -->
+<div
+  *ngIf="displayResult"
+  class="additional-info-container"
+  style="
+    background: #f9fafb;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    margin-top: 2rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  "
+>
+  <h4 style="margin-bottom: 1rem">Additional Insights</h4>
+  <p>
+    <strong>Understanding the Percentages:</strong>
+    <br /><br />
+    🔋
+    <strong
+      >Emission Intensity Reduction ({{
+        getReductionPercentage() | number : "1.1-1"
+      }}%):</strong
+    >
+    This shows that solar panels have
+    {{ getReductionPercentage() | number : "1.1-1" }}% lower emissions than
+    {{ getSelectedCountryName() }}'s grid electricity <em>per kWh</em>. This
+    percentage is <strong>constant</strong> because it compares the inherent
+    efficiency of the two energy sources. <br /><br />
+    🎯
+    <strong
+      >Project Scale Impact ({{
+        getProjectScalePercentage() | number : "1.1-1"
+      }}%):</strong
+    >
+    This shows how much your
+    {{ panneauxForm.get("consommation")?.value | number }} kWh project
+    contributes to meaningful environmental change. This percentage
+    <strong>varies</strong> based on project size. <br /><br />
+    <small style="color: #6b7280; font-style: italic">
+      Think of it like comparing car fuel efficiency (constant %) vs. how much
+      gas you actually save based on how much you drive (variable %).
+    </small>
+  </p>
+
+  <!-- Optional: Add a visual separator -->
+  <div
+    style="
+      height: 1px;
+      background: linear-gradient(
+        90deg,
+        rgba(0, 0, 0, 0.1) 0%,
+        rgba(0, 0, 0, 0.05) 50%,
+        rgba(0, 0, 0, 0.1) 100%
+      );
+      margin: 1.5rem 0;
+    "
+  ></div>
+
+  <!-- Optional: Add a detailed explanation card -->
+  <div class="info-card">
+    <div class="card-icon">🔍</div>
+    <h5>Why 86.4% is Always the Same</h5>
+    <p>
+      <strong>Mathematical Proof:</strong><br />
+      • Tunisia grid: 441g CO2/kWh<br />
+      • Solar panels: 60g CO2/kWh<br />
+      • Reduction: (441-60)/441 = 86.4%<br /><br />
+      This is like saying "electric cars are always 90% more efficient than gas
+      cars" - the percentage is constant regardless of how many miles you drive.
+      Your project size affects <em>total impact</em>, not
+      <em>efficiency percentage</em>.
+    </p>
   </div>
 </div>
