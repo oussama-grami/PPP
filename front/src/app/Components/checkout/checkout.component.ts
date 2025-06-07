@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { CartService } from '../../Service/cart-service.service';
 import { RoutesEnum } from '../../enumerations/Routes.enum';
+import {environment} from "../../../environments/environment";
 
 @Component({
   selector: 'app-checkout',
@@ -59,4 +60,6 @@ export class CheckoutComponent implements OnInit {
     this.cartService.removeItem(index);
     this.cartItems = this.cartService.getItems();
   }
+
+  protected readonly environment = environment;
 }

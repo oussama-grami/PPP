@@ -56,6 +56,7 @@ export class ImmobilisationsComponent implements OnInit {
       ).subscribe({
         next: (latestCalculation) => {
           if (latestCalculation) {
+            this.carboneService.getEnterpriseRecommendations(latestCalculation.id);
             this.router.navigate(['/' + RoutesEnum.RESULTAT_CARBONE, latestCalculation.id]);
           }
         },

@@ -66,7 +66,7 @@ export class PriceDetailsComponent implements OnInit, OnChanges {
       name: this.project!.name,
       availableStock: this.project!.availableStock,
       cost: this.project!.cost,
-      url: '/assets/img/modalPhoto1.svg',
+      url: this.project!.url,
       quantity: this.quantity
     })
     this.quantity = 0;

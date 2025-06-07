@@ -1,7 +1,7 @@
 <div class="container">
   <!-- TODO: ch9awlkom na7iwha back puisque zeyda -->
   <div class="col-12 mt-3">
-    <app-back-button ></app-back-button>
+    <app-back-button />
   </div>
   <div class="nav default-font">
     <span>Cart</span>
@@ -57,7 +57,9 @@
       <div class="row align-items-center justify-content-between">
         <div class="col-4 col-md-2">
           <div class="modal-photo">
-            <img [src]="item.url" alt="" />
+            <img
+              style="width: 100%"
+              [src]="environment.apiUrl+item.url" alt="" />
           </div>
         </div>
         <div class="col-7 col-md-9 mt-3 mt-md-0">

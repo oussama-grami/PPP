@@ -47,8 +47,6 @@ export class CarbonFootprintService {
   constructor(private carbonAIController: CarbonControllerService,
               private httpClient: HttpClient
   ) {
-    // Load saved recommendations from localStorage on service initialization
-    this.loadSavedRecommendations();
     this.loadSavedFormData();
   }
 
@@ -137,7 +135,6 @@ export class CarbonFootprintService {
       unitPaper: consumablesData?.unitPaper ?? Unit.DOLLAR,
       vehicleFuelEfficiency: carburantData?.fuelEfficiency ?? 0,
     };
-    this.getEnterpriseRecommendations();
     return this.httpClient.post(this.apiUrl, payload);
   }
 
@@ -183,8 +180,9 @@ export class CarbonFootprintService {
     return this.getCalculationById(id).pipe(map(c => c.totalEmissions));
   }
 
-  getCalculationByIdOrLast( id?: number): Observable<CarbonFootprintResponse | null> {
+  getCalculationByIdOrLast(id?: number): Observable<CarbonFootprintResponse | null> {
     // If ID is provided, try to find the calculation by ID
+    console.log("getCalculationByIdOrLast called with ID:", id);
     if (id) {
       const found = this.calculations.find(c => c.id === id);
       if (found) {
@@ -250,24 +248,29 @@ export class CarbonFootprintService {
   }
 
   // Save recommendations to localStorage
-  private saveRecommendations(recommendations: CarbonResponse): void {
+  private saveRecommendations(recommendations: CarbonResponse, id: number): void {
     try {
-      localStorage.setItem(this.STORAGE_KEY, JSON.stringify(recommendations));
+      localStorage.setItem(this.STORAGE_KEY + "_" + id, JSON.stringify(recommendations));
     } catch (error) {
       console.error('Error saving recommendations to localStorage:', error);
     }
   }
 
   // Load saved recommendations from localStorage
-  private loadSavedRecommendations(): void {
+  private loadSavedRecommendations(id: number): void {
+    console.log("loadSavedRecommendations called with ID:", id);
     try {
-      const savedRecommendations = localStorage.getItem(this.STORAGE_KEY);
+      console.log("Local storage key:", this.STORAGE_KEY + "_" + id);
+      const savedRecommendations = localStorage.getItem(this.STORAGE_KEY + "_" + id);
       if (savedRecommendations) {
         const parsedRecommendations = JSON.parse(
           savedRecommendations
         ) as CarbonResponse;
         this.recommendations = parsedRecommendations;
         this.recommendationsSubject.next(parsedRecommendations);
+      }else {
+        this.recommendations = null;
+        this.recommendationsSubject.next(null);
       }
     } catch (error) {
       console.error('Error loading recommendations from localStorage:', error);
@@ -281,7 +284,9 @@ export class CarbonFootprintService {
     this.recommendationsSubject.next(null);
   }
 
-  getEnterpriseRecommendations() {
+  getEnterpriseRecommendations(id: number) {
+    this.loadSavedRecommendations(id);
+    if (this.recommendations) return;
     const carbonRequest: CarbonFootprintModelRequest = {
       activity_sector: this.infoData?.activitySector,
       annual_consumption_of_GPL: this.energyData?.annualConsumptionOfGPL,
@@ -325,14 +330,13 @@ export class CarbonFootprintService {
       tons_of_sea_freight_gt_3000: this.freightData?.freightSeaLong,
       tons_of_sea_freight_lt_3000: this.freightData?.freightSeaShort,
     };
-    console.log('carbonRequest:', carbonRequest);
     this.carbonAIController
       .generateRecommendations({
         body: carbonRequest,
       })
       .subscribe((response) => {
         this.recommendations = response;
-        this.saveRecommendations(response);
+        this.saveRecommendations(response, id);
         this.recommendationsSubject.next(response);
       });
   }

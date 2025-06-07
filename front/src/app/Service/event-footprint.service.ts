@@ -32,7 +32,6 @@ export class EventFootprintService {
 
   constructor(private carbonAIController: CarbonControllerService, private http: HttpClient) {
     // Load saved recommendations from localStorage on service initialization
-    this.loadSavedRecommendations();
     this.loadSavedFormData();
   }
 
@@ -47,15 +46,17 @@ export class EventFootprintService {
 
   createEvent(eventData: Event): Observable<any> {
     console.log(eventData);
+    this.eventData = eventData;
+    this.saveFormData();
     return this.http.post(`${this.apiUrl}`, eventData);
   }
 
   getEventById(id: number): Observable<EventResponse> {
+    this.getEventRecommendations(id);
     return this.http.get<EventResponse>(`${this.apiUrl}/${id}`);
   }
 
   getEventsByCompanyOwnerId(): Observable<EventResponse[]> {
-    this.getEventRecommendations();
     return this.http.get<EventResponse[]>(`${this.apiUrl}`).pipe(
       map(events => {
         this.eventResponses = events;  // cache list
@@ -106,9 +107,9 @@ export class EventFootprintService {
   }
 
   // Save recommendations to localStorage
-  private saveRecommendations(recommendations: CarbonResponse): void {
+  private saveRecommendations(recommendations: CarbonResponse, id: number): void {
     try {
-      localStorage.setItem(this.STORAGE_KEY, JSON.stringify(recommendations));
+      localStorage.setItem(this.STORAGE_KEY + "_" + id, JSON.stringify(recommendations));
     } catch (error) {
       console.error(
         'Error saving event recommendations to localStorage:',
@@ -118,15 +119,18 @@ export class EventFootprintService {
   }
 
   // Load saved recommendations from localStorage
-  private loadSavedRecommendations(): void {
+  private loadSavedRecommendations(id: number): void {
     try {
-      const savedRecommendations = localStorage.getItem(this.STORAGE_KEY);
+      const savedRecommendations = localStorage.getItem(this.STORAGE_KEY + "_" + id);
       if (savedRecommendations) {
         const parsedRecommendations = JSON.parse(
           savedRecommendations
         ) as CarbonResponse;
         this.recommendations = parsedRecommendations;
         this.recommendationsSubject.next(parsedRecommendations);
+      }else {
+        this.recommendations = null;
+        this.recommendationsSubject.next(null);
       }
     } catch (error) {
       console.error(
@@ -143,18 +147,20 @@ export class EventFootprintService {
     this.recommendationsSubject.next(null);
   }
 
-  getEventRecommendations() {
+  getEventRecommendations(id: number) {
+    console.log("Event Data in recommendations : ", this.eventData);
     if (!this.eventData) {
+      this.loadSavedRecommendations(id)
       return;
     }
     this.carbonAIController
       .generateRecommendationsEvent({
-        body: this.eventData,
+        body: this.eventData!,
       })
       .subscribe((response) => {
         this.recommendations = response;
         // Save to localStorage for persistence
-        this.saveRecommendations(response);
+        this.saveRecommendations(response, id);
         // Emit the new value to all subscribers
         this.recommendationsSubject.next(response);
       });

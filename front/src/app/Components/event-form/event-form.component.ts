@@ -257,8 +257,8 @@ export class EventFormComponent implements OnInit {
             const latestEvent = updatedEvents.reduce((a, b) =>
               new Date(a.created_at).getTime() > new Date(b.created_at).getTime() ? a : b
             );
-            this.eventFootprintService.getEventRecommendations();
-            console.log('Latest event:', latestEvent);
+            console.log('Latest Event Id :', latestEvent.id);
+            this.eventFootprintService.getEventRecommendations(latestEvent.id);
             this.router.navigate([`/${RoutesEnum.EVENT_RESULT}`, latestEvent.id]);
           } else {
             this.errorMessage = 'No events found after submission.';

@@ -127,7 +127,6 @@ const routes: Routes = [
   {path: RoutesEnum.CARBON_HISTORY, component: CarbonHistoryComponent,canActivate: [AuthGuard , RedirectGuard]},
   {path: RoutesEnum.EVENT_FORM, component: EventFormComponent,canActivate: [AuthGuard , RedirectGuard]},
   {path: RoutesEnum.EVENT_FOOTPRINT, component: EventFootprintComponent, canActivate: [AuthGuard , RedirectGuard]},
-  {path: RoutesEnum.EVENT_RESULT, component: EventResultComponent, canActivate: [AuthGuard , RedirectGuard]},
   {path: RoutesEnum.COMPANY_OWNER_FORM, component: CompanyOwnerFormComponent,canActivate: [AuthGuard]},
   {path: RoutesEnum.REGISTER_COMPANY_OWNER, component: RegisterCompanyOwnerComponent},
   {path: "**", component: ErrorPageComponent}
