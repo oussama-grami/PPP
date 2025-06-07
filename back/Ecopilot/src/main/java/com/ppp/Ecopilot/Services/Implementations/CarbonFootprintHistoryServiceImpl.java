@@ -20,12 +20,14 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.web.reactive.function.client.WebClientRequestException;
 import reactor.core.publisher.Mono;
+import reactor.util.retry.Retry;
 
 import java.net.URI;
+import java.time.Duration;
 import java.time.YearMonth;
 import java.util.*;
-
 
 @Service
 public class CarbonFootprintHistoryServiceImpl extends AbstractCrudService<CarbonFootprintHistory, Long> implements CarbonFootprintHistoryService {
@@ -38,7 +40,6 @@ public class CarbonFootprintHistoryServiceImpl extends AbstractCrudService<Carbo
     private final CarbonInterpolationMapper carbonInterpolationMapper;
     @Value("${flask.api.url}")
     private  String flaskUrl;
-    private  final String FLASK_INTERPOLATE_URL = flaskUrl+"interpolate";
 
     public CarbonFootprintHistoryServiceImpl(CarbonFootprintHistoryRepo carboneFootprintHistoryRepo, CarbonHistoryMapper historyMapper, CompanyOwnerService companyOwnerService, WebClient.Builder webClientBuilder, CarbonInterpolationMapper carbonInterpolationMapper,AuthService authService) {
         this.carbonFootprintHistoryRepo = carboneFootprintHistoryRepo;
@@ -48,7 +49,8 @@ public class CarbonFootprintHistoryServiceImpl extends AbstractCrudService<Carbo
         this.carbonInterpolationMapper = carbonInterpolationMapper;
 
         this.webClient = webClientBuilder
-                .baseUrl(flaskUrl) // Flask API URL
+                .baseUrl(flaskUrl)
+                .codecs(configurer -> configurer.defaultCodecs().maxInMemorySize(10 * 1024 * 1024))
                 .build();
     }
 
@@ -104,15 +106,26 @@ public class CarbonFootprintHistoryServiceImpl extends AbstractCrudService<Carbo
             request.setCarbon_footprint_kgCO2(values);
             System.out.println("Request: " + request);
 
-            // Send request to forecasting API
+            // Send request to forecasting API with retry logic
             Mono<List<CarbonFootprintForecastResponse.PredictedEntry>> responseMono = webClient.post()
                     .uri(URI.create(flaskUrl+"forecast"))
                     .bodyValue(request)
                     .retrieve()
-                    .bodyToMono(new ParameterizedTypeReference<List<CarbonFootprintForecastResponse.PredictedEntry>>() {
+                    .bodyToMono(new ParameterizedTypeReference<List<CarbonFootprintForecastResponse.PredictedEntry>>() {})
+                    .timeout(Duration.ofSeconds(60))
+                    .retryWhen(Retry.backoff(3, Duration.ofSeconds(2))
+                            .filter(throwable -> throwable instanceof WebClientRequestException))
+                    .onErrorMap(WebClientRequestException.class, ex -> {
+                        System.err.println("Flask API connection failed: " + ex.getMessage());
+                        return new RuntimeException("Unable to connect to forecasting service. Please try again later.", ex);
                     });
 
             List<CarbonFootprintForecastResponse.PredictedEntry> response = responseMono.block();
+
+            if (response == null || response.isEmpty()) {
+                System.out.println("Flask API returned empty response");
+                return new CarbonFootprintHistoryDTO[0];
+            }
 
             // Convert API response to CarbonFootprintHistoryDTO[]
             List<CarbonFootprintHistoryDTO> forecastList = new ArrayList<>();
@@ -127,6 +140,7 @@ public class CarbonFootprintHistoryServiceImpl extends AbstractCrudService<Carbo
             return forecastList.toArray(new CarbonFootprintHistoryDTO[0]);
 
         } catch (Exception e) {
+            System.err.println("Error in forecast data: " + e.getMessage());
             e.printStackTrace();
             return new CarbonFootprintHistoryDTO[0];
         }
@@ -176,42 +190,52 @@ public class CarbonFootprintHistoryServiceImpl extends AbstractCrudService<Carbo
             YearMonth endDate,
             double totalValue) {
 
-        List<CarbonFootprintHistory> historyList = carbonFootprintHistoryRepo.findByCompanyOwnerIdOrderByDateAsc(companyOwnerId);
+        try {
+            List<CarbonFootprintHistory> historyList =
+                    carbonFootprintHistoryRepo.findByCompanyOwnerIdOrderByDateAsc(companyOwnerId);
 
-        if (historyList.isEmpty()) {
-            throw new RuntimeException("No historical data found.");
+            if (historyList.isEmpty()) {
+                System.out.println("No historical data found, skipping interpolation.");
+                return List.of();
+            }
+
+            List<Map<String, Object>> historicalJson = carbonInterpolationMapper.toHistoricalData(historyList);
+
+            Map<String, Object> flaskRequestBody = Map.of(
+                    "historical", historicalJson,
+                    "start_date", startDate + "-01",
+                    "end_date", endDate + "-01",
+                    "total_value", totalValue
+            );
+
+            Mono<ResponseEntity<List<CreateCarbonFootprintHistoryDTO>>> responseMono = webClient.post()
+                    .uri(flaskUrl + "interpolate")
+                    .body(Mono.just(flaskRequestBody), Map.class)
+                    .retrieve()
+                    .toEntity(new ParameterizedTypeReference<List<CreateCarbonFootprintHistoryDTO>>() {})
+                    .timeout(Duration.ofSeconds(60))
+                    .retryWhen(Retry.backoff(3, Duration.ofSeconds(2))
+                            .filter(throwable -> throwable instanceof WebClientRequestException))
+                    .onErrorReturn(ResponseEntity.ok(List.of()));
+
+            ResponseEntity<List<CreateCarbonFootprintHistoryDTO>> response = responseMono.block();
+
+            if (response == null || !response.hasBody() || response.getBody().isEmpty()) {
+                System.out.println("Flask API returned no data or empty response, skipping interpolation.");
+                return List.of();
+            }
+
+            List<CreateCarbonFootprintHistoryDTO> flaskResult = response.getBody();
+            flaskResult.forEach(dto -> dto.setPredicted(true));
+            return flaskResult;
+
+        } catch (Exception e) {
+            System.err.println("Error in interpolation: " + e.getMessage());
+            e.printStackTrace();
+            return List.of();
         }
-
-        // Step 2: Use mapper to convert to Flask-compatible format
-        List<Map<String, Object>> historicalJson = carbonInterpolationMapper.toHistoricalData(historyList);
-
-        // Step 3: Build request body
-        Map<String, Object> flaskRequestBody = Map.of(
-                "historical", historicalJson,
-                "start_date", startDate + "-01",
-                "end_date", endDate + "-01",
-                "total_value", totalValue
-        );
-
-        // Step 4: Call Flask API
-        ResponseEntity<List<CreateCarbonFootprintHistoryDTO>> response = webClient.post()
-                .uri(FLASK_INTERPOLATE_URL)
-                .body(Mono.just(flaskRequestBody), Map.class)
-                .retrieve()
-                .toEntity(new ParameterizedTypeReference<List<CreateCarbonFootprintHistoryDTO>>() {
-                })
-                .block();
-
-        if (response == null || !response.hasBody()) {
-            throw new RuntimeException("No response from Flask API");
-        }
-
-        List<CreateCarbonFootprintHistoryDTO> flaskResult = response.getBody();
-
-        flaskResult.forEach(dto -> dto.setPredicted(true));
-
-        return flaskResult;
     }
+
 
     @Override
     public void deleteCarbonFootprint(Long id) {
