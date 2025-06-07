@@ -71,16 +71,465 @@
     overflow-wrap: normal;
 
 }
-@media screen and (max-width: 900px) {
-    .read-more-button {
-      background-color:#76B82A;
-    }
-    .container {
-        display: block;
-        
-    }
-    .column {
-       
-    
-    }
+
+/* Enhanced Light Mode Design */
+.resources-container {
+  font-family: 'Inter', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  min-height: 100vh;
+  padding: 0;
+}
+
+/* Hero Section */
+.hero-section {
+  text-align: center;
+  padding: 4rem 2rem 2rem;
+  background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(16, 185, 129, 0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  color: #111827;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, #014131 0%, #10b981 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+  z-index: 2;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  color: #6b7280;
+  max-width: 600px;
+  margin: 0 auto 2rem;
+  line-height: 1.6;
+  position: relative;
+  z-index: 2;
+  animation: fadeInUp 0.8s ease-out 0.2s both;
+}
+
+/* Resource Cards Container */
+.resources-grid {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+/* Individual Resource Card */
+.resource-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: #ffffff;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.08),
+    0 8px 16px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  transform-origin: center;
+}
+
+.resource-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #10b981, #059669, #10b981);
+  background-size: 200% 100%;
+  opacity: 0;
+  transition: all 0.5s ease;
+  animation: shimmer 2s infinite;
+  animation-play-state: paused;
+}
+
+.resource-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.05) 0%, rgba(5, 150, 105, 0.1) 100%);
+  opacity: 0;
+  transition: all 0.5s ease;
+  pointer-events: none;
+  border-radius: 24px;
+}
+
+.resource-card:hover {
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: 
+    0 40px 80px rgba(0, 0, 0, 0.15),
+    0 20px 40px rgba(0, 0, 0, 0.1),
+    0 0 40px rgba(16, 185, 129, 0.2);
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+.resource-card:hover::before {
+  opacity: 1;
+  animation-play-state: running;
+}
+
+.resource-card:hover::after {
+  opacity: 1;
+}
+
+/* Enhanced shimmer animation for top border */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Image Section with Enhanced Loading */
+.resource-image {
+  position: relative;
+  overflow: hidden;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #f8fafc 0%, #e5e7eb 100%);
+}
+
+/* Enhanced Loading Skeleton */
+.resource-image:not(.loaded) {
+  background: linear-gradient(
+    90deg,
+    #f0f2f5 0%,
+    #e4e9f0 20%,
+    #f0f2f5 40%,
+    #e4e9f0 60%,
+    #f0f2f5 80%,
+    #e4e9f0 100%
+  );
+  background-size: 400% 100%;
+  animation: skeleton-loading 2s ease-in-out infinite;
+  position: relative;
+}
+
+.resource-image:not(.loaded)::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #cbd5e1, #94a3b8);
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.resource-image:not(.loaded)::after {
+  content: '📷';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 24px;
+  opacity: 0.5;
+  animation: fade-pulse 2s ease-in-out infinite;
+}
+
+@keyframes skeleton-loading {
+  0% { background-position: 400% 0; }
+  100% { background-position: -400% 0; }
+}
+
+@keyframes pulse {
+  0%, 100% { 
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.6;
+  }
+  50% { 
+    transform: translate(-50%, -50%) scale(1.1);
+    opacity: 0.3;
+  }
+}
+
+@keyframes fade-pulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.7; }
+}
+
+.resource-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0;
+  transform: scale(1.1);
+}
+
+.resource-image img.loaded {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.resource-card:hover .resource-image img {
+  transform: scale(1.08) rotate(1deg);
+  filter: brightness(1.1) contrast(1.05);
+}
+
+/* Content Section with Enhanced Hover */
+.resource-content {
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  transition: all 0.4s ease;
+}
+
+.resource-card:hover .resource-content {
+  transform: translateX(8px);
+}
+
+/* Badge with Enhanced Animation */
+.resource-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+  color: #065f46;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  width: fit-content;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.resource-badge::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.resource-card:hover .resource-badge {
+  background: linear-gradient(135d, #d1fae5 0%, #a7f3d0 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.resource-card:hover .resource-badge::before {
+  left: 100%;
+}
+
+/* Title with Enhanced Hover Effect */
+.resource-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 0.75rem;
+  line-height: 1.3;
+  background: linear-gradient(135deg, #014131 0%, #10b981 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.resource-card:hover .resource-title {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  transform: translateX(4px);
+}
+
+/* Description with Subtle Animation */
+.resource-description {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: #4b5563;
+  margin-bottom: 2rem;
+  text-align: justify;
+  transition: all 0.3s ease;
+}
+
+.resource-card:hover .resource-description {
+  color: #374151;
+}
+
+/* Enhanced Read More Button */
+.read-more-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #014131 0%, #10b981 100%);
+  color: white;
+  padding: 14px 28px;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 15px rgba(1, 65, 49, 0.25);
+  border: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  width: fit-content;
+  transform-origin: left center;
+}
+
+.read-more-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+  transition: left 0.5s ease;
+}
+
+.read-more-btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 12px;
+}
+
+.read-more-btn:hover::before {
+  left: 100%;
+}
+
+.read-more-btn:hover::after {
+  opacity: 1;
+}
+
+.read-more-btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 12px 30px rgba(1, 65, 49, 0.4);
+  color: white;
+  text-decoration: none;
+}
+
+.read-more-btn svg {
+  transition: transform 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.read-more-btn:hover svg {
+  transform: translateX(6px) rotate(10deg);
+}
+
+.read-more-btn span {
+  position: relative;
+  z-index: 1;
+}
+
+/* Card Stacking Effect on Hover */
+.resource-card {
+  perspective: 1000px;
+}
+
+.resource-card:hover {
+  transform: translateY(-12px) scale(1.02) rotateX(2deg);
+}
+
+/* Add floating particles effect on hover */
+.resource-card::before {
+  /* ...existing code... */
+}
+
+.resource-card:hover::before {
+  opacity: 1;
+  animation-play-state: running;
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.5);
+}
+
+/* Loading state for entire card */
+.resource-card.loading {
+  pointer-events: none;
+}
+
+.resource-card.loading .resource-content > * {
+  background: linear-gradient(90deg, #f0f2f5 25%, #e4e9f0 50%, #f0f2f5 75%);
+  background-size: 200% 100%;
+  animation: content-skeleton 1.5s infinite;
+  border-radius: 4px;
+  color: transparent;
+}
+
+@keyframes content-skeleton {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Enhanced responsive hover effects */
+@media (max-width: 768px) {
+  .resource-card:hover {
+    transform: translateY(-6px) scale(1.01);
+  }
+  
+  .resource-card:hover .resource-image img {
+    transform: scale(1.05);
+  }
+  
+  .resource-card:hover .resource-content {
+    transform: translateX(4px);
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .resource-card,
+  .resource-card:hover,
+  .resource-image img,
+  .read-more-btn,
+  .resource-badge,
+  .resource-title,
+  .resource-description {
+    animation: none;
+    transition: none;
+    transform: none;
+  }
+  
+  .resource-card:hover {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  }
 }
