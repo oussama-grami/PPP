@@ -7,6 +7,7 @@ import com.ppp.Ecopilot.DTO.Response.EsgResponseDTO;
 import com.ppp.Ecopilot.DTO.Response.EsgResponsesByCategoryDTO;
 import com.ppp.Ecopilot.Entities.EsgResponse;
 import com.ppp.Ecopilot.Enums.EsgCategory;
+import com.ppp.Ecopilot.Services.AuthService;
 import com.ppp.Ecopilot.Services.EsgQuestionService;
 import com.ppp.Ecopilot.Services.EsgResponseService;
 import com.ppp.Ecopilot.Services.EsgService;
@@ -25,6 +26,7 @@ public class EsgController  {
     private final EsgService esgService;
     private final EsgQuestionService esgQuestionService;
     private final EsgResponseService esgResponseService;
+    private final AuthService authService;
 
 
 
@@ -82,8 +84,8 @@ public class EsgController  {
     //calculation Logic
     @GetMapping("/calculate")
     public EsgResultDTO calculateEsg() {
-        long companyId = 7; // Replace with actual company ID
-        return esgService.calculateEsg();
+        long companyOwnerId = authService.getCurrentCompanyOwner().getId();
+        return esgService.calculateEsg(companyOwnerId);
     }
 
 

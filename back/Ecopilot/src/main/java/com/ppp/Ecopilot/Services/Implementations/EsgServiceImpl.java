@@ -13,6 +13,7 @@ import java.util.List;
 public class EsgServiceImpl  implements com.ppp.Ecopilot.Services.EsgService {
 
     private final EsgResponseService esgResponseService;
+
     public EsgServiceImpl( EsgResponseService esgResponseService) {
 
         this.esgResponseService = esgResponseService;
@@ -24,11 +25,11 @@ public class EsgServiceImpl  implements com.ppp.Ecopilot.Services.EsgService {
 
 
     @Override
-    public EsgResultDTO calculateEsg() {
-        Long CompanyId = 7L; // Replace with actual company ID
-        List<EsgResponseDTO> EnvironmentResponses = esgResponseService.getEsgResponsesByCategoryAndCompanyId(EsgCategory.ENVIRONMENTAL, CompanyId);
-        List<EsgResponseDTO> SocialResponses = esgResponseService.getEsgResponsesByCategoryAndCompanyId(EsgCategory.SOCIAL, CompanyId);
-        List<EsgResponseDTO> GovernanceResponses = esgResponseService.getEsgResponsesByCategoryAndCompanyId(EsgCategory.GOVERNANCE, CompanyId);
+    public EsgResultDTO calculateEsg(Long companyOwnerId) {
+
+        List<EsgResponseDTO> EnvironmentResponses = esgResponseService.getEsgResponsesByCategoryAndCompanyId(EsgCategory.ENVIRONMENTAL, companyOwnerId);
+        List<EsgResponseDTO> SocialResponses = esgResponseService.getEsgResponsesByCategoryAndCompanyId(EsgCategory.SOCIAL, companyOwnerId);
+        List<EsgResponseDTO> GovernanceResponses = esgResponseService.getEsgResponsesByCategoryAndCompanyId(EsgCategory.GOVERNANCE, companyOwnerId);
         EsgResultDTO results = new EsgResultDTO();
 
         results.setEnvironment(calculateCategoryScore(EnvironmentResponses));

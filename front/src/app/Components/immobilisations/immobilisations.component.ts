@@ -1,11 +1,11 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Immobilisation} from "../../Models/immobilisation";
-import {Router} from '@angular/router';
-import {CarbonFootprintService} from "../../Service/carbon-footprint.service";
-import {RoutesEnum} from "../../enumerations/Routes.enum";
-import {switchMap} from "rxjs/operators";
-import {of} from "rxjs";
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Immobilisation } from "../../Models/immobilisation";
+import { Router } from '@angular/router';
+import { CarbonFootprintService } from "../../Service/carbon-footprint.service";
+import { RoutesEnum } from "../../enumerations/Routes.enum";
+import { switchMap } from "rxjs/operators";
+import { of } from "rxjs";
 
 @Component({
   selector: 'app-immobilisations',
@@ -48,7 +48,7 @@ export class ImmobilisationsComponent implements OnInit {
                 return this.carboneService.getLastCalculation();
               } else {
                 this.errorMessage = 'No estimation found.';
-                return of(null); // return observable with null to keep stream alive
+                return of(null);
               }
             })
           )
@@ -60,18 +60,14 @@ export class ImmobilisationsComponent implements OnInit {
           }
         },
         error: (err) => {
-          console.error('Erreur lors de la soumission ou de la récupération des résultats :', err);
-          this.errorMessage = 'Une erreur est survenue pendant la soumission ou la récupération des résultats.';
+          console.error('Error during submission or result retrieval:', err);
+          this.errorMessage = 'An error occurred during submission or result retrieval.';
         }
       });
     } else {
-      this.errorMessage = 'Veuillez remplir tous les champs obligatoires correctement.';
+      this.errorMessage = 'Please fill in all required fields correctly.';
     }
   }
-
-
-
-
 
   protected readonly RoutesEnum = RoutesEnum;
 }

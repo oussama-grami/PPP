@@ -9,6 +9,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
 import java.util.List;
@@ -36,21 +37,22 @@ public class CompanyOwner extends User {
     private Roles role;
 
     @OneToMany(mappedBy = "companyOwner")
+    @ToString.Exclude
     public List<CarbonFootprintHistory> carboneFootprintHistory;
 
     @OneToMany(mappedBy = "companyOwner")
-    public List<Score> scores;
-
-    @OneToMany(mappedBy = "companyOwner")
+    @ToString.Exclude
     public List<EventFootprintData> eventFootprintData;
 
     @OneToMany(mappedBy = "companyOwner")
+    @ToString.Exclude
     public List<CarbonFootprintData> carbonFootprintData;
 
     @OneToMany(mappedBy = "companyOwner")
+    @ToString.Exclude
     public List<EsgResponse> esgResponses;
 
     @OneToMany(mappedBy = "companyOwner")
+    @ToString.Exclude
     public List<Transaction> transactions;
-
 }

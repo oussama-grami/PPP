@@ -165,7 +165,7 @@ export class CarbonFootprintService {
   }
 
   getAllByCompanyOwnerId(): Observable<CarbonFootprintResponse[]> {
-    return this.httpClient.get<CarbonFootprintResponse[]>(`${this.apiUrl}`).pipe(
+    return this.httpClient.get<CarbonFootprintResponse[]>(`${this.apiUrl}/owner`).pipe(
       map(responses => {
         this.calculations = responses; // cache list
         return responses;

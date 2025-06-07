@@ -1,28 +1,7 @@
 <div class="container">
   <!-- TODO: ch9awlkom na7iwha back puisque zeyda -->
-  <div class="retour">
-    <button
-      class="p-2 rounded-2"
-      style="display: flex; align-items: center"
-      (click)="history.back()"
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-      >
-        <path
-          d="M19.5 12H4.5M4.5 12L10.125 6M4.5 12L10.125 18"
-          stroke="black"
-          stroke-width="1.5"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        />
-      </svg>
-      <div class="retour-text">Back</div>
-    </button>
+  <div class="col-12 mt-3">
+    <app-back-button ></app-back-button>
   </div>
   <div class="nav default-font">
     <span>Cart</span>
@@ -177,8 +156,7 @@
     class="checkoutButtons d-flex justify-content-center align-items-center flex-column flex-md-row w-100 justify-content-md-between"
   >
     <!-- TODO: w hedhi zeda ? -->
-    <button [routerLink]="'/details'" class="checkoutButton1 w-auto">
-      <span class="checkoutButton1Text">Back</span>
+    <button (click)="history.back()" class="checkoutButton1 w-auto"><span class="checkoutButton1Text">Back</span>
     </button>
     <button
       (click)="proceedToCheckout()"

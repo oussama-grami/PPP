@@ -6,14 +6,10 @@ from azure.ai.inference.models import SystemMessage, UserMessage
 from azure.core.credentials import AzureKeyCredential
 import xgboost as xgb
 import joblib
-from flask import Flask, request, jsonify
+from flask import Flask
 import pandas as pd
-from prophet import Prophet
-import itertools
+
 import numpy as np
-from statsmodels.tsa.holtwinters import ExponentialSmoothing
-from sklearn.metrics import mean_absolute_error, r2_score, mean_squared_error
-import itertools
 import torch
 import torch.nn as nn
 from datetime import datetime,date
@@ -22,6 +18,7 @@ import os
 
 from flask import Flask, request, jsonify
 import datetime
+from datetime import date
 
 # Configuration Azure
 AZURE_ENDPOINT = os.getenv("AZURE_ENDPOINT", "https://models.github.ai/inference")
@@ -66,8 +63,6 @@ class EventData:
         self.printed_material = printed_material
         self.decoration_material = decoration_material
         self.total_emissions = total_emissions
-
-
 
 
 # partie eya
@@ -314,16 +309,13 @@ def generate_recommendations_entreprise():
     try:
         # Récupérer les données JSON de la requête
         data = request.get_json()
-        print("+++++++++++++++++++++++++++")
         # Générer le prompt
         prompt = generate_prompt(data)
-        print("---------------------------")
         # Initialiser le client Azure
         client = ChatCompletionsClient(
             endpoint=AZURE_ENDPOINT,
             credential=AzureKeyCredential(AZURE_TOKEN),
         )
-        print("***************************")
         # Appeler l'API Azure
         response = client.complete(
             messages=[
@@ -336,8 +328,6 @@ def generate_recommendations_entreprise():
             temperature=1,
             top_p=1
         )
-        print("/////////////////////////////////")
-        print(response)
         # Extraire le contenu de la réponse
         raw_recommendations = response.choices[0].message.content
         return jsonify({
@@ -440,7 +430,6 @@ class LSTMModel(nn.Module):
     def forward(self, x):
         out, _ = self.lstm(x)
         return self.fc(out[:, -1, :])
-
 
 
 def interpolate(historical_df: pd.DataFrame, start_date: date, end_date: date, total_value: float):

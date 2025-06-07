@@ -25,7 +25,8 @@ export enum RoutesEnum {
   CARBON_OFFSET_BLOG = 'carbon-offset-blog',
   CARBON_CO_BENEFITS_BLOG = 'carbon-co-benefits-blog',
   ROADMAP = 'roadmap',
-  ESG_ASSESSMENT = 'esg-assessment/:questionId',
+  ESG_ASSESSMENT = 'esg-assessment',
+
   PREDICTION_INFO = 'prediction-info',
   HISTORICAL_CARBON_FORECAST = 'historical-carbon-forecast',
   EVENT_FOOTPRINT ='event-footprint',
@@ -37,4 +38,6 @@ export enum RoutesEnum {
   ESG_HISTORY = 'esg-history',
   COMPANY_OWNER_FORM = 'company-owner',
   REGISTER_COMPANY_OWNER= 'register-company-owner',
+
 }
+
