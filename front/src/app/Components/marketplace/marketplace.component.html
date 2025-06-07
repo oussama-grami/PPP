@@ -1,166 +1,216 @@
 <div class="container-fluid">
-  <!-- Ajout du spinner -->
-  <!--  <app-eco-loading-spinner [loadingText]='"Wait for projects"' *ngIf="isLoading"></app-eco-loading-spinner>-->
   <app-spinner *ngIf="isLoading"></app-spinner>
 
+  <!-- Hero Section -->
   <div class="position-relative" style="margin-top: 5rem; background-image: url(/assets/img/marketplaceBackground.png); background-repeat: no-repeat; background-size: cover; width: 100%; height: 530px;">
     <div class="backgroundText">
-      <p class="p1">Your carbon compensation market</p>
+      <h1 class="p1">Your Carbon Compensation Market</h1>
       <p class="p2">Understand the challenges of carbon offsetting and contribute to collective carbon neutrality</p>
-      <button class="backgroundButton1" [routerLink]="'/'+RoutesEnum.CARBONE">Calculate your carbon emissions</button>
-      <button class="backgroundButton2" [routerLink]="'/'+RoutesEnum.NEW_PROJECT">Submit your project</button>
+      <div class="d-flex flex-wrap gap-3">
+        <button class="backgroundButton1" [routerLink]="'/'+RoutesEnum.CARBONE">
+          <i class="fas fa-calculator"></i>
+          Calculate Your Emissions
+        </button>
+        <button class="backgroundButton2" [routerLink]="'/'+RoutesEnum.NEW_PROJECT">
+          <i class="fas fa-plus"></i>
+          Submit Your Project
+        </button>
+      </div>
     </div>
   </div>
 </div>
+
 <div class="container mt-4">
   <div class="row">
+    <!-- Filters Sidebar -->
     <div class="col-md-4 col-12">
-      <div class="filterTitle">
-        Filtres
-      </div>
-      <div class="filterItems mt-3" style="margin-top: 29px;">
+      <h2 class="filterTitle">
+        <i class="fas fa-filter"></i>
+        Filters
+      </h2>
+      
+      <div class="filterItems">
+        <!-- Country Filter -->
         <app-filter-item [filterName]="'Country'" [icon]="countryDisplay" (click)="displayCountryFilter()"></app-filter-item>
-
-        <div class="paysFilter" *ngIf="countryDisplay" style="margin-top: 24px;">
-          <form class="from-body form-container">
-            <input type="search" placeholder="Search" name="search" [(ngModel)]="searchTextForCountry"
-                   (ngModelChange)="filterPerCountry()"/>
-            <button type="submit">Search</button>
+        <div class="paysFilter" *ngIf="countryDisplay">
+          <form class="form-container">
+            <input type="search" placeholder="Search countries..." name="search" 
+                   [(ngModel)]="searchTextForCountry" (ngModelChange)="filterPerCountry()"/>
+            <button type="submit" aria-label="Search">
+              <i class="fas fa-search"></i>
+            </button>
           </form>
 
-          <div *ngFor="let countryFilter of countryFiltersCopy">
-            <span class="filter">{{ countryFilter }}</span>
-            <span style="float: right; margin-left: auto; margin-right: 1vh;">
-              <input class="form-check-input" type="checkbox"
-                     [checked]="selectedCountries.get(countryFilter)"
-                     (change)="filterByCountry(countryFilter)">
+          <div *ngFor="let countryFilter of countryFiltersCopy" class="d-flex justify-content-between align-items-center">
+            <span class="filter">
+              <i class="fas fa-globe-americas me-2" style="color: #22c55e;"></i>
+              {{ countryFilter }}
             </span>
+            <input class="form-check-input" type="checkbox"
+                   [checked]="selectedCountries.get(countryFilter)"
+                   (change)="filterByCountry(countryFilter)"
+                   [id]="'country-' + countryFilter">
           </div>
-          <div style="width: 281px; height: 1px;background: #D3D3D3;"></div>
         </div>
 
+        <!-- Project Type Filter -->
         <app-filter-item [filterName]="'Nature of the project'" [icon]="typeDisplay" (click)="displayTypeFilter()"></app-filter-item>
-        <div class="paysFilter" *ngIf="typeDisplay" style="margin-top: 24px;">
-          <form class="from-body form-container">
-            <input type="search" placeholder="Search" name="search" [(ngModel)]="searchTextForType"
-                   (ngModelChange)="filterPerType()">
-            <button type="submit">Search</button>
+        <div class="paysFilter" *ngIf="typeDisplay">
+          <form class="form-container">
+            <input type="search" placeholder="Search project types..." name="search" 
+                   [(ngModel)]="searchTextForType" (ngModelChange)="filterPerType()">
+            <button type="submit" aria-label="Search">
+              <i class="fas fa-search"></i>
+            </button>
           </form>
 
-          <div *ngFor="let typeFilter of typeFiltersCopy">
-            <span class="filter">{{ typeFilter }}</span>
-            <span style="float: right; margin-left: auto; margin-right: 1vh;">
-              <input class="form-check-input" type="checkbox"
-                     [checked]="selectedTypes.get(typeFilter)"
-                     (change)="filterByType(typeFilter)">
+          <div *ngFor="let typeFilter of typeFiltersCopy" class="d-flex justify-content-between align-items-center">
+            <span class="filter">
+              <i class="fas fa-leaf me-2" style="color: #22c55e;"></i>
+              {{ typeFilter }}
             </span>
+            <input class="form-check-input" type="checkbox"
+                   [checked]="selectedTypes.get(typeFilter)"
+                   (change)="filterByType(typeFilter)"
+                   [id]="'type-' + typeFilter">
           </div>
-          <div style="width: 281px; height: 1px;background: #D3D3D3;"></div>
         </div>
 
-        <app-filter-item [filterName]="'Prices'" [icon]="priceDisplay" (click)="displayPriceFilter()"></app-filter-item>
-        <div class="paysFilter" *ngIf="priceDisplay" style="margin-top: 24px; margin-right: 2vh;">
-          <span>Maximum price: <input [(ngModel)]="priceFilter" (ngModelChange)="applyFilters()" style="width: 30px; padding: 5px;" for="customRange1"
-                                      class="form-label input-range" value="{{ priceFilter }}"> $/tCo2e</span>
-
-          <input type="range" style="width:100%; gap: 16px; margin-right: 2vh;" class="form-range" id="customRange1" max="99"
-                 min="1" [(ngModel)]="priceFilter" (ngModelChange)="applyFilters()">
-          <div style="width: 100%; height: 1px;background: #D3D3D3;"></div>
+        <!-- Price Filter -->
+        <app-filter-item [filterName]="'Price Range'" [icon]="priceDisplay" (click)="displayPriceFilter()"></app-filter-item>
+        <div class="paysFilter" *ngIf="priceDisplay">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <span class="filter">
+              <i class="fas fa-dollar-sign me-2" style="color: #22c55e;"></i>
+              Maximum price:
+            </span>
+            <div class="d-flex align-items-center gap-2">
+              <input [(ngModel)]="priceFilter" (ngModelChange)="applyFilters()" 
+                     class="input-range text-center" 
+                     style="width: 60px; padding: 0.25rem;" 
+                     type="number" min="1" max="99">
+              <span class="text-muted">$/tCO₂e</span>
+            </div>
+          </div>
+          <input type="range" class="form-range w-100" 
+                 min="1" max="99" 
+                 [(ngModel)]="priceFilter" 
+                 (ngModelChange)="applyFilters()">
+          <div class="d-flex justify-content-between text-muted small">
+            <span>$1</span>
+            <span>$99</span>
+          </div>
         </div>
 
-        <app-filter-item [filterName]="'Type of certification'" [icon]="certificationDisplay"
-                         (click)="displayCertificationFilter()"></app-filter-item>
-        <div class="paysFilter" *ngIf="certificationDisplay" style="margin-top: 24px;">
-          <div>
-            <span class="filter">Certified</span>
-            <span style="float: right; margin-left: auto; margin-right: 1vh;">
-              <input class="form-check-input" type="checkbox"
-                     [checked]="isCertifiedChecked"
-                     (change)="onCertified()">
+        <!-- Certification Filter -->
+        <app-filter-item [filterName]="'Type of certification'" [icon]="certificationDisplay" (click)="displayCertificationFilter()"></app-filter-item>
+        <div class="paysFilter" *ngIf="certificationDisplay">
+          <div class="d-flex justify-content-between align-items-center">
+            <span class="filter">
+              <i class="fas fa-certificate me-2" style="color: #22c55e;"></i>
+              Certified
             </span>
+            <input class="form-check-input" type="checkbox"
+                   [checked]="isCertifiedChecked"
+                   (change)="onCertified()"
+                   id="certified">
           </div>
-          <div>
-            <span class="filter">Uncertified</span>
-            <span style="float: right; margin-left: auto; margin-right: 1vh;">
-              <input class="form-check-input" type="checkbox"
-                     [checked]="isUncertifiedChecked"
-                     (change)="onUncertified()">
+          <div class="d-flex justify-content-between align-items-center">
+            <span class="filter">
+              <i class="fas fa-clock me-2" style="color: #f59e0b;"></i>
+              Uncertified
             </span>
+            <input class="form-check-input" type="checkbox"
+                   [checked]="isUncertifiedChecked"
+                   (change)="onUncertified()"
+                   id="uncertified">
           </div>
-          <div style="width: 281px; height: 1px;background: #D3D3D3;"></div>
         </div>
 
+        <!-- Mechanism Filter -->
         <app-filter-item [filterName]="'Mechanism'" [icon]="mecanismDisplay" (click)="displayMecanismFilter()"></app-filter-item>
-        <div class="paysFilter" *ngIf="mecanismDisplay" style="margin-top: 24px;">
-          <div>
-            <span class="filter">Removal</span>
-            <span style="float: right; margin-left: auto; margin-right: 1vh;">
-              <input class="form-check-input" type="checkbox"
-                     [checked]="mechanismType === 'Removal'"
-                     (change)="filterByMechanism('Removal')">
+        <div class="paysFilter" *ngIf="mecanismDisplay">
+          <div class="d-flex justify-content-between align-items-center">
+            <span class="filter">
+              <i class="fas fa-seedling me-2" style="color: #22c55e;"></i>
+              Carbon Removal
             </span>
+            <input class="form-check-input" type="checkbox"
+                   [checked]="mechanismType === 'Removal'"
+                   (change)="filterByMechanism('Removal')"
+                   id="removal">
           </div>
-          <div>
-            <span class="filter">Avoidance</span>
-            <span style="float: right; margin-left: auto; margin-right: 1vh;">
-              <input class="form-check-input" type="checkbox"
-                     [checked]="mechanismType === 'Avoidance'"
-                     (change)="filterBy('Avoidance')">
+          <div class="d-flex justify-content-between align-items-center">
+            <span class="filter">
+              <i class="fas fa-shield-alt me-2" style="color: #16a34a;"></i>
+              Carbon Avoidance
             </span>
+            <input class="form-check-input" type="checkbox"
+                   [checked]="mechanismType === 'Avoidance'"
+                   (change)="filterBy('Avoidance')"
+                   id="avoidance">
           </div>
-          <div style="width: 281px; height: 1px;background: #D3D3D3;"></div>
         </div>
       </div>
 
+      <!-- Clear Filters Button -->
       <div id="deleteFilterButton">
-        <span class="removeFilter" (click)="clearFilters()">Clear filters</span>
+        <span class="removeFilter" (click)="clearFilters()" *ngIf="selectedFilters.length > 0">
+          <i class="fas fa-trash-alt me-2"></i>
+          Clear All Filters
+        </span>
       </div>
     </div>
+
+    <!-- Projects Section -->
     <div class="col-md-8 col-12">
-      <div class="availableProjects">
-        {{ numberOfProjects }} Climate projects available
+      <div class="availableProjects fade-in-up">
+        <i class="fas fa-globe me-3"></i>
+        {{ numberOfProjects }} Climate Projects Available
       </div>
-      <div style="margin-top: 29px;">
-        <span style="width: 80%;">
+
+      <!-- Sort and Filter Tags Section -->
+      <div class="sort-section">
+        <div class="selected-filters-container">
           <span *ngFor="let filter of selectedFilters" class="selectedFilter">
-            <span class="selectedFilterText">{{ filter }}
-              <span style="margin-left: 10px;">
-                <svg class="removeFilter" (click)="removeFilter(filter)"
-                     xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 8 8"
-                     fill="none">
-                  <path d="M6.99998 1.00002L1 7M0.999975 1L6.99995 6.99998" stroke="white"
-                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </span>
+            <span class="selectedFilterText">{{ filter }}</span>
+            <span class="removeFilter" (click)="removeFilter(filter)">
+              <i class="fas fa-times"></i>
             </span>
           </span>
-        </span>
-        <span style="color: #101828; font-family: Roboto; font-size: 16px; font-style: normal; font-weight: 600; line-height: 24px; float: right; margin-right: 3vh;">
-          <span>
-            <span style="color: #575757; font-family: Roboto; font-size: 16px; font-style: normal; font-weight: 400; line-height: 24px;">
-              Filter by:
-            </span> Most popular
-          </span>
-        </span>
+        </div>
+        
+        <div class="sort-controls">
+          <span class="sort-label">Sort by:</span>
+          <span class="sort-select">Most Popular</span>
+        </div>
       </div>
-      <br>
 
-      <!-- Ajout d'un conteneur avec une hauteur minimale pour les projets -->
-      <div class="projects-container">
-        <!-- Affichage conditionnel d'un message si aucun projet n'est trouvé -->
+      <!-- Projects Container -->
+      <div class="projects-container fade-in-up">
+        <!-- No Projects Message -->
         <div *ngIf="!isLoading && projects.length === 0" class="no-projects-message">
-          No projects match your current filters. Try adjusting your filter criteria.
+          <i class="fas fa-search mb-3" style="font-size: 3rem; color: #22c55e; opacity: 0.5;"></i>
+          <h3>No projects found</h3>
+          <p>No projects match your current filters. Try adjusting your filter criteria or clear all filters.</p>
+          <button class="btn btn-outline-success" (click)="clearFilters()">
+            <i class="fas fa-refresh me-2"></i>
+            Reset Filters
+          </button>
         </div>
 
-        <!-- Liste des projets -->
-        <div class="row mt-5" style="display: flex; flex-wrap: wrap;">
-          <div *ngFor="let project of displayedProjects" class="col-6 col-sm-4 col-md-4" style="margin-top: 5px;">
+        <!-- Projects Grid -->
+        <div class="row" style="display: flex; flex-wrap: wrap;" *ngIf="!isLoading && projects.length > 0">
+          <div *ngFor="let project of displayedProjects" class="col-6 col-sm-4 col-md-6 col-lg-4">
             <app-project-ad [project]="project" class="products"></app-project-ad>
           </div>
         </div>
       </div>
 
-      <app-pagination [totalPages]="totalPages" [currentPage]="currentPage" (pageChanged)="onPageChange($event)"></app-pagination>
+      <!-- Pagination -->
+      <div *ngIf="!isLoading && projects.length > 0" class="d-flex justify-content-center mt-4">
+        <app-pagination [totalPages]="totalPages" [currentPage]="currentPage" (pageChanged)="onPageChange($event)"></app-pagination>
+      </div>
     </div>
   </div>
 </div>
