@@ -36,8 +36,8 @@ Chart.register(
 })
 export class HistoricalCarbonForecastComponent implements OnInit ,AfterViewChecked {
   routesEnum = RoutesEnum;
-  newEntry: CarbonFootprintData | null = null; // Stores the new entry
-  editingElementId: number | null = null; // Stores the ID of the element being edited
+  newEntry: CarbonFootprintData | null = null;
+  editingElementId: number | null = null;
   carbonData: CarbonFootprintData[] = [];
   chartData: number[] = [];
   chartLabels: string[] = [];
@@ -46,8 +46,8 @@ export class HistoricalCarbonForecastComponent implements OnInit ,AfterViewCheck
   displayedColumns: string[] = ['date', 'value', 'actions'];
   @ViewChild('newRow') newRowRef: ElementRef | undefined;
   @ViewChild('tableContainer') tableContainerRef: ElementRef | undefined;
-  scrolledToNewRow: boolean = false; // Flag to check if scrolled to new row
-  warningMessage:string|null='' ;// Stores the warning message
+  scrolledToNewRow: boolean = false;
+  warningMessage:string|null='' ;
 
   constructor(private carbonFootprintService: HistoricalPredictionService) {}
 
@@ -60,7 +60,6 @@ export class HistoricalCarbonForecastComponent implements OnInit ,AfterViewCheck
       const newRowEl = this.newRowRef.nativeElement;
       const tableContainerEl = this.tableContainerRef.nativeElement;
 
-      // Scroll the table container to make newRow visible
       const offsetTop = newRowEl.offsetTop;
       tableContainerEl.scrollTo({ top: offsetTop, behavior: 'smooth' });
 
@@ -69,7 +68,7 @@ export class HistoricalCarbonForecastComponent implements OnInit ,AfterViewCheck
   }
 
   addElement() {
-    this.newEntry = { date: '', value: 0, predicted: false }; // Initialize new entry
+    this.newEntry = { date: '', value: 0, predicted: false };
     this.scrolledToNewRow = false;
   }
   loadData(): void {
@@ -140,13 +139,13 @@ export class HistoricalCarbonForecastComponent implements OnInit ,AfterViewCheck
     if (this.newEntry && this.newEntry.date && this.newEntry.value !== null && this.newEntry.value !== undefined){
       this.carbonFootprintService.addData(this.newEntry).subscribe({
         next: () => {
-          this.newEntry = { date: '', value: 0, predicted: false }; // Initialize new entry
-          this.loadData();  // Assuming you want to reload the data
-          this.createChart();  // Assuming you want to recreate the chart
-          this.warningMessage = null;  // Clear any previous warning
+          this.newEntry = { date: '', value: 0, predicted: false };
+          this.loadData();
+          this.createChart();
+          this.warningMessage = null;
         },
         error: (error) => {
-          if (error.status === 409) {  // Duplicate entry error
+          if (error.status === 409) {
             this.warningMessage = 'A carbon footprint record already exists for this date.';
           } else {
             console.log(error);
@@ -194,7 +193,7 @@ export class HistoricalCarbonForecastComponent implements OnInit ,AfterViewCheck
 
     this.carbonFootprintService.deleteData(id).subscribe({
       next: () => {
-        this.loadData(); // Reload data to update chart
+        this.loadData();
         console.log('Deleted element with ID:', id);
       },
       error: (err) => {
@@ -219,7 +218,7 @@ export class HistoricalCarbonForecastComponent implements OnInit ,AfterViewCheck
       const updatedElement = { ...element, value: newValue };
       this.carbonFootprintService.updateData(element.id,updatedElement).subscribe(() => {
         this.editingElementId = null; // Exit edit mode
-        this.loadData(); // Reload data to update chart
+        this.loadData();
         this.createChart();
       });
     }
