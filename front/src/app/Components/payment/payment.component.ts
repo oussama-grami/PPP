@@ -5,7 +5,7 @@ import {RoutesEnum} from "../../enumerations/Routes.enum";
 import {PaymentService} from "../../Service/payment.service";
 import {Router} from "@angular/router";
 import {firstValueFrom} from "rxjs";
-
+import { environment } from '../../../environments/environment';
 enum PaymentState {
   IDLE = 'idle',
   LOADING = 'loading',
@@ -192,4 +192,5 @@ export class PaymentComponent implements OnInit {
     }
     return this.totalQuantity;
   }
+  protected readonly environment = environment;
 }

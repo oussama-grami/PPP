@@ -1,43 +1,152 @@
 <div class="container">
+  <!-- Enhanced Back Button -->
   <div class="retour">
-    <button [routerLink]=RoutesEnum.CHECKOUT>
-          <span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path d="M19.5 12H4.5M4.5 12L10.125 6M4.5 12L10.125 18" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </span>
-      <span class="retour-text">Back</span>
+    <button [routerLink]="RoutesEnum.CHECKOUT">
+      <span>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+        >
+          <path
+            d="M19.5 12H4.5M4.5 12L10.125 6M4.5 12L10.125 18"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </span>
+      <span class="retour-text">Back to Cart</span>
     </button>
   </div>
+
+  <!-- Enhanced Breadcrumb Navigation -->
   <div class="nav default-font">
-    <span class="cursor" [routerLink]=RoutesEnum.CHECKOUT>Cart</span>
+    <span class="cursor" [routerLink]="RoutesEnum.CHECKOUT">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        viewBox="0 0 24 24"
+        fill="none"
+        style="margin-right: 0.5rem"
+      >
+        <path
+          d="M3 3H5L5.4 5M7 13H17L21 5H5.4M7 13L5.4 5M7 13L4.7 15.3C4.3 15.7 4.6 16.5 5.1 16.5H17M17 13V19C17 19.6 16.6 20 16 20H8C7.4 20 7 19.6 7 19V13H17Z"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+      Cart
+    </span>
     <span>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path d="M9 18L15 12L9 6" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </span>
-    <span>General informations</span>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+      >
+        <path
+          d="M9 18L15 12L9 6"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </span>
     <span>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path d="M9 18L15 12L9 6" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </span>
-    <span class="grey-color">Payment</span>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        viewBox="0 0 24 24"
+        fill="none"
+        style="margin-right: 0.5rem"
+      >
+        <path
+          d="M20 21V19C20 16.7909 18.2091 15 16 15H8C5.79086 15 4 16.7909 4 19V21M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+      General Information
+    </span>
+    <span>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+      >
+        <path
+          d="M9 18L15 12L9 6"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </span>
+    <span class="grey-color">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        viewBox="0 0 24 24"
+        fill="none"
+        style="margin-right: 0.5rem"
+      >
+        <path
+          d="M2 12C2 8.22876 4.69649 5.25347 8.25 4.51315C9.03077 4.34285 9.84230769 4.25 10.6792453 4.25H13.3207547C14.1576923 4.25 14.9692308 4.34285 15.75 4.51315C19.3035 5.25347 22 8.22876 22 12C22 16.4183 18.4183 20 14 20H10C5.58172 20 2 16.4183 2 12Z"
+          stroke="currentColor"
+          stroke-width="1.5"
+        />
+        <path
+          d="M10 12H14M12 10V14"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+        />
+      </svg>
+      Payment
+    </span>
   </div>
+
+  <!-- Enhanced Mobile Cart Summary -->
   <div class="mobile-cart d-lg-none">
     <!-- Cart summary for mobile - appears above form -->
     <div class="cart-items">
       <div class="item" *ngFor="let item of cartItems">
-        <div class="row align-items-center " >
+        <div class="row align-items-center">
           <div class="col-3">
-            <div class="modal-photo"><img [src]="item.url" alt=""></div>
+            <div class="modal-photo">
+              <img
+                [src]="environment.apiUrl + item.url"
+                [alt]="item.name"
+                loading="lazy"
+              />
+            </div>
           </div>
           <div class="col-6">
-            <div class="project-name">{{item.name}}</div>
-            <div class="quantity">{{ item.cost }}$ x {{item.quantity}} tCO2e</div>
+            <div class="project-name">{{ item.name }}</div>
+            <div class="quantity">
+              {{ item.cost }}$ × {{ item.quantity }} tCO2e
+            </div>
           </div>
           <div class="col-3 price">
-            <div class="price-text">{{ (+item.cost * +item.quantity) | number:'1.2-2' }}$</div>
+            <div class="price-text">
+              ${{ +item.cost * +item.quantity | number : "1.2-2" }}
+            </div>
           </div>
         </div>
       </div>
@@ -45,29 +154,86 @@
       <div class="separator-modal"></div>
       <div class="total-row">
         <span class="project-name total-text">Total</span>
-        <span class="total-price">{{ getTotalPrice() | number:'1.2-2' }}$</span>
+        <span class="total-price">
+          ${{ getTotalPrice() | number : "1.2-2" }}
+        </span>
       </div>
       <div class="separator-modal"></div>
 
+      <!-- Enhanced Payment Methods Section -->
       <div class="payment">
-        <span class="paymentText">Payment methods accepted</span>
+        <span class="paymentText">Secure Payment Methods</span>
         <div class="payment-icons">
           <span class="payment-icon">
-            <svg style="margin-right: 10px;" xmlns="http://www.w3.org/2000/svg" width="44" height="28" viewBox="0 0 44 28" fill="none">
-              <path d="M0 2.56489C0 1.14834 1.16764 0 2.60799 0H41.392C42.8324 0 44 1.14834 44 2.56489V25.4351C44 26.8517 42.8324 28 41.392 28H2.60799C1.16764 28 0 26.8517 0 25.4351V2.56489Z" fill="#575759"/>
-              <path d="M24.7283 5.38279L17.7703 6.14312L14.6778 16.0274L18.9299 22.8704L24.7283 22.4902L30.14 17.9282L24.7283 5.38279Z" fill="#98999D"/>
-              <path d="M22.4089 5.56475C19.4048 7.27379 17.3837 10.4681 17.3837 14.1267C17.3837 17.7853 19.4048 20.9796 22.4089 22.6887C20.9306 23.5297 19.2143 24.011 17.3837 24.011C11.8331 24.011 7.33333 19.5856 7.33333 14.1267C7.33333 8.66777 11.8331 4.24242 17.3837 4.24242C19.2143 4.24242 20.9306 4.72376 22.4089 5.56475Z" fill="#BDBEC2"/>
-              <path d="M22.0224 5.56477C25.0265 7.2738 27.0476 10.4681 27.0476 14.1267C27.0476 17.7853 25.0265 20.9796 22.0224 22.6887C23.5007 23.5297 25.217 24.011 27.0476 24.011C32.5983 24.011 37.098 19.5856 37.098 14.1267C37.098 8.66777 32.5983 4.24242 27.0476 4.24242C25.217 4.24242 23.5007 4.72376 22.0224 5.56477Z" fill="#BDBEC2"/>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="44"
+              height="28"
+              viewBox="0 0 44 28"
+              fill="none"
+            >
+              <path
+                d="M0 2.56489C0 1.14834 1.16764 0 2.60799 0H41.392C42.8324 0 44 1.14834 44 2.56489V25.4351C44 26.8517 42.8324 28 41.392 28H2.60799C1.16764 28 0 26.8517 0 25.4351V2.56489Z"
+                fill="#575759"
+              />
+              <path
+                d="M24.7283 5.38279L17.7703 6.14312L14.6778 16.0274L18.9299 22.8704L24.7283 22.4902L30.14 17.9282L24.7283 5.38279Z"
+                fill="#98999D"
+              />
+              <path
+                d="M22.4089 5.56475C19.4048 7.27379 17.3837 10.4681 17.3837 14.1267C17.3837 17.7853 19.4048 20.9796 22.4089 22.6887C20.9306 23.5297 19.2143 24.011 17.3837 24.011C11.8331 24.011 7.33333 19.5856 7.33333 14.1267C7.33333 8.66777 11.8331 4.24242 17.3837 4.24242C19.2143 4.24242 20.9306 4.72376 22.4089 5.56475Z"
+                fill="#BDBEC2"
+              />
+              <path
+                d="M22.0224 5.56477C25.0265 7.2738 27.0476 10.4681 27.0476 14.1267C27.0476 17.7853 25.0265 20.9796 22.0224 22.6887C23.5007 23.5297 25.217 24.011 27.0476 24.011C32.5983 24.011 37.098 19.5856 37.098 14.1267C37.098 8.66777 32.5983 4.24242 27.0476 4.24242C25.217 4.24242 23.5007 4.72376 22.0224 5.56477Z"
+                fill="#BDBEC2"
+              />
             </svg>
           </span>
           <span class="payment-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="44" height="28" viewBox="0 0 44 28" fill="none">
-              <path d="M0 2.56489C0 1.14834 1.16764 0 2.60799 0H41.392C42.8324 0 44 1.14834 44 2.56489V25.4351C44 26.8517 42.8324 28 41.392 28H2.60799C1.16764 28 0 26.8517 0 25.4351V2.56489Z" fill="#575759"/>
-              <path d="M7.34198 8.52067H9.17572L10.9619 15.6142L14.8264 8.52067H16.8435L11.4985 18.3461H9.82093L7.34198 8.52067Z" fill="white"/>
-              <path d="M18.1067 8.52067H19.9405L18.5618 18.3461H16.762L18.1067 8.52067Z" fill="white"/>
-              <path d="M27.1736 9.88995L25.8085 11.0789C25.247 10.3664 24.7241 10.0102 24.2396 10.0102C23.9996 10.0102 23.8004 10.0814 23.6419 10.2239C23.4835 10.362 23.4042 10.5289 23.4042 10.7249C23.4042 10.9074 23.4767 11.1101 23.6216 11.3327C23.7664 11.5553 24.2056 12.0474 24.9391 12.8088C25.3285 13.2141 25.5843 13.5013 25.7066 13.6705C26.0009 14.0623 26.2114 14.4297 26.3382 14.7726C26.4695 15.111 26.5352 15.4561 26.5352 15.8079C26.5352 16.5961 26.2499 17.2573 25.6794 17.7917C25.1089 18.326 24.3777 18.5932 23.4857 18.5932C22.1274 18.5932 21.0204 17.9587 20.1646 16.6896L21.6044 15.5474C22.184 16.4157 22.8111 16.8499 23.4857 16.8499C23.8072 16.8499 24.0766 16.7475 24.2939 16.5426C24.5158 16.3378 24.6267 16.0906 24.6267 15.8012C24.6267 15.5741 24.5588 15.3426 24.423 15.1066C24.2917 14.8705 23.9113 14.4253 23.282 13.7707C22.6164 13.0805 22.1795 12.5595 21.9712 12.2077C21.6905 11.7312 21.5501 11.2637 21.5501 10.805C21.5501 10.1994 21.7516 9.65617 22.1546 9.17525C22.6617 8.57411 23.3454 8.27354 24.2056 8.27354C25.3874 8.27354 26.3767 8.81234 27.1736 9.88995Z" fill="white"/>
-              <path d="M32.736 8.52067H34.3184L36.8041 18.3461H34.984L34.4542 16.2554H30.5083L29.3605 18.3461H27.3434L32.736 8.52067ZM33.9992 14.5188L33.1978 11.2926L31.4387 14.5188H33.9992Z" fill="white"/>
-              <path d="M4.15896 8.33588H9.11974L9.7668 10.8813L4.15896 8.33588Z" fill="#B5B6BA"/>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="44"
+              height="28"
+              viewBox="0 0 44 28"
+              fill="none"
+            >
+              <path
+                d="M0 2.56489C0 1.14834 1.16764 0 2.60799 0H41.392C42.8324 0 44 1.14834 44 2.56489V25.4351C44 26.8517 42.8324 28 41.392 28H2.60799C1.16764 28 0 26.8517 0 25.4351V2.56489Z"
+                fill="#575759"
+              />
+              <path
+                d="M7.34198 8.52067H9.17572L10.9619 15.6142L14.8264 8.52067H16.8435L11.4985 18.3461H9.82093L7.34198 8.52067Z"
+                fill="white"
+              />
+              <path
+                d="M18.1067 8.52067H19.9405L18.5618 18.3461H16.762L18.1067 8.52067Z"
+                fill="white"
+              />
+              <path
+                d="M27.1736 9.88995L25.8085 11.0789C25.247 10.3664 24.7241 10.0102 24.2396 10.0102C23.9996 10.0102 23.8004 10.0814 23.6419 10.2239C23.4835 10.362 23.4042 10.5289 23.4042 10.7249C23.4042 10.9074 23.4767 11.1101 23.6216 11.3327C23.7664 11.5553 24.2056 12.0474 24.9391 12.8088C25.3285 13.2141 25.5843 13.5013 25.7066 13.6705C26.0009 14.0623 26.2114 14.4297 26.3382 14.7726C26.4695 15.111 26.5352 15.4561 26.5352 15.8079C26.5352 16.5961 26.2499 17.2573 25.6794 17.7917C25.1089 18.326 24.3777 18.5932 23.4857 18.5932C22.1274 18.5932 21.0204 17.9587 20.1646 16.6896L21.6044 15.5474C22.184 16.4157 22.8111 16.8499 23.4857 16.8499C23.8072 16.8499 24.0766 16.7475 24.2939 16.5426C24.5158 16.3378 24.6267 16.0906 24.6267 15.8012C24.6267 15.5741 24.5588 15.3426 24.423 15.1066C24.2917 14.8705 23.9113 14.4253 23.282 13.7707C22.6164 13.0805 22.1795 12.5595 21.9712 12.2077C21.6905 11.7312 21.5501 11.2637 21.5501 10.805C21.5501 10.1994 21.7516 9.65617 22.1546 9.17525C22.6617 8.57411 23.3454 8.27354 24.2056 8.27354C25.3874 8.27354 26.3767 8.81234 27.1736 9.88995Z"
+                fill="white"
+              />
+              <path
+                d="M32.736 8.52067H34.3184L36.8041 18.3461H34.984L34.4542 16.2554H30.5083L29.3605 18.3461H27.3434L32.736 8.52067ZM33.9992 14.5188L33.1978 11.2926L31.4387 14.5188H33.9992Z"
+                fill="white"
+              />
+              <path
+                d="M4.15896 8.33588H9.11974L9.7668 10.8813L4.15896 8.33588Z"
+                fill="#B5B6BA"
+              />
+            </svg>
+          </span>
+          <span class="payment-icon">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="32"
+              height="20"
+              viewBox="0 0 32 20"
+              fill="none"
+            >
+              <rect width="32" height="20" rx="4" fill="#1A73E8" />
+              <path d="M8 7H24V9H8V7ZM8 11H20V13H8V11Z" fill="white" />
             </svg>
           </span>
         </div>
@@ -75,10 +241,10 @@
     </div>
   </div>
 
+  <!-- Enhanced Main Content Layout -->
   <div class="row checkout-content">
+    <!-- Enhanced Form Section -->
     <div class="col-lg-7 col-md-12">
-
-
       <div class="input-format">
         <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
           <div class="row">
@@ -88,11 +254,18 @@
                 class="form-control form-format"
                 id="email"
                 formControlName="email"
-                placeholder="E-mail *"
+                placeholder="📧 Email Address *"
               />
-              <div *ngIf="submitted && checkoutForm.get('email')?.invalid" class="alert alert-danger">
-                <div *ngIf="checkoutForm.get('email')?.hasError('required')">E-mail is required</div>
-                <div *ngIf="checkoutForm.get('email')?.hasError('email')">Please enter a valid e-mail</div>
+              <div
+                *ngIf="submitted && checkoutForm.get('email')?.invalid"
+                class="alert alert-danger"
+              >
+                <div *ngIf="checkoutForm.get('email')?.hasError('required')">
+                  ⚠️ Email address is required
+                </div>
+                <div *ngIf="checkoutForm.get('email')?.hasError('email')">
+                  ⚠️ Please enter a valid email address
+                </div>
               </div>
             </div>
 
@@ -102,7 +275,7 @@
                 class="form-control form-format"
                 id="phone"
                 formControlName="phone"
-                placeholder="Phone*"
+                placeholder="📱 Phone Number *"
               />
             </div>
 
@@ -112,7 +285,7 @@
                 class="form-control form-format"
                 id="address"
                 formControlName="address"
-                placeholder="Address*"
+                placeholder="🏠 Street Address *"
               />
             </div>
 
@@ -122,11 +295,22 @@
                 class="form-control form-format"
                 id="postalCode"
                 formControlName="postalCode"
-                placeholder="Postal Code *"
+                placeholder="📮 Postal Code *"
               />
-              <div *ngIf="submitted && checkoutForm.get('postalCode')?.invalid" class="alert alert-danger">
-                <div *ngIf="checkoutForm.get('postalCode')?.hasError('required')">Postal Code is required</div>
-                <div *ngIf="checkoutForm.get('postalCode')?.hasError('pattern')">Postal Code must be 5 digits</div>
+              <div
+                *ngIf="submitted && checkoutForm.get('postalCode')?.invalid"
+                class="alert alert-danger"
+              >
+                <div
+                  *ngIf="checkoutForm.get('postalCode')?.hasError('required')"
+                >
+                  ⚠️ Postal code is required
+                </div>
+                <div
+                  *ngIf="checkoutForm.get('postalCode')?.hasError('pattern')"
+                >
+                  ⚠️ Postal code must be valid
+                </div>
               </div>
             </div>
 
@@ -136,10 +320,15 @@
                 class="form-control form-format"
                 id="city"
                 formControlName="city"
-                placeholder="City *"
+                placeholder="🏙️ City *"
               />
-              <div *ngIf="submitted && checkoutForm.get('city')?.invalid" class="alert alert-danger">
-                <div *ngIf="checkoutForm.get('city')?.hasError('required')">City is required</div>
+              <div
+                *ngIf="submitted && checkoutForm.get('city')?.invalid"
+                class="alert alert-danger"
+              >
+                <div *ngIf="checkoutForm.get('city')?.hasError('required')">
+                  ⚠️ City is required
+                </div>
               </div>
             </div>
 
@@ -149,10 +338,15 @@
                 class="form-control form-format"
                 id="province"
                 formControlName="province"
-                placeholder="Province *"
+                placeholder="🗺️ Province/State *"
               />
-              <div *ngIf="submitted && checkoutForm.get('province')?.invalid" class="alert alert-danger">
-                <div *ngIf="checkoutForm.get('province')?.hasError('required')">Province is required</div>
+              <div
+                *ngIf="submitted && checkoutForm.get('province')?.invalid"
+                class="alert alert-danger"
+              >
+                <div *ngIf="checkoutForm.get('province')?.hasError('required')">
+                  ⚠️ Province/State is required
+                </div>
               </div>
             </div>
 
@@ -162,22 +356,97 @@
                 class="form-control form-format"
                 id="country"
                 formControlName="country"
-                placeholder="Country *"
+                placeholder="🌍 Country *"
               />
-              <div *ngIf="submitted && checkoutForm.get('country')?.invalid" class="alert alert-danger">
-                <div *ngIf="checkoutForm.get('country')?.hasError('required')">Country is required</div>
+              <div
+                *ngIf="submitted && checkoutForm.get('country')?.invalid"
+                class="alert alert-danger"
+              >
+                <div *ngIf="checkoutForm.get('country')?.hasError('required')">
+                  ⚠️ Country is required
+                </div>
               </div>
             </div>
-            <hr>
 
+            <div class="separator-modal"></div>
+
+            <!-- Enhanced Action Buttons -->
             <div class="col-12">
               <div class="checkoutButtons">
-                <button class="checkoutButton1" [routerLink]="'/checkout'"><span class="checkoutButton1Text">Back</span></button>
-                <button (click)="handlePayment()"
-                        [disabled]="paymentState === PaymentState.LOADING"
-                        class="checkoutButton2">
-                  <span *ngIf="paymentState !== PaymentState.LOADING" class="checkoutButton2Text">Payer {{ getTotalPrice() | currency:'EUR' }}</span>
-                  <span *ngIf="paymentState === PaymentState.LOADING">Traitement...</span>
+                <button class="checkoutButton1" [routerLink]="'/checkout'">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    style="margin-right: 0.5rem"
+                  >
+                    <path
+                      d="M19.5 12H4.5M4.5 12L10.125 6M4.5 12L10.125 18"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                  <span class="checkoutButton1Text">Back to Cart</span>
+                </button>
+                <button
+                  (click)="handlePayment()"
+                  [disabled]="paymentState === PaymentState.LOADING"
+                  class="checkoutButton2"
+                >
+                  <svg
+                    *ngIf="paymentState !== PaymentState.LOADING"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    style="margin-right: 0.5rem"
+                  >
+                    <path
+                      d="M12 2C13.1046 2 14 2.89543 14 4V8C14 9.10457 13.1046 10 12 10C10.8954 10 10 9.10457 10 8V4C10 2.89543 10.8954 2 12 2Z"
+                      fill="currentColor"
+                    />
+                    <path
+                      d="M21 12C21 13.1046 20.1046 14 19 14H15C13.8954 14 13 13.1046 13 12C13 10.8954 13.8954 10 15 10H19C20.1046 10 21 10.8954 21 12Z"
+                      fill="currentColor"
+                    />
+                    <path
+                      d="M7.05025 16.9497C7.84112 17.7406 7.84112 19.0251 7.05025 19.8159C6.25939 20.6068 4.97487 20.6068 4.18401 19.8159L1.76777 17.3997C0.976904 16.6088 0.976904 15.3243 1.76777 14.5334C2.55864 13.7426 3.84315 13.7426 4.63402 14.5334L7.05025 16.9497Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                  <span
+                    *ngIf="paymentState !== PaymentState.LOADING"
+                    class="checkoutButton2Text"
+                  >
+                    Secure Payment ${{ getTotalPrice() | number : "1.2-2" }}
+                  </span>
+                  <span *ngIf="paymentState === PaymentState.LOADING">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      style="
+                        margin-right: 0.5rem;
+                        animation: spin 1s linear infinite;
+                      "
+                    >
+                      <path
+                        d="M12 2V6M12 18V22M4.93 4.93L7.76 7.76M16.24 16.24L19.07 19.07M2 12H6M18 12H22M4.93 19.07L7.76 16.24M16.24 7.76L19.07 4.93"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                    Processing...
+                  </span>
                 </button>
               </div>
             </div>
@@ -186,20 +455,49 @@
       </div>
     </div>
 
+    <!-- Enhanced Desktop Cart Summary -->
     <div class="col-lg-5 d-none d-lg-block cart-summary">
+      <h3
+        style="
+          font-weight: 700;
+          color: #111827;
+          margin-bottom: 1.5rem;
+          background: linear-gradient(135deg, #014131 0%, #10b981 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+        "
+      >
+        Order Summary
+      </h3>
+
       <!-- Cart summary for desktop - appears on the right -->
       <div class="cart-items">
-        <div class="row" *ngFor="let item of cartItems" style="margin-bottom: 20px">
-          <div class="col-2">
-            <div class="modal-photo"><img [src]="item.url" alt=""></div>
+        <div
+          class="row"
+          *ngFor="let item of cartItems"
+          style="margin-bottom: 20px"
+        >
+          <div class="col-3">
+            <div class="modal-photo">
+              <img
+                [src]="environment.apiUrl + item.url"
+                [alt]="item.name"
+                loading="lazy"
+              />
+            </div>
           </div>
-          <div class="col-7 mt-3" style="width: 50%;margin-left: 20px">
-            <div class="project-name">{{item.name}}</div>
-            <div class="quantity">{{ item.cost }}$ x {{item.quantity}} tCO2e</div>
+          <div class="col-6" style="padding-left: 1rem">
+            <div class="project-name">{{ item.name }}</div>
+            <div class="quantity">
+              ${{ item.cost }} × {{ item.quantity }} tCO2e
+            </div>
           </div>
-          <div class="col-3 mt-4 price">
+          <div class="col-3 price">
             <div class="priceAndTrash">
-              <span class="price-text">{{ (+item.cost * +item.quantity) | number:'1.2-2' }}$</span>
+              <span class="price-text">
+                ${{ +item.cost * +item.quantity | number : "1.2-2" }}
+              </span>
             </div>
           </div>
         </div>
@@ -207,63 +505,189 @@
 
       <div class="separator-modal"></div>
       <div class="total d-flex justify-content-between align-items-center">
-        <span class="project-name bigger-font me-auto">Total</span>
-        <span class="header-text bigger-font text-end">{{ getTotalPrice() | number:'1.2-2' }}$</span>
+        <span class="project-name bigger-font me-auto">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            style="margin-right: 0.5rem"
+          >
+            <path
+              d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          Total
+        </span>
+        <span class="header-text bigger-font text-end">
+          ${{ getTotalPrice() | number : "1.2-2" }}
+        </span>
       </div>
       <div class="separator-modal"></div>
 
+      <!-- Enhanced Payment Methods Section -->
       <div class="payment">
-        <span class="paymentText">Payment methods accepted</span>
+        <span class="paymentText">Secure Payment Methods</span>
         <div class="payment-icons">
-          <span>
-            <svg style="margin-right: 10px;" xmlns="http://www.w3.org/2000/svg" width="44" height="28" viewBox="0 0 44 28" fill="none">
-              <path d="M0 2.56489C0 1.14834 1.16764 0 2.60799 0H41.392C42.8324 0 44 1.14834 44 2.56489V25.4351C44 26.8517 42.8324 28 41.392 28H2.60799C1.16764 28 0 26.8517 0 25.4351V2.56489Z" fill="#575759"/>
-              <path d="M24.7283 5.38279L17.7703 6.14312L14.6778 16.0274L18.9299 22.8704L24.7283 22.4902L30.14 17.9282L24.7283 5.38279Z" fill="#98999D"/>
-              <path d="M22.4089 5.56475C19.4048 7.27379 17.3837 10.4681 17.3837 14.1267C17.3837 17.7853 19.4048 20.9796 22.4089 22.6887C20.9306 23.5297 19.2143 24.011 17.3837 24.011C11.8331 24.011 7.33333 19.5856 7.33333 14.1267C7.33333 8.66777 11.8331 4.24242 17.3837 4.24242C19.2143 4.24242 20.9306 4.72376 22.4089 5.56475Z" fill="#BDBEC2"/>
-              <path d="M22.0224 5.56477C25.0265 7.2738 27.0476 10.4681 27.0476 14.1267C27.0476 17.7853 25.0265 20.9796 22.0224 22.6887C23.5007 23.5297 25.217 24.011 27.0476 24.011C32.5983 24.011 37.098 19.5856 37.098 14.1267C37.098 8.66777 32.5983 4.24242 27.0476 4.24242C25.217 4.24242 23.5007 4.72376 22.0224 5.56477Z" fill="#BDBEC2"/>
+          <span class="payment-icon">
+            <!-- ...existing payment method svgs... -->
+          </span>
+          <span class="payment-icon">
+            <!-- ...existing payment method svgs... -->
+          </span>
+          <span class="payment-icon">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="32"
+              height="20"
+              viewBox="0 0 32 20"
+              fill="none"
+            >
+              <rect width="32" height="20" rx="4" fill="#1A73E8" />
+              <path d="M8 7H24V9H8V7ZM8 11H20V13H8V11Z" fill="white" />
             </svg>
           </span>
-          <span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="44" height="28" viewBox="0 0 44 28" fill="none">
-              <path d="M0 2.56489C0 1.14834 1.16764 0 2.60799 0H41.392C42.8324 0 44 1.14834 44 2.56489V25.4351C44 26.8517 42.8324 28 41.392 28H2.60799C1.16764 28 0 26.8517 0 25.4351V2.56489Z" fill="#575759"/>
-              <path d="M7.34198 8.52067H9.17572L10.9619 15.6142L14.8264 8.52067H16.8435L11.4985 18.3461H9.82093L7.34198 8.52067Z" fill="white"/>
-              <path d="M18.1067 8.52067H19.9405L18.5618 18.3461H16.762L18.1067 8.52067Z" fill="white"/>
-              <path d="M27.1736 9.88995L25.8085 11.0789C25.247 10.3664 24.7241 10.0102 24.2396 10.0102C23.9996 10.0102 23.8004 10.0814 23.6419 10.2239C23.4835 10.362 23.4042 10.5289 23.4042 10.7249C23.4042 10.9074 23.4767 11.1101 23.6216 11.3327C23.7664 11.5553 24.2056 12.0474 24.9391 12.8088C25.3285 13.2141 25.5843 13.5013 25.7066 13.6705C26.0009 14.0623 26.2114 14.4297 26.3382 14.7726C26.4695 15.111 26.5352 15.4561 26.5352 15.8079C26.5352 16.5961 26.2499 17.2573 25.6794 17.7917C25.1089 18.326 24.3777 18.5932 23.4857 18.5932C22.1274 18.5932 21.0204 17.9587 20.1646 16.6896L21.6044 15.5474C22.184 16.4157 22.8111 16.8499 23.4857 16.8499C23.8072 16.8499 24.0766 16.7475 24.2939 16.5426C24.5158 16.3378 24.6267 16.0906 24.6267 15.8012C24.6267 15.5741 24.5588 15.3426 24.423 15.1066C24.2917 14.8705 23.9113 14.4253 23.282 13.7707C22.6164 13.0805 22.1795 12.5595 21.9712 12.2077C21.6905 11.7312 21.5501 11.2637 21.5501 10.805C21.5501 10.1994 21.7516 9.65617 22.1546 9.17525C22.6617 8.57411 23.3454 8.27354 24.2056 8.27354C25.3874 8.27354 26.3767 8.81234 27.1736 9.88995Z" fill="white"/>
-              <path d="M32.736 8.52067H34.3184L36.8041 18.3461H34.984L34.4542 16.2554H30.5083L29.3605 18.3461H27.3434L32.736 8.52067ZM33.9992 14.5188L33.1978 11.2926L31.4387 14.5188H33.9992Z" fill="white"/>
-              <path d="M4.15896 8.33588H9.11974L9.7668 10.8813L4.15896 8.33588Z" fill="#B5B6BA"/>
-            </svg>
-          </span>
+        </div>
+
+        <!-- Security badges -->
+        <div style="margin-top: 1rem; text-align: center; opacity: 0.8">
+          <small style="color: #6b7280; font-weight: 500">
+            🔒 SSL Secured • 🛡️ 256-bit Encryption
+          </small>
         </div>
       </div>
     </div>
 
-
-
-    <!-- Remplacer les messages d'erreur et de succès par ceci: -->
-    <div id="stripe-payment-overlay" style="display: none;">
+    <!-- Enhanced Stripe Payment Modal -->
+    <div id="stripe-payment-overlay" style="display: none">
       <div id="stripe-payment-modal">
         <div id="stripe-payment-form">
-          <h3>Paiement sécurisé</h3>
+          <h3>🔒 Secure Payment</h3>
 
-          <!-- Élément Stripe -->
+          <!-- Enhanced Payment Element -->
           <div id="payment-element"></div>
 
-          <!-- Bouton de paiement avec état -->
-          <button (click)="handlePayment()"
-                  [disabled]="paymentState === PaymentState.LOADING"
-                  class="pay-button">
-            <span *ngIf="paymentState !== PaymentState.LOADING">Payer {{ getTotalPrice() | currency:'EUR' }}</span>
-            <span *ngIf="paymentState === PaymentState.LOADING">Traitement...</span>
+          <!-- Enhanced Payment Button -->
+          <button
+            (click)="handlePayment()"
+            [disabled]="paymentState === PaymentState.LOADING"
+            class="pay-button"
+          >
+            <span *ngIf="paymentState !== PaymentState.LOADING">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                style="margin-right: 0.5rem"
+              >
+                <path
+                  d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              Complete Payment ${{ getTotalPrice() | number : "1.2-2" }}
+            </span>
+            <span *ngIf="paymentState === PaymentState.LOADING">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                style="margin-right: 0.5rem; animation: spin 1s linear infinite"
+              >
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  stroke-width="4"
+                  fill="none"
+                  opacity="0.3"
+                />
+                <path
+                  d="M12 2A10 10 0 0 1 22 12"
+                  stroke="currentColor"
+                  stroke-width="4"
+                  fill="none"
+                />
+              </svg>
+              Processing Payment...
+            </span>
           </button>
 
-          <!-- Message d'erreur -->
-          <div *ngIf="paymentState === PaymentState.ERROR" class="payment-error">
+          <!-- Enhanced Error Message -->
+          <div
+            *ngIf="paymentState === PaymentState.ERROR"
+            class="payment-error"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              style="margin-right: 0.5rem"
+            >
+              <circle
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                stroke-width="2"
+              />
+              <line
+                x1="15"
+                y1="9"
+                x2="9"
+                y2="15"
+                stroke="currentColor"
+                stroke-width="2"
+              />
+              <line
+                x1="9"
+                y1="9"
+                x2="15"
+                y2="15"
+                stroke="currentColor"
+                stroke-width="2"
+              />
+            </svg>
             {{ errorMessage }}
           </div>
 
-          <!-- Message de succès -->
-          <div *ngIf="paymentState === PaymentState.SUCCESS" class="success-message">
-            Paiement réussi! Votre commande a été confirmée.
+          <!-- Enhanced Success Message -->
+          <div
+            *ngIf="paymentState === PaymentState.SUCCESS"
+            class="success-message"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              style="margin-right: 0.5rem"
+            >
+              <path
+                d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+            Payment successful! Your order has been confirmed.
           </div>
         </div>
       </div>
@@ -271,4 +695,13 @@
   </div>
 </div>
 
-
+<style>
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+</style>
