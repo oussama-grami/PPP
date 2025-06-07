@@ -16,7 +16,7 @@ export class EsgHistoryComponent implements OnInit {
   Soc:boolean=false;
   Gov:boolean=false;
   result:EsgResult={} as EsgResult;
-  
+
   routesEnum = RoutesEnum;
 
 
@@ -29,7 +29,7 @@ export class EsgHistoryComponent implements OnInit {
         category: item.category,
         responses: item.response
       }));
-    
+
 
 
       this.responses = responses;
@@ -40,33 +40,32 @@ export class EsgHistoryComponent implements OnInit {
   }
 
 
-  checkForResponses() {
+  checkForResponses(): void {
+    console.log("responses", this.responses);
+
     this.responses.forEach(response => {
-      if (response.category === 'ENVIRONMENTAL') {
-        if (response.responses.length!=0) {
-          this.Env =true;
-          console.log(`Environmental responses`);
-        }
-      }
+      if (response.responses.length === 0) return; // skip if no responses
 
-     
-      if (response.category === 'SOCIAL') {
-        this.Soc = true;
-       
-      }
-
-      if (response.category === 'GOVERNANCE') {
-        this.Gov=true;
-       
+      switch (response.category) {
+        case 'ENVIRONMENTAL':
+          this.Env = true;
+          console.log(`Environmental responses: ${response.responses.length}`);
+          break;
+        case 'SOCIAL':
+          this.Soc = true;
+          break;
+        case 'GOVERNANCE':
+          this.Gov = true;
+          break;
       }
     });
 
-   this.esgService.calculateEsg().subscribe((result: EsgResult) => {
+    this.esgService.calculateEsg().subscribe((result: EsgResult) => {
       this.result = result;
       console.log(this.result);
-    }
-    );
+    });
   }
+
 
 
   getCategoryIcon(category: string): string {
@@ -88,7 +87,7 @@ export class EsgHistoryComponent implements OnInit {
 
   navigateToRoadmap() {
     this.router.navigate([this.routesEnum.ROADMAP]).then(() => {
-      window.scrollTo(0, 0); 
+      window.scrollTo(0, 0);
     });
   }
 
@@ -98,16 +97,13 @@ export class EsgHistoryComponent implements OnInit {
     });
   }
 
-
   retakeTest() {
-   
-    this.router.navigate([this.routesEnum.ESG_ASSESSMENT]).then(() => {
-      window.scrollTo(0, 0); 
+    this.router.navigate([this.routesEnum.ESG_ASSESSMENT, 1]).then(() => {
+      window.scrollTo(0, 0);
     });
-
-   
   }
 
-  
+
+
 
 }
