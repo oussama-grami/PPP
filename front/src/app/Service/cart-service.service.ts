@@ -4,7 +4,8 @@ import { Project } from '../Models/project';
 type PartialProject = Partial<Project> &
   Pick<Project, 'id' | 'name' | 'availableStock' | 'cost' | 'url'> & {
     quantity: number;
-  };
+    removing?: boolean; // Optional property for animation
+  } ;
 
 @Injectable({
   providedIn: 'root',

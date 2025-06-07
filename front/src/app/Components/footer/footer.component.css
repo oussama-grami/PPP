@@ -183,7 +183,7 @@
 /* Contact information with animated icons */
 .footer-contact {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   gap: 1.5rem;
   margin-bottom: 3rem;
   padding: 0 1rem;
@@ -383,8 +383,20 @@
   filter: brightness(0.4) contrast(1.5) sepia(1) hue-rotate(300deg) saturate(3);
 }
 
+@media (max-width:900px){
+  .footer-contact {
+    flex-direction: column;
+    align-items: center;
+  }
+  .contact-item {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
 /* Responsive design */
 @media (max-width: 768px) {
+  
   .footer-content {
     padding: 3rem 0 1.5rem;
   }
@@ -404,6 +416,7 @@
     text-align: center;
     gap: 8px;
     padding: 1rem 0.5rem;
+    width: 100%;
   }
 
   .contact-text {
@@ -427,6 +440,10 @@
   .footer-logo-container::after {
     width: 120px;
     height: 120px;
+  }
+  .footer-contact {
+    flex-direction: column;
+    align-items: center;
   }
 }
 
