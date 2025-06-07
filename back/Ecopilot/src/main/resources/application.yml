@@ -14,7 +14,7 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: "https://keycloak-custom-v25.onrender.com/realms/booksproject"
+          issuer-uri: "https://ecopilot-auth.onrender.com/realms/booksproject"
 stripe:
   api:
     key: ${STRIPE_API_KEY:sk_test_51PXiywF8Z6bWeMKqcDN9MXuxRefQjhGucEbVV3TnLCQFepXXL0Q41msQoasi4qVgPOsXFuIgrgXRjH8leDDUoeLk00W7IXsAEj}
