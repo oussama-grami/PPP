@@ -1,63 +1,169 @@
-<div class="container mt-5">
-  <div class="row ms-1" id="title">
-    Our Knowledge Center
-  </div>
-</div>
-<div class="container" style="margin-top: 30px; overflow-y: hidden;">
-  <div class="column" style="overflow-y: hidden; height: auto;">
-    <img src="assets/img/ressources1.svg" style=" width: 100%;  padding: 0; margin: 0;">
-  </div>
-  <div class="column" style="overflow-y: hidden; position: relative;justify-content: center; width: 601px;">
-    <div class="section-title" style="margin-left: 40px; margin-top: 50px; ">• MARKETPLACE •</div>
-    <div style="display: flex; align-items: baseline;">
-      <h2 class="section-header" style="margin-left: 40px;">Voluntary Carbon Market </h2>
-      <span style="margin-left: 22px;">3 min read</span>
+<div class="resources-container">
+  <!-- Enhanced Hero Section -->
+  <section class="hero-section">
+    <h1 class="hero-title">Our Knowledge Center</h1>
+    <p class="hero-subtitle">
+      Explore comprehensive insights on carbon markets, sustainability, and
+      environmental impact through our curated collection of expert articles and
+      research.
+    </p>
+  </section>
 
-    </div>
-    <div class="section-description" style="margin-left: 40px;">In recent years, the rise of carbon markets has become a
-      pivotal response to the escalating global environmental crisis. This crisis, primarily driven by the emission of
-      greenhouse gases.
-    </div>
-    <button class="read-more-button" style="margin-left: 40px; margin-top: 38px;" [routerLink]="'/marketplace-blog'">
-      <span class="read-more-text">Read more</span></button>
-  </div>
-</div>
-<div class="container" style=" overflow-y: hidden;">
-  <div class="column" style="overflow-y: hidden; position: relative;justify-content: center; width: 601px;">
-    <div class="section-title" style=" margin-top: 28px; margin-left: 0px; padding: 0px;">• Carbon offset •</div>
-    <div style="display: flex; align-items: baseline;">
-      <h2 class="section-header">Carbon offset Projects </h2>
-      <span style="margin-left: 22px;">3 min read</span>
+  <!-- Resources Grid -->
+  <main class="resources-grid">
+    <!-- Marketplace Article -->
+    <article class="resource-card">
+      <div class="resource-image">
+        <img
+          src="assets/img/ressources1.svg"
+          alt="Voluntary Carbon Market illustration"
+          loading="lazy"
+          (load)="onImageLoad($event)"
+          (error)="onImageError($event)"
+        />
+      </div>
+      <div class="resource-content">
+        <span class="resource-badge">• MARKETPLACE •</span>
+        <header class="resource-header">
+          <h2 class="resource-title">Voluntary Carbon Market</h2>
+          <div class="resource-meta">
+            <span class="reading-time">3 min read</span>
+            <time datetime="2024-01-01">Updated recently</time>
+          </div>
+        </header>
+        <p class="resource-description">
+          In recent years, the rise of carbon markets has become a pivotal
+          response to the escalating global environmental crisis. This crisis,
+          primarily driven by the emission of greenhouse gases, demands
+          innovative solutions and collaborative efforts to mitigate its impact.
+        </p>
+        <a
+          class="read-more-btn"
+          [routerLink]="'/marketplace-blog'"
+          role="button"
+        >
+          <span>Read More</span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+          >
+            <path
+              d="M7 17L17 7M17 7H8M17 7V16"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </a>
+      </div>
+    </article>
 
-    </div>
-    <div class="section-description">Carbon offset projects involve the verification of environmental conservation or
-      protection activities that aim to diminish, prevent, or eliminate greenhouse gas (GHG) emissions, thereby
-      contributing to the alleviation of climate change.   
-    </div>
-    <button class="read-more-button" style=" margin-top: 42px;"><span class="read-more-text"
-                                                                      [routerLink]="'/carbon-offset-blog'">Read more</span>
-    </button>
-  </div>
-  <div class="column" style="overflow-y: hidden; height: auto;">
-    <img src="assets/img/ressources2.svg" style="width: 599px;  ">
-  </div>
-</div>
-<div class="container" style=" overflow-y: hidden;">
-  <div class="column" style="overflow-y: hidden; height: auto;">
-    <img src="assets/img/ressources3.svg" style="width: 100% ;">
-  </div>
-  <div class="column" style="overflow-y: hidden; position: relative;justify-content: center; width: 601px;">
-    <div class="section-title" style="margin-left: 40px; margin-top: 50px; ">• ESG •</div>
-    <div style="display: flex; align-items: baseline;">
-      <h2 class="section-header" style="margin-left: 40px;">ESG and Carbon Projects </h2>
-      <span style="margin-left: 22px;">3 min read</span>
+    <!-- Carbon Offset Article -->
+    <article class="resource-card reverse">
+      <div class="resource-content">
+        <span class="resource-badge">• CARBON OFFSET •</span>
+        <header class="resource-header">
+          <h2 class="resource-title">Carbon Offset Projects</h2>
+          <div class="resource-meta">
+            <span class="reading-time">3 min read</span>
+            <time datetime="2024-01-01">Updated recently</time>
+          </div>
+        </header>
+        <p class="resource-description">
+          Carbon offset projects involve the verification of environmental
+          conservation or protection activities that aim to diminish, prevent,
+          or eliminate greenhouse gas (GHG) emissions, thereby contributing to
+          the alleviation of climate change and promoting sustainable
+          development.
+        </p>
+        <a
+          class="read-more-btn"
+          [routerLink]="'/carbon-offset-blog'"
+          role="button"
+        >
+          <span>Read More</span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+          >
+            <path
+              d="M7 17L17 7M17 7H8M17 7V16"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </a>
+      </div>
+      <div class="resource-image">
+        <img
+          src="assets/img/ressources2.svg"
+          alt="Carbon offset projects illustration"
+          loading="lazy"
+          (load)="onImageLoad($event)"
+          (error)="onImageError($event)"
+        />
+      </div>
+    </article>
 
-    </div>
-    <div class="section-description" style="margin-left: 40px;">In today's complex landscape, the world faces a myriad
-      of challenges, ranging from climate change and economic stability to addressing social and economic needs.
-    </div>
-    <button class="read-more-button" style="margin-left: 40px; margin-top: 38px;"
-            [routerLink]="'/carbon-co-benefits-blog'"><span class="read-more-text">Read more</span></button>
-  </div>
+    <!-- ESG Article -->
+    <article class="resource-card">
+      <div class="resource-image">
+        <img
+          src="assets/img/ressources3.svg"
+          alt="ESG and Carbon Projects illustration"
+          loading="lazy"
+          (load)="onImageLoad($event)"
+          (error)="onImageError($event)"
+        />
+      </div>
+      <div class="resource-content">
+        <span class="resource-badge">• ESG •</span>
+        <header class="resource-header">
+          <h2 class="resource-title">ESG and Carbon Projects</h2>
+          <div class="resource-meta">
+            <span class="reading-time">3 min read</span>
+            <time datetime="2024-01-01">Updated recently</time>
+          </div>
+        </header>
+        <p class="resource-description">
+          In today's complex landscape, the world faces a myriad of challenges,
+          ranging from climate change and economic stability to addressing
+          social and economic needs. Environmental, Social, and Governance (ESG)
+          principles provide a comprehensive framework for sustainable business
+          practices.
+        </p>
+        <a
+          class="read-more-btn"
+          [routerLink]="'/carbon-co-benefits-blog'"
+          role="button"
+        >
+          <span>Read More</span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+          >
+            <path
+              d="M7 17L17 7M17 7H8M17 7V16"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </a>
+      </div>
+    </article>
+  </main>
 </div>
-

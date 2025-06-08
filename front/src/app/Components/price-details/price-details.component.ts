@@ -1,14 +1,20 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {ProjectsService} from "../../Service/projects.service";
-import {Project} from "../../Models/project";
-import {CartService} from "../../Service/cart-service.service";
-import {Router} from "@angular/router";
-import {RoutesEnum} from "../../enumerations/Routes.enum";
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
+import { ProjectsService } from '../../Service/projects.service';
+import { Project } from '../../Models/project';
+import { CartService } from '../../Service/cart-service.service';
+import { Router } from '@angular/router';
+import { RoutesEnum } from '../../enumerations/Routes.enum';
 
 @Component({
   selector: 'app-price-details',
   templateUrl: './price-details.component.html',
-  styleUrls: ['./price-details.component.css']
+  styleUrls: ['./price-details.component.css'],
 })
 export class PriceDetailsComponent implements OnInit, OnChanges {
   @Input() projectId: number = 0;
@@ -17,11 +23,11 @@ export class PriceDetailsComponent implements OnInit, OnChanges {
   successMessage: boolean = false;
   protected readonly Number = Number;
 
-  constructor(private projectsService: ProjectsService,
-              private cartService: CartService,
-              private routerService: Router
-  ) {
-  }
+  constructor(
+    private projectsService: ProjectsService,
+    private cartService: CartService,
+    private routerService: Router
+  ) {}
 
   ngOnInit() {
     this.getProject();
@@ -62,7 +68,7 @@ export class PriceDetailsComponent implements OnInit, OnChanges {
   //name' | 'availableStock' | 'cost' | 'url'> & { quantity: number
   onAddToCart() {
     this.cartService.addItem({
-      id:1,
+      id: 1,
       name: this.project!.name,
       availableStock: this.project!.availableStock,
       cost: this.project!.cost,
@@ -81,5 +87,13 @@ export class PriceDetailsComponent implements OnInit, OnChanges {
   async onBuyNow() {
     this.onAddToCart();
     await this.routerService.navigate([RoutesEnum.CHECKOUT]);
+  }
+
+  getTreesEquivalent(quantity: number): number {
+    return Math.floor(quantity * 40);
+  }
+
+  getMilesDriven(quantity: number): number {
+    return Math.floor(quantity * 2200);
   }
 }

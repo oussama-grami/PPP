@@ -1,170 +1,360 @@
-<!-- Banner Section - Keeping Original Structure -->
-<div style="overflow: auto;">
-  <div style="position: relative;"
-       [ngStyle]="{'background-image': 'url(/assets/Ecopilot/pan1.png)', 'background-size': 'cover', 'background-repeat': 'no-repeat', 'background-position': 'top center', 'width': '100%', 'height': '100%'}">
-    <div [ngStyle]="{'background-image': 'url(/assets/img/pan1.png)', 'background-size': 'cover', 'background-repeat': 'no-repeat', 'background-position': 'top center', 'width': '100%', 'height': '50vh'}" class="banner-container">
+<!-- Enhanced Banner Section -->
+<div style="overflow: hidden">
+  <div
+    style="position: relative"
+    [ngStyle]="{
+      'background-image': 'url(/assets/Ecopilot/pan1.png)',
+      'background-size': 'cover',
+      'background-repeat': 'no-repeat',
+      'background-position': 'center center',
+      width: '100%',
+      height: '100%'
+    }"
+  >
+    <div
+      [ngStyle]="{
+        'background-image': 'url(/assets/img/pan1.png)',
+        'background-size': 'cover',
+        'background-repeat': 'no-repeat',
+        'background-position': 'center center',
+        width: '100%',
+        'min-height': '60vh'
+      }"
+      class="banner-container"
+      [@fadeInAnimation]
+    >
       <div class="banner-content">
-        <p class="headline-text">Measure your carbon footprint and take action for a more sustainable future</p>
-        <p class="subheading-text">EcoPilot is your partner in the fight against climate change and the promotion of responsible practices</p>
+        <h1 class="headline-text" [@staggerFadeIn]>
+          Measure your carbon footprint and take action for a
+          <span class="highlight-text">sustainable future</span>
+        </h1>
+        <p class="subheading-text" [@staggerFadeIn]>
+          EcoPilot is your partner in the fight against climate change and the
+          promotion of responsible practices
+        </p>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Section 1 - Keeping Original Structure -->
-<div class="container my-5">
+<!-- Enhanced Introduction Section -->
+<div class="container my-5" [@fadeInAnimation]>
   <div class="row align-items-center">
     <!-- Mobile order -->
-    <div class="col-12 d-md-none text-center content-box">
-      <p class="section-heading">Are you looking for a <span class="highlight-text">simple, easy, and reliable solution</span> to engage your company in the sustainability journey?</p>
-      <p class="section-paragraph">Our platform is designed to help you make relevant decisions regarding sustainability and implement concrete measures to reduce your environmental impact and strengthen your ESG performance.</p>
+    <div class="col-12 d-md-none text-center content-box fade-in-up">
+      <h2 class="section-heading">
+        Are you looking for a
+        <span class="highlight-text">simple, easy, and reliable solution</span>
+        to engage your company in the sustainability journey?
+      </h2>
+      <p class="section-paragraph">
+        Our platform is designed to help you make relevant decisions regarding
+        sustainability and implement concrete measures to reduce your
+        environmental impact and strengthen your ESG performance.
+      </p>
+      <button class="btn btn-outline-green" [@fadeInAnimation]>
+        <i class="fas fa-arrow-right"></i>
+        Learn More
+      </button>
     </div>
-    <div class="col-12 d-md-none">
-      <img src="/assets/img/home_photo.jpg" class="img-fluid w-100 rounded shadow-img" alt="EcoPilot">
-    </div>
-
-    <!-- Desktop order -->
-    <div class="col-md-6 d-none d-md-block content-box">
-      <p class="section-heading">Are you looking for a <span class="highlight-text">simple, easy, and reliable solution</span> to engage your company in the sustainability journey?</p>
-      <p class="section-paragraph">Our platform is designed to help you make relevant decisions regarding sustainability and implement concrete measures to reduce your environmental impact and strengthen your ESG performance.</p>
-      <button class="btn btn-outline-green">Learn More</button>
-    </div>
-    <div class="col-md-6 d-none d-md-block">
-      <img src="/assets/img/home_photo.jpg" class="img-fluid w-100 rounded shadow-img" alt="EcoPilot">
-    </div>
-  </div>
-</div>
-
-<!-- Services Header -->
-<div class="container-fluid bg-light-green py-4">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-lg-8 text-center">
-        <h6 class="section-title">• OUR SERVICES •</h6>
-        <h2 class="services-main-heading">Comprehensive Sustainability Solutions</h2>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Section 2 - ESG -->
-<div class="container my-5 service-section">
-  <div class="row align-items-center">
-    <!-- Mobile order -->
-    <div class="col-12 d-md-none text-center content-box">
-      <div class="section-title">• ESG criteria •</div>
-      <h2 class="section-heading">ESG Performance</h2>
-      <div class="section-paragraph">We provide an analysis of your ESG approach, highlighting your strengths and areas for improvement, along with a personalized roadmap to enhance your ESG position.​</div>
-      <button class="btn btn-green mt-3 w-100" [routerLink]="'/'+RoutesEnum.ESG">Calculate Your ESG Performance</button>
-    </div>
-    <div class="col-12 d-md-none">
+    <div class="col-12 d-md-none fade-in-up">
       <div class="image-wrapper">
-        <img src="assets/img/ph3.svg" class="img-fluid w-100" alt="ESG Performance">
+        <img
+          src="/assets/img/home_photo.jpg"
+          class="img-fluid w-100 shadow-img"
+          alt="EcoPilot Sustainability Solutions"
+          loading="lazy"
+        />
       </div>
     </div>
 
     <!-- Desktop order -->
-    <div class="col-md-6 d-none d-md-block">
+    <div class="col-md-6 d-none d-md-block content-box slide-in-left">
+      <h2 class="section-heading">
+        Are you looking for a
+        <span class="highlight-text">simple, easy, and reliable solution</span>
+        to engage your company in the sustainability journey?
+      </h2>
+      <p class="section-paragraph">
+        Our platform is designed to help you make relevant decisions regarding
+        sustainability and implement concrete measures to reduce your
+        environmental impact and strengthen your ESG performance.
+      </p>
+      <button class="btn btn-outline-green">
+        <i class="fas fa-arrow-right"></i>
+        Learn More
+      </button>
+    </div>
+    <div class="col-md-6 d-none d-md-block slide-in-right">
       <div class="image-wrapper">
-        <img src="assets/img/ph3.svg" class="img-fluid w-100" alt="ESG Performance">
+        <img
+          src="/assets/img/home_photo.jpg"
+          class="img-fluid w-100 shadow-img"
+          alt="EcoPilot Sustainability Solutions"
+          loading="lazy"
+        />
         <div class="accent-circle accent-circle-1"></div>
       </div>
     </div>
-    <div class="col-md-6 text-md-left d-none d-md-block content-box">
-      <div class="section-title">• ESG criteria •</div>
-      <h2 class="section-heading">ESG Performance</h2>
-      <div class="section-paragraph">We provide an analysis of your ESG approach, highlighting your strengths and areas for improvement, along with a personalized roadmap to enhance your ESG position.​</div>
-      <button class="btn btn-green mt-3" [routerLink]="'/'+RoutesEnum.ESG">Calculate Your ESG Performance</button>
+  </div>
+</div>
+
+<!-- Enhanced Services Header -->
+<div class="container-fluid bg-light-green py-5" [@fadeInAnimation]>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 text-center fade-in-up">
+        <div class="section-title center">
+          <i class="fas fa-leaf"></i>
+          Our Services
+        </div>
+        <h2 class="services-main-heading">
+          Comprehensive Sustainability Solutions
+        </h2>
+        <p class="marketplace-text">
+          Discover our suite of innovative tools designed to help you measure,
+          manage, and improve your environmental impact.
+        </p>
+      </div>
     </div>
   </div>
 </div>
 
-<!-- Section 3 - Carbon -->
-<div class="container my-5 service-section">
+<!-- Enhanced ESG Section -->
+<div class="container my-5 service-section" [@fadeInAnimation]>
   <div class="row align-items-center">
     <!-- Mobile order -->
-    <div class="col-12 d-md-none text-center content-box">
-      <div class="section-title">• Carbon Emission •</div>
-      <h2 class="section-heading">Managing your carbon emissions</h2>
-      <p class="section-paragraph">We offer a carbon footprint calculation tool that simplifies evaluating your activity's environmental impact through an easy-to-use questionnaire, streamlining the evaluation process.​</p>
-      <button class="btn btn-green mt-3 w-100" [routerLink]="'/'+RoutesEnum.CARBONE">Calculate Your Carbon Emissions</button>
+    <div class="col-12 d-md-none text-center content-box fade-in-up">
+      <div class="section-title">
+        <i class="fas fa-chart-line"></i>
+        ESG Criteria
+      </div>
+      <h2 class="section-heading">ESG Performance Assessment</h2>
+      <p class="section-paragraph">
+        We provide an comprehensive analysis of your ESG approach, highlighting
+        your strengths and areas for improvement, along with a personalized
+        roadmap to enhance your ESG position and drive sustainable growth.
+      </p>
+      <button class="btn btn-green w-100" [routerLink]="'/' + RoutesEnum.ESG">
+        <i class="fas fa-calculator"></i>
+        Calculate Your ESG Performance
+      </button>
     </div>
-    <div class="col-12 d-md-none">
+    <div class="col-12 d-md-none fade-in-up">
       <div class="image-wrapper">
-        <img src="assets/img/ph4.svg" class="img-fluid w-100" alt="Carbon Emission">
+        <img
+          src="assets/img/ph3.svg"
+          class="img-fluid w-100"
+          alt="ESG Performance Assessment"
+          loading="lazy"
+        />
       </div>
     </div>
 
     <!-- Desktop order -->
-    <div class="col-md-6 d-none d-md-block content-box">
-      <div class="section-title">• Carbon Emission •</div>
-      <h2 class="section-heading">Managing your carbon emissions</h2>
-      <p class="section-paragraph">We offer a carbon footprint calculation tool that simplifies evaluating your activity's environmental impact through an easy-to-use questionnaire, streamlining the evaluation process.​</p>
-      <button class="btn btn-green mt-3" [routerLink]="'/'+RoutesEnum.CARBONE">Calculate Your Carbon Emissions</button>
-    </div>
-    <div class="col-md-6 d-none d-md-block">
+    <div class="col-md-6 d-none d-md-block slide-in-left">
       <div class="image-wrapper">
-        <img src="assets/img/ph4.svg" class="img-fluid w-100" alt="Carbon Emission">
+        <img
+          src="assets/img/ph3.svg"
+          class="img-fluid w-100"
+          alt="ESG Performance Assessment"
+          loading="lazy"
+        />
+        <div class="accent-circle accent-circle-1"></div>
+      </div>
+    </div>
+    <div
+      class="col-md-6 text-md-left d-none d-md-block content-box slide-in-right"
+    >
+      <div class="section-title">
+        <i class="fas fa-chart-line"></i>
+        ESG Criteria
+      </div>
+      <h2 class="section-heading">ESG Performance Assessment</h2>
+      <p class="section-paragraph">
+        We provide an comprehensive analysis of your ESG approach, highlighting
+        your strengths and areas for improvement, along with a personalized
+        roadmap to enhance your ESG position and drive sustainable growth.
+      </p>
+      <button class="btn btn-green" [routerLink]="'/' + RoutesEnum.ESG">
+        <i class="fas fa-calculator"></i>
+        Calculate Your ESG Performance
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Enhanced Carbon Section -->
+<div class="container my-5 service-section" [@fadeInAnimation]>
+  <div class="row align-items-center">
+    <!-- Mobile order -->
+    <div class="col-12 d-md-none text-center content-box fade-in-up">
+      <div class="section-title">
+        <i class="fas fa-leaf"></i>
+        Carbon Emission
+      </div>
+      <h2 class="section-heading">Managing Your Carbon Emissions</h2>
+      <p class="section-paragraph">
+        We offer a comprehensive carbon footprint calculation tool that
+        simplifies evaluating your activity's environmental impact through an
+        intuitive questionnaire, making the assessment process efficient and
+        actionable.
+      </p>
+      <button
+        class="btn btn-green w-100"
+        [routerLink]="'/' + RoutesEnum.CARBONE"
+      >
+        <i class="fas fa-leaf"></i>
+        Calculate Your Carbon Emissions
+      </button>
+    </div>
+    <div class="col-12 d-md-none fade-in-up">
+      <div class="image-wrapper">
+        <img
+          src="assets/img/ph4.svg"
+          class="img-fluid w-100"
+          alt="Carbon Emission Management"
+          loading="lazy"
+        />
+      </div>
+    </div>
+
+    <!-- Desktop order -->
+    <div class="col-md-6 d-none d-md-block content-box slide-in-left">
+      <div class="section-title">
+        <i class="fas fa-leaf"></i>
+        Carbon Emission
+      </div>
+      <h2 class="section-heading">Managing Your Carbon Emissions</h2>
+      <p class="section-paragraph">
+        We offer a comprehensive carbon footprint calculation tool that
+        simplifies evaluating your activity's environmental impact through an
+        intuitive questionnaire, making the assessment process efficient and
+        actionable.
+      </p>
+      <button class="btn btn-green" [routerLink]="'/' + RoutesEnum.CARBONE">
+        <i class="fas fa-leaf"></i>
+        Calculate Your Carbon Emissions
+      </button>
+    </div>
+    <div class="col-md-6 d-none d-md-block slide-in-right">
+      <div class="image-wrapper">
+        <img
+          src="assets/img/ph4.svg"
+          class="img-fluid w-100"
+          alt="Carbon Emission Management"
+          loading="lazy"
+        />
         <div class="accent-circle accent-circle-2"></div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Section 4 - Green Projects -->
-<div class="container my-5 service-section">
+<!-- Enhanced Green Projects Section -->
+<div class="container my-5 service-section" [@fadeInAnimation]>
   <div class="row align-items-center">
     <!-- Mobile order -->
-    <div class="col-12 d-md-none text-center content-box">
-      <div class="section-title">• PROJECT OBJECTIVES •</div>
-      <h2 class="section-heading">Potential of green projects</h2>
-      <div class="section-paragraph">Our platform offers ecological project leaders an assessment of the CO2 absorption/reduction potential of their green initiatives.</div>
-      <button class="btn btn-green mt-3 w-100" [routerLink]="'/'+RoutesEnum.PORTEUR">Calculate your carbon reductions</button>
+    <div class="col-12 d-md-none text-center content-box fade-in-up">
+      <div class="section-title">
+        <i class="fas fa-seedling"></i>
+        Project Objectives
+      </div>
+      <h2 class="section-heading">Potential of Green Projects</h2>
+      <p class="section-paragraph">
+        Our platform offers ecological project leaders a comprehensive
+        assessment of the CO₂ absorption and reduction potential of their green
+        initiatives, enabling data-driven decision making for maximum
+        environmental impact.
+      </p>
+      <button
+        class="btn btn-green w-100"
+        [routerLink]="'/' + RoutesEnum.PORTEUR"
+      >
+        <i class="fas fa-seedling"></i>
+        Calculate Your Carbon Reductions
+      </button>
     </div>
-    <div class="col-12 d-md-none">
+    <div class="col-12 d-md-none fade-in-up">
       <div class="image-wrapper">
-        <img src="assets/img/ph5.svg" class="img-fluid w-100" alt="Green Projects">
+        <img
+          src="assets/img/ph5.svg"
+          class="img-fluid w-100"
+          alt="Green Projects Assessment"
+          loading="lazy"
+        />
       </div>
     </div>
 
     <!-- Desktop order -->
-    <div class="col-md-6 d-none d-md-block">
+    <div class="col-md-6 d-none d-md-block slide-in-left">
       <div class="image-wrapper">
-        <img src="assets/img/ph5.svg" class="img-fluid w-100" alt="Green Projects">
+        <img
+          src="assets/img/ph5.svg"
+          class="img-fluid w-100"
+          alt="Green Projects Assessment"
+          loading="lazy"
+        />
         <div class="accent-circle accent-circle-3"></div>
       </div>
     </div>
-    <div class="col-md-6 d-none d-md-block content-box">
-      <div class="section-title">• PROJECT OBJECTIVES •</div>
-      <h2 class="section-heading">Potential of green projects</h2>
-      <div class="section-paragraph">Our platform offers ecological project leaders an assessment of the CO2 absorption/reduction potential of their green initiatives.</div>
-      <button class="btn btn-green mt-3" [routerLink]="'/'+RoutesEnum.PORTEUR">Calculate your carbon reductions</button>
+    <div class="col-md-6 d-none d-md-block content-box slide-in-right">
+      <div class="section-title">
+        <i class="fas fa-seedling"></i>
+        Project Objectives
+      </div>
+      <h2 class="section-heading">Potential of Green Projects</h2>
+      <p class="section-paragraph">
+        Our platform offers ecological project leaders a comprehensive
+        assessment of the CO₂ absorption and reduction potential of their green
+        initiatives, enabling data-driven decision making for maximum
+        environmental impact.
+      </p>
+      <button class="btn btn-green" [routerLink]="'/' + RoutesEnum.PORTEUR">
+        <i class="fas fa-seedling"></i>
+        Calculate Your Carbon Reductions
+      </button>
     </div>
   </div>
 </div>
 
-<!-- Section 5 - Marketplace with CTA Inside -->
-<div class="container-fluid bg-light-green py-5">
-  <div class="container-fluid px-4" style="width: 90%;">
+<!-- Enhanced Marketplace Section -->
+<div class="container-fluid bg-light-green py-5" [@fadeInAnimation]>
+  <div class="container-fluid px-4" style="width: 90%">
     <div class="row justify-content-center">
       <div class="col-12">
-        <div class="marketplace-container">
+        <div class="marketplace-container fade-in-up">
           <div class="mb-4 text-center">
-
-            <div class="section-title center">• Sustainable Projects Marketplace •</div>
-            <div class="marketplace-header">Explore the Carbon Credits Marketplace</div>
-            <div class="marketplace-text">
-              If you are looking to offset your carbon emissions by purchasing carbon credits, or if you wish to submit a sustainable project to sell your carbon credits on a voluntary pan-African market, you have come to the right place.
+            <div class="section-title center">
+              <i class="fas fa-store"></i>
+              Sustainable Projects Marketplace
             </div>
+            <h2 class="marketplace-header">
+              Explore the Carbon Credits Marketplace
+            </h2>
+            <p class="marketplace-text">
+              Whether you're looking to offset your carbon emissions by
+              purchasing verified carbon credits, or you wish to submit a
+              sustainable project to sell your carbon credits on our voluntary
+              pan-African market, you've found the perfect platform to make a
+              meaningful environmental impact.
+            </p>
           </div>
 
-          <!-- Carousel Section with 90% Width -->
-          <div class="carousel-container">
+          <!-- Enhanced Carousel Section -->
+          <div class="carousel-container fade-in-up">
             <app-projects-carousel></app-projects-carousel>
           </div>
-          <div class="text-center mt-4">
-            <button [routerLink]="'/'+RoutesEnum.MARKETPLACE" class="btn btn-primary-green explore-button">
-              <span  >Explore all the green projects</span>
+
+          <div class="text-center mt-4 fade-in-up">
+            <button
+              [routerLink]="'/' + RoutesEnum.MARKETPLACE"
+              class="btn btn-primary-green explore-button"
+            >
+              <i class="fas fa-globe"></i>
+              <span class="explore-button-text"
+                >Explore All Green Projects</span
+              >
             </button>
           </div>
         </div>

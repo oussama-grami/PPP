@@ -1,183 +1,252 @@
-<div class="container">
-  <!-- TODO: ch9awlkom na7iwha back puisque zeyda -->
-  <div class="col-12 mt-3">
-    <app-back-button />
-  </div>
-  <div class="nav default-font">
-    <span>Cart</span>
-    <span>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-      >
-        <path
-          d="M9 18L15 12L9 6"
-          stroke="black"
-          stroke-width="1.5"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        />
-      </svg>
-    </span>
-    <span class="grey-color">General informations</span>
-    <span>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-      >
-        <path
-          d="M9 18L15 12L9 6"
-          stroke="#999999"
-          stroke-width="1.5"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        />
-      </svg>
-    </span>
-    <span class="grey-color">Payment</span>
+<!-- Remove container class and make it full width -->
+<div>
+  <!-- Enhanced Breadcrumb Navigation -->
+  <nav class="checkout-breadcrumb" aria-label="Checkout Progress">
+    <div class="breadcrumb-item active">
+      <span>Cart</span>
+    </div>
+    <svg
+      class="breadcrumb-arrow"
+      xmlns="http://www.w3.org/2000/svg"
+      width="20"
+      height="20"
+      viewBox="0 0 24 24"
+      fill="none"
+    >
+      <path
+        d="M9 18L15 12L9 6"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+    <div class="breadcrumb-item inactive">
+      <span>General Information</span>
+    </div>
+    <svg
+      class="breadcrumb-arrow"
+      xmlns="http://www.w3.org/2000/svg"
+      width="20"
+      height="20"
+      viewBox="0 0 24 24"
+      fill="none"
+    >
+      <path
+        d="M9 18L15 12L9 6"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+    <div class="breadcrumb-item inactive">
+      <span>Payment</span>
+    </div>
+  </nav>
+
+  <!-- Elegant Cart Header -->
+  <div class="cart-header">
+    <div class="cart-header-row">
+      <h2 class="cart-header-title">Project Details</h2>
+      <h2 class="cart-header-title">Quantity</h2>
+      <h2 class="cart-header-title">Total Price</h2>
+    </div>
   </div>
 
-  <div class="row checkout-table">
-    <div class="col-12 col-md-6 header-text">Project name</div>
-    <div class="col-6 col-md-3 header-text">Tons/CO2</div>
-    <div class="col-6 col-md-3 header-text">Price</div>
-  </div>
-  <div class="separator" style="margin-top: 14px"></div>
-  <div
-    *ngFor="let item of cartItems; let i = index"
-    class="row align-items-center mb-3"
-  >
-    <div class="col-10 col-md-6">
-      <div class="row align-items-center justify-content-between">
-        <div class="col-4 col-md-2">
-          <div class="modal-photo">
-            <img
-              style="width: 100%"
-              [src]="environment.apiUrl+item.url" alt="" />
+  <!-- Cart Items Container -->
+  <div class="cart-items-container">
+    <div
+      *ngFor="let item of cartItems; let i = index"
+      class="cart-item"
+      [class.removing]="item.removing"
+    >
+      <div class="cart-item-grid">
+        <!-- Product Section -->
+        <div class="product-section">
+          <div class="product-image-wrapper">
+            <div class="product-image">
+              <img
+                [src]="environment.apiUrl + item.url"
+                [alt]="item.name"
+                loading="lazy"
+              />
+            </div>
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">{{ item.name }}</h3>
+            <div class="product-price">
+              {{ +item.cost | number : "1.2-2" }}$ per tCO2e
+            </div>
           </div>
         </div>
-        <div class="col-7 col-md-9 mt-3 mt-md-0">
-          <div class="project-name">{{ item.name }}</div>
-          <div class="project-name-details">
-            {{ +item.cost | number : "1.2-2" }}$
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-6 col-md-3 mt-3 mt-md-0">
-      <div class="d-flex justify-content-center">
-        <span class="project-price">
-          <span (click)="decreaseQuantity(i)" class="pointer">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="12"
-              height="2"
-              viewBox="0 0 12 2"
-              fill="none"
+
+        <!-- Quantity Section -->
+        <div class="quantity-section">
+          <div class="quantity-controls">
+            <button
+              class="quantity-btn"
+              (click)="decreaseQuantity(i)"
+              [disabled]="item.quantity <= 1"
+              aria-label="Decrease quantity"
             >
-              <path d="M11.5 2H0.5V0H11.5V2Z" fill="#014131" />
-            </svg>
-          </span>
-          <span class="project-price-text">{{ item.quantity }} tCO2e</span>
-          <span (click)="increaseQuantity(i)" class="pointer">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="2"
+                viewBox="0 0 16 2"
+                fill="none"
+              >
+                <path d="M15 2H1V0H15V2Z" fill="currentColor" />
+              </svg>
+            </button>
+
+            <div class="quantity-display">{{ item.quantity }} tCO2e</div>
+
+            <button
+              class="quantity-btn"
+              (click)="increaseQuantity(i)"
+              aria-label="Increase quantity"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="none"
+              >
+                <path
+                  d="M15 8.85714H8.85714V15H7.14286V8.85714H1V7.14286H7.14286V1H8.85714V7.14286H15V8.85714Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Price and Actions Section -->
+        <div class="price-actions-section">
+          <div class="item-total-price">
+            ${{ item.quantity * +item.cost | number : "1.2-2" }}
+          </div>
+
+          <button
+            class="delete-action"
+            (click)="removeItem(i)"
+            aria-label="Remove item from cart"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="13"
-              height="12"
-              viewBox="0 0 13 12"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
               fill="none"
             >
               <path
-                d="M12.5 6.85714H7.35714V12H5.64286V6.85714H0.5V5.14286H5.64286V0H7.35714V5.14286H12.5V6.85714Z"
-                fill="#014131"
+                d="M6.28564 8.57141L7.2484 18.199C7.35064 19.2214 8.21097 20 9.23848 20H14.7614C15.7889 20 16.6492 19.2214 16.7515 18.199L17.7142 8.57141"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M13.5 15.5V10.5"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+              />
+              <path
+                d="M10.5 15.5V10.5"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+              />
+              <path
+                d="M4.57129 6.28571H9.14272M9.14272 6.28571L9.52478 4.75746C9.63607 4.3123 10.0361 4 10.4949 4H13.5048C13.9637 4 14.3636 4.3123 14.4749 4.75746L14.857 6.28571M9.14272 6.28571H14.857M14.857 6.28571H19.4284"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
               />
             </svg>
-          </span>
-        </span>
+          </button>
+        </div>
       </div>
     </div>
-    <div class="col-6 col-md-3 mt-3 mt-md-0">
-      <div class="d-flex justify-content-between align-items-center">
-        <span class="header-text">
-          ${{ item.quantity * +item.cost | number : "1.2-2" }}</span
-        >
-        <span (click)="removeItem(i)" class="pointer">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-          >
-            <path
-              d="M6.28564 8.57141L7.2484 18.199C7.35064 19.2214 8.21097 20 9.23848 20H14.7614C15.7889 20 16.6492 19.2214 16.7515 18.199L17.7142 8.57141"
-              stroke="black"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-            <path
-              d="M13.5 15.5V10.5"
-              stroke="black"
-              stroke-width="1.5"
-              stroke-linecap="round"
-            />
-            <path
-              d="M10.5 15.5V10.5"
-              stroke="black"
-              stroke-width="1.5"
-              stroke-linecap="round"
-            />
-            <path
-              d="M4.57129 6.28571H9.14272M9.14272 6.28571L9.52478 4.75746C9.63607 4.3123 10.0361 4 10.4949 4H13.5048C13.9637 4 14.3636 4.3123 14.4749 4.75746L14.857 6.28571M9.14272 6.28571H14.857M14.857 6.28571H19.4284"
-              stroke="black"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
-        </span>
+
+    <!-- Empty Cart State -->
+    <div *ngIf="cartItems.length === 0" class="empty-cart-state">
+      <div class="empty-cart-icon">🛒</div>
+      <h3>Your cart is empty</h3>
+      <p>Add some amazing carbon offset projects to get started!</p>
+      <button
+        class="action-btn btn-checkout"
+        [routerLink]="'/' + RoutesEnum.MARKETPLACE"
+      >
+        Browse Projects
+      </button>
+    </div>
+  </div>
+
+  <!-- Cart Summary -->
+  <div *ngIf="cartItems.length > 0" class="cart-summary">
+    <div class="cart-summary-content">
+      <div class="summary-label">Cart Total</div>
+      <div class="summary-amount">
+        ${{ getTotalPrice() | number : "1.2-2" }}
       </div>
     </div>
   </div>
-  <div class="separator" style="margin-top: 14px"></div>
-  <div class="total d-flex justify-content-between align-items-center">
-    <span class="project-name bigger-font">Total</span>
-    <span class="header-text bigger-font" style="float: right"
-      >{{ getTotalPrice() | number : "1.2-2" }}$</span
-    >
-  </div>
-  <div class="separator"></div>
-  <div
-    class="checkoutButtons d-flex justify-content-center align-items-center flex-column flex-md-row w-100 justify-content-md-between"
-  >
-    <!-- TODO: w hedhi zeda ? -->
-    <button (click)="history.back()" class="checkoutButton1 w-auto"><span class="checkoutButton1Text">Back</span>
+
+  <!-- Enhanced Action Buttons -->
+  <div class="checkout-actions">
+    <button class="action-btn btn-back" (click)="history.back()">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+      >
+        <path
+          d="M19.5 12H4.5M4.5 12L10.125 6M4.5 12L10.125 18"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+      <span>Back</span>
     </button>
+
     <button
+      class="action-btn btn-checkout"
       (click)="proceedToCheckout()"
-      class="checkoutButton2 w-auto"
       [disabled]="cartItems.length === 0"
-      [class.disabled]="cartItems.length === 0"
     >
-      <span class="checkoutButton2Text">Checkout</span>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+      >
+        <path
+          d="M5 12L10 17L20 7"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+      <span>Proceed to Checkout</span>
     </button>
   </div>
 
-  <!-- Elegant notification for empty cart -->
-  <div
-    *ngIf="showEmptyCartNotification"
-    class="empty-cart-notification animate-slide-down"
-    [@slideDown}
-  >
-    <div class="notification-content">
-      <div class="notification-icon">
+  <!-- Beautiful Empty Cart Notification -->
+  <div *ngIf="showEmptyCartNotification" class="empty-cart-toast">
+    <div class="toast-content">
+      <div class="toast-icon">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -187,18 +256,24 @@
         >
           <path
             d="M12 9V14M12 17.5V17.51M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z"
-            stroke="#F59E0B"
+            stroke="currentColor"
             stroke-width="2"
             stroke-linecap="round"
             stroke-linejoin="round"
           />
         </svg>
       </div>
-      <div class="notification-text">
-        <h4>Cart is Empty</h4>
-        <p>Please add items to your cart before proceeding to checkout.</p>
+      <div class="toast-text">
+        <h4 class="toast-title">Cart is Empty</h4>
+        <p class="toast-message">
+          Please add items to your cart before proceeding to checkout.
+        </p>
       </div>
-      <button class="notification-close" (click)="dismissNotification()">
+      <button
+        class="toast-close"
+        (click)="dismissNotification()"
+        aria-label="Dismiss notification"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="18"

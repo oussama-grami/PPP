@@ -1,148 +1,161 @@
-<!-- HTML -->
-<div class="col-12 mt-3">
-  <app-back-button [url]="'/' + RoutesEnum.MARKETPLACE" [text]="'Go Back To Projects'" ></app-back-button>
+<!-- Back Button -->
+<div class="back-button-container">
+  <app-back-button
+    [url]="'/' + RoutesEnum.MARKETPLACE"
+    [text]="'Back to Projects'"
+  ></app-back-button>
 </div>
 
-<div class="hero-container">
-  <div class="container-img"
-       [ngStyle]="{'background-image': 'url(' + environment.apiUrl +project.mapUrl +' )'}">
-    <div class="backgroundText">
-      <div class="countryDetails">
-        <!--<span class="flag">
-          <svg xmlns="http://www.w3.org/2000/svg" width="26" height="18" viewBox="0 0 26 18" fill="none">
-            <g clip-path="url(#clip0_206_5230)">
-               <path d="M0 0.5H26V17.5002H0V0.5Z" fill="#D80027"/>
-              <path d="M13 13.781C15.6924 13.781 17.875 11.6404 17.875 8.99976C17.875 6.35915 15.6924 4.21851 13 4.21851C10.3076 4.21851 8.125 6.35915 8.125 8.99976C8.125 11.6404 10.3076 13.781 13 13.781Z" fill="white"/>
-              <path d="M13.6005 7.17188L14.4369 8.30219L15.7914 7.87143L14.9537 9.0008L15.79 10.1311L14.4359 9.69877L13.5983 10.8281L13.5991 9.43162L12.2451 8.99921L13.5997 8.5685L13.6005 7.17188Z" fill="#D80027"/>
-              <path d="M14.1079 11.8252C12.5169 11.8252 11.2273 10.5603 11.2273 8.99992C11.2273 7.43954 12.5169 6.17465 14.1079 6.17465C14.604 6.17465 15.0707 6.29767 15.4783 6.51427C14.839 5.90117 13.9648 5.52271 13 5.52271C11.042 5.52271 9.45453 7.07955 9.45453 8.99997C9.45453 10.9204 11.042 12.4772 13 12.4772C13.9648 12.4772 14.839 12.0988 15.4783 11.4857C15.0707 11.7022 14.604 11.8252 14.1079 11.8252Z" fill="#D80027"/>
-            </g>
-            <defs>
-              <clipPath id="clip0_206_5230">
-                <rect width="26" height="17" fill="white" transform="translate(0 0.5)"/>
-              </clipPath>
-            </defs>
-          </svg>
-        </span> -->
-       <!-- <span class="flag"><img [src]="project.flag"></span>-->
-       <!-- <span class="countryName">{{ project.country }}</span>-->
+<!-- Hero Section -->
+<div class="hero-section">
+  <div
+    class="hero-image-container"
+    [ngStyle]="{
+      'background-image': 'url(' + environment.apiUrl + project.url + ')',
+    }"
+  >
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="project-badge">
+        <i class="fas fa-leaf"></i>
+        <span>{{ project.category }}</span>
       </div>
-      <div class="projectName">{{ project.name }}</div>
-      <div class="projectCategory">{{ project.category }}</div>
+      <h1 class="project-title">{{ project.name }}</h1>
+      <div class="project-location">
+        <i class="fas fa-map-marker-alt"></i>
+        <span>{{ project.country }}</span>
+      </div>
     </div>
   </div>
 </div>
 
-<div class="container content">
-  <div class="row">
-    <div class="col-lg-8 col-md-12">
-      <div class="description-content">
-        <!--<div class="section-title">Description</div>-->
+<!-- Main Content -->
+<div class="main-content">
+  <div class="container">
+    <div class="content-grid">
+      <!-- Left Column - Details -->
+      <div class="details-column">
+        <!-- Project Overview -->
+        <section class="content-section">
+          <h2 class="section-title">
+            <i class="fas fa-info-circle"></i>
+            Project Overview
+          </h2>
+          <div
+            class="project-description"
+            [innerHTML]="project.description | formatDescription"
+          ></div>
+        </section>
 
-        <div class="category">
-          <!--<span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="27" height="18" viewBox="0 0 27 18" fill="none">
-              <g clip-path="url(#clip0_206_5244)">
-                <path d="M0 0H27V18.0002H0V0Z" fill="#D80027"/>
-                <path d="M13.5 14.0623C16.2959 14.0623 18.5625 11.7957 18.5625 8.99976C18.5625 6.20382 16.2959 3.93726 13.5 3.93726C10.7041 3.93726 8.4375 6.20382 8.4375 8.99976C8.4375 11.7957 10.7041 14.0623 13.5 14.0623Z" fill="white"/>
-                <path d="M14.1237 7.06421L14.9923 8.26102L16.3988 7.80492L15.5289 9.00072L16.3974 10.1975L14.9913 9.73974L14.1214 10.9355L14.1223 9.45688L12.7162 8.99904L14.1228 8.54299L14.1237 7.06421Z" fill="#D80027"/>
-                <path d="M14.6506 11.9913C12.9984 11.9913 11.6591 10.652 11.6591 8.99987C11.6591 7.34771 12.9984 6.00841 14.6506 6.00841C15.1658 6.00841 15.6504 6.13866 16.0736 6.36801C15.4098 5.71884 14.5019 5.31812 13.5 5.31812C11.4667 5.31812 9.81824 6.96654 9.81824 8.99993C9.81824 11.0333 11.4667 12.6817 13.5 12.6817C14.5019 12.6817 15.4098 12.281 16.0736 11.6319C15.6504 11.8611 15.1658 11.9913 14.6506 11.9913Z" fill="#D80027"/>
-              </g>
-              <defs>
-                <clipPath id="clip0_206_5244">
-                  <rect width="27" height="18" fill="white"/>
-                </clipPath>
-              </defs>
-            </svg>
-            <span>
-              <img class="vertical-separator" src="/assets/img/lineSeparator.png" alt="" height="14px">
-            </span>
-            <span id="categoryText">{{ project.typeOfProject }}</span>
-          </span>-->
-        <!--   <span style="margin: 10px" class="flag"><img [src]="project.flag"></span> -->
-         <!-- <span id="categoryText">{{ project.typeOfProject }}</span>-->
-        </div>
+        <!-- Project Details -->
+        <section class="content-section">
+          <h2 class="section-title">
+            <i class="fas fa-clipboard-list"></i>
+            Project Details
+          </h2>
+          <div class="details-grid">
+            <div class="details-content">
+              <div class="detail-card">
+                <div class="detail-item">
+                  <span class="detail-label">
+                    <i class="fas fa-globe-americas"></i>
+                    Country
+                  </span>
+                  <span class="detail-value">{{ project.country }}</span>
+                </div>
 
-        <div class="project-title">Tree planting in Testour</div>
+                <div class="detail-item">
+                  <span class="detail-label">
+                    <i class="fas fa-project-diagram"></i>
+                    Project Type
+                  </span>
+                  <span class="detail-value">{{ project.typeOfProject }}</span>
+                </div>
 
-        <div class="description">
-          <div class="description-paragraph"
-               [innerHTML]="project.description | formatDescription">
-          </div>
-        </div>
-
-        <div class="section-title details-title">Details</div>
-
-        <div class="row details-section">
-          <div class="col-lg-7 col-md-12">
-            <div class="details-list">
-              <div class="detail-row">
-                <span class="detail-title">Country</span>
-                <span class="detail-value">{{ project.country }}</span>
+                <div class="detail-item">
+                  <span class="detail-label">
+                    <i class="fas fa-cog"></i>
+                    Mechanism
+                  </span>
+                  <span class="detail-value">{{ project.mechanism }}</span>
+                </div>
               </div>
-              <div class="divider"></div>
+            </div>
 
-              <div class="detail-row">
-                <span class="detail-title">Company</span>
-                <span class="detail-value">1976 International</span>
-              </div>
-              <div class="divider"></div>
-
-              <div class="detail-row">
-                <span class="detail-title">Company identifier</span>
-                <span class="detail-value id-value">1696707C (to the Tunisan National companies register)</span>
-              </div>
-              <div class="divider"></div>
-
-              <div class="detail-row">
-                <span class="detail-title">Type of project</span>
-                <span class="detail-value">{{ project.category }}</span>
-              </div>
-              <div class="divider"></div>
-
-              <div class="detail-row">
-                <span class="detail-title">Mechanism</span>
-                <span class="detail-value">{{ project.mechanism }}</span>
+            <div class="map-section">
+              <div class="map-container">
+                <img
+                  [src]="environment.apiUrl + project.mapUrl"
+                  alt="Project Location Map"
+                  class="map-image"
+                />
+                <div class="map-overlay">
+                  <i class="fas fa-map-marked-alt"></i>
+                  <span>Project Location</span>
+                </div>
               </div>
             </div>
           </div>
+        </section>
 
-          <div class="col-lg-5 col-md-12">
-            <div class="map-container">
-              <img
-                [src]="environment.apiUrl +
-              project.mapUrl" alt="map"
-                class="map-image">
+        <!-- Sustainable Development Goals -->
+        <section class="content-section">
+          <h2 class="section-title">
+            <i class="fas fa-bullseye"></i>
+            Sustainable Development Goals
+          </h2>
+          <div class="sdg-container">
+            <div
+              class="sdg-item"
+              *ngFor="
+                let imageUrl of [
+                  project.imageUrl1,
+                  project.imageUrl2,
+                  project.imageUrl3,
+                  project.imageUrl4
+                ];
+                let i = index
+              "
+            >
+              <div class="sdg-image-wrapper">
+                <img
+                  [src]="imageUrl"
+                  [alt]="'SDG Goal ' + (i + 1)"
+                  class="sdg-image"
+                />
+                <div class="sdg-hover-overlay">
+                  <span>Goal {{ i + 1 }}</span>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-
-
-        <div class="section-title">Sustainable development objectives</div>
-        <div class="objectives-container">
-          <div class="objective-item">
-            <img [src]="project.imageUrl1" alt="objectif1" class="small-image">
-          </div>
-          <div class="objective-item">
-            <img [src]="project.imageUrl2" alt="objectif2" class="small-image">
-          </div>
-          <div class="objective-item">
-            <img [src]="project.imageUrl3" alt="objectif3" class="small-image">
-          </div>
-          <div class="objective-item">
-            <img [src]="project.imageUrl4" alt="objectif4" class="small-image">
-          </div>
-        </div>
-
+        </section>
       </div>
-    </div>
 
-    <div class="col-lg-4 col-md-12" *ngIf="projectId!=undefined">
-      <h1>Buy Now </h1>
-      <app-price-details [projectId]="projectId"></app-price-details>
-    </div>
-    <div class="section-title">Explore other projects</div>
-    <div class="row mt-5">
-      <app-projects-carousel></app-projects-carousel>
+      <!-- Right Column - Purchase -->
+      <div class="purchase-column" *ngIf="projectId != undefined">
+        <div class="purchase-card">
+          <div class="purchase-header">
+            <h3>
+              <i class="fas fa-shopping-cart"></i>
+              Invest in This Project
+            </h3>
+            <p>Support environmental sustainability</p>
+          </div>
+          <app-price-details [projectId]="projectId"></app-price-details>
+        </div>
+      </div>
     </div>
   </div>
 </div>
+
+<!-- Related Projects -->
+<section class="related-projects-section">
+  <div class="container">
+    <h2 class="section-title centered">
+      <i class="fas fa-seedling"></i>
+      Explore Other Projects
+    </h2>
+    <app-projects-carousel></app-projects-carousel>
+  </div>
+</section>

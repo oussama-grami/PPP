@@ -195,8 +195,7 @@ import { ProgressBarComponent } from './Components/progress-bar/progress-bar.com
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {
-}
+export class AppModule {}
 
 export function initializeKeycloak(keycloak: KeycloakService) {
   return () =>
