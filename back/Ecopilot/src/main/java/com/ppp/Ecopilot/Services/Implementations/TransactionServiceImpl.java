@@ -50,10 +50,10 @@ public class TransactionServiceImpl extends AbstractCrudService<Transaction,Long
         }
 
         List<ChartLine> chartLines = chartLineRepo.findAllById(dto.getChartLineIds());
-        System.out.println("Chartline size is "+chartLines.size()+" and dto size is "+dto.getChartLineIds().size());
+        /*System.out.println("Chartline size is "+chartLines.size()+" and dto size is "+dto.getChartLineIds().size());
         if (chartLines.size() != dto.getChartLineIds().size()) {
             throw new EntityNotFoundException("One or more ChartLine IDs do not exist.");
-        }
+        }*/
 
         if (dto.getTotalPrice() == null || dto.getTotalPrice() == 0) {
             throw new IllegalArgumentException("Total price cannot be null or empty.");

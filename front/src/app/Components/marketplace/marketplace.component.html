@@ -305,14 +305,14 @@
         </div>
 
         <!-- Projects Grid -->
-        <div class="row g-3" *ngIf="!isLoading && projects.length > 0">
+        <div class="row g-2 g-md-3" *ngIf="!isLoading && projects.length > 0">
           <div
             *ngFor="let project of displayedProjects"
-            class="col-6 col-sm-4 col-md-6 col-lg-4"
+            class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-4 d-flex"
           >
             <app-project-ad
               [project]="project"
-              class="products"
+              class="products w-100"
             ></app-project-ad>
           </div>
         </div>

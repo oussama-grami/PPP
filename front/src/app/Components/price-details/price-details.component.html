@@ -1,53 +1,175 @@
-<div class="cart-details fixed-on-right">
-  <span id="priceText">Price</span><span class="pricePerCo">{{ project?.cost }}<span id="cart-text">/tCO2e</span></span>
-  <div class="separator"></div>
-  <div class="montant">
-    <span class="montant-text">Amount</span>
-    <span class="montant-input mt-2">
+<div class="pricing-card">
+  <!-- Header Section -->
+  <div class="pricing-header">
+    <div class="price-display">
+      <span class="price-label">Price per ton</span>
+      <div class="price-value">
+        <span class="currency" [attr.aria-label]="'Price in dollars'">$</span>
+        <span class="amount" [attr.aria-label]="'Amount: ' + project?.cost">{{
+          project?.cost
+        }}</span>
+        <span class="unit" [attr.aria-label]="'Per ton CO2 equivalent'"
+          >/tCO₂e</span
+        >
+      </div>
+    </div>
+    <div
+      class="carbon-badge"
+      tabindex="0"
+      role="button"
+      aria-label="Carbon Offset Project"
+    >
+      <i class="fas fa-leaf" aria-hidden="true"></i>
+      <span>Carbon Offset</span>
+      <i
+        class="fas fa-certificate"
+        style="margin-left: 0.25rem; font-size: 0.8rem"
+        aria-hidden="true"
+      ></i>
+    </div>
+  </div>
 
-<div (click)="onDecreaseQuantity()" class="quantity-button decrease">
-  -
-</div>
-<span class="montant-input-text">{{ quantity }} tCO2e</span>
-<div (click)="onIncreaseQuantity()" class="quantity-button increase">
-  +
-</div>
-    </span>
+  <!-- Quantity Section -->
+  <div class="quantity-section">
+    <div class="section-header">
+      <i class="fas fa-calculator"></i>
+      <span>Select Amount</span>
+    </div>
+    <div class="quantity-controls">
+      <button
+        (click)="onDecreaseQuantity()"
+        (touchstart)="onDecreaseQuantity()"
+        class="quantity-btn decrease"
+        [disabled]="quantity <= 0"
+        [attr.aria-label]="'Decrease quantity'"
+        [attr.aria-disabled]="quantity <= 0"
+        type="button"
+      >
+        <i class="fas fa-minus" aria-hidden="true"></i>
+      </button>
+      <div class="quantity-display">
+        <span class="quantity-value">{{ quantity }}</span>
+        <span class="quantity-unit">tCO₂e</span>
+      </div>
+      <button
+        (click)="onIncreaseQuantity()"
+        (touchstart)="onIncreaseQuantity()"
+        class="quantity-btn increase"
+        [disabled]="quantity >= (project?.availableStock || 0)"
+        [attr.aria-label]="'Increase quantity'"
+        [attr.aria-disabled]="quantity >= (project?.availableStock || 0)"
+        type="button"
+      >
+        <i class="fas fa-plus" aria-hidden="true"></i>
+      </button>
+    </div>
   </div>
-  <div class="separator"></div>
-  <div class="stock">
-    <span class="stock-text">Available stock</span>
-    <span class="stock-number">{{ project?.availableStock }}</span>
-  </div>
-  <div class="separator"></div>
-  <div class="achat">
-    <span class="achat-text">Minimum purchase</span>
-    <span class="achat-quantity">{{ project?.minimumPurchase }} tons</span>
-  </div>
-  <div class="separator"></div>
-  <button
-    (click)="onBuyNow()"
-    [disabled]="quantity==0" class="button-achat mt-3" [ngClass]="{ 'enabled-button-1': quantity > 0 }"><span
-    class="button-achat-text">Buy now</span><span
-    class="button-achat-amount">{{ Number(project?.cost) * quantity }}</span></button>
-  <div class="mt-3">
-    <button
-      [disabled]="quantity == 0"
-      (click)="onAddingToCart()"
-      class="button-panier"
-      [ngClass]="{ 'enabled-button': quantity > 0 }">
-  <span class="button-panier-text" data-bs-toggle="modal">
-    Add to cart
-  </span>
-      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-        <path d="M14 8H8V14H6V8H0V6H6V0H8V6H14V8Z" fill="#014131"/>
-      </svg>
-    </button>
-    <br>
-    <div *ngIf="successMessage" class="alert alert-success" role="alert">
-      Item added to cart successfully!
+
+  <!-- Project Details -->
+  <div class="project-details">
+    <div class="detail-item">
+      <div class="detail-label">
+        <i class="fas fa-warehouse"></i>
+        Available Stock
+      </div>
+      <div class="detail-value success">{{ project?.availableStock }} tons</div>
     </div>
 
+    <div class="detail-item">
+      <div class="detail-label">
+        <i class="fas fa-shopping-basket"></i>
+        Minimum Purchase
+      </div>
+      <div class="detail-value">{{ project?.minimumPurchase }} tons</div>
+    </div>
+  </div>
+
+  <!-- Cost Summary -->
+  <div class="cost-summary">
+    <div class="summary-header">
+      <i class="fas fa-receipt"></i>
+      <span>Order Summary</span>
+    </div>
+    <div class="cost-breakdown">
+      <div class="cost-item">
+        <span>{{ quantity }} tCO₂e × ${{ project?.cost }}</span>
+        <span class="cost-value"
+          >${{ (Number(project?.cost) * quantity).toFixed(2) }}</span
+        >
+      </div>
+      <div class="total-cost">
+        <span>Total Amount</span>
+        <span class="total-value"
+          >${{ (Number(project?.cost) * quantity).toFixed(2) }}</span
+        >
+      </div>
+    </div>
+  </div>
+
+  <!-- Action Buttons -->
+  <div class="action-buttons">
+    <button
+      (click)="onBuyNow()"
+      class="btn-primary buy-now-btn"
+      [disabled]="quantity === 0"
+      [ngClass]="{ enabled: quantity > 0 }"
+      [attr.aria-label]="
+        'Buy now for ' +
+        (Number(project?.cost) * quantity).toFixed(2) +
+        ' dollars'
+      "
+      [attr.aria-disabled]="quantity === 0"
+      type="button"
+    >
+      <i class="fas fa-bolt" aria-hidden="true"></i>
+      <span>Buy Now</span>
+      <span
+        class="button-amount"
+        *ngIf="quantity > 0"
+        [attr.aria-label]="'Total amount'"
+      >
+        ${{ (Number(project?.cost) * quantity).toFixed(2) }}
+      </span>
+    </button>
+
+    <button
+      [disabled]="quantity === 0"
+      (click)="onAddingToCart()"
+      class="btn-secondary add-cart-btn"
+      [ngClass]="{ enabled: quantity > 0 }"
+      [attr.aria-label]="'Add to cart'"
+      type="button"
+    >
+      <i class="fas fa-shopping-cart"></i>
+      <span>Add to Cart</span>
+    </button>
+  </div>
+
+  <!-- Success Message -->
+  <div *ngIf="successMessage" class="success-alert" role="alert">
+    <div class="alert-content">
+      <i class="fas fa-check-circle"></i>
+      <span>Item added to cart successfully!</span>
+    </div>
+  </div>
+
+  <!-- Environmental Impact -->
+  <div class="impact-preview" *ngIf="quantity > 0">
+    <div class="impact-header">
+      <i class="fas fa-seedling"></i>
+      <span>Your Environmental Impact</span>
+    </div>
+    <div class="impact-stats">
+      <div class="impact-stat">
+        <i class="fas fa-tree"></i>
+        <span class="impact-value">{{ getTreesEquivalent(quantity) }}</span>
+        <span class="impact-label">Trees Equivalent</span>
+      </div>
+      <div class="impact-stat">
+        <i class="fas fa-car"></i>
+        <span class="impact-value">{{ getMilesDriven(quantity) }}</span>
+        <span class="impact-label">Miles Driven</span>
+      </div>
+    </div>
   </div>
 </div>
-

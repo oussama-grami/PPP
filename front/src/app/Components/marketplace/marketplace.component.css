@@ -528,20 +528,18 @@
   min-height: 300px;
 }
 
-.no-projects-message {
-  text-align: center;
-  padding: 2.5rem 1.5rem;
-  color: #6b7280;
-  font-size: 1rem;
-  font-weight: 500;
-  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
-  border-radius: 10px;
-  border: 2px dashed rgba(34, 197, 94, 0.25);
+.projects-container .row {
+  margin: -0.5rem;
+}
+
+.projects-container .row > [class*="col-"] {
+  padding: 0.5rem;
 }
 
 .products {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  margin-bottom: 1.5rem;
+  margin-bottom: 0;
+  height: 100%;
 }
 
 .products:hover {
@@ -590,6 +588,17 @@
 }
 
 /* Responsive Design */
+@media (min-width: 576px) and (max-width: 991.98px) {
+  .projects-container .row > [class*="col-"] {
+    padding: 0.75rem;
+    max-width: 100%;
+  }
+  
+  .projects-container .row {
+    margin: -0.75rem;
+  }
+}
+
 @media (max-width: 768px) {
   .backgroundText {
     padding: 1.5rem;
@@ -634,6 +643,14 @@
   .projects-container {
     padding: 1rem;
     margin: 1rem 0;
+  }
+  
+  .projects-container .row {
+    margin: -0.375rem;
+  }
+  
+  .projects-container .row > [class*="col-"] {
+    padding: 0.375rem;
   }
   
   .paysFilter {
@@ -757,29 +774,52 @@
   }
 }
 
-@keyframes fadeInUp {
+@keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(30px);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
   }
 }
 
-.fade-in-up {
-  animation: fadeInUp 0.6s ease-out;
+.fade-enter {
+  animation: fadeIn 0.5s ease-out forwards;
 }
 
-/* Smooth transitions for filter items */
-.filterItems > * {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+.fade-leave {
+  animation: fadeOut 0.5s ease-out forwards;
 }
 
-/* Add closing animation class */
-.paysFilter.closing {
-  animation: slideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
+
+/* Custom Scrollbar for Webkit Browsers */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(34, 197, 94, 0.6);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(34, 197, 94, 0.8);
+}
+
+/* End of File */
 
 

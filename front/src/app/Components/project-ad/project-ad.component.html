@@ -1,15 +1,28 @@
 <div class="projectContainer">
-  <img [src]="environment.apiUrl+project?.url" alt="project">
+  <img [src]="environment.apiUrl + project?.url" alt="project" loading="lazy" />
+
   <div class="projectTitle">
-   <!-- <span id="flag"><img [src]="project?.flag" alt=""></span> -->
-    <span><img class="separator" src="/assets/img/lineSeparator.png" alt="" height="14px"></span>
-    <span id="category">{{ project?.category }}</span>
-    <span id="price" style="float: right;">{{ project?.cost }}$/tCo2e</span>
+    <div class="category-price-container">
+      <div style="display: flex; align-items: center">
+        <span class="separator"></span>
+        <span id="category">
+          <i class="fas fa-leaf" style="font-size: 0.6rem"></i>
+          {{ project?.category }}
+        </span>
+      </div>
+      <span id="price">{{ project?.cost }}$/tCO₂e</span>
+    </div>
   </div>
+
   <div class="projectDescription">
     {{ project?.name }}
   </div>
-  <button [routerLink]="'/'+RoutesEnum.PROJECT_DETAILS + '/'+project?.id" class="projectButton">
-    <span class="projectButtonText">See more</span>
+
+  <button
+    [routerLink]="'/' + RoutesEnum.PROJECT_DETAILS + '/' + project?.id"
+    class="projectButton"
+  >
+    <i class="fas fa-eye" style="font-size: 0.75rem"></i>
+    <span class="projectButtonText">View Details</span>
   </button>
 </div>
