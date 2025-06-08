@@ -48,9 +48,6 @@ import {
   HistoricalCarbonForecastComponent
 } from './Components/HistoricalCarbonForecast/HistoricalCarbonForecast.component';
 import {TransactionsComponent} from "./Components/transactions/transactions.component";
-import {
-  InstructionsListComponent
-} from "./Components/instructions-list/instructions-list.component";
 import {RoutesEnum} from "./enumerations/Routes.enum";
 import {EventFormComponent} from "./Components/event-form/event-form.component";
 import {
@@ -66,49 +63,132 @@ import {
 } from "./Components/carbon-history/carbon-history.component";
 
 import {EsgHistoryComponent} from './Components/esg-history/esg-history.component';
-import {CompanyOwnerFormComponent} from "./Components/company-owner-form/company-owner-form.component";
-import {RegisterCompanyOwnerComponent} from "./Components/register-company-owner/register-company-owner.component";
+import {
+  CompanyOwnerFormComponent
+} from "./Components/company-owner-form/company-owner-form.component";
+import {
+  RegisterCompanyOwnerComponent
+} from "./Components/register-company-owner/register-company-owner.component";
 import {AuthGuard} from "./auth.guard";
 import {ErrorPageComponent} from "./error-page/error-page.component";
 import {RedirectGuard} from "./guards/redirect.guard";
-import {ProgressBarComponent} from "./Components/progress-bar/progress-bar.component";
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
-  {path: RoutesEnum.PORTEUR, component: PorteurComponent , canActivate: [AuthGuard , RedirectGuard]},
-  {path: RoutesEnum.ENERGIE, component: EnergieComponent, canActivate: [AuthGuard , RedirectGuard]},
-  {path: RoutesEnum.CARBURANT, component: CarburantComponent, canActivate: [AuthGuard , RedirectGuard]},
-  {path: RoutesEnum.AERIENS, component: AeriensComponent, canActivate: [AuthGuard , RedirectGuard]},
-  {path: RoutesEnum.FRET, component: FretComponent, canActivate: [AuthGuard , RedirectGuard]},
-  {path: RoutesEnum.CONSOMMABLES, component: ConsommablesComponent, canActivate: [AuthGuard , RedirectGuard]},
-  {path: RoutesEnum.IMMOBILISATIONS, component: ImmobilisationsComponent, canActivate: [AuthGuard , RedirectGuard]},
-  {path: RoutesEnum.PANNEAUX, component: PanneauxComponent},
-  {path: `${RoutesEnum.RESULTAT_CARBONE}/:id`, component: ResultatCarboneComponent,  canActivate: [AuthGuard , RedirectGuard]},
+  {path: RoutesEnum.PORTEUR, component: PorteurComponent},
+  {
+    path: RoutesEnum.ENERGIE,
+    component: EnergieComponent,
+    canActivate: [AuthGuard, RedirectGuard]
+  },
+  {
+    path: RoutesEnum.CARBURANT,
+    component: CarburantComponent,
+    canActivate: [AuthGuard, RedirectGuard]
+  },
+  {
+    path: RoutesEnum.AERIENS,
+    component: AeriensComponent,
+    canActivate: [AuthGuard, RedirectGuard]
+  },
+  {
+    path: RoutesEnum.FRET,
+    component: FretComponent,
+    canActivate: [AuthGuard, RedirectGuard]
+  },
+  {
+    path: RoutesEnum.CONSOMMABLES,
+    component: ConsommablesComponent,
+    canActivate: [AuthGuard, RedirectGuard]
+  },
+  {
+    path: RoutesEnum.IMMOBILISATIONS,
+    component: ImmobilisationsComponent,
+    canActivate: [AuthGuard, RedirectGuard]
+  },
+  {path: RoutesEnum.PANNEAUX, component: PanneauxComponent, canActivate: [AuthGuard]},
+  {
+    path: `${RoutesEnum.RESULTAT_CARBONE}/:id`,
+    component: ResultatCarboneComponent,
+    canActivate: [AuthGuard, RedirectGuard]
+  },
   {path: RoutesEnum.ESG, component: EsgComponent},
-  {path: RoutesEnum.CARBONE, component: CarboneComponent,canActivate: [AuthGuard , RedirectGuard]},
-  {path: RoutesEnum.RESULT_ESG, component: ResultESGComponent,canActivate: [AuthGuard , RedirectGuard]},
-  {path: RoutesEnum.ARBORICULTURE, component: ArboricultureComponent},
-  {path: RoutesEnum.MARKETPLACE, component: MarketplaceComponent},
-  {path: RoutesEnum.PROJECT_DETAILS + '/:id', component: ProjectDetailsComponent},
-  {path: RoutesEnum.CHECKOUT, component: CheckoutComponent},
-  {path: RoutesEnum.PAYMENT, component: PaymentComponent},
-  {path: RoutesEnum.NEW_PROJECT, component: ProjectOwnerComponent},
+  {
+    path: RoutesEnum.CARBONE,
+    component: CarboneComponent
+  },
+  {
+    path: RoutesEnum.RESULT_ESG,
+    component: ResultESGComponent,
+    canActivate: [AuthGuard, RedirectGuard]
+  },
+  {
+    path: RoutesEnum.ARBORICULTURE,
+    component: ArboricultureComponent,
+    canActivate: [AuthGuard]
+  },
+  /*{path: 'piste', component: PisteComponent},*/
+  {
+    path: RoutesEnum.MARKETPLACE,
+    component: MarketplaceComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: RoutesEnum.PROJECT_DETAILS + '/:id',
+    component: ProjectDetailsComponent,
+    canActivate: [AuthGuard, RedirectGuard]
+  },
+  {
+    path: RoutesEnum.CHECKOUT,
+    component: CheckoutComponent,
+    canActivate: [AuthGuard, RedirectGuard]
+  },
+  {
+    path: RoutesEnum.PAYMENT,
+    component: PaymentComponent,
+    canActivate: [AuthGuard, RedirectGuard]
+  },
+  {
+    path: RoutesEnum.NEW_PROJECT,
+    component: ProjectOwnerComponent,
+    canActivate: [AuthGuard, RedirectGuard]
+  },
   {path: 'resources', component: ResourcesComponent},
-  {path: RoutesEnum.INFO, component: InfoComponent, canActivate: [AuthGuard , RedirectGuard]},
+  {
+    path: RoutesEnum.INFO,
+    component: InfoComponent,
+    canActivate: [AuthGuard, RedirectGuard]
+  },
   {path: RoutesEnum.MARKETPLACE_BLOG, component: MarketplaceBlogComponent},
   {path: RoutesEnum.CARBON_OFFSET_BLOG, component: CarbonOffsetBlogComponent},
   {path: RoutesEnum.CARBON_CO_BENEFITS_BLOG, component: CarbonCoBenifitsBlogComponent},
-  {path: RoutesEnum.ROADMAP, component: RoadmapComponent,canActivate :[AuthGuard, RedirectGuard]},
-  {path:RoutesEnum.ESG_ASSESSMENT+'/:questionId?', component: EsgAssessmentComponent,canActivate: [AuthGuard , RedirectGuard]},
+  {
+    path: RoutesEnum.ROADMAP,
+    component: RoadmapComponent,
+    canActivate: [AuthGuard, RedirectGuard]
+  },
+  {
+    path: RoutesEnum.ESG_ASSESSMENT + '/:questionId?',
+    component: EsgAssessmentComponent,
+    canActivate: [AuthGuard, RedirectGuard]
+  },
   {path: RoutesEnum.PREDICTION_INFO, component: CarbonPredictionInfoComponent},
-  {path: RoutesEnum.HISTORICAL_CARBON_FORECAST, component: HistoricalCarbonForecastComponent,canActivate: [AuthGuard , RedirectGuard]},
+  {
+    path: RoutesEnum.HISTORICAL_CARBON_FORECAST,
+    component: HistoricalCarbonForecastComponent,
+    canActivate: [AuthGuard, RedirectGuard]
+  },
   {path: RoutesEnum.TRANSACTIONS, component: TransactionsComponent},
   {
     path: 'payment-confirmation',
     component: PaymentConfirmationComponent,
     canActivate: [AuthGuard]
   },
-  {path: RoutesEnum.ESG_HISTORY, component: EsgHistoryComponent,canActivate: [AuthGuard , RedirectGuard]},
+  {
+    path: RoutesEnum.ESG_HISTORY,
+    component: EsgHistoryComponent,
+    canActivate: [AuthGuard, RedirectGuard]
+  },
   /*{
     path: "test", component: InstructionsListComponent, data: {
       instructions: [
@@ -120,14 +200,35 @@ const routes: Routes = [
       title: 'Procédure de demande'
     }
   },*/
-  {path: RoutesEnum.EVENT_FORM, component: EventFormComponent, canActivate: [AuthGuard , RedirectGuard]},
-  {path: RoutesEnum.EVENT_FOOTPRINT, component: EventFootprintComponent, canActivate: [AuthGuard , RedirectGuard]},
-  {path: `${RoutesEnum.EVENT_RESULT}/:id`, component: EventResultComponent, canActivate: [AuthGuard , RedirectGuard]},
-  {path: RoutesEnum.EVENT_HISTORY, component: EventHistoryComponent,canActivate:[RedirectGuard]},
-  {path: RoutesEnum.CARBON_HISTORY, component: CarbonHistoryComponent,canActivate: [AuthGuard , RedirectGuard]},
-  {path: RoutesEnum.EVENT_FORM, component: EventFormComponent,canActivate: [AuthGuard , RedirectGuard]},
-  {path: RoutesEnum.EVENT_FOOTPRINT, component: EventFootprintComponent, canActivate: [AuthGuard , RedirectGuard]},
-  {path: RoutesEnum.COMPANY_OWNER_FORM, component: CompanyOwnerFormComponent,canActivate: [AuthGuard]},
+  {
+    path: RoutesEnum.EVENT_FORM,
+    component: EventFormComponent,
+    canActivate: [AuthGuard, RedirectGuard]
+  },
+  {
+    path: RoutesEnum.EVENT_FOOTPRINT,
+    component: EventFootprintComponent
+  },
+  {
+    path: `${RoutesEnum.EVENT_RESULT}/:id`,
+    component: EventResultComponent,
+    canActivate: [AuthGuard, RedirectGuard]
+  },
+  {
+    path: RoutesEnum.EVENT_HISTORY,
+    component: EventHistoryComponent,
+    canActivate: [RedirectGuard]
+  },
+  {
+    path: RoutesEnum.CARBON_HISTORY,
+    component: CarbonHistoryComponent,
+    canActivate: [AuthGuard, RedirectGuard]
+  },
+  {
+    path: RoutesEnum.COMPANY_OWNER_FORM,
+    component: CompanyOwnerFormComponent,
+    canActivate: [AuthGuard]
+  },
   {path: RoutesEnum.REGISTER_COMPANY_OWNER, component: RegisterCompanyOwnerComponent},
   {path: "**", component: ErrorPageComponent}
 ];
