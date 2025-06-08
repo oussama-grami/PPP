@@ -1,6 +1,6 @@
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:8087',
-  websiteUrl: 'http://localhost:4200/',
+  apiUrl: 'https://ecopilot-back.onrender.com',
+  websiteUrl: 'https://ecopilot-insat.onrender.com/',
   keycloakurl:'https://ecopilot-auth.onrender.com/'
 };
