@@ -3,7 +3,9 @@
     <!-- Left Info Panel -->
     <div class="col-lg-6 content-left">
       <div class="content-left-wrapper">
-        <img src="assets/img/Carburant.png" class="img-title" id="descriptionImage" alt="Fuel Icon"/>
+        <div class="progress-container">
+          <app-progress-bar [currentStep]="3" [totalSteps]="7"></app-progress-bar>
+        </div>
         <h2 id="descriptionTitle">Fuel Consumption</h2>
         <p id="descriptionText">
           Complete the fields to evaluate your company's fuel footprint.
@@ -12,71 +14,20 @@
     </div>
 
     <!-- Right Form Panel -->
-    <div class="col-lg-6 content-right" id="start">
+    <div class="col-lg-6 content-right">
       <div id="wizard_container">
-        <!-- Page Number Indicator -->
-        <div class="page-indicator">
-          <span class="current-page">3</span>/<span class="total-pages">7</span>
-        </div>
-
         <form [formGroup]="carburantForm" (ngSubmit)="onNext()" id="wrapped">
           <!-- Error Message Display -->
           <div *ngIf="errorMessage" class="alert alert-danger">
+            <i class="fas fa-exclamation-triangle"></i>
             {{ errorMessage }}
           </div>
 
           <div class="step card">
-            <h3 class="main_question">Fuel Consumption Form</h3>
-
-            <!-- Diesel Fuel Consumption -->
-            <div class="form-group">
-              <label for="dieselFuelConsumption" class="form-label">Diesel (Liters)</label>
-              <input type="number" formControlName="dieselFuelConsumption" class="form-control"
-                     id="dieselFuelConsumption" placeholder="Enter diesel consumption">
-              <small class="text-danger" *ngIf="carburantForm.get('dieselFuelConsumption')?.touched && carburantForm.get('dieselFuelConsumption')?.invalid">
-                Diesel consumption is required.
-              </small>
-            </div>
-
-            <!-- Gasoline Fuel Consumption -->
-            <div class="form-group">
-              <label for="gasolineFuelConsumption" class="form-label">Gasoline (Liters)</label>
-              <input type="number" formControlName="gasolineFuelConsumption" class="form-control"
-                     id="gasolineFuelConsumption" placeholder="Enter gasoline consumption">
-              <small class="text-danger" *ngIf="carburantForm.get('gasolineFuelConsumption')?.touched && carburantForm.get('gasolineFuelConsumption')?.invalid">
-                Gasoline consumption is required.
-              </small>
-            </div>
-
-            <!-- LPG Fuel Consumption -->
-            <div class="form-group">
-              <label for="lpgFuelConsumption" class="form-label">LPG (Liters)</label>
-              <input type="number" formControlName="lpgFuelConsumption" class="form-control"
-                     id="lpgFuelConsumption" placeholder="Enter LPG consumption">
-              <small class="text-danger" *ngIf="carburantForm.get('lpgFuelConsumption')?.touched && carburantForm.get('lpgFuelConsumption')?.invalid">
-                LPG consumption is required.
-              </small>
-            </div>
-
-            <!-- Vehicle Mileage -->
-            <div class="form-group">
-              <label for="vehicleMileage" class="form-label">Driven Distance (Km)</label>
-              <input type="number" formControlName="vehicleMileage" class="form-control"
-                     id="vehicleMileage" placeholder="Enter total driven distance">
-              <small class="text-danger" *ngIf="carburantForm.get('vehicleMileage')?.touched && carburantForm.get('vehicleMileage')?.invalid">
-                Driven distance is required.
-              </small>
-            </div>
-
-            <!-- Fuel Efficiency -->
-            <div class="form-group">
-              <label for="fuelEfficiency" class="form-label">Vehicle Fuel Efficiency (L/100Km)</label>
-              <input type="number" formControlName="fuelEfficiency" class="form-control"
-                     id="fuelEfficiency" placeholder="Enter vehicle fuel efficiency">
-              <small class="text-danger" *ngIf="carburantForm.get('fuelEfficiency')?.touched && carburantForm.get('fuelEfficiency')?.invalid">
-                Fuel efficiency is required.
-              </small>
-            </div>
+            <h3 class="main_question">
+              <i class="fas fa-gas-pump"></i>
+              Fuel Consumption Form
+            </h3>
 
             <!-- Fuel Type Selection -->
             <div class="form-group">
@@ -91,12 +42,80 @@
                 Please select a fuel type.
               </small>
             </div>
+
+            <div class="usage-section">
+              <h6 class="section-title">
+                <i class="fas fa-chart-bar"></i>
+                Fuel Consumption Details
+              </h6>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="dieselFuelConsumption" class="form-label">Diesel (Liters)</label>
+                    <input type="number" formControlName="dieselFuelConsumption" class="form-control"
+                           id="dieselFuelConsumption" placeholder="Enter diesel consumption">
+                    <small class="text-danger" *ngIf="carburantForm.get('dieselFuelConsumption')?.touched && carburantForm.get('dieselFuelConsumption')?.invalid">
+                      Diesel consumption is required.
+                    </small>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="gasolineFuelConsumption" class="form-label">Gasoline (Liters)</label>
+                    <input type="number" formControlName="gasolineFuelConsumption" class="form-control"
+                           id="gasolineFuelConsumption" placeholder="Enter gasoline consumption">
+                    <small class="text-danger" *ngIf="carburantForm.get('gasolineFuelConsumption')?.touched && carburantForm.get('gasolineFuelConsumption')?.invalid">
+                      Gasoline consumption is required.
+                    </small>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="lpgFuelConsumption" class="form-label">LPG (Liters)</label>
+                    <input type="number" formControlName="lpgFuelConsumption" class="form-control"
+                           id="lpgFuelConsumption" placeholder="Enter LPG consumption">
+                    <small class="text-danger" *ngIf="carburantForm.get('lpgFuelConsumption')?.touched && carburantForm.get('lpgFuelConsumption')?.invalid">
+                      LPG consumption is required.
+                    </small>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="vehicleMileage" class="form-label">Driven Distance (Km)</label>
+                    <input type="number" formControlName="vehicleMileage" class="form-control"
+                           id="vehicleMileage" placeholder="Enter total driven distance">
+                    <small class="text-danger" *ngIf="carburantForm.get('vehicleMileage')?.touched && carburantForm.get('vehicleMileage')?.invalid">
+                      Driven distance is required.
+                    </small>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="fuelEfficiency" class="form-label">Vehicle Fuel Efficiency (L/100Km)</label>
+                <input type="number" formControlName="fuelEfficiency" class="form-control"
+                       id="fuelEfficiency" placeholder="Enter vehicle fuel efficiency">
+                <small class="text-danger" *ngIf="carburantForm.get('fuelEfficiency')?.touched && carburantForm.get('fuelEfficiency')?.invalid">
+                  Fuel efficiency is required.
+                </small>
+              </div>
+            </div>
           </div>
 
           <!-- Navigation Buttons -->
           <div class="button-group">
-            <button type="button" name="backward" class="btnbackward" [routerLink]="'/' + RoutesEnum.ENERGIE">Back</button>
-            <button type="submit" name="forward" class="btnforward">Continue</button>
+            <button type="button" name="backward" class="btn-backward" [routerLink]="'/' + RoutesEnum.ENERGIE">
+              <i class="fas fa-arrow-left"></i>
+              Back
+            </button>
+            <button type="submit" name="forward" class="btn-forward">
+              Continue
+              <i class="fas fa-arrow-right"></i>
+            </button>
           </div>
         </form>
       </div>

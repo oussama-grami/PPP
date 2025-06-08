@@ -25,7 +25,6 @@ import {NavAcceuilComponent} from './Components/nav-acceuil/nav-acceuil.componen
 import {ESGdiagramComponent} from './Components/esgdiagram/esgdiagram.component';
 import {ArboricultureComponent} from './Components/arboriculture/arboriculture.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import {PisteComponent} from './Components/piste/piste.component';
 import {MarketplaceComponent} from './Components/marketplace/marketplace.component';
 import {FilterItemComponent} from './Components/filter-item/filter-item.component';
 import {ProjectAdComponent} from './Components/project-ad/project-ad.component';
@@ -101,6 +100,7 @@ import { ErrorPageComponent } from './error-page/error-page.component';
 import { RedirectGuard } from './guards/redirect.guard';
 import { RedirectService } from './services/redirect.service';
 import { BackButtonComponent } from './Components/back-button/back-button.component';
+import { ProgressBarComponent } from './Components/progress-bar/progress-bar.component';
 
 @NgModule({
   declarations: [
@@ -123,7 +123,6 @@ import { BackButtonComponent } from './Components/back-button/back-button.compon
     NavAcceuilComponent,
     ESGdiagramComponent,
     ArboricultureComponent,
-    PisteComponent,
     MarketplaceComponent,
     FilterItemComponent,
     ProjectAdComponent,
@@ -161,6 +160,7 @@ import { BackButtonComponent } from './Components/back-button/back-button.compon
     RegisterCompanyOwnerComponent,
     ErrorPageComponent,
     BackButtonComponent,
+    ProgressBarComponent,
   ],
   imports: [
     BrowserModule,

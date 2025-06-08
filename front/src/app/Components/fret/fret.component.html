@@ -3,8 +3,10 @@
     <!-- Left Info Panel -->
     <div class="col-lg-6 content-left">
       <div class="content-left-wrapper">
-        <img src="assets/img/FRET.png" class="img-title" id="descriptionImage" alt="Freight Icon"/>
-        <h2 id="descriptionTitle">Freight</h2>
+        <div class="progress-container">
+          <app-progress-bar [currentStep]="5" [totalSteps]="7"></app-progress-bar>
+        </div>
+        <h2 id="descriptionTitle">Freight Transportation</h2>
         <p id="descriptionText">
           Evaluate your air and sea freight emissions in just a few clicks!
         </p>
@@ -12,67 +14,94 @@
     </div>
 
     <!-- Right Form Panel -->
-    <div class="col-lg-6 content-right" id="start">
+    <div class="col-lg-6 content-right">
       <div id="wizard_container">
-        <!-- Page Number Indicator -->
-        <div class="page-indicator">
-          <span class="current-page">5</span>/<span class="total-pages">7</span>
-        </div>
-
         <form [formGroup]="fForm" (ngSubmit)="onNext()" id="wrapped">
           <!-- Error Message Display -->
           <div *ngIf="errorMessage" class="alert alert-danger">
+            <i class="fas fa-exclamation-triangle"></i>
             {{ errorMessage }}
           </div>
 
           <div class="step card">
-            <h3 class="main_question">Freight Transportation Form</h3>
+            <h3 class="main_question">
+              <i class="fas fa-shipping-fast"></i>
+              Freight Transportation Form
+            </h3>
 
-            <!-- Aerial Freight Long -->
-            <div class="form-group">
-              <label for="freightAirLong" class="form-label">Aerial Freight (Long-haul)</label>
-              <input type="number" class="form-control" formControlName="freightAirLong"
-                     id="freightAirLong" placeholder="Enter aerial long-haul freight volume">
-              <small class="text-danger" *ngIf="fForm.get('freightAirLong')?.touched && fForm.get('freightAirLong')?.invalid">
-                Aerial Freight (Long-haul) is required.
-              </small>
+            <!-- Aerial Freight Section -->
+            <div class="usage-section">
+              <h6 class="section-title">
+                <i class="fas fa-plane"></i>
+                Aerial Freight
+              </h6>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="freightAirLong" class="form-label">Long-haul (Tonnes)</label>
+                    <input type="number" class="form-control" formControlName="freightAirLong"
+                           id="freightAirLong" placeholder="Enter aerial long-haul freight volume">
+                    <small class="text-danger" *ngIf="fForm.get('freightAirLong')?.touched && fForm.get('freightAirLong')?.invalid">
+                      Aerial Freight (Long-haul) is required.
+                    </small>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="freightAirShort" class="form-label">Short-haul (Tonnes)</label>
+                    <input type="number" class="form-control" formControlName="freightAirShort"
+                           id="freightAirShort" placeholder="Enter aerial short-haul freight volume">
+                    <small class="text-danger" *ngIf="fForm.get('freightAirShort')?.touched && fForm.get('freightAirShort')?.invalid">
+                      Aerial Freight (Short-haul) is required.
+                    </small>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            <!-- Aerial Freight Short -->
-            <div class="form-group">
-              <label for="freightAirShort" class="form-label">Aerial Freight (Short-haul)</label>
-              <input type="number" class="form-control" formControlName="freightAirShort"
-                     id="freightAirShort" placeholder="Enter aerial short-haul freight volume">
-              <small class="text-danger" *ngIf="fForm.get('freightAirShort')?.touched && fForm.get('freightAirShort')?.invalid">
-                Aerial Freight (Short-haul) is required.
-              </small>
-            </div>
+            <!-- Maritime Freight Section -->
+            <div class="usage-section">
+              <h6 class="section-title">
+                <i class="fas fa-ship"></i>
+                Maritime Freight
+              </h6>
 
-            <!-- Maritime Freight Long -->
-            <div class="form-group">
-              <label for="freightSeaLong" class="form-label">Maritime Freight (Long-haul)</label>
-              <input type="number" class="form-control" formControlName="freightSeaLong"
-                     id="freightSeaLong" placeholder="Enter maritime long-haul freight volume">
-              <small class="text-danger" *ngIf="fForm.get('freightSeaLong')?.touched && fForm.get('freightSeaLong')?.invalid">
-                Maritime Freight (Long-haul) is required.
-              </small>
-            </div>
-
-            <!-- Maritime Freight Short -->
-            <div class="form-group">
-              <label for="freightSeaShort" class="form-label">Maritime Freight (Short-haul)</label>
-              <input type="number" class="form-control" formControlName="freightSeaShort"
-                     id="freightSeaShort" placeholder="Enter maritime short-haul freight volume">
-              <small class="text-danger" *ngIf="fForm.get('freightSeaShort')?.touched && fForm.get('freightSeaShort')?.invalid">
-                Maritime Freight (Short-haul) is required.
-              </small>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="freightSeaLong" class="form-label">Long-haul (Tonnes)</label>
+                    <input type="number" class="form-control" formControlName="freightSeaLong"
+                           id="freightSeaLong" placeholder="Enter maritime long-haul freight volume">
+                    <small class="text-danger" *ngIf="fForm.get('freightSeaLong')?.touched && fForm.get('freightSeaLong')?.invalid">
+                      Maritime Freight (Long-haul) is required.
+                    </small>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="freightSeaShort" class="form-label">Short-haul (Tonnes)</label>
+                    <input type="number" class="form-control" formControlName="freightSeaShort"
+                           id="freightSeaShort" placeholder="Enter maritime short-haul freight volume">
+                    <small class="text-danger" *ngIf="fForm.get('freightSeaShort')?.touched && fForm.get('freightSeaShort')?.invalid">
+                      Maritime Freight (Short-haul) is required.
+                    </small>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
           <!-- Navigation Buttons -->
           <div class="button-group">
-            <button type="button" name="backward" class="btnbackward" [routerLink]="'/' + RoutesEnum.AERIENS">Back</button>
-            <button type="submit" name="forward" class="btnforward">Continue</button>
+            <button type="button" name="backward" class="btn-backward" [routerLink]="'/' + RoutesEnum.AERIENS">
+              <i class="fas fa-arrow-left"></i>
+              Back
+            </button>
+            <button type="submit" name="forward" class="btn-forward">
+              Continue
+              <i class="fas fa-arrow-right"></i>
+            </button>
           </div>
         </form>
       </div>

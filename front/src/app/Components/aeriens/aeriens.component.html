@@ -3,7 +3,9 @@
     <!-- Left Info Panel -->
     <div class="col-lg-6 content-left">
       <div class="content-left-wrapper">
-        <img src="assets/img/aerienne.png" class="img-title" id="descriptionImage" alt="Air Travel Icon"/>
+        <div class="progress-container">
+          <app-progress-bar [currentStep]="4" [totalSteps]="7"></app-progress-bar>
+        </div>
         <h2 id="descriptionTitle">Business Air Travel</h2>
         <p id="descriptionText">
           Evaluate your employees' business air travel emissions.
@@ -12,21 +14,20 @@
     </div>
 
     <!-- Right Form Panel -->
-    <div class="col-lg-6 content-right" id="start">
+    <div class="col-lg-6 content-right">
       <div id="wizard_container">
-        <!-- Page Number Indicator -->
-        <div class="page-indicator">
-          <span class="current-page">4</span>/<span class="total-pages">7</span>
-        </div>
-
         <form [formGroup]="depForm" (ngSubmit)="onNext()" id="wrapped">
           <!-- Error Message Display -->
           <div *ngIf="errorMessage" class="alert alert-danger">
+            <i class="fas fa-exclamation-triangle"></i>
             {{ errorMessage }}
           </div>
 
-          <div class="step card">
-            <h3 class="main_question">Business Air Travel Form</h3>
+          <div class="step">
+            <h3 class="main_question">
+              <i class="fas fa-plane"></i>
+              Business Air Travel Form
+            </h3>
 
             <!-- Short-haul Trips -->
             <div class="form-group">
@@ -61,8 +62,14 @@
 
           <!-- Navigation Buttons -->
           <div class="button-group">
-            <button type="button" name="backward" class="btnbackward" [routerLink]="'/' + RoutesEnum.CARBURANT">Back</button>
-            <button type="submit" name="forward" class="btnforward">Continue</button>
+            <button type="button" name="backward" class="btn-backward" [routerLink]="'/' + RoutesEnum.CARBURANT">
+              <i class="fas fa-arrow-left"></i>
+              Back
+            </button>
+            <button type="submit" name="forward" class="btn-forward">
+              Continue
+              <i class="fas fa-arrow-right"></i>
+            </button>
           </div>
         </form>
       </div>

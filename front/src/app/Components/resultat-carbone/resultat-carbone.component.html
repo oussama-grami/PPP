@@ -104,12 +104,11 @@
           </div>
         </div>
       </div>
-
       <!-- Action Buttons -->
       <div class="action-section">
 
-        <button class="action-button secondary-btn" [routerLink]="['/']+RoutesEnum.PISTE">
-          <i class="fas fa-leaf"></i> Take Actions
+        <button class="action-button secondary-btn" [routerLink]="['/']+RoutesEnum.MARKETPLACE">
+          <i class="fas fa-leaf"></i> Offset Your Emissions
         </button>
       </div>
 
@@ -121,16 +120,6 @@
         <app-instruction-list></app-instruction-list>
       </div>
 
-      <!-- Explore Marketplace Section -->
-      <div class="marketplace-section">
-        <div id="marketplace-header">Explore our Carbon Offset Projects Marketplace</div>
-        <app-projects-carousel></app-projects-carousel>
-        <div class="marketplace-button-container">
-          <button class="explore-button" [routerLink]="['/']+RoutesEnum.MARKETPLACE">
-            <div class="explore-button-text">Explore all the green projects</div>
-          </button>
-        </div>
-      </div>
     </div>
   </div>
 </div>
