@@ -1,4 +1,4 @@
-<div class="container responsive-container" >
+<div class="container responsive-container">
   <app-InfoSection
     [title]="'Are You Leading a Sustainable Project and Want to Assess Its Carbon Potential?'"
     [paragraphs]="[
@@ -17,25 +17,27 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-6 mb-4">
-        <div class="project-border" routerLink="/pan">
+        <div class="project-border" [routerLink]="'/'+RoutesEnum.PANNEAUX">
           <div class="project-header">
             <div class="project-title">Solar Photovoltaic Projects</div>
             <img src="/assets/img/porteur-1.svg" alt="" class="project-img">
           </div>
           <div class="project-description">
-            Assess the annual energy capture potential of your solar photovoltaic panel project.
+            Assess the annual energy capture potential of your solar photovoltaic panel
+            project.
           </div>
         </div>
       </div>
 
       <div class="col-md-6 mb-4">
-        <div class="project-border" routerLink="/arb">
+        <div class="project-border" [routerLink]="'/'+RoutesEnum.ARBORICULTURE">
           <div class="project-header">
             <div class="project-title">Trees Plantation</div>
             <img src="/assets/img/porteur-2.svg" alt="" class="project-img">
           </div>
           <div class="project-description">
-            Assess the annual carbon sequestration potential of your arboricultural or forestry project.
+            Assess the annual carbon sequestration potential of your arboricultural or
+            forestry project.
           </div>
         </div>
       </div>
