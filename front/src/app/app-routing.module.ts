@@ -153,7 +153,7 @@ const routes: Routes = [
     component: ProjectOwnerComponent,
     canActivate: [AuthGuard, RedirectGuard]
   },
-  {path: 'resources', component: ResourcesComponent},
+  {path: RoutesEnum.RESOURCES, component: ResourcesComponent},
   {
     path: RoutesEnum.INFO,
     component: InfoComponent,
@@ -180,7 +180,7 @@ const routes: Routes = [
   },
   {path: RoutesEnum.TRANSACTIONS, component: TransactionsComponent},
   {
-    path: 'payment-confirmation',
+    path: RoutesEnum.PaYMENT_CONFIRMATION,
     component: PaymentConfirmationComponent,
     canActivate: [AuthGuard]
   },

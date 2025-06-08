@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {FileDownloadService} from "../../Service/file-download-service.service";
 import {environment} from 'src/environments/environment'
+import {RoutesEnum} from "../../enumerations/Routes.enum";
 
 
 @Component({
@@ -50,4 +51,5 @@ export class CarbonCoBenifitsBlogComponent {
     this.fileDownloadService.downloadFile(url, filename);
   }
 
+  protected readonly RoutesEnum = RoutesEnum;
 }

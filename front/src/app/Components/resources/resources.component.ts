@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {RoutesEnum} from "../../enumerations/Routes.enum";
 
 @Component({
   selector: 'app-resources',
@@ -34,4 +35,6 @@ export class ResourcesComponent {
       imageContainer.classList.add('loaded', 'error');
     }
   }
+
+  protected readonly RoutesEnum = RoutesEnum;
 }

@@ -39,7 +39,7 @@ export class TransactionsComponent implements OnInit {
           this.currentPage = data.number + 1; // car data.number commence à 0
         },
         error: (error) => {
-          console.error('Erreur pagination:', error);
+          console.error('Error pagination:', error);
         },
       });
   }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { FileDownloadService } from '../../Service/file-download-service.service';
+import {RoutesEnum} from "../../enumerations/Routes.enum";
 
 @Component({
   selector: 'app-marketplace-blog',
@@ -137,4 +138,6 @@ export class MarketplaceBlogComponent {
       </html>
     `;
   }
+
+  protected readonly RoutesEnum = RoutesEnum;
 }

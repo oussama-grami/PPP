@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {environment} from "../../../environments/environment";
 import {FileDownloadService} from "../../Service/file-download-service.service";
+import {RoutesEnum} from "../../enumerations/Routes.enum";
 
 @Component({
   selector: 'app-carbon-offset-blog',
@@ -48,4 +49,6 @@ export class CarbonOffsetBlogComponent {
     const filename = 'offset.pdf';
     this.fileDownloadService.downloadFile(url, filename);
   }
+
+  protected readonly RoutesEnum = RoutesEnum;
 }

@@ -37,6 +37,7 @@ export enum RoutesEnum {
   ESG_HISTORY = 'esg-history',
   COMPANY_OWNER_FORM = 'company-owner',
   REGISTER_COMPANY_OWNER= 'register-company-owner',
+  PaYMENT_CONFIRMATION= 'payment-confirmation',
 
 }
 
