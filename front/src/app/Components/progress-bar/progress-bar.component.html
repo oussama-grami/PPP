@@ -1,0 +1,35 @@
+<div class="progress-container">
+  <!-- Main Progress Bar -->
+  <div class="progress-track">
+    <div class="progress-fill" [style.width.%]="getProgressPercentage()"></div>
+  </div>
+
+  <!-- Step Indicators -->
+  <div class="step-indicators">
+    <div
+      *ngFor="let step of steps; let i = index"
+      class="step-indicator"
+      [class.completed]="i + 1 <= currentStep"
+      [class.active]="i + 1 === currentStep">
+
+      <div class="step-circle">
+        <div class="step-inner">
+          <i *ngIf="i + 1 < currentStep" class="check-icon">✓</i>
+          <span *ngIf="i + 1 >= currentStep" class="step-number">{{ i + 1 }}</span>
+        </div>
+      </div>
+
+      <span class="step-label" *ngIf="showLabels">{{ step }}</span>
+    </div>
+  </div>
+
+  <!-- Progress Dots (Alternative minimal style) -->
+  <div class="progress-dots" *ngIf="dotStyle">
+    <div
+      *ngFor="let step of steps; let i = index"
+      class="progress-dot"
+      [class.completed]="i + 1 <= currentStep"
+      [class.active]="i + 1 === currentStep">
+    </div>
+  </div>
+</div>
