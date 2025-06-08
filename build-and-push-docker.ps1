@@ -72,7 +72,7 @@ $frontDockerfilePath = "$PSScriptRoot\front\Dockerfile"
 $backDockerfilePath = "$PSScriptRoot\back\Ecopilot\Dockerfile"
 
 # Define image names
-$frontImageName = "azizdh091/ecopilot-front:latest"
+$frontImageName = "azizdh091/ecopilot:latest"
 $backImageName = "azizdh091/ecopilot-back:latest"
 
 # Build and push front-end Docker image
