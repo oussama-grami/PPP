@@ -1,41 +1,28 @@
 <!-- Enhanced Banner Section -->
-<div style="overflow: hidden">
-  <div
-    style="position: relative"
-    [ngStyle]="{
-      'background-image': 'url(/assets/Ecopilot/pan1.png)',
-      'background-size': 'cover',
-      'background-repeat': 'no-repeat',
-      'background-position': 'center center',
-      width: '100%',
-      height: '100%'
-    }"
-  >
-    <div
-      [ngStyle]="{
-        'background-image': 'url(/assets/img/pan1.png)',
-        'background-size': 'cover',
-        'background-repeat': 'no-repeat',
-        'background-position': 'center center',
-        width: '100%',
-        'min-height': '60vh'
-      }"
-      class="banner-container"
-      [@fadeInAnimation]
-    >
+<!-- Banner Section - Keeping Original Structure -->
+<div style="overflow: auto;">
+  <div style="position: relative;"
+       [ngStyle]="{'background-image': 'url(/assets/Ecopilot/pan1.png)', 'background-size': 'cover', 'background-repeat': 'no-repeat', 'background-position': 'top center', 'width': '100%', 'height': '100%'}">
+    <div [ngStyle]="{'background-image': 'url(/assets/img/pan1.png)', 'background-size': 'cover', 'background-repeat': 'no-repeat', 'background-position': 'top center', 'width': '100%', 'height': '50vh'}" class="banner-container">
       <div class="banner-content">
-        <h1 class="headline-text" [@staggerFadeIn]>
-          Measure your carbon footprint and take action for a
-          <span class="highlight-text">sustainable future</span>
-        </h1>
-        <p class="subheading-text" [@staggerFadeIn]>
-          EcoPilot is your partner in the fight against climate change and the
-          promotion of responsible practices
-        </p>
+        <p class="headline-text">Measure your carbon footprint and take action for a more sustainable future</p>
+        <p class="subheading-text">EcoPilot is your partner in the fight against climate change and the promotion of responsible practices</p>
       </div>
     </div>
   </div>
 </div>
+
+<!-- Section 1 - Keeping Original Structure -->
+<div class="container my-5">
+  <div class="row align-items-center">
+    <!-- Mobile order -->
+    <div class="col-12 d-md-none text-center content-box">
+      <p class="section-heading">Are you looking for a <span class="highlight-text">simple, easy, and reliable solution</span> to engage your company in the sustainability journey?</p>
+      <p class="section-paragraph">Our platform is designed to help you make relevant decisions regarding sustainability and implement concrete measures to reduce your environmental impact and strengthen your ESG performance.</p>
+    </div>
+    <div class="col-12 d-md-none">
+      <img src="/assets/img/home_photo.jpg" class="img-fluid w-100 rounded shadow-img" alt="EcoPilot">
+    </div>
 
 <!-- Enhanced Introduction Section -->
 <div class="container my-5" [@fadeInAnimation]>
