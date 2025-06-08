@@ -5,6 +5,7 @@ import {RoutesEnum} from "../../enumerations/Routes.enum";
 import {PaymentService} from "../../Service/payment.service";
 import {Router} from "@angular/router";
 import {firstValueFrom} from "rxjs";
+import {ProjectsService} from "../../Service/projects.service";
 
 enum PaymentState {
   IDLE = 'idle',
@@ -43,6 +44,7 @@ export class PaymentComponent implements OnInit {
   constructor(
     private cartService: CartService,
     private paymentService: PaymentService,
+    private projectService:ProjectsService,
     private router: Router
   ) {}
 
@@ -142,6 +144,8 @@ export class PaymentComponent implements OnInit {
           console.log(Response);
 
           this.paymentState = PaymentState.SUCCESS;
+          //decrease amount in project really
+          this.decreaseProjectsAmount();
           this.cartService.clearCart();
 
           setTimeout(() => {
@@ -191,5 +195,22 @@ export class PaymentComponent implements OnInit {
       this.totalQuantity+=this.cartItems[i].quantity;
     }
     return this.totalQuantity;
+  }
+
+  decreaseProjectsAmount(): void {
+  console.log("in decreasing front")
+    this.cartItems.forEach(item => {
+      if (item.id && item.quantity > 0) {
+        console.log("project id", item.projectID);
+          this.projectService.decreaseAmount(item.projectID,item.quantity).subscribe(
+            response => {
+              console.log(`Montant du projet ${item.id} diminué de ${item.quantity}`);
+            },
+            error => {
+              console.error(`Erreur lors de la diminution du montant du projet ${item.id}:`, error);
+            }
+          );
+      }
+    });
   }
 }

@@ -81,4 +81,22 @@ public class ProjectServiceImpl extends AbstractCrudService<Project, Long> imple
 
     }
 
+    @Override
+    public void decreaseAmount(Long projectId, int amountToDecrease) {
+
+        System.out.println("Decreasing amount for project ID: " + projectId + " by " + amountToDecrease);
+
+        Project project = projectRepo.findById(projectId)
+                .orElseThrow(() -> new IllegalArgumentException("Project not found"));
+        System.out.println("before decrease"+ project.getAvailableStock());
+        if (project.getAvailableStock()< amountToDecrease) {
+            throw new IllegalArgumentException("Insufficient amount to decrease");
+        }
+
+        project.setAvailableStock(project.getAvailableStock() - amountToDecrease);
+        projectRepo.save(project);
+        System.out.println("Amount decreased successfully. New available stock: " + project.getAvailableStock());
+    }
+
+
 }

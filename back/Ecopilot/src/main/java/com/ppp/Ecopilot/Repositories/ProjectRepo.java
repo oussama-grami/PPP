@@ -14,5 +14,4 @@ public interface ProjectRepo extends JpaRepository<Project, Long>, JpaSpecificat
     Project findByCost(int cost);
     Project findByCountry(String country);
     List<Project> findByCostLessThan(int costMax);
-
 }

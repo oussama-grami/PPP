@@ -67,7 +67,8 @@ export class PriceDetailsComponent implements OnInit, OnChanges {
       availableStock: this.project!.availableStock,
       cost: this.project!.cost,
       url: this.project!.url,
-      quantity: this.quantity
+      quantity: this.quantity,
+      projectID:this.project!.id
     })
     this.quantity = 0;
   }

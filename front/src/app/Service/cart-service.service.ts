@@ -4,6 +4,7 @@ import { Project } from '../Models/project';
 type PartialProject = Partial<Project> &
   Pick<Project, 'id' | 'name' | 'availableStock' | 'cost' | 'url'> & {
     quantity: number;
+    projectID: number;
   };
 
 @Injectable({

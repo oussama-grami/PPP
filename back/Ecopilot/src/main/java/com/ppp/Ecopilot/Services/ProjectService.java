@@ -17,4 +17,5 @@ public interface ProjectService extends CRUDService<Project, Long> {
     List<Project> findByCostLessThan(int costMax);
     List<Project> searchProjects(String name, Boolean certified, String category, String mechanism, Integer cost, String country);
     public Page<Project> getPaginatedProjects(int skip, int limit);
+    void decreaseAmount(Long projectId, int amountToDecrease);
 }

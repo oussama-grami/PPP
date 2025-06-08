@@ -93,4 +93,13 @@ public class ProjectController {
     }
 
 
+    @PostMapping("/decrease/{id}")
+    public ResponseEntity<ProjectDTO> decreaseStock(@PathVariable Long id, @RequestParam int quantity) {
+        System.out.println("in controller");
+        projectService.decreaseAmount(id, quantity);
+        return ResponseEntity.ok(projectMapper.toDto(projectService.findById(id)));
+    }
+
+
+
 }

@@ -55,4 +55,9 @@ export class ProjectsService {
 
     return this.http.get<any>(`${this.baseUrl}/paginated`, { params });
   }
+  decreaseAmount(id: number, quantity: number): Observable<Project> {
+
+    const params = new HttpParams().set('quantity', quantity.toString());
+    return this.http.post<Project>(`${this.baseUrl}/decrease/${id}`, null, { params });
+  }
 }
