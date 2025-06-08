@@ -11,7 +11,7 @@
   <div
     class="hero-image-container"
     [ngStyle]="{
-      'background-image': 'url(' + environment.apiUrl + project.mapUrl + ')'
+      'background-image': 'url(' + environment.apiUrl + project.url + ')',
     }"
   >
     <div class="hero-overlay"></div>
@@ -66,26 +66,10 @@
 
                 <div class="detail-item">
                   <span class="detail-label">
-                    <i class="fas fa-building"></i>
-                    Company
-                  </span>
-                  <span class="detail-value">1976 International</span>
-                </div>
-
-                <div class="detail-item">
-                  <span class="detail-label">
-                    <i class="fas fa-id-card"></i>
-                    Company ID
-                  </span>
-                  <span class="detail-value">1696707C</span>
-                </div>
-
-                <div class="detail-item">
-                  <span class="detail-label">
                     <i class="fas fa-project-diagram"></i>
                     Project Type
                   </span>
-                  <span class="detail-value">{{ project.category }}</span>
+                  <span class="detail-value">{{ project.typeOfProject }}</span>
                 </div>
 
                 <div class="detail-item">

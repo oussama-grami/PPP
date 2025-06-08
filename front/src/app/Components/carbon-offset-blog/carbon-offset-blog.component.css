@@ -92,7 +92,7 @@
     font-weight: 700;
     line-height: 1.2;
     margin-top: 24px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
     letter-spacing: -0.02em;
 }
 
@@ -111,13 +111,14 @@
     font-weight: 600;
     line-height: normal;
     margin-right: 0;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
 }
 
 .enterprise-category {
-    color: #014131;
+    color: #0f172a;
     font-size: 12px;
     font-style: normal;
-    font-weight: 600;
+    font-weight: 700;
     line-height: normal;
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
@@ -149,15 +150,16 @@
 }
 
 .reading-time {
-    color: rgba(255, 255, 255, 0.9);
+    color: rgba(255, 255, 255, 0.95);
     font-size: 12px;
     font-style: normal;
-    font-weight: 500;
+    font-weight: 600;
     line-height: normal;
     margin-left: 10px;
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
 }
 
 .col-9 {
@@ -210,7 +212,7 @@
 
 .box-title {
     margin-left: 0;
-    color: #15803d;
+    color: #0f172a;
     font-size: 18px;
     font-style: normal;
     font-weight: 700;
@@ -221,7 +223,7 @@
 }
 
 .box-elements {
-    color: #374151;
+    color: #1f2937;
     font-size: 14px;
     font-style: normal;
     font-weight: 500;
@@ -239,9 +241,9 @@
 }
 
 .box-elements a {
-    color: #374151;
+    color: #1f2937;
     text-decoration: none;
-    font-weight: 500;
+    font-weight: 600;
     transition: all 0.3s ease;
     padding: 0.25rem 0;
     border-radius: 4px;
@@ -249,7 +251,7 @@
 }
 
 .box-elements a:hover {
-    color: #15803d;
+    color: #0f172a;
     background: rgba(34, 197, 94, 0.05);
     padding-left: 0.5rem;
     transform: translateX(4px);
@@ -277,10 +279,10 @@
 }
 
 .copy-url-text {
-    color: #6b7280;
+    color: #374151;
     font-size: 12px;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 500;
     line-height: 1.4;
     flex: 1;
     white-space: nowrap;
@@ -290,7 +292,7 @@
 }
 
 .box-header {
-    color: #15803d;
+    color: #0f172a;
     font-size: 16px;
     font-style: normal;
     font-weight: 700;
@@ -326,10 +328,10 @@
 }
 
 .bold-text {
-    color: #374151;
+    color: #1f2937;
     font-size: 12px;
     font-style: normal;
-    font-weight: 600;
+    font-weight: 700;
     line-height: normal;
     text-align: center;
 }
@@ -343,10 +345,10 @@
 }
 
 .icon-text {
-    color: #6b7280;
+    color: #374151;
     font-size: 11px;
     font-style: normal;
-    font-weight: 500;
+    font-weight: 600;
     line-height: normal;
     text-align: center;
     padding-top: 0.5rem;
@@ -359,7 +361,7 @@
     box-shadow: 0 8px 32px rgba(34, 197, 94, 0.08);
     border: 1px solid rgba(34, 197, 94, 0.1);
     margin-bottom: 2rem;
-    color: #374151;
+    color: #1f2937;
     text-align: justify;
     font-size: 16px;
     font-style: normal;
@@ -387,7 +389,7 @@
     border-radius: 16px;
     box-shadow: 0 8px 32px rgba(34, 197, 94, 0.08);
     border: 1px solid rgba(34, 197, 94, 0.1);
-    color: #15803d;
+    color: #0f172a;
     font-size: 24px;
     font-style: normal;
     font-weight: 700;
@@ -425,7 +427,7 @@ a {
     border-radius: 12px;
     box-shadow: 0 6px 25px rgba(34, 197, 94, 0.06);
     border: 1px solid rgba(34, 197, 94, 0.08);
-    color: #15803d;
+    color: #0f172a;
     font-size: 18px;
     font-style: normal;
     font-weight: 700;
@@ -444,7 +446,7 @@ a {
     color: #6b7280;
     font-size: 12px;
     font-style: italic;
-    font-weight: 400;
+    font-weight: 500;
     line-height: normal;
     margin-left: 1rem;
     align-self: flex-end;
