@@ -340,3 +340,95 @@ label {
   font-weight: 500;
   color: var(--text-primary);
 }
+
+/* Global Print Styles */
+@media print {
+  /* Hide navigation and footer elements globally */
+  app-navbar,
+  app-header,
+  app-footer,
+  nav,
+  footer,
+  .navbar,
+  .header,
+  .footer,
+  .nav-container,
+  .navigation,
+  .main-nav,
+  .site-header,
+  .site-footer,
+  .top-nav,
+  .bottom-nav {
+    display: none !important;
+    visibility: hidden !important;
+  }
+
+  /* Global body adjustments for print */
+  body {
+    background: white !important;
+    color: black !important;
+    font-family: 'Times New Roman', serif !important;
+    font-size: 12pt !important;
+    line-height: 1.5 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  html {
+    background: white !important;
+  }
+
+  /* Hide any floating or fixed elements */
+  .fixed-top,
+  .fixed-bottom,
+  .sticky-top,
+  .sticky-bottom,
+  .position-fixed,
+  .position-sticky {
+    display: none !important;
+  }
+
+  /* Ensure main content takes full width */
+  main,
+  .main-content,
+  .container,
+  .container-fluid {
+    margin: 0 !important;
+    padding: 0 !important;
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  /* Hide print buttons and interactive elements */
+  button,
+  .btn,
+  input[type="button"],
+  input[type="submit"],
+  .cursor-pointer,
+  .back-button {
+    display: none !important;
+  }
+
+  /* Special class for when printing is active */
+  body.printing app-navbar,
+  body.printing app-footer,
+  body.printing .navbar,
+  body.printing .footer {
+    display: none !important;
+  }
+}
+
+/* Print-specific utilities */
+.print-only {
+  display: none;
+}
+
+@media print {
+  .print-only {
+    display: block !important;
+  }
+  
+  .no-print {
+    display: none !important;
+  }
+}
