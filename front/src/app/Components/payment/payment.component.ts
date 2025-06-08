@@ -72,7 +72,7 @@ export class PaymentComponent implements OnInit {
         const payload = {
           amount: Math.round(this.getTotalPrice() * 100),
           currency: 'eur',
-          description: 'Achat sur votre application',
+          description: 'Purchase on your application',
           companyOwnerId: 152,
           cartLineIds: this.cartItems.map(item => item.id),
           customerInfo: this.checkoutForm.value,
@@ -99,11 +99,11 @@ export class PaymentComponent implements OnInit {
 
       } catch (error) {
         this.paymentState = PaymentState.ERROR;
-        this.errorMessage = 'Une erreur est survenue lors de la préparation du paiement.';
-        console.error('Erreur préparation:', error);
+        this.errorMessage = 'An error occurred while preparing the payment.';
+        console.error('Preparation error:', error);
       }
     } else {
-      console.log('Le formulaire n\'est pas valide!');
+      console.log('The form is not valid!');
     }
   }
 
@@ -113,7 +113,7 @@ export class PaymentComponent implements OnInit {
 
     if (!this.stripe || !this.elements) {
       this.paymentState = PaymentState.ERROR;
-      this.errorMessage = 'Erreur d\'initialisation de Stripe. Veuillez recharger la page.';
+      this.errorMessage = 'Stripe initialization error. Please reload the page.';
       return;
     }
 
@@ -122,7 +122,7 @@ export class PaymentComponent implements OnInit {
       console.log(this.elements);
 
       if (!paymentElement) {
-        throw new Error('L\'élément de paiement n\'est pas disponible');
+        throw new Error('Payment element is not available');
       }
 
       const { error, paymentIntent } = await this.stripe?.confirmPayment({
@@ -135,10 +135,10 @@ export class PaymentComponent implements OnInit {
 
       if (error) {
         this.paymentState = PaymentState.ERROR;
-        this.errorMessage = error.message || 'Une erreur est survenue lors du paiement.';
-        console.error('Erreur Stripe:', error);
+        this.errorMessage = error.message || 'An error occurred during the payment.';
+        console.error('Stripe error:', error);
       } else if (paymentIntent && paymentIntent.status === 'succeeded') {
-        console.log("Paiement réussi, statut:", paymentIntent.status);
+        console.log("Payment successful, status:", paymentIntent.status);
 
         try {
           const response  = await firstValueFrom(this.paymentService.confirmPaymentSuccess(paymentIntent.id));
@@ -162,11 +162,9 @@ export class PaymentComponent implements OnInit {
           }, 1500);
 
         } catch (confirmError: any) {
-          console.error('Erreur de confirmation détaillée:', confirmError);
+          console.error('Detailed confirmation error:', confirmError);
 
-          // Gérer les erreurs de confirmation
           if (confirmError.status === 200) {
-            // Success malgré l'erreur HTTP
             this.paymentState = PaymentState.SUCCESS;
             this.cartService.clearCart();
             setTimeout(() => {
@@ -174,17 +172,17 @@ export class PaymentComponent implements OnInit {
             }, 1500);
           } else {
             this.paymentState = PaymentState.ERROR;
-            this.errorMessage = 'Le paiement a réussi, mais une erreur est survenue lors de la confirmation.';
+            this.errorMessage = 'The payment succeeded, but an error occurred during confirmation.';
           }
         }
       } else {
         this.paymentState = PaymentState.ERROR;
-        this.errorMessage = 'Statut de paiement inattendu: ' + (paymentIntent ? paymentIntent.status : 'inconnu');
+        this.errorMessage = 'Unexpected payment status: ' + (paymentIntent ? paymentIntent.status : 'unknown');
       }
     } catch (error: any) {
-      console.error("Erreur technique lors du traitement du paiement:", error);
+      console.error("Technical error during payment processing:", error);
       this.paymentState = PaymentState.ERROR;
-      this.errorMessage = 'Une erreur technique est survenue lors du traitement du paiement.';
+      this.errorMessage = 'A technical error occurred during payment processing.';
     }
   }
 
