@@ -9,7 +9,7 @@ import {environment} from "../../environments/environment";
 })
 export class ProjectsService {
   private baseUrl = `${environment.apiUrl}/project`;
-  projects: Project[] = []
+  projects: Project[] = [];
 
   constructor(private http: HttpClient) {}
 
