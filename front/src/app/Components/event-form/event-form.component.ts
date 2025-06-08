@@ -15,6 +15,7 @@ export class EventFormComponent implements OnInit {
   eventFormGroup!: FormGroup;
   currentStep: number = 1;
   errorMessage: string = '';
+  isSubmitting: boolean = false; // Added loading state
 
   // Dropdown options
   eventTypeOptions = [
@@ -233,7 +234,6 @@ export class EventFormComponent implements OnInit {
       mealType: formValue.mealType === 'other' ? formValue.mealTypeCustom : formValue.mealType,
     };
 
-
     return eventData;
   }
 
@@ -244,6 +244,9 @@ export class EventFormComponent implements OnInit {
     });
 
     if (this.eventFormGroup.valid) {
+      this.isSubmitting = true; // Set loading state
+      this.errorMessage = ''; // Clear any previous error messages
+
       const eventData: Event = this.prepareEventData();
 
       this.eventFootprintService.createEvent(eventData).pipe(
@@ -252,6 +255,7 @@ export class EventFormComponent implements OnInit {
         )
       ).subscribe({
         next: (updatedEvents) => {
+          this.isSubmitting = false; // Reset loading state
           if (updatedEvents.length > 0) {
             // Get the most recent event
             const latestEvent = updatedEvents.reduce((a, b) =>
@@ -265,6 +269,7 @@ export class EventFormComponent implements OnInit {
           }
         },
         error: (error) => {
+          this.isSubmitting = false; // Reset loading state on error
           console.error('Submission failed:', error);
           this.errorMessage = 'An error occurred while submitting the event. Please try again.';
         }

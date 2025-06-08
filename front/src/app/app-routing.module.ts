@@ -71,6 +71,7 @@ import {RegisterCompanyOwnerComponent} from "./Components/register-company-owner
 import {AuthGuard} from "./auth.guard";
 import {ErrorPageComponent} from "./error-page/error-page.component";
 import {RedirectGuard} from "./guards/redirect.guard";
+import {ProgressBarComponent} from "./Components/progress-bar/progress-bar.component";
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -87,7 +88,6 @@ const routes: Routes = [
   {path: RoutesEnum.CARBONE, component: CarboneComponent,canActivate: [AuthGuard , RedirectGuard]},
   {path: RoutesEnum.RESULT_ESG, component: ResultESGComponent,canActivate: [AuthGuard , RedirectGuard]},
   {path: RoutesEnum.ARBORICULTURE, component: ArboricultureComponent},
-  /*{path: 'piste', component: PisteComponent},*/
   {path: RoutesEnum.MARKETPLACE, component: MarketplaceComponent},
   {path: RoutesEnum.PROJECT_DETAILS + '/:id', component: ProjectDetailsComponent},
   {path: RoutesEnum.CHECKOUT, component: CheckoutComponent},

@@ -277,11 +277,12 @@
               <polyline points="9,18 15,12 9,6"/>
             </svg>
           </button>
-          <button type="submit" class="btn-primary btn-submit" *ngIf="currentStep === 3">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <button type="submit" class="btn-primary btn-submit" [disabled]="isSubmitting" *ngIf="currentStep === 3">
+            <div *ngIf="isSubmitting" class="loading-spinner"></div>
+            <svg *ngIf="!isSubmitting" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <polyline points="20,6 9,17 4,12"/>
             </svg>
-            Calculate Footprint
+            {{ isSubmitting ? 'Calculating...' : 'Calculate Footprint' }}
           </button>
         </div>
       </form>

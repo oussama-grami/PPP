@@ -1,10 +1,12 @@
 <!-- HTML -->
 <div class="container-fluid full-height">
   <div class="row row-height">
-    <!-- Left Info Panel - Always full height -->
+    <!-- Left Info Panel -->
     <div class="col-lg-6 content-left">
       <div class="content-left-wrapper">
-        <img src="assets/img/Consommable.png" class="img-title" id="descriptionImage" alt="Office Supplies Icon"/>
+        <div class="progress-container">
+          <app-progress-bar [currentStep]="6" [totalSteps]="7"></app-progress-bar>
+        </div>
         <h2 id="descriptionTitle">Office Supplies</h2>
         <p id="descriptionText">
           Evaluate the emissions of your expenses on office supplies.
@@ -12,72 +14,94 @@
       </div>
     </div>
 
-    <!-- Right Form Panel - Centered content -->
-    <div class="col-lg-6 content-right" id="start">
+    <!-- Right Form Panel -->
+    <div class="col-lg-6 content-right">
       <div id="wizard_container">
-        <!-- Page Number Indicator -->
-        <div class="page-indicator">
-          <span class="current-page">6</span>/<span class="total-pages">7</span>
-        </div>
-
         <form [formGroup]="consForm" (ngSubmit)="onNext()" id="wrapped">
           <!-- Error Message Display -->
           <div *ngIf="errorMessage" class="alert alert-danger">
+            <i class="fas fa-exclamation-triangle"></i>
             {{ errorMessage }}
           </div>
 
           <div class="step card">
-            <h3 class="main_question">Office Supplies Form</h3>
+            <h3 class="main_question">
+              <i class="fas fa-clipboard-list"></i>
+              Office Supplies Form
+            </h3>
 
-            <!-- Expenses on Paper with Unit -->
-            <div class="form-group row">
-              <div class="col-9">
-                <label for="expensesOnPaper" class="form-label">Expenses on Paper</label>
-                <input type="number" class="form-control" id="expensesOnPaper" formControlName="expensesOnPaper" placeholder="Enter paper expenses">
-                <small class="text-danger" *ngIf="consForm.get('expensesOnPaper')?.touched && consForm.get('expensesOnPaper')?.invalid">
-                  Expenses on Paper is required.
-                </small>
-              </div>
-              <div class="col-3">
-                <label for="unitPaper" class="form-label">Unit</label>
-                <select class="form-control" id="unitPaper" formControlName="unitPaper">
-                  <option [value]="Unit.DOLLAR">Dollar</option>
-                  <option [value]="Unit.EURO">Euro</option>
-                  <option [value]="Unit.TUNISIAN_DINAR">DT</option>
-                </select>
-                <small class="text-danger" *ngIf="consForm.get('unitPaper')?.touched && consForm.get('unitPaper')?.invalid">
-                  Unit Paper is required.
-                </small>
-              </div>
-            </div>
+            <div class="usage-section">
+              <h6 class="section-title">
+                <i class="fas fa-chart-bar"></i>
+                Expense Details
+              </h6>
 
-            <!-- Expenses on Office Supplies with Unit -->
-            <div class="form-group row">
-              <div class="col-9">
-                <label for="expensesOnSmallOfficeSupplies" class="form-label">Expenses on Office Supplies</label>
-                <input type="number" class="form-control" id="expensesOnSmallOfficeSupplies" formControlName="expensesOnSmallOfficeSupplies" placeholder="Enter office supplies expenses">
-                <small class="text-danger" *ngIf="consForm.get('expensesOnSmallOfficeSupplies')?.touched && consForm.get('expensesOnSmallOfficeSupplies')?.invalid">
-                  Expenses on Office Supplies is required.
-                </small>
+              <div class="row">
+                <div class="col-md-6">
+                  <!-- Expenses on Paper with Unit -->
+                  <div class="form-group">
+                    <label for="expensesOnPaper" class="form-label">Expenses on Paper</label>
+                    <input type="number" class="form-control" id="expensesOnPaper" formControlName="expensesOnPaper" placeholder="Enter paper expenses">
+                    <small class="text-danger" *ngIf="consForm.get('expensesOnPaper')?.touched && consForm.get('expensesOnPaper')?.invalid">
+                      Expenses on Paper is required.
+                    </small>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="unitPaper" class="form-label">Paper Unit</label>
+                    <select class="form-control" id="unitPaper" formControlName="unitPaper">
+                      <option value="" disabled selected>Select currency</option>
+                      <option [value]="Unit.DOLLAR">Dollar</option>
+                      <option [value]="Unit.EURO">Euro</option>
+                      <option [value]="Unit.TUNISIAN_DINAR">DT</option>
+                    </select>
+                    <small class="text-danger" *ngIf="consForm.get('unitPaper')?.touched && consForm.get('unitPaper')?.invalid">
+                      Unit Paper is required.
+                    </small>
+                  </div>
+                </div>
               </div>
-              <div class="col-3">
-                <label for="unitOfficeSupplies" class="form-label">Unit</label>
-                <select class="form-control" id="unitOfficeSupplies" formControlName="unitOfficeSupplies">
-                  <option [value]="Unit.DOLLAR">Dollar</option>
-                  <option [value]="Unit.EURO">Euro</option>
-                  <option [value]="Unit.TUNISIAN_DINAR">DT</option>
-                </select>
-                <small class="text-danger" *ngIf="consForm.get('unitOfficeSupplies')?.touched && consForm.get('unitOfficeSupplies')?.invalid">
-                  Unit Office Supplies is required.
-                </small>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <!-- Expenses on Office Supplies with Unit -->
+                  <div class="form-group">
+                    <label for="expensesOnSmallOfficeSupplies" class="form-label">Expenses on Office Supplies</label>
+                    <input type="number" class="form-control" id="expensesOnSmallOfficeSupplies" formControlName="expensesOnSmallOfficeSupplies" placeholder="Enter office supplies expenses">
+                    <small class="text-danger" *ngIf="consForm.get('expensesOnSmallOfficeSupplies')?.touched && consForm.get('expensesOnSmallOfficeSupplies')?.invalid">
+                      Expenses on Office Supplies is required.
+                    </small>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="unitOfficeSupplies" class="form-label">Office Supplies Unit</label>
+                    <select class="form-control" id="unitOfficeSupplies" formControlName="unitOfficeSupplies">
+                      <option value="" disabled selected>Select currency</option>
+                      <option [value]="Unit.DOLLAR">Dollar</option>
+                      <option [value]="Unit.EURO">Euro</option>
+                      <option [value]="Unit.TUNISIAN_DINAR">DT</option>
+                    </select>
+                    <small class="text-danger" *ngIf="consForm.get('unitOfficeSupplies')?.touched && consForm.get('unitOfficeSupplies')?.invalid">
+                      Unit Office Supplies is required.
+                    </small>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
 
           <!-- Navigation Buttons -->
           <div class="button-group">
-            <button type="button" name="backward" class="btnbackward" [routerLink]="'/' + RoutesEnum.FRET">Back</button>
-            <button type="submit" name="forward" class="btnforward">Continue</button>
+            <button type="button" name="backward" class="btn-backward" [routerLink]="'/' + RoutesEnum.FRET">
+              <i class="fas fa-arrow-left"></i>
+              Back
+            </button>
+            <button type="submit" name="forward" class="btn-forward">
+              Continue
+              <i class="fas fa-arrow-right"></i>
+            </button>
           </div>
         </form>
       </div>

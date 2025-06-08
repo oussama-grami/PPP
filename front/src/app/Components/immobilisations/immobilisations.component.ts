@@ -15,6 +15,7 @@ import { of } from "rxjs";
 export class ImmobilisationsComponent implements OnInit {
   immeForm!: FormGroup;
   errorMessage: string = '';
+  isLoading: boolean = false;
 
   constructor(private fb: FormBuilder, private carboneService: CarbonFootprintService, private router: Router) { }
 
@@ -37,6 +38,9 @@ export class ImmobilisationsComponent implements OnInit {
 
   onSubmit() {
     if (this.immeForm.valid) {
+      this.isLoading = true;
+      this.errorMessage = '';
+
       const immeData: Immobilisation = this.immeForm.value;
       this.carboneService.updateImmobilisation(immeData);
 
@@ -55,12 +59,14 @@ export class ImmobilisationsComponent implements OnInit {
         )
       ).subscribe({
         next: (latestCalculation) => {
+          this.isLoading = false;
           if (latestCalculation) {
             this.carboneService.getEnterpriseRecommendations(latestCalculation.id);
             this.router.navigate(['/' + RoutesEnum.RESULTAT_CARBONE, latestCalculation.id]);
           }
         },
         error: (err) => {
+          this.isLoading = false;
           console.error('Error during submission or result retrieval:', err);
           this.errorMessage = 'An error occurred during submission or result retrieval.';
         }
